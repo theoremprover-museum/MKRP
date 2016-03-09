@@ -1,0 +1,123 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: Genera 7.1 PS 3.10 IP-TCP 52.16 MKRP 20.1                *
+                     *           DATE: 04-AUG-1988  01:34                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+                                                                            
+   
+   *************************************************************************
+   
+    EDIT:     Axioms and Theorems edited: 04-AUG-1988 01:34 
+   
+   *************************************************************************
+   
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   SORT MENGE,ELEMENT:ANY
+             TYPE W (MENGE) :MENGE
+             TYPE APPLYA (MENGE ELEMENT) :ELEMENT
+             TYPE INV (MENGE) :MENGE
+             * ISOMORPHIE VON TEILMENGEN *
+             ALL A1,B1,PHI:MENGE (ALL A,B:MENGE ALL X,Y:ELEMENT 
+                                         ISOMORPH (PHI A B)
+                                              AND ME (A1 A)
+                                              AND ME (B1 B)
+                                              AND EL (X A1)
+                                              AND EL (Y B1)
+                                         IMPL EL (APPLYA (PHI X) B1) AND EL (APPLYA (INV (PHI) Y) A1))
+                                 IMPL ISOMORPH (PHI A1 B1)
+             * LEMMA 2.6.LR.1.1 *
+             ALL A,B,PHI:MENGE ISOMORPH (PHI W (A) W (B)) IMPL (ALL X:ELEMENT EL (X A) IMPL EL (APPLYA (PHI X) B))
+             * LEMMA 2.6.LR.1.2 *
+             ALL A,B,PHI:MENGE ISOMORPH (PHI W (A) W (B)) IMPL (ALL X:ELEMENT EL (X B) IMPL EL (APPLYA (INV (PHI) X) A))
+             * EIGENSCHAFT VON W (X) *
+             ALL X:MENGE ME (X W (X))
+             
+   Theorems: ALL X,Y,PHI:MENGE ISOMORPH (PHI W (X) W (Y)) IMPL (EX PSI:MENGE ISOMORPH (PSI X Y))
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Menge +ME(x w(x))
+             A2:   All x,y,z:Menge +ISOMORPH(z f_2(z y x) f_1(z y x))  +ISOMORPH(z x y)
+             A3:   All x,y,z:Menge +ME(z f_2(y x z))  +ISOMORPH(y z x)
+             A4:   All x,y,z:Menge +ME(z f_1(y z x))  +ISOMORPH(y x z)
+           * A5:   All x,y,z:Menge +EL(f_3(z y x) x)  +ISOMORPH(z x y)
+           * A6:   All x,y,z:Menge +EL(f_4(z y x) y)  +ISOMORPH(z x y)
+           * A7:   All x,y,z:Menge -EL(applya(z f_3(z y x)) y)  -EL(applya(inv(z) f_4(z y x)) x)  +ISOMORPH(z x y)
+           * A8:   All x:Element y,z,u:Menge -ISOMORPH(u w(z) w(y))  -EL(x z)  +EL(applya(u x) y)
+           * A9:   All x:Element y,z,u:Menge -ISOMORPH(u w(z) w(y))  -EL(x y)  +EL(applya(inv(u) x) z)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T10: +ISOMORPH(c_1 w(c_2) w(c_3))
+           * T11: All x:Menge -ISOMORPH(x c_2 c_3)
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+
+   
+   Initial Clauses:   * A5:   All x,y,z:Menge +EL(f_3(z y x) x)  +ISOMORPH(z x y)
+                      * A6:   All x,y,z:Menge +EL(f_4(z y x) y)  +ISOMORPH(z x y)
+                      * A7:   All x,y,z:Menge -EL(applya(z f_3(z y x)) y)  -EL(applya(inv(z) f_4(z y x)) x)
+                                              +ISOMORPH(z x y)
+                      * A8:   All x:Element y,z,u:Menge -ISOMORPH(u w(z) w(y))  -EL(x z)  +EL(applya(u x) y)
+                      * A9:   All x:Element y,z,u:Menge -ISOMORPH(u w(z) w(y))  -EL(x y)  +EL(applya(inv(u) x) z)
+                      * T10:  +ISOMORPH(c_1 w(c_2) w(c_3))
+                      * T11:  All x:Menge -ISOMORPH(x c_2 c_3)
+                      
+
+   
+   A6,2 & T11,1  -->  * R1:   All x:Menge +EL(f_4(x c_3 c_2) c_3)
+   
+   A5,2 & T11,1  -->  * R2:   All x:Menge +EL(f_3(x c_3 c_2) c_2)
+   
+   T10,1 & A9,1  -->  * R3:   All x:Element -EL(x c_3)  +EL(applya(inv(c_1) x) c_2)
+   
+   R1,1 & R3,1   -->  * R4:   All x:Menge +EL(applya(inv(c_1) f_4(x c_3 c_2)) c_2)
+   
+   T10,1 & A8,1  -->  * R5:   All x:Element -EL(x c_2)  +EL(applya(c_1 x) c_3)
+   
+   R2,1 & R5,1   -->  * R6:   All x:Menge +EL(applya(c_1 f_3(x c_3 c_2)) c_3)
+   
+   R6,1 & A7,1   -->  * R7:   -EL(applya(inv(c_1) f_4(c_1 c_3 c_2)) c_2)  +ISOMORPH(c_1 c_2 c_3)
+   
+   R7,1 & R4,1   -->  * R8:   +ISOMORPH(c_1 c_2 c_3)
+   
+   R8,1 & T11,1  -->  * R9:   []
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 

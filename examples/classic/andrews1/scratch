@@ -1,0 +1,47 @@
+;;; -*- Package: MKRP; Base: 10; Mode: LISP; Syntax: Common-lisp -*-
+
+(problem (Edit:     Axioms and Theorems edited: 09-NOV,1990 11:43 ) proved
+    ((type-constants ANY)
+    (constants (Q (O ANY)) (P (O ANY)))
+    (conclusion th1 (EQUIV (EQUIV (EXISTS (LAM (X_3 ANY) (FORALL (LAM (X_4 ANY) (EQUIV (P X_3) (P X_4)))))) (EQUIV (EXISTS (LAM (X_6 ANY) (Q X_6))) (FORALL (LAM (X_8 ANY) (P X_8))))) (EQUIV (EXISTS (LAM (X_9 ANY) (FORALL (LAM (X_10 ANY) (EQUIV (Q X_9) (Q X_10)))))) (EQUIV (EXISTS (LAM (X_11 ANY) (P X_11))) (FORALL (LAM (X_12 ANY) (Q X_12))))))))
+    (resolution-proof
+        (cnf (
+            (clause R.= ((X_13 ANY)) (+ (= X_13 X_13)))
+            (clause T1 ((X_44 ANY)(X_40 ANY)(X_24 ANY)(X_20 ANY)) (- (P X_20)) (- (P (F_1 X_20))) (- (Q X_24)) (- (P C_1)) (- (Q X_40)) (- (Q (F_2 X_40))) (- (P X_44)) (- (Q C_6)))
+            (clause T2 ((X_369 ANY)(X_414 ANY)(X_505 ANY)(X_535 ANY)) (- (P X_535)) (- (P (F_1 X_535))) (- (Q X_505)) (- (P C_1)) (- (Q X_414)) (- (Q (F_2 X_414))) (+ (P C_7)) (+ (Q X_369)))
+            (clause T3 ((X_385 ANY)(X_400 ANY)(X_502 ANY)(X_532 ANY)) (- (P X_532)) (- (P (F_1 X_532))) (- (Q X_502)) (- (P C_1)) (+ (Q X_400)) (+ (Q (F_2 X_400))) (- (P X_385)) (- (Q C_6)))
+            (clause T4 ((X_43 ANY)(X_61 ANY)(X_506 ANY)(X_536 ANY)) (- (P X_536)) (- (P (F_1 X_536))) (- (Q X_506)) (- (P C_1)) (+ (Q X_61)) (+ (Q (F_2 X_61))) (+ (P C_7)) (+ (Q X_43)))
+
+
+(554 ((369 41 414 40 535 20)
+      (554 503 554)
+      (((554 . 7) (503 . 6) NIL)
+       ((503 . 5) (554 . 7) NIL))
+      ((((554 . 1) (503 . 1) NIL)
+	((554 . 2) (503 . 2) NIL)
+	((554 . 3) (503 . 3) NIL)
+	((554 . 4) (503 . 4) NIL))
+       NIL)))
+
+PO=REPL.OP.ONE.RES #<Stream STRING-OUTPUT-STREAM 31B0C0E>
+554
+((503 . 5) (554 . 7) NIL)
+(369 41 414 40 535 20)
+((554 . 1) (554 . 2) (554 . 3) (554 . 4) (554 . 5) (554 . 6) (554 . 1) (554 . 2) (554 . 3) (554 . 4) ...)
+7
+NIL
+"T2.Ren2"
+(369 602 414 603 535 605) NIL
+
+
+("X_369" "X_602" "X_414" "X_603" "X_535" "X_605" "X_40" "X_571" "X_20" "X_573") 
+("X_369" "X_607" "X_414" "X_608" "X_535" "X_609" "X_20" "X_610" "X_40" "X_611") 
+("X_602" "X_607" "X_603" "X_608" "X_605" "X_609" "X_573" "X_610" "X_571" "X_611") 
+("X_602" "C_6" "X_603" "X_571" "X_605" "X_573") 
+("X_369" "C_6" "X_414" "X_40" "X_535" "X_20")
+
+("X_369" "X_627" "X_414" "X_628" "X_535" "X_629" "X_20" "X_630" "X_40" "X_631") 
+("X_369" "X_632" "X_414" "X_633" "X_535" "X_634" "X_20" "X_635" "X_40" "X_636") 
+("X_627" "X_632" "X_628" "X_633" "X_629" "X_634" "X_630" "X_635" "X_631" "X_636") 
+("X_627" "C_6" "X_628" "X_631" "X_629" "X_630" "X_602" ("F_2" "X_631")) 
+("X_369" "C_6" "X_414" "X_40" "X_535" "X_20") 

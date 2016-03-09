@@ -1,0 +1,157 @@
+ 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 4-APR-85                                                      *
+                    *         DATE : 13-JUN-85  23:07:34                                           *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   13-JUN-85 11:09:38
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   K.COMMENT.4.8.2.1
+                                                                        
+************************************************************************
+                                                                        
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : * ***************************************************************************
+           * DEFINITIONEN DER MENGENLEHRE **********************************************
+           SORT SET:ANY
+           SORT ELEMENT:SET
+           TYPE EL(ELEMENT SET)
+           * DEFINITION 1.1: TEILMENGE
+           TYPE SUBSET(SET SET)
+           ALL X,Y:SET SUBSET(X Y) EQV(ALL A:ELEMENT EL(A X) IMPL EL(A Y))
+           * DEFINITION 1.3: KARTESISCHES PRODUKT
+           TYPE CARTES(SET SET) :SET
+           TYPE PAIR(ELEMENT ELEMENT) :ELEMENT
+           * DEFINITION 1.4: VEREINIGUNG
+           TYPE UNION(SET SET) :SET
+           ALL X,Y:SET ALL A:ELEMENT EL(A UNION(X Y)) EQV EL(A X) OR EL(A Y)
+           * ***************************************************************************
+           * DEFINTIONEN VON RELATIONEN AUF EINER FESTEN MENGE S ***********************
+           SORT REL:SET
+           TYPE S:SET
+           SORT EL.OF.S:ELEMENT
+           * DEFINITION 2.1: RELATION *************************************************
+           ALL RHO:REL SUBSET(RHO CARTES(S S))
+ 
+THEOREMS : ALL RHO,SIGMA:REL SUBSET(UNION(RHO SIGMA) CARTES(S S))
+ 
+ 
+ 
+ 
+CONSTANTS : 
+=========== 
+ 
+| NAME   | SORT              |            | ATTRIBUTES |
+--------------------------------------------------------
+| S      | SET               |            |            |
+| C_1    | REL               |            |            |
+| C_2    | REL               |            |            |
+| C_3    | ELEMENT           |            |            |
+--------------------------------------------------------
+ 
+ 
+ 
+FUNCTIONS : 
+=========== 
+ 
+| NAME   | DOMAIN            | RANGE      | ATTRIBUTES |
+--------------------------------------------------------
+| CARTES | SET SET           | SET        |            |
+| PAIR   | ELEMENT ELEMENT   | ELEMENT    |            |
+| UNION  | SET SET           | SET        |            |
+--------------------------------------------------------
+ 
+ 
+ 
+PREDICATES : 
+============ 
+ 
+| NAME   | DOMAIN            |            | ATTRIBUTES |
+--------------------------------------------------------
+| TRUE   |                   |            | DEFINED    |
+| FALSE  |                   |            | DEFINED    |
+| EL     | ELEMENT SET       |            |            |
+| SUBSET | SET SET           |            |            |
+--------------------------------------------------------
+ 
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+  A1   : ALL X,Y:SET  Z:ELEMENT  + EL(Z UNION(Y X))  - EL(Z Y)
+  A2   : ALL X,Y:SET  Z:ELEMENT  + EL(Z UNION(Y X))  - EL(Z X)
+* A3   : ALL X:REL  Y:ELEMENT  - EL(Y X)  + EL(Y CARTES(S S))
+* A4   : ALL X,Y:SET  Z:ELEMENT  - EL(Z UNION(Y X))  + EL(Z Y)  + EL(Z X)
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+* T5   : + EL(C_3 UNION(C_1 C_2))
+* T6   : - EL(C_3 CARTES(S S))
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION
+ 
+INITIAL CLAUSES :    A1 : ALL X,Y:SET  Z:ELEMENT  + EL(Z UNION(Y X))  - EL(Z Y)
+                     A2 : ALL X,Y:SET  Z:ELEMENT  + EL(Z UNION(Y X))  - EL(Z X)
+                   * A3 : ALL X:REL  Y:ELEMENT  - EL(Y X)  + EL(Y CARTES(S S))
+                   * A4 : ALL X,Y:SET  Z:ELEMENT  - EL(Z UNION(Y X))  + EL(Z Y)  + EL(Z X)
+                   * T5 : + EL(C_3 UNION(C_1 C_2))
+                   * T6 : - EL(C_3 CARTES(S S))
+ 
+A3,2 & T6,1   -->  * R1 : ALL X:REL  - EL(C_3 X)
+ 
+T5,1 & A4,1   -->  * R2 : + EL(C_3 C_1)  + EL(C_3 C_2)
+ 
+R2,1 & R1,1   -->  * R3 : + EL(C_3 C_2)
+ 
+R3,1 & R1,1   -->  * R4 :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+STOP
+ 

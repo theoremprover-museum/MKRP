@@ -1,0 +1,88 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 34.2 EQUALITY 16.1                                  *
+                     *           DATE: 01-NOV,1989  21:18                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 01-NOV,1989 21:18 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   NIL  
+             
+   Theorems: * THEOREMS *
+             (EX Y (ALL X F (X Y) EQV NOT F (X X))) IMPL NOT (ALL X (EX Y (ALL Z F (X Y) EQV NOT F (Z X))))
+             
+   
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T1: All x:Any + F(x c_1)  + F(x x)
+           * T2: All x:Any - F(x c_1)  - F(x x)
+
+
+
+
+
+
+             Initial Operations on Theorems
+             ==============================
+
+
+          
+   T1 (factor)  --> * F1: + F(c_1 c_1)
+   
+   T2,2 & T1,1  --> * R2: - F(c_1 c_1)  + F(c_1 c_1)
+   
+   R2,1 & F1,1  --> * R3: + F(c_1 c_1)
+   
+   R3,1 & T2,2  --> * R4: - F(c_1 c_1)
+   
+   R4 1=1       --> * D5: []
+   
+
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   See operations on theorems of splitpart 1
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 2 seconds

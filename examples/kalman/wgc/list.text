@@ -1,0 +1,202 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 41.1 EQUALITY 16.1                                  *
+                     *           DATE: 30-APR,1990  15:46                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 30-APR,1990 15:45 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * A (U X Y Z) MEANS THAT THE STATE WHERE THE BOAT, WOLF, GOAT,
+             AND CABBAGES ARE RESPECTIVELY ON BANKS U, X, Y, Z IS AN ACHIEVABLE
+             * STATE
+             *
+             * W AND E ARE UNEQUAL
+             NE (W E)
+             NE (E W)
+             * ALL ORIGINALLY ON WEST BANK
+             A (W W W W)
+             * A (U X Y Z) MEANS THAT THE STATE WHERE THE BOAT, WOLF, GOAT,
+             AND CABBAGES ARE RESPECTIVELY ON BANKS U, X, Y, Z IS AN ACHIEVABLE
+             * STATE
+             *
+             * W AND E ARE UNEQUAL
+             NE (W E)
+             NE (E W)
+             * ALL ORIGINALLY ON WEST BANK
+             A (W W W W)
+             * A (U X Y Z) MEANS THAT THE STATE WHERE THE BOAT, WOLF, GOAT,
+             AND CABBAGES ARE RESPECTIVELY ON BANKS U, X, Y, Z IS AN ACHIEVABLE
+             * STATE
+             *
+             * W AND E ARE UNEQUAL
+             NE (W E)
+             NE (E W)
+             * ALL ORIGINALLY ON WEST BANK
+             A (W W W W)
+             * GOAT ACROSS OR BACK
+             ALL X,Y A (W X W Y) EQV A (E X E Y)
+             * WOLF ACROSS
+             ALL X,Y NE (X Y) AND A (W W X Y) IMPL A (E E X Y)
+             * WOLF BACK
+             ALL X,Y NE (X Y) AND A (E E X Y) IMPL A (W W X Y)
+             * CABBAGES ACROSS
+             ALL X,Y NE (X Y) AND A (W X Y W) IMPL A (E X Y E)
+             * CABBAGES BACK
+             ALL X,Y NE (X Y) AND A (E X Y E) IMPL A (W X Y W)
+             * BOAT ACROSS OR BACK
+             ALL X,Y,Z NE (X Y) AND NE (Y Z) IMPL (A (W X Y Z) EQV A (E X Y Z))
+             * A (U X Y Z) MEANS THAT THE STATE WHERE THE BOAT, WOLF, GOAT,
+             AND CABBAGES ARE RESPECTIVELY ON BANKS U, X, Y, Z IS AN ACHIEVABLE
+             * STATE
+             *
+             * W AND E ARE UNEQUAL
+             NE (W E)
+             NE (E W)
+             * ALL ORIGINALLY ON WEST BANK
+             A (W W W W)
+             * GOAT ACROSS OR BACK
+             ALL X,Y A (W X W Y) EQV A (E X E Y)
+             * WOLF ACROSS
+             ALL X,Y NE (X Y) AND A (W W X Y) IMPL A (E E X Y)
+             * WOLF BACK
+             ALL X,Y NE (X Y) AND A (E E X Y) IMPL A (W W X Y)
+             * CABBAGES ACROSS
+             ALL X,Y NE (X Y) AND A (W X Y W) IMPL A (E X Y E)
+             * CABBAGES BACK
+             ALL X,Y NE (X Y) AND A (E X Y E) IMPL A (W X Y W)
+             * BOAT ACROSS OR BACK
+             ALL X,Y,Z NE (X Y) AND NE (Y Z) IMPL (A (W X Y Z) EQV A (E X Y Z))
+             
+   Theorems: * ALL TRANSPORTED TO EAST BANK
+             A (E E E E)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+           * A2:   + NE(w e)
+           * A3:   + NE(e w)
+           * A4:   + A(w w w w)
+             A5:   + NE(w e)
+             A6:   + NE(e w)
+             A7:   + A(w w w w)
+             A8:   + NE(w e)
+             A9:   + NE(e w)
+             A10:  + A(w w w w)
+             A11:  + NE(w e)
+             A12:  + NE(e w)
+             A13:  + A(w w w w)
+           * A14:  All x,y:Any + A(w y w x)  - A(e y e x)
+           * A15:  All x,y:Any - A(w y w x)  + A(e y e x)
+             A16:  All x,y:Any + A(w y w x)  - A(e y e x)
+             A17:  All x,y:Any - A(w y w x)  + A(e y e x)
+           * A18:  All x,y:Any - NE(y x)  - A(w w y x)  + A(e e y x)
+             A19:  All x,y:Any - NE(y x)  - A(e e y x)  + A(w w y x)
+           * A20:  All x,y:Any - NE(y x)  - A(w y x w)  + A(e y x e)
+             A21:  All x,y:Any - NE(y x)  - A(e y x e)  + A(w y x w)
+             A22:  All x,y:Any - NE(y x)  - A(w w y x)  + A(e e y x)
+             A23:  All x,y:Any - NE(y x)  - A(e e y x)  + A(w w y x)
+             A24:  All x,y:Any - NE(y x)  - A(w y x w)  + A(e y x e)
+             A25:  All x,y:Any - NE(y x)  - A(e y x e)  + A(w y x w)
+           * A26:  All x,y,z:Any - NE(z y)  - NE(y x)  + A(w z y x)  - A(e z y x)
+             A27:  All x,y,z:Any - NE(z y)  - NE(y x)  - A(w z y x)  + A(e z y x)
+             A28:  All x,y,z:Any - NE(z y)  - NE(y x)  + A(w z y x)  - A(e z y x)
+             A29:  All x,y,z:Any - NE(z y)  - NE(y x)  - A(w z y x)  + A(e z y x)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T30: - A(e e e e)
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:      A1:   All x:Any + =(x x)
+                       * A2:   + NE(w e)
+                       * A3:   + NE(e w)
+                       * A4:   + A(w w w w)
+                       * A14:  All x,y:Any + A(w y w x)  - A(e y e x)
+                       * A15:  All x,y:Any - A(w y w x)  + A(e y e x)
+                       * A18:  All x,y:Any - NE(y x)  - A(w w y x)  + A(e e y x)
+                         A19:  All x,y:Any - NE(y x)  - A(e e y x)  + A(w w y x)
+                       * A20:  All x,y:Any - NE(y x)  - A(w y x w)  + A(e y x e)
+                         A21:  All x,y:Any - NE(y x)  - A(e y x e)  + A(w y x w)
+                       * A26:  All x,y,z:Any - NE(z y)  - NE(y x)  + A(w z y x)  - A(e z y x)
+                         A27:  All x,y,z:Any - NE(z y)  - NE(y x)  - A(w z y x)  + A(e z y x)
+                       * T30:  - A(e e e e)
+                       
+
+   
+   A15,2 & T30,1  -->  * R1:   - A(w e w e)
+   
+   A26,3 & R1,1   -->  * R2:   - NE(e w)  - NE(w e)  - A(e e w e)
+   
+   R2,2 & A2,1    -->  * R3:   - NE(e w)  - A(e e w e)
+   
+   R3,1 & A3,1    -->  * R4:   - A(e e w e)
+   
+   A20,3 & R4,1   -->  * R5:   - NE(e w)  - A(w e w w)
+   
+   R5,1 & A3,1    -->  * R6:   - A(w e w w)
+   
+   A14,1 & R6,1   -->  * R19:  - A(e e e w)
+   
+   A18,3 & R19,1  -->  * R20:  - NE(e w)  - A(w w e w)
+   
+   R20,1 & A3,1   -->  * R21:  - A(w w e w)
+   
+   A26,3 & R21,1  -->  * R24:  - NE(w e)  - NE(e w)  - A(e w e w)
+   
+   R24,3 & A15,2  -->  * R25:  - NE(w e)  - NE(e w)  - A(w w w w)
+   
+   R25,3 & A4,1   -->  * R26:  - NE(w e)  - NE(e w)
+   
+   R26,2 & A3,1   -->  * R27:  - NE(w e)
+   
+   R27,1 & A2,1   -->  * R28:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 46 seconds

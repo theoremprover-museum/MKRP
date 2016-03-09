@@ -1,0 +1,533 @@
+ 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 3-SEP-84                                                      *
+                    *         DATE : 3-SEP-84  14:49:31                                            *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+                                                                         
+*************************************************************************
+ EDIT:     AXIOME UND THEOREME EDITIERT AM:   3-SEP-84 13:58:38
+*************************************************************************
+NIL
+  NIL
+ 
+ 
+ADJUSTMENT OF THE OPTIONS : 
+============================
+ 
+ 
+ 
+TWO:RULES                             NIL                   TWO:RULES.MAXLEVEL                    0
+TWO:SUPPRESS.NORULES                  NIL
+ 
+ 
+RED.I:CLAUSE.MULTIPLE.LITERALS        T                     RED.I:CLAUSE.PURITY                   T
+RED.I:CLAUSE.TAUTOLOGY                T                     RED.I:CLAUSE.TAUTOLOGY.RECHECK        PARTIAL
+RED.I:CLAUSE.SUBSUMPTION              T                     RED.I:CLAUSE.SUBSUMPTION.RECHECK      PARTIAL
+RED.I:CLAUSE.REPL.FACTORING           T                     RED.I:CLAUSE.REPL.FACTORING.RECHECK   T
+RED.I:CLAUSE.REPL.RESOLUTION          SIMPLE                RED.I:CLAUSE.REPL.RESOLUTION.RECHECK  T
+RED.I:CLAUSE.REWRITING                T                     RED.I:LINK.INCOMPATIBILITY            T
+RED.I:LINK.TAUTOLOGY                  REMOVE-INHIBIT        RED.I:LINK.TAUTOLOGY.RECHECK          NIL
+RED.I:LINK.SUBSUMPTION                REMOVE-INHIBIT        RED.I:LINK.SUBSUMPTION.RECHECK        NIL
+ 
+RED.D:CLAUSE.MULTIPLE.LITERALS        T                     RED.D:CLAUSE.PURITY                   T
+RED.D:CLAUSE.TAUTOLOGY                REMOVE-INHIBIT        RED.D:CLAUSE.TAUTOLOGY.RECHECK        NIL
+RED.D:CLAUSE.SUBSUMPTION.FORWARD      REMOVE-INHIBIT        RED.D:CLAUSE.SUBSUMPTION.BACKWARD     REMOVE
+RED.D:CLAUSE.SUBSUMPTION.RECHECK      NIL                   RED.D:CLAUSE.REPL.FACTORING           T
+RED.D:CLAUSE.REPL.FACTORING.RECHECK   T                     RED.D:CLAUSE.REPL.RESOLUTION          SIMPLE
+RED.D:CLAUSE.REPL.RESOLUTION.RECHECK  T                     RED.D:LINK.INCOMPATIBILITY            T
+RED.D:LINK.TAUTOLOGY                  REMOVE-INHIBIT        RED.D:LINK.TAUTOLOGY.RECHECK          NIL
+RED.D:LINK.SUBSUMPTION                REMOVE-INHIBIT        RED.D:LINK.SUBSUMPTION.RECHECK        NIL
+ 
+FAC:INITIAL                           NIL                   FAC:EACH.STEP                         NIL
+ 
+STR:RESOLUTION                        SET-OF-SUPPORT        STR:E-RESOLUTION                      NIL
+STR:PARAMODULATION                    UNIT-ANCESTRY         STR:LINK.DEPTH                        NIL
+STR:TERM.DEPTH                        NIL                   STR:R.DEMODULATION                    T
+STR:P.DEMODULATION                    T                     STR:INDUCTION                         NIL
+ 
+TERM:UNITS                            T                     TERM:ITERATIONS                       0
+TERM:SET.OF.SUPPORT                   NIL                   TERM:BREADTH.FIRST                    NIL
+ 
+GEN:SPLITTING                         0                     GEN:MANUAL.CONTROL                    NIL
+GEN:SYSTEM.STRIP                      NIL                   GEN:MAXIMUM.STEPS                     NIL
+GEN:GRAPH.SAVING                      NIL                   GEN:SAVE.FILE                         SAVE.DEFAULT
+GEN:BATCH.ANSWER                      SC
+ 
+ 
+TR:PREPROCESSING                      NIL                   TR:STEP.MODE                          LR
+TR:DUMP                               NIL                   TR:CLAUSE.MODE                        I
+TR:LINK.MODE                          I                     TR:TRACE.FILE                         TR.ALMZOOTLE
+TR:TERMINAL                           T
+ 
+ 
+PR:INFIX.FORM                         T                     PR:PREFIX.FORM                        NIL
+PR:OPTIONS                            T                     PR:AXIOM.CLAUSES                      NIL
+PR:SYMBOLS                            NIL                   PR:STATISTICS                         NIL
+PR:PROTOCOL                           T                     PR:LEFT.MARGIN                        0
+PR:LINELENGTH                         120
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : *
+           * If the dorkentaff does not nurkel, then the chittafrithy
+           * does not loptahop. If the almzootle either loptahops or
+           * knafters, then the dorkentaff nurkels. If the chitta-
+           * frithy does not meave, then the almzootle knafters.
+           * If the bastelwurp loptahops, then the almzootle does not
+           * nurkel. If the bastelwurp does not nurkel, then the
+           * almzootle nurkels.
+           * Each is busy doing exactly one of the things mentioned,
+           * and no two do the same.
+           * Now who is doing what?
+           *
+           *
+           *
+           *
+           * Encoding:
+           * A = almzootle, B = bastelwurp, C = chittafrithy, D = dorkentaff;
+           * K = to knafter, L = to loptahop, M = to meave, N = to nurkel;
+           * P = {A, B, C, D} set of all persons;
+           * O = {K, L, M, N} set of all occupations;
+           * DO (X Y) iff person x does occupation y.
+           *
+           *
+           *
+           TYPE A,B,C,D : P
+           TYPE K,L,M,N : O
+           TYPE DO (P O)
+           NOT DO (D N) IMPL NOT DO (C L)
+           DO (A L) OR DO (A K) IMPL DO (D N)
+           NOT DO (C M) IMPL DO (A K)
+           DO (B L) IMPL NOT DO (A N)
+           NOT DO (B N) IMPL DO (A N)
+           ALL X:P  
+               (DO (X K) OR DO (X L) OR DO (X M) OR DO (X N))
+               AND  
+               NOT (DO (X K) AND DO (X L))
+               AND  
+               NOT (DO (X K) AND DO (X M))
+               AND  
+               NOT (DO (X K) AND DO (X N))
+               AND  
+               NOT (DO (X L) AND DO (X M))
+               AND  
+               NOT (DO (X L) AND DO (X N))
+               AND  
+               NOT (DO (X M) AND DO (X N))
+           ALL Y:O  
+               NOT (DO (A Y) AND DO (B Y))
+               AND  
+               NOT (DO (A Y) AND DO (C Y))
+               AND  
+               NOT (DO (A Y) AND DO (D Y))
+               AND  
+               NOT (DO (B Y) AND DO (C Y))
+               AND  
+               NOT (DO (B Y) AND DO (D Y))
+               AND  
+               NOT (DO (C Y) AND DO (D Y))
+ 
+THEOREMS : DO (A N) AND DO (B K) AND DO (C M) AND DO (D L)
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+* A1   : + DO(D N)  - DO(C L)
+* A2   : - DO(A L)  + DO(D N)
+* A3   : - DO(A K)  + DO(D N)
+* A4   : + DO(C M)  + DO(A K)
+* A5   : - DO(B L)  - DO(A N)
+* A6   : + DO(B N)  + DO(A N)
+  A7   : ALL X:P  - DO(X K)  - DO(X L)
+  A8   : ALL X:P  - DO(X K)  - DO(X M)
+* A9   : ALL X:P  - DO(X K)  - DO(X N)
+  A10  : ALL X:P  - DO(X L)  - DO(X M)
+  A11  : ALL X:P  - DO(X L)  - DO(X N)
+  A12  : ALL X:P  - DO(X M)  - DO(X N)
+* A13  : ALL X:O  - DO(A X)  - DO(B X)
+* A14  : ALL X:O  - DO(A X)  - DO(C X)
+* A15  : ALL X:O  - DO(A X)  - DO(D X)
+* A16  : ALL X:O  - DO(B X)  - DO(C X)
+* A17  : ALL X:O  - DO(B X)  - DO(D X)
+* A18  : ALL X:O  - DO(C X)  - DO(D X)
+* A19  : ALL X:P  + DO(X K)  + DO(X L)  + DO(X M)  + DO(X N)
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION AND SPLITTING
+=================================================================
+ 
+ 
+SPLITPART 1
+ 
+* T20  : - DO(A N)
+ 
+ 
+ 
+SPLITPART 2
+ 
+* T21  : - DO(B K)
+ 
+ 
+ 
+SPLITPART 3
+ 
+* T22  : - DO(C M)
+ 
+ 
+ 
+SPLITPART 4
+ 
+* T23  : - DO(D L)
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+INITIAL OPERATIONS ON THEOREMS
+==============================
+ 
+ 
+ 
+SPLITPART  1 :
+ 
+A6,2 & T20,1   -->  * R1 : + DO(B N)
+ 
+ 
+ 
+ 
+SPLITPART  3 :
+ 
+A4,1 & T22,1   -->  * R2 : + DO(A K)
+ 
+A3,1 & R2,1    -->  * R3 : + DO(D N)
+ 
+ 
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION OF SPLITPART 1
+ 
+INITIAL CLAUSES :      A1  : + DO(D N)  - DO(C L)
+                     * A2  : - DO(A L)  + DO(D N)
+                     * A3  : - DO(A K)  + DO(D N)
+                     * A4  : + DO(C M)  + DO(A K)
+                     * R1  : + DO(B N)
+                     * A14 : ALL X:O  - DO(A X)  - DO(C X)
+                       A16 : ALL X:O  - DO(B X)  - DO(C X)
+                     * A17 : ALL X:O  - DO(B X)  - DO(D X)
+                       A18 : ALL X:O  - DO(C X)  - DO(D X)
+                     * A19 : ALL X:P  + DO(X K)  + DO(X L)  + DO(X M)  + DO(X N)
+                     * T20 : - DO(A N)
+ 
+R1,1 & A17,1    -->  * R4  : - DO(D N)
+ 
+A3,2 & R4,1     -->  * R5  : - DO(A K)
+ 
+A2,2 & R4,1     -->  * R6  : - DO(A L)
+ 
+A1,1 & R4,1     -->    R7  : - DO(C L)
+ 
+A4,2 & R5,1     -->  * R8  : + DO(C M)
+ 
+A19,3 & A14,1   -->  * R9  : + DO(A K)  + DO(A L)  + DO(A N)  - DO(C M)
+ 
+R9,4 & R8,1     -->  * R10 : + DO(A K)  + DO(A L)  + DO(A N)
+ 
+R10,3 & T20,1   -->  * R11 : + DO(A K)  + DO(A L)
+ 
+R11,2 & R6,1    -->  * R12 : + DO(A K)
+ 
+R12,1 & R5,1    -->  * R13 :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+REFUTATION OF SPLITPART 2
+ 
+INITIAL CLAUSES :      A1  : + DO(D N)  - DO(C L)
+                     * A2  : - DO(A L)  + DO(D N)
+                     * A3  : - DO(A K)  + DO(D N)
+                     * A4  : + DO(C M)  + DO(A K)
+                     * A5  : - DO(B L)  - DO(A N)
+                     * A6  : + DO(B N)  + DO(A N)
+                     * A9  : ALL X:P  - DO(X K)  - DO(X N)
+                     * A13 : ALL X:O  - DO(A X)  - DO(B X)
+                     * A14 : ALL X:O  - DO(A X)  - DO(C X)
+                       A15 : ALL X:O  - DO(A X)  - DO(D X)
+                     * A16 : ALL X:O  - DO(B X)  - DO(C X)
+                     * A17 : ALL X:O  - DO(B X)  - DO(D X)
+                       A18 : ALL X:O  - DO(C X)  - DO(D X)
+                     * A19 : ALL X:P  + DO(X K)  + DO(X L)  + DO(X M)  + DO(X N)
+                     * T21 : - DO(B K)
+ 
+A19,1 & T21,1   -->  * R14 : + DO(B L)  + DO(B M)  + DO(B N)
+ 
+R14,3 & A13,2   -->  * R15 : + DO(B L)  + DO(B M)  - DO(A N)
+ 
+R15,1 & A5,1    -->  * R16 : + DO(B M)  - DO(A N)  - DO(A N)
+ 
+R16 2=3         -->  * D17 : + DO(B M)  - DO(A N)
+ 
+A6,2 & D17,2    -->    R18 : + DO(B N)  + DO(B M)
+ 
+D17,1 & A16,1   -->  * R19 : - DO(A N)  - DO(C M)
+ 
+D17,1 & A13,2   -->    R20 : - DO(A N)  - DO(A M)
+ 
+R18,2 & A13,2   -->    R21 : + DO(B N)  - DO(A M)
+ 
+R18,2 & A16,1   -->    R22 : + DO(B N)  - DO(C M)
+ 
+A4,1 & R19,2    -->  * R23 : + DO(A K)  - DO(A N)
+ 
+R23,1 & A9,1    -->  * R24 : - DO(A N)  - DO(A N)
+ 
+R24 1=2         -->  * D25 : - DO(A N)
+ 
+A6,2 & D25,1    -->  * R26 : + DO(B N)
+ 
+A19,4 & D25,1   -->  * R27 : + DO(A K)  + DO(A L)  + DO(A M)
+ 
+R27,3 & A14,1   -->  * R28 : + DO(A K)  + DO(A L)  - DO(C M)
+ 
+R28,3 & A4,1    -->  * R29 : + DO(A K)  + DO(A L)  + DO(A K)
+ 
+R29 1=3         -->  * D30 : + DO(A K)  + DO(A L)
+ 
+D30,1 & A3,1    -->  * R31 : + DO(A L)  + DO(D N)
+ 
+R31,2 & A17,2   -->  * R32 : + DO(A L)  - DO(B N)
+ 
+R32,2 & R26,1   -->  * R33 : + DO(A L)
+ 
+A2,1 & R33,1    -->  * R34 : + DO(D N)
+ 
+R34,1 & A17,2   -->  * R35 : - DO(B N)
+ 
+R35,1 & R26,1   -->  * R36 :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+REFUTATION OF SPLITPART 3
+ 
+INITIAL CLAUSES :    * R3  : + DO(D N)
+                     * R2  : + DO(A K)
+                       A5  : - DO(B L)  - DO(A N)
+                     * A6  : + DO(B N)  + DO(A N)
+                       A9  : ALL X:P  - DO(X K)  - DO(X N)
+                       A13 : ALL X:O  - DO(A X)  - DO(B X)
+                       A14 : ALL X:O  - DO(A X)  - DO(C X)
+                     * A15 : ALL X:O  - DO(A X)  - DO(D X)
+                       A16 : ALL X:O  - DO(B X)  - DO(C X)
+                     * A17 : ALL X:O  - DO(B X)  - DO(D X)
+                       A18 : ALL X:O  - DO(C X)  - DO(D X)
+                       A19 : ALL X:P  + DO(X K)  + DO(X L)  + DO(X M)  + DO(X N)
+                     * T22 : - DO(C M)
+ 
+R3,1 & A18,2    -->    R37 : - DO(C N)
+ 
+R3,1 & A17,2    -->  * R38 : - DO(B N)
+ 
+A6,1 & R38,1    -->  * R39 : + DO(A N)
+ 
+R39,1 & A15,1   -->  * R40 : - DO(D N)
+ 
+R40,1 & R3,1    -->  * R41 :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+REFUTATION OF SPLITPART 4
+ 
+INITIAL CLAUSES :    * A1  : + DO(D N)  - DO(C L)
+                     * A2  : - DO(A L)  + DO(D N)
+                     * A3  : - DO(A K)  + DO(D N)
+                     * A4  : + DO(C M)  + DO(A K)
+                     * A5  : - DO(B L)  - DO(A N)
+                     * A6  : + DO(B N)  + DO(A N)
+                       A9  : ALL X:P  - DO(X K)  - DO(X N)
+                     * A13 : ALL X:O  - DO(A X)  - DO(B X)
+                     * A14 : ALL X:O  - DO(A X)  - DO(C X)
+                     * A15 : ALL X:O  - DO(A X)  - DO(D X)
+                     * A16 : ALL X:O  - DO(B X)  - DO(C X)
+                     * A17 : ALL X:O  - DO(B X)  - DO(D X)
+                     * A18 : ALL X:O  - DO(C X)  - DO(D X)
+                     * A19 : ALL X:P  + DO(X K)  + DO(X L)  + DO(X M)  + DO(X N)
+                     * T23 : - DO(D L)
+ 
+A19,2 & T23,1   -->  * R42 : + DO(D K)  + DO(D M)  + DO(D N)
+ 
+R42,3 & A15,2   -->  * R43 : + DO(D K)  + DO(D M)  - DO(A N)
+ 
+R42,3 & A17,2   -->  * R44 : + DO(D K)  + DO(D M)  - DO(B N)
+ 
+R42,3 & A18,2   -->    R45 : + DO(D K)  + DO(D M)  - DO(C N)
+ 
+A6,2 & R43,3    -->  * R46 : + DO(B N)  + DO(D K)  + DO(D M)
+ 
+R46,1 & R44,3   -->  * R47 : + DO(D K)  + DO(D M)  + DO(D K)  + DO(D M)
+ 
+R47 1=3         -->  * D48 : + DO(D K)  + DO(D M)  + DO(D M)
+ 
+D48 2=3         -->  * D49 : + DO(D K)  + DO(D M)
+ 
+D49,2 & A15,2   -->    R50 : + DO(D K)  - DO(A M)
+ 
+D49,2 & A17,2   -->    R51 : + DO(D K)  - DO(B M)
+ 
+D49,2 & A18,2   -->  * R52 : + DO(D K)  - DO(C M)
+ 
+R50,1 & A18,2   -->    R53 : - DO(A M)  - DO(C K)
+ 
+R50,1 & A17,2   -->    R54 : - DO(A M)  - DO(B K)
+ 
+R51,1 & A18,2   -->    R55 : - DO(B M)  - DO(C K)
+ 
+R51,1 & A17,2   -->    R56 : - DO(B M)  - DO(B K)
+ 
+A4,1 & R52,2    -->  * R57 : + DO(A K)  + DO(D K)
+ 
+R52,1 & A18,2   -->    R58 : - DO(C M)  - DO(C K)
+ 
+R52,1 & A17,2   -->    R59 : - DO(C M)  - DO(B K)
+ 
+R57,2 & A17,2   -->  * R60 : + DO(A K)  - DO(B K)
+ 
+R60,1 & A13,1   -->  * R61 : - DO(B K)  - DO(B K)
+ 
+R61 1=2         -->  * D62 : - DO(B K)
+ 
+R57,2 & A18,2   -->  * R63 : + DO(A K)  - DO(C K)
+ 
+R63,1 & A14,1   -->  * R64 : - DO(C K)  - DO(C K)
+ 
+R64 1=2         -->  * D65 : - DO(C K)
+ 
+A19,1 & D62,1   -->  * R66 : + DO(B L)  + DO(B M)  + DO(B N)
+ 
+A19,1 & D65,1   -->  * R67 : + DO(C L)  + DO(C M)  + DO(C N)
+ 
+R66,3 & A13,2   -->  * R68 : + DO(B L)  + DO(B M)  - DO(A N)
+ 
+R68,1 & A5,1    -->  * R69 : + DO(B M)  - DO(A N)  - DO(A N)
+ 
+R69 2=3         -->  * D70 : + DO(B M)  - DO(A N)
+ 
+A6,2 & D70,2    -->    R71 : + DO(B N)  + DO(B M)
+ 
+D70,1 & A16,1   -->  * R72 : - DO(A N)  - DO(C M)
+ 
+D70,1 & A13,2   -->    R73 : - DO(A N)  - DO(A M)
+ 
+R67,3 & A14,2   -->  * R74 : + DO(C L)  + DO(C M)  - DO(A N)
+ 
+R74,2 & R72,2   -->  * R75 : + DO(C L)  - DO(A N)  - DO(A N)
+ 
+R75 2=3         -->  * D76 : + DO(C L)  - DO(A N)
+ 
+A6,2 & D76,2    -->    R77 : + DO(B N)  + DO(C L)
+ 
+D76,1 & A14,2   -->    R78 : - DO(A N)  - DO(A L)
+ 
+D76,1 & A1,2    -->  * R79 : - DO(A N)  + DO(D N)
+ 
+R79,2 & A15,2   -->  * R80 : - DO(A N)  - DO(A N)
+ 
+R80 1=2         -->  * D81 : - DO(A N)
+ 
+A6,2 & D81,1    -->  * R82 : + DO(B N)
+ 
+A19,4 & D81,1   -->  * R83 : + DO(A K)  + DO(A L)  + DO(A M)
+ 
+R67,3 & A16,2   -->  * R84 : + DO(C L)  + DO(C M)  - DO(B N)
+ 
+R84,3 & R82,1   -->  * R85 : + DO(C L)  + DO(C M)
+ 
+R85,2 & A14,2   -->  * R86 : + DO(C L)  - DO(A M)
+ 
+R86,1 & A1,2    -->  * R87 : - DO(A M)  + DO(D N)
+ 
+R87,2 & A17,2   -->  * R88 : - DO(A M)  - DO(B N)
+ 
+R88,2 & R82,1   -->  * R89 : - DO(A M)
+ 
+R83,3 & R89,1   -->  * R90 : + DO(A K)  + DO(A L)
+ 
+R90,2 & A2,1    -->  * R91 : + DO(A K)  + DO(D N)
+ 
+R91,2 & A17,2   -->  * R92 : + DO(A K)  - DO(B N)
+ 
+R92,2 & R82,1   -->  * R93 : + DO(A K)
+ 
+A3,1 & R93,1    -->  * R94 : + DO(D N)
+ 
+R94,1 & A17,2   -->  * R95 : - DO(B N)
+ 
+R95,1 & R82,1   -->  * R96 :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+STOP
+ 

@@ -1,0 +1,219 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 45.2 EQUALITY 16.1                                  *
+                     *           DATE: 03-JUL,1990  11:54                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 03-JUL,1990 11:54 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   P (A1 A3)
+             AND P (A1 A4)
+             AND P (A2 A4)
+             AND P (A3 A1)
+             AND P (A4 A1)
+             AND P (A4 A2)
+             AND Q (A1 A2)
+             AND Q (A1 A4)
+             AND Q (A2 A1)
+             AND Q (A2 A3)
+             AND Q (A3 A2)
+             AND Q (A3 A4)
+             AND Q (A4 A1)
+             AND Q (A4 A3)
+             AND R (A1 A2)
+             AND R (A1 A3)
+             AND R (A2 A1)
+             AND R (A2 A3)
+             AND R (A2 A4)
+             AND R (A3 A1)
+             AND R (A3 A2)
+             AND R (A3 A4)
+             AND R (A4 A2)
+             AND R (A4 A3)
+             AND S (A1 A3)
+             AND S (A1 A4)
+             AND S (A2 A4)
+             AND S (A3 A1)
+             AND S (A4 A1)
+             AND S (A4 A2)
+             AND T (A1 A2)
+             AND T (A1 A4)
+             AND T (A2 A1)
+             AND T (A2 A3)
+             AND T (A3 A2)
+             AND T (A3 A4)
+             AND T (A4 A1)
+             AND T (A4 A3)
+             AND W (A1 A3)
+             AND W (A1 A4)
+             AND W (A2 A4)
+             AND W (A3 A1)
+             AND W (A4 A1)
+             AND W (A4 A2)
+             
+   Theorems: * THEOREM
+             EX X,Y,Z,U (P (X Y) AND Q (X Z) AND R (X U) AND S (Y Z) AND T (Y U) AND W (Z U))
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+             A2:   + P(a1 a3)
+             A3:   + P(a1 a4)
+             A4:   + P(a2 a4)
+           * A5:   + P(a3 a1)
+             A6:   + P(a4 a1)
+             A7:   + P(a4 a2)
+             A8:   + Q(a1 a2)
+             A9:   + Q(a1 a4)
+             A10:  + Q(a2 a1)
+             A11:  + Q(a2 a3)
+             A12:  + Q(a3 a2)
+           * A13:  + Q(a3 a4)
+             A14:  + Q(a4 a1)
+             A15:  + Q(a4 a3)
+             A16:  + R(a1 a2)
+             A17:  + R(a1 a3)
+             A18:  + R(a2 a1)
+             A19:  + R(a2 a3)
+             A20:  + R(a2 a4)
+             A21:  + R(a3 a1)
+           * A22:  + R(a3 a2)
+             A23:  + R(a3 a4)
+             A24:  + R(a4 a2)
+             A25:  + R(a4 a3)
+             A26:  + S(a1 a3)
+           * A27:  + S(a1 a4)
+             A28:  + S(a2 a4)
+             A29:  + S(a3 a1)
+             A30:  + S(a4 a1)
+             A31:  + S(a4 a2)
+           * A32:  + T(a1 a2)
+             A33:  + T(a1 a4)
+             A34:  + T(a2 a1)
+             A35:  + T(a2 a3)
+             A36:  + T(a3 a2)
+             A37:  + T(a3 a4)
+             A38:  + T(a4 a1)
+             A39:  + T(a4 a3)
+             A40:  + W(a1 a3)
+             A41:  + W(a1 a4)
+             A42:  + W(a2 a4)
+             A43:  + W(a3 a1)
+             A44:  + W(a4 a1)
+           * A45:  + W(a4 a2)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T46: All x,y,z,u:Any - P(u z)  - Q(u y)  - R(u x)  - S(z y)  - T(z x)  - W(y x)
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:      A1:   All x:Any + =(x x)
+                         A2:   + P(a1 a3)
+                         A3:   + P(a1 a4)
+                         A4:   + P(a2 a4)
+                       * A5:   + P(a3 a1)
+                         A6:   + P(a4 a1)
+                         A7:   + P(a4 a2)
+                         A8:   + Q(a1 a2)
+                         A9:   + Q(a1 a4)
+                         A10:  + Q(a2 a1)
+                         A11:  + Q(a2 a3)
+                         A12:  + Q(a3 a2)
+                       * A13:  + Q(a3 a4)
+                         A14:  + Q(a4 a1)
+                         A15:  + Q(a4 a3)
+                         A16:  + R(a1 a2)
+                         A17:  + R(a1 a3)
+                         A18:  + R(a2 a1)
+                         A19:  + R(a2 a3)
+                         A20:  + R(a2 a4)
+                         A21:  + R(a3 a1)
+                       * A22:  + R(a3 a2)
+                         A23:  + R(a3 a4)
+                         A24:  + R(a4 a2)
+                         A25:  + R(a4 a3)
+                         A26:  + S(a1 a3)
+                       * A27:  + S(a1 a4)
+                         A28:  + S(a2 a4)
+                         A29:  + S(a3 a1)
+                         A30:  + S(a4 a1)
+                         A31:  + S(a4 a2)
+                       * A32:  + T(a1 a2)
+                         A33:  + T(a1 a4)
+                         A34:  + T(a2 a1)
+                         A35:  + T(a2 a3)
+                         A36:  + T(a3 a2)
+                         A37:  + T(a3 a4)
+                         A38:  + T(a4 a1)
+                         A39:  + T(a4 a3)
+                         A40:  + W(a1 a3)
+                         A41:  + W(a1 a4)
+                         A42:  + W(a2 a4)
+                         A43:  + W(a3 a1)
+                         A44:  + W(a4 a1)
+                       * A45:  + W(a4 a2)
+                       * T46:  All x,y,z,u:Any - P(u z)  - Q(u y)  - R(u x)  - S(z y)  - T(z x)  - W(y x)
+                       
+
+   
+   A45,1 & T46,6  -->  * R1:   - P(a3 a1)  - Q(a3 a4)  - R(a3 a2)  - S(a1 a4)  - T(a1 a2)
+   
+   R1,2 & A13,1   -->  * R2:   - P(a3 a1)  - R(a3 a2)  - S(a1 a4)  - T(a1 a2)
+   
+   R2,1 & A5,1    -->  * R3:   - R(a3 a2)  - S(a1 a4)  - T(a1 a2)
+   
+   R3,1 & A22,1   -->  * R4:   - S(a1 a4)  - T(a1 a2)
+   
+   R4,1 & A27,1   -->  * R5:   - T(a1 a2)
+   
+   R5,1 & A32,1   -->  * R6:   []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 12 seconds

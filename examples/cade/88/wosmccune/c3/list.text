@@ -1,0 +1,83 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 45.36 EQUALITY 16.1                                 *
+                     *           DATE: 20-AUG,1990  00:39                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 20-AUG,1990 00:39 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * AXIOMS *
+             ALL X,Y,Z A (A (A (B X) Y) Z) = A (X A (Y Z))
+             ALL X,Y A (A (L X) Y) = A (X A (L A (Y Y)))
+             
+   Theorems: * THEOREM *
+             NOT (EX Y ALL F A (Y F) = A (F A (Y F)))
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+             A2:   All x,y,z:Any + =(a(a(a(b z) y) x) a(z a(y x)))
+             A3:   All x,y:Any + =(a(a(l y) x) a(y a(l a(x x))))
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+             T4: All x:Any + =(a(c_1 x) a(x a(c_1 x)))
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation: (Failure: GRAPH.COLLAPSED)
+   ======================================
+   
+   Initial Clauses:   A1:  All x:Any + =(x x)
+                      A2:  All x,y,z:Any + =(a(a(a(b z) y) x) a(z a(y x)))
+                      A3:  All x,y:Any + =(a(a(l y) x) a(y a(l a(x x))))
+                      T4:  All x:Any + =(a(c_1 x) a(x a(c_1 x)))
+                    
+
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   The theorem(s) could not be proved.
+
+
+
+   Time Used for Refutation: 3 seconds

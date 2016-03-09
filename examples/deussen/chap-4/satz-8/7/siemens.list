@@ -1,0 +1,237 @@
+ 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 4-APR-85                                                      *
+                    *         DATE : 14-JUN-85  22:22:57                                           *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   13-JUN-85 09:26:56
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   K.A.2.7.COMMENT
+                                                                        
+************************************************************************
+                                                                        
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : * ***************************************************************************
+           * DEFINITIONEN DER MENGENLEHRE **********************************************
+           SORT SET:ANY
+           SORT ELEMENT:SET
+           TYPE EL(ELEMENT SET)
+           * DEFINITION 1.1: TEILMENGE
+           TYPE SUBSET(SET SET)
+           ALL X,Y:SET SUBSET(X Y) EQV(ALL A:ELEMENT EL(A X) IMPL EL(A Y))
+           * DEFINITION 1.3: KARTESISCHES PRODUKT
+           TYPE CARTES(SET SET) :SET
+           TYPE PAIR(ELEMENT ELEMENT) :ELEMENT
+           * DEFINTIONEN VON RELATIONEN AUF EINER FESTEN MENGE S ***********************
+           SORT REL:SET
+           TYPE S:SET
+           SORT EL.OF.S:ELEMENT
+           * DEFINITION 2.1: RELATION *************************************************
+           * DEFINITION 2.2: KOMPOSITION ZWEIER RELATIONEN ****************************
+           TYPE COMP(REL REL) :REL
+           ALL RHO,SIGMA:REL  ALL A:ELEMENT  
+             EL(A COMP(RHO SIGMA)) EQV(EX B,C,D:EL.OF.S A = PAIR(B D) AND EL(PAIR(B C) RHO) AND EL(PAIR(C D) SIGMA))
+           * DEFINITION 2.7: TRANSITIV
+           TYPE TRANSITIV(REL)
+           ALL RHO:REL TRANSITIV(RHO) EQV SUBSET(COMP(RHO RHO) RHO)
+ 
+THEOREMS : ALL RHO:REL        (ALL A,B,C:EL.OF.S EL(PAIR(A B) RHO) AND EL(PAIR(B C) RHO) IMPL EL(PAIR(A C) RHO))
+                          EQV TRANSITIV(RHO)
+ 
+ 
+ 
+ 
+CONSTANTS : 
+=========== 
+ 
+| NAME      | SORT              |            | ATTRIBUTES                                                           |
+---------------------------------------------------------------------------------------------------------------------
+| S         | SET               |            |                                                                      |
+| C_1       | EL.OF.S           |            |                                                                      |
+| C_2       | EL.OF.S           |            |                                                                      |
+| C_3       | EL.OF.S           |            |                                                                      |
+| C_4       | REL               |            |                                                                      |
+| C_5       | ELEMENT           |            |                                                                      |
+| C_6       | REL               |            |                                                                      |
+---------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+FUNCTIONS : 
+=========== 
+ 
+| NAME      | DOMAIN            | RANGE      | ATTRIBUTES                                                           |
+---------------------------------------------------------------------------------------------------------------------
+| CARTES    | SET SET           | SET        |                                                                      |
+| PAIR      | ELEMENT ELEMENT   | ELEMENT    |                                                                      |
+| COMP      | REL REL           | REL        |                                                                      |
+| F_1       | REL ELEMENT REL   | EL.OF.S    |                                                                      |
+| F_2       | REL ELEMENT REL   | EL.OF.S    |                                                                      |
+| F_3       | REL ELEMENT REL   | EL.OF.S    |                                                                      |
+---------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+PREDICATES : 
+============ 
+ 
+| NAME      | DOMAIN            |            | ATTRIBUTES                                                           |
+---------------------------------------------------------------------------------------------------------------------
+| TRUE      |                   |            | DEFINED                                                              |
+| FALSE     |                   |            | DEFINED                                                              |
+| EL        | ELEMENT SET       |            |                                                                      |
+| SUBSET    | SET SET           |            |                                                                      |
+| =         | ANY ANY           |            | DEFINED SYMMETRIC REFLEXIVE SYMMETRIC REFLEXIVE SYMMETRIC REFLEXIVE  |
+| TRANSITIV | REL               |            |                                                                      |
+---------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+* A1   : ALL X:ANY  + =(X X)
+* A2   : ALL X,Y:REL  Z:ELEMENT  - EL(Z COMP(Y X))  + =(Z PAIR(F_2(X Z Y) F_3(X Z Y)))
+* A3   : ALL X,Y:REL  Z:ELEMENT  - EL(Z COMP(Y X))  + EL(PAIR(F_2(X Z Y) F_1(X Z Y)) Y)
+* A4   : ALL X,Y:REL  Z:ELEMENT  - EL(Z COMP(Y X))  + EL(PAIR(F_1(X Z Y) F_3(X Z Y)) X)
+* A5   : ALL X,Y,Z:EL.OF.S  U,V:REL  W:ELEMENT  
+              + EL(W COMP(V U))  - =(W PAIR(Z Y))  - EL(PAIR(Z X) V)  - EL(PAIR(X Y) U)
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION AND SPLITTING
+=================================================================
+ 
+ 
+SPLITPART 1
+ 
+* T6   : + EL(PAIR(C_3 C_1) C_4)
+* T7   : + EL(PAIR(C_1 C_2) C_4)
+* T8   : - EL(PAIR(C_3 C_2) C_4)
+* T9   : ALL X:ELEMENT  - EL(X COMP(C_4 C_4))  + EL(X C_4)
+ 
+ 
+ 
+SPLITPART 2
+ 
+* T10  : ALL X,Y,Z:EL.OF.S  - EL(PAIR(Z Y) C_6)  - EL(PAIR(Y X) C_6)  + EL(PAIR(Z X) C_6)
+* T11  : + EL(C_5 COMP(C_6 C_6))
+* T12  : - EL(C_5 C_6)
+ 
+ 
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION OF SPLITPART 1
+ 
+INITIAL CLAUSES :  * A1 : ALL X:ANY  + =(X X)
+                     A2 : ALL X,Y:REL  Z:ELEMENT  - EL(Z COMP(Y X))  + =(Z PAIR(F_2(X Z Y) F_3(X Z Y)))
+                     A3 : ALL X,Y:REL  Z:ELEMENT  - EL(Z COMP(Y X))  + EL(PAIR(F_2(X Z Y) F_1(X Z Y)) Y)
+                     A4 : ALL X,Y:REL  Z:ELEMENT  - EL(Z COMP(Y X))  + EL(PAIR(F_1(X Z Y) F_3(X Z Y)) X)
+                   * A5 : ALL X,Y,Z:EL.OF.S  U,V:REL  W:ELEMENT  
+                               + EL(W COMP(V U))  - =(W PAIR(Z Y))  - EL(PAIR(Z X) V)  - EL(PAIR(X Y) U)
+                   * T6 : + EL(PAIR(C_3 C_1) C_4)
+                   * T7 : + EL(PAIR(C_1 C_2) C_4)
+                   * T8 : - EL(PAIR(C_3 C_2) C_4)
+                   * T9 : ALL X:ELEMENT  - EL(X COMP(C_4 C_4))  + EL(X C_4)
+ 
+T9,2 & T8,1   -->  * R1 : - EL(PAIR(C_3 C_2) COMP(C_4 C_4))
+ 
+T7,1 & A5,4   -->  * R2 : + EL(PAIR(C_3 C_2) COMP(C_4 C_4))  - =(PAIR(C_3 C_2) PAIR(C_3 C_2))  - EL(PAIR(C_3 C_1) C_4)
+ 
+R2,3 & T6,1   -->  * R3 : + EL(PAIR(C_3 C_2) COMP(C_4 C_4))  - =(PAIR(C_3 C_2) PAIR(C_3 C_2))
+ 
+R3,2 & A1,1   -->  * R4 : + EL(PAIR(C_3 C_2) COMP(C_4 C_4))
+ 
+R4,1 & R1,1   -->  * R5 :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+REFUTATION OF SPLITPART 2
+ 
+INITIAL CLAUSES :      A1  : ALL X:ANY  + =(X X)
+                     * A2  : ALL X,Y:REL  Z:ELEMENT  - EL(Z COMP(Y X))  + =(Z PAIR(F_2(X Z Y) F_3(X Z Y)))
+                     * A3  : ALL X,Y:REL  Z:ELEMENT  - EL(Z COMP(Y X))  + EL(PAIR(F_2(X Z Y) F_1(X Z Y)) Y)
+                     * A4  : ALL X,Y:REL  Z:ELEMENT  - EL(Z COMP(Y X))  + EL(PAIR(F_1(X Z Y) F_3(X Z Y)) X)
+                       A5  : ALL X,Y,Z:EL.OF.S  U,V:REL  W:ELEMENT  
+                                  + EL(W COMP(V U))  - =(W PAIR(Z Y))  - EL(PAIR(Z X) V)  - EL(PAIR(X Y) U)
+                     * T10 : ALL X,Y,Z:EL.OF.S  - EL(PAIR(Z Y) C_6)  - EL(PAIR(Y X) C_6)  + EL(PAIR(Z X) C_6)
+                     * T11 : + EL(C_5 COMP(C_6 C_6))
+                     * T12 : - EL(C_5 C_6)
+ 
+T11,1 & A3,1    -->  * R6  : + EL(PAIR(F_2(C_6 C_5 C_6) F_1(C_6 C_5 C_6)) C_6)
+ 
+T11,1 & A4,1    -->  * R7  : + EL(PAIR(F_1(C_6 C_5 C_6) F_3(C_6 C_5 C_6)) C_6)
+ 
+R7,1 & T10,2    -->  * R8  : - EL(PAIR(F_2(C_6 C_5 C_6) F_1(C_6 C_5 C_6)) C_6)
+                               + EL(PAIR(F_2(C_6 C_5 C_6) F_3(C_6 C_5 C_6)) C_6)
+ 
+R8,1 & R6,1     -->  * R9  : + EL(PAIR(F_2(C_6 C_5 C_6) F_3(C_6 C_5 C_6)) C_6)
+ 
+R6,1 & A5,3     -->    R10 : + EL(PAIR(F_2(C_6 C_5 C_6) F_3(C_6 C_5 C_6)) COMP(C_6 C_6))
+                               - =(PAIR(F_2(C_6 C_5 C_6) F_3(C_6 C_5 C_6)) PAIR(F_2(C_6 C_5 C_6) F_3(C_6 C_5 C_6)))
+                               - EL(PAIR(F_1(C_6 C_5 C_6) F_3(C_6 C_5 C_6)) C_6)
+ 
+R10,2 & A1,1    -->    R11 : + EL(PAIR(F_2(C_6 C_5 C_6) F_3(C_6 C_5 C_6)) COMP(C_6 C_6))
+                               - EL(PAIR(F_1(C_6 C_5 C_6) F_3(C_6 C_5 C_6)) C_6)
+ 
+R11,2 & R7,1    -->    R12 : + EL(PAIR(F_2(C_6 C_5 C_6) F_3(C_6 C_5 C_6)) COMP(C_6 C_6))
+ 
+T11,1 & A2,1    -->  * R13 : + =(C_5 PAIR(F_2(C_6 C_5 C_6) F_3(C_6 C_5 C_6)))
+ 
+R13,1 & T12,1   -->  * P14 : - EL(PAIR(F_2(C_6 C_5 C_6) F_3(C_6 C_5 C_6)) C_6)
+ 
+P14,1 & R9,1    -->  * R15 :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+STOP
+ 

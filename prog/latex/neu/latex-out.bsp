@@ -1,0 +1,17 @@
+(top-latex-out-int-term (silent-optimize-iterm (parse-term '(fdsagdhsa (gsgsg (hddhsahds (g1 (h a x) (f y)))))) 10))
+                                                                                        
+\\begin{tabbing}
+FDSAGDHSA(\\
+GSGSG(\\
+HDDHSAHDS\\
+\ (\=G1\\
+\> \ (\=H\\
+\> \> \ (\=A,\\
+\> \> \> X\\
+\> \> \ ),\\
+\> \> F(Y)\\
+\> \ )\\
+\ )\\
+)\\
+)
+\\end{tabbing}

@@ -1,0 +1,302 @@
+;;; -*- Package: MKRP; Base: 10. -*-
+
+
+
+                    ********************************************************************************
+                    *                                                                              *
+                    *     MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN                   *
+                    *                                                                              *
+                    *       21-NOV-85                                                              *
+                    *          21-NOV-85  13:14:36                                                 *
+                    *                                                                              *
+                    ********************************************************************************
+
+
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   21-NOV-85 13:12:39
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   D53>1
+                                                                        
+************************************************************************
+                                                                        
+
+
+ADJUSTMENT OF THE OPTIONS : 
+============================
+
+
+
+TWO:RULES                                                   TWO:RULES.MAXLEVEL                                        
+TWO:SUPPRESS.NORULES                                  
+
+
+RED.I:CLAUSE.MULTIPLE.LITERALS                              RED.I:CLAUSE.PURITY                                        
+RED.I:CLAUSE.TAUTOLOGY                                      RED.I:CLAUSE.TAUTOLOGY.RECHECK                       
+RED.I:CLAUSE.SUBSUMPTION                                    RED.I:CLAUSE.SUBSUMPTION.RECHECK                     
+RED.I:CLAUSE.REPL.FACTORING                                 RED.I:CLAUSE.REPL.FACTORING.RECHECK                        
+RED.I:CLAUSE.REPL.RESOLUTION                                RED.I:CLAUSE.REPL.RESOLUTION.RECHECK                     
+RED.I:CLAUSE.REWRITING                                      RED.I:LINK.INCOMPATIBILITY                               
+RED.I:LINK.TAUTOLOGY                                        RED.I:LINK.TAUTOLOGY.RECHECK                             
+RED.I:LINK.SUBSUMPTION                                      RED.I:LINK.SUBSUMPTION.RECHECK                           
+
+RED.D:CLAUSE.MULTIPLE.LITERALS                              RED.D:CLAUSE.PURITY                                        
+RED.D:CLAUSE.TAUTOLOGY                                      RED.D:CLAUSE.TAUTOLOGY.RECHECK                           
+RED.D:CLAUSE.SUBSUMPTION.FORWARD                            RED.D:CLAUSE.SUBSUMPTION.BACKWARD                     
+RED.D:CLAUSE.SUBSUMPTION.RECHECK                            RED.D:CLAUSE.REPL.FACTORING                                
+RED.D:CLAUSE.REPL.FACTORING.RECHECK                         RED.D:CLAUSE.REPL.RESOLUTION                          
+RED.D:CLAUSE.REPL.RESOLUTION.RECHECK                        RED.D:LINK.INCOMPATIBILITY                               
+RED.D:LINK.TAUTOLOGY                                        RED.D:LINK.TAUTOLOGY.RECHECK                             
+RED.D:LINK.SUBSUMPTION                                      RED.D:LINK.SUBSUMPTION.RECHECK                           
+
+FAC:INITIAL                                                 FAC:EACH.STEP                                            
+
+STR:RESOLUTION                                              STR:E-RESOLUTION                                         
+STR:PARAMODULATION                                          STR:LINK.DEPTH                                           
+STR:TERM.DEPTH                                              STR:R.DEMODULATION                                         
+STR:P.DEMODULATION                                          STR:INDUCTION                                            
+
+TERM:UNITS                                                  TERM:ITERATIONS                                           
+TERM:SET.OF.SUPPORT                                         TERM:BREADTH.FIRST                                       
+
+GEN:SPLITTING                                               GEN:MANUAL.CONTROL                                       
+GEN:MAXIMUM.STEPS                                           GEN:GRAPH.SAVING                                         
+GEN:SAVE.FILE                                
+
+
+TR:PREPROCESSING                                            TR:STEP.MODE                                              
+TR:DUMP                                                     TR:CLAUSE.MODE                                             
+TR:LINK.MODE                                                TR:TRACE.FILE                                            
+TR:TERMINAL                                             
+
+
+PR:INFIX.FORM                                               PR:PREFIX.FORM                                           
+PR:OPTIONS                                                  PR:AXIOM.CLAUSES                                         
+PR:SYMBOLS                                                  PR:STATISTICS                                            
+PR:PROTOCOL                                                 PR:LEFT.MARGIN                                            
+PR:LINELENGTH                                        
+
+
+
+
+FORMULAE GIVEN TO THE EDITOR
+============================
+
+
+AXIOMS   : SORT SET:ANY
+           SORT FUNCTION:ANY
+           SORT ELEMENT:SET
+           SORT ELEMENT.F:ELEMENT
+           SORT NAT:SET
+           SORT REL:SET
+           SORT UNARY.FUNC:FUNCTION
+           SORT BINARY.FUNC:FUNCTION
+           SORT EQU.REL-S:REL
+           SORT L.CONGRUENCE-S:EQU.REL-S
+           SORT R.CONGRUENCE-S:EQU.REL-S
+           SORT CONGRUENCE-S:L.CONGRUENCE-S
+           SORT CONGRUENCE-S:R.CONGRUENCE-S
+           * CONSTANTS *
+           TYPE F:SET
+           TYPE CONN.F:BINARY.FUNC
+           TYPE 1:NAT
+           TYPE CONN.F.RHO:BINARY.FUNCTION
+           * PREDICATS *
+           TYPE SEMIGROUP (SET BINARY.FUNC)
+           TYPE L.CONGRUENCE (REL)
+           TYPE R.CONGRUENCE (REL)
+           TYPE CONGRUENCE (EQU.REL-S)
+           TYPE IN.RELATION (REL ELEMENT.F ELEMENT.F)
+           * FUNCTIONS *
+           TYPE APPLY2 (BINARY.FUNC SET SET) :SET
+           TYPE APPLY2-EL (BINARY.FUNC ELEMENT ELEMENT) :ELEMENT
+           TYPE APPLY2-EL.F (BINARY.FUNC ELEMENT.F ELEMENT.F) :ELEMENT.F
+           TYPE PREIMAGE (REL ELEMENT.F) :SET
+           TYPE POWER (REL NAT) :REL
+           TYPE PLUS (NAT NAT) :NAT
+           TYPE COMP (REL REL) :REL
+           TYPE TRANS.CLOS (REL) :REL
+           TYPE UNION-REL (REL REL) :REL
+           TYPE TRANS.UNION (EQU.REL-S EQU.REL-S) :EQU.REL-S
+           TYPE INTERSECTION.EQU.REL (EQU.REL-S EQU.REL-S) :EQU.REL-S
+           * DEFINITION LEFT-CONGRUENCE
+           ALL RHO:EQU.REL-S  
+               SEMIGROUP (F CONN.F)
+               IMPL  
+                  L.CONGRUENCE (RHO)
+                  EQV  
+                   ALL G,F1,F2:ELEMENT.F  
+                       IN.RELATION (RHO F1 F2)
+                       IMPL  
+                       IN.RELATION (RHO APPLY2-EL.F (CONN.F G F1) APPLY2-EL.F (CONN.F G F2))
+           * DEFINTION INTERSECTION.EQU.REL
+           ALL RHO,SIGMA:EQU.REL-S  ALL A,B:ELEMENT.F  
+             IN.RELATION (INTERSECTION.EQU.REL (RHO SIGMA) A B) EQV IN.RELATION (RHO A B) AND IN.RELATION (SIGMA A B)
+
+THEOREMS : * THEOREM 5.3.1
+           ALL RHO,SIGMA:EQU.REL-S  
+               SEMIGROUP (F CONN.F) AND L.CONGRUENCE (RHO) AND L.CONGRUENCE (SIGMA)
+               IMPL  
+               L.CONGRUENCE (INTERSECTION.EQU.REL (RHO SIGMA))
+
+
+
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+* A1   : ALL X,Y:ELEMENT.F  Z,U:EQU.REL-S  - IN.RELATION(INTERSECTION.EQU.REL(U Z) Y X)  + IN.RELATION(Z Y X)
+* A2   : ALL X,Y:ELEMENT.F  Z,U:EQU.REL-S  - IN.RELATION(INTERSECTION.EQU.REL(U Z) Y X)  + IN.RELATION(U Y X)
+* A3   : ALL X,Y:ELEMENT.F  Z,U:EQU.REL-S  
+              + IN.RELATION(INTERSECTION.EQU.REL(U Z) Y X)  - IN.RELATION(U Y X)  - IN.RELATION(Z Y X)
+* A4   : ALL X:EQU.REL-S  - SEMIGROUP(F CONN.F)  + L.CONGRUENCE(X)
+                            - IN.RELATION(X APPLY2-EL.F(CONN.F F_1(X) F_3(X)) APPLY2-EL.F(CONN.F F_1(X) F_2(X)))
+* A5   : ALL X:EQU.REL-S  - SEMIGROUP(F CONN.F)  + L.CONGRUENCE(X)  + IN.RELATION(X F_3(X) F_2(X))
+* A6   : ALL X,Y,Z:ELEMENT.F  U:EQU.REL-S  
+              - SEMIGROUP(F CONN.F)  - L.CONGRUENCE(U)  - IN.RELATION(U Z Y)
+                + IN.RELATION(U APPLY2-EL.F(CONN.F X Z) APPLY2-EL.F(CONN.F X Y))
+
+
+
+
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+* T7   : + SEMIGROUP(F CONN.F)
+* T8   : + L.CONGRUENCE(C_1)
+* T9   : + L.CONGRUENCE(C_2)
+* T10  : - L.CONGRUENCE(INTERSECTION.EQU.REL(C_1 C_2))
+
+
+
+
+
+
+INITIAL OPERATIONS ON THEOREMS
+==============================
+
+
+A4,1 & T7,1   -->  * R1 : ALL X:EQU.REL-S  + L.CONGRUENCE(X)
+                                           - IN.RELATION(X
+                                                         APPLY2-EL.F(CONN.F F_1(X) F_3(X))
+                                                         APPLY2-EL.F(CONN.F F_1(X) F_2(X)))
+
+
+A5,1 & T7,1   -->  * R2 : ALL X:EQU.REL-S  + L.CONGRUENCE(X)  + IN.RELATION(X F_3(X) F_2(X))
+
+A6,1 & T7,1   -->  * R3 : ALL X,Y,Z:ELEMENT.F  U:EQU.REL-S  
+                               - L.CONGRUENCE(U)  - IN.RELATION(U Z Y)
+                                 + IN.RELATION(U APPLY2-EL.F(CONN.F X Z) APPLY2-EL.F(CONN.F X Y))
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+REFUTATION
+
+INITIAL CLAUSES :   * A1  : ALL X,Y:ELEMENT.F  Z,U:EQU.REL-S  
+                                 - IN.RELATION(INTERSECTION.EQU.REL(U Z) Y X)  + IN.RELATION(Z Y X)
+                    * A2  : ALL X,Y:ELEMENT.F  Z,U:EQU.REL-S  
+                                 - IN.RELATION(INTERSECTION.EQU.REL(U Z) Y X)  + IN.RELATION(U Y X)
+                    * A3  : ALL X,Y:ELEMENT.F  Z,U:EQU.REL-S  
+                                 + IN.RELATION(INTERSECTION.EQU.REL(U Z) Y X)  - IN.RELATION(U Y X)
+                                   - IN.RELATION(Z Y X)
+                    * R1  : ALL X:EQU.REL-S  + L.CONGRUENCE(X)
+                                             - IN.RELATION(X
+                                                           APPLY2-EL.F(CONN.F F_1(X) F_3(X))
+                                                           APPLY2-EL.F(CONN.F F_1(X) F_2(X)))
+                    * R2  : ALL X:EQU.REL-S  + L.CONGRUENCE(X)  + IN.RELATION(X F_3(X) F_2(X))
+                    * R3  : ALL X,Y,Z:ELEMENT.F  U:EQU.REL-S  
+                                 - L.CONGRUENCE(U)  - IN.RELATION(U Z Y)
+                                   + IN.RELATION(U APPLY2-EL.F(CONN.F X Z) APPLY2-EL.F(CONN.F X Y))
+                    * T8  : + L.CONGRUENCE(C_1)
+                    * T9  : + L.CONGRUENCE(C_2)
+                    * T10 : - L.CONGRUENCE(INTERSECTION.EQU.REL(C_1 C_2))
+
+R1,1 & T10,1   -->  * R4  : - IN.RELATION(INTERSECTION.EQU.REL(C_1 C_2)
+                                          APPLY2-EL.F(CONN.F
+                                                      F_1(INTERSECTION.EQU.REL(C_1 C_2))
+                                                      F_3(INTERSECTION.EQU.REL(C_1 C_2)))
+                                          APPLY2-EL.F(CONN.F
+                                                      F_1(INTERSECTION.EQU.REL(C_1 C_2))
+                                                      F_2(INTERSECTION.EQU.REL(C_1 C_2))))
+
+
+R2,1 & T10,1   -->  * R5  : + IN.RELATION(INTERSECTION.EQU.REL(C_1 C_2)
+                                          F_3(INTERSECTION.EQU.REL(C_1 C_2))
+                                          F_2(INTERSECTION.EQU.REL(C_1 C_2)))
+
+
+R5,1 & A2,1    -->  * R6  : + IN.RELATION(C_1 F_3(INTERSECTION.EQU.REL(C_1 C_2)) F_2(INTERSECTION.EQU.REL(C_1 C_2)))
+
+R6,1 & R3,2    -->  * R7  : ALL X:ELEMENT.F  - L.CONGRUENCE(C_1)
+                                             + IN.RELATION(C_1
+                                                           APPLY2-EL.F(CONN.F X F_3(INTERSECTION.EQU.REL(C_1 C_2)))
+                                                           APPLY2-EL.F(CONN.F X F_2(INTERSECTION.EQU.REL(C_1 C_2))))
+
+
+R7,1 & T8,1    -->  * R8  : ALL X:ELEMENT.F  + IN.RELATION(C_1
+                                                           APPLY2-EL.F(CONN.F X F_3(INTERSECTION.EQU.REL(C_1 C_2)))
+                                                           APPLY2-EL.F(CONN.F X F_2(INTERSECTION.EQU.REL(C_1 C_2))))
+
+
+R5,1 & A1,1    -->  * R9  : + IN.RELATION(C_2 F_3(INTERSECTION.EQU.REL(C_1 C_2)) F_2(INTERSECTION.EQU.REL(C_1 C_2)))
+
+R9,1 & R3,2    -->  * R10 : ALL X:ELEMENT.F  - L.CONGRUENCE(C_2)
+                                             + IN.RELATION(C_2
+                                                           APPLY2-EL.F(CONN.F X F_3(INTERSECTION.EQU.REL(C_1 C_2)))
+                                                           APPLY2-EL.F(CONN.F X F_2(INTERSECTION.EQU.REL(C_1 C_2))))
+
+
+R10,1 & T9,1   -->  * R11 : ALL X:ELEMENT.F  + IN.RELATION(C_2
+                                                           APPLY2-EL.F(CONN.F X F_3(INTERSECTION.EQU.REL(C_1 C_2)))
+                                                           APPLY2-EL.F(CONN.F X F_2(INTERSECTION.EQU.REL(C_1 C_2))))
+
+
+R11,1 & A3,3   -->  * R12 : + IN.RELATION(INTERSECTION.EQU.REL(C_1 C_2)
+                                          APPLY2-EL.F(CONN.F
+                                                      F_1(INTERSECTION.EQU.REL(C_1 C_2))
+                                                      F_3(INTERSECTION.EQU.REL(C_1 C_2)))
+                                          APPLY2-EL.F(CONN.F
+                                                      F_1(INTERSECTION.EQU.REL(C_1 C_2))
+                                                      F_2(INTERSECTION.EQU.REL(C_1 C_2))))
+                            - IN.RELATION(C_1
+                                          APPLY2-EL.F(CONN.F
+                                                      F_1(INTERSECTION.EQU.REL(C_1 C_2))
+                                                      F_3(INTERSECTION.EQU.REL(C_1 C_2)))
+                                          APPLY2-EL.F(CONN.F
+                                                      F_1(INTERSECTION.EQU.REL(C_1 C_2))
+                                                      F_2(INTERSECTION.EQU.REL(C_1 C_2))))
+
+
+R12,2 & R8,1   -->  * R13 : + IN.RELATION(INTERSECTION.EQU.REL(C_1 C_2)
+                                          APPLY2-EL.F(CONN.F
+                                                      F_1(INTERSECTION.EQU.REL(C_1 C_2))
+                                                      F_3(INTERSECTION.EQU.REL(C_1 C_2)))
+                                          APPLY2-EL.F(CONN.F
+                                                      F_1(INTERSECTION.EQU.REL(C_1 C_2))
+                                                      F_2(INTERSECTION.EQU.REL(C_1 C_2))))
+
+
+R13,1 & R4,1   -->  * R14 :  ce
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+  Q. E. D. 

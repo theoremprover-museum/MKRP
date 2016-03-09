@@ -1,0 +1,289 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 45.34 EQUALITY 16.1                                 *
+                     *           DATE: 14-AUG,1990  18:50                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 14-AUG,1990 00:46 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * AXIOMS *
+             EX Z,W (ALL X,Y P (X Y) EQV (X = Z) AND Y = W)
+             
+   Theorems: * THEOREMS *
+             (EX Z (ALL X ((EX W (ALL Y (P (X Y) EQV Y = W))) EQV X = Z)))
+             EQV (EX Z (ALL X ((EX W (ALL Y (P (Y X) EQV Y = W))) EQV X = Z)))
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+           * A1:   All x:Any + =(x x)
+           * A2:   All x_1,x_2:Any - P(x_2 x_1)  + =(x_2 c_2)
+           * A3:   All x_1,x_2:Any - P(x_2 x_1)  + =(x_1 c_1)
+           * A4:   All x_1,x_2:Any + P(x_2 x_1)  - =(x_2 c_2)  - =(x_1 c_1)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization and Splitting
+             =================================================================
+
+   Splitpart 1
+
+           * T5: All x_1,x_2:Any - P(f_3(x_2) f_1(x_1 x_2))  - =(f_1(x_1 x_2) x_1)  - =(f_3(x_2) x_2)
+           * T6: All x_1,x_2:Any + P(f_3(x_2) f_1(x_1 x_2))  + =(f_1(x_1 x_2) x_1)  - =(f_3(x_2) x_2)
+           * T7: All x_1,x_2:Any + P(f_3(x_2) x_1)  - =(x_1 f_2(x_2))  + =(f_3(x_2) x_2)
+             T8: All x_1,x_2:Any - P(f_3(x_2) x_1)  + =(x_1 f_2(x_2))  + =(f_3(x_2) x_2)
+           * T9: All x_1,x_2:Any + P(x_2 x_1)  - =(x_2 f_4(x_1))  - =(x_1 c_3)
+             T10: All x_1,x_2:Any - P(x_2 x_1)  + =(x_2 f_4(x_1))  - =(x_1 c_3)
+           * T11: All x_1,x_2:Any - P(f_5(x_2 x_1) x_1)  - =(f_5(x_2 x_1) x_2)  + =(x_1 c_3)
+           * T12: All x_1,x_2:Any + P(f_5(x_2 x_1) x_1)  + =(f_5(x_2 x_1) x_2)  + =(x_1 c_3)
+
+   Splitpart 2
+
+           * T13: All x_1,x_2:Any + P(x_2 x_1)  - =(x_1 f_6(x_2))  - =(x_2 c_4)
+             T14: All x_1,x_2:Any - P(x_2 x_1)  + =(x_1 f_6(x_2))  - =(x_2 c_4)
+           * T15: All x_1,x_2:Any - P(x_2 f_7(x_1 x_2))  - =(f_7(x_1 x_2) x_1)  + =(x_2 c_4)
+           * T16: All x_1,x_2:Any + P(x_2 f_7(x_1 x_2))  + =(f_7(x_1 x_2) x_1)  + =(x_2 c_4)
+           * T17: All x_1,x_2:Any - P(f_8(x_2 x_1) f_10(x_1))  - =(f_8(x_2 x_1) x_2)  - =(f_10(x_1) x_1)
+           * T18: All x_1,x_2:Any + P(f_8(x_2 x_1) f_10(x_1))  + =(f_8(x_2 x_1) x_2)  - =(f_10(x_1) x_1)
+           * T19: All x_1,x_2:Any + P(x_2 f_10(x_1))  - =(x_2 f_9(x_1))  + =(f_10(x_1) x_1)
+             T20: All x_1,x_2:Any - P(x_2 f_10(x_1))  + =(x_2 f_9(x_1))  + =(f_10(x_1) x_1)
+
+
+   End of Splitparts
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation of Splitpart 1:
+   ==========================
+   The following Options have been Changed:NIL
+
+   RED.I_CLAUSE.REWRITING   DEM
+   RED.D_CLAUSE.REWRITING   DEM
+   STR_TERM.DEPTH   3
+   TERM_ITERATIONS   5
+   ER_COMPLETION   UNFAILING
+   ER_OPERATOR.ORDERING   (* - + 0 1)
+   ER_KNUTH.BENDIX.WEIGHT   ((+ 1) (* 1) (- 0) (0 1) (1 1))
+   ER_POLYNOMIAL.WEIGHT   ((+ (+ 5 (* 2 X) Y)) (* (+ X (* X Y))) (- (* 2 X)) (0 2) (1 2))
+   ER_UNIT.FOCUS   0
+   ER_UNIT.FOCUS.WEIGHT   1
+   ER_COMPILE   NIL
+   GEN_SPLITTING   T
+   PR_VARIABLE.PRINT.NAMES   (X)
+
+   
+   Initial Clauses:       * A1:     All x:Any + =(x x)
+                          * A2:     All x_1,x_2:Any - P(x_2 x_1)  + =(x_2 c_2)
+                          * A3:     All x_1,x_2:Any - P(x_2 x_1)  + =(x_1 c_1)
+                          * A4:     All x_1,x_2:Any + P(x_2 x_1)  - =(x_2 c_2)  - =(x_1 c_1)
+                          * T5:     All x_1,x_2:Any - P(f_3(x_2) f_1(x_1 x_2))  - =(f_1(x_1 x_2) x_1)
+                                                    - =(f_3(x_2) x_2)
+                          * T6:     All x_1,x_2:Any + P(f_3(x_2) f_1(x_1 x_2))  + =(f_1(x_1 x_2) x_1)
+                                                    - =(f_3(x_2) x_2)
+                          * T7:     All x_1,x_2:Any + P(f_3(x_2) x_1)  - =(x_1 f_2(x_2))  + =(f_3(x_2) x_2)
+                            T8:     All x_1,x_2:Any - P(f_3(x_2) x_1)  + =(x_1 f_2(x_2))  + =(f_3(x_2) x_2)
+                          * T9:     All x_1,x_2:Any + P(x_2 x_1)  - =(x_2 f_4(x_1))  - =(x_1 c_3)
+                            T10:    All x_1,x_2:Any - P(x_2 x_1)  + =(x_2 f_4(x_1))  - =(x_1 c_3)
+                          * T11:    All x_1,x_2:Any - P(f_5(x_2 x_1) x_1)  - =(f_5(x_2 x_1) x_2)  + =(x_1 c_3)
+                          * T12:    All x_1,x_2:Any + P(f_5(x_2 x_1) x_1)  + =(f_5(x_2 x_1) x_2)  + =(x_1 c_3)
+                          
+
+   
+   A1,1 & T9,2       -->  * R3:     + P(f_4(c_3) c_3)  - =(c_3 c_3)
+   
+   R3,2 & A1,1       -->  * R4:     + P(f_4(c_3) c_3)
+   
+   R4,1 & A3,1       -->  * R5:     + =(c_3 c_1)
+   
+   A3,2 & R5         -->  * RW28:   All x_1,x_2:Any - P(x_2 x_1)  + =(x_1 c_3)
+   
+   A4,3 & R5         -->  * RW29:   All x_1,x_2:Any + P(x_2 x_1)  - =(x_2 c_2)  - =(x_1 c_3)
+   
+   T12,1 & RW28,1    -->  * R34:    All x_1,x_2:Any + =(f_5(x_2 x_1) x_2)  + =(x_1 c_3)  + =(x_1 c_3)
+   
+   R34 2=3           -->  * D35:    All x_1,x_2:Any + =(f_5(x_2 x_1) x_2)  + =(x_1 c_3)
+   
+   T11,2 & D35,1     -->  * R36:    All x_1,x_2:Any - P(f_5(x_2 x_1) x_1)  + =(x_1 c_3)  + =(x_1 c_3)
+   
+   R36 2=3           -->  * D37:    All x_1,x_2:Any - P(f_5(x_2 x_1) x_1)  + =(x_1 c_3)
+   
+   D37,1 & D35       -->  * RW38:   All x_1,x_2:Any - P(x_2 x_1)  + =(x_1 c_3)
+   
+   A1,1 & T7,2       -->  * R40:    All x:Any + P(f_3(x) f_2(x))  + =(f_3(x) x)
+   
+   A2,2 & T5,3       -->  * R71:    All x_1,x_2:Any - P(f_3(c_2) x_2)  - P(f_3(c_2) f_1(x_1 c_2))
+                                                    - =(f_1(x_1 c_2) x_1)
+   
+   R71 (INSTANCE)    -->  * I72:    All x:Any - P(f_3(c_2) f_1(x c_2))  - P(f_3(c_2) f_1(x c_2))  - =(f_1(x c_2) x)
+   
+   I72 2=1           -->  * D73:    All x:Any - P(f_3(c_2) f_1(x c_2))  - =(f_1(x c_2) x)
+   
+   RW38,2 & D73,2    -->  * R74:    All x:Any - P(x f_1(c_3 c_2))  - P(f_3(c_2) f_1(c_3 c_2))
+   
+   R74 (INSTANCE)    -->  * I75:    - P(f_3(c_2) f_1(c_3 c_2))  - P(f_3(c_2) f_1(c_3 c_2))
+   
+   I75 2=1           -->  * D76:    - P(f_3(c_2) f_1(c_3 c_2))
+   
+   R40,1 & A2,1      -->  * R108:   All x:Any + =(f_3(x) x)  + =(f_3(x) c_2)
+   
+   R108 (factor)     -->  * F109:   + =(f_3(c_2) c_2)
+   
+   D76,1 & F109      -->  * RW111:  - P(c_2 f_1(c_3 c_2))
+   
+   RW29,1 & RW111,1  -->  * R114:   - =(c_2 c_2)  - =(f_1(c_3 c_2) c_3)
+   
+   R114,1 & A1,1     -->  * R115:   - =(f_1(c_3 c_2) c_3)
+   
+   T6,2 & R115,1     -->  * R116:   + P(f_3(c_2) f_1(c_3 c_2))  - =(f_3(c_2) c_2)
+   
+   R116,2 & F109     -->  * RW117:  + P(f_3(c_2) f_1(c_3 c_2))  - =(c_2 c_2)
+   
+   RW117,1 & F109    -->  * RW118:  + P(c_2 f_1(c_3 c_2))  - =(c_2 c_2)
+   
+   RW118,2 & A1,1    -->  * R119:   + P(c_2 f_1(c_3 c_2))
+   
+   R119,1 & RW38,1   -->  * R120:   + =(f_1(c_3 c_2) c_3)
+   
+   R120,1 & R115,1   -->  * R121:   []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation of Splitpart 2:
+   ==========================
+   The following Options have been Changed:NIL
+
+   RED.I_CLAUSE.REWRITING   DEM
+   RED.D_CLAUSE.REWRITING   DEM
+   STR_TERM.DEPTH   3
+   TERM_ITERATIONS   5
+   ER_COMPLETION   UNFAILING
+   ER_OPERATOR.ORDERING   (* - + 0 1)
+   ER_KNUTH.BENDIX.WEIGHT   ((+ 1) (* 1) (- 0) (0 1) (1 1))
+   ER_POLYNOMIAL.WEIGHT   ((+ (+ 5 (* 2 X) Y)) (* (+ X (* X Y))) (- (* 2 X)) (0 2) (1 2))
+   ER_UNIT.FOCUS   0
+   ER_UNIT.FOCUS.WEIGHT   1
+   ER_COMPILE   NIL
+   GEN_SPLITTING   T
+   PR_VARIABLE.PRINT.NAMES   (X)
+
+   
+   Initial Clauses:        * A1:     All x:Any + =(x x)
+                           * A2:     All x_1,x_2:Any - P(x_2 x_1)  + =(x_2 c_2)
+                           * A3:     All x_1,x_2:Any - P(x_2 x_1)  + =(x_1 c_1)
+                           * A4:     All x_1,x_2:Any + P(x_2 x_1)  - =(x_2 c_2)  - =(x_1 c_1)
+                           * T13:    All x_1,x_2:Any + P(x_2 x_1)  - =(x_1 f_6(x_2))  - =(x_2 c_4)
+                             T14:    All x_1,x_2:Any - P(x_2 x_1)  + =(x_1 f_6(x_2))  - =(x_2 c_4)
+                           * T15:    All x_1,x_2:Any - P(x_2 f_7(x_1 x_2))  - =(f_7(x_1 x_2) x_1)  + =(x_2 c_4)
+                           * T16:    All x_1,x_2:Any + P(x_2 f_7(x_1 x_2))  + =(f_7(x_1 x_2) x_1)  + =(x_2 c_4)
+                           * T17:    All x_1,x_2:Any - P(f_8(x_2 x_1) f_10(x_1))  - =(f_8(x_2 x_1) x_2)
+                                                     - =(f_10(x_1) x_1)
+                           * T18:    All x_1,x_2:Any + P(f_8(x_2 x_1) f_10(x_1))  + =(f_8(x_2 x_1) x_2)
+                                                     - =(f_10(x_1) x_1)
+                           * T19:    All x_1,x_2:Any + P(x_2 f_10(x_1))  - =(x_2 f_9(x_1))  + =(f_10(x_1) x_1)
+                             T20:    All x_1,x_2:Any - P(x_2 f_10(x_1))  + =(x_2 f_9(x_1))  + =(f_10(x_1) x_1)
+                           
+
+   
+   A1,1 & T13,2       -->  * R122:   + P(c_4 f_6(c_4))  - =(c_4 c_4)
+   
+   R122,2 & A1,1      -->  * R123:   + P(c_4 f_6(c_4))
+   
+   R123,1 & A2,1      -->  * R124:   + =(c_4 c_2)
+   
+   A2,2 & R124        -->  * RW149:  All x_1,x_2:Any - P(x_2 x_1)  + =(x_2 c_4)
+   
+   A4,2 & R124        -->  * RW150:  All x_1,x_2:Any + P(x_2 x_1)  - =(x_2 c_4)  - =(x_1 c_1)
+   
+   T16,1 & RW149,1    -->  * R155:   All x_1,x_2:Any + =(f_7(x_1 x_2) x_1)  + =(x_2 c_4)  + =(x_2 c_4)
+   
+   R155 2=3           -->  * D156:   All x_1,x_2:Any + =(f_7(x_1 x_2) x_1)  + =(x_2 c_4)
+   
+   T15,2 & D156,1     -->  * R157:   All x_1,x_2,x_3:Any - P(x_2 f_7(x_3 x_2))  + =(x_2 c_4)  + =(x_1 c_4)
+   
+   R157 2=3           -->  * D158:   All x_1,x_2,x_3:Any - P(x_2 f_7(x_3 x_2))  + =(x_2 c_4)
+   
+   D158,1 & D156      -->  * RW159:  All x_1,x_2:Any - P(x_2 x_1)  + =(x_2 c_4)
+   
+   A1,1 & T19,2       -->  * R186:   All x:Any + P(f_9(x) f_10(x))  + =(f_10(x) x)
+   
+   A3,2 & T17,3       -->  * R187:   All x_1,x_2:Any - P(x_2 f_10(c_1))  - P(f_8(x_1 c_1) f_10(c_1))
+                                                     - =(f_8(x_1 c_1) x_1)
+   
+   R187 (INSTANCE)    -->  * I188:   All x:Any - P(f_8(x c_1) f_10(c_1))  - P(f_8(x c_1) f_10(c_1))
+                                               - =(f_8(x c_1) x)
+   
+   I188 2=1           -->  * D189:   All x:Any - P(f_8(x c_1) f_10(c_1))  - =(f_8(x c_1) x)
+   
+   RW159,2 & D189,2   -->  * R190:   All x:Any - P(f_8(c_4 c_1) x)  - P(f_8(c_4 c_1) f_10(c_1))
+   
+   R190 (INSTANCE)    -->  * I191:   - P(f_8(c_4 c_1) f_10(c_1))  - P(f_8(c_4 c_1) f_10(c_1))
+   
+   I191 2=1           -->  * D192:   - P(f_8(c_4 c_1) f_10(c_1))
+   
+   R186,1 & A3,1      -->  * R221:   All x:Any + =(f_10(x) x)  + =(f_10(x) c_1)
+   
+   R221 (factor)      -->  * F222:   + =(f_10(c_1) c_1)
+   
+   D192,1 & F222      -->  * RW224:  - P(f_8(c_4 c_1) c_1)
+   
+   RW150,1 & RW224,1  -->  * R227:   - =(f_8(c_4 c_1) c_4)  - =(c_1 c_1)
+   
+   R227,2 & A1,1      -->  * R228:   - =(f_8(c_4 c_1) c_4)
+   
+   T18,2 & R228,1     -->  * R229:   + P(f_8(c_4 c_1) f_10(c_1))  - =(f_10(c_1) c_1)
+   
+   R229,2 & F222      -->  * RW230:  + P(f_8(c_4 c_1) f_10(c_1))  - =(c_1 c_1)
+   
+   RW230,1 & F222     -->  * RW231:  + P(f_8(c_4 c_1) c_1)  - =(c_1 c_1)
+   
+   RW231,2 & A1,1     -->  * R232:   + P(f_8(c_4 c_1) c_1)
+   
+   R232,1 & RW159,1   -->  * R233:   + =(f_8(c_4 c_1) c_4)
+   
+   R233,1 & R228,1    -->  * R234:   []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation of Splitpart 1: 171 seconds
+   Time Used for Refutation of Splitpart 2: 432 seconds

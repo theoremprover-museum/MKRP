@@ -1,0 +1,121 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 46.5                                                *
+                     *           DATE: 30-JAN,1991  20:19                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 13-JUL,1990 02:36 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * AXIOMS *
+             * GROUP *
+             ALL X,Y,Z + (+ (X Y) Z) = + (X + (Y Z))
+             ALL X + (0 X) = X
+             ALL X + (- (X) X) = 0
+             ALL X,Y + (X Y) = + (Y X)
+             * * *
+             ALL X,Y,Z * (* (X Y) Z) = * (X * (Y Z))
+             * * GROUP CONNECTION *
+             ALL X,Y,Z * (+ (X Y) Z) = + (* (X Z) * (Y Z))
+             ALL X,Y,Z * (Z + (X Y)) = + (* (Z X) * (Z Y))
+             * ADDITIONAL AXIOM AND THEOREM *
+             ALL X * (X * (X X)) = X
+             
+   Theorems: ALL X,Y * (X Y) = * (Y X)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+             A2:   All x,y,z:Any + =(+(+(z y) x) +(z +(y x)))
+             A3:   All x:Any + =(+(0 x) x)
+             A4:   All x:Any + =(+(-(x) x) 0)
+             A5:   All x,y:Any + =(+(y x) +(x y))
+             A6:   All x,y,z:Any + =(*(*(z y) x) *(z *(y x)))
+             A7:   All x,y,z:Any + =(*(+(z y) x) +(*(z x) *(y x)))
+             A8:   All x,y,z:Any + =(*(z +(y x)) +(*(z y) *(z x)))
+             A9:   All x:Any + =(*(x *(x x)) x)
+           
+
+
+
+
+             Initial Operations on Axioms
+             ============================
+
+
+          
+   A4,1 & A5 -->   RW1: All x:Any + =(+(x -(x)) 0)
+   
+
+   
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+             T10: - =(*(c_1 c_2) *(c_2 c_1))
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation: (Failure: GRAPH.COLLAPSED)
+   ======================================
+   
+   Initial Clauses:     A1:   All x:Any + =(x x)
+                        A2:   All x,y,z:Any + =(+(+(z y) x) +(z +(y x)))
+                        A3:   All x:Any + =(+(0 x) x)
+                        RW1:  All x:Any + =(+(x -(x)) 0)
+                        A5:   All x,y:Any + =(+(y x) +(x y))
+                        A6:   All x,y,z:Any + =(*(*(z y) x) *(z *(y x)))
+                        A7:   All x,y,z:Any + =(*(+(z y) x) +(*(z x) *(y x)))
+                        A8:   All x,y,z:Any + =(*(z +(y x)) +(*(z y) *(z x)))
+                        A9:   All x:Any + =(*(x *(x x)) x)
+                        T10:  - =(*(c_1 c_2) *(c_2 c_1))
+                      
+
+   
+   A3,1 & RW1,1  -->    P2:   + =(-(0) 0)
+   
+   A5,1 & A3,1   -->    P3:   All x:Any + =(+(x 0) x)
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   The theorem(s) could not be proved.
+
+
+
+   Time Used for Refutation: 15 seconds

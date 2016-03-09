@@ -1,0 +1,82 @@
+
+(problem group1 initialized 
+	 ((type-constants i o)
+	  (type-variables aa bb)
+	  (constants (= (o aa aa))
+		     (false o)
+		     (true o)
+		     (and (o o o))
+		     (or (o o o))
+		     (implies (o o o))
+		     (equiv (o o o))
+		     (not (o o))
+		     (forall (o (o aa)))
+		     (exists (o (o aa))))
+	  (constants (wolf o i)
+		     (fox o i)
+		     (bird o i)
+		     (caterpillar o i)
+		     (snail o i)
+		     (grain o i)
+		     (eats o i i)
+		     (sm o i i)
+		     (plant o i)
+		     (animal o i))
+	  (assumption wolf-ass (exists (lam (x i) (wolf x))))
+	  (assumption fox-ass (exists (lam (x i) (fox x))))
+	  (assumption bird-ass (exists (lam (x i) (bird x))))
+	  (assumption caterpillar-ass (exists (lam (x i) (caterpillar x))))
+	  (assumption snail-ass (exists (lam (x i) (snail x))))
+	  (assumption grain-ass (exists (lam (x i) (grain x))))
+	  (assumption The-plants
+		      (forall (lam (x i)
+				   (implies (grain x) (plant x)))))
+	  (assumption The-animals
+		      (forall (lam (x i)
+				   (implies (or (or (wolf x) (or (fox x) (bird x)))
+						(or (caterpillar x) (snail x)))
+					    (animal x)))))
+	  (assumption who-eats-whom-1
+		      (forall (lam (x i)
+				   (implies (animal x)
+					    (or (forall (lam (y i) (implies (plant y) (eats x y))))
+						(forall (lam (y i) 
+							     (implies (and (and (animal y) (sm y x))
+									   (exists (lam (z i) (and (plant z)
+												   (eats y z)))))
+								      (eats x y)))))))))
+	  (assumption smaller-1
+		      (forall (lam (x i) (forall (lam (y i) 
+						      (implies (and (or (snail x) (caterpillar x))
+								    (bird y))
+							       (sm x y)))))))
+	  (assumption smaller-2
+		      (forall (lam (x i) (forall (lam (y i) 
+						      (implies (and (bird x) (fox y)) (sm x y)))))))
+	  (assumption smaller-3
+		      (forall (lam (x i) (forall (lam (y i) 
+						      (implies (and (fox x) (wolf y)) (sm x y)))))))
+	  (assumption not-eats-1
+		      (forall (lam (x i) (forall (lam (y i)
+						      (implies (and (or (fox x) (grain x))
+								    (wolf y))
+							       (not (eats y x))))))))
+	  (assumption eats-2
+		      (forall (lam (x i) (forall (lam (y i) 
+						      (implies (and (bird x) (caterpillar y)) (eats x y)))))))
+	  (assumption not-eats-2
+		      (forall (lam (x i) (forall (lam (y i) 
+						      (implies (and (bird x) (snail y)) (not (eats x y))))))))
+	  (assumption eats-3
+		      (forall (lam (x i)
+				   (implies (or (caterpillar x) (snail x))
+					    (exists (lam (y i) (and (plant y) (eats x y))))))))
+	  (conclusion conc
+		      (exists (lam (x i) (exists (lam (y i) 
+						      (and (animal x)
+							   (and (animal y)
+								(and (eats x y)
+								     (exists (lam (z i) (and (grain z) (eats y z))))))))))))
+	  ))
+
+

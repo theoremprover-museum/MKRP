@@ -1,0 +1,39 @@
+Kleine Anleitung fuer den ueberarbeiteten Prototyp
+
+Die Dateien des Prototyps sind unter neu/ zu finden. Die Lispquelldateien heissen
+spec.lisp und new-formatter.lisp. In new-formatter.bsp sind Beispielaufrufe abgelegt. 
+
+Zum Ausprobieren kann man wie folgt vorgehen. Zuerst ins directory neu, dann kcl
+starten, also:
+
+winoserv-1{hsohns}!: cd neu
+/usr/home.winows-6/hsohns/neu
+winoserv-1{hsohns}!: kcl
+AKCL (Austin Kyoto Common Lisp)  Version(1.478) Wed Jun 20 00:30:20 WET DST 1990
+Contains Enhancements by W. Schelter
+
+; dann formatter (Teil 1) laden
+> (load "new-formatter.lisp")
+Loading new-formatter.lisp
+Finished loading new-formatter.lisp
+T
+
+; und anschliessend Teil 2
+> (load "spec.lisp")
+Loading spec.lisp
+Finished loading spec.lisp
+T
+
+>
+; an dieser Stelle kann man Beispielaufrufe aus new-formatter.bsp eingeben
+; z.B. (optimize-iterm (parse-term '(bins (rop (f (g x)) !) + (lop - (h y)))) 10)
+
+Nun ein paar Worte zum Programm. Es versteht jetzt eine Beschreibung von Termen,
+die aus Funktionstermen, linksunaeren, rechtunaeren und binaeren Operatoren
+etc. zusammengesetzt sind (s. Datei 'Interndarstellung').
+
+Um das Term in die Interndarstellung zu transformieren wird parse-term aufgerufen.
+Also etwa: (parse-term '(bins (rop (f (g x)) !) + (lop - (h y)))). Die erzeugte 
+Interndarstellung wird zum Formatieren weiterverarbeitet. Dies geschieht mit der
+Funktion optimize-term (Bsp. s.o.). Die Zahl am Ende gibt die maximal erwuenschte
+Zeilenlaenge an.

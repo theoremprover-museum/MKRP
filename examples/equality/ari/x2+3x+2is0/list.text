@@ -1,0 +1,126 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 44.11 EQUALITY 16.1                                 *
+                     *           DATE: 22-JUN,1990  00:44                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:      * IC1:   All x:Any + =(x x)
+                         * IC2:   All x:Any + =(s(p(x)) x)
+                         * IC3:   All x:Any + =(p(s(x)) x)
+                           IC4:   All x:Any + =(+(0 x) x)
+                         * IC5:   All x,y:Any + =(+(s(y) x) s(+(y x)))
+                         * IC6:   All x,y:Any + =(+(p(y) x) p(+(y x)))
+                         * IC7:   All x:Any + =(+(x 0) x)
+                         * IC8:   All x,y:Any + =(+(y s(x)) s(+(y x)))
+                         * IC9:   All x,y:Any + =(+(y p(x)) p(+(y x)))
+                         * IC10:  All x,y,z:Any + =(+(+(z y) x) +(z +(y x)))
+                         * IC11:  + =(-(0) 0)
+                           IC12:  All x:Any + =(-(s(x)) p(-(x)))
+                         * IC13:  All x:Any + =(-(p(x)) s(-(x)))
+                           IC14:  All x:Any + =(-(-(x)) x)
+                           IC15:  All x:Any + =(+(-(x) x) 0)
+                           IC16:  All x:Any + =(+(x -(x)) 0)
+                           IC17:  All x,y:Any + =(+(y +(-(y) x)) x)
+                         * IC18:  All x,y:Any + =(+(-(y) +(y x)) x)
+                           IC19:  All x,y:Any + =(-(+(y x)) +(-(x) -(y)))
+                           IC20:  All x:Any + =(*(0 x) 0)
+                           IC21:  All x,y:Any + =(*(s(y) x) +(x *(y x)))
+                         * IC22:  All x,y:Any + =(*(p(y) x) +(-(x) *(y x)))
+                         * IC23:  All x:Any + =(*(x 0) 0)
+                           IC24:  All x,y:Any + =(*(y s(x)) +(*(y x) y))
+                         * IC25:  All x,y:Any + =(*(y p(x)) +(*(y x) -(y)))
+                         * IC26:  All x:Any - =(s(s(+(*(x x) +(x +(x x))))) 0)
+                         
+
+   
+   IC25,1 & IC26,1  -->  * P31:   All x:Any - =(s(s(+(+(*(p(x) x) -(p(x))) +(p(x) +(p(x) p(x)))))) 0)
+   
+   P31,1 & IC22     -->  * RW32:  All x:Any - =(s(s(+(+(+(-(x) *(x x)) -(p(x))) +(p(x) +(p(x) p(x)))))) 0)
+   
+   RW32,1 & IC13    -->  * RW33:  All x:Any - =(s(s(+(+(+(-(x) *(x x)) s(-(x))) +(p(x) +(p(x) p(x)))))) 0)
+   
+   RW33,1 & IC10    -->  * RW34:  All x:Any - =(s(s(+(+(-(x) *(x x)) +(s(-(x)) +(p(x) +(p(x) p(x))))))) 0)
+   
+   RW34,1 & IC10    -->  * RW35:  All x:Any - =(s(s(+(-(x) +(*(x x) +(s(-(x)) +(p(x) +(p(x) p(x)))))))) 0)
+   
+   RW35,1 & IC9     -->  * RW36:  All x:Any - =(s(s(+(-(x) +(*(x x) +(s(-(x)) +(p(x) p(+(p(x) x)))))))) 0)
+   
+   RW36,1 & IC9     -->  * RW37:  All x:Any - =(s(s(+(-(x) +(*(x x) +(s(-(x)) p(+(p(x) +(p(x) x)))))))) 0)
+   
+   RW37,1 & IC9     -->  * RW38:  All x:Any - =(s(s(+(-(x) +(*(x x) p(+(s(-(x)) +(p(x) +(p(x) x)))))))) 0)
+   
+   RW38,1 & IC9     -->  * RW39:  All x:Any - =(s(s(+(-(x) p(+(*(x x) +(s(-(x)) +(p(x) +(p(x) x)))))))) 0)
+   
+   RW39,1 & IC9     -->  * RW40:  All x:Any - =(s(s(p(+(-(x) +(*(x x) +(s(-(x)) +(p(x) +(p(x) x)))))))) 0)
+   
+   RW40,1 & IC6     -->  * RW41:  All x:Any - =(s(s(p(+(-(x) +(*(x x) +(s(-(x)) p(+(x +(p(x) x))))))))) 0)
+   
+   RW41,1 & IC9     -->  * RW42:  All x:Any - =(s(s(p(+(-(x) +(*(x x) p(+(s(-(x)) +(x +(p(x) x))))))))) 0)
+   
+   RW42,1 & IC9     -->  * RW43:  All x:Any - =(s(s(p(+(-(x) p(+(*(x x) +(s(-(x)) +(x +(p(x) x))))))))) 0)
+   
+   RW43,1 & IC9     -->  * RW44:  All x:Any - =(s(s(p(p(+(-(x) +(*(x x) +(s(-(x)) +(x +(p(x) x))))))))) 0)
+   
+   RW44,1 & IC6     -->  * RW45:  All x:Any - =(s(s(p(p(+(-(x) +(*(x x) +(s(-(x)) +(x p(+(x x)))))))))) 0)
+   
+   RW45,1 & IC9     -->  * RW46:  All x:Any - =(s(s(p(p(+(-(x) +(*(x x) +(s(-(x)) p(+(x +(x x)))))))))) 0)
+   
+   RW46,1 & IC9     -->  * RW47:  All x:Any - =(s(s(p(p(+(-(x) +(*(x x) p(+(s(-(x)) +(x +(x x)))))))))) 0)
+   
+   RW47,1 & IC9     -->  * RW48:  All x:Any - =(s(s(p(p(+(-(x) p(+(*(x x) +(s(-(x)) +(x +(x x)))))))))) 0)
+   
+   RW48,1 & IC9     -->  * RW49:  All x:Any - =(s(s(p(p(p(+(-(x) +(*(x x) +(s(-(x)) +(x +(x x)))))))))) 0)
+   
+   RW49,1 & IC5     -->  * RW50:  All x:Any - =(s(s(p(p(p(+(-(x) +(*(x x) s(+(-(x) +(x +(x x))))))))))) 0)
+   
+   RW50,1 & IC18    -->  * RW51:  All x:Any - =(s(s(p(p(p(+(-(x) +(*(x x) s(+(x x))))))))) 0)
+   
+   RW51,1 & IC8     -->  * RW52:  All x:Any - =(s(s(p(p(p(+(-(x) s(+(*(x x) +(x x))))))))) 0)
+   
+   RW52,1 & IC8     -->  * RW53:  All x:Any - =(s(s(p(p(p(s(+(-(x) +(*(x x) +(x x))))))))) 0)
+   
+   RW53,1 & IC3     -->  * RW54:  All x:Any - =(s(s(p(p(+(-(x) +(*(x x) +(x x))))))) 0)
+   
+   RW54,1 & IC2     -->  * RW55:  All x:Any - =(s(p(+(-(x) +(*(x x) +(x x))))) 0)
+   
+   RW55,1 & IC2     -->  * RW56:  All x:Any - =(+(-(x) +(*(x x) +(x x))) 0)
+   
+   IC11,1 & RW56,1  -->  * P57:   - =(+(0 +(*(0 0) +(0 0))) 0)
+   
+   P57,1 & IC23     -->  * RW58:  - =(+(0 +(0 +(0 0))) 0)
+   
+   RW58,1 & IC7     -->  * RW59:  - =(+(0 +(0 0)) 0)
+   
+   RW59,1 & IC7     -->  * RW60:  - =(+(0 0) 0)
+   
+   RW60,1 & IC7     -->  * RW61:  - =(0 0)
+   
+   RW61,1 & IC1,1   -->  * R62:   []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 89 seconds

@@ -1,0 +1,327 @@
+;;; -*- Package: MKRP; Base: 10. -*-
+
+
+
+                    ********************************************************************************
+                    *                                                                              *
+                    *     MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN                   *
+                    *                                                                              *
+                    *       04-FEB-86                                                              *
+                    *          04-FEB-86  08:28:57                                                 *
+                    *                                                                              *
+                    ********************************************************************************
+
+
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   04-FEB-86 08:24:07
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   Satz 5.6
+                                                                        
+************************************************************************
+                                                                        
+
+
+ADJUSTMENT OF THE OPTIONS : 
+============================
+
+
+
+TWO:RULES                             NIL                   TWO:RULES.MAXLEVEL                    1.
+TWO:SUPPRESS.NORULES                  NIL
+
+
+RED.I:CLAUSE.MULTIPLE.LITERALS        T                     RED.I:CLAUSE.PURITY                   T
+RED.I:CLAUSE.TAUTOLOGY                T                     RED.I:CLAUSE.TAUTOLOGY.RECHECK        PARTIAL
+RED.I:CLAUSE.SUBSUMPTION              T                     RED.I:CLAUSE.SUBSUMPTION.RECHECK      PARTIAL
+RED.I:CLAUSE.REPL.FACTORING           T                     RED.I:CLAUSE.REPL.FACTORING.RECHECK   T
+RED.I:CLAUSE.REPL.RESOLUTION          SIMPLE                RED.I:CLAUSE.REPL.RESOLUTION.RECHECK  T
+RED.I:CLAUSE.REWRITING                T                     RED.I:LINK.INCOMPATIBILITY            NIL
+RED.I:LINK.TAUTOLOGY                  NIL                   RED.I:LINK.TAUTOLOGY.RECHECK          NIL
+RED.I:LINK.SUBSUMPTION                NIL                   RED.I:LINK.SUBSUMPTION.RECHECK        NIL
+
+RED.D:CLAUSE.MULTIPLE.LITERALS        T                     RED.D:CLAUSE.PURITY                   T
+RED.D:CLAUSE.TAUTOLOGY                REMOVE-INHIBIT        RED.D:CLAUSE.TAUTOLOGY.RECHECK        NIL
+RED.D:CLAUSE.SUBSUMPTION.FORWARD      REMOVE-INHIBIT        RED.D:CLAUSE.SUBSUMPTION.BACKWARD     REMOVE
+RED.D:CLAUSE.SUBSUMPTION.RECHECK      NIL                   RED.D:CLAUSE.REPL.FACTORING           T
+RED.D:CLAUSE.REPL.FACTORING.RECHECK   T                     RED.D:CLAUSE.REPL.RESOLUTION          SIMPLE
+RED.D:CLAUSE.REPL.RESOLUTION.RECHECK  T                     RED.D:LINK.INCOMPATIBILITY            NIL
+RED.D:LINK.TAUTOLOGY                  NIL                   RED.D:LINK.TAUTOLOGY.RECHECK          NIL
+RED.D:LINK.SUBSUMPTION                NIL                   RED.D:LINK.SUBSUMPTION.RECHECK        NIL
+
+FAC:INITIAL                           NIL                   FAC:EACH.STEP                         NIL
+
+STR:RESOLUTION                        SET-OF-SUPPORT        STR:E-RESOLUTION                      NIL
+STR:PARAMODULATION                    UNIT-ANCESTRY         STR:LINK.DEPTH                        NIL
+STR:TERM.DEPTH                        5.                    STR:R.DEMODULATION                    T
+STR:P.DEMODULATION                    T                     STR:INDUCTION                         NIL
+
+TERM:UNITS                            T                     TERM:ITERATIONS                       1.
+TERM:SET.OF.SUPPORT                   NIL                   TERM:BREADTH.FIRST                    NIL
+
+GEN:SPLITTING                         0.                    GEN:MANUAL.CONTROL                    NIL
+GEN:MAXIMUM.STEPS                     NIL                   GEN:GRAPH.SAVING                      NIL
+GEN:SAVE.FILE                         SAVE.DEFAULT
+
+
+TR:PREPROCESSING                      NIL                   TR:STEP.MODE                          LR
+TR:DUMP                               NIL                   TR:CLAUSE.MODE                        I
+TR:LINK.MODE                          I                     TR:TRACE.FILE                         NIL
+TR:TERMINAL                           T
+
+
+PR:INFIX.FORM                         T                     PR:PREFIX.FORM                        NIL
+PR:OPTIONS                            T                     PR:AXIOM.CLAUSES                      NIL
+PR:SYMBOLS                            NIL                   PR:STATISTICS                         NIL
+PR:PROTOCOL                           T                     PR:LEFT.MARGIN                        0.
+PR:LINELENGTH                         120.
+
+
+
+
+FORMULAE GIVEN TO THE EDITOR
+============================
+
+
+AXIOMS   : SORT SET:ANY
+           SORT FUNCTION:ANY
+           SORT ELEMENT:SET
+           SORT ELEMENT.F:ELEMENT
+           SORT NAT:SET
+           SORT REL:SET
+           SORT UNARY.FUNC:FUNCTION
+           SORT BINARY.FUNC:FUNCTION
+           SORT EQU.REL-S:REL
+           SORT L.CONGRUENCE-S:EQU.REL-S
+           SORT R.CONGRUENCE-S:EQU.REL-S
+           SORT CONGRUENCE-S:L.CONGRUENCE-S
+           SORT CONGRUENCE-S:R.CONGRUENCE-S
+           * CONSTANTS *
+           TYPE F:SET
+           TYPE CONN.F:BINARY.FUNC
+           TYPE 1:NAT
+           TYPE CONN.F.RHO:BINARY.FUNC
+           * PREDICATES *
+           TYPE SEMIGROUP (SET BINARY.FUNC)
+           TYPE L.CONGRUENCE (REL)
+           TYPE R.CONGRUENCE (REL)
+           TYPE CONGRUENCE (EQU.REL-S)
+           TYPE IN.RELATION (REL ELEMENT.F ELEMENT.F)
+           TYPE INJECTIVE (UNARY.FUNC SET SET)
+           TYPE SURJECTIVE (UNARY.FUNC SET SET)
+           TYPE BIJECTIVE (UNARY.FUNC SET SET)
+           TYPE HOMOMORPH (UNARY.FUNC SET SET)
+           TYPE ISOMORPH (UNARY.FUNC SET SET)
+           TYPE EPIMORPH (UNARY.FUNC SET SET)
+           TYPE MAPPING (UNARY.FUNC SET SET)
+           * FUNCTIONS *
+           TYPE APPLY1 (UNARY.FUNC SET) :SET
+           TYPE APPLY1-EL (UNARY.FUNC ELEMENT) :ELEMENT
+           TYPE APPLY2 (BINARY.FUNC SET SET) :SET
+           TYPE APPLY2-EL (BINARY.FUNC ELEMENT ELEMENT) :ELEMENT
+           TYPE APPLY2-EL.F (BINARY.FUNC ELEMENT.F ELEMENT.F) :ELEMENT.F
+           TYPE PREIMAGE (REL ELEMENT) :SET
+           TYPE POWER (REL NAT) :REL
+           TYPE PLUS (NAT NAT) :NAT
+           TYPE MODULO (EQU.REL-S) :SET
+           TYPE COMP (REL REL) :REL
+           TYPE TRANS.CLOS (REL) :REL
+           TYPE UNION-REL (REL REL) :REL
+           TYPE TRANS.UNION (EQU.REL-S EQU.REL-S) :EQU.REL-S
+           TYPE CAN.PROJ (EQU.REL-S) :UNARY.FUNC
+           TYPE IND.EQU.REL (UNARY.FUNC SET) :EQU.REL-S
+           TYPE COMP.MAP (UNARY.FUNC UNARY.FUNC) :UNARY.FUNC
+           TYPE MOD.PHI (UNARY.FUNC SET) :UNARY.FUNC
+           *
+           * DEFINITION OF EPIMORPH *
+           ALL A,B:SET ALL PHI:UNARY.FUNC EPIMORPH (PHI A B) EQV HOMOMORPH (PHI A B) AND SURJECTIVE (PHI A B)
+           * DEFINITION OF ISOMORPH *
+           ALL A,B:SET ALL PHI:UNARY.FUNC ISOMORPH (PHI A B) EQV HOMOMORPH (PHI A B) AND BIJECTIVE (PHI A B)
+           * THEOREM 5.5.1 *
+           ALL RHO:EQU.REL-S  
+               SEMIGROUP (F CONN.F) AND SEMIGROUP (MODULO (RHO) CONN.F.RHO) AND CONGRUENCE (RHO)
+               IMPL  
+               HOMOMORPH (CAN.PROJ (RHO) F MODULO (RHO))
+           * THEOREM 4.11 *
+           ALL H:SET  ALL CONN.H:BINARY.FUNC  ALL PHI:UNARY.FUNC  
+               SEMIGROUP (F CONN.F) AND SEMIGROUP (H CONN.H) AND SURJECTIVE (PHI F H)
+               IMPL  
+                 SURJECTIVE (CAN.PROJ (IND.EQU.REL (PHI H)) F MODULO (IND.EQU.REL (PHI H)))
+                 AND  
+                 BIJECTIVE (MOD.PHI (PHI H) MODULO (IND.EQU.REL (PHI H)) H)
+                 AND  
+                 COMP.MAP (MOD.PHI (PHI H) CAN.PROJ (IND.EQU.REL (PHI H))) = PHI
+           * LEMMA 5.6.1 *
+           ALL H:SET  ALL CONN.H:BINARY.FUNC  ALL PHI:UNARY.FUNC  
+               SEMIGROUP (F CONN.F) AND SEMIGROUP (H CONN.H) AND EPIMORPH (PHI F H) AND CONGRUENCE (IND.EQU.REL (PHI H))
+               IMPL  
+               HOMOMORPH (MOD.PHI (PHI H) MODULO (IND.EQU.REL (PHI H)) H)
+           * CONSEQUENCE OF 5.4 *
+           ALL RHO:EQU.REL-S CONGRUENCE (RHO) IMPL SEMIGROUP (MODULO (RHO) CONN.F.RHO)
+
+THEOREMS : * THEOREM 5.6 *
+           ALL H:SET  ALL CONN.H:BINARY.FUNC  ALL PHI:UNARY.FUNC  
+               SEMIGROUP (F CONN.F) AND SEMIGROUP (H CONN.H) AND EPIMORPH (PHI F H) AND CONGRUENCE (IND.EQU.REL (PHI H))
+               IMPL  
+                 EPIMORPH (CAN.PROJ (IND.EQU.REL (PHI H)) F MODULO (IND.EQU.REL (PHI H)))
+                 AND  
+                 ISOMORPH (MOD.PHI (PHI H) MODULO (IND.EQU.REL (PHI H)) H)
+                 AND  
+                 (COMP.MAP (MOD.PHI (PHI H) CAN.PROJ (IND.EQU.REL (PHI H))) = PHI)
+
+
+
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+  A1   : ALL X:ANY  + =(X X)
+* A2   : ALL X:EQU.REL-S  - CONGRUENCE(X)  + SEMIGROUP(MODULO(X) CONN.F.RHO)
+* A3   : ALL X:UNARY.FUNC  Y:BINARY.FUNC  Z:SET  
+              - SEMIGROUP(F CONN.F)  - SEMIGROUP(Z Y)  - SURJECTIVE(X F Z)
+                + =(COMP.MAP(MOD.PHI(X Z) CAN.PROJ(IND.EQU.REL(X Z))) X)
+* A4   : ALL X:EQU.REL-S  - SEMIGROUP(F CONN.F)  - SEMIGROUP(MODULO(X) CONN.F.RHO)  - CONGRUENCE(X)
+                            + HOMOMORPH(CAN.PROJ(X) F MODULO(X))
+* A5   : ALL X:UNARY.FUNC  Y:BINARY.FUNC  Z:SET  
+              - SEMIGROUP(F CONN.F)  - SEMIGROUP(Z Y)  - SURJECTIVE(X F Z)
+                + BIJECTIVE(MOD.PHI(X Z) MODULO(IND.EQU.REL(X Z)) Z)
+* A6   : ALL X:UNARY.FUNC  Y:BINARY.FUNC  Z:SET  
+              - SEMIGROUP(F CONN.F)  - SEMIGROUP(Z Y)  - SURJECTIVE(X F Z)
+                + SURJECTIVE(CAN.PROJ(IND.EQU.REL(X Z)) F MODULO(IND.EQU.REL(X Z)))
+* A7   : ALL X:UNARY.FUNC  Y:BINARY.FUNC  Z:SET  
+              - SEMIGROUP(F CONN.F)  - SEMIGROUP(Z Y)  - HOMOMORPH(X F Z)  - SURJECTIVE(X F Z)
+                - CONGRUENCE(IND.EQU.REL(X Z))  + HOMOMORPH(MOD.PHI(X Z) MODULO(IND.EQU.REL(X Z)) Z)
+
+
+
+
+OPERATIONS ON AXIOMS
+====================
+
+
+A4,2 & A2,2   -->  * R1 : ALL X:EQU.REL-S  - SEMIGROUP(F CONN.F)  - CONGRUENCE(X)  + HOMOMORPH(CAN.PROJ(X) F MODULO(X))
+                                             - CONGRUENCE(X)
+
+R1 2=4        -->  * D2 : ALL X:EQU.REL-S  - SEMIGROUP(F CONN.F)  - CONGRUENCE(X)  + HOMOMORPH(CAN.PROJ(X) F MODULO(X))
+
+
+
+
+
+
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+* T8   : + SEMIGROUP(F CONN.F)
+* T9   : + SEMIGROUP(C_3 C_1)
+* T10  : + HOMOMORPH(C_2 F C_3)
+* T11  : + SURJECTIVE(C_2 F C_3)
+* T12  : + CONGRUENCE(IND.EQU.REL(C_2 C_3))
+* T13  : - HOMOMORPH(CAN.PROJ(IND.EQU.REL(C_2 C_3)) F MODULO(IND.EQU.REL(C_2 C_3)))
+           - SURJECTIVE(CAN.PROJ(IND.EQU.REL(C_2 C_3)) F MODULO(IND.EQU.REL(C_2 C_3)))
+           - HOMOMORPH(MOD.PHI(C_2 C_3) MODULO(IND.EQU.REL(C_2 C_3)) C_3)
+           - BIJECTIVE(MOD.PHI(C_2 C_3) MODULO(IND.EQU.REL(C_2 C_3)) C_3)
+           - =(COMP.MAP(MOD.PHI(C_2 C_3) CAN.PROJ(IND.EQU.REL(C_2 C_3))) C_2)
+
+
+
+
+
+
+INITIAL OPERATIONS ON THEOREMS
+==============================
+
+
+A3,1 & T8,1     -->  * R3  : ALL X:UNARY.FUNC  Y:BINARY.FUNC  Z:SET  
+                                  - SEMIGROUP(Z Y)  - SURJECTIVE(X F Z)
+                                    + =(COMP.MAP(MOD.PHI(X Z) CAN.PROJ(IND.EQU.REL(X Z))) X)
+
+D2,1 & T8,1     -->  * R4  : ALL X:EQU.REL-S  - CONGRUENCE(X)  + HOMOMORPH(CAN.PROJ(X) F MODULO(X))
+
+A5,1 & T8,1     -->  * R5  : ALL X:UNARY.FUNC  Y:BINARY.FUNC  Z:SET  
+                                  - SEMIGROUP(Z Y)  - SURJECTIVE(X F Z)
+                                    + BIJECTIVE(MOD.PHI(X Z) MODULO(IND.EQU.REL(X Z)) Z)
+
+A6,1 & T8,1     -->  * R6  : ALL X:UNARY.FUNC  Y:BINARY.FUNC  Z:SET  
+                                  - SEMIGROUP(Z Y)  - SURJECTIVE(X F Z)
+                                    + SURJECTIVE(CAN.PROJ(IND.EQU.REL(X Z)) F MODULO(IND.EQU.REL(X Z)))
+
+A7,1 & T8,1     -->  * R7  : ALL X:UNARY.FUNC  Y:BINARY.FUNC  Z:SET  
+                                  - SEMIGROUP(Z Y)  - HOMOMORPH(X F Z)  - SURJECTIVE(X F Z)
+                                    - CONGRUENCE(IND.EQU.REL(X Z))
+                                    + HOMOMORPH(MOD.PHI(X Z) MODULO(IND.EQU.REL(X Z)) Z)
+
+T13,5 & R3,3    -->  * R8  : - HOMOMORPH(CAN.PROJ(IND.EQU.REL(C_2 C_3)) F MODULO(IND.EQU.REL(C_2 C_3)))
+                               - SURJECTIVE(CAN.PROJ(IND.EQU.REL(C_2 C_3)) F MODULO(IND.EQU.REL(C_2 C_3)))
+                               - HOMOMORPH(MOD.PHI(C_2 C_3) MODULO(IND.EQU.REL(C_2 C_3)) C_3)
+                               - BIJECTIVE(MOD.PHI(C_2 C_3) MODULO(IND.EQU.REL(C_2 C_3)) C_3)  - SEMIGROUP(C_3 C_1)
+                               - SURJECTIVE(C_2 F C_3)
+
+R8,5 & T9,1     -->  * R9  : - HOMOMORPH(CAN.PROJ(IND.EQU.REL(C_2 C_3)) F MODULO(IND.EQU.REL(C_2 C_3)))
+                               - SURJECTIVE(CAN.PROJ(IND.EQU.REL(C_2 C_3)) F MODULO(IND.EQU.REL(C_2 C_3)))
+                               - HOMOMORPH(MOD.PHI(C_2 C_3) MODULO(IND.EQU.REL(C_2 C_3)) C_3)
+                               - BIJECTIVE(MOD.PHI(C_2 C_3) MODULO(IND.EQU.REL(C_2 C_3)) C_3)  - SURJECTIVE(C_2 F C_3)
+
+R9,5 & T11,1    -->  * R10 : - HOMOMORPH(CAN.PROJ(IND.EQU.REL(C_2 C_3)) F MODULO(IND.EQU.REL(C_2 C_3)))
+                               - SURJECTIVE(CAN.PROJ(IND.EQU.REL(C_2 C_3)) F MODULO(IND.EQU.REL(C_2 C_3)))
+                               - HOMOMORPH(MOD.PHI(C_2 C_3) MODULO(IND.EQU.REL(C_2 C_3)) C_3)
+                               - BIJECTIVE(MOD.PHI(C_2 C_3) MODULO(IND.EQU.REL(C_2 C_3)) C_3)
+
+R10,4 & R5,3    -->  * R11 : - HOMOMORPH(CAN.PROJ(IND.EQU.REL(C_2 C_3)) F MODULO(IND.EQU.REL(C_2 C_3)))
+                               - SURJECTIVE(CAN.PROJ(IND.EQU.REL(C_2 C_3)) F MODULO(IND.EQU.REL(C_2 C_3)))
+                               - HOMOMORPH(MOD.PHI(C_2 C_3) MODULO(IND.EQU.REL(C_2 C_3)) C_3)  - SEMIGROUP(C_3 C_1)
+                               - SURJECTIVE(C_2 F C_3)
+
+R11,4 & T9,1    -->  * R12 : - HOMOMORPH(CAN.PROJ(IND.EQU.REL(C_2 C_3)) F MODULO(IND.EQU.REL(C_2 C_3)))
+                               - SURJECTIVE(CAN.PROJ(IND.EQU.REL(C_2 C_3)) F MODULO(IND.EQU.REL(C_2 C_3)))
+                               - HOMOMORPH(MOD.PHI(C_2 C_3) MODULO(IND.EQU.REL(C_2 C_3)) C_3)  - SURJECTIVE(C_2 F C_3)
+
+R12,4 & T11,1   -->  * R13 : - HOMOMORPH(CAN.PROJ(IND.EQU.REL(C_2 C_3)) F MODULO(IND.EQU.REL(C_2 C_3)))
+                               - SURJECTIVE(CAN.PROJ(IND.EQU.REL(C_2 C_3)) F MODULO(IND.EQU.REL(C_2 C_3)))
+                               - HOMOMORPH(MOD.PHI(C_2 C_3) MODULO(IND.EQU.REL(C_2 C_3)) C_3)
+
+R13,3 & R7,5    -->  * R14 : - HOMOMORPH(CAN.PROJ(IND.EQU.REL(C_2 C_3)) F MODULO(IND.EQU.REL(C_2 C_3)))
+                               - SURJECTIVE(CAN.PROJ(IND.EQU.REL(C_2 C_3)) F MODULO(IND.EQU.REL(C_2 C_3)))
+                               - SEMIGROUP(C_3 C_1)  - HOMOMORPH(C_2 F C_3)  - SURJECTIVE(C_2 F C_3)
+                               - CONGRUENCE(IND.EQU.REL(C_2 C_3))
+
+R14,3 & T9,1    -->  * R15 : - HOMOMORPH(CAN.PROJ(IND.EQU.REL(C_2 C_3)) F MODULO(IND.EQU.REL(C_2 C_3)))
+                               - SURJECTIVE(CAN.PROJ(IND.EQU.REL(C_2 C_3)) F MODULO(IND.EQU.REL(C_2 C_3)))
+                               - HOMOMORPH(C_2 F C_3)  - SURJECTIVE(C_2 F C_3)  - CONGRUENCE(IND.EQU.REL(C_2 C_3))
+
+R15,3 & T10,1   -->  * R16 : - HOMOMORPH(CAN.PROJ(IND.EQU.REL(C_2 C_3)) F MODULO(IND.EQU.REL(C_2 C_3)))
+                               - SURJECTIVE(CAN.PROJ(IND.EQU.REL(C_2 C_3)) F MODULO(IND.EQU.REL(C_2 C_3)))
+                               - SURJECTIVE(C_2 F C_3)  - CONGRUENCE(IND.EQU.REL(C_2 C_3))
+
+R16,3 & T11,1   -->  * R17 : - HOMOMORPH(CAN.PROJ(IND.EQU.REL(C_2 C_3)) F MODULO(IND.EQU.REL(C_2 C_3)))
+                               - SURJECTIVE(CAN.PROJ(IND.EQU.REL(C_2 C_3)) F MODULO(IND.EQU.REL(C_2 C_3)))
+                               - CONGRUENCE(IND.EQU.REL(C_2 C_3))
+
+R17,3 & T12,1   -->  * R18 : - HOMOMORPH(CAN.PROJ(IND.EQU.REL(C_2 C_3)) F MODULO(IND.EQU.REL(C_2 C_3)))
+                               - SURJECTIVE(CAN.PROJ(IND.EQU.REL(C_2 C_3)) F MODULO(IND.EQU.REL(C_2 C_3)))
+
+R18,2 & R6,3    -->  * R19 : - HOMOMORPH(CAN.PROJ(IND.EQU.REL(C_2 C_3)) F MODULO(IND.EQU.REL(C_2 C_3)))
+                               - SEMIGROUP(C_3 C_1)  - SURJECTIVE(C_2 F C_3)
+
+R19,2 & T9,1    -->  * R20 : - HOMOMORPH(CAN.PROJ(IND.EQU.REL(C_2 C_3)) F MODULO(IND.EQU.REL(C_2 C_3)))
+                               - SURJECTIVE(C_2 F C_3)
+
+R20,2 & T11,1   -->  * R21 : - HOMOMORPH(CAN.PROJ(IND.EQU.REL(C_2 C_3)) F MODULO(IND.EQU.REL(C_2 C_3)))
+
+R21,1 & R4,2    -->  * R22 : ALL X:EQU.REL-S  - CONGRUENCE(X)
+
+R22,1 & T12,1   -->  * R23 :  ce
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+  Q. E. D. 

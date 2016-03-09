@@ -1,0 +1,367 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 23.1, 1 private patch                               *
+                     *           DATE: 15-DEC-1988  04:30                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+                                                                            
+   
+   *************************************************************************
+   
+    EDIT:     Axioms and Theorems edited: 15-DEC-1988 04:29 
+   
+   *************************************************************************
+   
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   SORT MENGE,ELEMENT,VERKN,ABB:ANY
+             TYPE W (MENGE) :MENGE
+             TYPE RESTRICTION (ABB MENGE) :ABB
+             TYPE MAPC (ABB ELEMENT) :ELEMENT
+             TYPE MAL,CONC:ABB
+             TYPE ELEM (MENGE) :ABB
+             TYPE CHI,CHINULL:ABB
+             TYPE F,X:MENGE
+             TYPE EHG (MENGE ABB) :MENGE
+             TYPE T:ELEMENT
+             * INJEKTIV *
+             ALL A,B:MENGE ALL PHI:ABB (ALL U,V:ELEMENT EL (U A)
+                                                                  AND EL (V A)
+                                                                  AND MAPC (PHI U) = MAPC (PHI V)
+                                                             IMPL U = V)
+                                       IMPL INJEKTIV (PHI A B)
+             * DEF. FREIES ERZEUGENDESSYSTEM 1.TEIL *
+             ALL H:MENGE ALL MAL2:ABB HG (H MAL2) AND FREI (H MAL2) IMPL (EX E:MENGE EHG (E MAL2) = H)
+             * WIRKUNG VON MAPC AUF ELEMENTE EINER HALBGRUPPE *
+             ALL U,V:ELEMENT ALL MAL2:ABB ALL H:MENGE 
+               HG (H MAL2) AND EL (U H) AND EL (V H) AND U=V IMPL MAPC (MAL2 U) = MAPC (MAL2 V)
+             * DEF. VON HOMOMORPHISMUS UNTER VERWENDUNG VON MAPC *
+             ALL H,G:MENGE ALL MAL1,MAL2,PHI:ABB 
+               HG (H MAL1) AND HG (G MAL2) AND HOMOMORPH (PHI H G)
+               IMPL (ALL U:ELEMENT MAPC (ELEM (H) U) = T IMPL MAPC (PHI MAPC (MAL1 U)) = MAPC (MAL2 MAPC (PHI U)))
+             ALL A:MENGE EX PHINULL:ABB ABBILDUNG (PHINULL A W (A))
+                                        AND (ALL Y:ELEMENT EL (Y A) IMPL MAPC (PHINULL Y) = Y)
+             ALL A,B,C:MENGE ALL PHI,PHINULL:ABB 
+               ABBILDUNG (PHI A B) AND RESTRICTION (PHI C) = PHINULL
+               IMPL (ALL Y:ELEMENT EL (Y C) IMPL MAPC (PHINULL Y) = MAPC (PHI Y))
+                    AND ABBILDUNG (PHINULL C B)
+                    AND ME (C A)
+             ALL H:MENGE ALL MAL2:ABB ALL Y:ELEMENT EX E:MENGE 
+               HG (H MAL2) AND EL (Y H) AND EHG (E MAL2) = H
+               IMPL (EX U:ELEMENT MAPC (ELEM (E) U) = T AND MAPC (MAL2 U) = Y)
+             
+   Theorems: HG (F MAL) AND FREI (F MAL) AND HOMOMORPH (CHI F W (X)) AND RESTRICTION (CHI X) = CHINULL
+             IMPL INJEKTIV (CHI F W (X))
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+             A2:   All x:Menge + ABBILDUNG(f_4(x) x w(x))
+             A3:   All x,y:Menge z:Abb + EL(f_1(y z) y)  + INJEKTIV(z y x)
+             A4:   All x,y:Menge z:Abb + EL(f_2(y z) y)  + INJEKTIV(z y x)
+             A5:   All x,y:Menge z:Abb + =(mapc(z f_1(y z)) mapc(z f_2(y z)))  + INJEKTIV(z y x)
+             A6:   All x,y:Menge z:Abb - =(f_1(y z) f_2(y z))  + INJEKTIV(z y x)
+             A7:   All x:Menge y:Element - EL(y x)  + =(mapc(f_4(x) y) y)
+             A8:   All x:Abb y:Menge - HG(y x)  - FREI(y x)  + =(ehg(f_3(y x) x) y)
+             A9:   All x,y:Abb z,u,v:Menge - ABBILDUNG(y v u)  - =(restriction(y z) x)  + ABBILDUNG(x z u)
+             A10:  All x,y:Abb z,u,v:Menge - ABBILDUNG(y v u)  - =(restriction(y z) x)  + ME(z v)
+             A11:  All x:Element y,z:Abb u,v,w:Menge 
+                        - ABBILDUNG(z w v)  - =(restriction(z u) y)  - EL(x u)  + =(mapc(y x) mapc(z x))
+             A12:  All x:Element y:Abb z:Menge - HG(z y)  - EL(x z)  - =(ehg(f_5(z y x) y) z)
+                                               + =(mapc(elem(f_6(y x)) f_7(y x)) t)
+             A13:  All x:Element y:Abb z:Menge - HG(z y)  - EL(x z)  - =(ehg(f_5(z y x) y) z)
+                                               + =(mapc(y f_7(y x)) x)
+             A14:  All x,y:Element z:Abb u:Menge - HG(u z)  - EL(y u)  - EL(x u)  - U=V  + =(mapc(z y) mapc(z x))
+             A15:  All x:Element y,z,u:Abb v,w:Menge 
+                        - HG(w u)  - HG(v z)  - HOMOMORPH(y w v)  - =(mapc(elem(w) x) t)
+                        + =(mapc(y mapc(u x)) mapc(z mapc(y x)))
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+             T16: + HG(f mal)
+             T17: + FREI(f mal)
+             T18: + HOMOMORPH(chi f w(x))
+             T19: + =(restriction(chi x) chinull)
+             T20: - INJEKTIV(chi f w(x))
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation: (Failure: GRAPH.COLLAPSED)
+   ======================================
+   
+   Initial Clauses:      A1:   All x:Any + =(x x)
+                         A2:   All x:Menge + ABBILDUNG(f_4(x) x w(x))
+                         A3:   All x,y:Menge z:Abb + EL(f_1(y z) y)  + INJEKTIV(z y x)
+                         A4:   All x,y:Menge z:Abb + EL(f_2(y z) y)  + INJEKTIV(z y x)
+                         A5:   All x,y:Menge z:Abb + =(mapc(z f_1(y z)) mapc(z f_2(y z)))  + INJEKTIV(z y x)
+                         A6:   All x,y:Menge z:Abb - =(f_1(y z) f_2(y z))  + INJEKTIV(z y x)
+                         A7:   All x:Menge y:Element - EL(y x)  + =(mapc(f_4(x) y) y)
+                         A8:   All x:Abb y:Menge - HG(y x)  - FREI(y x)  + =(ehg(f_3(y x) x) y)
+                         A9:   All x,y:Abb z,u,v:Menge - ABBILDUNG(y v u)  - =(restriction(y z) x)
+                                                       + ABBILDUNG(x z u)
+                         A11:  All x:Element y,z:Abb u,v,w:Menge 
+                                    - ABBILDUNG(z w v)  - =(restriction(z u) y)  - EL(x u)  + =(mapc(y x) mapc(z x))
+                         A14:  All x,y:Element z:Abb u:Menge 
+                                    - HG(u z)  - EL(y u)  - EL(x u)  - U=V  + =(mapc(z y) mapc(z x))
+                         T16:  + HG(f mal)
+                         T17:  + FREI(f mal)
+                         T18:  + HOMOMORPH(chi f w(x))
+                         T20:  - INJEKTIV(chi f w(x))
+                       
+
+   
+   A3,2 & T20,1   -->    R4:   + EL(f_1(f chi) f)
+   
+   A4,2 & T20,1   -->    R5:   + EL(f_2(f chi) f)
+   
+   A5,2 & T20,1   -->    R6:   + =(mapc(chi f_1(f chi)) mapc(chi f_2(f chi)))
+   
+   A6,2 & T20,1   -->    R7:   - =(f_1(f chi) f_2(f chi))
+   
+   T17,1 & A8,2   -->    R8:   - HG(f mal)  + =(ehg(f_3(f mal) mal) f)
+   
+   R8,1 & T16,1   -->    R9:   + =(ehg(f_3(f mal) mal) f)
+   
+   T16,1 & A14,1  -->    R10:  All x,y:Element - EL(y f)  - EL(x f)  - U=V  + =(mapc(mal y) mapc(mal x))
+   
+   A1,1 & A11,2   -->    R11:  All x,y,z:Menge u:Element v:Abb 
+                                    - ABBILDUNG(v z y)  - EL(u x)  + =(mapc(restriction(v x) u) mapc(v u))
+   
+   A1,1 & A9,2    -->    R12:  All x,y,z:Menge u:Abb - ABBILDUNG(u z y)  + ABBILDUNG(restriction(u x) x y)
+   
+   A2,1 & R11,1   -->    R13:  All x,y:Menge z:Element - EL(z y)  + =(mapc(restriction(f_4(x) y) z) mapc(f_4(x) z))
+   
+   R9,1 & T16,1   -->    P14:  + HG(ehg(f_3(f mal) mal) mal)
+   
+   P14,1 & A8,1   -->    R15:  - FREI(ehg(f_3(f mal) mal) mal)
+                               + =(ehg(f_3(ehg(f_3(f mal) mal) mal) mal) ehg(f_3(f mal) mal))
+   
+   P14,1 & A14,1  -->    R16:  All x,y:Element - EL(y ehg(f_3(f mal) mal))  - EL(x ehg(f_3(f mal) mal))  - U=V
+                                               + =(mapc(mal y) mapc(mal x))
+   
+   R9,1 & T17,1   -->    P17:  + FREI(ehg(f_3(f mal) mal) mal)
+   
+   R15,1 & P17,1  -->    R18:  + =(ehg(f_3(ehg(f_3(f mal) mal) mal) mal) ehg(f_3(f mal) mal))
+   
+   R9,1 & T18,1   -->    P19:  + HOMOMORPH(chi ehg(f_3(f mal) mal) w(x))
+   
+   R9,1 & T20,1   -->    P20:  - INJEKTIV(chi ehg(f_3(f mal) mal) w(x))
+   
+   A3,2 & P20,1   -->    R21:  + EL(f_1(ehg(f_3(f mal) mal) chi) ehg(f_3(f mal) mal))
+   
+   A4,2 & P20,1   -->    R22:  + EL(f_2(ehg(f_3(f mal) mal) chi) ehg(f_3(f mal) mal))
+   
+   A5,2 & P20,1   -->    R23:  + =(mapc(chi f_1(ehg(f_3(f mal) mal) chi)) mapc(chi f_2(ehg(f_3(f mal) mal) chi)))
+   
+   A6,2 & P20,1   -->    R24:  - =(f_1(ehg(f_3(f mal) mal) chi) f_2(ehg(f_3(f mal) mal) chi))
+   
+   R4,1 & A7,1    -->    R25:  + =(mapc(f_4(f) f_1(f chi)) f_1(f chi))
+   
+   R5,1 & A7,1    -->    R26:  + =(mapc(f_4(f) f_2(f chi)) f_2(f chi))
+   
+   R25,1 & R4,1   -->    P27:  + EL(mapc(f_4(f) f_1(f chi)) f)
+   
+   P27,1 & A7,1   -->    R28:  + =(mapc(f_4(f) mapc(f_4(f) f_1(f chi))) mapc(f_4(f) f_1(f chi)))
+   
+   P27,1 & A11,3  -->    R29:  All x,y:Abb z,u:Menge - ABBILDUNG(y u z)  - =(restriction(y f) x)
+                                                     + =(mapc(x mapc(f_4(f) f_1(f chi)))
+                                                         mapc(y mapc(f_4(f) f_1(f chi))))
+   
+   P27,1 & A14,3  -->    R30:  All x:Element y:Abb - HG(f y)  - EL(x f)  - U=V
+                                                   + =(mapc(y x) mapc(y mapc(f_4(f) f_1(f chi))))
+   
+   P27,1 & R10,2  -->    R31:  All x:Element - EL(x f)  - U=V  + =(mapc(mal x) mapc(mal mapc(f_4(f) f_1(f chi))))
+   
+   P27,1 & R11,2  -->    R32:  All x,y:Menge z:Abb - ABBILDUNG(z y x)
+                                                   + =(mapc(restriction(z f) mapc(f_4(f) f_1(f chi)))
+                                                       mapc(z mapc(f_4(f) f_1(f chi))))
+   
+   R25,1 & R6,1   -->    P33:  + =(mapc(chi mapc(f_4(f) f_1(f chi))) mapc(chi f_2(f chi)))
+   
+   R25,1 & R7,1   -->    P34:  - =(mapc(f_4(f) f_1(f chi)) f_2(f chi))
+   
+   R26,1 & R5,1   -->    P35:  + EL(mapc(f_4(f) f_2(f chi)) f)
+   
+   P35,1 & A7,1   -->    R36:  + =(mapc(f_4(f) mapc(f_4(f) f_2(f chi))) mapc(f_4(f) f_2(f chi)))
+   
+   P35,1 & A11,3  -->    R37:  All x,y:Abb z,u:Menge - ABBILDUNG(y u z)  - =(restriction(y f) x)
+                                                     + =(mapc(x mapc(f_4(f) f_2(f chi)))
+                                                         mapc(y mapc(f_4(f) f_2(f chi))))
+   
+   P35,1 & A14,3  -->    R38:  All x:Element y:Abb - HG(f y)  - EL(x f)  - U=V
+                                                   + =(mapc(y x) mapc(y mapc(f_4(f) f_2(f chi))))
+   
+   P35,1 & R10,2  -->    R39:  All x:Element - EL(x f)  - U=V  + =(mapc(mal x) mapc(mal mapc(f_4(f) f_2(f chi))))
+   
+   P35,1 & R11,2  -->    R40:  All x,y:Menge z:Abb - ABBILDUNG(z y x)
+                                                   + =(mapc(restriction(z f) mapc(f_4(f) f_2(f chi)))
+                                                       mapc(z mapc(f_4(f) f_2(f chi))))
+   
+   P35,1 & R30,2  -->    R41:  All x:Abb - HG(f x)  - U=V
+                                         + =(mapc(x mapc(f_4(f) f_2(f chi))) mapc(x mapc(f_4(f) f_1(f chi))))
+   
+   P35,1 & R31,1  -->    R42:  - U=V  + =(mapc(mal mapc(f_4(f) f_2(f chi))) mapc(mal mapc(f_4(f) f_1(f chi))))
+   
+   R26,1 & R6,1   -->    P43:  + =(mapc(chi f_1(f chi)) mapc(chi mapc(f_4(f) f_2(f chi))))
+   
+   R26,1 & R7,1   -->    P44:  - =(f_1(f chi) mapc(f_4(f) f_2(f chi)))
+   
+   R26,1 & P33,1  -->    P45:  + =(mapc(chi mapc(f_4(f) f_1(f chi))) mapc(chi mapc(f_4(f) f_2(f chi))))
+   
+   R26,1 & P34,1  -->    P46:  - =(mapc(f_4(f) f_1(f chi)) mapc(f_4(f) f_2(f chi)))
+   
+   R4,1 & R13,1   -->    R47:  All x:Menge + =(mapc(restriction(f_4(x) f) f_1(f chi)) mapc(f_4(x) f_1(f chi)))
+   
+   R5,1 & R13,1   -->    R48:  All x:Menge + =(mapc(restriction(f_4(x) f) f_2(f chi)) mapc(f_4(x) f_2(f chi)))
+   
+   R47,1 & R25,1  -->    P49:  + =(mapc(restriction(f_4(f) f) f_1(f chi)) f_1(f chi))
+   
+   R47,1 & P27,1  -->    P50:  + EL(mapc(restriction(f_4(f) f) f_1(f chi)) f)
+   
+   P50,1 & A7,1   -->    R51:  + =(mapc(f_4(f) mapc(restriction(f_4(f) f) f_1(f chi)))
+                                   mapc(restriction(f_4(f) f) f_1(f chi)))
+   
+   P50,1 & A11,3  -->    R52:  All x,y:Abb z,u:Menge - ABBILDUNG(y u z)  - =(restriction(y f) x)
+                                                     + =(mapc(x mapc(restriction(f_4(f) f) f_1(f chi)))
+                                                         mapc(y mapc(restriction(f_4(f) f) f_1(f chi))))
+   
+   P50,1 & A14,3  -->    R53:  All x:Element y:Abb - HG(f y)  - EL(x f)  - U=V
+                                                   + =(mapc(y x) mapc(y mapc(restriction(f_4(f) f) f_1(f chi))))
+   
+   P50,1 & R10,2  -->    R54:  All x:Element - EL(x f)  - U=V
+                                             + =(mapc(mal x) mapc(mal mapc(restriction(f_4(f) f) f_1(f chi))))
+   
+   P50,1 & R11,2  -->    R55:  All x,y:Menge z:Abb - ABBILDUNG(z y x)
+                                                   + =(mapc(restriction(z f) mapc(restriction(f_4(f) f) f_1(f chi)))
+                                                       mapc(z mapc(restriction(f_4(f) f) f_1(f chi))))
+   
+   P50,1 & R13,1  -->    R56:  All x:Menge + =(mapc(restriction(f_4(x) f) mapc(restriction(f_4(f) f) f_1(f chi)))
+                                               mapc(f_4(x) mapc(restriction(f_4(f) f) f_1(f chi))))
+   
+   P50,1 & R30,2  -->    R57:  All x:Abb - HG(f x)  - U=V
+                                         + =(mapc(x mapc(restriction(f_4(f) f) f_1(f chi)))
+                                             mapc(x mapc(f_4(f) f_1(f chi))))
+   
+   P50,1 & R31,1  -->    R58:  - U=V
+                               + =(mapc(mal mapc(restriction(f_4(f) f) f_1(f chi)))
+                                   mapc(mal mapc(f_4(f) f_1(f chi))))
+   
+   P50,1 & R38,2  -->    R59:  All x:Abb - HG(f x)  - U=V
+                                         + =(mapc(x mapc(restriction(f_4(f) f) f_1(f chi)))
+                                             mapc(x mapc(f_4(f) f_2(f chi))))
+   
+   P50,1 & R39,1  -->    R60:  - U=V
+                               + =(mapc(mal mapc(restriction(f_4(f) f) f_1(f chi)))
+                                   mapc(mal mapc(f_4(f) f_2(f chi))))
+   
+   R47,1 & P33,1  -->    P61:  + =(mapc(chi mapc(restriction(f_4(f) f) f_1(f chi))) mapc(chi f_2(f chi)))
+   
+   R47,1 & P34,1  -->    P62:  - =(mapc(restriction(f_4(f) f) f_1(f chi)) f_2(f chi))
+   
+   R47,1 & P45,1  -->    P63:  + =(mapc(chi mapc(restriction(f_4(f) f) f_1(f chi)))
+                                   mapc(chi mapc(f_4(f) f_2(f chi))))
+   
+   R47,1 & P46,1  -->    P64:  - =(mapc(restriction(f_4(f) f) f_1(f chi)) mapc(f_4(f) f_2(f chi)))
+   
+   R48,1 & R26,1  -->    P65:  + =(mapc(restriction(f_4(f) f) f_2(f chi)) f_2(f chi))
+   
+   R48,1 & P35,1  -->    P66:  + EL(mapc(restriction(f_4(f) f) f_2(f chi)) f)
+   
+   P66,1 & A7,1   -->    R67:  + =(mapc(f_4(f) mapc(restriction(f_4(f) f) f_2(f chi)))
+                                   mapc(restriction(f_4(f) f) f_2(f chi)))
+   
+   P66,1 & A11,3  -->    R68:  All x,y:Abb z,u:Menge - ABBILDUNG(y u z)  - =(restriction(y f) x)
+                                                     + =(mapc(x mapc(restriction(f_4(f) f) f_2(f chi)))
+                                                         mapc(y mapc(restriction(f_4(f) f) f_2(f chi))))
+   
+   P66,1 & A14,3  -->    R69:  All x:Element y:Abb - HG(f y)  - EL(x f)  - U=V
+                                                   + =(mapc(y x) mapc(y mapc(restriction(f_4(f) f) f_2(f chi))))
+   
+   P66,1 & R10,2  -->    R70:  All x:Element - EL(x f)  - U=V
+                                             + =(mapc(mal x) mapc(mal mapc(restriction(f_4(f) f) f_2(f chi))))
+   
+   P66,1 & R11,2  -->    R71:  All x,y:Menge z:Abb - ABBILDUNG(z y x)
+                                                   + =(mapc(restriction(z f) mapc(restriction(f_4(f) f) f_2(f chi)))
+                                                       mapc(z mapc(restriction(f_4(f) f) f_2(f chi))))
+   
+   P66,1 & R13,1  -->    R72:  All x:Menge + =(mapc(restriction(f_4(x) f) mapc(restriction(f_4(f) f) f_2(f chi)))
+                                               mapc(f_4(x) mapc(restriction(f_4(f) f) f_2(f chi))))
+   
+   P66,1 & R30,2  -->    R73:  All x:Abb - HG(f x)  - U=V
+                                         + =(mapc(x mapc(restriction(f_4(f) f) f_2(f chi)))
+                                             mapc(x mapc(f_4(f) f_1(f chi))))
+   
+   P66,1 & R31,1  -->    R74:  - U=V
+                               + =(mapc(mal mapc(restriction(f_4(f) f) f_2(f chi)))
+                                   mapc(mal mapc(f_4(f) f_1(f chi))))
+   
+   P66,1 & R38,2  -->    R75:  All x:Abb - HG(f x)  - U=V
+                                         + =(mapc(x mapc(restriction(f_4(f) f) f_2(f chi)))
+                                             mapc(x mapc(f_4(f) f_2(f chi))))
+   
+   P66,1 & R39,1  -->    R76:  - U=V
+                               + =(mapc(mal mapc(restriction(f_4(f) f) f_2(f chi)))
+                                   mapc(mal mapc(f_4(f) f_2(f chi))))
+   
+   P66,1 & R53,2  -->    R77:  All x:Abb - HG(f x)  - U=V
+                                         + =(mapc(x mapc(restriction(f_4(f) f) f_2(f chi)))
+                                             mapc(x mapc(restriction(f_4(f) f) f_1(f chi))))
+   
+   P66,1 & R54,1  -->    R78:  - U=V
+                               + =(mapc(mal mapc(restriction(f_4(f) f) f_2(f chi)))
+                                   mapc(mal mapc(restriction(f_4(f) f) f_1(f chi))))
+   
+   R48,1 & P43,1  -->    P79:  + =(mapc(chi f_1(f chi)) mapc(chi mapc(restriction(f_4(f) f) f_2(f chi))))
+   
+   R48,1 & P44,1  -->    P80:  - =(f_1(f chi) mapc(restriction(f_4(f) f) f_2(f chi)))
+   
+   R48,1 & P45,1  -->    P81:  + =(mapc(chi mapc(f_4(f) f_1(f chi)))
+                                   mapc(chi mapc(restriction(f_4(f) f) f_2(f chi))))
+   
+   R48,1 & P46,1  -->    P82:  - =(mapc(f_4(f) f_1(f chi)) mapc(restriction(f_4(f) f) f_2(f chi)))
+   
+   R48,1 & P63,1  -->    P83:  + =(mapc(chi mapc(restriction(f_4(f) f) f_1(f chi)))
+                                   mapc(chi mapc(restriction(f_4(f) f) f_2(f chi))))
+   
+   R48,1 & P64,1  -->    P84:  - =(mapc(restriction(f_4(f) f) f_1(f chi)) mapc(restriction(f_4(f) f) f_2(f chi)))
+   
+   A14,5 & P84,1  -->    R85:  All x:Menge - HG(x restriction(f_4(f) f))  - EL(f_1(f chi) x)  - EL(f_2(f chi) x)  - U=V
+   
+   A14,5 & P84,1  -->    R86:  All x:Menge - HG(x restriction(f_4(f) f))  - EL(f_2(f chi) x)  - EL(f_1(f chi) x)  - U=V
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   The theorem(s) could not be proved.
+

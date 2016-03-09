@@ -1,0 +1,170 @@
+;;; -*- Package: MKRP; Base: 10; Mode: text; Syntax: Common-lisp -*-
+
+
+
+                  ******************************************************************************
+                  *                                                                            *
+                  *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN     *
+                  *                                                                            *
+                  *        VERSION: Unix                                                       *
+                  *           DATE: 14-MAY,1992  11:10                                         *
+                  *                                                                            *
+                  ******************************************************************************
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+Edit:     Axioms and Theorems edited: 14-MAY,1992 11:10 
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+          Formulae given to the editor
+          ============================
+
+
+Axioms:   * SORTS *
+          SORT I,ITO,IXITO : ANY
+          TYPE A[IXITO] (IXITO I I)
+          TYPE A[ITO] (ITO I)
+          * DEFINITION OF COMPOSITION *
+          TYPE COMP (IXITO IXITO) : IXITO
+          ALL RHO:IXITO ALL SIGMA:IXITO (ALL X:I ALL Y:I 
+                                           (EX Z : I A[IXITO] (RHO X Z) AND A[IXITO] (SIGMA Z Y))
+                                           EQV A[IXITO] (COMP (RHO SIGMA) X Y))
+          
+Theorems: * THEOREM *
+          ALL RHO:IXITO ALL SIGMA:IXITO ALL TAU:IXITO ALL X:I ALL Y:I 
+            A[IXITO] (COMP (COMP (RHO SIGMA) TAU) X Y) EQV A[IXITO] (COMP (RHO COMP (SIGMA TAU)) X Y)
+          
+
+
+
+          Set of Axiom Clauses Resulting from Normalization
+          =================================================
+
+          A1:   All x:Any + =(x x)
+        * A2:   All x,y:Ixito z,u:I + A[IXITO](y u f_1(y z u x))  - A[IXITO](comp(y x) u z)
+        * A3:   All x,y:I z,u:Ixito + A[IXITO](u f_1(z y x u) y)  - A[IXITO](comp(z u) x y)
+        * A4:   All x,y,z:I u,v:Ixito - A[IXITO](v z y)  - A[IXITO](u y x)  + A[IXITO](comp(v u) z x)
+        
+
+
+
+
+          Set of Theorem Clauses Resulting from Normalization and Splitting
+          =================================================================
+
+Splitpart 1
+
+        * T5: - A[IXITO](comp(comp(c_4 c_1) c_2) c_3 c_5)
+        * T6: + A[IXITO](comp(c_4 comp(c_1 c_2)) c_3 c_5)
+
+Splitpart 2
+
+        * T7: + A[IXITO](comp(comp(c_9 c_6) c_7) c_8 c_10)
+        * T8: - A[IXITO](comp(c_9 comp(c_6 c_7)) c_8 c_10)
+
+
+End of Splitparts
+
+
+ Literals: ((T8 5) (T7 4) (T8 5) (T7 4) (A4 1 2 3) (A3 2 3) (A2 1 3) (A1 NIL))
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+Refutation of Splitpart 1:
+==========================
+
+Initial Clauses:    A1:   All x:Any + =(x x)
+                  * A2:   All x,y:Ixito z,u:I + A[IXITO](y u f_1(y z u x))  - A[IXITO](comp(y x) u z)
+                  * A3:   All x,y:I z,u:Ixito + A[IXITO](u f_1(z y x u) y)  - A[IXITO](comp(z u) x y)
+                  * A4:   All x,y,z:I u,v:Ixito - A[IXITO](v z y)  - A[IXITO](u y x)  + A[IXITO](comp(v u) z x)
+                  * T5:   - A[IXITO](comp(comp(c_4 c_1) c_2) c_3 c_5)
+                  * T6:   + A[IXITO](comp(c_4 comp(c_1 c_2)) c_3 c_5)
+                  
+
+
+T6,1 & A3,2   --> * R1:   + A[IXITO](comp(c_1 c_2) f_1(c_4 c_5 c_3 comp(c_1 c_2)) c_5)
+
+T6,1 & A2,2   --> * R2:   + A[IXITO](c_4 c_3 f_1(c_4 c_5 c_3 comp(c_1 c_2)))
+
+R1,1 & A2,2   --> * R3:   + A[IXITO](c_1
+                                     f_1(c_4 c_5 c_3 comp(c_1 c_2))
+                                     f_1(c_1 c_5 f_1(c_4 c_5 c_3 comp(c_1 c_2)) c_2))
+
+R1,1 & A3,2   --> * R4:   + A[IXITO](c_2 f_1(c_1 c_5 f_1(c_4 c_5 c_3 comp(c_1 c_2)) c_2) c_5)
+
+A4,3 & T5,1   --> * R5:   All x:I - A[IXITO](comp(c_4 c_1) c_3 x)  - A[IXITO](c_2 x c_5)
+
+R4,1 & R5,2   --> * R6:   - A[IXITO](comp(c_4 c_1) c_3 f_1(c_1 c_5 f_1(c_4 c_5 c_3 comp(c_1 c_2)) c_2))
+
+R2,1 & A4,1   --> * R15:  All x:I y:Ixito - A[IXITO](y f_1(c_4 c_5 c_3 comp(c_1 c_2)) x)
+                                          + A[IXITO](comp(c_4 y) c_3 x)
+
+R15,1 & R3,1  --> * R16:  + A[IXITO](comp(c_4 c_1) c_3 f_1(c_1 c_5 f_1(c_4 c_5 c_3 comp(c_1 c_2)) c_2))
+
+R16,1 & R6,1  --> * R17:  []
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+Refutation of Splitpart 2:
+==========================
+
+Initial Clauses:     A1:   All x:Any + =(x x)
+                   * A2:   All x,y:Ixito z,u:I + A[IXITO](y u f_1(y z u x))  - A[IXITO](comp(y x) u z)
+                   * A3:   All x,y:I z,u:Ixito + A[IXITO](u f_1(z y x u) y)  - A[IXITO](comp(z u) x y)
+                   * A4:   All x,y,z:I u,v:Ixito - A[IXITO](v z y)  - A[IXITO](u y x)  + A[IXITO](comp(v u) z x)
+                   * T7:   + A[IXITO](comp(comp(c_9 c_6) c_7) c_8 c_10)
+                   * T8:   - A[IXITO](comp(c_9 comp(c_6 c_7)) c_8 c_10)
+                   
+
+
+T7,1 & A3,2    --> * R18:  + A[IXITO](c_7 f_1(comp(c_9 c_6) c_10 c_8 c_7) c_10)
+
+T7,1 & A2,2    --> * R19:  + A[IXITO](comp(c_9 c_6) c_8 f_1(comp(c_9 c_6) c_10 c_8 c_7))
+
+R19,1 & A3,2   --> * R20:  + A[IXITO](c_6
+                                      f_1(c_9 f_1(comp(c_9 c_6) c_10 c_8 c_7) c_8 c_6)
+                                      f_1(comp(c_9 c_6) c_10 c_8 c_7))
+
+R19,1 & A2,2   --> * R21:  + A[IXITO](c_9 c_8 f_1(c_9 f_1(comp(c_9 c_6) c_10 c_8 c_7) c_8 c_6))
+
+A4,3 & T8,1    --> * R22:  All x:I - A[IXITO](c_9 c_8 x)  - A[IXITO](comp(c_6 c_7) x c_10)
+
+R18,1 & A4,2   --> * R29:  All x:I y:Ixito - A[IXITO](y x f_1(comp(c_9 c_6) c_10 c_8 c_7))
+                                           + A[IXITO](comp(y c_7) x c_10)
+
+R29,2 & R22,2  --> * R30:  - A[IXITO](c_6
+                                      f_1(c_9 f_1(comp(c_9 c_6) c_10 c_8 c_7) c_8 c_6)
+                                      f_1(comp(c_9 c_6) c_10 c_8 c_7))
+                           - A[IXITO](c_9 c_8 f_1(c_9 f_1(comp(c_9 c_6) c_10 c_8 c_7) c_8 c_6))
+
+R30,1 & R20,1  --> * R31:  - A[IXITO](c_9 c_8 f_1(c_9 f_1(comp(c_9 c_6) c_10 c_8 c_7) c_8 c_6))
+
+R31,1 & R21,1  --> * R32:  []
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+  q.e.d. 
+
+
+Time Used for Refutation of Splitpart 1: 22 seconds
+Time Used for Refutation of Splitpart 2: 16 seconds

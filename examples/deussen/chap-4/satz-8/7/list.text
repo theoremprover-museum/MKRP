@@ -1,0 +1,158 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 34.5 EQUALITY 16.1                                  *
+                     *           DATE: 10-NOV,1989  18:27                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 10-NOV,1989 18:27 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * ************************************************
+             * DEFINITIONEN DER MENGENLEHRE
+             SORT SET : ANY
+             SORT ELEMENT : SET
+             TYPE EL (ELEMENT SET)
+             * DEFINITION 1.1 : TEILMENGE
+             TYPE SUBSET (SET SET)
+             ALL X,Y : SET SUBSET (X Y) EQV (ALL A : ELEMENT EL (A X) IMPL EL (A Y))
+             * DEFINITION 1.3 : KARTESISCHES PRODUKT
+             TYPE CARTES (SET SET) : SET
+             TYPE PAIR (ELEMENT ELEMENT) : ELEMENT
+             * DEFINITION 1.4 : VEREINIGUNG
+             TYPE UNION (REL REL) : REL
+             * DEFINITION 1.6 : NATUERLICHE ZAHLEN
+             SORT NAT : SET
+             TYPE 1 : NAT
+             TYPE PLUS (NAT NAT) : NAT
+             * DEFINITIONEN VON RELATIONEN AUF EINER FESTEN MENGE S
+             SORT REL : SET
+             TYPE S : SET
+             SORT EL.OF.S : ELEMENT
+             * DEFINITION 2.8 : AEQUIVALENZRELATION
+             SORT EQU.RELATION : REL
+             * DEFINITION 2.9 : POTENZ EINER RELATION
+             TYPE POWER (REL NAT) : REL
+             * DEFINITION 2.11 : TRANSITIVER ABSCHLUSS
+             TYPE TRANS.CLOS (REL) : REL
+             ALL RHO : REL ALL A : ELEMENT EL (A TRANS.CLOS (RHO)) EQV (EX N : NAT EL (A POWER (RHO N)))
+             * LEMMA 4-8-5 UND 4-8-5 UND INDUKTION
+             ALL RHO,SIGMA,TAU: EQU.RELATION SUBSET (UNION (RHO SIGMA) TAU)
+                                IMPL (ALL N : NAT SUBSET (POWER (UNION (RHO SIGMA) N) TAU))
+             * DEFINITION DER TRANSITIVEN VEREINIGUNG
+             TYPE TRANS.UNION (REL REL) : REL
+             ALL RHO,SIGMA : REL TRANS.UNION (RHO SIGMA) : = TRANS.CLOS (UNION (RHO SIGMA))
+             
+   Theorems: * THEOREM *
+             ALL RHO,SIGMA,TAU : EQU.RELATION SUBSET (UNION (RHO SIGMA) TAU) IMPL SUBSET (TRANS.UNION (RHO SIGMA) TAU)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+           * A2:   All x,y:Rel + =(trans.union(y x) trans.clos(union(y x)))
+             A3:   All x:Nat y:Rel z:Element + EL(z trans.clos(y))  - EL(z power(y x))
+           * A4:   All x:Rel y:Element - EL(y trans.clos(x))  + EL(y power(x f_1(x y)))
+           * A5:   All x:Nat y:Element z,u,v:Equ.relation 
+                        + EL(f_2(v u z) union(z u))  - EL(y power(union(z u) x))  + EL(y v)
+           * A6:   All x:Nat y:Element z,u,v:Equ.relation 
+                        - EL(f_2(v u z) v)  - EL(y power(union(z u) x))  + EL(y v)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T7: + EL(c_1 trans.union(c_2 c_3))
+           * T8: - EL(c_1 c_4)
+           * T9: All x:Element - EL(x union(c_2 c_3))  + EL(x c_4)
+
+
+
+
+
+
+             Initial Operations on Theorems
+             ==============================
+
+
+          
+   T7,1 & A2 --> * RW1: + EL(c_1 trans.clos(union(c_2 c_3)))
+   
+
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:     A1:  All x:Any + =(x x)
+                        A3:  All x:Nat y:Rel z:Element + EL(z trans.clos(y))  - EL(z power(y x))
+                      * A4:  All x:Rel y:Element - EL(y trans.clos(x))  + EL(y power(x f_1(x y)))
+                      * A5:  All x:Nat y:Element z,u,v:Equ.relation 
+                                  + EL(f_2(v u z) union(z u))  - EL(y power(union(z u) x))  + EL(y v)
+                      * A6:  All x:Nat y:Element z,u,v:Equ.relation 
+                                  - EL(f_2(v u z) v)  - EL(y power(union(z u) x))  + EL(y v)
+                      * RW1: + EL(c_1 trans.clos(union(c_2 c_3)))
+                      * T8:  - EL(c_1 c_4)
+                      * T9:  All x:Element - EL(x union(c_2 c_3))  + EL(x c_4)
+                      
+
+   
+   A5,1 & T9,1   -->  * R2:  All x:Equ.relation y:Nat z:Element 
+                                  - EL(z power(union(c_2 c_3) y))  + EL(z x)  + EL(f_2(x c_3 c_2) c_4)
+   
+   R2,3 & A6,1   -->  * R3:  All x,y:Nat z,u:Element - EL(u power(union(c_2 c_3) y))  + EL(u c_4)
+                                                     - EL(z power(union(c_2 c_3) x))  + EL(z c_4)
+   
+   R3 (INSTANCE) -->  * I4:  All x,y:Nat z:Element - EL(z power(union(c_2 c_3) x))  + EL(z c_4)
+                                                   - EL(z power(union(c_2 c_3) x))  + EL(z c_4)
+   
+   I4 1=3        -->  * D5:  All x,y:Nat z:Element - EL(z power(union(c_2 c_3) x))  + EL(z c_4)  + EL(z c_4)
+   
+   D5 2=3        -->  * D6:  All x,y:Nat z:Element - EL(z power(union(c_2 c_3) x))  + EL(z c_4)
+   
+   D6,1 & A4,2   -->  * R7:  + EL(c_1 c_4)  - EL(c_1 trans.clos(union(c_2 c_3)))
+   
+   R7,1 & T8,1   -->  * R8:  - EL(c_1 trans.clos(union(c_2 c_3)))
+   
+   R8,1 & RW1,1  -->  * R9:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 13 seconds

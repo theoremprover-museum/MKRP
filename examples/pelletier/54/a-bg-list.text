@@ -1,0 +1,147 @@
+;;; -*- Package: MKRP; Base: 10; Mode: text; Syntax: Common-lisp -*-
+
+
+
+                  ******************************************************************************
+                  *                                                                            *
+                  *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN     *
+                  *                                                                            *
+                  *        VERSION: Unix                                                       *
+                  *           DATE: 09-JUL,1992  10:46                                         *
+                  *                                                                            *
+                  ******************************************************************************
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+Edit:     Axioms and Theorems edited: 05-MAR,1992 19:56 
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+          Formulae given to the editor
+          ============================
+
+
+Axioms:   * MONTAGUE (QUOTE S) PARADOX OF GROUNDED CLASSES *
+          * AXIOMS *
+          ALL Y (EX Z (ALL X ELEMENT-OF (X Z) EQV X = Y))
+          * Z = {Y} *
+          ALL X REG (X)
+                EQV (ALL K ELEMENT-OF (X K)
+                           IMPL (EX Y ELEMENT-OF (Y K) AND NOT (EX Z ELEMENT-OF (Z K) AND ELEMENT-OF (Z Y))))
+          
+Theorems: * THEOREMS *
+          NOT (EX W (ALL X ELEMENT-OF (X W) EQV REG (X)))
+          * REG OF MONTAGUE DOESN (QUOTE T) EXIST *
+          
+
+
+
+          Set of Axiom Clauses Resulting from Normalization
+          =================================================
+
+        * A1:   All x:Any + =(x x)
+        * A2:   All x,y:Any + ELEMENT-OF(y f_1(x))  - =(y x)
+        * A3:   All x,y:Any - ELEMENT-OF(y f_1(x))  + =(y x)
+        
+
+
+
+
+          Set of Theorem Clauses Resulting from Normalization
+          ===================================================
+
+        * T4: All x:Any + ELEMENT-OF(x c_1)  + ELEMENT-OF(x f_2(x))
+        * T5: All x,y:Any + ELEMENT-OF(y c_1)  - ELEMENT-OF(x f_2(y))  + ELEMENT-OF(f_3(x y) f_2(y))
+        * T6: All x,y:Any + ELEMENT-OF(y c_1)  - ELEMENT-OF(x f_2(y))  + ELEMENT-OF(f_3(x y) x)
+        * T7: All x,y:Any - ELEMENT-OF(y c_1)  - ELEMENT-OF(y x)  + ELEMENT-OF(f_4(x y) x)
+        * T8: All x,y,z:Any - ELEMENT-OF(z c_1)  - ELEMENT-OF(z y)  - ELEMENT-OF(x y)  - ELEMENT-OF(x f_4(y z))
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+Refutation:
+===========
+
+Initial Clauses:   * A1:   All x:Any + =(x x)
+                   * A2:   All x,y:Any + ELEMENT-OF(y f_1(x))  - =(y x)
+                   * A3:   All x,y:Any - ELEMENT-OF(y f_1(x))  + =(y x)
+                   * T4:   All x:Any + ELEMENT-OF(x c_1)  + ELEMENT-OF(x f_2(x))
+                   * T5:   All x,y:Any + ELEMENT-OF(y c_1)  - ELEMENT-OF(x f_2(y))  + ELEMENT-OF(f_3(x y) f_2(y))
+                   * T6:   All x,y:Any + ELEMENT-OF(y c_1)  - ELEMENT-OF(x f_2(y))  + ELEMENT-OF(f_3(x y) x)
+                   * T7:   All x,y:Any - ELEMENT-OF(y c_1)  - ELEMENT-OF(y x)  + ELEMENT-OF(f_4(x y) x)
+                   * T8:   All x,y,z:Any - ELEMENT-OF(z c_1)  - ELEMENT-OF(z y)  - ELEMENT-OF(x y)
+                                         - ELEMENT-OF(x f_4(y z))
+                   
+
+
+A1,1 & A2,2    --> * R1:   All x:Any + ELEMENT-OF(x f_1(x))
+
+T7,3 & A3,1    --> * R2:   All x,y:Any - ELEMENT-OF(y c_1)  - ELEMENT-OF(y f_1(x))  + =(f_4(f_1(x) y) x)
+
+R1,1 & R2,2    -->   R3:   All x:Any - ELEMENT-OF(x c_1)  + =(f_4(f_1(x) x) x)
+
+A2,1 & R2,2    --> * R4:   All x,y:Any - =(y x)  - ELEMENT-OF(y c_1)  + =(f_4(f_1(x) y) x)
+
+R3,2 & R4      -->   RW5:  All x:Any - ELEMENT-OF(x c_1)  + =(x x)
+
+R1,1 & T8,2    --> * R6:   All x,y:Any - ELEMENT-OF(y c_1)  - ELEMENT-OF(x f_1(y))  - ELEMENT-OF(x f_4(f_1(y) y))
+
+R6,3 & R4      --> * RW7:  All x,y:Any - ELEMENT-OF(x c_1)  - ELEMENT-OF(y f_1(x))  - ELEMENT-OF(y x)
+
+RW7 (factor)   --> * F8:   - ELEMENT-OF(c_1 c_1)  - ELEMENT-OF(c_1 f_1(c_1))
+
+F8,2 & R1,1    --> * R9:   - ELEMENT-OF(c_1 c_1)
+
+T4,1 & R9,1    --> * R10:  + ELEMENT-OF(c_1 f_2(c_1))
+
+R10,1 & T6,2   --> * R11:  + ELEMENT-OF(c_1 c_1)  + ELEMENT-OF(f_3(c_1 c_1) c_1)
+
+R11,1 & R9,1   --> * R12:  + ELEMENT-OF(f_3(c_1 c_1) c_1)
+
+T5,1 & R9,1    --> * R13:  - ELEMENT-OF(c_1 f_2(c_1))  + ELEMENT-OF(f_3(c_1 c_1) f_2(c_1))
+
+R13,1 & R10,1  --> * R14:  + ELEMENT-OF(f_3(c_1 c_1) f_2(c_1))
+
+R14,1 & T7,2   --> * R15:  - ELEMENT-OF(f_3(c_1 c_1) c_1)  + ELEMENT-OF(f_4(f_2(c_1) f_3(c_1 c_1)) f_2(c_1))
+
+R15,1 & R12,1  --> * R16:  + ELEMENT-OF(f_4(f_2(c_1) f_3(c_1 c_1)) f_2(c_1))
+
+R16,1 & T6,2   --> * R17:  + ELEMENT-OF(c_1 c_1)
+                           + ELEMENT-OF(f_3(f_4(f_2(c_1) f_3(c_1 c_1)) c_1) f_4(f_2(c_1) f_3(c_1 c_1)))
+
+R17,1 & R9,1   --> * R18:  + ELEMENT-OF(f_3(f_4(f_2(c_1) f_3(c_1 c_1)) c_1) f_4(f_2(c_1) f_3(c_1 c_1)))
+
+R16,1 & T5,2   --> * R19:  + ELEMENT-OF(c_1 c_1)  + ELEMENT-OF(f_3(f_4(f_2(c_1) f_3(c_1 c_1)) c_1) f_2(c_1))
+
+R19,1 & R9,1   --> * R20:  + ELEMENT-OF(f_3(f_4(f_2(c_1) f_3(c_1 c_1)) c_1) f_2(c_1))
+
+R20,1 & T8,3   --> * R21:  - ELEMENT-OF(f_3(c_1 c_1) c_1)  - ELEMENT-OF(f_3(c_1 c_1) f_2(c_1))
+                           - ELEMENT-OF(f_3(f_4(f_2(c_1) f_3(c_1 c_1)) c_1) f_4(f_2(c_1) f_3(c_1 c_1)))
+
+R21,2 & R14,1  --> * R22:  - ELEMENT-OF(f_3(c_1 c_1) c_1)
+                           - ELEMENT-OF(f_3(f_4(f_2(c_1) f_3(c_1 c_1)) c_1) f_4(f_2(c_1) f_3(c_1 c_1)))
+
+R22,1 & R12,1  --> * R23:  - ELEMENT-OF(f_3(f_4(f_2(c_1) f_3(c_1 c_1)) c_1) f_4(f_2(c_1) f_3(c_1 c_1)))
+
+R23,1 & R18,1  --> * R24:  []
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+  q.e.d. 
+
+
+Time Used for Refutation: 49 seconds

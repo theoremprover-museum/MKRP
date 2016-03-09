@@ -1,0 +1,168 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 34.6 EQUALITY 16.1                                  *
+                     *           DATE: 08-DEC,1989  12:44                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 08-DEC,1989 12:44 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * AXIOMS FOR PROBLEM 40 %.
+             * THERE ARE TWO PEOPLE A AND B.
+             * EACH OF WHOM IS EITHER A KNIGHT,OR A KNAVE,OR A NORMAL.
+             * A SAYS : B IS A KNIGHT.
+             * B SAYS : A IS NOT A KNIGHT.
+             * PROVE : AT LEAST ONE OF THEM IS TELLING THE TRUTH BUT IS NOT A KNIGHT.
+             *
+             * KNIGHT2 (X Y) MEANS X SAYS Y IS A KNIGHT.
+             * NKNIGHT2 (X Y) MEANS X SAYS Y IS NOT A KNIGHT.
+             * TRUTH (X) MEANS X SAYS THE TRUTH.
+             * LIE (X) MEANS X IS TELLING A LIE.
+             *
+             ALL X NORMAL (X) EQV NOT KNIGHT (X) AND NOT KNAVE (X)
+             ALL X KNAVE (X) EQV NOT NORMAL (X) AND NOT KNIGHT (X)
+             ALL X KNIGHT (X) EQV NOT NORMAL (X) AND NOT KNAVE (X)
+             ALL X,Y KNIGHT2 (X Y) AND KNAVE (X) IMPL NOT KNIGHT (Y)
+             ALL X,Y KNIGHT2 (X Y) AND KNIGHT (X) IMPL KNIGHT (Y)
+             ALL X,Y NKNIGHT2 (X Y) AND KNIGHT (X) IMPL NOT KNIGHT (Y)
+             ALL X,Y NKNIGHT2 (X Y) AND KNAVE (X) IMPL KNIGHT (Y)
+             ALL X,Y KNIGHT2 (X Y) AND TRUTH (X) IMPL KNIGHT (Y)
+             ALL X,Y KNIGHT2 (X Y) AND LIE (X) IMPL NOT KNIGHT (Y)
+             ALL X,Y NKNIGHT2 (X Y) AND TRUTH (X) IMPL NOT KNIGHT (Y)
+             ALL X,Y NKNIGHT2 (X Y) AND LIE (X) IMPL KNIGHT (Y)
+             ALL X,Y KNIGHT2 (X Y) AND NOT KNIGHT (Y) IMPL LIE (X)
+             ALL X,Y KNIGHT2 (X Y) AND KNIGHT (Y) IMPL TRUTH (X)
+             ALL X,Y NKNIGHT2 (X Y) AND KNIGHT (Y) IMPL LIE (X)
+             ALL X,Y NKNIGHT (X Y) AND NOT KNIGHT (Y) IMPL TRUTH (X)
+             ALL X TRUTH (X) EQV NOT LIE (X)
+             ALL X TRUTH (X) IMPL NORMAL (X) OR KNIGHT (X)
+             ALL X LIE (X) IMPL KNAVE (X) OR NORMAL (X)
+             KNIGHT2 (A B)
+             NKNIGHT2 (B A)
+             
+   Theorems: TRUTH (A) AND NOT KNIGHT (A) OR TRUTH (B) AND NOT KNIGHT (B)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+           * A1:   + KNIGHT2(a b)
+           * A2:   + NKNIGHT2(b a)
+             A3:   All x:Any - KNAVE(x)  - KNIGHT(x)
+             A4:   All x:Any - KNIGHT(x)  - KNAVE(x)
+             A5:   All x:Any + KNAVE(x)  - KNIGHT(x)  + KNIGHT(x)
+             A6:   All x:Any + KNAVE(x)  - KNAVE(x)  + KNIGHT(x)
+             A7:   All x:Any - KNAVE(x)  + KNIGHT(x)  + KNAVE(x)
+             A8:   All x:Any + KNIGHT(x)  - KNIGHT(x)  + KNAVE(x)
+             A9:   All x:Any + KNIGHT(x)  - KNAVE(x)  + KNAVE(x)
+             A10:  All x:Any - KNIGHT(x)  + KNIGHT(x)  + KNAVE(x)
+             A11:  All x,y:Any - KNIGHT2(y x)  - KNAVE(y)  - KNIGHT(x)
+           * A12:  All x,y:Any - KNIGHT2(y x)  - KNIGHT(y)  + KNIGHT(x)
+           * A13:  All x,y:Any - NKNIGHT2(y x)  - KNIGHT(y)  - KNIGHT(x)
+             A14:  All x,y:Any - NKNIGHT2(y x)  - KNAVE(y)  + KNIGHT(x)
+             A15:  All x,y:Any - KNIGHT2(y x)  + LIE(y)  + KNIGHT(x)
+           * A16:  All x,y:Any - KNIGHT2(y x)  - LIE(y)  - KNIGHT(x)
+             A17:  All x,y:Any - NKNIGHT2(y x)  + LIE(y)  - KNIGHT(x)
+           * A18:  All x,y:Any - NKNIGHT2(y x)  - LIE(y)  + KNIGHT(x)
+             A19:  All x,y:Any - KNIGHT2(y x)  + KNIGHT(x)  + LIE(y)
+             A20:  All x,y:Any - KNIGHT2(y x)  - KNIGHT(x)  - LIE(y)
+             A21:  All x,y:Any - NKNIGHT2(y x)  - KNIGHT(x)  + LIE(y)
+             A22:  All x,y:Any - NKNIGHT(y x)  + KNIGHT(x)  - LIE(y)
+             A23:  All x:Any + LIE(x)  - KNIGHT(x)  + KNIGHT(x)
+             A24:  All x:Any + LIE(x)  - KNAVE(x)  + KNIGHT(x)
+             A25:  All x:Any - LIE(x)  + KNAVE(x)  - KNIGHT(x)
+             A26:  All x:Any - LIE(x)  + KNAVE(x)  - KNAVE(x)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T27: + LIE(a)  + KNIGHT(a)
+           * T28: + LIE(b)  + KNIGHT(b)
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:    * A1:   + KNIGHT2(a b)
+                       * A2:   + NKNIGHT2(b a)
+                         A3:   All x:Any - KNAVE(x)  - KNIGHT(x)
+                         A11:  All x,y:Any - KNIGHT2(y x)  - KNAVE(y)  - KNIGHT(x)
+                       * A12:  All x,y:Any - KNIGHT2(y x)  - KNIGHT(y)  + KNIGHT(x)
+                       * A13:  All x,y:Any - NKNIGHT2(y x)  - KNIGHT(y)  - KNIGHT(x)
+                         A14:  All x,y:Any - NKNIGHT2(y x)  - KNAVE(y)  + KNIGHT(x)
+                         A15:  All x,y:Any - KNIGHT2(y x)  + LIE(y)  + KNIGHT(x)
+                       * A16:  All x,y:Any - KNIGHT2(y x)  - LIE(y)  - KNIGHT(x)
+                         A17:  All x,y:Any - NKNIGHT2(y x)  + LIE(y)  - KNIGHT(x)
+                       * A18:  All x,y:Any - NKNIGHT2(y x)  - LIE(y)  + KNIGHT(x)
+                         A22:  All x,y:Any - NKNIGHT(y x)  + KNIGHT(x)  - LIE(y)
+                         D2:   All x:Any + LIE(x)  - KNAVE(x)
+                         D4:   All x:Any - LIE(x)  - KNIGHT(x)
+                       * T27:  + LIE(a)  + KNIGHT(a)
+                       * T28:  + LIE(b)  + KNIGHT(b)
+                       
+
+   
+   A2,1 & A18,1   -->  * R5:   - LIE(b)  + KNIGHT(a)
+   
+   A1,1 & A16,1   -->  * R7:   - LIE(a)  - KNIGHT(b)
+   
+   A2,1 & A13,1   -->  * R10:  - KNIGHT(b)  - KNIGHT(a)
+   
+   R10,1 & A12,3  -->  * R11:  - KNIGHT(a)  - KNIGHT2(a b)  - KNIGHT(a)
+   
+   R11 1=3        -->  * D12:  - KNIGHT(a)  - KNIGHT2(a b)
+   
+   D12,2 & A1,1   -->  * R13:  - KNIGHT(a)
+   
+   T27,2 & R13,1  -->  * R14:  + LIE(a)
+   
+   R5,2 & R13,1   -->  * R15:  - LIE(b)
+   
+   R7,1 & R14,1   -->  * R17:  - KNIGHT(b)
+   
+   R17,1 & T28,2  -->  * R18:  + LIE(b)
+   
+   R18,1 & R15,1  -->  * R19:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 16 seconds

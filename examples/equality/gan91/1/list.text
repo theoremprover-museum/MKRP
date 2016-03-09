@@ -1,0 +1,81 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                  ******************************************************************************
+                  *                                                                            *
+                  *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN     *
+                  *                                                                            *
+                  *        VERSION: MKRP 53.8 GENTRAFO 3.0                                     *
+                  *           DATE: 29-APR,1992  22:43                                         *
+                  *                                                                            *
+                  ******************************************************************************
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+Edit:     Axioms and Theorems edited: 29-APR,1992 22:43 
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+          Formulae given to the editor
+          ============================
+
+
+Axioms:   NOT SM (0 0)
+          SM (0 S (0))
+          ALL X,Y SM (S (X) Y) EQV SM (X P (Y))
+          ALL X,Y SM (P (X) Y) EQV SM (X S (Y))
+          ALL X,Y SM (Y X) EQV SM (Y S (X))
+          ALL X,Y NOT SM (Y X) EQV NOT SM (Y P (X))
+          ALL X S (P (X)) = X
+          ALL X P (S (X)) = X
+          
+Theorems: NIL  
+          
+
+
+
+          Set of Axiom Clauses Resulting from Normalization
+          =================================================
+
+          A1:   All x:Any + =(x x)
+        * A2:   - SM(0 0)
+        * A3:   + SM(0 s(0))
+          A4:   All x:Any + =(s(p(x)) x)
+          A5:   All x:Any + =(p(s(x)) x)
+          A6:   All x,y:Any + SM(s(y) x)  - SM(y p(x))
+          A7:   All x,y:Any - SM(s(y) x)  + SM(y p(x))
+          A8:   All x,y:Any + SM(p(y) x)  - SM(y s(x))
+          A9:   All x,y:Any - SM(p(y) x)  + SM(y s(x))
+        * A10:  All x,y:Any + SM(y x)  - SM(y s(x))
+        
+
+
+
+
+          Initial Operations on Axioms
+          ============================
+
+
+       
+A10,2 & A3,1  --> * R1: + SM(0 0)
+
+R1,1 & A2,1   --> * R2: []
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+  q.e.d. 
+
+

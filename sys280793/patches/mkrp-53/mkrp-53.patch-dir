@@ -1,0 +1,54 @@
+;;; -*- Mode: Lisp; Package: ZL-User; Base: 10.; Patch-File: T -*-
+;;; Patch directory for MARKGRAF KARL REFUTATION PROCEDURE version 53
+;;;  -*- Mode: LISP; Base: 10; Syntax: Zetalisp -*-
+
+;;; Written 6/17/92 00:55:21 by CW,
+;;; while running on Magic File Server from FEP0:>GENERA-8-0-INC-KKL-BEWEISER.LOAD.1
+;;; with Genera 8.0.1, Logical Pathnames Translation Files NEWEST, IP-TCP 422.2,
+;;; RPC 415.0, Embedding Support 407.0, UX Support 416.0,
+;;; Experimental Network RPC 415.0, Experimental NFS Client 415.0, CLX 419.0,
+;;; C Runtime 416.0, Compiler Tools Package 411.0, Compiler Tools Runtime 411.0,
+;;; C Packages 413.0, Minimal Lexer Runtime 416.0, Lexer Package 415.0,
+;;; Syntax Editor Runtime 411.0, Experimental X Server 409.0, X Remote Screen 418.1,
+;;; Karlsruher Kaiserslauterner Lisp 24.0, HADES 19.0,
+;;; Experimental MARKGRAF KARL REFUTATION PROCEDURE 53.11, microcode 3640-MIC 430,
+;;; FEP 127, Fep0:>v127-lisp.flod(64), Fep0:>v127-loaders.flod(64),
+;;; Fep0:>v127-info.flod(64), Fep0:>v127-debug.flod(38),
+;;; 1037x761 1-bit STATIC-GRAY X Screen WINOSERV-1:0.0 with 0 Genera fonts (MIT X Consortium R4),
+;;; 1067x748 B&W Screen, Machine serial number 5603.
+
+(:EXPERIMENTAL
+ ((0 "MKRP version 53 loaded." "mkrp" 2908729548 NIL)
+  (1 "Variable MKRP::OPT*ALL.AREAS:  str -> er for weight
+Function MKRP::SEL=WEIGTH_SET.FOREIGN:  dito
+Definition:  ac-match
+Function MKRP::MKRP-INTERN:  To be beautiful" "mkrp" 2909338834 NIL)
+  (2 "ac-match program
+various corrections and adapt of ac-match" "mkrp" 2909600731 NIL)
+  (3 "Compatibility
+Function MKRP::MKRP-MAKE.PATHNAME:  Host for options file" "prckln" 2910638561 NIL)
+  (4 "Function MKRP::OPT=PUT:  correction for demon
+Function MKRP::OPT-PUT.OPTION:  dito
+Function MKRP::OPT-SET.STANDARD:  dito
+Function MKRP::OPT=WND_PUT.OPTION:  dito
+Function MKRP::OPT-PUT.LIST.OPTIONS:  dito" "prckln" 2910735204 NIL)
+  (5 "Function MKRP::MKRP-MAKE.PATHNAME:  Uppercase
+Function MKRP::OS=OPEN.INPUT.FILE:  sting and symbol equiv
+Function MKRP::OS=PROTOCOL.PROC:  symbol code file" "prckln" 2911228069 NIL)
+  (6 "Function MKRP::PPR=SPLIT.REPLACEMENT.OPERATION:  Unifier can be nil
+protocol interface: selection post// standard
+internal call for standard" "mkrp" 2911731759 NIL)
+  (7 "Variable MKRP::OPT*ALL.OPTIONS:  Partial for cp.reduction
+Function MKRP::RED=INFO_UPDATE.TREE:  dito
+Function MKRP::RED=INFO_UPDATE:  dito
+reset options" "prckln" 2912277533 NIL)
+  (8 "Function MKRP::OP-CREATE.INSTANCE:  pr-operation before rewrite" "mkrp" 2913474135 NIL)
+  (9 "Variable MKRP::OPT*ALL.AREAS:  other.prover
+Variable MKRP::OPT*ALL.OPTIONS:  dito
+c
+er" "mkrp" 2913985588 NIL)
+  (10 "Function MKRP::OS=CONSTRUCT.PROC:  c prover
+Function MKRP::OS=OPEN.GRAPH.FILE:  c without ;;;" "kasper" 2914155470 NIL)
+  (11 "Function MKRP::CTL-REFUTE.GRAPHS.ON.FILE1:  eps lits nur only once
+Function MKRP::MKRP-TIME:  argument" "CW" 2916580256 NIL)
+  ))

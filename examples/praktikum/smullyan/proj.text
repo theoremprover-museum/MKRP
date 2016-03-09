@@ -1,0 +1,41 @@
+04000000     1. Einleitung: Ziele bei der Entwicklung des Precompilers 
+09000000                    zur Umsetzung von SESAM-DRIVE in COBOL 
+14000000      Die Datenbankbearbeitungssprache SESAM-DRIVE ist leicht zu erlernen 
+14200000      und auch einfach zu handhaben, weshalb mit ihr Datenbankprogramme 
+14400000      f[D5]r die Bearbeitung von SESAM-Datenbanken schnell und ohne gro[B7]en 
+14700000      Aufwand entwickelt werden k[D4]nnen. Bisher steht zur Ausf[D5]hrung der 
+14900000      Programme nur ein SESAM-DRIVE-Interpreter zur Verf[D5]gung, so da[B7]    
+15100000      die Abarbeitungsgeschwindigkeit der Programme nicht so hoch ist,     
+15400000      wie sie mit einem Compiler sein k[D4]nnte. Die Konstruktion eines 
+15600000      Compilers, der die erstellten SESAM-DRIVE-Prozeduren auf eine 
+15900000      niedere Sprachebene [D5]bersetzt, ist aber sehr aufwendig. Deshalb 
+16100000      wurde ein Precompiler programmiert, mit dessen Hilfe SESAM-DRIVE- 
+16300000      Porzeduren in COBOL-Prozeduren transferiert werden, was von der 
+16600000      Entwicklungszeit her nicht so aufwendig war, wie die Konstruktion 
+16800000      eines Compilers.                                                  
+16810000      Die erzeugten COBOL-Prozeduren k[D4]nnen dann durch den COBOL- [7F]
+16830000      Compiler COB1 compiliert werden. Auf diese Weise kann die  
+16850000      Abarbeitungsgeschwindigkeit f[D5]r SESAM-DRIVE-Prozeduren mit 
+16860000      hohem Anteil an Verarbeitungsanweisungen und wenigen Datenbank- 
+16870000      bearbeitungsanweisungen erh[D4]ht werden, da compilierte Programme 
+16890000      schneller abgearbeitet werden k[D4]nnen als SESAM-DRIVE-Programme 
+16900000      durch den Interpreter. Bei Programmen, die vorwiegend Datenbank- 
+16910000      anweisungen enthalten, d[D5]rfte der Vorteil nicht so gro[B7] sein, 
+16930000      da hier [D5]ber die SESAM-CALL-DML zugegriffen werden mu[B7].      
+16930400      Diese SESAM-CALL-DML steht auch in vielen anderen Programmier-
+16930900      prachen zur Verf[D5]gung, z.B. in FORTRAN, ALGOL, PL1, so da[B7] 
+16931400      auch diese als Zwischensprache f[D5]r die [C7]bersetzung der SESAM-
+16931900      DRIVE-Prozeduren m[D4]glich gewesen w[D3]ren. F[D5]r die Wahl von 
+16932300      COBOL sprechen verschiedene Gr[D5]nde. So ist die Struktur der 
+16932800      verarbeitungsanweisungen in SESAM-DRIVE sehr [D3]hnlich zu denen 
+16933300      aus COBOL, und auch der Programmaufbau und die Strukturierung 
+16933800      von SESAM-DRIVE-Prozeduren kann durch COBOL-Sprachmittel wesent-
+16934200      lich besser und leichter  nachvollzogen werden als z.B. durch 
+16934700      die FORTRAN-Sprachstruktur. Ein anderer Grund ist, da[B7] viele 
+16935200      Programme, mit denen daten weiterverarbeitet und aufbereitet 
+16935700      werden, in COBOL geschrieben sind und deshalb das Zusammenbinden  
+16936300      dieser COBOL-Programme mit den precompilierten SESAM-DRIVE- 
+16936800      Programmen erleichtert wird. COBOL als Zwischensprache bei der 
+16937300      Compilierung von SESAM-DRIVE ist also gut geeignet.           
+16940000 
+17000000       

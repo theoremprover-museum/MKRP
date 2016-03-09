@@ -1,0 +1,329 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: Genera 7.1 IP-TCP 52.16 Experimental MKRP 15.7           *
+                     *           DATE: 02-DEC-1987  12:29                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+                                                                            
+   
+   *************************************************************************
+   
+    EDIT:     Axioms and Theorems edited: 02-DEC-1987 12:25 
+   
+   *************************************************************************
+   
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   ALL X,Y P (X) AND P (F (X Y)) IMPL P (Y)
+             ALL X,Y,Z P (F (X F (F (Y Z) F (F (Z X) Y))))
+             ALL X,Y,Z P (X) IMPL P (F (F (Y Z) F (F (Z X) Y)))
+             
+   Theorems: ALL X P (F (X X))
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+           * A1:   All x,y,z:Any +P(f(z f(f(y x) f(f(x z) y))))
+           * A2:   All x,y,z:Any -P(z)  +P(f(f(y x) f(f(x z) y)))
+           * A3:   All x,y:Any -P(y)  -P(f(y x))  +P(x)
+           
+
+
+
+
+             Initial Operations on Axioms
+             ============================
+
+
+          
+   
+   A2,2 & A2,1      -->   R1:  All x,y,z,u,v:Any -P(v)  +P(f(f(u z) f(f(z f(f(y x) f(f(x v) y))) u)))
+   
+   
+   R1,2 & A2,1      -->   R2:  All x,y,z,u,v,w,xx:Any -P(xx)
+                                                      +P(f(f(w v)
+                                                           f(f(v f(f(u z) f(f(z f(f(y x) f(f(x xx) y))) u))) w)))
+   
+   
+   R1,2 & R1,1      -->   R3:  All x,y,z,u,v,w,xx,yy,zz:Any 
+                                    -P(zz)
+                                    +P(f(f(yy xx)
+                                         f(f(xx f(f(w v) f(f(v f(f(u z) f(f(z f(f(y x) f(f(x zz) y))) u))) w))) yy)))
+   
+   
+   R3,2 & R1,1      -->   R4:  All x,y,z,u,v,w,xx,yy,zz,uu,vv,ww,xxx:Any 
+                                    -P(xxx)
+                                    +P(f(f(ww vv)
+                                         f(f(vv
+                                             f(f(uu zz)
+                                               f(f(zz
+                                                   f(f(yy xx)
+                                                     f(f(xx
+                                                         f(f(w v)
+                                                           f(f(v f(f(u z) f(f(z f(f(y x) f(f(x xxx) y))) u))) w)))
+                                                       yy)))
+                                                 uu)))
+                                           ww)))
+   
+   
+   R1,2 & R2,1      -->   R5:  All x,y,z,u,v,w,xx,yy,zz,uu,vv:Any 
+                                    -P(vv)
+                                    +P(f(f(uu zz)
+                                         f(f(zz
+                                             f(f(yy xx)
+                                               f(f(xx f(f(w v) f(f(v f(f(u z) f(f(z f(f(y x) f(f(x vv) y))) u))) w)))
+                                                 yy)))
+                                           uu)))
+   
+   
+   R3,2 & R3,1      -->   R6:  All x,y,z,u,v,w,xx,yy,zz,uu,vv,ww,xxx,yyy,zzz,uuu,vvv:Any 
+                                    -P(vvv)
+                                    +P(f(f(uuu zzz)
+                                         f(f(zzz
+                                             f(f(yyy xxx)
+                                               f(f(xxx
+                                                   f(f(ww vv)
+                                                     f(f(vv
+                                                         f(f(uu zz)
+                                                           f(f(zz
+                                                               f(f(yy xx)
+                                                                 f(f(xx
+                                                                     f(f(w v)
+                                                                       f(f(v
+                                                                           f(f(u z)
+                                                                             f(f(z f(f(y x) f(f(x vvv) y))) u)))
+                                                                         w)))
+                                                                   yy)))
+                                                             uu)))
+                                                       ww)))
+                                                 yyy)))
+                                           uuu)))
+   
+   
+   R3,2 & R2,1      -->   R7:  All x,y,z,u,v,w,xx,yy,zz,uu,vv,ww,xxx,yyy,zzz:Any 
+                                    -P(zzz)
+                                    +P(f(f(yyy xxx)
+                                         f(f(xxx
+                                             f(f(ww vv)
+                                               f(f(vv
+                                                   f(f(uu zz)
+                                                     f(f(zz
+                                                         f(f(yy xx)
+                                                           f(f(xx
+                                                               f(f(w v)
+                                                                 f(f(v f(f(u z) f(f(z f(f(y x) f(f(x zzz) y))) u)))
+                                                                   w)))
+                                                             yy)))
+                                                       uu)))
+                                                 ww)))
+                                           yyy)))
+   
+   
+   R7,1 & R4,1 (A2) -->   R8:  All x_1,x_2,x_3,x_4,x_5,x_6,x_7,x_8,x_9,x_10,x_11,x_12,x_13,x_14,x_15,x_16,x_17,x_18,
+                                     x_19,x_20,x_21,x_22,x_23,x_24,x_25,x_26,x_27,x_28,x_29,x_30:Any 
+                                    +P(f(f(x_14 x_13)
+                                         f(f(x_13
+                                             f(f(x_12 x_11)
+                                               f(f(x_11
+                                                   f(f(x_10 x_9)
+                                                     f(f(x_9
+                                                         f(f(x_8 x_7)
+                                                           f(f(x_7
+                                                               f(f(x_6 x_5)
+                                                                 f(f(x_5
+                                                                     f(f(x_4 x_3)
+                                                                       f(f(x_3 f(f(x_2 x_1) f(f(x_1 x_15) x_2))) x_4)
+                                                                       ))
+                                                                   x_6)))
+                                                             x_8)))
+                                                       x_10)))
+                                                 x_12)))
+                                           x_14)))
+                                    +P(f(f(x_14 x_13)
+                                         f(f(x_13
+                                             f(f(x_12 x_11)
+                                               f(f(x_11
+                                                   f(f(x_10 x_9)
+                                                     f(f(x_9
+                                                         f(f(x_8 x_7)
+                                                           f(f(x_7
+                                                               f(f(x_6 x_5)
+                                                                 f(f(x_5
+                                                                     f(f(x_4 x_3)
+                                                                       f(f(x_3 f(f(x_2 x_1) f(f(x_1 x_15) x_2))) x_4)
+                                                                       ))
+                                                                   x_6)))
+                                                             x_8)))
+                                                       x_10)))
+                                                 x_12)))
+                                           x_14)))
+   
+   
+   R8 1=2           -->   D9:  All x_1,x_2,x_3,x_4,x_5,x_6,x_7,x_8,x_9,x_10,x_11,x_12,x_13,x_14,x_15,x_16,x_17,x_18,
+                                     x_19,x_20,x_21,x_22,x_23,x_24,x_25,x_26,x_27,x_28,x_29,x_30:Any 
+                                    +P(f(f(x_14 x_13)
+                                         f(f(x_13
+                                             f(f(x_12 x_11)
+                                               f(f(x_11
+                                                   f(f(x_10 x_9)
+                                                     f(f(x_9
+                                                         f(f(x_8 x_7)
+                                                           f(f(x_7
+                                                               f(f(x_6 x_5)
+                                                                 f(f(x_5
+                                                                     f(f(x_4 x_3)
+                                                                       f(f(x_3 f(f(x_2 x_1) f(f(x_1 x_15) x_2))) x_4)
+                                                                       ))
+                                                                   x_6)))
+                                                             x_8)))
+                                                       x_10)))
+                                                 x_12)))
+                                           x_14)))
+   
+   
+   R4,1 & R5,1 (A2) -->   R10: All x_1,x_2,x_3,x_4,x_5,x_6,x_7,x_8,x_9,x_10,x_11,x_12,x_13,x_14,x_15,x_16,x_17,x_18,
+                                     x_19,x_20,x_21,x_22,x_23,x_24,x_25,x_26:Any 
+                                    +P(f(f(x_13 x_12)
+                                         f(f(x_12
+                                             f(f(x_11 x_10)
+                                               f(f(x_10
+                                                   f(f(x_9 x_8)
+                                                     f(f(x_8
+                                                         f(f(x_7 x_6)
+                                                           f(f(x_6
+                                                               f(f(x_5 x_4)
+                                                                 f(f(x_4 f(f(x_2 x_1) f(f(x_1 x_3) x_2))) x_5)))
+                                                             x_7)))
+                                                       x_9)))
+                                                 x_11)))
+                                           x_13)))
+                                    +P(f(f(x_13 x_12)
+                                         f(f(x_12
+                                             f(f(x_11 x_10)
+                                               f(f(x_10
+                                                   f(f(x_9 x_8)
+                                                     f(f(x_8
+                                                         f(f(x_7 x_6)
+                                                           f(f(x_6
+                                                               f(f(x_5 x_4)
+                                                                 f(f(x_4 f(f(x_2 x_1) f(f(x_1 x_3) x_2))) x_5)))
+                                                             x_7)))
+                                                       x_9)))
+                                                 x_11)))
+                                           x_13)))
+   
+   
+   R10 1=2          -->   D11: All x_1,x_2,x_3,x_4,x_5,x_6,x_7,x_8,x_9,x_10,x_11,x_12,x_13,x_14,x_15,x_16,x_17,x_18,
+                                     x_19,x_20,x_21,x_22,x_23,x_24,x_25,x_26:Any 
+                                    +P(f(f(x_13 x_12)
+                                         f(f(x_12
+                                             f(f(x_11 x_10)
+                                               f(f(x_10
+                                                   f(f(x_9 x_8)
+                                                     f(f(x_8
+                                                         f(f(x_7 x_6)
+                                                           f(f(x_6
+                                                               f(f(x_5 x_4)
+                                                                 f(f(x_4 f(f(x_2 x_1) f(f(x_1 x_3) x_2))) x_5)))
+                                                             x_7)))
+                                                       x_9)))
+                                                 x_11)))
+                                           x_13)))
+   
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T4: -P(f(c_1 c_1))
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+
+   
+   Initial Clauses:    * A2:   All x,y,z:Any -P(z)  +P(f(f(y x) f(f(x z) y)))
+                         R1:   All x,y,z,u,v:Any -P(v)  +P(f(f(u z) f(f(z f(f(y x) f(f(x v) y))) u)))
+                         R3:   All x,y,z,u,v,w,xx,yy,zz:Any 
+                                    -P(zz)
+                                    +P(f(f(yy xx)
+                                         f(f(xx f(f(w v) f(f(v f(f(u z) f(f(z f(f(y x) f(f(x zz) y))) u))) w))) yy)))
+                         R2:   All x,y,z,u,v,w,xx:Any -P(xx)
+                                                      +P(f(f(w v)
+                                                           f(f(v f(f(u z) f(f(z f(f(y x) f(f(x xx) y))) u))) w)))
+                       * A1:   All x,y,z:Any +P(f(z f(f(y x) f(f(x z) y))))
+                         R5:   All x,y,z,u,v,w,xx,yy,zz,uu,vv:Any 
+                                    -P(vv)
+                                    +P(f(f(uu zz)
+                                         f(f(zz
+                                             f(f(yy xx)
+                                               f(f(xx f(f(w v) f(f(v f(f(u z) f(f(z f(f(y x) f(f(x vv) y))) u))) w)))
+                                                 yy)))
+                                           uu)))
+                         D11:  All x_1,x_2,x_3,x_4,x_5,x_6,x_7,x_8,x_9,x_10,x_11,x_12,x_13,x_14,x_15,x_16,x_17,x_18,
+                                     x_19,x_20,x_21,x_22,x_23,x_24,x_25,x_26:Any 
+                                    +P(f(f(x_13 x_12)
+                                         f(f(x_12
+                                             f(f(x_11 x_10)
+                                               f(f(x_10
+                                                   f(f(x_9 x_8)
+                                                     f(f(x_8
+                                                         f(f(x_7 x_6)
+                                                           f(f(x_6
+                                                               f(f(x_5 x_4)
+                                                                 f(f(x_4 f(f(x_2 x_1) f(f(x_1 x_3) x_2))) x_5)))
+                                                             x_7)))
+                                                       x_9)))
+                                                 x_11)))
+                                           x_13)))
+                       * A3:   All x,y:Any -P(y)  -P(f(y x))  +P(x)
+                       * T4:   -P(f(c_1 c_1))
+                       
+
+   
+   A1,1 & A3,2    -->  * R12:  All x,y,z:Any -P(z)  +P(f(f(y x) f(f(x z) y)))
+   
+   R12 (INSTANCE) -->  * I13:  All x,y,z:Any -P(z)  +P(f(f(y x) f(f(x z) y)))
+   
+   I13 2=1 (A2)   -->  * D14:  All x,y,z:Any +P(f(f(y x) f(f(x z) y)))
+   
+   D14,1 & A3,2   -->  * R15:  All x,y,z,u:Any -P(f(f(u z) f(f(z y) u)))  +P(f(f(f(f(z y) u) x) f(u z)))
+   
+   R15,1 & D14,1  -->  * R16:  All x,y,z,u:Any +P(f(f(f(f(z y) u) x) f(u z)))
+   
+   R16,1 & A3,2   -->  * R17:  All x,y:Any -P(f(f(f(c_1 y) c_1) f(f(c_1 x) f(c_1 y))))  +P(f(c_1 c_1))
+   
+   R17,1 & D14,1  -->  * R18:  +P(f(c_1 c_1))
+   
+   R18,1 & T4,1   -->  * R19:  []
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 

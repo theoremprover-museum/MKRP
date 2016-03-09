@@ -1,0 +1,290 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 49.6 GENTRAFO 1.0                                   *
+                     *           DATE: 19-NOV,1991  11:11                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+                                                                                                                    
+      
+   
+   ******************************************************************************************************************
+   ***
+   
+                                                                                                                    
+      
+   
+    FORMULA:  Date: 19-NOV,1991 10:56
+   
+              Axioms und Theorems for this proof have been read from
+   
+                 Axiom-File: NIL
+   
+               Theorem-File: NIL
+   
+                                                                                                                    
+      
+   
+   ******************************************************************************************************************
+   ***
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * AXIOMS *
+             * GROUP *
+             ALL X,Y,Z + (+ (X Y) Z) = + (X + (Y Z))
+             ALL X + (0 X) = X
+             ALL X + (- (X) X) = 0
+             
+   Theorems: * THEOREM *
+             ((ALL X,Y + (X Y) = + (Y X)) IMPL (ALL X,Y + (+ (X Y) + (X Y)) = + (+ (X X) + (Y Y))))
+             AND ((ALL X,Y + (+ (X Y) + (X Y)) = + (+ (X X) + (Y Y))) IMPL (ALL X,Y - (+ (X Y)) = + (- (X) - (Y))))
+             AND ((ALL X,Y - (+ (X Y)) = + (- (X) - (Y))) IMPL (ALL X,Y + (X Y) = + (Y X)))
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+           * A1:   All x:Any + =(x x)
+           * A2:   All x,y,z:Any + =(+(+(z y) x) +(z +(y x)))
+           * A3:   All x:Any + =(+(0 x) x)
+           * A4:   All x:Any + =(+(-(x) x) 0)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization and Splitting
+             =================================================================
+
+   Splitpart 1
+
+           * T5: All x,y:Any + =(+(y x) +(x y))
+           * T6: - =(+(+(c_2 c_1) +(c_2 c_1)) +(+(c_2 c_2) +(c_1 c_1)))
+
+   Splitpart 2
+
+           * T7: All x,y:Any + =(+(+(y x) +(y x)) +(+(y y) +(x x)))
+           * T8: - =(-(+(c_4 c_3)) +(-(c_4) -(c_3)))
+
+   Splitpart 3
+
+           * T9: All x,y:Any + =(-(+(y x)) +(-(y) -(x)))
+           * T10: - =(+(c_6 c_5) +(c_5 c_6))
+
+
+   End of Splitparts
+
+
+
+
+
+             Initial Operations on Theorems
+             ==============================
+
+
+          
+   Splitpart 1:
+   
+   T6,1 & A2  --> * RW2: - =(+(c_2 +(c_1 +(c_2 c_1))) +(+(c_2 c_2) +(c_1 c_1)))
+   
+   RW2,1 & A2 --> * RW3: - =(+(c_2 +(c_1 +(c_2 c_1))) +(c_2 +(c_2 +(c_1 c_1))))
+   
+
+   
+   Splitpart 2:
+   
+   T7,1 & A2  --> * RW4: All x,y:Any + =(+(y +(x +(y x))) +(+(y y) +(x x)))
+   
+   RW4,1 & A2 --> * RW5: All x,y:Any + =(+(y +(x +(y x))) +(y +(y +(x x))))
+   
+
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation of Splitpart 1:
+   ==========================
+   
+   Initial Clauses:  * A1:   All x:Any + =(x x)
+                     * A2:   All x,y,z:Any + =(+(+(z y) x) +(z +(y x)))
+                       A3:   All x:Any + =(+(0 x) x)
+                       RW1:  All x:Any + =(+(x -(x)) 0)
+                     * T5:   All x,y:Any + =(+(y x) +(x y))
+                     * RW3:  - =(+(c_2 +(c_1 +(c_2 c_1))) +(c_2 +(c_2 +(c_1 c_1))))
+                     
+
+   
+   T5,1 & A2,1   --> * P8:   All x,y,z:Any + =(+(z +(y x)) +(y +(x z)))
+   
+   RW3,1 & P8    --> * RW9:  - =(+(c_2 +(c_2 +(c_1 c_1))) +(c_2 +(c_2 +(c_1 c_1))))
+   
+   RW9,1 & A1,1  --> * R10:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation of Splitpart 2:
+   ==========================
+   
+   Initial Clauses:       A1:    All x:Any + =(x x)
+                        * A2:    All x,y,z:Any + =(+(+(z y) x) +(z +(y x)))
+                        * A3:    All x:Any + =(+(0 x) x)
+                        * A4:    All x:Any + =(+(-(x) x) 0)
+                        * RW5:   All x,y:Any + =(+(y +(x +(y x))) +(y +(y +(x x))))
+                        * T8:    - =(-(+(c_4 c_3)) +(-(c_4) -(c_3)))
+                        
+
+   
+   A4,1 & A2,1      --> * P11:   All x,y:Any + =(+(0 y) +(-(x) +(x y)))
+   
+   P11,1 & A3       --> * RW12:  All x,y:Any + =(y +(-(x) +(x y)))
+   
+   A4,1 & RW12,1    --> * P14:   All x:Any + =(x +(-(-(x)) 0))
+   
+   RW12,1 & RW5,1   --> * P22:   All x,y:Any + =(+(-(y) +(+(y x) x)) +(-(y) +(-(y) +(+(y x) +(y x)))))
+   
+   P22,1 & A2       --> * RW23:  All x,y:Any + =(+(-(y) +(y +(x x))) +(-(y) +(-(y) +(+(y x) +(y x)))))
+   
+   RW23,1 & RW12    --> * RW24:  All x,y:Any + =(+(y y) +(-(x) +(-(x) +(+(x y) +(x y)))))
+   
+   RW24,1 & A2      --> * RW25:  All x,y:Any + =(+(y y) +(-(x) +(-(x) +(x +(y +(x y))))))
+   
+   RW25,1 & RW12    --> * RW26:  All x,y:Any + =(+(y y) +(-(x) +(y +(x y))))
+   
+   P14,1 & RW26,1   --> * P27:   All x:Any + =(+(0 0) +(-(-(-(x))) +(0 x)))
+   
+   P27,1 & A3       --> * RW28:  All x:Any + =(0 +(-(-(-(x))) +(0 x)))
+   
+   RW28,1 & A3      --> * RW29:  All x:Any + =(0 +(-(-(-(x))) x))
+   
+   RW29,1 & RW12,1  --> * P30:   All x:Any + =(x +(-(-(-(-(x)))) 0))
+   
+   P30,1 & P14      --> * RW31:  All x:Any + =(x -(-(x)))
+   
+   P14,1 & RW31     --> * RW32:  All x:Any + =(x +(x 0))
+   
+   RW31,1 & A4,1    --> * P35:   All x:Any + =(+(x -(x)) 0)
+   
+   RW31,1 & RW12,1  --> * P36:   All x,y:Any + =(y +(x +(-(x) y)))
+   
+   P35,1 & A2,1     --> * P40:   All x,y:Any + =(0 +(y +(x -(+(y x)))))
+   
+   P40,1 & RW12,1   --> * P41:   All x,y:Any + =(+(y -(+(x y))) +(-(x) 0))
+   
+   P41,1 & RW32     --> * RW42:  All x,y:Any + =(+(y -(+(x y))) -(x))
+   
+   RW26,1 & RW42,1  --> * P45:   All x,y:Any + =(+(+(y +(x y)) -(+(y y))) -(-(x)))
+   
+   P45,1 & RW31     --> * RW46:  All x,y:Any + =(+(+(y +(x y)) -(+(y y))) x)
+   
+   RW46,1 & A2      --> * RW47:  All x,y:Any + =(+(y +(+(x y) -(+(y y)))) x)
+   
+   RW47,1 & A2      --> * RW48:  All x,y:Any + =(+(y +(x +(y -(+(y y))))) x)
+   
+   RW48,1 & RW42    --> * RW49:  All x,y:Any + =(+(y +(x -(y))) x)
+   
+   RW49,1 & P36,1   --> * P50:   All x,y:Any + =(+(y -(-(x))) +(x y))
+   
+   P50,1 & RW31     --> * RW51:  All x,y:Any + =(+(y x) +(x y))
+   
+   RW42,1 & RW12,1  --> * P62:   All x,y:Any + =(-(+(y x)) +(-(x) -(y)))
+   
+   RW51,1 & P62,1   --> * P63:   All x,y:Any + =(-(+(y x)) +(-(y) -(x)))
+   
+   P63,1 & T8,1     --> * R64:   []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation of Splitpart 3:
+   ==========================
+   
+   Initial Clauses:       A1:    All x:Any + =(x x)
+                        * A2:    All x,y,z:Any + =(+(+(z y) x) +(z +(y x)))
+                        * A3:    All x:Any + =(+(0 x) x)
+                        * A4:    All x:Any + =(+(-(x) x) 0)
+                        * T9:    All x,y:Any + =(-(+(y x)) +(-(y) -(x)))
+                        * T10:   - =(+(c_6 c_5) +(c_5 c_6))
+                        
+
+   
+   A4,1 & T9,1      --> * P65:   All x:Any + =(-(0) +(-(-(x)) -(x)))
+   
+   P65,1 & A4       --> * RW66:  + =(-(0) 0)
+   
+   T9,1 & A4,1      --> * P67:   All x,y:Any + =(+(+(-(y) -(x)) +(y x)) 0)
+   
+   P67,1 & A2       --> * RW68:  All x,y:Any + =(+(-(y) +(-(x) +(y x))) 0)
+   
+   RW66,1 & RW68,1  --> * P69:   All x:Any + =(+(-(x) +(0 +(x 0))) 0)
+   
+   P69,1 & A3       --> * RW70:  All x:Any + =(+(-(x) +(x 0)) 0)
+   
+   RW70,1 & A2,1    --> * P71:   All x,y:Any + =(+(0 y) +(-(x) +(+(x 0) y)))
+   
+   P71,1 & A3       --> * RW72:  All x,y:Any + =(y +(-(x) +(+(x 0) y)))
+   
+   RW72,1 & A2      --> * RW73:  All x,y:Any + =(y +(-(x) +(x +(0 y))))
+   
+   RW73,1 & A3      --> * RW74:  All x,y:Any + =(y +(-(x) +(x y)))
+   
+   A4,1 & RW74,1    --> * P75:   All x:Any + =(x +(-(-(x)) 0))
+   
+   RW68,1 & RW74,1  --> * P76:   All x,y:Any + =(+(-(y) +(x y)) +(-(-(x)) 0))
+   
+   P76,1 & P75      --> * RW77:  All x,y:Any + =(+(-(y) +(x y)) x)
+   
+   RW66,1 & RW77,1  --> * P80:   All x:Any + =(+(0 +(x 0)) x)
+   
+   P80,1 & A3       --> * RW81:  All x:Any + =(+(x 0) x)
+   
+   P75,1 & RW81     --> * RW82:  All x:Any + =(x -(-(x)))
+   
+   RW82,1 & RW74,1  --> * P84:   All x,y:Any + =(y +(x +(-(x) y)))
+   
+   RW77,1 & P84,1   --> * P85:   All x,y:Any + =(+(y x) +(x y))
+   
+   P85,1 & T10,1    --> * R86:   []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation of Splitpart 1: 972 seconds
+   Time Used for Refutation of Splitpart 2: 3469 seconds
+   Time Used for Refutation of Splitpart 3: 626 seconds

@@ -1,0 +1,134 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+            ****************************************************
+            *                                                  *
+            *     ATP-SYSTEM: M K R P , UNI KAISERSLAUTERN     *
+            *                                                  *
+            *        VERSION: MKRP 45.31 EQUALITY 16.1         *
+            *           DATE: 09-AUG,1990  19:18               *
+            *                                                  *
+            ****************************************************
+
+
+--------------------------------------------------------------------------------
+
+Edit:     Axioms and Theorems edited: 09-AUG,1990 19:18 
+
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+          Formulae given to the editor
+          ============================
+
+
+Axioms:   * AXIOMS *
+          * GROUP *
+          ALL X,Y,Z + (+ (X Y) Z) = + (X + (Y Z))
+          ALL X + (0 X) = X
+          ALL X + (X 0) = X
+          ALL X + (- (X) X) = 0
+          ALL X + (X - (X)) = 0
+          
+Theorems: * THEOREMS *
+          ALL X,Y (EX U,V + (X U) = Y AND + (V X) = Y)
+          
+
+
+
+          Set of Axiom Clauses Resulting from Normalization
+          =================================================
+
+        * A1:   All x:Any + =(x x)
+        * A2:   All x,y,z:Any + =(+(+(z y) x) +(z +(y x)))
+        * A3:   All x:Any + =(+(0 x) x)
+        * A4:   All x:Any + =(+(x 0) x)
+        * A5:   All x:Any + =(+(-(x) x) 0)
+        * A6:   All x:Any + =(+(x -(x)) 0)
+        
+
+
+
+
+          Set of Theorem Clauses Resulting from Normalization and Splitting
+          =================================================================
+
+Splitpart 1
+
+        * T7: All x:Any - =(+(c_1 x) c_2)
+
+Splitpart 2
+
+        * T8: All x:Any - =(+(x c_3) c_4)
+
+
+End of Splitparts
+
+
+
+--------------------------------------------------------------------------------
+
+
+
+Refutation of Splitpart 1:
+==========================
+
+Initial Clauses:     A1:   All x:Any + =(x x)
+                   * A2:   All x,y,z:Any + =(+(+(z y) x) +(z +(y x)))
+                   * A3:   All x:Any + =(+(0 x) x)
+                     A4:   All x:Any + =(+(x 0) x)
+                     A5:   All x:Any + =(+(-(x) x) 0)
+                   * A6:   All x:Any + =(+(x -(x)) 0)
+                   * T7:   All x:Any - =(+(c_1 x) c_2)
+                   
+
+
+A6,1 & A2,1   -->  * P8:   All x,y:Any + =(+(0 y) +(x +(-(x) y)))
+
+P8,1 & A3     -->  * RW9:  All x,y:Any + =(y +(x +(-(x) y)))
+
+RW9,1 & T7,1  -->  * R10:  []
+
+
+
+--------------------------------------------------------------------------------
+
+
+
+Refutation of Splitpart 2:
+==========================
+
+Initial Clauses:    * A1:    All x:Any + =(x x)
+                    * A2:    All x,y,z:Any + =(+(+(z y) x) +(z +(y x)))
+                      A3:    All x:Any + =(+(0 x) x)
+                    * A4:    All x:Any + =(+(x 0) x)
+                    * A5:    All x:Any + =(+(-(x) x) 0)
+                      A6:    All x:Any + =(+(x -(x)) 0)
+                    * T8:    All x:Any - =(+(x c_3) c_4)
+                    
+
+
+A2,1 & T8,1    -->  * P14:   All x,y:Any - =(+(y +(x c_3)) c_4)
+
+A5,1 & P14,1   -->  * P15:   All x:Any - =(+(x 0) c_4)
+
+P15,1 & A4     -->  * RW16:  All x:Any - =(x c_4)
+
+RW16,1 & A1,1  -->  * R17:   []
+
+
+
+--------------------------------------------------------------------------------
+
+
+
+  q.e.d. 
+
+
+Time Used for Refutation of Splitpart 1: 15 seconds
+Time Used for Refutation of Splitpart 2: 10 seconds

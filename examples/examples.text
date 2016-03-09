@@ -1,0 +1,2320 @@
+ANDREWS.BIG
+ 
+AXIOMS:
+* NO AXIOMS
+ 
+ 
+THEOREM:
+((((EX X ALL Y P (X) EQV P (Y)) EQV ((EX X Q (X)) EQV (ALL Y P (Y)))) EQV ((EX X ALL Y Q (X) EQV Q (Y)) EQV ((EX
+X P (X)) EQV (ALL Y Q (Y))))))
+ 
+ 
+ 
+ANDREWS.SMALL
+ 
+AXIOMS:
+* NO AXIOM
+ 
+ 
+THEOREM:
+((ALL X Q (X)) EQV (EX Y Q (Y))) EQV (EX X ALL Y Q (X) EQV Q (Y))
+ 
+ 
+ 
+BELNAP
+ 
+AXIOMS:
+ALL X R (O X X)
+ALL X R (X X X)
+ALL V,W,X,Y,Z ((R (V W X) AND R (X Y Z)) IMPL (EX U (R (V Y U) AND R (U W Z))))
+ALL W,X,Y,Z R (O W X) AND R (X Y Z) IMPL R (W Y Z)
+ALL FA,FB,W T (IMP (FA FB) W) IMPL (ALL X,Y NOT R (W X Y) OR NOT T (FA X) OR T (FB Y))
+ALL FA,FB,W NOT T (IMP (FA FB) W) IMPL (EX X,Y R (W X Y) AND T (FA X) AND NOT T (FB Y))
+ 
+ 
+THEOREM:
+T (IMP (IMP (A IMP (B B)) IMP (A IMP (A IMP (B B)))) O)
+ 
+ 
+ 
+CHALLENGE
+ 
+AXIOMS:
+* NO AXIOMS FOR THIS EXAMPLE
+ 
+ 
+THEOREM:
+(ALL Z ((((EX X ALL Y (P (X Z) EQV P (Y Z))) EQV ((EX X Q (X)) EQV (ALL Y P (Y Z)))) EQV ((EX X ALL Y (Q (X) EQV
+Q (Y))) EQV ((EX X P (X Z)) EQV (ALL Y Q (Y))))) EQV (((EX X ALL Y (R (X) EQV R (Y))) EQV ((EX X S (X Z)) EQV (ALL
+Y R (Y)))) EQV ((EX X ALL Y (S (X Z) EQV S (Y Z))) EQV ((EX X R (X)) EQV (ALL Y S (Y Z)))))))
+ 
+ 
+ 
+CHANG1
+ 
+AXIOMS:
+* IN AN ASSOCIATIVE SYSTEM WITH LEFT AND RIGHT SOLUTIONS, THERE IS A RIGHT IDENTITY ELEMENT.
+ALL X,Y P (G (X Y) X Y)
+ALL X,Y P (X H (X Y) Y)
+ALL U,V,W,X,Y,Z P (X Y U) AND P (Y Z V) AND P (X V W) IMPL P (U Z W)
+ 
+ 
+THEOREM:
+EX X ALL Y P (Y X Y)
+ 
+ 
+ 
+CHANG10
+ 
+AXIOMS:
+ALL X,Y R (++ (X Y) ++ (Y X))
+ALL X,Y,Z R (++ (X ++ (Y Z)) ++ (++ (X Y) Z))
+ALL X,Y R (-- (++ (X Y) Y) X)
+ALL X,Y R (X -- (++ (X Y) Y))
+ALL X,Y,Z R (++ (-- (X Y) Z) -- (++ (X Z) Y))
+ALL X,Y,Z R (-- (++ (X Y) Z) ++ (-- (X Z) Y))
+ALL X,Y,Z R (X Y) AND R (Y Z) IMPL R (X Z)
+ALL X R (X X)
+ALL U,V,X,Y R (X Y) AND R (U ++ (X V)) IMPL R (U ++ (Y V))
+ALL U,V,X,Y R (X Y) AND R (U -- (X V)) IMPL R (U -- (Y V))
+ALL U,V,X,Y R (X Y) AND R (U -- (V X)) IMPL R (U -- (V Y))
+ 
+ 
+THEOREM:
+R (++ (++ (A B) C) ++ (A ++ (B C))) AND R (++ (-- (A B) C) ++ (A -- (C B))) AND R (++ (A -- (B C)) ++ (-- (A C)
+B)) AND R (-- (++ (A B) C) ++ (A -- (B C)))
+ 
+ 
+ 
+CHANG2
+ 
+AXIOMS:
+* IN AN ASSOCIATIVE SYSTEM WITH AN IDENTITY ELEMENT
+* IF THE SQUARE OF EVERY ELEMENT IS THE IDENTITY,
+* THE SYSTEM IS COMMUTATIVE
+ALL X P (X E X)
+ALL X P (E X X)
+ALL U,V,W,X,Y,Z P (X Y U) AND P (Y Z V) AND P (U Z W) IMPL P (X V W)
+ALL U,V,W,X,Y,Z P (X Y U) AND P (Y Z V) AND P (X V W) IMPL P (U Z W)
+ALL X P (X X E)
+ 
+ 
+THEOREM:
+ALL X,Y,Z P (X Y Z) IMPL P (Y X Z)
+ 
+ 
+ 
+CHANG3
+ 
+AXIOMS:
+* LEFT IDENTITY = RIGHT IDENTITY
+ALL X P (I (X) X E)
+ALL X P (E X X)
+ALL U,V,W,X,Y,Z P (X Y U) AND P (Y Z V) AND P (U Z W) IMPL P (X V W)
+ALL U,V,W,X,Y,Z P (X Y U) AND P (Y Z V) AND P (X V W) IMPL P (U Z W)
+ 
+ 
+THEOREM:
+ALL X P (X E X)
+ 
+ 
+ 
+CHANG4
+ 
+AXIOMS:
+* IN A GROUP WITH LEFT INVERSES AND LEFT IDENTITY
+* EVERY ELEMENT HAS A RIGHT INVERSE.
+ALL X P (I (X) X E)
+ALL X P (E X X)
+ALL U,V,W,X,Y,Z P (X Y U) AND P (Y Z V) AND P (U Z W) IMPL P (X V W)
+ALL U,V,W,X,Y,Z P (X Y U) AND P (Y Z V) AND P (X V W) IMPL P (U Z W)
+ 
+ 
+THEOREM:
+ALL X EX Y P (X Y E)
+ 
+ 
+ 
+CHANG5
+ 
+AXIOMS:
+* IF S IS A NONEMPTY SUBSET OF A GROUP SUCH THAT IF X,Y BELONG TO S,
+* THEN XY**-1 BELONGS TO S, THEN THE IDENTITY E BELONGS TO S.
+ALL X P (I (X) X E)
+ALL X P (X I (X) E)
+ALL X P (E X X)
+ALL X P (X E X)
+S (A)
+ALL X,Y,Z S (X) AND S (Y) AND P (X I (Y) Z) IMPL S (Z)
+ALL U,V,W,X,Y,Z P (X Y U) AND P (Y Z V) AND P (U Z W) IMPL P (X V W)
+ALL U,V,W,X,Y,Z P (X Y U) AND P (Y Z V) AND P (X V W) IMPL P (U Z W)
+ 
+ 
+THEOREM:
+S (E)
+ 
+ 
+ 
+CHANG6
+ 
+AXIOMS:
+* IF S IS A NONEMPTY SUBSET OF A GROUP SUCH THAT IF X,Y BELONG TO S,
+* THEN XY**-1 BELONGS TO S, THEN S CONTAINS X**-1 WHENEVER IT CONTAINS X.
+ALL X P (I (X) X E)
+ALL X P (X I (X) E)
+ALL X P (E X X)
+ALL X P (X E X)
+S (A)
+ALL X,Y,Z S (X) AND S (Y) AND P (X I (Y) Z) IMPL S (Z)
+ALL U,V,W,X,Y,Z P (X Y U) AND P (Y Z V) AND P (U Z W) IMPL P (X V W)
+ALL U,V,W,X,Y,Z P (X Y U) AND P (Y Z V) AND P (X V W) IMPL P (U Z W)
+ 
+ 
+THEOREM:
+S (I (A))
+ 
+ 
+ 
+CHANG7
+ 
+AXIOMS:
+* IF A IS A PRIME AND A = B**2/C**2 THEN A DIVIDES B.
+P (A)
+M (A S (C) S (B))
+ALL X M (X X S (X))
+ALL X,Y,Z M (X Y Z) IMPL D (X Z)
+ALL U,X,Y,Z P (X) AND M (Y Z U) AND D (X U) IMPL D (X Y) OR D (X Z)
+ 
+ 
+THEOREM:
+D (A B)
+ 
+ 
+ 
+CHANG8
+ 
+AXIOMS:
+* ANY NUMBER GREATER THAN 1 HAS A PRIME DIVISOR.
+ALL X D (X X)
+ALL X,Y,Z D (X Y) AND D (Y Z) IMPL D (X Z)
+ALL X P (X) OR D (G (X) X)
+ALL X P (X) OR L (1 G (X))
+ALL X P (X) OR L (G (X) X)
+L (1 A)
+ALL X NOT P (X) OR NOT D (X A)
+ALL X NOT L (1 X) OR NOT L (X A) OR P (F (X))
+ALL X NOT L (1 X) OR NOT L (X A) OR D (F (X) X)
+ 
+ 
+THEOREM:
+* THERE IS NO THEOREM
+ 
+ 
+ 
+CHANG9
+ 
+AXIOMS:
+* THERE EXIST INFINITELY MANY PRIMES
+ALL X L (X F (X))
+ALL X NOT L (X X)
+ALL X,Y NOT L (X Y) OR NOT L (Y X)
+ALL X,Y D (X F (Y)) IMPL L (Y X)
+ALL X NOT P (X) IMPL (EX Y D (Y X) AND P (Y) AND L (Y X))
+ 
+ 
+THEOREM:
+ALL A EX X P (X) AND L (A X) AND NOT L (F (A) X)
+ 
+ 
+ 
+DISTRIBUTIVITY
+ 
+AXIOMS:
+ALL W ALL X,Y MEMBER (W UNION (X Y)) EQV MEMBER (W X) OR MEMBER (W Y)
+ALL W ALL X,Y MEMBER (W INTERSECTION (X Y)) EQV MEMBER (W X) AND MEMBER (W Y)
+ 
+ 
+THEOREM:
+ALL W ALL X,Y,Z MEMBER (W UNION (X INTERSECTION (Y Z))) EQV MEMBER (W INTERSECTION (UNION (X Y) UNION (X Z)))
+ 
+ 
+ 
+GROUP.ID
+ 
+AXIOMS:
+TYPE SUBSET (SET SET)
+TYPE MEMBER (ELEMENT SET)
+TYPE GROUP (SET)
+TYPE ID (SET) :ELEMENT
+ALL X,Y:SET SUBSET (X Y) IMPL (ALL Z:ELEMENT (MEMBER (Z X) IMPL MEMBER (Z Y)))
+TYPE * (ELEMENT ELEMENT) :ELEMENT
+ASSOCIATIVE (*)
+TYPE - (ELEMENT) :ELEMENT
+ALL G:SET ALL X:ELEMENT GROUP (G) AND MEMBER (X G) IMPL * (- (X) X) = ID (G)
+ALL G:SET GROUP (G) IMPL MEMBER (ID (G) G)
+TYPE A:SET
+TYPE B:SET
+ 
+ 
+THEOREM:
+GROUP (A) AND GROUP (B) AND SUBSET (A B) IMPL ID (A) = ID (B)
+ 
+ 
+ 
+IMPLICATION
+ 
+AXIOMS:
+ALL X,Y PROVABLE (IMPLIES (X IMPLIES (Y X)))
+ALL X,Y,Z PROVABLE (IMPLIES (IMPLIES (X IMPLIES (Y Z)) IMPLIES (IMPLIES (X Y) IMPLIES (X Z))))
+ALL X,Y PROVABLE (X) AND PROVABLE (IMPLIES (X Y)) IMPL PROVABLE (Y)
+ 
+ 
+THEOREM:
+ALL X PROVABLE (IMPLIES (X X))
+ 
+ 
+ 
+KALMAN.EX1
+ 
+AXIOMS:
+ALL X,Y NOT P (X) OR NOT P (F (X Y)) OR P (Y)
+ALL X,Y,Z P (F (F (X Y) F (F (X Z) F (Y Z))))
+ 
+ 
+THEOREM:
+ALL X P (F (X X))
+ 
+ 
+ 
+KALMAN.EX2
+ 
+AXIOMS:
+ALL X,Y NOT P (X) OR NOT P (F (X Y)) OR P (Y)
+ALL X,Y,Z P (F (F (X Y) F (F (X Z) F (Y Z))))
+ 
+ 
+THEOREM:
+ALL X,Y P (F (F (X X) F (Y Y)))
+ 
+ 
+ 
+LOGELEI
+ 
+AXIOMS:
+NOT A = B AND NOT A = C AND NOT B = C
+SCHULDIG (A) OR SCHULDIG (B) OR SCHULDIG (C)
+SCHULDIG (A) IMPL (SCHULDIG (B) OR SCHULDIG (C)) AND NOT (SCHULDIG (B) AND SCHULDIG (C))
+NOT SCHULDIG (B) IMPL NOT SCHULDIG (C)
+(EX X,Y,Z NOT X = Y AND NOT X = Z AND NOT Y = Z AND SCHULDIG (X) AND SCHULDIG (Y) AND NOT SCHULDIG (Z)) IMPL SCHULDIG (A)
+NOT SCHULDIG (C) IMPL NOT SCHULDIG (B)
+ 
+ 
+THEOREM:
+* KEINE THEOREMFORMELN. DIE AXIOME SOLLTEN FUER SICH UNERFUELLBAR SEIN.
+ 
+ 
+ 
+MINKER.ANCES
+ 
+AXIOMS:
+ALL X NOT J (X) OR A (X) OR H (X)
+ALL X K (X) OR H (X) OR J (X)
+ALL X NOT K (X) OR H (X) OR J (X)
+ALL X NOT A (X) OR NOT B (X)
+ALL X NOT A (X) OR B (X)
+ALL X NOT H (X) OR NOT C (X)
+ 
+ 
+THEOREM:
+NOT (ALL X NOT H (X) OR C (X))
+ 
+ 
+ 
+MINKER.ANCES.OLD
+ 
+AXIOMS:
+ALL X NOT J (X) OR A (X) OR H (X)
+ALL X K (X) OR H (X) OR J (X)
+ALL X NOT K (X) OR H (X) OR J (X)
+ALL X NOT A (X) OR NOT B (X)
+ALL X NOT A (X) OR B (X)
+ALL X NOT H (X) OR NOT C (X)
+ 
+ 
+THEOREM:
+NOT (ALL X NOT H (X) OR C (X))
+ 
+ 
+ 
+MINKER.APABHP
+ 
+AXIOMS:
+ALL X,Y NOT A (X E Y) OR NOT A (X T Y)
+ALL X,Y NOT I (M (X) D (L Y))
+NOT R (H)
+ALL Z,Y A (H Z D (G (Z) Y))
+A (M (S) E H)
+ALL X,Y,Z NOT A (M (X) Z D (G (Z) Y)) OR A (M (X) Z Y) OR I (M (X) Y)
+ALL X,Y,Z NOT A (M (X) Z Y) OR NOT A (H Z Y) OR I (M (K (Y)) D (P Y))
+ALL X,Y,Z NOT A (H Z Y) OR A (M (X) Z Y) OR NOT I (M (X) Y)
+ALL X,Y NOT A (X T Y) OR C (Y) OR NOT R (X)
+ALL X,Y,Z NOT A (M (X) Z Y) OR A (M (X) Z D (G (Z) Y))
+ALL X,Y,Z NOT I (M (X) Y) OR I (M (X) D (G (Z) Y))
+ALL Y,Z NOT A (H Z Y) OR A (M (K (Y)) Z Y)
+ALL X,Y,Z NOT A (X Z Y) OR A (X Z D (P Y))
+ALL X,Y,Z NOT A (X Z Y) OR A (X Z D (L Y))
+ALL X,Y,Z NOT A (X Z D (L Y)) OR A (X Z Y)
+ALL X NOT A (X E H) OR R (X)
+ 
+ 
+THEOREM:
+NOT (ALL Y NOT C (Y))
+ 
+ 
+ 
+MINKER.APABHP.OLD
+ 
+AXIOMS:
+ALL X,Y NOT A (X E Y) OR NOT A (X T Y)
+ALL X,Y I (M (X) D (L Y))
+NOT R (H)
+ALL Y,Z A (H Z D (G (Z) Y))
+A (M (S) E N)
+ALL X,Y,Z NOT A (M (X) Z D (G (Z) Y)) OR A (M (X) Z Y) OR I (M (X) Y)
+ALL X,Y,Z NOT A (M (X) Z T) OR NOT A (H Z Y) OR I (M (K (Y)) D (P Y))
+ALL X,Y,Z NOT A (H Z Y) OR A (M (X) Z Y) OR NOT I (M (X) Y)
+ALL X,Y,Z NOT A (M (X) Z Y) OR A (H Z Y) OR NOT I (M (X) Y)
+ALL X,Y NOT A (X T Y) OR C (Y) OR NOT R (X)
+ALL X,Y,Z NOT A (M (X) Z Y) OR A (M (X) Z D (G (Z) Y))
+ALL X,Y,Z NOT I (M (X) Y) OR I (M (X) D (G (Z) Y))
+ALL Y,Z NOT A (H Z Y) OR A (M (K (Y)) Z Y)
+ALL X,Y,Z NOT A (X Z Y) OR A (X Z D (P Y))
+ALL X,Y,Z NOT A (X Z Y) OR A (X Z D (L Y))
+ALL X,Y,Z NOT A (X Z D (L Y)) OR A (X Z Y)
+ALL X NOT A (X E N) OR R (X)
+ 
+ 
+THEOREM:
+NOT (ALL Y NOT C (Y))
+ 
+ 
+ 
+MINKER.BURST-SPEZ
+ 
+AXIOMS:
+HAS (P1 ASS (J 0))
+SUC (P2 P1)
+HAS (P2 ASS (K 1))
+LBL (LOO P3)
+SUC (P3 P2)
+HAS (P3 IFT (XEQ (J N) P4))
+HAS (P4 GOT (OUT))
+SUC (P5 P4)
+SUC (P6 P3)
+HAS (P6 ASS (K XTM (2 K)))
+SUC (P7 P6)
+HAS (P7 ASS (J XPL (J 1)))
+SUC (P8 P7)
+HAS (P8 GOT (LOO))
+ALL XP,YP,ZP NOT SUC (XP ZP) OR NOT SUC (ZP YP) OR SUC (XP YP)
+ALL XP,YP,ZP NOT HAS (XP GOT (ZP)) OR NOT LBL (ZP YP) OR SUC (YP XP)
+ALL XP,YP,ZP NOT HAS (XP IFT (ZP YP)) OR SUC (YP XP)
+ 
+ 
+THEOREM:
+SUC (P3 P3)
+ 
+ 
+ 
+MINKER.BURSTALL
+ 
+AXIOMS:
+HAS (P1 ASS (J 0))
+PLW (P2 P1)
+HAS (P2 ASS (K 1))
+LBL (LOO P3)
+PLW (P3 P2)
+HAS (P3 IFT (XEQ (J N) P4))
+HAS (P4 GOT (OUT))
+PLW (P5 P4)
+PLW (P6 P3)
+HAS (P6 ASS (K XTM (2 K)))
+PLW (P7 P6)
+HAS (P7 ASS (J XPL (J 1)))
+PLW (P8 P7)
+HAS (P8 GOT (LOO))
+ALL XP,YP NOT PLW (XP YP) OR SUC (XP YP)
+ALL XP,YP,ZP NOT SUC (XP ZP) OR NOT SUC (ZP YP) OR SUC (XP YP)
+ALL XP,YP,ZP NOT HAS (XP GOT (ZP)) OR NOT LBL (ZP YP) OR SUC (YP XP)
+ALL XP,YP,ZP NOT HAS (XP IFT (ZP YP)) OR SUC (YP XP)
+ 
+ 
+THEOREM:
+SUC (P3 P3)
+ 
+ 
+ 
+MINKER.DBABHP
+ 
+AXIOMS:
+ALL X,Y,Z NOT A (X Z Y) OR NOT H (Z Y) OR I (X P (Y))
+ALL W,Y,Z NOT H (W Y) OR H (Z G (Z Y))
+ALL W,X,Y,Z A (X Z G (Z Y)) OR NOT H (W Y) OR NOT I (X Y)
+ALL Y,Z NOT H (Z Y) OR H (Z L (Y))
+ALL X NOT I (X L (X))
+ALL X,Y NOT A (X E Y) OR R (X)
+ALL X,Y,Z NOT A (X Z Y) OR A (X Z L (Y))
+ALL X,Y,Z NOT A (X Z Y) OR A (X Z P (Y))
+ALL X,Y,Z NOT A (X Z Y) OR B (X P (G (Z L (Y))))
+ALL X,Y C (Y) OR NOT Q (X T Y) OR NOT R (X)
+ALL W,X,Y,Z NOT A (X W Y) OR NOT B (X Y) OR Q (X Z G (Z Y))
+ALL W,X,Y,Z NOT A (X W Y) OR A (X W G (Z Y)) OR I (X Y)
+ 
+ 
+THEOREM:
+NOT ((ALL Y NOT C (Y)) AND (ALL W A (S E W)))
+ 
+ 
+ 
+MINKER.DM.OLD
+ 
+AXIOMS:
+ALL X,Y,Z,U,V,W NOT P (Y X U) OR NOT P (X V Z) OR NOT P (Y Z W) OR P (U V W)
+ALL X,Y P (G (X Y) X Y)
+ALL X,Y P (X H (X Y) Y)
+ 
+ 
+THEOREM:
+NOT (ALL X NOT P (K (X) X K (X)))
+ 
+ 
+ 
+MINKER.EW1
+ 
+AXIOMS:
+ALL X P (X) OR Q (X)
+ALL X NOT Q (X) OR R (X)
+ALL X NOT R (X) OR S (X)
+ALL X NOT R (X) OR NOT S (X) OR T (X)
+ALL X P (X) OR NOT T (X)
+ 
+ 
+THEOREM:
+NOT (ALL X NOT P (X))
+ 
+ 
+ 
+MINKER.EW2
+ 
+AXIOMS:
+ALL X P (X) OR Q (X)
+ALL X NOT P (X) OR Q (X)
+ALL X P (X) OR NOT Q (X) OR NOT R (X)
+ALL X R (X)
+ 
+ 
+THEOREM:
+NOT (ALL X NOT P (X) OR NOT Q (X))
+ 
+ 
+ 
+MINKER.EW3
+ 
+AXIOMS:
+ALL X P (X) OR NOT S (X) OR NOT T (X)
+ALL X NOT R (X) OR S (X)
+ALL X R (X) OR NOT T (X)
+ALL X NOT Q (X) OR NOT R (X) OR T (X)
+ALL X NOT Q (X) OR R (X)
+ALL X Q (X) OR R (X)
+ALL X Q (X) OR NOT R (X)
+ALL X NOT P (X) OR Q (X) OR NOT S (X)
+ 
+ 
+THEOREM:
+NOT (ALL X NOT P (X) OR NOT Q (X) OR NOT R (X))
+ 
+ 
+ 
+MINKER.EX1
+ 
+AXIOMS:
+ALL X P (E X X)
+ALL X P (X E X)
+ALL U,V,W,X,Y,Z NOT P (X Y Z) OR NOT P (Y W V) OR NOT P (X V U) OR P (Z W U)
+ALL U,V,W,X,Y,Z NOT P (X Y Z) OR NOT P (Y W V) OR NOT P (Z W U) OR P (X V U)
+ALL X P (X X E)
+P (A B C)
+ 
+ 
+THEOREM:
+P (B A C)
+ 
+ 
+ 
+MINKER.EX5
+ 
+AXIOMS:
+ALL X P (X E X)
+S (A)
+NOT P (E E D)
+ALL U,X,Y NOT P (G (X) G (Y) U) OR P (X Y U)
+ALL U,X,Y NOT P (X Y U) OR P (X G (Y) G (U))
+ALL X P (X F (X) E) OR P (X X D)
+ALL X NOT S (X) OR NOT S (G (X))
+ALL X NOT P (X X D) OR NOT S (X)
+ALL U,X,Y NOT P (X Y U) OR P (G (X) G (Y) U)
+ALL U,X,Y NOT P (X Y U) OR P (Y X U)
+ALL X S (X) OR P (X X D) OR S (G (X))
+ALL U,X,Y NOT P (X Y U) OR P (U U D) OR NOT P (X X D)
+ALL U,X,Y NOT S (X) OR NOT S (Y) OR NOT P (X Y U) OR S (U)
+ 
+ 
+THEOREM:
+S (F (A))
+ 
+ 
+ 
+MINKER.GROUP1
+ 
+AXIOMS:
+ALL U,V,W,X,Y,Z NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (X V W) OR P (U Z W)
+ALL U,V,W,X,Y,Z NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (U Z W) OR P (X V W)
+ALL X,Y P (G (X Y) X Y)
+ALL X,Y P (X H (X Y) Y)
+ALL X,Y P (X Y F (X Y))
+ 
+ 
+THEOREM:
+NOT (ALL X NOT P (J (X) X J (X)))
+ 
+ 
+ 
+MINKER.GROUP1.OLD
+ 
+AXIOMS:
+ALL U,V,W,X,Y,Z NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (X V W) OR P (U Z W)
+ALL U,V,W,X,Y,Z NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (U Z W) OR P (X V W)
+ALL X,Y P (G (X Y) X Y)
+ALL X,Y P (X H (X Y) Y)
+ALL X,Y P (X Y F (X Y))
+ 
+ 
+THEOREM:
+NOT (ALL X NOT P (J (X) X J (X)))
+ 
+ 
+ 
+MINKER.GROUP2
+ 
+AXIOMS:
+ALL X P (X E X)
+ALL X P (E X X)
+ALL U,V,W,X,Y,Z NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (U Z W) OR P (X V W)
+ALL U,V,W,X,Y,Z NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (X V W) OR P (U Z W)
+ALL X P (X X E)
+ 
+ 
+THEOREM:
+P (B A C) OR NOT P (A B C)
+ 
+ 
+ 
+MINKER.HASPARTS
+ 
+AXIOMS:
+IN (JHN BOY)
+ALL X NOT IN (X BOY) OR IN (X HUM)
+ALL V,W,X,Y,Z NOT HP (X V Y) OR IN (SK1 (X Y Z V W) Y) OR HP (X T (V W) Z)
+ALL V,W,X,Y,Z NOT HP (X V Y) OR NOT HP (SK1 (X Y Z V W) W Z) OR HP (X T (V W) Z)
+ALL X NOT IN (X HAN) OR HP (X 5 FIN)
+ALL X NOT IN (X HUM) OR HP (X 2 ARM)
+ALL X NOT IN (X ARM) OR HP (X 1 HAN)
+ 
+ 
+THEOREM:
+HP (JHN T (2 1) HAN) AND HP (JHN T (T (2 1) 5) FIN)
+ 
+ 
+ 
+MINKER.LS.005
+ 
+AXIOMS:
+ALL X Q (X) OR P (A)
+ALL X NOT Q (X) OR P (X)
+ALL X NOT Q (X) OR NOT P (X)
+ 
+ 
+THEOREM:
+NOT (ALL X Q (X) OR NOT P (X))
+ 
+ 
+ 
+MINKER.LS.017
+ 
+AXIOMS:
+ALL X NOT L (X X)
+ALL X,Y NOT L (X Y) OR NOT L (Y X)
+ALL X D (X X)
+ALL X,Y,Z NOT D (X Y) OR NOT D (Y Z) OR D (X Z)
+ALL X,Y NOT D (X Y) OR NOT L (Y X)
+ALL X,Y L (Y X) OR NOT D (X F (Y))
+ALL X L (X F (X))
+ALL X P (X) OR D (H (X) X)
+ALL X P (X) OR P (H (X))
+ALL X P (X) OR L (H (X) X)
+ 
+ 
+THEOREM:
+NOT (P (A) AND (ALL X NOT P (X) OR NOT L (A X) OR L (F (A) X)))
+ 
+ 
+ 
+MINKER.LS.023
+ 
+AXIOMS:
+ALL X,Y P (X Y F (X Y))
+ALL X P (X G (X) E)
+ALL X P (X E X)
+ALL X,Y,Z,U,V,W NOT P (X Y Z) OR NOT P (Y U V) OR NOT P (X V W) OR P (Z U W)
+ALL X,Y,Z,U,V,W NOT P (X Y Z) OR NOT P (Y U V) OR NOT P (Z U W) OR P (X V W)
+ 
+ 
+THEOREM:
+NOT (ALL X NOT P (X A E))
+ 
+ 
+ 
+MINKER.LS.029.NP
+ 
+AXIOMS:
+ALL X,Y EQ (P (X Y) P (Y X))
+ALL X,Y,Z EQ (P (X P (Y Z)) P (P (X Y) Z))
+ALL X,Y EQ (M (P (X Y) Y) X)
+ALL X,Y EQ (X M (P (X Y) Y))
+ALL X,Y,Z EQ (P (M (X Y) Z) M (P (X Z) Y))
+ALL X,Y,Z NOT EQ (X Y) OR NOT EQ (Y Z) OR EQ (X Z)
+ALL X,Y,U,V NOT EQ (X Y) OR NOT EQ (U P (X V)) OR EQ (U P (Y V))
+ALL X,Y,U,V NOT EQ (X Y) OR NOT EQ (U M (X V)) OR EQ (U M (Y V))
+ALL X,Y,U,V NOT EQ (X Y) OR NOT EQ (U M (V X)) OR EQ (U M (V Y))
+ALL X,Y,U,V NOT EQ (X Y) OR NOT EQ (U P (V X)) OR EQ (U P (V Y))
+ 
+ 
+THEOREM:
+EQ (P (M (A B) C) P (A M (C B)))
+ 
+ 
+ 
+MINKER.LS.068
+ 
+AXIOMS:
+ALL X,Y NOT EQ (S (X) S (Y)) OR EQ (X Y)
+ALL X NOT EQ (S (X) O)
+ALL X,Y,Z NOT EQ (X Y) OR NOT EQ (X Z) OR EQ (Y Z)
+ALL X,Y NOT EQ (X Y) OR EQ (S (X) S (Y))
+ALL X EQ (P (X O) X)
+ALL X,Y EQ (P (X S (Y)) S (P (X Y)))
+ALL X EQ (M (X O) O)
+ALL X,Y EQ (M (X S (Y)) P (M (X Y) X))
+ALL X EQ (X X)
+ALL X,Y NOT EQ (X Y) OR EQ (Y X)
+ALL X,Y,Z NOT EQ (X Y) OR NOT EQ (Y Z) OR EQ (X Z)
+ALL X,Y NOT L (X Y) OR EQ (P (S (P (X Y)) X) Y)
+ALL X,Y,Z NOT EQ (P (S (Z) X) Y) OR L (X Y)
+ALL X L (X S (X))
+ 
+ 
+THEOREM:
+L (O S (A))
+ 
+ 
+ 
+MINKER.LS.075
+ 
+AXIOMS:
+ALL X,Y NOT EQ (S (X) S (Y)) OR EQ (X Y)
+ALL X NOT EQ (S (X) O)
+ALL X,Y,Z NOT EQ (X Y) OR NOT EQ (X Z) OR EQ (Y Z)
+ALL X,Y NOT EQ (X Y) OR EQ (S (X) S (Y))
+ALL X EQ (P (X O) X)
+ALL X,Y EQ (P (X S (Y)) S (P (X Y)))
+ALL X EQ (M (X O) O)
+ALL X,Y EQ (M (X S (Y)) P (M (X Y) X))
+ALL X EQ (X X)
+ALL X,Y NOT EQ (X Y) OR EQ (Y X)
+ALL X,Y,Z NOT EQ (X Y) OR NOT EQ (Y Z) OR EQ (X Z)
+ALL X,Y NOT L (X Y) OR EQ (P (S (P (X Y)) X) Y)
+ALL X,Y,Z NOT EQ (P (S (Z) X) Y) OR L (X Y)
+ALL X,Y EQ (P (X Y) P (Y X))
+ALL X,Y,Z NOT EQ (P (X Z) P (Y Z)) OR EQ (X Y)
+ 
+ 
+THEOREM:
+NOT L (A A)
+ 
+ 
+ 
+MINKER.LS.076
+ 
+AXIOMS:
+ALL X,Y NOT EQ (S (X) S (Y)) OR EQ (X Y)
+ALL X NOT EQ (S (X) O)
+ALL X,Y,Z NOT EQ (X Y) OR NOT EQ (X Z) OR EQ (Y Z)
+ALL X,Y NOT EQ (X Y) OR EQ (S (X) S (Y))
+ALL X EQ (P (X O) X)
+ALL X,Y EQ (P (X S (Y)) S (P (X Y)))
+ALL X EQ (M (X O) O)
+ALL X,Y EQ (M (X S (Y)) P (M (X Y) X))
+ALL X EQ (X X)
+ALL X,Y NOT EQ (X Y) OR EQ (Y X)
+ALL X,Y,Z NOT EQ (X Y) OR NOT EQ (Y Z) OR EQ (X Z)
+ALL X,Y NOT L (X Y) OR EQ (P (S (P (X Y)) X) Y)
+ALL X,Y,Z NOT EQ (P (S (Z) X) Y) OR L (X Y)
+ALL X,Y,Z NOT L (X Y) OR NOT L (Y Z) OR L (X Z)
+ALL X NOT L (X X)
+ 
+ 
+THEOREM:
+NOT (L (A B) AND L (B A))
+ 
+ 
+ 
+MINKER.LS.087
+ 
+AXIOMS:
+ALL X,Y NOT EQ (S (X) S (Y)) OR EQ (X Y)
+ALL X NOT EQ (S (X) O)
+ALL X,Y,Z NOT EQ (X Y) OR NOT EQ (X Z) OR EQ (Y Z)
+ALL X,Y NOT EQ (X Y) OR EQ (S (X) S (Y))
+ALL X EQ (P (X O) X)
+ALL X,Y EQ (P (X S (Y)) S (P (X Y)))
+ALL X EQ (M (X O) O)
+ALL X,Y EQ (M (X S (Y)) P (M (X Y) X))
+ALL X EQ (X X)
+ALL X,Y NOT EQ (X Y) OR EQ (Y X)
+ALL X,Y,Z NOT EQ (X Y) OR NOT EQ (Y Z) OR EQ (X Z)
+ALL X,Y NOT L (X Y) OR EQ (P (S (P (X Y)) X) Y)
+ALL X,Y,Z NOT EQ (P (S (Z) X) Y) OR L (X Y)
+ALL X,Y,Z NOT L (X Y) OR NOT L (Y Z) OR L (X Z)
+ALL X NOT L (X X)
+ALL X,Y,Z NOT EQ (X Y) OR EQ (M (X Z) M (Y Z))
+ALL X,Y NOT EQ (X Y) OR NOT L (X Y)
+ALL X,Y L (X Y) OR EQ (X Y) OR L (Y X)
+ALL X,Y,Z EQ (Z O) OR NOT L (X Y) OR L (M (X Z) M (Y Z))
+ 
+ 
+THEOREM:
+NOT (NOT EQ (C O) AND L (M (A C) M (B C)) AND NOT L (A B))
+ 
+ 
+ 
+MINKER.LS.100
+ 
+AXIOMS:
+ALL X,Y,Z NOT S (X Y) OR NOT M (Z X) OR M (Z Y)
+ALL X,Y M (F (X Y) X) OR S (X Y)
+ALL X,Y NOT M (F (X Y) Y) OR S (X Y)
+ALL X,Y NOT E (X Y) OR S (X Y)
+ALL X,Y NOT E (X Y) OR S (Y X)
+ALL X,Y NOT S (X Y) OR NOT S (Y X) OR E (X Y)
+ 
+ 
+THEOREM:
+NOT (E (B C) AND M (A B) AND NOT M (A C))
+ 
+ 
+ 
+MINKER.LS.103
+ 
+AXIOMS:
+ALL X,Y,Z NOT S (X Y) OR NOT M (Z X) OR M (Z Y)
+ALL X,Y M (F (X Y) X) OR S (X Y)
+ALL X,Y NOT M (F (X Y) Y) OR S (X Y)
+ALL X,Y NOT E (X Y) OR S (X Y)
+ALL X,Y NOT E (X Y) OR S (Y X)
+ALL X,Y NOT S (X Y) OR NOT S (Y X) OR E (X Y)
+ALL X,Y,Z,W NOT UN (X Y Z) OR NOT M (W Z) OR M (W X) OR M (W Y)
+ALL X,Y,Z,W NOT UN (X Y Z) OR NOT M (W X) OR M (W Z)
+ALL X,Y,Z,W NOT UN (X Y Z) OR NOT M (W Y) OR M (W Z)
+ALL X,Y,Z M (G (X Y Z) Z) OR M (G (X Y Z) X) OR M (G (X Y Z) Y) OR UN (X Y Z)
+ALL X,Y,Z NOT M (G (X Y Z) X) OR NOT M (G (X Y Z) Z) OR UN (X Y Z)
+ALL X,Y,Z NOT M (G (X Y Z) Y) OR NOT M (G (X Y Z) Z) OR UN (X Y Z)
+ 
+ 
+THEOREM:
+NOT (UN (A A B) AND NOT E (B A))
+ 
+ 
+ 
+MINKER.LS.105
+ 
+AXIOMS:
+ALL X,Y,Z NOT S (X Y) OR NOT M (Z X) OR M (Z Y)
+ALL X,Y M (F (X Y) X) OR S (X Y)
+ALL X,Y NOT M (F (X Y) Y) OR S (X Y)
+ALL X,Y NOT E (X Y) OR S (X Y)
+ALL X,Y NOT E (X Y) OR S (Y X)
+ALL X,Y NOT S (X Y) OR NOT S (Y X) OR E (X Y)
+ALL X,Y,Z,W NOT UN (X Y Z) OR NOT M (W Z) OR M (W X) OR M (W Y)
+ALL X,Y,Z,W NOT UN (X Y Z) OR NOT M (W X) OR M (W Z)
+ALL X,Y,Z,W NOT UN (X Y Z) OR NOT M (W Y) OR M (W Z)
+ALL X,Y,Z M (G (X Y Z) Z) OR M (G (X Y Z) X) OR M (G (X Y Z) Y) OR UN (X Y Z)
+ALL X,Y,Z NOT M (G (X Y Z) X) OR NOT M (G (X Y Z) Z) OR UN (X Y Z)
+ALL X,Y,Z NOT M (G (X Y Z) Y) OR NOT M (G (X Y Z) Z) OR UN (X Y Z)
+ 
+ 
+THEOREM:
+NOT (UN (A B B) AND NOT S (A B))
+ 
+ 
+ 
+MINKER.LS.106
+ 
+AXIOMS:
+ALL X,Y,Z NOT S (X Y) OR NOT M (Z X) OR M (Z Y)
+ALL X,Y M (F (X Y) X) OR S (X Y)
+ALL X,Y NOT M (F (X Y) Y) OR S (X Y)
+ALL X,Y NOT E (X Y) OR S (X Y)
+ALL X,Y NOT E (X Y) OR S (Y X)
+ALL X,Y NOT S (X Y) OR NOT S (Y X) OR E (X Y)
+ALL X,Y,Z,W NOT UN (X Y Z) OR NOT M (W Z) OR M (W X) OR M (W Y)
+ALL X,Y,Z,W NOT UN (X Y Z) OR NOT M (W X) OR M (W Z)
+ALL X,Y,Z,W NOT UN (X Y Z) OR NOT M (W Y) OR M (W Z)
+ALL X,Y,Z M (G (X Y Z) Z) OR M (G (X Y Z) X) OR M (G (X Y Z) Y) OR UN (X Y Z)
+ALL X,Y,Z NOT M (G (X Y Z) X) OR NOT M (G (X Y Z) Z) OR UN (X Y Z)
+ALL X,Y,Z NOT M (G (X Y Z) Y) OR NOT M (G (X Y Z) Z) OR UN (X Y Z)
+ 
+ 
+THEOREM:
+NOT (UN (A B C) AND NOT S (A C))
+ 
+ 
+ 
+MINKER.LS.108.NP
+ 
+AXIOMS:
+ALL X,Y,Z NOT S (X Y) OR NOT M (Z X) OR M (Z Y)
+ALL X,Y M (F (X Y) X) OR S (X Y)
+ALL X,Y NOT M (F (X Y) Y) OR S (X Y)
+ALL X,Y NOT E (X Y) OR S (X Y)
+ALL X,Y NOT E (X Y) OR S (Y X)
+ALL X,Y NOT S (X Y) OR NOT S (Y X) OR E (X Y)
+ALL X,Y,Z,W NOT IN (X Y Z) OR NOT M (W Z) OR M (W X)
+ALL X,Y,Z,W NOT IN (X Y Z) OR NOT M (W Z) OR M (W Y)
+ALL X,Y,Z,W NOT IN (X Y Z) OR NOT M (W X) OR NOT M (W Y) OR M (W Z)
+ALL X,Y,Z IN (X Y Z) OR M (H (X Y Z) Z) OR M (H (X Y Z) X)
+ALL X,Y,Z IN (X Y Z) OR M (H (X Y Z) Z) OR M (H (X Y Z) Y)
+ALL X,Y,Z IN (X Y Z) OR NOT M (H (X Y Z) X) OR NOT M (H (X Y Z) Y) OR NOT M (H (X Y Z) Z)
+ 
+ 
+THEOREM:
+NOT (IN (A B C) AND IN (B D AP) AND IN (A AP BP) AND NOT IN (C D BP))
+ 
+ 
+ 
+MINKER.LS.111
+ 
+AXIOMS:
+ALL X,Y,Z NOT S (X Y) OR NOT M (Z X) OR M (Z Y)
+ALL X,Y M (F (X Y) X) OR S (X Y)
+ALL X,Y NOT M (F (X Y) Y) OR S (X Y)
+ALL X,Y NOT E (X Y) OR S (X Y)
+ALL X,Y NOT E (X Y) OR S (Y X)
+ALL X,Y NOT S (X Y) OR NOT S (Y X) OR E (X Y)
+ALL X,Y,Z,W NOT IN (X Y Z) OR NOT M (W Z) OR M (W X)
+ALL X,Y,Z,W NOT IN (X Y Z) OR NOT M (W Z) OR M (W Y)
+ALL X,Y,Z,W NOT IN (X Y Z) OR NOT M (W X) OR NOT M (W Y) OR M (W Z)
+ALL X,Y,Z IN (X Y Z) OR M (H (X Y Z) Z) OR M (H (X Y Z) X)
+ALL X,Y,Z IN (X Y Z) OR M (H (X Y Z) Z) OR M (H (X Y Z) Y)
+ALL X,Y,Z IN (X Y Z) OR NOT M (H (X Y Z) X) OR NOT M (H (X Y Z) Y) OR NOT M (H (X Y Z) Z)
+ 
+ 
+THEOREM:
+NOT (NOT S (A B) AND IN (A B A))
+ 
+ 
+ 
+MINKER.LS.115
+ 
+AXIOMS:
+ALL X,Y,Z NOT S (X Y) OR NOT M (Z X) OR M (Z Y)
+ALL X,Y M (F (X Y) X) OR S (X Y)
+ALL X,Y NOT M (F (X Y) Y) OR S (X Y)
+ALL X,Y NOT E (X Y) OR S (X Y)
+ALL X,Y NOT E (X Y) OR S (Y X)
+ALL X,Y NOT S (X Y) OR NOT S (Y X) OR E (X Y)
+ALL X,Y,Z,W NOT IN (X Y Z) OR NOT M (W Z) OR M (W X)
+ALL X,Y,Z,W NOT IN (X Y Z) OR NOT M (W Z) OR M (W Y)
+ALL X,Y,Z,W NOT IN (X Y Z) OR NOT M (W X) OR NOT M (W Y) OR M (W Z)
+ALL X,Y,Z IN (X Y Z) OR M (H (X Y Z) Z) OR M (H (X Y Z) X)
+ALL X,Y,Z IN (X Y Z) OR M (H (X Y Z) Z) OR M (H (X Y Z) Y)
+ALL X,Y,Z IN (X Y Z) OR NOT M (H (X Y Z) X) OR NOT M (H (X Y Z) Y) OR NOT M (H (X Y Z) Z)
+ALL X,Y,Z,W (NOT CM (X Y Z) OR NOT M (W Z) OR M (W X))
+ALL X,Y,Z,W (NOT CM (X Y Z) OR NOT M (W Z) OR NOT M (W Y))
+ALL X,Y,Z,W (NOT CM (X Y Z) OR NOT M (W X) OR M (W Y) OR M (W Z))
+ALL X,Y,Z (M (K (X Y Z) Z) OR M (K (X Y Z) X) OR CM (X Y Z))
+ALL X,Y,Z (M (K (X Y Z) Z) OR NOT M (K (X Y Z) Y) OR CM (X Y Z))
+ALL X,Y,Z (NOT M (K (X Y Z) X) OR M (K (X Y Z) Y) OR NOT M (K (X Y Z) Z) OR CM (X Y Z))
+ALL Y NOT M (Y O)
+ 
+ 
+THEOREM:
+NOT (CM (B A C) AND NOT IN (A C O))
+ 
+ 
+ 
+MINKER.LS.116
+ 
+AXIOMS:
+ALL X,Y,Z NOT S (X Y) OR NOT M (Z X) OR M (Z Y)
+ALL X,Y M (F (X Y) X) OR S (X Y)
+ALL X,Y NOT M (F (X Y) Y) OR S (X Y)
+ALL X,Y NOT E (X Y) OR S (X Y)
+ALL X,Y NOT E (X Y) OR S (Y X)
+ALL X,Y NOT S (X Y) OR NOT S (Y X) OR E (X Y)
+ALL X,Y,Z,W (NOT CM (X Y Z) OR NOT M (W Z) OR M (W X))
+ALL X,Y,Z,W (NOT CM (X Y Z) OR NOT M (W Z) OR NOT M (W Y))
+ALL X,Y,Z,W (NOT CM (X Y Z) OR NOT M (W X) OR M (W Y) OR M (W Z))
+ALL X,Y,Z (M (K (X Y Z) Z) OR M (K (X Y Z) X) OR CM (X Y Z))
+ALL X,Y,Z (M (K (X Y Z) Z) OR NOT M (K (X Y Z) Y) OR CM (X Y Z))
+ALL X,Y,Z (NOT M (K (X Y Z) X) OR M (K (X Y Z) Y) OR NOT M (K (X Y Z) Z) OR CM (X Y Z))
+ 
+ 
+THEOREM:
+NOT (S (A B) AND CM (C B D) AND CM (C A AP) AND NOT S (D AP))
+ 
+ 
+ 
+MINKER.MQW
+ 
+AXIOMS:
+ALL Y G (Y A) OR G (F (Y) Y)
+ALL Y G (Y A) OR G (Y F (Y))
+ALL W,Y NOT G (W Y) OR G (F (Y) Y)
+ALL W,Y NOT G (W Y) OR G (Y F (Y))
+ 
+ 
+THEOREM:
+NOT (ALL W,Y NOT G (W Y) OR NOT G (Y A))
+ 
+ 
+ 
+MINKER.NUM1
+ 
+AXIOMS:
+ALL W,X,Y,Z NOT P (X) OR NOT M (Y Z W) OR NOT D (X W) OR D (X Y) OR D (X Z)
+ALL X M (X X S (X))
+ALL X,Y,Z NOT M (X Y Z) OR M (Y X Z)
+ALL X,Y,Z NOT M (X Y Z) OR D (X Z)
+ 
+ 
+THEOREM:
+NOT M (A S (C) S (B)) OR NOT P (A) OR D (A B)
+ 
+ 
+ 
+MINKER.PRIM
+ 
+AXIOMS:
+ALL X D (X X)
+ALL X,Y,Z NOT D (X Y) OR NOT D (Y Z) OR D (X Z)
+ALL X P (X) OR D (G (X) X)
+ALL X P (X) OR L (1 G (X))
+ALL X P (X) OR L (G (X) X)
+ALL X NOT L (1 X) OR NOT L (X A) OR P (F (X))
+ALL X NOT L (1 X) OR NOT L (X A) OR D (F (X) X)
+L (1 A)
+ 
+ 
+THEOREM:
+NOT (ALL X NOT P (X) OR NOT D (X A))
+ 
+ 
+ 
+MINKER.QW
+ 
+AXIOMS:
+ALL X P (X A) OR P (X F (X))
+ALL X P (X A) OR P (F (X) X)
+ 
+ 
+THEOREM:
+NOT (ALL X,Y NOT P (X A) OR NOT P (X Y) OR NOT P (Y X))
+ 
+ 
+ 
+MINKER.ROB1
+ 
+AXIOMS:
+ALL X,Y P (X Y)
+ALL X,Y NOT P (Y F (X Y)) OR NOT P (F (X Y) F (X Y)) OR Q (X Y)
+ 
+ 
+THEOREM:
+NOT (ALL X,Y NOT P (Y F (X Y)) OR NOT P (F (X Y) F (X Y)) OR NOT Q (X F (X Y)) OR NOT Q (F (X Y) F (X Y)))
+ 
+ 
+ 
+MINKER.ROB2
+ 
+AXIOMS:
+P (A B C)
+ALL X P (X X E)
+ALL X P (X E X)
+ALL X P (E X X)
+ALL U,V,W,X,Y,Z NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (X V W) OR P (U Z W)
+ALL U,V,W,X,Y,Z NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (U Z W) OR P (X V W)
+ 
+ 
+THEOREM:
+P (B A C)
+ 
+ 
+ 
+MINKER.SHORTBURST
+ 
+AXIOMS:
+LBL (LOO P3)
+HAS (P3 IFT (XEQ (J N) P4))
+HAS (P4 GOT (OUT))
+FLW (P5 P4)
+FLW (P8 P3)
+HAS (P8 GOT (LOO))
+ALL XP,YP NOT FLW (XP YP) OR SUC (XP YP)
+ALL XP,YP,ZP NOT SUC (XP ZP) OR NOT SUC (ZP YP) OR SUC (XP YP)
+ALL XP,YP,ZP NOT HAS (XP GOT (ZP)) OR NOT LBL (ZP YP) OR SUC (YP XP)
+ALL XP,YP,ZP NOT HAS (XP IFT (ZP YP)) OR SUC (YP XP)
+ 
+ 
+THEOREM:
+SUC (P3 P3)
+ 
+ 
+ 
+MINKER.WOS.01
+ 
+AXIOMS:
+ALL X P (E X X)
+ALL X P (G (X) X E)
+ALL X,Y P (X Y F (X Y))
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (U Z W) OR P (X V W)
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (X V W) OR P (U Z W)
+ALL X,Y,Z NOT R (X Y) OR NOT R (Y Z) OR R (X Z)
+ALL X,Y,U,V NOT P (X Y U) OR NOT P (X Y V) OR R (U V)
+ALL X,Y,U,V NOT P (X Y U) OR P (X Y V) OR NOT R (U V)
+ALL X,Y,U,V NOT P (X U Y) OR P (X V Y) OR NOT R (U V)
+ALL X,Y,U,V NOT P (U X Y) OR P (V X Y) OR NOT R (U V)
+ALL X,U,V NOT R (U V) OR R (F (X U) F (X V))
+ALL Y,U,V NOT R (U V) OR R (F (U Y) F (V Y))
+ALL U,V NOT R (U V) OR R (G (U) G (V))
+ALL U,V NOT R (U V) OR R (H (U) H (V))
+ 
+ 
+THEOREM:
+NOT (ALL X NOT P (H (X) X H (X)))
+ 
+ 
+ 
+MINKER.WOS.02
+ 
+AXIOMS:
+ALL X P (E X X)
+ALL X P (G (X) X E)
+ALL X,Y P (X Y F (X Y))
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (U Z W) OR P (X V W)
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (X V W) OR P (U Z W)
+ALL X,Y,Z NOT R (X Y) OR NOT R (Y Z) OR R (X Z)
+ALL X,Y,U,V NOT P (X Y U) OR NOT P (X Y V) OR R (U V)
+ALL X,Y,U,V NOT P (X Y U) OR P (X Y V) OR NOT R (U V)
+ALL X,Y,U,V NOT P (X U Y) OR P (X V Y) OR NOT R (U V)
+ALL X,Y,U,V NOT P (U X Y) OR P (V X Y) OR NOT R (U V)
+ALL X,U,V NOT R (U V) OR R (F (X U) F (X V))
+ALL Y,U,V NOT R (U V) OR R (F (U Y) F (V Y))
+ALL U,V NOT R (U V) OR R (G (U) G (V))
+ 
+ 
+THEOREM:
+P (A E A)
+ 
+ 
+ 
+MINKER.WOS.03
+ 
+AXIOMS:
+ALL X P (E X X)
+ALL X P (G (X) X E)
+ALL X,Y P (X Y F (X Y))
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (U Z W) OR P (X V W)
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (X V W) OR P (U Z W)
+ALL X,Y,Z NOT R (X Y) OR NOT R (Y Z) OR R (X Z)
+ALL X,Y,U,V NOT P (X Y U) OR NOT P (X Y V) OR R (U V)
+ALL X,Y,U,V NOT P (X Y U) OR P (X Y V) OR NOT R (U V)
+ALL X,Y,U,V NOT P (X U Y) OR P (X V Y) OR NOT R (U V)
+ALL X,Y,U,V NOT P (U X Y) OR P (V X Y) OR NOT R (U V)
+ALL X,U,V NOT R (U V) OR R (F (X U) F (X V))
+ALL Y,U,V NOT R (U V) OR R (F (U Y) F (V Y))
+ALL U,V NOT R (U V) OR R (G (U) G (V))
+ALL X P (X E X)
+ALL X P (X G (X) E)
+ 
+ 
+THEOREM:
+NOT (ALL X P (A X X) AND P (X A X) AND NOT R (E A))
+ 
+ 
+ 
+MINKER.WOS.04.EQ
+ 
+AXIOMS:
+ALL X Q (X) EQV (ALL Y P (X Y) = P (Y X))
+ALL X P (X E) = X
+ALL X P (E X) = X
+ALL X P (X I (X)) = E
+ALL X P (I (X) X) = E
+ALL X,Y,Z P (P (X Y) Z) = P (X P (Y Z))
+ 
+ 
+THEOREM:
+Q (E)
+ 
+ 
+ 
+MINKER.WOS.05
+ 
+AXIOMS:
+ALL X P (E X X)
+ALL X P (G (X) X E)
+ALL X,Y P (X Y F (X Y))
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (U Z W) OR P (X V W)
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (X V W) OR P (U Z W)
+ALL X,Y,Z NOT R (X Y) OR NOT R (Y Z) OR R (X Z)
+ALL X,Y,U,V NOT P (X Y U) OR NOT P (X Y V) OR R (U V)
+ALL X,Y,U,V NOT P (X Y U) OR P (X Y V) OR NOT R (U V)
+ALL X,Y,U,V NOT P (X U Y) OR P (X V Y) OR NOT R (U V)
+ALL X,Y,U,V NOT P (U X Y) OR P (V X Y) OR NOT R (U V)
+ALL X,U,V NOT R (U V) OR R (F (X U) F (X V))
+ALL Y,U,V NOT R (U V) OR R (F (U Y) F (V Y))
+ALL U,V NOT R (U V) OR R (G (U) G (V))
+ 
+ 
+THEOREM:
+NOT (ALL Y NOT P (A Y E))
+ 
+ 
+ 
+MINKER.WOS.06
+ 
+AXIOMS:
+ALL X P (E X X)
+ALL X P (G (X) X E)
+ALL X,Y P (X Y F (X Y))
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (U Z W) OR P (X V W)
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (X V W) OR P (U Z W)
+ALL X,Y,Z NOT R (X Y) OR NOT R (Y Z) OR R (X Z)
+ALL X,Y,U,V NOT P (X Y U) OR NOT P (X Y V) OR R (U V)
+ALL X,Y,U,V NOT P (X Y U) OR P (X Y V) OR NOT R (U V)
+ALL X,Y,U,V NOT P (X U Y) OR P (X V Y) OR NOT R (U V)
+ALL X,Y,U,V NOT P (U X Y) OR P (V X Y) OR NOT R (U V)
+ALL X,U,V NOT R (U V) OR R (F (X U) F (X V))
+ALL Y,U,V NOT R (U V) OR R (F (U Y) F (V Y))
+ALL U,V NOT R (U V) OR R (G (U) G (V))
+ALL X P (X E X)
+ALL X P (X G (X) E)
+ 
+ 
+THEOREM:
+NOT (P (A B E) AND P (C B E) AND NOT R (A C))
+ 
+ 
+ 
+MINKER.WOS.07
+ 
+AXIOMS:
+ALL X P (E X X)
+ALL X P (G (X) X E)
+ALL X,Y P (X Y F (X Y))
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (U Z W) OR P (X V W)
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (X V W) OR P (U Z W)
+ALL X,Y,Z NOT R (X Y) OR NOT R (Y Z) OR R (X Z)
+ALL X,Y,U,V NOT P (X Y U) OR NOT P (X Y V) OR R (U V)
+ALL X,Y,U,V NOT P (X Y U) OR P (X Y V) OR NOT R (U V)
+ALL X,Y,U,V NOT P (X U Y) OR P (X V Y) OR NOT R (U V)
+ALL X,Y,U,V NOT P (U X Y) OR P (V X Y) OR NOT R (U V)
+ALL X,U,V NOT R (U V) OR R (F (X U) F (X V))
+ALL Y,U,V NOT R (U V) OR R (F (U Y) F (V Y))
+ALL U,V NOT R (U V) OR R (G (U) G (V))
+ALL X P (X E X)
+ALL X P (X G (X) E)
+ 
+ 
+THEOREM:
+NOT (P (A B E) AND NOT P (B A E))
+ 
+ 
+ 
+MINKER.WOS.08
+ 
+AXIOMS:
+ALL X P (E X X)
+ALL X P (G (X) X E)
+ALL X,Y P (X Y F (X Y))
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (U Z W) OR P (X V W)
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (X V W) OR P (U Z W)
+ALL X,Y,Z NOT R (X Y) OR NOT R (Y Z) OR R (X Z)
+ALL X,Y,U,V NOT P (X Y U) OR NOT P (X Y V) OR R (U V)
+ALL X,Y,U,V NOT P (X Y U) OR P (X Y V) OR NOT R (U V)
+ALL X,Y,U,V NOT P (X U Y) OR P (X V Y) OR NOT R (U V)
+ALL X,Y,U,V NOT P (U X Y) OR P (V X Y) OR NOT R (U V)
+ALL X,U,V NOT R (U V) OR R (F (X U) F (X V))
+ALL Y,U,V NOT R (U V) OR R (F (U Y) F (V Y))
+ALL U,V NOT R (U V) OR R (G (U) G (V))
+ALL X P (X E X)
+ALL X P (X G (X) E)
+ 
+ 
+THEOREM:
+R (G (G (A)) A)
+ 
+ 
+ 
+MINKER.WOS.09
+ 
+AXIOMS:
+ALL X P (E X X)
+ALL X P (G (X) X E)
+ALL X,Y P (X Y F (X Y))
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (U Z W) OR P (X V W)
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (X V W) OR P (U Z W)
+ALL X,Y,Z NOT R (X Y) OR NOT R (Y Z) OR R (X Z)
+ALL X,Y,U,V NOT P (X Y U) OR NOT P (X Y V) OR R (U V)
+ALL X,Y,U,V NOT P (X Y U) OR P (X Y V) OR NOT R (U V)
+ALL X,Y,U,V NOT P (X U Y) OR P (X V Y) OR NOT R (U V)
+ALL X,Y,U,V NOT P (U X Y) OR P (V X Y) OR NOT R (U V)
+ALL X,U,V NOT R (U V) OR R (F (X U) F (X V))
+ALL Y,U,V NOT R (U V) OR R (F (U Y) F (V Y))
+ALL U,V NOT R (U V) OR R (G (U) G (V))
+ALL X P (X E X)
+ALL X P (X G (X) E)
+ 
+ 
+THEOREM:
+NOT (P (A B C) AND P (G (B) G (A) D) AND NOT P (C D E))
+ 
+ 
+ 
+MINKER.WOS.10.NP
+ 
+AXIOMS:
+ALL X P (E X X)
+ALL X P (G (X) X E)
+ALL X,Y P (X Y F (X Y))
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (U Z W) OR P (X V W)
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (X V W) OR P (U Z W)
+ALL X,Y,Z NOT R (X Y) OR NOT R (Y Z) OR R (X Z)
+ALL X,Y,U,V NOT P (X Y U) OR NOT P (X Y V) OR R (U V)
+ALL X,Y,U,V NOT P (X Y U) OR P (X Y V) OR NOT R (U V)
+ALL X,Y,U,V NOT P (X U Y) OR P (X V Y) OR NOT R (U V)
+ALL X,Y,U,V NOT P (U X Y) OR P (V X Y) OR NOT R (U V)
+ALL X,U,V NOT R (U V) OR R (F (X U) F (X V))
+ALL Y,U,V NOT R (U V) OR R (F (U Y) F (V Y))
+ALL U,V NOT R (U V) OR R (G (U) G (V))
+ALL X P (X E X)
+ALL X P (X G (X) E)
+ 
+ 
+THEOREM:
+NOT (ALL X P (X X E) AND P (A B C) AND NOT P (B A C))
+ 
+ 
+ 
+MINKER.WOS.11
+ 
+AXIOMS:
+ALL X P (E X X)
+ALL X P (G (X) X E)
+ALL X,Y P (X Y F (X Y))
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (U Z W) OR P (X V W)
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (X V W) OR P (U Z W)
+ALL X R (X X)
+ALL X,Y NOT R (X Y) OR R (Y X)
+ALL X,Y,Z NOT R (X Y) OR NOT R (Y Z) OR R (X Z)
+ALL X,Y,U,V NOT P (X Y U) OR NOT P (X Y V) OR R (U V)
+ALL X,Y,U,V NOT P (X Y U) OR P (X Y V) OR NOT R (U V)
+ALL X,Y,U,V NOT P (X U Y) OR P (X V Y) OR NOT R (U V)
+ALL X,Y,U,V NOT P (U X Y) OR P (V X Y) OR NOT R (U V)
+ALL X,U,V NOT R (U V) OR R (F (X U) F (X V))
+ALL Y,U,V NOT R (U V) OR R (F (U Y) F (V Y))
+ALL U,V NOT R (U V) OR R (G (U) G (V))
+ALL X P (X E X)
+ALL X P (X G (X) E)
+ALL X,Y,Z NOT P (G (Y) G (Z) X) OR P (Y X Z)
+ 
+ 
+THEOREM:
+NOT (ALL X P (X X E) AND P (A B C) AND P (G (A) G (B) D) AND NOT P (C D E))
+ 
+ 
+ 
+MINKER.WOS.12
+ 
+AXIOMS:
+ALL X P (E X X)
+ALL X P (G (X) X E)
+ALL X,Y P (X Y F (X Y))
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (U Z W) OR P (X V W)
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (X V W) OR P (U Z W)
+ALL X,Y,Z NOT R (X Y) OR NOT R (Y Z) OR R (X Z)
+ALL X,Y,U,V NOT P (X Y U) OR NOT P (X Y V) OR R (U V)
+ALL X,Y,U,V NOT P (X Y U) OR P (X Y V) OR NOT R (U V)
+ALL X,Y,U,V NOT P (X U Y) OR P (X V Y) OR NOT R (U V)
+ALL X,Y,U,V NOT P (U X Y) OR P (V X Y) OR NOT R (U V)
+ALL X,U,V NOT R (U V) OR R (F (X U) F (X V))
+ALL Y,U,V NOT R (U V) OR R (F (U Y) F (V Y))
+ALL U,V NOT R (U V) OR R (G (U) G (V))
+ALL X P (X E X)
+ALL X P (X G (X) E)
+ALL X,Y:O ALL Z:NOTO NOT P (X G (Y) Z)
+ALL X:O ALL Y:NOTO NOT R (X Y)
+ 
+ 
+THEOREM:
+ 
+ 
+ 
+MINKER.WOS.13
+ 
+AXIOMS:
+ALL X P (E X X)
+ALL X P (G (X) X E)
+ALL X,Y P (X Y F (X Y))
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (U Z W) OR P (X V W)
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (X V W) OR P (U Z W)
+ALL X R (X X)
+ALL X,Y NOT R (X Y) OR R (Y X)
+ALL X,Y,Z NOT R (X Y) OR NOT R (Y Z) OR R (X Z)
+ALL X,Y,U,V NOT P (X Y U) OR NOT P (X Y V) OR R (U V)
+ALL X,Y,U,V NOT P (X Y U) OR P (X Y V) OR NOT R (U V)
+ALL X,Y,U,V NOT P (X U Y) OR P (X V Y) OR NOT R (U V)
+ALL X,Y,U,V NOT P (U X Y) OR P (V X Y) OR NOT R (U V)
+ALL X,U,V NOT R (U V) OR R (F (X U) F (X V))
+ALL Y,U,V NOT R (U V) OR R (F (U Y) F (V Y))
+ALL U,V NOT R (U V) OR R (G (U) G (V))
+ALL X P (X E X)
+ALL X P (X G (X) E)
+ALL X,Y,Z NOT O (X) OR NOT O (Y) OR NOT P (X G (Y) Z) OR O (Z)
+ALL X,Y NOT O (X) OR NOT R (X Y) OR O (Y)
+O (A)
+ 
+ 
+THEOREM:
+NOT (ALL X (NOT O (X) OR O (J (X))) AND (NOT O (X) OR NOT P (X J (X) J (X)) OR NOT P (J (X) X J (X))))
+ 
+ 
+ 
+MINKER.WOS.14
+ 
+AXIOMS:
+ALL X P (E X X)
+ALL X P (G (X) X E)
+ALL X,Y P (X Y F (X Y))
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (U Z W) OR P (X V W)
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (X V W) OR P (U Z W)
+ALL X,Y,Z NOT R (X Y) OR NOT R (Y Z) OR R (X Z)
+ALL X,Y,U,V NOT P (X Y U) OR NOT P (X Y V) OR R (U V)
+ALL X,Y,U,V NOT P (X Y U) OR P (X Y V) OR NOT R (U V)
+ALL X,Y,U,V NOT P (X U Y) OR P (X V Y) OR NOT R (U V)
+ALL X,Y,U,V NOT P (U X Y) OR P (V X Y) OR NOT R (U V)
+ALL X,U,V NOT R (U V) OR R (F (X U) F (X V))
+ALL Y,U,V NOT R (U V) OR R (F (U Y) F (V Y))
+ALL U,V NOT R (U V) OR R (G (U) G (V))
+ALL X P (X E X)
+ALL X P (X G (X) E)
+ALL X,Y,Z NOT O (X) OR NOT O (Y) OR NOT P (X G (Y) Z) OR O (Z)
+ALL X,Y NOT O (X) OR NOT R (X Y) OR O (Y)
+ 
+ 
+THEOREM:
+NOT (O (B) AND NOT O (G (B)))
+ 
+ 
+ 
+MINKER.WOS.15.NP
+ 
+AXIOMS:
+ALL X P (E X X)
+ALL X P (G (X) X E)
+ALL X,Y P (X Y F (X Y))
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (U Z W) OR P (X V W)
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (X V W) OR P (U Z W)
+ALL X,Y,Z NOT R (X Y) OR NOT R (Y Z) OR R (X Z)
+ALL X,Y,U,V NOT P (X Y U) OR NOT P (X Y V) OR R (U V)
+ALL X,Y,U,V NOT P (X Y U) OR P (X Y V) OR NOT R (U V)
+ALL X,Y,U,V NOT P (X U Y) OR P (X V Y) OR NOT R (U V)
+ALL X,Y,U,V NOT P (U X Y) OR P (V X Y) OR NOT R (U V)
+ALL X,U,V NOT R (U V) OR R (F (X U) F (X V))
+ALL Y,U,V NOT R (U V) OR R (F (U Y) F (V Y))
+ALL U,V NOT R (U V) OR R (G (U) G (V))
+ALL X P (X E X)
+ALL X P (X G (X) E)
+ALL X,Y,Z NOT O (X) OR NOT O (Y) OR NOT P (X G (Y) Z) OR O (Z)
+ALL X,Y NOT O (X) OR NOT R (X Y) OR O (Y)
+ 
+ 
+THEOREM:
+NOT (O (A) AND O (B) AND P (A B C) AND NOT O (C))
+ 
+ 
+ 
+MINKER.WOS.16
+ 
+AXIOMS:
+ALL X P (E X X)
+ALL X P (G (X) X E)
+ALL X,Y P (X Y F (X Y))
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (U Z W) OR P (X V W)
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (X V W) OR P (U Z W)
+ALL X,Y,Z NOT R (X Y) OR NOT R (Y Z) OR R (X Z)
+ALL X,Y,U,V NOT P (X Y U) OR NOT P (X Y V) OR R (U V)
+ALL X,Y,U,V NOT P (X Y U) OR P (X Y V) OR NOT R (U V)
+ALL X,Y,U,V NOT P (X U Y) OR P (X V Y) OR NOT R (U V)
+ALL X,Y,U,V NOT P (U X Y) OR P (V X Y) OR NOT R (U V)
+ALL X,U,V NOT R (U V) OR R (F (X U) F (X V))
+ALL Y,U,V NOT R (U V) OR R (F (U Y) F (V Y))
+ALL U,V NOT R (U V) OR R (G (U) G (V))
+ALL X P (X E X)
+ALL X P (X G (X) E)
+ALL X,Y:O ALL Z:NOTO NOT P (X Y Z)
+ALL X:O ALL Y:NOTO NOT R (X Y)
+ALL X:O P (D X X)
+ALL X:O P (X D X)
+ALL X:O P (X H (X) D)
+ALL X:O P (H (X) X D)
+ALL U,V:O NOT R (U V) OR R (H (U) H (V))
+ 
+ 
+THEOREM:
+R (E D)
+ 
+ 
+ 
+MINKER.WOS.17
+ 
+AXIOMS:
+ALL X P (E X X)
+ALL X P (G (X) X E)
+ALL X,Y P (X Y F (X Y))
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (U Z W) OR P (X V W)
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (X V W) OR P (U Z W)
+ALL X,Y,Z NOT R (X Y) OR NOT R (Y Z) OR R (X Z)
+ALL X,Y,U,V NOT P (X Y U) OR NOT P (X Y V) OR R (U V)
+ALL X,Y,U,V NOT P (X Y U) OR P (X Y V) OR NOT R (U V)
+ALL X,Y,U,V NOT P (X U Y) OR P (X V Y) OR NOT R (U V)
+ALL X,Y,U,V NOT P (U X Y) OR P (V X Y) OR NOT R (U V)
+ALL X,U,V NOT R (U V) OR R (F (X U) F (X V))
+ALL Y,U,V NOT R (U V) OR R (F (U Y) F (V Y))
+ALL U,V NOT R (U V) OR R (G (U) G (V))
+ALL X P (X E X)
+ALL X P (X G (X) E)
+ALL X,Y:O ALL Z:NOTO NOT P (X Y Z)
+ALL X:O ALL Y:NOTO NOT R (X Y)
+ALL X:O P (D X X)
+ALL X:O P (X D X)
+ALL X:O P (X H (X) D)
+ALL X:O P (H (X) X D)
+ALL U,V:O NOT R (U V) OR R (H (U) H (V))
+ALL X,Y,U,V NOT P (X U Y) OR NOT P (X V Y) OR R (U V)
+ALL X,Y,U,V NOT P (U X Y) OR NOT P (V X Y) OR R (U V)
+ 
+ 
+THEOREM:
+ALL X:O R (G (X) H (X))
+ 
+ 
+ 
+MINKER.WOS.18
+ 
+AXIOMS:
+ALL X P (E X X)
+ALL X P (G (X) X E)
+ALL X,Y P (X Y F (X Y))
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (U Z W) OR P (X V W)
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (X V W) OR P (U Z W)
+ALL X,Y,Z NOT R (X Y) OR NOT R (Y Z) OR R (X Z)
+ALL X,Y,U,V NOT P (X Y U) OR NOT P (X Y V) OR R (U V)
+ALL X,Y,U,V NOT P (X Y U) OR P (X Y V) OR NOT R (U V)
+ALL X,Y,U,V NOT P (X U Y) OR P (X V Y) OR NOT R (U V)
+ALL X,Y,U,V NOT P (U X Y) OR P (V X Y) OR NOT R (U V)
+ALL X,U,V NOT R (U V) OR R (F (X U) F (X V))
+ALL Y,U,V NOT R (U V) OR R (F (U Y) F (V Y))
+ALL U,V NOT R (U V) OR R (G (U) G (V))
+ALL X P (X E X)
+ALL X P (X G (X) E)
+ALL X,Y,Z NOT O (X) OR NOT O (Y) OR NOT P (X Y Z) OR O (Z)
+ALL X,Y NOT O (X) OR NOT R (X Y) OR O (Y)
+ALL X NOT O (X) OR O (G (X))
+O (E)
+ 
+ 
+THEOREM:
+NOT (O (A) AND O (B) AND P (A G (B) C) AND NOT O (C))
+ 
+ 
+ 
+MINKER.WOS.19
+ 
+AXIOMS:
+ALL X P (E X X)
+ALL X P (G (X) X E)
+ALL X,Y P (X Y F (X Y))
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (U Z W) OR P (X V W)
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (X V W) OR P (U Z W)
+ALL X,Y,Z NOT R (X Y) OR NOT R (Y Z) OR R (X Z)
+ALL X,Y,U,V NOT P (X Y U) OR NOT P (X Y V) OR R (U V)
+ALL X,Y,U,V NOT P (X Y U) OR P (X Y V) OR NOT R (U V)
+ALL X,Y,U,V NOT P (X U Y) OR P (X V Y) OR NOT R (U V)
+ALL X,Y,U,V NOT P (U X Y) OR P (V X Y) OR NOT R (U V)
+ALL X,U,V NOT R (U V) OR R (F (X U) F (X V))
+ALL Y,U,V NOT R (U V) OR R (F (U Y) F (V Y))
+ALL U,V NOT R (U V) OR R (G (U) G (V))
+ALL X P (X E X)
+ALL X P (X G (X) E)
+ALL X,Y,Z NOT O (X) OR NOT O (Y) OR NOT P (X Y Z) OR O (Z)
+ALL X,Y NOT O (X) OR NOT R (X Y) OR O (Y)
+ALL X NOT O (X) OR O (G (X))
+O (E)
+ALL X,U,V NOT R (U V) OR R (I (X U) I (X V))
+ALL X,U,V NOT R (U V) OR R (I (U X) I (V X))
+ALL X,Y O (X) OR O (Y) OR O (I (X Y))
+ALL X,Y O (X) OR O (Y) OR P (X I (X Y) Y)
+ALL X,Y,Z,U,V NOT P (X U Z) OR NOT P (X V Z) OR R (U V)
+ALL X,Y,Z,U,V NOT P (U Y Z) OR NOT P (V Y Z) OR R (U V)
+ALL X R (G (G (X)) X)
+ 
+ 
+THEOREM:
+NOT (O (A) AND O (B) AND P (B G (A) C) AND P (A C D) AND NOT O (D))
+ 
+ 
+ 
+MINKER.WOS.20.NP
+ 
+AXIOMS:
+ALL X P (E X X)
+ALL X P (G (X) X E)
+ALL X,Y P (X Y F (X Y))
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (U Z W) OR P (X V W)
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (X V W) OR P (U Z W)
+ALL X,Y,Z NOT R (X Y) OR NOT R (Y Z) OR R (X Z)
+ALL X,Y,U,V NOT P (X Y U) OR NOT P (X Y V) OR R (U V)
+ALL X,Y,U,V NOT P (X Y U) OR P (X Y V) OR NOT R (U V)
+ALL X,Y,U,V NOT P (X U Y) OR P (X V Y) OR NOT R (U V)
+ALL X,Y,U,V NOT P (U X Y) OR P (V X Y) OR NOT R (U V)
+ALL X,U,V NOT R (U V) OR R (F (X U) F (X V))
+ALL Y,U,V NOT R (U V) OR R (F (U Y) F (V Y))
+ALL U,V NOT R (U V) OR R (G (U) G (V))
+ALL X P (X E X)
+ALL X P (X G (X) E)
+ALL X,Y,Z NOT O (X) OR NOT O (Y) OR NOT P (X Y Z) OR O (Z)
+ALL X,Y NOT O (X) OR NOT R (X Y) OR O (Y)
+ALL X NOT O (X) OR O (G (X))
+O (E)
+ALL X,U,V NOT R (U V) OR R (I (X U) I (X V))
+ALL X,U,V NOT R (U V) OR R (I (U X) I (V X))
+ALL X,Y O (X) OR O (Y) OR O (I (X Y))
+ALL X,Y O (X) OR O (Y) OR P (X I (X Y) Y)
+ALL X,Y,Z,U,V NOT P (X U Z) OR NOT P (X V Z) OR R (U V)
+ALL X,Y,Z,U,V NOT P (U Y Z) OR NOT P (V Y Z) OR R (U V)
+ALL X R (G (G (X)) X)
+ 
+ 
+THEOREM:
+NOT (NOT O (A) AND O (B) AND P (B G (A) C) AND P (A C D) AND NOT O (D))
+ 
+ 
+ 
+MINKER.WOS.24
+ 
+AXIOMS:
+ALL X,Y Q (X Y J (X Y))
+ALL X,Y,Z,U,V,W NOT Q (X Y U) OR NOT Q (Y Z V) OR NOT Q (X V W) OR Q (U Z W)
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (X V W) OR P (U Z W)
+ALL X,Y,Z,U,V,W NOT Q (X Y U) OR NOT Q (Y Z V) OR NOT Q (U Z W) OR Q (X V W)
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (U Z W) OR P (X V W)
+ALL X,Y P (X Y F (X Y))
+ALL X,Y,Z,U,V,W,XT NOT Q (Y Z V) OR NOT P (X Y U) OR NOT P (X Z XT) OR NOT P (X V W) OR Q (U XT W)
+ALL X,Y,Z,U,V,W,XT NOT Q (Y Z V) OR NOT P (X Y U) OR NOT P (X Z XT) OR P (X V W) OR NOT Q (U XT W)
+ALL X,Y,Z,U,V,W,XT NOT Q (Y Z V) OR NOT P (Y X U) OR NOT P (Z X XT) OR NOT P (V X W) OR Q (U XT W)
+ALL X,Y,Z,U,V,W,XT NOT Q (Y Z V) OR NOT P (Y X U) OR NOT P (Z X XT) OR P (V X W) OR NOT Q (U XT W)
+ALL X Q (X K X)
+ALL X Q (X G (X) K)
+ALL X,Y,U,V NOT Q (X Y U) OR NOT Q (X Y V) OR R (U V)
+ALL X,Y,U,V NOT P (X Y U) OR NOT P (X Y V) OR R (U V)
+ALL X,Y,U,V NOT R (U V) OR NOT P (X Y U) OR P (X Y V)
+ALL X,Y,U,V NOT R (U V) OR NOT Q (X Y U) OR Q (X Y V)
+ALL X,Y,U,V NOT R (U V) OR NOT P (X U Y) OR P (X V Y)
+ALL X,Y,U,V NOT R (U V) OR NOT Q (X U Y) OR Q (X V Y)
+ALL X,Y,U,V NOT R (U V) OR NOT P (U X Y) OR P (V X Y)
+ALL X,Y,U,V NOT R (U V) OR NOT Q (U X Y) OR Q (V X Y)
+ALL X,U,V NOT R (U V) OR R (J (X U) J (X V))
+ALL X,U,V NOT R (U V) OR R (F (X U) F (X V))
+ALL U,V NOT R (U V) OR R (G (U) G (V))
+ALL X P (K X K)
+ALL X P (X K K)
+ 
+ 
+THEOREM:
+NOT (P (A B D) AND P (A G (B) C) AND NOT Q (C D K))
+ 
+ 
+ 
+MINKER.WOS.25
+ 
+AXIOMS:
+ALL X,Y Q (X Y J (X Y))
+ALL X,Y,Z,U,V,W NOT Q (X Y U) OR NOT Q (Y Z V) OR NOT Q (X V W) OR Q (U Z W)
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (X V W) OR P (U Z W)
+ALL X,Y,Z,U,V,W NOT Q (X Y U) OR NOT Q (Y Z V) OR NOT Q (U Z W) OR Q (X V W)
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (U Z W) OR P (X V W)
+ALL X,Y P (X Y F (X Y))
+ALL X,Y,Z,U,V,W,XT NOT Q (Y Z V) OR NOT P (X Y U) OR NOT P (X Z XT) OR NOT P (X V W) OR Q (U XT W)
+ALL X,Y,Z,U,V,W,XT NOT Q (Y Z V) OR NOT P (X Y U) OR NOT P (X Z XT) OR P (X V W) OR NOT Q (U XT W)
+ALL X,Y,Z,U,V,W,XT NOT Q (Y Z V) OR NOT P (Y X U) OR NOT P (Z X XT) OR NOT P (V X W) OR Q (U XT W)
+ALL X,Y,Z,U,V,W,XT NOT Q (Y Z V) OR NOT P (Y X U) OR NOT P (Z X XT) OR P (V X W) OR NOT Q (U XT W)
+ALL X Q (X K X)
+ALL X Q (X G (X) K)
+ALL X,Y,U,V NOT Q (X Y U) OR NOT Q (X Y V) OR R (U V)
+ALL X,Y,U,V NOT P (X Y U) OR NOT P (X Y V) OR R (U V)
+ALL X,Y,U,V NOT R (U V) OR NOT P (X Y U) OR P (X Y V)
+ALL X,Y,U,V NOT R (U V) OR NOT Q (X Y U) OR Q (X Y V)
+ALL X,Y,U,V NOT R (U V) OR NOT P (X U Y) OR P (X V Y)
+ALL X,Y,U,V NOT R (U V) OR NOT Q (X U Y) OR Q (X V Y)
+ALL X,Y,U,V NOT R (U V) OR NOT P (U X Y) OR P (V X Y)
+ALL X,Y,U,V NOT R (U V) OR NOT Q (U X Y) OR Q (V X Y)
+ALL X,U,V NOT R (U V) OR R (J (X U) J (X V))
+ALL X,U,V NOT R (U V) OR R (F (X U) F (X V))
+ALL U,V NOT R (U V) OR R (G (U) G (V))
+ALL X P (K X K)
+ALL X P (X K K)
+ALL X Q (K X X)
+ALL X Q (G (X) X K)
+ALL X,Y,Z NOT P (X Y Z) OR P (X G (Y) G (Z))
+ALL X,Y,Z NOT P (X Y Z) OR P (G (X) Y G (Z))
+ALL X,Y,Z NOT P (X Y Z) OR P (G (X) G (Y) Z)
+ 
+ 
+THEOREM:
+NOT (Q (B G (C) D) AND P (A B E) AND P (A C L) AND Q (E G (L) N) AND NOT P (A D N))
+ 
+ 
+ 
+MINKER.WOS.27
+ 
+AXIOMS:
+ALL X,Y Q (X Y J (X Y))
+ALL X,Y,Z,U,V,W NOT Q (X Y U) OR NOT Q (Y Z V) OR NOT Q (X V W) OR Q (U Z W)
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (X V W) OR P (U Z W)
+ALL X,Y,Z,U,V,W NOT Q (X Y U) OR NOT Q (Y Z V) OR NOT Q (U Z W) OR Q (X V W)
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (U Z W) OR P (X V W)
+ALL X,Y P (X Y F (X Y))
+ALL X,Y,Z,U,V,W,XT NOT Q (Y Z V) OR NOT P (X Y U) OR NOT P (X Z XT) OR NOT P (X V W) OR Q (U XT W)
+ALL X,Y,Z,U,V,W,XT NOT Q (Y Z V) OR NOT P (X Y U) OR NOT P (X Z XT) OR P (X V W) OR NOT Q (U XT W)
+ALL X,Y,Z,U,V,W,XT NOT Q (Y Z V) OR NOT P (Y X U) OR NOT P (Z X XT) OR NOT P (V X W) OR Q (U XT W)
+ALL X,Y,Z,U,V,W,XT NOT Q (Y Z V) OR NOT P (Y X U) OR NOT P (Z X XT) OR P (V X W) OR NOT Q (U XT W)
+ALL X Q (X K X)
+ALL X Q (X G (X) K)
+ALL X,Y,U,V NOT Q (X Y U) OR NOT Q (X Y V) OR R (U V)
+ALL X,Y,U,V NOT P (X Y U) OR NOT P (X Y V) OR R (U V)
+ALL X,Y,U,V NOT R (U V) OR NOT P (X Y U) OR P (X Y V)
+ALL X,Y,U,V NOT R (U V) OR NOT Q (X Y U) OR Q (X Y V)
+ALL X,Y,U,V NOT R (U V) OR NOT P (X U Y) OR P (X V Y)
+ALL X,Y,U,V NOT R (U V) OR NOT Q (X U Y) OR Q (X V Y)
+ALL X,Y,U,V NOT R (U V) OR NOT P (U X Y) OR P (V X Y)
+ALL X,Y,U,V NOT R (U V) OR NOT Q (U X Y) OR Q (V X Y)
+ALL X,U,V NOT R (U V) OR R (J (X U) J (X V))
+ALL X,U,V NOT R (U V) OR R (F (X U) F (X V))
+ALL U,V NOT R (U V) OR R (G (U) G (V))
+ALL X P (K X K)
+ALL X P (X K K)
+ALL X,Y NOT R (X K) OR P (X H (X Y) Y)
+ 
+ 
+THEOREM:
+NOT (P (A B K) AND NOT R (A K) AND NOT R (B K))
+ 
+ 
+ 
+MINKER.WOS.29
+ 
+AXIOMS:
+ALL X,Y Q (X Y J (X Y))
+ALL X,Y,Z,U,V,W NOT Q (X Y U) OR NOT Q (Y Z V) OR NOT Q (X V W) OR Q (U Z W)
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (X V W) OR P (U Z W)
+ALL X,Y,Z,U,V,W NOT Q (X Y U) OR NOT Q (Y Z V) OR NOT Q (U Z W) OR Q (X V W)
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (U Z W) OR P (X V W)
+ALL X,Y P (X Y F (X Y))
+ALL X,Y,Z,U,V,W,XT NOT Q (Y Z V) OR NOT P (X Y U) OR NOT P (X Z XT) OR NOT P (X V W) OR Q (U XT W)
+ALL X,Y,Z,U,V,W,XT NOT Q (Y Z V) OR NOT P (X Y U) OR NOT P (X Z XT) OR P (X V W) OR NOT Q (U XT W)
+ALL X,Y,Z,U,V,W,XT NOT Q (Y Z V) OR NOT P (Y X U) OR NOT P (Z X XT) OR NOT P (V X W) OR Q (U XT W)
+ALL X,Y,Z,U,V,W,XT NOT Q (Y Z V) OR NOT P (Y X U) OR NOT P (Z X XT) OR P (V X W) OR NOT Q (U XT W)
+ALL X Q (X K X)
+ALL X Q (X G (X) K)
+ALL X,Y,U,V NOT Q (X Y U) OR NOT Q (X Y V) OR R (U V)
+ALL X,Y,U,V NOT P (X Y U) OR NOT P (X Y V) OR R (U V)
+ALL X,Y,U,V NOT R (U V) OR NOT P (X Y U) OR P (X Y V)
+ALL X,Y,U,V NOT R (U V) OR NOT Q (X Y U) OR Q (X Y V)
+ALL X,Y,U,V NOT R (U V) OR NOT P (X U Y) OR P (X V Y)
+ALL X,Y,U,V NOT R (U V) OR NOT Q (X U Y) OR Q (X V Y)
+ALL X,Y,U,V NOT R (U V) OR NOT P (U X Y) OR P (V X Y)
+ALL X,Y,U,V NOT R (U V) OR NOT Q (U X Y) OR Q (V X Y)
+ALL X,U,V NOT R (U V) OR R (J (X U) J (X V))
+ALL X,U,V NOT R (U V) OR R (F (X U) F (X V))
+ALL U,V NOT R (U V) OR R (G (U) G (V))
+ALL X Q (G (X) X K)
+ALL X Q (K X X)
+ALL X,Y,Z NOT R (X Y) OR NOT R (Y Z) OR R (X Z)
+ALL X P (X E X)
+ALL X P (E X X)
+ALL X R (X K) OR P (X H (X) E)
+ALL X R (K X) OR P (H (X) X E)
+ALL X,Y,Z NOT P (X Y Z) OR P (Y X Z)
+ALL U,V,X NOT R (U V) OR R (F (U X) F (V X))
+ALL U,V NOT R (U V) OR R (H (U) H (V))
+ALL U,V,X NOT R (U V) OR R (J (U X) J (V X))
+ 
+ 
+THEOREM:
+NOT (Q (B C D) AND P (D A K) AND P (B A L) AND P (C A N) AND NOT Q (L N K))
+ 
+ 
+ 
+MINKER.WOS.30
+ 
+AXIOMS:
+ALL X,Y Q (X Y J (X Y))
+ALL X,Y,Z,U,V,W NOT Q (X Y U) OR NOT Q (Y Z V) OR NOT Q (X V W) OR Q (U Z W)
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (X V W) OR P (U Z W)
+ALL X,Y,Z,U,V,W NOT Q (X Y U) OR NOT Q (Y Z V) OR NOT Q (U Z W) OR Q (X V W)
+ALL X,Y,Z,U,V,W NOT P (X Y U) OR NOT P (Y Z V) OR NOT P (U Z W) OR P (X V W)
+ALL X,Y P (X Y F (X Y))
+ALL X,Y,Z,U,V,W,XT NOT Q (Y Z V) OR NOT P (X Y U) OR NOT P (X Z XT) OR NOT P (X V W) OR Q (U XT W)
+ALL X,Y,Z,U,V,W,XT NOT Q (Y Z V) OR NOT P (X Y U) OR NOT P (X Z XT) OR P (X V W) OR NOT Q (U XT W)
+ALL X,Y,Z,U,V,W,XT NOT Q (Y Z V) OR NOT P (Y X U) OR NOT P (Z X XT) OR NOT P (V X W) OR Q (U XT W)
+ALL X,Y,Z,U,V,W,XT NOT Q (Y Z V) OR NOT P (Y X U) OR NOT P (Z X XT) OR P (V X W) OR NOT Q (U XT W)
+ALL X Q (X K X)
+ALL X Q (X G (X) X)
+ALL X,Y,U,V NOT Q (X Y U) OR NOT Q (X Y V) OR R (U V)
+ALL X,Y,U,V NOT P (X Y U) OR NOT P (X Y V) OR R (U V)
+ALL X,Y,U,V NOT R (U V) OR NOT P (X Y U) OR P (X Y V)
+ALL X,Y,U,V NOT R (U V) OR NOT Q (X Y U) OR Q (X Y V)
+ALL X,Y,U,V NOT R (U V) OR NOT P (X U Y) OR P (X V Y)
+ALL X,Y,U,V NOT R (U V) OR NOT Q (X U Y) OR Q (X V Y)
+ALL X,Y,U,V NOT R (U V) OR NOT P (U X Y) OR P (V X Y)
+ALL X,Y,U,V NOT R (U V) OR NOT Q (U X Y) OR Q (V X Y)
+ALL X,U,V NOT R (U V) OR R (J (X U) J (X V))
+ALL X,U,V NOT R (U V) OR R (F (X U) F (X V))
+ALL U,V NOT R (U V) OR R (G (U) G (V))
+ALL X Q (G (X) X K)
+ALL X Q (K X X)
+ALL X,Y,Z NOT R (X Y) OR NOT R (Y Z) OR R (X Z)
+ALL X P (X E X)
+ALL X P (E X X)
+ALL X R (X K) OR P (X H (X) E)
+ALL X R (K X) OR P (H (X) X E)
+ALL X,Y,Z NOT P (X Y Z) OR P (Y X Z)
+ALL U,V,X NOT R (U V) OR R (F (U X) F (V X))
+ALL U,V NOT R (U V) OR R (H (U) H (V))
+ALL U,V,X NOT R (U V) OR R (J (U X) J (V X))
+ALL X P (K X K)
+ALL X P (X K K)
+ 
+ 
+THEOREM:
+NOT (P (A B K) AND NOT R (A K) AND NOT R (B K))
+ 
+ 
+ 
+MINKER.WOS.31
+ 
+AXIOMS:
+ALL X R (X X)
+ALL X,Y NOT R (X Y) OR R (Y X)
+ALL X,Y,Z NOT R (X Y) OR NOT R (Y Z) OR R (X Z)
+ALL X,Y,Z NOT R (Y Z) OR NOT P (X Y) OR P (X Z)
+ALL X,Y,Z NOT R (X Z) OR NOT P (X Y) OR P (Z Y)
+ALL Y R (Y A) OR NOT P (Y A) OR R (Y K)
+ALL Y R (Y A) OR P (Y A) OR NOT R (Y K)
+ALL Y R (Y N) OR NOT P (Y N) OR NOT R (G (Y) N)
+ALL Y R (Y N) OR NOT P (Y N) OR NOT R (G (Y) Y)
+ALL Y R (Y N) OR NOT P (Y N) OR P (Y G (Y))
+ALL Y R (Y N) OR NOT P (Y N) OR P (G (Y) Y)
+ALL Y,U R (Y N) OR P (Y N) OR R (U N) OR R (U Y) OR NOT P (Y U) OR NOT P (U Y)
+ALL Y R (Y B) OR P (Y B) OR NOT R (J (Y) B)
+ALL Y R (Y B) OR P (Y B) OR NOT R (J (Y) Y)
+ALL Y R (Y B) OR P (Y B) OR P (Y J (Y))
+ALL Y R (Y B) OR P (Y B) OR P (J (Y) Y)
+ALL Y,V R (Y B) OR NOT P (Y B) OR R (V B) OR R (V Y) OR NOT P (Y V) OR NOT P (V Y)
+ALL Y R (Y K) OR NOT R (Y N) OR P (Y K)
+ALL Y R (Y K) OR NOT R (Y B) OR P (Y K)
+ALL Y R (Y K) OR R (Y B) OR R (Y N) OR NOT P (Y K)
+ 
+ 
+THEOREM:
+NOT (NOT R (N B) AND R (N K) AND R (B K) AND NOT R (B A) AND NOT R (N A) AND NOT R (K A))
+ 
+ 
+ 
+MINKER.WOS.32
+ 
+AXIOMS:
+ALL X,Y,Z NOT R (X Y) OR NOT R (Y Z) OR R (X Z)
+ALL X,Y,Z NOT R (Y Z) OR NOT P (X Y) OR P (X Z)
+ALL X,Y,Z NOT R (X Z) OR NOT P (X Y) OR P (Z Y)
+ALL Y R (Y A) OR NOT P (Y A) OR R (Y K)
+ALL Y R (Y A) OR P (Y A) OR NOT R (Y K)
+ALL Y R (Y N) OR NOT P (Y N) OR NOT R (G (Y) N)
+ALL Y R (Y N) OR NOT P (Y N) OR NOT R (G (Y) Y)
+ALL Y R (Y N) OR NOT P (Y N) OR P (Y G (Y))
+ALL Y R (Y N) OR NOT P (Y N) OR P (G (Y) Y)
+ALL Y,U R (Y N) OR P (Y N) OR R (U N) OR R (U Y) OR NOT P (Y U) OR NOT P (U Y)
+ALL Y R (Y B) OR P (Y B) OR NOT R (J (Y) B)
+ALL Y R (Y B) OR P (Y B) OR NOT R (J (Y) Y)
+ALL Y R (Y B) OR P (Y B) OR P (Y J (Y))
+ALL Y R (Y B) OR P (Y B) OR P (J (Y) Y)
+ALL Y,V R (Y B) OR NOT P (Y B) OR R (V B) OR R (V Y) OR NOT P (Y V) OR NOT P (V Y)
+ALL Y R (Y K) OR NOT R (Y N) OR P (Y K)
+ALL Y R (Y K) OR NOT R (Y B) OR P (Y K)
+ALL Y R (Y K) OR R (Y B) OR R (Y N) OR NOT P (Y K)
+ 
+ 
+THEOREM:
+NOT (NOT R (N B) AND R (N K) AND R (B K) AND NOT R (B A) AND NOT R (N A) AND NOT R (K A))
+ 
+ 
+ 
+MINKER.WOS.33
+ 
+AXIOMS:
+ALL X,Y,Z NOT R (X Y) OR NOT R (Y Z) OR R (X Z)
+ALL X,Y,Z NOT R (Y Z) OR NOT P (X Y) OR P (X Z)
+ALL X,Y,Z NOT R (X Z) OR NOT P (X Y) OR P (Z Y)
+ALL Y R (Y A) OR NOT P (Y A) OR R (Y K)
+ALL Y R (Y A) OR P (Y A) OR NOT R (Y K)
+ALL Y R (Y N) OR NOT P (Y N) OR NOT R (G (Y) N)
+ALL Y R (Y N) OR NOT P (Y N) OR NOT R (G (Y) Y)
+ALL Y R (Y N) OR NOT P (Y N) OR P (Y G (Y))
+ALL Y R (Y N) OR NOT P (Y N) OR P (G (Y) Y)
+ALL Y,U R (Y N) OR P (Y N) OR R (U N) OR R (U Y) OR NOT P (Y U) OR NOT P (U Y)
+ALL Y R (Y B) OR P (Y B) OR NOT R (J (Y) B)
+ALL Y R (Y B) OR P (Y B) OR NOT R (J (Y) Y)
+ALL Y R (Y B) OR P (Y B) OR P (Y J (Y))
+ALL Y R (Y B) OR P (Y B) OR P (J (Y) Y)
+ALL Y,V R (Y B) OR NOT P (Y B) OR R (V B) OR R (V Y) OR NOT P (Y V) OR NOT P (V Y)
+ALL Y R (Y K) OR NOT R (Y N) OR P (Y K)
+ALL Y R (Y K) OR NOT R (Y B) OR P (Y K)
+ALL Y R (Y K) OR R (Y B) OR R (Y N) OR NOT P (Y K)
+ 
+ 
+THEOREM:
+NOT (NOT R (N B) AND R (N K) AND NOT R (B K) AND NOT R (B A) AND NOT R (N A) AND NOT R (K A))
+ 
+ 
+ 
+MONKEY.BANANA.LOVELAND
+ 
+AXIOMS:
+* ----- THE MONKEY-BANANA PROBLEM ----
+* (PROBLEM AS STATED IN LOVELANDS BOOK)
+*
+*
+* THIS IS ONE OF THE CLSSSICAL AI-PROBLEMS. THE SITUATION IS THE
+* FOLLOWING:
+* THERE ARE A MONKEY, A CHAIR AND A BANANA IN AN ARBITRARY ROOM. THE
+* BANANA IS HANGING DOWN (EG. FROM THE CEILING) SUCH THAT THE MON-
+* KEY CANNOT REACH IT. BY THIS THE MONKEY MUST USE ITS BRAIN TO
+* REACH AND EAT THE BANANA SOMEHOW.
+*
+* THE AXIOMS DESCRIPE THE SITUATION.
+* ANIMALS CAN REACH THINGS CLOSE BY.
+ALL X,Y ANIMAL (X) AND CLOSE.TO (X Y) IMPL CAN.REACH (X Y)
+* IF YOU ARE UPON SOMETHING TALL UNDER THE BANANA, YOU ARE CLOSE TO IT.
+ALL X,Y ON (X Y) AND UNDER (Y BANANA) AND TALL (Y) IMPL CLOSE.TO (X BANANA)
+* YOU CAN MOVE SOMETHING UNDER OR CLOSE TO SOMETHING ELSE.
+ALL X,Y,Z IN.ROOM (X) AND IN.ROOM (Y) AND IN.ROOM (Z) AND CAN.MOVE.NEAR (X Y Z) IMPL (CLOSE.TO (Z FLOOR) OR UNDER
+(Y Z))
+* TO GET ON IT CLIMB.
+ALL X,Y CAN.CLIMB (X Y) IMPL ON (X Y)
+* THESE AXIOMS STATE WHAT IS IN THE ROOM AND WHAT THE MONKEY CAN DO.
+ANIMAL (MONKEY)
+TALL (CHAIR)
+IN.ROOM (MONKEY)
+IN.ROOM (BANANA)
+IN.ROOM (CHAIR)
+CAN.MOVE.NEAR (MONKEY CHAIR BANANA)
+NOT CLOSE.TO (BANANA FLOOR)
+CAN.CLIMB (MONKEY CHAIR)
+ 
+ 
+THEOREM:
+* ----- THE MONKEY-BANANA PROBLEM ----
+* (PROBLEM AS STATED IN LOVELANDS BOOK)
+*
+*
+* THIS IS ONE OF THE CLSSSICAL AI-PROBLEMS. THE SITUATION IS THE
+* FOLLOWING:
+* THERE ARE A MONKEY, A CHAIR AND A BANANA IN AN ARBITRARY ROOM. THE
+* BANANA IS HANGING DOWN (EG. FROM THE CEILING) SUCH THAT THE MON-
+* KEY CANNOT REACH IT. BY THIS THE MONKEY MUST USE ITS BRAIN TO
+* REACH AND EAT THE BANANA SOMEHOW.
+*
+* THE THEOREM SIMPLY SAYS THAT THE MONKEY WILL GET THE BANANA!
+CAN.REACH (MONKEY BANANA)
+ 
+ 
+ 
+MONKEY.BANANA.NOSORTS
+ 
+AXIOMS:
+* ----- THE MONKEY-BANANA PROBLEM ----
+* (PROBLEM FORMULATED AS IN THE SORTED LOGIC EXAMPLE USING UNSORTED LOGIC!)
+*
+*
+* THIS IS ONE OF THE CLASSICAL AI-PROBLEMS. THE SITUATION IS THE
+* FOLLOWING:
+* THERE ARE A MONKEY, A CHAIR AND A BANANA IN AN ARBITRARY ROOM. THE
+* BANANA IS HANGING DOWN (EG. FROM THE CEILING) SUCH THAT THE MON-
+* KEY CANNOT REACH IT. BY THIS THE MONKEY MUST USE ITS BRAIN TO
+* REACH AND EAT THE BANANA SOMEHOW.
+*
+* THE AXIOMS DESCRIBE THE SITUATION.
+* IN THE ROOM ARE ANIMALS (THE MONKEY) , SOMETHING TALL (THE CHAIR)
+* THE BANANA AND, NATURALLY, THE ROOM HAS A FLOOR TOO.
+(ALL X ANIMAL (X) IMPL IN.ROOM (X)) AND (ALL X TALL (X) IMPL IN.ROOM (X))
+ANIMAL (MONKEY)
+TALL (CHAIR)
+IN.ROOM (BANANA) AND IN.ROOM (FLOOR)
+* AN ANIMAL IN THE ROOM CAN REACH SOMETHING CLOSE BY.
+ALL X,Y ANIMAL (X) AND IN.ROOM (Y) IMPL (CLOSE.TO (X Y) IMPL CAN.REACH (X Y))
+* AN ANIMAL ON SOMETHING TALL UNDER THE BANANA IS CLOSE TO IT.
+ALL X,Y ANIMAL (X) AND TALL (Y) IMPL (ON (X Y) AND UNDER (Y BANANA) IMPL CLOSE.TO (X BANANA))
+* ANIMALS CAN MOVE THINGS AND CLIMB ON THINGS.
+ALL X,Y,Z ANIMAL (X) AND IN.ROOM (Y) AND IN.ROOM (Z) IMPL (CAN.MOVE.NEAR (X Y Z) IMPL (CLOSE.TO (Z FLOOR) OR UNDER
+(Y Z)))
+ALL X,Y ANIMAL (X) AND TALL (Y) IMPL (CAN.CLIMB (X Y) IMPL ON (X Y))
+* NOW THIS IS THE STARTING SITUATION.
+CAN.MOVE.NEAR (MONKEY CHAIR BANANA)
+NOT CLOSE.TO (BANANA FLOOR)
+CAN.CLIMB (MONKEY CHAIR)
+ 
+ 
+THEOREM:
+* ----- THE MONKEY-BANANA PROBLEM ----
+* (PROBLEM FORMULATED USING A MANY SORTED LOGIC)
+*
+*
+* THIS IS ONE OF THE CLASSICAL AI-PROBLEMS. THE SITUATION IS THE
+* FOLLOWING:
+* THERE ARE A MONKEY, A CHAIR AND A BANANA IN AN ARBITRARY ROOM. THE
+* BANANA IS HANGING DOWN (EG. FROM THE CEILING) SUCH THAT THE MON-
+* KEY CANNOT REACH IT. BY THIS THE MONKEY MUST USE ITS BRAIN TO
+* REACH AND EAT THE BANANA SOMEHOW.
+*
+* THE THEOREM SIMPLY SAYS THAT THE MONKEY WILL GET THE BANANA!
+CAN.REACH (MONKEY BANANA)
+ 
+ 
+ 
+MONKEY.BANANA.SORTS
+ 
+AXIOMS:
+* ----- THE MONKEY-BANANA PROBLEM ----
+* (PROBLEM FORMULATED USING A MANY SORTED LOGIC)
+*
+*
+* THIS IS ONE OF THE CLASSICAL AI-PROBLEMS. THE SITUATION IS THE
+* FOLLOWING:
+* THERE ARE A MONKEY, A CHAIR AND A BANANA IN AN ARBITRARY ROOM. THE
+* BANANA IS HANGING DOWN (EG. FROM THE CEILING) SUCH THAT THE MON-
+* KEY CANNOT REACH IT. BY THIS THE MONKEY MUST USE ITS BRAIN TO
+* REACH AND EAT THE BANANA SOMEHOW.
+*
+* THE AXIOMS DESCRIBE THE SITUATION.
+* FIRST WE HAVE TO DECLARE THE USE SORTS AND TYPES OF OBJECTS AND
+* THE OPERATIONS ON THEM
+SORT ANIMAL,TALL :IN.ROOM
+TYPE MONKEY:ANIMAL
+TYPE CHAIR:TALL
+TYPE BANANA,FLOOR :IN.ROOM
+TYPE CLOSE.TO (IN.ROOM IN.ROOM)
+TYPE CAN.REACH (ANIMAL IN.ROOM)
+TYPE ON (IN.ROOM IN.ROOM)
+TYPE UNDER (IN.ROOM IN.ROOM)
+TYPE CAN.MOVE.NEAR (ANIMAL IN.ROOM IN.ROOM)
+TYPE CAN.CLIMB (ANIMAL TALL)
+* AN ANIMAL CLOSE TO SOMETHING IN A ROOM CAN REACH THIS THING.
+ALL X:ANIMAL ALL Y:IN.ROOM CLOSE.TO (X Y) IMPL CAN.REACH (X Y)
+* IF SOMETHING TALL IS UNDER THE BANANA, IT IS CLOSE TO IT.
+ALL X:ANIMAL ALL Y:TALL ON (X Y) AND UNDER (Y BANANA) IMPL CLOSE.TO (X BANANA)
+* ANIMALS CAN MOVE THINGS CLOSE TO OR UNDER AND CLIMB ON THEM.
+ALL X:ANIMAL ALL Y,Z:IN.ROOM CAN.MOVE.NEAR (X Y Z) IMPL (CLOSE.TO (Z FLOOR) OR UNDER (Y Z))
+ALL X:ANIMAL ALL Y:TALL CAN.CLIMB (X Y) IMPL ON (X Y)
+* NOW WE HAVE TO DESCRIBE THE STARTING POSITION.
+CAN.MOVE.NEAR (MONKEY CHAIR BANANA)
+NOT CLOSE.TO (BANANA FLOOR)
+CAN.CLIMB (MONKEY CHAIR)
+ 
+ 
+THEOREM:
+* ----- THE MONKEY-BANANA PROBLEM ----
+* (PROBLEM FORMULATED USING A MANY SORTED LOGIC)
+*
+*
+* THIS IS ONE OF THE CLASSICAL AI-PROBLEMS. THE SITUATION IS THE
+* FOLLOWING:
+* THERE ARE A MONKEY, A CHAIR AND A BANANA IN AN ARBITRARY ROOM. THE
+* BANANA IS HANGING DOWN (EG. FROM THE CEILING) SUCH THAT THE MON-
+* KEY CANNOT REACH IT. BY THIS THE MONKEY MUST USE ITS BRAIN TO
+* REACH AND EAT THE BANANA SOMEHOW.
+*
+* THE THEOREM SIMPLY SAYS THAT THE MONKEY WILL GET THE BANANA!
+CAN.REACH (MONKEY BANANA)
+ 
+ 
+ 
+MURDERER
+ 
+AXIOMS:
+MAN (THEO) AND MAN (DIETER) AND MAN (FRIEDRICH)
+NOT (MAN (SABINE) OR MAN (MECHTHILD) OR MAN (NINA))
+LEFT (THEO) AND LEFT (SABINE) AND LEFT (DIETER)
+NOT (LEFT (MECHTHILD) OR LEFT (NINA) OR LEFT (FRIEDRICH))
+RELATED (THEO SABINE) AND RELATED (THEO MECHTHILD)
+RELATED (NINA DIETER) AND RELATED (NINA FRIEDRICH)
+NOT RELATED (THEO NINA)
+ALL X,Y,Z RELATED (X Y) AND RELATED (Y Z) IMPL RELATED (X Z)
+SYMMETRIC (RELATED)
+KILLED (FRIEDRICH DIETER) OR KILLED (FRIEDRICH NINA) OR KILLED (FRIEDRICH MECHTHILD) OR KILLED (FRIEDRICH SABINE) OR 
+KILLED (FRIEDRICH THEO) OR KILLED (DIETER FRIEDRICH) OR KILLED (DIETER NINA) OR KILLED (DIETER MECHTHILD) OR KILLED (
+DIETER SABINE) OR KILLED (DIETER THEO) OR KILLED (NINA FRIEDRICH) OR KILLED (NINA DIETER) OR KILLED (NINA MECHTHILD) OR 
+KILLED (NINA SABINE) OR KILLED (NINA THEO) OR KILLED (MECHTHILD FRIEDRICH) OR KILLED (MECHTHILD DIETER) OR KILLED (
+MECHTHILD NINA) OR KILLED (MECHTHILD SABINE) OR KILLED (MECHTHILD THEO) OR KILLED (SABINE FRIEDRICH) OR KILLED (SABINE
+DIETER) OR KILLED (SABINE NINA) OR KILLED (SABINE MECHTHILD) OR KILLED (SABINE THEO) OR KILLED (THEO FRIEDRICH) OR 
+KILLED (THEO DIETER) OR KILLED (THEO NINA) OR KILLED (THEO MECHTHILD) OR KILLED (THEO SABINE)
+IRREFLEXIVE (KILLED)
+ALL X,Y KILLED (X Y) AND RELATED (X Y) IMPL MAN (X)
+ALL X,Y KILLED (X Y) AND NOT RELATED (X Y) IMPL LEFT (X)
+ALL X,Y KILLED (X Y) AND ((LEFT (X) AND LEFT (Y)) OR (NOT LEFT (X) AND NOT LEFT (Y))) IMPL MAN (Y)
+ALL X,Y KILLED (X Y) AND ((LEFT (X) AND NOT LEFT (Y)) OR (NOT LEFT (X) AND LEFT (Y))) IMPL NOT MAN (Y)
+ALL X,Y KILLED (X Y) AND ((MAN (X) AND MAN (Y)) OR (NOT MAN (X) AND NOT MAN (Y))) IMPL NOT LEFT (X)
+ALL X,Y KILLED (X Y) AND ((MAN (X) AND NOT MAN (Y)) OR (NOT MAN (X) AND MAN (Y))) IMPL LEFT (Y)
+ 
+ 
+THEOREM:
+KILLED (SABINE DIETER)
+ 
+ 
+ 
+RUSSEL
+ 
+AXIOMS:
+* RUSSEL ANTONOMY:
+ALL X SHAVES (BARBER X) EQV NOT SHAVES (X X)
+ 
+ 
+THEOREM:
+ 
+ 
+ 
+SAMS.LEMMA
+ 
+AXIOMS:
+ALL X MAX (1 X 1)
+ALL X MAX (X X X)
+ALL X MAX (0 X X)
+ALL X MIN (0 X 0)
+ALL X MIN (X X X)
+ALL X MIN (1 X X)
+ALL X,Y,Z MIN (X Y Z) IMPL MAX (X Z X)
+ALL X,Y,Z MAX (X Y Z) IMPL MIN (X Z X)
+ALL X,Y,Z,XY,YZ,XYZ MIN (X Y XY) AND MIN (Y Z YZ) IMPL (MIN (X YZ XYZ) EQV MIN (XY Z XYZ))
+(ALL X,Y,Z,XY,YZ,XYZ MAX (X Y XY) AND MAX (Y Z YZ) IMPL (MAX (X YZ XYZ) EQV MAX (XY Z XYZ)))
+ALL X,Y,Z,X1,Y1,Z1 MIN (X Z X) AND MAX (X Y X1) AND MIN (Y Z Y1) AND MIN (Z X1 Z1) IMPL MAX (X Y1 Z1)
+ALL X,Y,Z,X1,Y1,Z1 MIN (X Z X) AND MAX (X Y X1) AND MIN (Y Z Y1) AND MAX (X Y1 Z1) IMPL MIN (Z X1 Z1)
+ALL X,Y,Z,X1,Y1,Z1 MIN (X Z Z) AND MAX (Y Z Y1) AND MIN (X Y X1) AND MIN (X Y1 Z1) IMPL MAX (Z X1 Z1)
+ALL X,Y,Z,X1,Y1,Z1 MIN (X Z Z) AND MAX (Y Z Y1) AND MIN (X Y X1) AND MAX (Z X1 Z1) IMPL MIN (X Y1 Z1)
+ 
+ 
+THEOREM:
+(MIN (A B C) AND MAX (C D 1) AND MIN (B D E) AND MIN (A E 0) AND MAX (B A2 B2) AND MAX (A B2 1) AND MAX (A B C2)
+AND MIN (A2 C2 0) AND MIN (D A D2) AND MAX (A2 D2 E2) AND MIN (D B A3) AND MAX (A2 A3 B3)) IMPL MIN (B3 E2 A2)
+ 
+ 
+ 
+SCHUBERT
+ 
+AXIOMS:
+* AXIOMS FOR THE CARNIVORE PROBLEM:
+*
+* WOLVES, FOXES, BIRDS, CATERPILLARS, AND SNAILS ARE ANIMALS.
+* GRAINS ARE PLANTS.
+* THERE EXIST WOLVES, FOXES, BIRDS, CATERPILLARS, SNAILS, AND GRAINS.
+* EVERY ANIMAL EATS ALL PLANTS OR ANY SMALLER ANIMALS THAT EAT SOME PLANTS.
+* CATERPILLARS AND SNAILS ARE SMALLER THAN BIRDS.
+* BIRDS ARE SMALLER THAN FOXES WHICH IN TURN ARE SMALLER THAN WOLVES.
+* WOLVES DO NOT EAT FOXES OR GRAINS.
+* BIRDS EAT CATERPILLARS, BUT NO SNAILS.
+* CATERPILLARS AND SNAILS EAT SOME PLANTS.
+*
+*
+* THEOREM OF THE CARNIVORE PROBLEM:
+*
+* THERE IS A GRAIN EATING ANIMAL THAT IS EATEN BY ANOTHER ANIMAL.
+*
+*
+*
+*
+ALL X WOLF (X) IMPL ANIMAL (X)
+ALL X FOX (X) IMPL ANIMAL (X)
+ALL X BIRD (X) IMPL ANIMAL (X)
+ALL X CATERPILLAR (X) IMPL ANIMAL (X)
+ALL X SNAIL (X) IMPL ANIMAL (X)
+ALL X GRAIN (X) IMPL PLANT (X)
+WOLF (LUPO) AND FOX (FOXY) AND BIRD (TWEEDY) AND CATERPILLAR (MAGGIE) AND SNAIL (SLIMEY) AND GRAIN (STALKY)
+ALL W ANIMAL (W) IMPL (ALL X PLANT (X) IMPL EATS (W X)) OR (ALL Y ANIMAL (Y) AND SMALLER (Y W) AND (EX Z PLANT
+(Z) AND EATS (Y Z)) IMPL EATS (W Y))
+ALL X,Y CATERPILLAR (X) AND BIRD (Y) IMPL SMALLER (X Y)
+ALL X,Y SNAIL (X) AND BIRD (Y) IMPL SMALLER (X Y)
+ALL X,Y BIRD (X) AND FOX (Y) IMPL SMALLER (X Y)
+ALL X,Y FOX (X) AND WOLF (Y) IMPL SMALLER (X Y)
+ALL X,Y WOLF (X) AND FOX (Y) IMPL NOT EATS (X Y)
+ALL X,Y WOLF (X) AND GRAIN (Y) IMPL NOT EATS (X Y)
+ALL X,Y BIRD (X) AND CATERPILLAR (Y) IMPL EATS (X Y)
+ALL X,Y BIRD (X) AND SNAIL (Y) IMPL NOT EATS (X Y)
+ALL X CATERPILLAR (X) IMPL (EX Y PLANT (Y) AND EATS (X Y))
+ALL X SNAIL (X) IMPL (EX Y PLANT (Y) AND EATS (X Y))
+IRREFLEXIVE (EATS)
+ALL X ANIMAL (X) EQV NOT PLANT (X)
+ 
+ 
+THEOREM:
+* AXIOMS FOR THE CARNIVORE PROBLEM:
+*
+* WOLVES, FOXES, BIRDS, CATERPILLARS, AND SNAILS ARE ANIMALS.
+* GRAINS ARE PLANTS.
+* THERE EXIST WOLVES, FOXES, BIRDS, CATERPILLARS, SNAILS, AND GRAINS.
+* EVERY ANIMAL EATS ALL PLANTS OR ANY SMALLER ANIMALS THAT EAT SOME PLANTS.
+* CATERPILLARS AND SNAILS ARE SMALLER THAN BIRDS.
+* BIRDS ARE SMALLER THAN FOXES WHICH IN TURN ARE SMALLER THAN WOLVES.
+* WOLVES DO NOT EAT FOXES OR GRAINS.
+* BIRDS EAT CATERPILLARS, BUT NO SNAILS.
+* CATERPILLARS AND SNAILS EAT SOME PLANTS.
+*
+*
+* THEOREM OF THE CARNIVORE PROBLEM:
+*
+* THERE IS A GRAIN EATING ANIMAL THAT IS EATEN BY ANOTHER ANIMAL.
+*
+*
+*
+*
+EX X,Y ANIMAL (X) AND ANIMAL (Y) AND EATS (X Y) AND (ALL Z GRAIN (Z) IMPL EATS (Y Z))
+ 
+ 
+ 
+SCHUBERT.SORTS
+ 
+AXIOMS:
+* AXIOMS FOR THE CARNIVORE PROBLEM:
+*
+* WOLVES, FOXES, BIRDS, CATERPILLARS, AND SNAILS ARE ANIMALS.
+* GRAINS ARE PLANTS.
+* THERE EXIST WOLVES, FOXES, BIRDS, CATERPILLARS, SNAILS, AND GRAINS.
+* EVERY ANIMAL EATS ALL PLANTS OR ANY SMALLER ANIMALS THAT EAT SOME PLANTS.
+* CATERPILLARS AND SNAILS ARE SMALLER THAN BIRDS.
+* BIRDS ARE SMALLER THAN FOXES WHICH IN TURN ARE SMALLER THAN WOLVES.
+* WOLVES DO NOT EAT FOXES OR GRAINS.
+* BIRDS EAT CATERPILLARS, BUT NO SNAILS.
+* CATERPILLARS AND SNAILS EAT SOME PLANTS.
+*
+*
+* THEOREM OF THE CARNIVORE PROBLEM:
+*
+* THERE IS A GRAIN EATING ANIMAL THAT IS EATEN BY ANOTHER ANIMAL.
+*
+*
+*
+*
+SORT WOLF,FOX,BIRD,CATERPILLAR,SNAIL : ANIMAL
+SORT GRAIN : PLANT
+TYPE LUPO : WOLF
+TYPE FOXY : FOX
+TYPE TWEEDY : BIRD
+TYPE MAGGIE : CATERPILLAR
+TYPE SLIMEY : SNAIL
+TYPE STALKY : GRAIN
+ALL W:ANIMAL (ALL X:PLANT EATS (W X)) OR (ALL Y:ANIMAL SMALLER (Y W) AND (EX Z:PLANT EATS (Y Z)) IMPL EATS (W Y))
+ALL X:CATERPILLAR ALL Y:BIRD SMALLER (X Y)
+ALL X:SNAIL ALL Y:BIRD SMALLER (X Y)
+ALL X:BIRD ALL Y:FOX SMALLER (X Y)
+ALL X:FOX ALL Y:WOLF SMALLER (X Y)
+ALL X:WOLF ALL Y:FOX NOT EATS (X Y)
+ALL X:WOLF ALL Y:GRAIN NOT EATS (X Y)
+ALL X:BIRD ALL Y:CATERPILLAR EATS (X Y)
+ALL X:BIRD ALL Y:SNAIL NOT EATS (X Y)
+ALL X:CATERPILLAR EX Y:PLANT EATS (X Y)
+ALL X:SNAIL EX Y:PLANT EATS (X Y)
+ 
+ 
+THEOREM:
+* AXIOMS FOR THE CARNIVORE PROBLEM:
+*
+* WOLVES, FOXES, BIRDS, CATERPILLARS, AND SNAILS ARE ANIMALS.
+* GRAINS ARE PLANTS.
+* THERE EXIST WOLVES, FOXES, BIRDS, CATERPILLARS, SNAILS, AND GRAINS.
+* EVERY ANIMAL EATS ALL PLANTS OR ANY SMALLER ANIMALS THAT EAT SOME PLANTS.
+* CATERPILLARS AND SNAILS ARE SMALLER THAN BIRDS.
+* BIRDS ARE SMALLER THAN FOXES WHICH IN TURN ARE SMALLER THAN WOLVES.
+* WOLVES DO NOT EAT FOXES OR GRAINS.
+* BIRDS EAT CATERPILLARS, BUT NO SNAILS.
+* CATERPILLARS AND SNAILS EAT SOME PLANTS.
+*
+*
+* THEOREM OF THE CARNIVORE PROBLEM:
+*
+* THERE IS A GRAIN EATING ANIMAL THAT IS EATEN BY ANOTHER ANIMAL.
+*
+*
+*
+*
+EX X,Y:ANIMAL EATS (X Y) AND (ALL Z:GRAIN EATS (Y Z))
+ 
+ 
+ 
+THIEF
+ 
+AXIOMS:
+THIEF (WILLIE) OR THIEF (LUCKY) OR THIEF (JACKY)
+NOT (THIEF (WILLIE) AND THIEF (LUCKY) OR THIEF (WILLIE) AND THIEF (JACKY) OR THIEF (LUCKY) AND THIEF (JACKY))
+ALL X THIEF (X) IMPL IN.HOTEL (X)
+NOT (NOT THIEF (LUCKY) AND NOT IN.HOTEL (LUCKY) AND THIEF (WILLIE))
+NOT (NOT THIEF (WILLIE) AND THIEF (LUCKY) AND IN.HOTEL (LUCKY) AND NOT THIEF (WILLIE) AND NOT THIEF (JACKY))
+NOT (NOT THIEF (JACKY) AND IN.HOTEL (LUCKY) AND (NOT THIEF (LUCKY) OR NOT IN.HOTEL (LUCKY) OR THIEF (WILLIE)))
+ 
+ 
+THEOREM:
+THIEF (JACKY)
+ 
+ 
+ 
+TRANSORDER
+ 
+AXIOMS:
+ALL X,Y,Z P (X Y) AND P (Y Z) IMPL P (X Z)
+ 
+ 
+THEOREM:
+(ALL X NOT P (X X)) EQV (ALL X,Y P (X Y) IMPL NOT P (Y X))
+ 
+ 
+ 
+STOP
+ 

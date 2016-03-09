@@ -1,0 +1,185 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 35.2 EQUALITY 16.1                                  *
+                     *           DATE: 15-DEC,1989  14:22                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 15-DEC,1989 14:21 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * AXIOMS OF PROBLAM 35 %.
+             * THERE ARE THREE PEOPLE : A, B, C.
+             * A SAYS : B AND C ARE OF THE SAME TYPE.
+             * SOMEONE AKS C : ARE A AND B OF THE SAME TYPE?
+             * WHAT DOES C ANSWER?
+             *
+             * SAME2 (X Y) MEANS : X AND Y ARE OF THE SAME TYPE.
+             * SAME3 (X Y Z) MEANS : X SAYS THAT Y AND Z ARE OF THE SAME TYPE.
+             * NSAME3 (X Y Z) MEANS : X SAYS THAT Y AND Z ARE NOT OF THE SAME TYPE.
+             *
+             ALL X KNIGHT (X) EQV NOT KNAVE (X)
+             ALL X,Y SAME2 (X Y) EQV (KNIGHT (X) AND KNIGHT (Y)) OR (KNAVE (X) AND KNAVE (Y))
+             ALL X,Y,Z SAME3 (X Y Z) AND KNIGHT (X) IMPL SAME2 (Y Z)
+             ALL X,Y,Z SAME3 (X Y Z) AND KNAVE (X) IMPL NOT SAME2 (Y Z)
+             ALL X,Y,Z NSAME3 (X Y Z) AND KNIGHT (X) IMPL NOT SAME2 (Y Z)
+             ALL X,Y,Z NSAME3 (X Y Z) AND KNAVE (X) IMPL SAME2 (Y Z)
+             SAME3 (A B C)
+             SAME3 (C A B) OR NSAME3 (C A B)
+             
+   Theorems: SAME3 (C A B)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+           * A1:   + SAME3(a b c)
+           * A2:   + SAME3(c a b)  + NSAME3(c a b)
+             A3:   All x,y,z:Any - SAME3(z y x)  + KNAVE(z)  - KNAVE(y)  + KNAVE(y)
+           * A4:   All x,y,z:Any - SAME3(z y x)  + KNAVE(z)  - KNAVE(y)  + KNAVE(x)
+           * A5:   All x,y,z:Any - SAME3(z y x)  + KNAVE(z)  - KNAVE(x)  + KNAVE(y)
+             A6:   All x,y,z:Any - SAME3(z y x)  + KNAVE(z)  - KNAVE(x)  + KNAVE(x)
+           * A7:   All x,y,z:Any - SAME3(z y x)  - KNAVE(z)  + KNAVE(y)  + KNAVE(x)
+           * A8:   All x,y,z:Any - SAME3(z y x)  - KNAVE(z)  - KNAVE(y)  - KNAVE(x)
+           * A9:   All x,y,z:Any - NSAME3(z y x)  + KNAVE(z)  + KNAVE(y)  + KNAVE(x)
+           * A10:  All x,y,z:Any - NSAME3(z y x)  + KNAVE(z)  - KNAVE(y)  - KNAVE(x)
+             A11:  All x,y,z:Any - NSAME3(z y x)  - KNAVE(z)  - KNAVE(y)  + KNAVE(y)
+           * A12:  All x,y,z:Any - NSAME3(z y x)  - KNAVE(z)  - KNAVE(y)  + KNAVE(x)
+           * A13:  All x,y,z:Any - NSAME3(z y x)  - KNAVE(z)  - KNAVE(x)  + KNAVE(y)
+             A14:  All x,y,z:Any - NSAME3(z y x)  - KNAVE(z)  - KNAVE(x)  + KNAVE(x)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T15: - SAME3(c a b)
+
+
+
+
+
+
+             Initial Operations on Theorems
+             ==============================
+
+
+          
+   A2,1 & T15,1  --> * R1: + NSAME3(c a b)
+   
+
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:    * A1:   + SAME3(a b c)
+                       * R1:   + NSAME3(c a b)
+                       * A4:   All x,y,z:Any - SAME3(z y x)  + KNAVE(z)  - KNAVE(y)  + KNAVE(x)
+                       * A5:   All x,y,z:Any - SAME3(z y x)  + KNAVE(z)  - KNAVE(x)  + KNAVE(y)
+                       * A7:   All x,y,z:Any - SAME3(z y x)  - KNAVE(z)  + KNAVE(y)  + KNAVE(x)
+                       * A8:   All x,y,z:Any - SAME3(z y x)  - KNAVE(z)  - KNAVE(y)  - KNAVE(x)
+                       * A9:   All x,y,z:Any - NSAME3(z y x)  + KNAVE(z)  + KNAVE(y)  + KNAVE(x)
+                       * A10:  All x,y,z:Any - NSAME3(z y x)  + KNAVE(z)  - KNAVE(y)  - KNAVE(x)
+                       * A12:  All x,y,z:Any - NSAME3(z y x)  - KNAVE(z)  - KNAVE(y)  + KNAVE(x)
+                       * A13:  All x,y,z:Any - NSAME3(z y x)  - KNAVE(z)  - KNAVE(x)  + KNAVE(y)
+                       * T15:  - SAME3(c a b)
+                       
+
+   
+   R1,1 & A13,1   -->  * R2:   - KNAVE(c)  - KNAVE(b)  + KNAVE(a)
+   
+   R2,2 & A5,4    -->  * R3:   - KNAVE(c)  + KNAVE(a)  - SAME3(a b c)  + KNAVE(a)  - KNAVE(c)
+   
+   R3 2=4         -->  * D4:   - KNAVE(c)  + KNAVE(a)  - SAME3(a b c)  - KNAVE(c)
+   
+   D4 1=4         -->  * D5:   - KNAVE(c)  + KNAVE(a)  - SAME3(a b c)
+   
+   D5,3 & A1,1    -->  * R6:   - KNAVE(c)  + KNAVE(a)
+   
+   R1,1 & A12,1   -->  * R7:   - KNAVE(c)  - KNAVE(a)  + KNAVE(b)
+   
+   R7,2 & A5,2    -->  * R8:   - KNAVE(c)  + KNAVE(b)  - SAME3(a b c)  - KNAVE(c)  + KNAVE(b)
+   
+   R8 1=4         -->  * D9:   - KNAVE(c)  + KNAVE(b)  - SAME3(a b c)  + KNAVE(b)
+   
+   D9 2=4         -->  * D10:  - KNAVE(c)  + KNAVE(b)  - SAME3(a b c)
+   
+   D10,3 & A1,1   -->  * R11:  - KNAVE(c)  + KNAVE(b)
+   
+   R1,1 & A10,1   -->  * R12:  + KNAVE(c)  - KNAVE(a)  - KNAVE(b)
+   
+   R12,3 & A7,3   -->  * R13:  + KNAVE(c)  - KNAVE(a)  - SAME3(a b c)  - KNAVE(a)  + KNAVE(c)
+   
+   R13 2=4        -->  * D14:  + KNAVE(c)  - KNAVE(a)  - SAME3(a b c)  + KNAVE(c)
+   
+   D14 1=4        -->  * D15:  + KNAVE(c)  - KNAVE(a)  - SAME3(a b c)
+   
+   D15,3 & A1,1   -->  * R16:  + KNAVE(c)  - KNAVE(a)
+   
+   R1,1 & A9,1    -->  * R17:  + KNAVE(c)  + KNAVE(a)  + KNAVE(b)
+   
+   R17,2 & R16,2  -->  * R18:  + KNAVE(c)  + KNAVE(b)  + KNAVE(c)
+   
+   R18 1=3        -->  * D19:  + KNAVE(c)  + KNAVE(b)
+   
+   D19,1 & R11,1  -->  * R20:  + KNAVE(b)  + KNAVE(b)
+   
+   R20 1=2        -->  * D21:  + KNAVE(b)
+   
+   A1,1 & A8,1    -->  * R22:  - KNAVE(a)  - KNAVE(b)  - KNAVE(c)
+   
+   R22,3 & R16,1  -->  * R23:  - KNAVE(a)  - KNAVE(b)  - KNAVE(a)
+   
+   R23 1=3        -->  * D24:  - KNAVE(a)  - KNAVE(b)
+   
+   D24,2 & D21,1  -->  * R25:  - KNAVE(a)
+   
+   R6,2 & R25,1   -->  * R26:  - KNAVE(c)
+   
+   R26,1 & A4,4   -->  * R27:  - SAME3(a b c)  + KNAVE(a)  - KNAVE(b)
+   
+   R27,1 & A1,1   -->  * R28:  + KNAVE(a)  - KNAVE(b)
+   
+   R28,1 & R25,1  -->  * R29:  - KNAVE(b)
+   
+   R29,1 & D21,1  -->  * R30:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 35 seconds

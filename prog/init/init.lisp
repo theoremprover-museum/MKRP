@@ -1,0 +1,32 @@
+;;; -*- Mode: LISP; Syntax: Common-lisp; Package: MKRP; Base: 10 -*-
+
+#| Copyright (C) 1991 AG Siekmann, 
+                      Fachbereich Informatik, Universitaet des Saarlandes, 
+                      Saarbruecken, Germany
+
+This file is part of Markgraf Karl Refutation Procedure (MKRP).
+
+MKRP is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY.  No author or distributor
+accepts responsibility to anyone for the consequences of using it
+or for whether it serves any particular purpose or works at all,
+unless he says so in writing.  
+
+Everyone is granted permission to copy, modify and redistribute
+MKRP, but only if it is not used for military purposes or any
+military research. It is also forbidden to use MKRP in nuclear plants
+or nuclear research, and for verifying programs in military 
+and nuclear research.  A copy of this license is
+supposed to have been given to you along with MKRP so you
+can know your rights and responsibilities.  
+Among other things, the copyright notice
+must be preserved on all copies.  |#
+
+(IN-PACKAGE "MARKGRAF-KARL" :use '("CL") :nicknames '("MKRP"))
+
+(defun mkrp-init ()
+  #+symbolics
+  (OPT-WND_INIT)
+  (OPT-SET.STANDARD)
+  (MEM-INITIALIZE 10000)
+  (edt-set.readtables))

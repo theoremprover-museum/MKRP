@@ -1,0 +1,427 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 34.2 EQUALITY 16.1                                  *
+                     *           DATE: 01-NOV,1989  21:04                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 01-NOV,1989 21:01 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Adjustment of the Options:
+   ==========================
+
+   TWO_RULES                             NIL
+   TWO_RULES.MAXLEVEL                    1
+   TWO_SUPPRESS.NORULES                  NIL
+
+   RED.I_CLAUSE.MULTIPLE.LITERALS        T
+   RED.I_CLAUSE.PURITY                   T
+   RED.I_CLAUSE.TAUTOLOGY                T
+   RED.I_CLAUSE.TAUTOLOGY.RECHECK        PARTIAL
+   RED.I_CLAUSE.SUBSUMPTION              T
+   RED.I_CLAUSE.SUBSUMPTION.RECHECK      PARTIAL
+   RED.I_CLAUSE.REPL.FACTORING           T
+   RED.I_CLAUSE.REPL.FACTORING.RECHECK   T
+   RED.I_CLAUSE.REPL.RESOLUTION          SIMPLE
+   RED.I_CLAUSE.REPL.RESOLUTION.RECHECK  T
+   RED.I_CLAUSE.REWRITING                T
+   RED.I_LINK.INCOMPATIBILITY            T
+   RED.I_LINK.TAUTOLOGY                  REMOVE-INHIBIT
+   RED.I_LINK.TAUTOLOGY.RECHECK          NIL
+   RED.I_LINK.SUBSUMPTION                REMOVE-INHIBIT
+   RED.I_LINK.SUBSUMPTION.RECHECK        NIL
+
+   RED.D_CLAUSE.MULTIPLE.LITERALS        T
+   RED.D_CLAUSE.PURITY                   T
+   RED.D_CLAUSE.TAUTOLOGY                REMOVE-INHIBIT
+   RED.D_CLAUSE.TAUTOLOGY.RECHECK        NIL
+   RED.D_CLAUSE.SUBSUMPTION.FORWARD      REMOVE-INHIBIT
+   RED.D_CLAUSE.SUBSUMPTION.BACKWARD     REMOVE
+   RED.D_CLAUSE.SUBSUMPTION.RECHECK      NIL
+   RED.D_CLAUSE.REPL.FACTORING           T
+   RED.D_CLAUSE.REPL.FACTORING.RECHECK   T
+   RED.D_CLAUSE.REPL.RESOLUTION          SIMPLE
+   RED.D_CLAUSE.REPL.RESOLUTION.RECHECK  T
+   RED.D_LINK.INCOMPATIBILITY            T
+   RED.D_LINK.TAUTOLOGY                  REMOVE-INHIBIT
+   RED.D_LINK.TAUTOLOGY.RECHECK          NIL
+   RED.D_LINK.SUBSUMPTION                REMOVE-INHIBIT
+   RED.D_LINK.SUBSUMPTION.RECHECK        NIL
+
+   FAC_INITIAL                           NIL
+   FAC_EACH.STEP                         NIL
+
+   STR_RESOLUTION                        SET-OF-SUPPORT
+   STR_E-RESOLUTION                      NIL
+   STR_LINK.DEPTH                        NIL
+   STR_TERM.DEPTH                        NIL
+   STR_R.DEMODULATION                    T
+   STR_P.DEMODULATION                    T
+   STR_INDUCTION                         NIL
+
+   TERM_UNITS                            T
+   TERM_ITERATIONS                       0
+   TERM_SET.OF.SUPPORT                   NIL
+   TERM_BREADTH.FIRST                    NIL
+
+   ER_PARAMODULATION                     HEURISTIC-COMPLETION
+   ER_COMPLETION                         IGNORING
+   ER_ORDERING                           POLYNOMIAL
+   ER_LINK.DEPTH.WEIGHT                  0
+   ER_KNUTH.BENDIX.WEIGHT                ((PLUS 5) (MULT 5) (MINUS 2) (0 2) (1 2))
+   ER_POLYNOMIAL.VARIABLES               (X Y Z U V W)
+   ER_POLYNOMIAL.WEIGHT                  ((PLUS (+ 5 (* 2 X) Y)) (MULT (+ X (* X Y))) (MINUS (* 2 X)) (0 2) (1 2))
+
+   GEN_SPLITTING                         2
+   GEN_PRESIMPLIFICATION                 T
+   GEN_MIN.EXPRESSION.LENGTH.FOR.FILE    NIL
+   GEN_MIN.EXPRESSION.SIZE.FOR.FILE      NIL
+   GEN_MANUAL.CONTROL                    NIL
+   GEN_MAXIMUM.STEPS                     NIL
+   GEN_GRAPH.SAVING                      NIL
+   GEN_SAVE.FILE                         SAVEDEFAULT
+   GEN_LISP.GARBAGE.COLLECTION           NIL
+   GEN_COMMON.LISP                       NIL
+
+   TR_PREPROCESSING                      NIL
+   TR_STEP.MODE                          LR
+   TR_DUMP                               NIL
+   TR_CLAUSE.MODE                        I
+   TR_LINK.MODE                          I
+   TR_TRACE.FILE                         NIL
+   TR_TERMINAL                           T
+
+   PR_INFIX.FORM                         T
+   PR_PREFIX.FORM                        NIL
+   PR_OPTIONS                            T
+   PR_AXIOM.CLAUSES                      T
+   PR_SYMBOLS                            NIL
+   PR_DIRECT.PROOF                       T
+   PR_VARIABLE.PRINT.NAMES               (X Y Z U V W XX YY ZZ UU VV WW XXX YYY ZZZ UUU VVV WWW)
+   PR_STATISTICS                         NIL
+   PR_PROTOCOL                           T
+   PR_LEFT.MARGIN                        3
+   PR_RIGHT.MARGIN                       117
+   PR_LINELENGTH                         114
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   NIL  
+             
+   Theorems: * THEOREMS *
+             (ALL X P (A) AND (P (X) IMPL (EX Y P (Y) AND R (X Y))) IMPL (EX Z,W P (Z) AND R (X W) AND R (W Z)))
+             EQV (ALL X (NOT P (A) OR P (X) OR (EX Z,W P (Z) AND R (X W) AND R (W Z)))
+                        AND (NOT P (A) OR NOT (EX Y P (Y) AND R (X Y)) OR (EX Z,W P (Z) AND R (X W) AND R (W Z))))
+             
+   
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization and Splitting
+             =================================================================
+
+   Splitpart 1
+
+           * T1: + P(a)
+           * T2: - P(a)
+
+   Splitpart 2
+
+           * T3: + P(a)
+           * T4: - P(a)
+
+   Splitpart 3
+
+           * T5: + P(a)
+           * T6: - P(a)
+
+   Splitpart 4
+
+             T7: + P(a)
+           * T8: - P(c_2)  + P(c_1)
+           * T9: - P(c_2)  + R(c_2 c_1)
+           * T10: All x:Any + P(x)  + P(f_2(x))
+           * T11: All x:Any + P(x)  + R(x f_1(x))
+           * T12: All x:Any + P(x)  + R(f_1(x) f_2(x))
+           * T13: All x,y:Any - P(y)  - R(c_2 x)  - R(x y)
+           * T14: All x,y:Any - P(y)  - R(x y)  + P(f_4(x))
+           * T15: All x,y:Any - P(y)  - R(x y)  + R(x f_3(x))
+           * T16: All x,y:Any - P(y)  - R(x y)  + R(f_3(x) f_4(x))
+
+   Splitpart 5
+
+           * T17: + P(a)
+           * T18: - P(c_3)
+           * T19: All x:Any - P(a)  + P(x)  + P(f_6(x))
+           * T20: All x:Any - P(a)  + P(x)  + R(x f_5(x))
+           * T21: All x:Any - P(a)  + P(x)  + R(f_5(x) f_6(x))
+           * T22: All x,y:Any - P(y)  - R(c_3 x)  - R(x y)
+             T23: All x,y:Any - P(a)  - P(y)  - R(x y)  + P(f_6(x))
+             T24: All x,y:Any - P(a)  - P(y)  - R(x y)  + R(x f_5(x))
+             T25: All x,y:Any - P(a)  - P(y)  - R(x y)  + R(f_5(x) f_6(x))
+
+   Splitpart 6
+
+           * T26: + P(a)
+           * T27: + P(c_4)
+           * T28: + R(c_5 c_4)
+             T29: All x:Any - P(a)  + P(x)  + P(f_6(x))
+             T30: All x:Any - P(a)  + P(x)  + R(x f_5(x))
+             T31: All x:Any - P(a)  + P(x)  + R(f_5(x) f_6(x))
+           * T32: All x,y:Any - P(y)  - R(c_5 x)  - R(x y)
+           * T33: All x,y:Any - P(a)  - P(y)  - R(x y)  + P(f_6(x))
+           * T34: All x,y:Any - P(a)  - P(y)  - R(x y)  + R(x f_5(x))
+           * T35: All x,y:Any - P(a)  - P(y)  - R(x y)  + R(f_5(x) f_6(x))
+
+
+   End of Splitparts
+
+
+
+
+
+             Initial Operations on Theorems
+             ==============================
+
+
+          
+   Splitpart 1:
+   
+   T2,1 & T1,1  --> * R1: []
+   
+
+   
+   Splitpart 2:
+   
+   T4,1 & T3,1  --> * R2: []
+   
+
+   
+   Splitpart 3:
+   
+   T6,1 & T5,1  --> * R3: []
+   
+
+   
+   Splitpart 5:
+   
+   T19,1 & T17,1  --> * R4: All x:Any + P(x)  + P(f_6(x))
+   
+   T20,1 & T17,1  --> * R5: All x:Any + P(x)  + R(x f_5(x))
+   
+   T21,1 & T17,1  --> * R6: All x:Any + P(x)  + R(f_5(x) f_6(x))
+   
+
+   
+   Splitpart 6:
+   
+   T33,1 & T26,1  --> * R13: All x,y:Any - P(y)  - R(x y)  + P(f_6(x))
+   
+   T34,1 & T26,1  --> * R14: All x,y:Any - P(y)  - R(x y)  + R(x f_5(x))
+   
+   T35,1 & T26,1  --> * R15: All x,y:Any - P(y)  - R(x y)  + R(f_5(x) f_6(x))
+   
+
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation of Splitpart 1:
+   ==========================
+   
+   See operations on theorems of splitpart 1
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation of Splitpart 2:
+   ==========================
+   
+   See operations on theorems of splitpart 2
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation of Splitpart 3:
+   ==========================
+   
+   See operations on theorems of splitpart 3
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation of Splitpart 4:
+   ==========================
+   
+   Initial Clauses:      T7:   + P(a)
+                       * T8:   - P(c_2)  + P(c_1)
+                       * T9:   - P(c_2)  + R(c_2 c_1)
+                       * T10:  All x:Any + P(x)  + P(f_2(x))
+                       * T11:  All x:Any + P(x)  + R(x f_1(x))
+                       * T12:  All x:Any + P(x)  + R(f_1(x) f_2(x))
+                       * T13:  All x,y:Any - P(y)  - R(c_2 x)  - R(x y)
+                       * T14:  All x,y:Any - P(y)  - R(x y)  + P(f_4(x))
+                       * T15:  All x,y:Any - P(y)  - R(x y)  + R(x f_3(x))
+                       * T16:  All x,y:Any - P(y)  - R(x y)  + R(f_3(x) f_4(x))
+                       
+
+   
+   T9,2 & T14,2   -->  * R37:  - P(c_2)  - P(c_1)  + P(f_4(c_2))
+   
+   R37,2 & T8,2   -->  * R38:  - P(c_2)  + P(f_4(c_2))  - P(c_2)
+   
+   R38 1=3        -->  * D39:  - P(c_2)  + P(f_4(c_2))
+   
+   T9,2 & T15,2   -->  * R40:  - P(c_2)  - P(c_1)  + R(c_2 f_3(c_2))
+   
+   R40,2 & T8,2   -->  * R41:  - P(c_2)  + R(c_2 f_3(c_2))  - P(c_2)
+   
+   R41 1=3        -->  * D42:  - P(c_2)  + R(c_2 f_3(c_2))
+   
+   T9,2 & T16,2   -->  * R44:  - P(c_2)  - P(c_1)  + R(f_3(c_2) f_4(c_2))
+   
+   R44,2 & T8,2   -->  * R45:  - P(c_2)  + R(f_3(c_2) f_4(c_2))  - P(c_2)
+   
+   R45 1=3        -->  * D46:  - P(c_2)  + R(f_3(c_2) f_4(c_2))
+   
+   T12,2 & T13,3  -->  * R47:  All x:Any + P(x)  - P(f_2(x))  - R(c_2 f_1(x))
+   
+   R47,2 & T10,2  -->  * R48:  All x:Any + P(x)  - R(c_2 f_1(x))  + P(x)
+   
+   R48 1=3        -->  * D49:  All x:Any + P(x)  - R(c_2 f_1(x))
+   
+   T11,2 & D49,2  -->  * R50:  + P(c_2)  + P(c_2)
+   
+   R50 1=2        -->  * D51:  + P(c_2)
+   
+   D39,1 & D51,1  -->  * R56:  + P(f_4(c_2))
+   
+   D42,1 & D51,1  -->  * R57:  + R(c_2 f_3(c_2))
+   
+   D46,1 & D51,1  -->  * R59:  + R(f_3(c_2) f_4(c_2))
+   
+   R59,1 & T13,3  -->  * R60:  - P(f_4(c_2))  - R(c_2 f_3(c_2))
+   
+   R60,1 & R56,1  -->  * R61:  - R(c_2 f_3(c_2))
+   
+   R61,1 & R57,1  -->  * R62:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation of Splitpart 5:
+   ==========================
+   
+   Initial Clauses:    * T17:  + P(a)
+                       * T18:  - P(c_3)
+                       * R4:   All x:Any + P(x)  + P(f_6(x))
+                       * R5:   All x:Any + P(x)  + R(x f_5(x))
+                       * R6:   All x:Any + P(x)  + R(f_5(x) f_6(x))
+                       * T22:  All x,y:Any - P(y)  - R(c_3 x)  - R(x y)
+                         R7:   All x,y:Any - P(y)  - R(x y)  + P(f_6(x))
+                         R8:   All x,y:Any - P(y)  - R(x y)  + R(x f_5(x))
+                         R9:   All x,y:Any - P(y)  - R(x y)  + R(f_5(x) f_6(x))
+                       
+
+   
+   R4,1 & T18,1   -->  * R63:  + P(f_6(c_3))
+   
+   R5,1 & T18,1   -->  * R64:  + R(c_3 f_5(c_3))
+   
+   R6,1 & T18,1   -->  * R65:  + R(f_5(c_3) f_6(c_3))
+   
+   R65,1 & T22,3  -->  * R66:  - P(f_6(c_3))  - R(c_3 f_5(c_3))
+   
+   R66,1 & R63,1  -->  * R67:  - R(c_3 f_5(c_3))
+   
+   R67,1 & R64,1  -->  * R68:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation of Splitpart 6:
+   ==========================
+   
+   Initial Clauses:    * T26:  + P(a)
+                       * T27:  + P(c_4)
+                       * T28:  + R(c_5 c_4)
+                         R10:  All x:Any + P(x)  + P(f_6(x))
+                         R11:  All x:Any + P(x)  + R(x f_5(x))
+                         R12:  All x:Any + P(x)  + R(f_5(x) f_6(x))
+                       * T32:  All x,y:Any - P(y)  - R(c_5 x)  - R(x y)
+                       * R13:  All x,y:Any - P(y)  - R(x y)  + P(f_6(x))
+                       * R14:  All x,y:Any - P(y)  - R(x y)  + R(x f_5(x))
+                       * R15:  All x,y:Any - P(y)  - R(x y)  + R(f_5(x) f_6(x))
+                       
+
+   
+   T28,1 & R15,2  -->  * R69:  - P(c_4)  + R(f_5(c_5) f_6(c_5))
+   
+   R69,1 & T27,1  -->  * R70:  + R(f_5(c_5) f_6(c_5))
+   
+   T28,1 & R14,2  -->  * R71:  - P(c_4)  + R(c_5 f_5(c_5))
+   
+   R71,1 & T27,1  -->  * R72:  + R(c_5 f_5(c_5))
+   
+   T28,1 & R13,2  -->  * R73:  - P(c_4)  + P(f_6(c_5))
+   
+   R73,1 & T27,1  -->  * R74:  + P(f_6(c_5))
+   
+   R70,1 & T32,3  -->  * R75:  - P(f_6(c_5))  - R(c_5 f_5(c_5))
+   
+   R75,1 & R74,1  -->  * R76:  - R(c_5 f_5(c_5))
+   
+   R76,1 & R72,1  -->  * R77:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation of Splitpart 1: 2 seconds
+   Time Used for Refutation of Splitpart 2: 2 seconds
+   Time Used for Refutation of Splitpart 3: 2 seconds
+   Time Used for Refutation of Splitpart 4: 69 seconds
+   Time Used for Refutation of Splitpart 5: 9 seconds
+   Time Used for Refutation of Splitpart 6: 13 seconds

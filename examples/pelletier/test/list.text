@@ -1,0 +1,120 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 45.10 EQUALITY 16.1                                 *
+                     *           DATE: 10-JUL,1990  21:00                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 10-JUL,1990 20:59 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * AXIOMS 5 *
+             ALL X,Y P (Y C) OR NOT P (C F (Y)) OR P (X C) OR NOT EQ (G (C Y) X)
+             ALL X,Y NOT P (Y C) OR NOT P (X Y) OR Q (A)
+             ALL X EQ (G (X X) X)
+             ALL X NOT Q (X) OR NOT R (X)
+             ALL X NOT S (X) OR R (X)
+             S (A)
+             P (C F (C))
+             
+   Theorems: NIL  
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+           * A2:   All x:Any + EQ(g(x x) x)
+           * A3:   + S(a)
+           * A4:   + P(c f(c))
+           * A5:   All x:Any - Q(x)  - R(x)
+           * A6:   All x:Any - S(x)  + R(x)
+           * A7:   All x,y:Any - P(y c)  - P(x y)  + Q(a)
+           * A8:   All x,y:Any + P(y c)  - P(c f(y))  + P(x c)  - EQ(g(c y) x)
+           
+
+
+
+
+             Initial Operations on Axioms
+             ============================
+
+
+          
+   A7,2 & A8,3  --> * R1: - P(c c)  + Q(a)  + P(c c)  - P(c f(c))  - EQ(g(c c) c)
+   
+   R1,1 & A8,3  --> * R2: + Q(a)  + P(c c)  - P(c f(c))  - EQ(g(c c) c)  + P(c c)  - P(c f(c))  - EQ(g(c c) c)
+   
+   R2 1=2       --> * D3: + Q(a)  - P(c f(c))  - EQ(g(c c) c)  + P(c c)  - P(c f(c))  - EQ(g(c c) c)
+   
+   D3 1=2       --> * D4: + Q(a)  - EQ(g(c c) c)  + P(c c)  - P(c f(c))  - EQ(g(c c) c)
+   
+   D4,2 & A7,2  --> * R5: + Q(a)  + P(c c)  - P(c f(c))  - EQ(g(c c) c)  - P(c c)  + Q(a)
+   
+   R5 1=1       --> * D6: + P(c c)  - P(c f(c))  - EQ(g(c c) c)  - P(c c)  + Q(a)
+   
+   D6 1=2       --> * D7: + P(c c)  - EQ(g(c c) c)  - P(c c)  + Q(a)
+   
+   D7,2 & A4,1  --> * R8: + P(c c)  - P(c c)  + Q(a)
+   
+   R8,2 & A2,1  --> * R9: + P(c c)  + Q(a)
+   
+
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:     A1:   All x:Any + =(x x)
+                      * A2:   All x:Any + EQ(g(x x) x)
+                      * A3:   + S(a)
+                      * A4:   + P(c f(c))
+                      * A5:   All x:Any - Q(x)  - R(x)
+                      * A6:   All x:Any - S(x)  + R(x)
+                      * R9:   + P(c c)  + Q(a)
+                      * A8:   All x,y:Any + P(y c)  - P(c f(y))  + P(x c)  - EQ(g(c y) x)
+                      
+
+   
+   R9,1 & A5,1   -->  * R13:  - R(a)
+   
+   R13,1 & A6,2  -->  * R14:  - S(a)
+   
+   R14,1 & A3,1  -->  * R15:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 34 seconds

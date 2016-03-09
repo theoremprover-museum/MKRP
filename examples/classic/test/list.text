@@ -1,0 +1,72 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 52.4 Experimental GENTRAFO 2.0                      *
+                     *           DATE: 06-FEB,1992  21:13                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 06-FEB,1992 21:13 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   ALL X P (X) OR Q (X)
+             ALL X NOT P (X) OR NOT Q (X)
+             NOT Q (A) OR R
+             NOT Q (B) OR NOT R
+             
+   Theorems: NIL  
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+             A2:   All x:Any + P(x)  + Q(x)
+             A3:   All x:Any - P(x)  - Q(x)
+             A4:   - Q(a)  + R
+             A5:   - Q(b)  - R
+           
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation: (Failure: GRAPH.COLLAPSED)
+   ======================================
+   
+   Initial Clauses:   A1:  All x:Any + =(x x)
+                    
+
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   The theorem(s) could not be proved.
+
+
+
+   Time Used for Refutation: 1 seconds

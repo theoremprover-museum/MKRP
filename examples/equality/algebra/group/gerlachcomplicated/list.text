@@ -1,0 +1,365 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                **********************************************************************
+                *                                                                    *
+                *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE,                *
+                *                 UNIVERSITAET KAISERSLAUTERN                        *
+                *                                                                    *
+                *        VERSION: MKRP 33.1 EQUALITY 16.1                            *
+                *           DATE: 26-AUG,1989  04:33                                 *
+                *                                                                    *
+                **********************************************************************
+
+
+---------------------------------------------------------------------------------------------------------
+
+Edit:     Axioms and Theorems edited: 25-AUG,1989 20:25 
+
+---------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+          Formulae given to the editor
+          ============================
+
+
+Axioms:   * AXIOMS *
+          * GROUP *
+          ALL X,Y,Z PLUS (PLUS (X Y) Z) = PLUS (X PLUS (Y Z))
+          ALL X PLUS (0 X) = X
+          ALL X PLUS (MINUS (X) X) = 0
+          
+Theorems: ALL X,Y PLUS (X Y) = PLUS (Y X)
+                  EQV (ALL X,Y PLUS (PLUS (X Y) PLUS (X Y)) = PLUS (PLUS (X X) PLUS (Y Y)))
+                  EQV (ALL X,Y MINUS (PLUS (X Y)) = PLUS (MINUS (X) MINUS (Y)))
+          
+
+
+
+          Set of Axiom Clauses Resulting from Normalization
+          =================================================
+
+        * A1:   All x:Any + =(x x)
+        * A2:   All x,y,z:Any + =(plus(plus(z y) x) plus(z plus(y x)))
+        * A3:   All x:Any + =(plus(0 x) x)
+        * A4:   All x:Any + =(plus(minus(x) x) 0)
+        
+
+
+
+
+          Set of Theorem Clauses Resulting from Normalization and Splitting
+          =================================================================
+
+Splitpart 1
+
+        * T5: - =(plus(c_1 c_2) plus(c_2 c_1))
+          T6: All x,y:Any + =(plus(plus(y x) plus(y x)) plus(plus(y y) plus(x x)))
+        * T7: All x,y:Any + =(minus(plus(y x)) plus(minus(y) minus(x)))
+
+Splitpart 2
+
+          T8: - =(plus(c_1 c_2) plus(c_2 c_1))
+          T9: - =(plus(plus(c_4 c_3) plus(c_4 c_3)) plus(plus(c_4 c_4) plus(c_3 c_3)))
+          T10: - =(minus(plus(c_6 c_5)) plus(minus(c_6) minus(c_5)))
+
+Splitpart 3
+
+          T11: + =(plus(c_7 c_8) plus(c_8 c_7))
+        * T12: - =(plus(plus(c_10 c_9) plus(c_10 c_9)) plus(plus(c_10 c_10) plus(c_9 c_9)))
+        * T13: All x,y:Any + =(minus(plus(y x)) plus(minus(y) minus(x)))
+
+Splitpart 4
+
+          T14: + =(plus(c_7 c_8) plus(c_8 c_7))
+        * T15: All x,y:Any + =(plus(plus(y x) plus(y x)) plus(plus(y y) plus(x x)))
+        * T16: - =(minus(plus(c_12 c_11)) plus(minus(c_12) minus(c_11)))
+
+
+End of Splitparts
+
+
+
+---------------------------------------------------------------------------------------------------------
+
+
+
+Refutation of Splitpart 1:
+==========================
+
+Initial Clauses:      A1:   All x:Any + =(x x)
+                    * A2:   All x,y,z:Any + =(plus(plus(z y) x) plus(z plus(y x)))
+                    * A3:   All x:Any + =(plus(0 x) x)
+                    * A4:   All x:Any + =(plus(minus(x) x) 0)
+                    * T5:   - =(plus(c_1 c_2) plus(c_2 c_1))
+                      T6:   All x,y:Any + =(plus(plus(y x) plus(y x)) plus(plus(y y) plus(x x)))
+                    * T7:   All x,y:Any + =(minus(plus(y x)) plus(minus(y) minus(x)))
+                    
+
+
+A4,1 & A2,1    -->  * P5:   All x,y:Any + =(plus(0 y) plus(minus(x) plus(x y)))
+
+A3,1 & P5,1    -->  * P6:   All x,y:Any + =(y plus(minus(x) plus(x y)))
+
+A4,1 & P6,1    -->  * P7:   All x:Any + =(x plus(minus(minus(x)) 0))
+
+P7,1 & P6,1    -->  * P8:   All x:Any + =(0 plus(minus(minus(minus(x))) x))
+
+P8,1 & P6,1    -->  * P9:   All x:Any + =(x plus(minus(minus(minus(minus(x)))) 0))
+
+P7,1 & P9,1    -->  * P10:  All x:Any + =(x minus(minus(x)))
+
+P10,1 & P7,1   -->  * P11:  All x:Any + =(x plus(x 0))
+
+P10,1 & P6,1   -->  * P14:  All x,y:Any + =(y plus(x plus(minus(x) y)))
+
+T7,1 & A4,1    -->  * P15:  All x,y:Any + =(plus(plus(minus(y) minus(x)) plus(y x)) 0)
+
+A2,1 & P15,1   -->  * P16:  All x,y:Any + =(plus(minus(y) plus(minus(x) plus(y x))) 0)
+
+P16,1 & P6,1   -->  * P17:  All x,y:Any + =(plus(minus(y) plus(x y)) plus(minus(minus(x)) 0))
+
+P11,1 & P17,1  -->  * P18:  All x,y:Any + =(plus(minus(y) plus(x y)) minus(minus(x)))
+
+P10,1 & P18,1  -->  * P19:  All x,y:Any + =(plus(minus(y) plus(x y)) x)
+
+P19,1 & P14,1  -->  * P20:  All x,y:Any + =(plus(y x) plus(x y))
+
+P20,1 & T5,1   -->  * R21:  []
+
+
+
+---------------------------------------------------------------------------------------------------------
+
+
+
+Refutation of Splitpart 2: (Failure: GRAPH.COLLAPSED)
+=====================================================
+
+Initial Clauses:      A1:   All x:Any + =(x x)
+                      A2:   All x,y,z:Any + =(plus(plus(z y) x) plus(z plus(y x)))
+                      A3:   All x:Any + =(plus(0 x) x)
+                      A4:   All x:Any + =(plus(minus(x) x) 0)
+                      T8:   - =(plus(c_1 c_2) plus(c_2 c_1))
+                      T9:   - =(plus(plus(c_4 c_3) plus(c_4 c_3)) plus(plus(c_4 c_4) plus(c_3 c_3)))
+                      T10:  - =(minus(plus(c_6 c_5)) plus(minus(c_6) minus(c_5)))
+                    
+
+
+A2,1 & T9,1    -->    P22:  - =(plus(c_4 plus(c_3 plus(c_4 c_3))) plus(plus(c_4 c_4) plus(c_3 c_3)))
+
+A2,1 & P22,1   -->    P23:  - =(plus(c_4 plus(c_3 plus(c_4 c_3))) plus(c_4 plus(c_4 plus(c_3 c_3))))
+
+A4,1 & A2,1    -->    P24:  All x,y:Any + =(plus(0 y) plus(minus(x) plus(x y)))
+
+A3,1 & P24,1   -->    P25:  All x,y:Any + =(y plus(minus(x) plus(x y)))
+
+A3,1 & P25,1   -->    P26:  All x:Any + =(x plus(minus(0) x))
+
+A4,1 & P25,1   -->    P27:  All x:Any + =(x plus(minus(minus(x)) 0))
+
+P26,1 & P25,1  -->    P28:  All x:Any + =(x plus(minus(minus(0)) x))
+
+P28,1 & A4,1   -->    P29:  + =(minus(0) 0)
+
+P29,1 & P26,1  -->    P30:  All x:Any + =(x plus(0 x))
+
+P29,1 & P28,1  -->    P31:  All x:Any + =(x plus(minus(0) x))
+
+P29,1 & P31,1  -->    P32:  All x:Any + =(x plus(0 x))
+
+P27,1 & P25,1  -->    P33:  All x:Any + =(0 plus(minus(minus(minus(x))) x))
+
+P33,1 & P25,1  -->    P34:  All x:Any + =(x plus(minus(minus(minus(minus(x)))) 0))
+
+P27,1 & P34,1  -->    P35:  All x:Any + =(x minus(minus(x)))
+
+P35,1 & P27,1  -->    P36:  All x:Any + =(x plus(x 0))
+
+P35,1 & P33,1  -->    P37:  All x:Any + =(0 plus(minus(x) x))
+
+P35,1 & A4,1   -->    P38:  All x:Any + =(plus(x minus(x)) 0)
+
+P35,1 & P25,1  -->    P39:  All x,y:Any + =(y plus(x plus(minus(x) y)))
+
+P38,1 & A2,1   -->    P40:  All x,y:Any + =(0 plus(y plus(x minus(plus(y x)))))
+
+P40,1 & P25,1  -->    P41:  All x,y:Any + =(plus(y minus(plus(x y))) plus(minus(x) 0))
+
+P36,1 & P41,1  -->    P42:  All x,y:Any + =(plus(y minus(plus(x y))) minus(x))
+
+P42,1 & P40,1  -->    P43:  All x:Any + =(0 plus(x minus(x)))
+
+P42,1 & P25,1  -->    P44:  All x,y:Any + =(minus(plus(y x)) plus(minus(x) minus(y)))
+
+P44,1 & T10,1  -->    P45:  - =(plus(minus(c_5) minus(c_6)) plus(minus(c_6) minus(c_5)))
+
+P44,1 & P42,1  -->    P46:  All x,y:Any + =(plus(y plus(minus(y) minus(x))) minus(x))
+
+
+
+---------------------------------------------------------------------------------------------------------
+
+
+
+Refutation of Splitpart 3:
+==========================
+
+Initial Clauses:    * A1:   All x:Any + =(x x)
+                    * A2:   All x,y,z:Any + =(plus(plus(z y) x) plus(z plus(y x)))
+                    * A3:   All x:Any + =(plus(0 x) x)
+                    * A4:   All x:Any + =(plus(minus(x) x) 0)
+                      T11:  + =(plus(c_7 c_8) plus(c_8 c_7))
+                    * T12:  - =(plus(plus(c_10 c_9) plus(c_10 c_9)) plus(plus(c_10 c_10) plus(c_9 c_9)))
+                    * T13:  All x,y:Any + =(minus(plus(y x)) plus(minus(y) minus(x)))
+                    
+
+
+A2,1 & T12,1   -->  * P47:  - =(plus(c_10 plus(c_9 plus(c_10 c_9))) plus(plus(c_10 c_10) plus(c_9 c_9)))
+
+A2,1 & P47,1   -->  * P48:  - =(plus(c_10 plus(c_9 plus(c_10 c_9))) plus(c_10 plus(c_10 plus(c_9 c_9))))
+
+A4,1 & A2,1    -->  * P51:  All x,y:Any + =(plus(0 y) plus(minus(x) plus(x y)))
+
+A3,1 & P51,1   -->  * P52:  All x,y:Any + =(y plus(minus(x) plus(x y)))
+
+A4,1 & P52,1   -->  * P53:  All x:Any + =(x plus(minus(minus(x)) 0))
+
+P53,1 & P52,1  -->  * P54:  All x:Any + =(0 plus(minus(minus(minus(x))) x))
+
+P54,1 & P52,1  -->  * P55:  All x:Any + =(x plus(minus(minus(minus(minus(x)))) 0))
+
+P53,1 & P55,1  -->  * P56:  All x:Any + =(x minus(minus(x)))
+
+P56,1 & P53,1  -->  * P57:  All x:Any + =(x plus(x 0))
+
+T13,1 & A4,1   -->  * P61:  All x,y:Any + =(plus(plus(minus(y) minus(x)) plus(y x)) 0)
+
+A2,1 & P61,1   -->  * P62:  All x,y:Any + =(plus(minus(y) plus(minus(x) plus(y x))) 0)
+
+P62,1 & P52,1  -->  * P63:  All x,y:Any + =(plus(minus(y) plus(x y)) plus(minus(minus(x)) 0))
+
+P57,1 & P63,1  -->  * P64:  All x,y:Any + =(plus(minus(y) plus(x y)) minus(minus(x)))
+
+P56,1 & P64,1  -->  * P65:  All x,y:Any + =(plus(minus(y) plus(x y)) x)
+
+A2,1 & P65,1   -->  * P78:  All x,y,z:Any + =(plus(minus(z) plus(y plus(x z))) plus(y x))
+
+P78,1 & P52,1  -->  * P79:  All x,y,z:Any + =(plus(z plus(y x)) plus(minus(minus(x)) plus(z y)))
+
+P56,1 & P79,1  -->  * P80:  All x,y,z:Any + =(plus(z plus(y x)) plus(x plus(z y)))
+
+P80,1 & P48,1  -->  * P81:  - =(plus(c_10 plus(c_10 plus(c_9 c_9))) plus(c_10 plus(c_10 plus(c_9 c_9))))
+
+P81,1 & A1,1   -->  * R82:  []
+
+
+
+---------------------------------------------------------------------------------------------------------
+
+
+
+Refutation of Splitpart 4:
+==========================
+
+Initial Clauses:        A1:    All x:Any + =(x x)
+                      * A2:    All x,y,z:Any + =(plus(plus(z y) x) plus(z plus(y x)))
+                      * A3:    All x:Any + =(plus(0 x) x)
+                      * A4:    All x:Any + =(plus(minus(x) x) 0)
+                        T14:   + =(plus(c_7 c_8) plus(c_8 c_7))
+                      * T15:   All x,y:Any + =(plus(plus(y x) plus(y x)) plus(plus(y y) plus(x x)))
+                      * T16:   - =(minus(plus(c_12 c_11)) plus(minus(c_12) minus(c_11)))
+                      
+
+
+A2,1 & T15,1     -->  * P83:   All x,y:Any + =(plus(y plus(x plus(y x))) plus(plus(y y) plus(x x)))
+
+A2,1 & P83,1     -->  * P84:   All x,y:Any + =(plus(y plus(x plus(y x))) plus(y plus(y plus(x x))))
+
+A4,1 & A2,1      -->  * P85:   All x,y:Any + =(plus(0 y) plus(minus(x) plus(x y)))
+
+A3,1 & P85,1     -->  * P86:   All x,y:Any + =(y plus(minus(x) plus(x y)))
+
+A4,1 & P86,1     -->  * P88:   All x:Any + =(x plus(minus(minus(x)) 0))
+
+P88,1 & P86,1    -->  * P94:   All x:Any + =(0 plus(minus(minus(minus(x))) x))
+
+P94,1 & P86,1    -->  * P95:   All x:Any + =(x plus(minus(minus(minus(minus(x)))) 0))
+
+P88,1 & P95,1    -->  * P96:   All x:Any + =(x minus(minus(x)))
+
+P96,1 & P88,1    -->  * P97:   All x:Any + =(x plus(x 0))
+
+P96,1 & A4,1     -->  * P99:   All x:Any + =(plus(x minus(x)) 0)
+
+P99,1 & A2,1     -->  * P101:  All x,y:Any + =(0 plus(y plus(x minus(plus(y x)))))
+
+P101,1 & P86,1   -->  * P102:  All x,y:Any + =(plus(y minus(plus(x y))) plus(minus(x) 0))
+
+P97,1 & P102,1   -->  * P103:  All x,y:Any + =(plus(y minus(plus(x y))) minus(x))
+
+P103,1 & P86,1   -->  * P105:  All x,y:Any + =(minus(plus(y x)) plus(minus(x) minus(y)))
+
+P105,1 & T16,1   -->  * P106:  - =(plus(minus(c_11) minus(c_12)) plus(minus(c_12) minus(c_11)))
+
+P86,1 & P84,1    -->  * P165:  All x,y:Any + =(plus(minus(y) plus(plus(y x) x))
+                                               plus(minus(y) plus(minus(y) plus(plus(y x) plus(y x)))))
+
+A2,1 & P165,1    -->  * P166:  All x,y:Any + =(plus(minus(y) plus(y plus(x x)))
+                                               plus(minus(y) plus(minus(y) plus(plus(y x) plus(y x)))))
+
+P86,1 & P166,1   -->  * P167:  All x,y:Any + =(plus(y y)
+                                               plus(minus(x) plus(minus(x) plus(plus(x y) plus(x y)))))
+
+A2,1 & P167,1    -->  * P168:  All x,y:Any + =(plus(y y)
+                                               plus(minus(x) plus(minus(x) plus(x plus(y plus(x y))))))
+
+P86,1 & P168,1   -->  * P169:  All x,y:Any + =(plus(y y) plus(minus(x) plus(y plus(x y))))
+
+P169,1 & A2,1    -->  * P171:  All x,y,z:Any + =(plus(plus(z z) y)
+                                                 plus(minus(x) plus(plus(z plus(x z)) y)))
+
+A2,1 & P171,1    -->  * P172:  All x,y,z:Any + =(plus(z plus(z y))
+                                                 plus(minus(x) plus(plus(z plus(x z)) y)))
+
+A2,1 & P172,1    -->  * P173:  All x,y,z:Any + =(plus(z plus(z y))
+                                                 plus(minus(x) plus(z plus(plus(x z) y))))
+
+A2,1 & P173,1    -->  * P174:  All x,y,z:Any + =(plus(z plus(z y))
+                                                 plus(minus(x) plus(z plus(x plus(z y)))))
+
+P99,1 & P174,1   -->  * P175:  All x,y:Any + =(plus(y plus(y minus(y))) plus(minus(x) plus(y plus(x 0))))
+
+P99,1 & P175,1   -->  * P176:  All x,y:Any + =(plus(y 0) plus(minus(x) plus(y plus(x 0))))
+
+P97,1 & P176,1   -->  * P177:  All x,y:Any + =(y plus(minus(x) plus(y plus(x 0))))
+
+P97,1 & P177,1   -->  * P178:  All x,y:Any + =(y plus(minus(x) plus(y x)))
+
+P178,1 & P86,1   -->  * P179:  All x,y:Any + =(plus(y x) plus(minus(minus(x)) y))
+
+P96,1 & P179,1   -->  * P180:  All x,y:Any + =(plus(y x) plus(x y))
+
+P180,1 & P106,1  -->  * R181:  []
+
+
+
+---------------------------------------------------------------------------------------------------------
+
+
+
+The theorem(s) could not be proved.
+
+
+Refutation of split part 2 FAILED
+
+
+Time Used for Refutation of Splitpart 1: 82 seconds
+Time Used for Refutation of Splitpart 2: 66 seconds
+Time Used for Refutation of Splitpart 3: 169 seconds
+Time Used for Refutation of Splitpart 4: 740 seconds

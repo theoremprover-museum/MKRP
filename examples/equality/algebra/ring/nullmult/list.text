@@ -1,0 +1,137 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 30.2 EQUALITY 15.3                                  *
+                     *           DATE: 13-AUG,1989  02:33                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+                                                                                                                    
+      
+   
+   ******************************************************************************************************************
+   ***
+   
+    EDIT:     Axioms and Theorems edited: 13-AUG,1989 02:32 
+   
+   ******************************************************************************************************************
+   ***
+   
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * AXIOMS *
+             * DISTRIBUTIVITY *
+             ALL X15,X16,X14 MULT (PLUS (X15 X16) X14) = PLUS (MULT (X15 X14) MULT (X16 X14))
+             ALL X12,X13,X11 MULT (X11 PLUS (X12 X13)) = PLUS (MULT (X11 X12) MULT (X11 X13))
+             * MULTIPLICATION *
+             ALL X9,X10,X8 MULT (MULT (X8 X9) X10) = MULT (X8 MULT (X9 X10))
+             ALL X7 MULT (X7 1) = X7
+             ALL X6 MULT (1 X6) = X6
+             * ADDITION *
+             ALL X3,X4,X5 PLUS (PLUS (X3 X4) X5) = PLUS (X3 PLUS (X4 X5))
+             ALL X2 PLUS (MINUS (X2) X2) = 0
+             ALL X1 PLUS (0 X1) = X1
+             
+   Theorems: ALL Y MULT (0 Y) = 0
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+           * A2:   All x,y,z:Any + =(mult(plus(z y) x) plus(mult(z x) mult(y x)))
+             A3:   All x,y,z:Any + =(mult(z plus(y x)) plus(mult(z y) mult(z x)))
+             A4:   All x,y,z:Any + =(mult(mult(z y) x) mult(z mult(y x)))
+             A5:   All x:Any + =(mult(x 1) x)
+           * A6:   All x:Any + =(mult(1 x) x)
+           * A7:   All x,y,z:Any + =(plus(plus(z y) x) plus(z plus(y x)))
+           * A8:   All x:Any + =(plus(minus(x) x) 0)
+           * A9:   All x:Any + =(plus(0 x) x)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T10: - =(mult(0 c_1) 0)
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:        A1:    All x:Any + =(x x)
+                         * A2:    All x,y,z:Any + =(mult(plus(z y) x) plus(mult(z x) mult(y x)))
+                           A3:    All x,y,z:Any + =(mult(z plus(y x)) plus(mult(z y) mult(z x)))
+                           A4:    All x,y,z:Any + =(mult(mult(z y) x) mult(z mult(y x)))
+                           A5:    All x:Any + =(mult(x 1) x)
+                         * A6:    All x:Any + =(mult(1 x) x)
+                         * A7:    All x,y,z:Any + =(plus(plus(z y) x) plus(z plus(y x)))
+                         * A8:    All x:Any + =(plus(minus(x) x) 0)
+                         * A9:    All x:Any + =(plus(0 x) x)
+                         * T10:   - =(mult(0 c_1) 0)
+                         
+
+   
+   A9,1 & A2,1      -->  * P13:   All x,y:Any + =(mult(y x) plus(mult(0 x) mult(y x)))
+   
+   A8,1 & A7,1      -->  * P18:   All x,y:Any + =(plus(0 y) plus(minus(x) plus(x y)))
+   
+   A9,1 & P18,1     -->  * P19:   All x,y:Any + =(y plus(minus(x) plus(x y)))
+   
+   A6,1 & P13,1     -->  * P54:   All x:Any + =(mult(1 x) plus(mult(0 x) x))
+   
+   A6,1 & P54,1     -->  * P55:   All x:Any + =(x plus(mult(0 x) x))
+   
+   P55,1 & A7,1     -->  * P72:   All x,y:Any + =(plus(y x) plus(mult(0 y) plus(y x)))
+   
+   A8,1 & P19,1     -->  * P93:   All x:Any + =(x plus(minus(minus(x)) 0))
+   
+   P93,1 & A7,1     -->  * P108:  All x,y:Any + =(plus(y x) plus(minus(minus(y)) plus(0 x)))
+   
+   A9,1 & P108,1    -->  * P109:  All x,y:Any + =(plus(y x) plus(minus(minus(y)) x))
+   
+   P93,1 & P109,1   -->  * P110:  All x:Any + =(plus(x 0) x)
+   
+   P93,1 & P110,1   -->  * P111:  All x:Any + =(x minus(minus(x)))
+   
+   P111,1 & P93,1   -->  * P112:  All x:Any + =(x plus(x 0))
+   
+   A8,1 & P72,1     -->  * P301:  All x:Any + =(plus(minus(x) x) plus(mult(0 minus(x)) 0))
+   
+   A8,1 & P301,1    -->  * P302:  All x:Any + =(0 plus(mult(0 minus(x)) 0))
+   
+   P112,1 & P302,1  -->  * P303:  All x:Any + =(0 mult(0 minus(x)))
+   
+   P111,1 & P303,1  -->  * P305:  All x:Any + =(0 mult(0 x))
+   
+   P305,1 & T10,1   -->  * R306:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 

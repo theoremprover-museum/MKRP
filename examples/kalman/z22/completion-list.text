@@ -1,0 +1,4250 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 45.36 EQUALITY 16.1                                 *
+                     *           DATE: 17-AUG,1990  19:41                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 17-AUG,1990 19:41 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   ALL X A (B (C (X))) = D (X)
+             ALL X B (C (D (X))) = E (X)
+             ALL X C (D (E (X))) = A (X)
+             ALL X D (E (A (X))) = B (X)
+             ALL X E (A (B (X))) = C (X)
+             ALL X A (A1 (X)) = X
+             ALL X A1 (A (X)) = X
+             ALL X B (B1 (X)) = X
+             ALL X B1 (B (X)) = X
+             ALL X C (C1 (X)) = X
+             ALL X C1 (C (X)) = X
+             ALL X D (D1 (X)) = X
+             ALL X D1 (D (X)) = X
+             ALL X E (E1 (X)) = X
+             ALL X E1 (E (X)) = X
+             
+   Theorems: ALL X K (X) = L (X)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+             A2:   All x:Any + =(a(b(c(x))) d(x))
+             A3:   All x:Any + =(b(c(d(x))) e(x))
+             A4:   All x:Any + =(c(d(e(x))) a(x))
+             A5:   All x:Any + =(d(e(a(x))) b(x))
+             A6:   All x:Any + =(e(a(b(x))) c(x))
+             A7:   All x:Any + =(a(a1(x)) x)
+             A8:   All x:Any + =(a1(a(x)) x)
+             A9:   All x:Any + =(b(b1(x)) x)
+             A10:  All x:Any + =(b1(b(x)) x)
+             A11:  All x:Any + =(c(c1(x)) x)
+             A12:  All x:Any + =(c1(c(x)) x)
+             A13:  All x:Any + =(d(d1(x)) x)
+             A14:  All x:Any + =(d1(d(x)) x)
+             A15:  All x:Any + =(e(e1(x)) x)
+             A16:  All x:Any + =(e1(e(x)) x)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+             T17: - =(k(c_1) l(c_1))
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation: (Failure: GRAPH.COLLAPSED)
+   ======================================
+   
+   Initial Clauses: 
+
+        A1:      All x:Any + =(x x)
+        A2:      All x:Any + =(a(b(c(x))) d(x))
+        RW1:     All x:Any + =(b(c(a(b(c(x))))) e(x))
+        RW3:     All x:Any + =(c(a(b(c(b(c(a(b(c(x))))))))) a(x))
+        RW5:     All x:Any + =(a(b(c(b(c(a(b(c(a(x))))))))) b(x))
+        RW6:     All x:Any + =(b(c(a(b(c(a(b(x))))))) c(x))
+        A7:      All x:Any + =(a(a1(x)) x)
+        A8:      All x:Any + =(a1(a(x)) x)
+        A9:      All x:Any + =(b(b1(x)) x)
+        A10:     All x:Any + =(b1(b(x)) x)
+        A11:     All x:Any + =(c(c1(x)) x)
+        A12:     All x:Any + =(c1(c(x)) x)
+        RW7:     All x:Any + =(a(b(c(d1(x)))) x)
+        RW8:     All x:Any + =(d1(a(b(c(x)))) x)
+        RW9:     All x:Any + =(b(c(a(b(c(e1(x)))))) x)
+        RW10:    All x:Any + =(e1(b(c(a(b(c(x)))))) x)
+        T17:     - =(k(c_1) l(c_1))
+      
+
+   
+   RW5,1 & RW3,1        --> 
+        P11:     All x:Any + =(c(b(x)) a(a(x)))
+   
+   RW3,1 & P11          --> 
+        RW12:    All x:Any + =(c(a(b(a(a(c(a(b(c(x))))))))) a(x))
+   
+   RW5,1 & P11          --> 
+        RW13:    All x:Any + =(a(b(a(a(c(a(b(c(a(x))))))))) b(x))
+   
+   RW7,1 & A8,1         --> 
+        P14:     All x:Any + =(a1(x) b(c(d1(x))))
+   
+   RW7,1 & P14          --> 
+        RW15:    All x:Any + =(a(a1(x)) x)
+   
+   RW15,1 & A7          --> 
+        RW16:    All x:Any + =(x x)
+   
+   A11,1 & RW8,1        --> 
+        P17:     All x:Any + =(d1(a(b(x))) c1(x))
+   
+   RW8,1 & P17          --> 
+        RW18:    All x:Any + =(c1(c(x)) x)
+   
+   RW18,1 & A12         --> 
+        RW19:    All x:Any + =(x x)
+   
+   RW6,1 & RW10,1       --> 
+        P20:     All x:Any + =(e1(c(x)) a(b(x)))
+   
+   P11,1 & A12,1        --> 
+        P21:     All x:Any + =(c1(a(a(x))) b(x))
+   
+   A9,1 & P11,1         --> 
+        P22:     All x:Any + =(c(x) a(a(b1(x))))
+   
+   A2,1 & P22           --> 
+        RW23:    All x:Any + =(a(b(a(a(b1(x))))) d(x))
+   
+   RW1,1 & P22          --> 
+        RW24:    All x:Any + =(b(a(a(b1(a(b(c(x))))))) e(x))
+   
+   RW24,1 & P22         --> 
+        RW25:    All x:Any + =(b(a(a(b1(a(b(a(a(b1(x))))))))) e(x))
+   
+   RW12,1 & P22         --> 
+        RW26:    All x:Any + =(a(a(b1(a(b(a(a(c(a(b(c(x))))))))))) a(x))
+   
+   RW26,1 & P22         --> 
+        RW27:    All x:Any + =(a(a(b1(a(b(a(a(a(a(b1(a(b(c(x))))))))))))) a(x))
+   
+   RW27,1 & P22         --> 
+        RW28:    All x:Any + =(a(a(b1(a(b(a(a(a(a(b1(a(b(a(a(b1(x))))))))))))))) a(x))
+   
+   RW13,1 & P22         --> 
+        RW29:    All x:Any + =(a(b(a(a(a(a(b1(a(b(c(a(x))))))))))) b(x))
+   
+   RW29,1 & P22         --> 
+        RW30:    All x:Any + =(a(b(a(a(a(a(b1(a(b(a(a(b1(a(x))))))))))))) b(x))
+   
+   RW6,1 & P22          --> 
+        RW31:    All x:Any + =(b(a(a(b1(a(b(c(a(b(x))))))))) c(x))
+   
+   RW31,1 & P22         --> 
+        RW32:    All x:Any + =(b(a(a(b1(a(b(a(a(b1(a(b(x))))))))))) c(x))
+   
+   RW32,1 & P22         --> 
+        RW33:    All x:Any + =(b(a(a(b1(a(b(a(a(b1(a(b(x))))))))))) a(a(b1(x))))
+   
+   A11,1 & P22          --> 
+        RW34:    All x:Any + =(a(a(b1(c1(x)))) x)
+   
+   A12,1 & P22          --> 
+        RW35:    All x:Any + =(c1(a(a(b1(x)))) x)
+   
+   RW35,1 & P21         --> 
+        RW36:    All x:Any + =(b(b1(x)) x)
+   
+   RW36,1 & A9          --> 
+        RW37:    All x:Any + =(x x)
+   
+   RW9,1 & P22          --> 
+        RW38:    All x:Any + =(b(a(a(b1(a(b(c(e1(x)))))))) x)
+   
+   RW38,1 & P22         --> 
+        RW39:    All x:Any + =(b(a(a(b1(a(b(a(a(b1(e1(x)))))))))) x)
+   
+   RW10,1 & P22         --> 
+        RW40:    All x:Any + =(e1(b(a(a(b1(a(b(c(x)))))))) x)
+   
+   RW40,1 & P22         --> 
+        RW41:    All x:Any + =(e1(b(a(a(b1(a(b(a(a(b1(x)))))))))) x)
+   
+   P11,1 & P22          --> 
+        RW42:    All x:Any + =(a(a(b1(b(x)))) a(a(x)))
+   
+   RW42,1 & A10         --> 
+        RW43:    All x:Any + =(a(a(x)) a(a(x)))
+   
+   P14,1 & P22          --> 
+        RW44:    All x:Any + =(a1(x) b(a(a(b1(d1(x))))))
+   
+   P20,1 & P22          --> 
+        RW45:    All x:Any + =(e1(a(a(b1(x)))) a(b(x)))
+   
+   A9,1 & P17,1         --> 
+        P46:     All x:Any + =(d1(a(x)) c1(b1(x)))
+   
+   P17,1 & P46          --> 
+        RW47:    All x:Any + =(c1(b1(b(x))) c1(x))
+   
+   RW47,1 & A10         --> 
+        RW48:    All x:Any + =(c1(x) c1(x))
+   
+   A7,1 & P21,1         --> 
+        P49:     All x:Any + =(c1(a(x)) b(a1(x)))
+   
+   P21,1 & P49          --> 
+        RW50:    All x:Any + =(b(a1(a(x))) b(x))
+   
+   RW50,1 & A8          --> 
+        RW51:    All x:Any + =(b(x) b(x))
+   
+   RW34,1 & RW45,1      --> 
+        P52:     All x:Any + =(e1(x) a(b(c1(x))))
+   
+   RW39,1 & P52         --> 
+        RW53:    All x:Any + =(b(a(a(b1(a(b(a(a(b1(a(b(c1(x)))))))))))) x)
+   
+   RW53,1 & RW33        --> 
+        RW54:    All x:Any + =(a(a(b1(c1(x)))) x)
+   
+   RW54,1 & RW34        --> 
+        RW55:    All x:Any + =(x x)
+   
+   RW41,1 & P52         --> 
+        RW56:    All x:Any + =(a(b(c1(b(a(a(b1(a(b(a(a(b1(x)))))))))))) x)
+   
+   RW45,1 & P52         --> 
+        RW57:    All x:Any + =(a(b(c1(a(a(b1(x)))))) a(b(x)))
+   
+   RW57,1 & P49         --> 
+        RW58:    All x:Any + =(a(b(b(a1(a(b1(x)))))) a(b(x)))
+   
+   RW58,1 & A8          --> 
+        RW59:    All x:Any + =(a(b(b(b1(x)))) a(b(x)))
+   
+   RW59,1 & A9          --> 
+        RW60:    All x:Any + =(a(b(x)) a(b(x)))
+   
+   RW34,1 & A8,1        --> 
+        P61:     All x:Any + =(a1(x) a(b1(c1(x))))
+   
+   RW34,1 & P61         --> 
+        RW62:    All x:Any + =(a(a1(x)) x)
+   
+   RW62,1 & A7          --> 
+        RW63:    All x:Any + =(x x)
+   
+   A7,1 & P46,1         --> 
+        P64:     All x:Any + =(d1(x) c1(b1(a1(x))))
+   
+   RW44,1 & P64         --> 
+        RW65:    All x:Any + =(a1(x) b(a(a(b1(c1(b1(a1(x))))))))
+   
+   RW65,1 & P61         --> 
+        RW66:    All x:Any + =(a1(x) b(a(a1(b1(a1(x))))))
+   
+   RW66,1 & A7          --> 
+        RW67:    All x:Any + =(a1(x) b(b1(a1(x))))
+   
+   RW67,1 & A9          --> 
+        RW68:    All x:Any + =(a1(x) a1(x))
+   
+   P46,1 & P64          --> 
+        RW69:    All x:Any + =(c1(b1(a1(a(x)))) c1(b1(x)))
+   
+   RW69,1 & A8          --> 
+        RW70:    All x:Any + =(c1(b1(x)) c1(b1(x)))
+   
+   A7,1 & P49,1         --> 
+        P71:     All x:Any + =(c1(x) b(a1(a1(x))))
+   
+   RW56,1 & P71         --> 
+        RW72:    All x:Any + =(a(b(b(a1(a1(b(a(a(b1(a(b(a(a(b1(x)))))))))))))) x)
+   
+   P49,1 & P71          --> 
+        RW73:    All x:Any + =(b(a1(a1(a(x)))) b(a1(x)))
+   
+   RW73,1 & A8          --> 
+        RW74:    All x:Any + =(b(a1(x)) b(a1(x)))
+   
+   P52,1 & P71          --> 
+        RW75:    All x:Any + =(e1(x) a(b(b(a1(a1(x))))))
+   
+   P61,1 & P71          --> 
+        RW76:    All x:Any + =(a1(x) a(b1(b(a1(a1(x))))))
+   
+   RW76,1 & A10         --> 
+        RW77:    All x:Any + =(a1(x) a(a1(a1(x))))
+   
+   RW77,1 & A7          --> 
+        RW78:    All x:Any + =(a1(x) a1(x))
+   
+   P64,1 & P71          --> 
+        RW79:    All x:Any + =(d1(x) b(a1(a1(b1(a1(x))))))
+   
+   A7,1 & RW30,1        --> 
+        P80:     All x:Any + =(a(b(a(a(a(a(b1(a(b(a(a(b1(x)))))))))))) b(a1(x)))
+   
+   RW28,1 & P80         --> 
+        RW81:    All x:Any + =(a(a(b1(b(a1(x))))) a(x))
+   
+   RW81,1 & A10         --> 
+        RW82:    All x:Any + =(a(a(a1(x))) a(x))
+   
+   RW82,1 & A7          --> 
+        RW83:    All x:Any + =(a(x) a(x))
+   
+   RW30,1 & P80         --> 
+        RW84:    All x:Any + =(b(a1(a(x))) b(x))
+   
+   RW84,1 & A8          --> 
+        RW85:    All x:Any + =(b(x) b(x))
+   
+   A9,1 & RW33,1        --> 
+        P86:     All x:Any + =(b(a(a(b1(a(b(a(a(b1(a(x)))))))))) a(a(b1(b1(x)))))
+   
+   RW33,1 & P86         --> 
+        RW87:    All x:Any + =(a(a(b1(b1(b(x))))) a(a(b1(x))))
+   
+   RW87,1 & A10         --> 
+        RW88:    All x:Any + =(a(a(b1(x))) a(a(b1(x))))
+   
+   A10,1 & RW72,1       --> 
+        P89:     All x:Any + =(a(b(b(a1(a1(b(a(a(b1(a(b(a(a(x))))))))))))) b(x))
+   
+   RW72,1 & P89         --> 
+        RW90:    All x:Any + =(b(b1(x)) x)
+   
+   RW90,1 & A9          --> 
+        RW91:    All x:Any + =(x x)
+   
+   P80,1 & A8,1         --> 
+        P92:     All x:Any + =(a1(b(a1(x))) b(a(a(a(a(b1(a(b(a(a(b1(x))))))))))))
+   
+   P80,1 & P92          --> 
+        RW93:    All x:Any + =(a(a1(b(a1(x)))) b(a1(x)))
+   
+   RW93,1 & A7          --> 
+        RW94:    All x:Any + =(b(a1(x)) b(a1(x)))
+   
+   P86,1 & A10,1        --> 
+        P95:     All x:Any + =(b1(a(a(b1(b1(x))))) a(a(b1(a(b(a(a(b1(a(x))))))))))
+   
+   P95,1 & P86,1        --> 
+        P96:     All x:Any + =(b(a(a(b1(a(b(a(a(a(a(b1(a(b(a(a(b1(a(x))))))))))))))))) a(a(b1(b1(a(b1(b1(x))))))))
+   
+   P96,1 & P92          --> 
+        RW97:    All x:Any + =(b(a(a(b1(a(a1(b(a1(a(x))))))))) a(a(b1(b1(a(b1(b1(x))))))))
+   
+   RW97,1 & A8          --> 
+        RW98:    All x:Any + =(b(a(a(b1(a(a1(b(x))))))) a(a(b1(b1(a(b1(b1(x))))))))
+   
+   RW98,1 & A7          --> 
+        RW99:    All x:Any + =(b(a(a(b1(b(x))))) a(a(b1(b1(a(b1(b1(x))))))))
+   
+   RW99,1 & A10         --> 
+        RW100:   All x:Any + =(b(a(a(x))) a(a(b1(b1(a(b1(b1(x))))))))
+   
+   P95,1 & P92,1        --> 
+        P101:    All x:Any + =(a1(b(a1(a(a(b1(b1(x)))))))
+                               b(a(a(a(a(b1(a(b(a(a(a(a(b1(a(b(a(a(b1(a(x))))))))))))))))))))
+   
+   P101,1 & A8          --> 
+        RW102:   All x:Any + =(a1(b(a(b1(b1(x))))) b(a(a(a(a(b1(a(b(a(a(a(a(b1(a(b(a(a(b1(a(x))))))))))))))))))))
+   
+   RW102,1 & P92        --> 
+        RW103:   All x:Any + =(a1(b(a(b1(b1(x))))) b(a(a(a(a(b1(a(a1(b(a1(a(x))))))))))))
+   
+   RW103,1 & A8         --> 
+        RW104:   All x:Any + =(a1(b(a(b1(b1(x))))) b(a(a(a(a(b1(a(a1(b(x))))))))))
+   
+   RW104,1 & A7         --> 
+        RW105:   All x:Any + =(a1(b(a(b1(b1(x))))) b(a(a(a(a(b1(b(x))))))))
+   
+   RW105,1 & A10        --> 
+        RW106:   All x:Any + =(a1(b(a(b1(b1(x))))) b(a(a(a(a(x))))))
+   
+   RW100,1 & A8,1       --> 
+        P107:    All x:Any + =(a1(b(a(a(x)))) a(b1(b1(a(b1(b1(x)))))))
+   
+   RW100,1 & P107       --> 
+        RW108:   All x:Any + =(b(a(a(x))) a(a1(b(a(a(x))))))
+   
+   RW108,1 & A7         --> 
+        RW109:   All x:Any + =(b(a(a(x))) b(a(a(x))))
+   
+   RW106,1 & A7,1       --> 
+        P110:    All x:Any + =(a(b(a(a(a(a(x)))))) b(a(b1(b1(x)))))
+   
+   RW106,1 & P110       --> 
+        RW111:   All x:Any + =(a1(a(b(a(a(a(a(x))))))) b(a(a(a(a(x))))))
+   
+   RW111,1 & A8         --> 
+        RW112:   All x:Any + =(b(a(a(a(a(x))))) b(a(a(a(a(x))))))
+   
+   P107,1 & A8,1        --> 
+        P113:    All x:Any + =(a1(a1(b(a(a(x))))) b1(b1(a(b1(b1(x))))))
+   
+   P107,1 & P113        --> 
+        RW114:   All x:Any + =(a1(b(a(a(x)))) a(a1(a1(b(a(a(x)))))))
+   
+   RW114,1 & A7         --> 
+        RW115:   All x:Any + =(a1(b(a(a(x)))) a1(b(a(a(x)))))
+   
+   P110,1 & A10,1       --> 
+        P116:    All x:Any + =(b1(a(b(a(a(a(a(x))))))) a(b1(b1(x))))
+   
+   P86,1 & P116         --> 
+        RW117:   All x:Any + =(b(a(a(b1(a(b(a(a(b1(a(x)))))))))) a(b1(a(b(a(a(a(a(x)))))))))
+   
+   P95,1 & P116         --> 
+        RW118:   All x:Any + =(b1(a(b1(a(b(a(a(a(a(x))))))))) a(a(b1(a(b(a(a(b1(a(x))))))))))
+   
+   P110,1 & P116        --> 
+        RW119:   All x:Any + =(a(b(a(a(a(a(x)))))) b(b1(a(b(a(a(a(a(x)))))))))
+   
+   RW119,1 & A9         --> 
+        RW120:   All x:Any + =(a(b(a(a(a(a(x)))))) a(b(a(a(a(a(x)))))))
+   
+   P113,1 & P116        --> 
+        RW121:   All x:Any + =(a1(a1(b(a(a(x))))) b1(b1(b1(a(b(a(a(a(a(x))))))))))
+   
+   P116,1 & A8,1        --> 
+        P122:    All x:Any + =(a1(b1(a(b(a(a(a(a(x)))))))) b1(b1(x)))
+   
+   RW121,1 & P122       --> 
+        RW123:   All x:Any + =(a1(a1(b(a(a(x))))) a1(b1(a(b(a(a(a(a(b1(a(b(a(a(a(a(x))))))))))))))))
+   
+   P116,1 & P122        --> 
+        RW124:   All x:Any + =(b1(a(b(a(a(a(a(x))))))) a(a1(b1(a(b(a(a(a(a(x))))))))))
+   
+   RW124,1 & A7         --> 
+        RW125:   All x:Any + =(b1(a(b(a(a(a(a(x))))))) b1(a(b(a(a(a(a(x))))))))
+   
+   P122,1 & A9,1        --> 
+        P126:    All x:Any + =(b(a1(b1(a(b(a(a(a(a(x))))))))) b1(x))
+   
+   A10,1 & P122,1       --> 
+        P127:    All x:Any + =(a1(b1(a(b(a(a(a(a(b(x))))))))) b1(x))
+   
+   A7,1 & P126,1        --> 
+        P128:    All x:Any + =(b(a1(b1(a(b(a(a(a(x)))))))) b1(a1(x)))
+   
+   P126,1 & P128        --> 
+        RW129:   All x:Any + =(b1(a1(a(x))) b1(x))
+   
+   RW129,1 & A8         --> 
+        RW130:   All x:Any + =(b1(x) b1(x))
+   
+   P127,1 & A7,1        --> 
+        P131:    All x:Any + =(a(b1(x)) b1(a(b(a(a(a(a(b(x)))))))))
+   
+   P127,1 & P131        --> 
+        RW132:   All x:Any + =(a1(a(b1(x))) b1(x))
+   
+   RW132,1 & A8         --> 
+        RW133:   All x:Any + =(b1(x) b1(x))
+   
+   A7,1 & P128,1        --> 
+        P134:    All x:Any + =(b(a1(b1(a(b(a(a(x))))))) b1(a1(a1(x))))
+   
+   P128,1 & P134        --> 
+        RW135:   All x:Any + =(b1(a1(a1(a(x)))) b1(a1(x)))
+   
+   RW135,1 & A8         --> 
+        RW136:   All x:Any + =(b1(a1(x)) b1(a1(x)))
+   
+   P131,1 & A9,1        --> 
+        P137:    All x:Any + =(b(a(b1(x))) a(b(a(a(a(a(b(x))))))))
+   
+   A7,1 & P134,1        --> 
+        P138:    All x:Any + =(b(a1(b1(a(b(a(x)))))) b1(a1(a1(a1(x)))))
+   
+   P134,1 & P138        --> 
+        RW139:   All x:Any + =(b1(a1(a1(a1(a(x))))) b1(a1(a1(x))))
+   
+   RW139,1 & A8         --> 
+        RW140:   All x:Any + =(b1(a1(a1(x))) b1(a1(a1(x))))
+   
+   A10,1 & P137,1       --> 
+        P141:    All x:Any + =(b(a(x)) a(b(a(a(a(a(b(b(x)))))))))
+   
+   A7,1 & P138,1        --> 
+        P142:    All x:Any + =(b(a1(b1(a(b(x))))) b1(a1(a1(a1(a1(x))))))
+   
+   P138,1 & P142        --> 
+        RW143:   All x:Any + =(b1(a1(a1(a1(a1(a(x)))))) b1(a1(a1(a1(x)))))
+   
+   RW143,1 & A8         --> 
+        RW144:   All x:Any + =(b1(a1(a1(a1(x)))) b1(a1(a1(a1(x)))))
+   
+   P141,1 & A8,1        --> 
+        P145:    All x:Any + =(a1(b(a(x))) b(a(a(a(a(b(b(x))))))))
+   
+   P141,1 & P145        --> 
+        RW146:   All x:Any + =(b(a(x)) a(a1(b(a(x)))))
+   
+   RW146,1 & A7         --> 
+        RW147:   All x:Any + =(b(a(x)) b(a(x)))
+   
+   A9,1 & P142,1        --> 
+        P148:    All x:Any + =(b(a1(b1(a(x)))) b1(a1(a1(a1(a1(b1(x)))))))
+   
+   P145,1 & A10,1       --> 
+        P149:    All x:Any + =(b1(a1(b(a(x)))) a(a(a(a(b(b(x)))))))
+   
+   P148,1 & A9,1        --> 
+        P150:    All x:Any + =(b(b(a1(b1(a(x))))) a1(a1(a1(a1(b1(x))))))
+   
+   A7,1 & P149,1        --> 
+        P151:    All x:Any + =(b1(a1(b(x))) a(a(a(a(b(b(a1(x))))))))
+   
+   P149,1 & P151        --> 
+        RW152:   All x:Any + =(a(a(a(a(b(b(a1(a(x)))))))) a(a(a(a(b(b(x)))))))
+   
+   RW152,1 & A8         --> 
+        RW153:   All x:Any + =(a(a(a(a(b(b(x)))))) a(a(a(a(b(b(x)))))))
+   
+   A7,1 & P150,1        --> 
+        P154:    All x:Any + =(b(b(a1(b1(x)))) a1(a1(a1(a1(b1(a1(x)))))))
+   
+   A9,1 & P151,1        --> 
+        P155:    All x:Any + =(b1(a1(x)) a(a(a(a(b(b(a1(b1(x)))))))))
+   
+   RW79,1 & P155        --> 
+        RW156:   All x:Any + =(d1(x) b(a1(a1(a(a(a(a(b(b(a1(b1(x))))))))))))
+   
+   RW156,1 & A8         --> 
+        RW157:   All x:Any + =(d1(x) b(a1(a(a(a(b(b(a1(b1(x))))))))))
+   
+   RW157,1 & A8         --> 
+        RW158:   All x:Any + =(d1(x) b(a(a(b(b(a1(b1(x))))))))
+   
+   P142,1 & P155        --> 
+        RW159:   All x:Any + =(b(a1(b1(a(b(x))))) a(a(a(a(b(b(a1(b1(a1(a1(a1(x))))))))))))
+   
+   RW159,1 & P155       --> 
+        RW160:   All x:Any + =(b(a1(b1(a(b(x))))) a(a(a(a(b(b(a1(a(a(a(a(b(b(a1(b1(a1(a1(x))))))))))))))))))
+   
+   RW160,1 & P155       --> 
+        RW161:   All x:Any + =(b(a1(b1(a(b(x)))))
+                               a(a(a(a(b(b(a1(a(a(a(a(b(b(a1(a(a(a(a(b(b(a1(b1(a1(x))))))))))))))))))))))))
+   
+   RW161,1 & P155       --> 
+        RW162:   All x:Any + =(b(a1(b1(a(b(x)))))
+                               a(a(a(a(b(b(a1(a(a(a(a(b(b(a1(a(a(a(a(b(b(a1(a(a(a(a(b(b(a1(b1(x))))))))))))))))))))))
+                                              ))))))))
+   
+   RW162,1 & A8         --> 
+        RW163:   All x:Any + =(b(a1(b1(a(b(x)))))
+                               a(a(a(a(b(b(a1(a(a(a(a(b(b(a1(a(a(a(a(b(b(a(a(a(b(b(a1(b1(x)))))))))))))))))))))))))))
+                               )
+   
+   RW163,1 & A8         --> 
+        RW164:   All x:Any + =(b(a1(b1(a(b(x)))))
+                               a(a(a(a(b(b(a1(a(a(a(a(b(b(a(a(a(b(b(a(a(a(b(b(a1(b1(x))))))))))))))))))))))))))
+   
+   RW164,1 & A8         --> 
+        RW165:   All x:Any + =(b(a1(b1(a(b(x)))))
+                               a(a(a(a(b(b(a(a(a(b(b(a(a(a(b(b(a(a(a(b(b(a1(b1(x))))))))))))))))))))))))
+   
+   P148,1 & P155        --> 
+        RW166:   All x:Any + =(b(a1(b1(a(x)))) a(a(a(a(b(b(a1(b1(a1(a1(a1(b1(x)))))))))))))
+   
+   RW166,1 & P155       --> 
+        RW167:   All x:Any + =(b(a1(b1(a(x)))) a(a(a(a(b(b(a1(a(a(a(a(b(b(a1(b1(a1(a1(b1(x)))))))))))))))))))
+   
+   RW167,1 & P155       --> 
+        RW168:   All x:Any + =(b(a1(b1(a(x))))
+                               a(a(a(a(b(b(a1(a(a(a(a(b(b(a1(a(a(a(a(b(b(a1(b1(a1(b1(x)))))))))))))))))))))))))
+   
+   RW168,1 & P155       --> 
+        RW169:   All x:Any + =(b(a1(b1(a(x))))
+                               a(a(a(a(b(b(a1(a(a(a(a(b(b(a1(a(a(a(a(b(b(a1(a(a(a(a(b(b(a1(b1(b1(x)))))))))))))))))))
+                                                      ))))))))))))
+   
+   RW169,1 & P122       --> 
+        RW170:   All x:Any + =(b(a1(b1(a(x))))
+                               a(a(a(a(b(b(a1(a(a(a(a(b(b(a1(a(a(a(a(b(b(a1(a(a(a(a(b(b(a1(a1(b1(a(b(a(a(a(a(x)))))))
+                                                                                              )))))))))))))))))))))))
+                                           )))))))
+   
+   RW170,1 & A8         --> 
+        RW171:   All x:Any + =(b(a1(b1(a(x))))
+                               a(a(a(a(b(b(a1(a(a(a(a(b(b(a1(a(a(a(a(b(b(a(a(a(b(b(a1(a1(b1(a(b(a(a(a(a(x))))))))))))
+                                                                             )))))))))))))))))))))))
+   
+   RW171,1 & A8         --> 
+        RW172:   All x:Any + =(b(a1(b1(a(x))))
+                               a(a(a(a(b(b(a1(a(a(a(a(b(b(a(a(a(b(b(a(a(a(b(b(a1(a1(b1(a(b(a(a(a(a(x)))))))))))))))))
+                                                              ))))))))))))))))
+   
+   RW172,1 & A8         --> 
+        RW173:   All x:Any + =(b(a1(b1(a(x))))
+                               a(a(a(a(b(b(a(a(a(b(b(a(a(a(b(b(a(a(a(b(b(a1(a1(b1(a(b(a(a(a(a(x))))))))))))))))))))))
+                                               )))))))))
+   
+   P151,1 & P155        --> 
+        RW174:   All x:Any + =(a(a(a(a(b(b(a1(b1(b(x))))))))) a(a(a(a(b(b(a1(x))))))))
+   
+   RW174,1 & A10        --> 
+        RW175:   All x:Any + =(a(a(a(a(b(b(a1(x))))))) a(a(a(a(b(b(a1(x))))))))
+   
+   P154,1 & P155        --> 
+        RW176:   All x:Any + =(b(b(a1(b1(x)))) a1(a1(a1(a1(a(a(a(a(b(b(a1(b1(x)))))))))))))
+   
+   RW176,1 & A8         --> 
+        RW177:   All x:Any + =(b(b(a1(b1(x)))) a1(a1(a1(a(a(a(b(b(a1(b1(x)))))))))))
+   
+   RW177,1 & A8         --> 
+        RW178:   All x:Any + =(b(b(a1(b1(x)))) a1(a1(a(a(b(b(a1(b1(x)))))))))
+   
+   RW178,1 & A8         --> 
+        RW179:   All x:Any + =(b(b(a1(b1(x)))) a1(a(b(b(a1(b1(x)))))))
+   
+   RW179,1 & A8         --> 
+        RW180:   All x:Any + =(b(b(a1(b1(x)))) b(b(a1(b1(x)))))
+   
+   P89,1 & A8,1         --> 
+        P181:    All x:Any + =(a1(b(x)) b(b(a1(a1(b(a(a(b1(a(b(a(a(x)))))))))))))
+   
+   P89,1 & P181         --> 
+        RW182:   All x:Any + =(a(a1(b(x))) b(x))
+   
+   RW182,1 & A7         --> 
+        RW183:   All x:Any + =(b(x) b(x))
+   
+   A10,1 & P92,1        --> 
+        P184:    All x:Any + =(a1(b(a1(b(x)))) b(a(a(a(a(b1(a(b(a(a(x)))))))))))
+   
+   P92,1 & P184         --> 
+        RW185:   All x:Any + =(a1(b(a1(x))) a1(b(a1(b(b1(x))))))
+   
+   RW185,1 & A9         --> 
+        RW186:   All x:Any + =(a1(b(a1(x))) a1(b(a1(x))))
+   
+   RW123,1 & P184       --> 
+        RW187:   All x:Any + =(a1(a1(b(a(a(x))))) a1(b1(a(a1(b(a1(b(a(a(x))))))))))
+   
+   RW187,1 & A7         --> 
+        RW188:   All x:Any + =(a1(a1(b(a(a(x))))) a1(b1(b(a1(b(a(a(x))))))))
+   
+   RW188,1 & A10        --> 
+        RW189:   All x:Any + =(a1(a1(b(a(a(x))))) a1(a1(b(a(a(x))))))
+   
+   P131,1 & RW118,1     --> 
+        P190:    All x:Any + =(b1(a(a(b1(x)))) a(a(b1(a(b(a(a(b1(a(b(x)))))))))))
+   
+   P190,1 & P184,1      --> 
+        P191:    All x:Any + =(a1(b(a1(b(b1(a(b(x))))))) b(a(a(b1(a(a(b1(x))))))))
+   
+   P191,1 & A9          --> 
+        RW192:   All x:Any + =(a1(b(a1(a(b(x))))) b(a(a(b1(a(a(b1(x))))))))
+   
+   RW192,1 & A8         --> 
+        RW193:   All x:Any + =(a1(b(b(x))) b(a(a(b1(a(a(b1(x))))))))
+   
+   RW193,1 & P181,1     --> 
+        P194:    All x:Any + =(a1(b(b1(a(a(b1(x)))))) b(b(a1(a1(b(a(a(b1(a(a1(b(b(x)))))))))))))
+   
+   P194,1 & A9          --> 
+        RW195:   All x:Any + =(a1(a(a(b1(x)))) b(b(a1(a1(b(a(a(b1(a(a1(b(b(x)))))))))))))
+   
+   RW195,1 & A8         --> 
+        RW196:   All x:Any + =(a(b1(x)) b(b(a1(a1(b(a(a(b1(a(a1(b(b(x)))))))))))))
+   
+   RW196,1 & A7         --> 
+        RW197:   All x:Any + =(a(b1(x)) b(b(a1(a1(b(a(a(b1(b(b(x)))))))))))
+   
+   RW197,1 & A10        --> 
+        RW198:   All x:Any + =(a(b1(x)) b(b(a1(a1(b(a(a(b(x)))))))))
+   
+   RW23,1 & RW198       --> 
+        RW199:   All x:Any + =(a(b(a(b(b(a1(a1(b(a(a(b(x))))))))))) d(x))
+   
+   RW25,1 & RW198       --> 
+        RW200:   All x:Any + =(b(a(b(b(a1(a1(b(a(a(b(a(b(a(a(b1(x))))))))))))))) e(x))
+   
+   RW200,1 & RW198      --> 
+        RW201:   All x:Any + =(b(a(b(b(a1(a1(b(a(a(b(a(b(a(b(b(a1(a1(b(a(a(b(x))))))))))))))))))))) e(x))
+   
+   P22,1 & RW198        --> 
+        RW202:   All x:Any + =(c(x) a(b(b(a1(a1(b(a(a(b(x))))))))))
+   
+   RW117,1 & RW198      --> 
+        RW203:   All x:Any + =(b(a(b(b(a1(a1(b(a(a(b(a(b(a(a(b1(a(x)))))))))))))))) a(b1(a(b(a(a(a(a(x)))))))))
+   
+   RW203,1 & RW198      --> 
+        RW204:   All x:Any + =(b(a(b(b(a1(a1(b(a(a(b(a(b(a(b(b(a1(a1(b(a(a(b(a(x))))))))))))))))))))))
+                               a(b1(a(b(a(a(a(a(x)))))))))
+   
+   RW204,1 & RW198      --> 
+        RW205:   All x:Any + =(b(a(b(b(a1(a1(b(a(a(b(a(b(a(b(b(a1(a1(b(a(a(b(a(x))))))))))))))))))))))
+                               b(b(a1(a1(b(a(a(b(a(b(a(a(a(a(x)))))))))))))))
+   
+   RW118,1 & RW198      --> 
+        RW206:   All x:Any + =(b1(b(b(a1(a1(b(a(a(b(a(b(a(a(a(a(x))))))))))))))) a(a(b1(a(b(a(a(b1(a(x))))))))))
+   
+   RW206,1 & A10        --> 
+        RW207:   All x:Any + =(b(a1(a1(b(a(a(b(a(b(a(a(a(a(x))))))))))))) a(a(b1(a(b(a(a(b1(a(x))))))))))
+   
+   RW207,1 & RW198      --> 
+        RW208:   All x:Any + =(b(a1(a1(b(a(a(b(a(b(a(a(a(a(x)))))))))))))
+                               a(b(b(a1(a1(b(a(a(b(a(b(a(a(b1(a(x))))))))))))))))
+   
+   RW208,1 & RW198      --> 
+        RW209:   All x:Any + =(b(a1(a1(b(a(a(b(a(b(a(a(a(a(x)))))))))))))
+                               a(b(b(a1(a1(b(a(a(b(a(b(a(b(b(a1(a1(b(a(a(b(a(x))))))))))))))))))))))
+   
+   P131,1 & RW198       --> 
+        RW210:   All x:Any + =(b(b(a1(a1(b(a(a(b(x)))))))) b1(a(b(a(a(a(a(b(x)))))))))
+   
+   P137,1 & RW198       --> 
+        RW211:   All x:Any + =(b(b(b(a1(a1(b(a(a(b(x))))))))) a(b(a(a(a(a(b(x))))))))
+   
+   P181,1 & RW198       --> 
+        RW212:   All x:Any + =(a1(b(x)) b(b(a1(a1(b(a(b(b(a1(a1(b(a(a(b(a(b(a(a(x)))))))))))))))))))
+   
+   P184,1 & RW198       --> 
+        RW213:   All x:Any + =(a1(b(a1(b(x)))) b(a(a(a(b(b(a1(a1(b(a(a(b(a(b(a(a(x)))))))))))))))))
+   
+   P190,1 & RW198       --> 
+        RW214:   All x:Any + =(b1(a(b(b(a1(a1(b(a(a(b(x)))))))))) a(a(b1(a(b(a(a(b1(a(b(x)))))))))))
+   
+   RW214,1 & RW198      --> 
+        RW215:   All x:Any + =(b1(a(b(b(a1(a1(b(a(a(b(x))))))))))
+                               a(b(b(a1(a1(b(a(a(b(a(b(a(a(b1(a(b(x)))))))))))))))))
+   
+   RW215,1 & RW198      --> 
+        RW216:   All x:Any + =(b1(a(b(b(a1(a1(b(a(a(b(x))))))))))
+                               a(b(b(a1(a1(b(a(a(b(a(b(a(b(b(a1(a1(b(a(a(b(a(b(x)))))))))))))))))))))))
+   
+   RW216,1 & RW209      --> 
+        RW217:   All x:Any + =(b1(a(b(b(a1(a1(b(a(a(b(x)))))))))) b(a1(a1(b(a(a(b(a(b(a(a(a(a(b(x)))))))))))))))
+   
+   RW193,1 & RW198      --> 
+        RW218:   All x:Any + =(a1(b(b(x))) b(a(b(b(a1(a1(b(a(a(b(a(a(b1(x))))))))))))))
+   
+   RW218,1 & RW198      --> 
+        RW219:   All x:Any + =(a1(b(b(x))) b(a(b(b(a1(a1(b(a(a(b(a(b(b(a1(a1(b(a(a(b(x))))))))))))))))))))
+   
+   RW205,1 & RW209      --> 
+        RW220:   All x:Any + =(b(b(a1(a1(b(a(a(b(a(b(a(a(a(a(x))))))))))))))
+                               b(b(a1(a1(b(a(a(b(a(b(a(a(a(a(x)))))))))))))))
+   
+   RW210,1 & RW165,1    --> 
+        P221:    All x:Any + =(b(a1(b(b(a1(a1(b(a(a(b(x))))))))))
+                               a(a(a(a(b(b(a(a(a(b(b(a(a(a(b(b(a(a(a(b(b(a1(b1(a(a(a(a(b(x)))))))))))))))))))))))))))
+                                 ))
+   
+   P221,1 & P150        --> 
+        RW222:   All x:Any + =(b(a1(b(b(a1(a1(b(a(a(b(x))))))))))
+                               a(a(a(a(b(b(a(a(a(b(b(a(a(a(b(b(a(a(a(a1(a1(a1(a1(b1(a(a(a(b(x))))))))))))))))))))))))
+                                       )))))
+   
+   RW222,1 & A7         --> 
+        RW223:   All x:Any + =(b(a1(b(b(a1(a1(b(a(a(b(x))))))))))
+                               a(a(a(a(b(b(a(a(a(b(b(a(a(a(b(b(a(a(a1(a1(a1(b1(a(a(a(b(x)))))))))))))))))))))))))))
+   
+   RW223,1 & A7         --> 
+        RW224:   All x:Any + =(b(a1(b(b(a1(a1(b(a(a(b(x))))))))))
+                               a(a(a(a(b(b(a(a(a(b(b(a(a(a(b(b(a(a1(a1(b1(a(a(a(b(x)))))))))))))))))))))))))
+   
+   RW224,1 & A7         --> 
+        RW225:   All x:Any + =(b(a1(b(b(a1(a1(b(a(a(b(x))))))))))
+                               a(a(a(a(b(b(a(a(a(b(b(a(a(a(b(b(a1(b1(a(a(a(b(x)))))))))))))))))))))))
+   
+   RW225,1 & P150       --> 
+        RW226:   All x:Any + =(b(a1(b(b(a1(a1(b(a(a(b(x))))))))))
+                               a(a(a(a(b(b(a(a(a(b(b(a(a(a(a1(a1(a1(a1(b1(a(a(b(x)))))))))))))))))))))))
+   
+   RW226,1 & A7         --> 
+        RW227:   All x:Any + =(b(a1(b(b(a1(a1(b(a(a(b(x))))))))))
+                               a(a(a(a(b(b(a(a(a(b(b(a(a(a1(a1(a1(b1(a(a(b(x)))))))))))))))))))))
+   
+   RW227,1 & A7         --> 
+        RW228:   All x:Any + =(b(a1(b(b(a1(a1(b(a(a(b(x))))))))))
+                               a(a(a(a(b(b(a(a(a(b(b(a(a1(a1(b1(a(a(b(x)))))))))))))))))))
+   
+   RW228,1 & A7         --> 
+        RW229:   All x:Any + =(b(a1(b(b(a1(a1(b(a(a(b(x))))))))))
+                               a(a(a(a(b(b(a(a(a(b(b(a1(b1(a(a(b(x)))))))))))))))))
+   
+   RW229,1 & P150       --> 
+        RW230:   All x:Any + =(b(a1(b(b(a1(a1(b(a(a(b(x))))))))))
+                               a(a(a(a(b(b(a(a(a(a1(a1(a1(a1(b1(a(b(x)))))))))))))))))
+   
+   RW230,1 & A7         --> 
+        RW231:   All x:Any + =(b(a1(b(b(a1(a1(b(a(a(b(x)))))))))) a(a(a(a(b(b(a(a(a1(a1(a1(b1(a(b(x)))))))))))))))
+   
+   RW231,1 & A7         --> 
+        RW232:   All x:Any + =(b(a1(b(b(a1(a1(b(a(a(b(x)))))))))) a(a(a(a(b(b(a(a1(a1(b1(a(b(x)))))))))))))
+   
+   RW232,1 & A7         --> 
+        RW233:   All x:Any + =(b(a1(b(b(a1(a1(b(a(a(b(x)))))))))) a(a(a(a(b(b(a1(b1(a(b(x)))))))))))
+   
+   RW233,1 & RW165      --> 
+        RW234:   All x:Any + =(b(a1(b(b(a1(a1(b(a(a(b(x))))))))))
+                               a(a(a(a(b(a(a(a(a(b(b(a(a(a(b(b(a(a(a(b(b(a(a(a(b(b(a1(b1(x)))))))))))))))))))))))))))
+                                 ))
+   
+   RW234,1 & P145       --> 
+        RW235:   All x:Any + =(b(a1(b(b(a1(a1(b(a(a(b(x))))))))))
+                               a(a(a(a(a1(b(a(a(a(a(b(b(a(a(a(b(b(a(a(a(b(b(a1(b1(x)))))))))))))))))))))))))
+   
+   RW235,1 & P145       --> 
+        RW236:   All x:Any + =(b(a1(b(b(a1(a1(b(a(a(b(x))))))))))
+                               a(a(a(a(a1(a1(b(a(a(a(a(b(b(a(a(a(b(b(a1(b1(x)))))))))))))))))))))
+   
+   RW236,1 & P145       --> 
+        RW237:   All x:Any + =(b(a1(b(b(a1(a1(b(a(a(b(x))))))))))
+                               a(a(a(a(a1(a1(a1(b(a(a(a(a(b(b(a1(b1(x)))))))))))))))))
+   
+   RW237,1 & P145       --> 
+        RW238:   All x:Any + =(b(a1(b(b(a1(a1(b(a(a(b(x)))))))))) a(a(a(a(a1(a1(a1(a1(b(a(a1(b1(x)))))))))))))
+   
+   RW238,1 & A7         --> 
+        RW239:   All x:Any + =(b(a1(b(b(a1(a1(b(a(a(b(x)))))))))) a(a(a(a(a1(a1(a1(a1(b(b1(x)))))))))))
+   
+   RW239,1 & A9         --> 
+        RW240:   All x:Any + =(b(a1(b(b(a1(a1(b(a(a(b(x)))))))))) a(a(a(a(a1(a1(a1(a1(x)))))))))
+   
+   RW240,1 & A7         --> 
+        RW241:   All x:Any + =(b(a1(b(b(a1(a1(b(a(a(b(x)))))))))) a(a(a(a1(a1(a1(x)))))))
+   
+   RW241,1 & A7         --> 
+        RW242:   All x:Any + =(b(a1(b(b(a1(a1(b(a(a(b(x)))))))))) a(a(a1(a1(x)))))
+   
+   RW242,1 & A7         --> 
+        RW243:   All x:Any + =(b(a1(b(b(a1(a1(b(a(a(b(x)))))))))) a(a1(x)))
+   
+   RW243,1 & A7         --> 
+        RW244:   All x:Any + =(b(a1(b(b(a1(a1(b(a(a(b(x)))))))))) x)
+   
+   P150,1 & RW211,1     --> 
+        P245:    All x:Any + =(b(b(b(a1(a1(b(a(a(a1(a1(a1(a1(b1(x))))))))))))) a(b(a(a(a(a(b(b(a1(b1(a(x))))))))))))
+   
+   P245,1 & A7          --> 
+        RW246:   All x:Any + =(b(b(b(a1(a1(b(a(a1(a1(a1(b1(x))))))))))) a(b(a(a(a(a(b(b(a1(b1(a(x))))))))))))
+   
+   RW246,1 & A7         --> 
+        RW247:   All x:Any + =(b(b(b(a1(a1(b(a1(a1(b1(x))))))))) a(b(a(a(a(a(b(b(a1(b1(a(x))))))))))))
+   
+   RW247,1 & P145       --> 
+        RW248:   All x:Any + =(b(b(b(a1(a1(b(a1(a1(b1(x))))))))) a(a1(b(a(a1(b1(a(x))))))))
+   
+   RW248,1 & A7         --> 
+        RW249:   All x:Any + =(b(b(b(a1(a1(b(a1(a1(b1(x))))))))) a(a1(b(b1(a(x))))))
+   
+   RW249,1 & A9         --> 
+        RW250:   All x:Any + =(b(b(b(a1(a1(b(a1(a1(b1(x))))))))) a(a1(a(x))))
+   
+   RW250,1 & A8         --> 
+        RW251:   All x:Any + =(b(b(b(a1(a1(b(a1(a1(b1(x))))))))) a(x))
+   
+   P150,1 & RW210,1     --> 
+        P252:    All x:Any + =(b(b(a1(a1(b(a(a(b(b(a1(b1(a(x)))))))))))) b1(a(b(a(a(a(a(a1(a1(a1(a1(b1(x)))))))))))))
+   
+   P252,1 & P150        --> 
+        RW253:   All x:Any + =(b(b(a1(a1(b(a(a(a1(a1(a1(a1(b1(x))))))))))))
+                               b1(a(b(a(a(a(a(a1(a1(a1(a1(b1(x)))))))))))))
+   
+   RW253,1 & A7         --> 
+        RW254:   All x:Any + =(b(b(a1(a1(b(a(a1(a1(a1(b1(x)))))))))) b1(a(b(a(a(a(a(a1(a1(a1(a1(b1(x)))))))))))))
+   
+   RW254,1 & A7         --> 
+        RW255:   All x:Any + =(b(b(a1(a1(b(a1(a1(b1(x)))))))) b1(a(b(a(a(a(a(a1(a1(a1(a1(b1(x)))))))))))))
+   
+   RW255,1 & A7         --> 
+        RW256:   All x:Any + =(b(b(a1(a1(b(a1(a1(b1(x)))))))) b1(a(b(a(a(a(a1(a1(a1(b1(x)))))))))))
+   
+   RW256,1 & A7         --> 
+        RW257:   All x:Any + =(b(b(a1(a1(b(a1(a1(b1(x)))))))) b1(a(b(a(a(a1(a1(b1(x)))))))))
+   
+   RW257,1 & A7         --> 
+        RW258:   All x:Any + =(b(b(a1(a1(b(a1(a1(b1(x)))))))) b1(a(b(a(a1(b1(x)))))))
+   
+   RW258,1 & A7         --> 
+        RW259:   All x:Any + =(b(b(a1(a1(b(a1(a1(b1(x)))))))) b1(a(b(b1(x)))))
+   
+   RW259,1 & A9         --> 
+        RW260:   All x:Any + =(b(b(a1(a1(b(a1(a1(b1(x)))))))) b1(a(x)))
+   
+   P122,1 & RW260       --> 
+        RW261:   All x:Any + =(a1(b(b(a1(a1(b(a1(a1(b1(b(a(a(a(a(x)))))))))))))) b1(b1(x)))
+   
+   RW261,1 & A10        --> 
+        RW262:   All x:Any + =(a1(b(b(a1(a1(b(a1(a1(a(a(a(a(x)))))))))))) b1(b1(x)))
+   
+   RW262,1 & A8         --> 
+        RW263:   All x:Any + =(a1(b(b(a1(a1(b(a1(a(a(a(x)))))))))) b1(b1(x)))
+   
+   RW263,1 & A8         --> 
+        RW264:   All x:Any + =(a1(b(b(a1(a1(b(a(a(x)))))))) b1(b1(x)))
+   
+   RW210,1 & RW260      --> 
+        RW265:   All x:Any + =(b(b(a1(a1(b(a(a(b(x)))))))) b(b(a1(a1(b(a1(a1(b1(b(a(a(a(a(b(x)))))))))))))))
+   
+   RW265,1 & A10        --> 
+        RW266:   All x:Any + =(b(b(a1(a1(b(a(a(b(x)))))))) b(b(a1(a1(b(a1(a1(a(a(a(a(b(x)))))))))))))
+   
+   RW266,1 & A8         --> 
+        RW267:   All x:Any + =(b(b(a1(a1(b(a(a(b(x)))))))) b(b(a1(a1(b(a1(a(a(a(b(x)))))))))))
+   
+   RW267,1 & A8         --> 
+        RW268:   All x:Any + =(b(b(a1(a1(b(a(a(b(x)))))))) b(b(a1(a1(b(a(a(b(x)))))))))
+   
+   RW165,1 & RW260      --> 
+        RW269:   All x:Any + =(b(a1(b(b(a1(a1(b(a1(a1(b1(b(x)))))))))))
+                               a(a(a(a(b(b(a(a(a(b(b(a(a(a(b(b(a(a(a(b(b(a1(b1(x))))))))))))))))))))))))
+   
+   RW269,1 & A10        --> 
+        RW270:   All x:Any + =(b(a1(b(b(a1(a1(b(a1(a1(x)))))))))
+                               a(a(a(a(b(b(a(a(a(b(b(a(a(a(b(b(a(a(a(b(b(a1(b1(x))))))))))))))))))))))))
+   
+   RW173,1 & RW260      --> 
+        RW271:   All x:Any + =(b(a1(b(b(a1(a1(b(a1(a1(b1(x))))))))))
+                               a(a(a(a(b(b(a(a(a(b(b(a(a(a(b(b(a(a(a(b(b(a1(a1(b1(a(b(a(a(a(a(x))))))))))))))))))))))
+                                               )))))))))
+   
+   RW271,1 & RW260      --> 
+        RW272:   All x:Any + =(b(a1(b(b(a1(a1(b(a1(a1(b1(x))))))))))
+                               a(a(a(a(b(b(a(a(a(b(b(a(a(a(b(b(a(a(a(b(b(a1(a1(b(b(a1(a1(b(a1(a1(b1(b(a(a(a(a(x))))))
+                                                                                                 ))))))))))))))))))))
+                                                   )))))))))))
+   
+   RW272,1 & A10        --> 
+        RW273:   All x:Any + =(b(a1(b(b(a1(a1(b(a1(a1(b1(x))))))))))
+                               a(a(a(a(b(b(a(a(a(b(b(a(a(a(b(b(a(a(a(b(b(a1(a1(b(b(a1(a1(b(a1(a1(a(a(a(a(x)))))))))))
+                                                                               ))))))))))))))))))))))))
+   
+   RW273,1 & A8         --> 
+        RW274:   All x:Any + =(b(a1(b(b(a1(a1(b(a1(a1(b1(x))))))))))
+                               a(a(a(a(b(b(a(a(a(b(b(a(a(a(b(b(a(a(a(b(b(a1(a1(b(b(a1(a1(b(a1(a(a(a(x))))))))))))))))
+                                                               )))))))))))))))))
+   
+   RW274,1 & A8         --> 
+        RW275:   All x:Any + =(b(a1(b(b(a1(a1(b(a1(a1(b1(x))))))))))
+                               a(a(a(a(b(b(a(a(a(b(b(a(a(a(b(b(a(a(a(b(b(a1(a1(b(b(a1(a1(b(a(a(x)))))))))))))))))))))
+                                                 ))))))))))
+   
+   P150,1 & RW260       --> 
+        RW276:   All x:Any + =(b(b(a1(b(b(a1(a1(b(a1(a1(b1(x))))))))))) a1(a1(a1(a1(b1(x))))))
+   
+   RW276,1 & RW275      --> 
+        RW277:   All x:Any + =(b(a(a(a(a(b(b(a(a(a(b(b(a(a(a(b(b(a(a(a(b(b(a1(a1(b(b(a1(a1(b(a(a(x)))))))))))))))))))
+                                                       ))))))))))))
+                               a1(a1(a1(a1(b1(x))))))
+   
+   RW277,1 & P145       --> 
+        RW278:   All x:Any + =(a1(b(a(a(a(a(b(b(a(a(a(b(b(a(a(a(b(b(a1(a1(b(b(a1(a1(b(a(a(x))))))))))))))))))))))))))
+                                  )
+                               a1(a1(a1(a1(b1(x))))))
+   
+   RW278,1 & P145       --> 
+        RW279:   All x:Any + =(a1(a1(b(a(a(a(a(b(b(a(a(a(b(b(a1(a1(b(b(a1(a1(b(a(a(x)))))))))))))))))))))))
+                               a1(a1(a1(a1(b1(x))))))
+   
+   RW279,1 & P145       --> 
+        RW280:   All x:Any + =(a1(a1(a1(b(a(a(a(a(b(b(a1(a1(b(b(a1(a1(b(a(a(x)))))))))))))))))))
+                               a1(a1(a1(a1(b1(x))))))
+   
+   RW280,1 & P145       --> 
+        RW281:   All x:Any + =(a1(a1(a1(a1(b(a(a1(a1(b(b(a1(a1(b(a(a(x))))))))))))))) a1(a1(a1(a1(b1(x))))))
+   
+   RW281,1 & A7         --> 
+        RW282:   All x:Any + =(a1(a1(a1(a1(b(a1(b(b(a1(a1(b(a(a(x))))))))))))) a1(a1(a1(a1(b1(x))))))
+   
+   RW217,1 & RW260      --> 
+        RW283:   All x:Any + =(b(b(a1(a1(b(a1(a1(b1(b(b(a1(a1(b(a(a(b(x))))))))))))))))
+                               b(a1(a1(b(a(a(b(a(b(a(a(a(a(b(x)))))))))))))))
+   
+   RW283,1 & A10        --> 
+        RW284:   All x:Any + =(b(b(a1(a1(b(a1(a1(b(a1(a1(b(a(a(b(x))))))))))))))
+                               b(a1(a1(b(a(a(b(a(b(a(a(a(a(b(x)))))))))))))))
+   
+   RW198,1 & A8,1       --> 
+        P285:    All x:Any + =(a1(b(b(a1(a1(b(a(a(b(x))))))))) b1(x))
+   
+   A9,1 & P285          --> 
+        RW286:   All x:Any + =(b(a1(b(b(a1(a1(b(a(a(b(x)))))))))) x)
+   
+   RW286,1 & RW244      --> 
+        RW287:   All x:Any + =(x x)
+   
+   A10,1 & P285         --> 
+        RW288:   All x:Any + =(a1(b(b(a1(a1(b(a(a(b(b(x)))))))))) x)
+   
+   RW158,1 & P285       --> 
+        RW289:   All x:Any + =(d1(x) b(a(a(b(b(a1(a1(b(b(a1(a1(b(a(a(b(x))))))))))))))))
+   
+   RW264,1 & P285       --> 
+        RW290:   All x:Any + =(a1(b(b(a1(a1(b(a(a(x)))))))) a1(b(b(a1(a1(b(a(a(b(b1(x)))))))))))
+   
+   RW290,1 & P285       --> 
+        RW291:   All x:Any + =(a1(b(b(a1(a1(b(a(a(x))))))))
+                               a1(b(b(a1(a1(b(a(a(b(a1(b(b(a1(a1(b(a(a(b(x)))))))))))))))))))
+   
+   RW291,1 & RW244      --> 
+        RW292:   All x:Any + =(a1(b(b(a1(a1(b(a(a(x)))))))) a1(b(b(a1(a1(b(a(a(x)))))))))
+   
+   RW270,1 & P285       --> 
+        RW293:   All x:Any + =(b(a1(b(b(a1(a1(b(a1(a1(x)))))))))
+                               a(a(a(a(b(b(a(a(a(b(b(a(a(a(b(b(a(a(a(b(b(a1(a1(b(b(a1(a1(b(a(a(b(x)))))))))))))))))))
+                                                       )))))))))))))
+   
+   RW275,1 & P285       --> 
+        RW294:   All x:Any + =(b(a1(b(b(a1(a1(b(a1(a1(a1(b(b(a1(a1(b(a(a(b(x))))))))))))))))))
+                               a(a(a(a(b(b(a(a(a(b(b(a(a(a(b(b(a(a(a(b(b(a1(a1(b(b(a1(a1(b(a(a(x)))))))))))))))))))))
+                                                 ))))))))))
+   
+   RW282,1 & P285       --> 
+        RW295:   All x:Any + =(a1(a1(a1(a1(b(a1(b(b(a1(a1(b(a(a(x)))))))))))))
+                               a1(a1(a1(a1(a1(b(b(a1(a1(b(a(a(b(x))))))))))))))
+   
+   P155,1 & P285        --> 
+        RW296:   All x:Any + =(a1(b(b(a1(a1(b(a(a(b(a1(x)))))))))) a(a(a(a(b(b(a1(b1(x)))))))))
+   
+   RW296,1 & P285       --> 
+        RW297:   All x:Any + =(a1(b(b(a1(a1(b(a(a(b(a1(x))))))))))
+                               a(a(a(a(b(b(a1(a1(b(b(a1(a1(b(a(a(b(x)))))))))))))))))
+   
+   RW198,1 & P285       --> 
+        RW298:   All x:Any + =(a(a1(b(b(a1(a1(b(a(a(b(x)))))))))) b(b(a1(a1(b(a(a(b(x)))))))))
+   
+   RW298,1 & A7         --> 
+        RW299:   All x:Any + =(b(b(a1(a1(b(a(a(b(x)))))))) b(b(a1(a1(b(a(a(b(x)))))))))
+   
+   RW251,1 & P285       --> 
+        RW300:   All x:Any + =(b(b(b(a1(a1(b(a1(a1(a1(b(b(a1(a1(b(a(a(b(x))))))))))))))))) a(x))
+   
+   RW260,1 & P285       --> 
+        RW301:   All x:Any + =(b(b(a1(a1(b(a1(a1(a1(b(b(a1(a1(b(a(a(b(x)))))))))))))))) b1(a(x)))
+   
+   RW301,1 & P285       --> 
+        RW302:   All x:Any + =(b(b(a1(a1(b(a1(a1(a1(b(b(a1(a1(b(a(a(b(x))))))))))))))))
+                               a1(b(b(a1(a1(b(a(a(b(a(x)))))))))))
+   
+   RW294,1 & RW302      --> 
+        RW303:   All x:Any + =(b(a1(a1(b(b(a1(a1(b(a(a(b(a(x))))))))))))
+                               a(a(a(a(b(b(a(a(a(b(b(a(a(a(b(b(a(a(a(b(b(a1(a1(b(b(a1(a1(b(a(a(x)))))))))))))))))))))
+                                                 ))))))))))
+   
+   RW300,1 & RW302      --> 
+        RW304:   All x:Any + =(b(a1(b(b(a1(a1(b(a(a(b(a(x))))))))))) a(x))
+   
+   RW304,1 & RW244      --> 
+        RW305:   All x:Any + =(a(x) a(x))
+   
+   RW293,1 & RW303      --> 
+        RW306:   All x:Any + =(b(a1(b(b(a1(a1(b(a1(a1(x))))))))) b(a1(a1(b(b(a1(a1(b(a(a(b(a(b(x))))))))))))))
+   
+   RW288,1 & A7,1       --> 
+        P307:    All x:Any + =(a(x) b(b(a1(a1(b(a(a(b(b(x))))))))))
+   
+   RW288,1 & P307       --> 
+        RW308:   All x:Any + =(a1(a(x)) x)
+   
+   RW308,1 & A8         --> 
+        RW309:   All x:Any + =(x x)
+   
+   RW306,1 & P145,1     --> 
+        P310:    All x:Any + =(a1(b(a(a1(a1(b(b(a1(a1(b(a(a(b(a(b(x)))))))))))))))
+                               b(a(a(a(a(b(b(a1(b(b(a1(a1(b(a1(a1(x))))))))))))))))
+   
+   P310,1 & A7          --> 
+        RW311:   All x:Any + =(a1(b(a1(b(b(a1(a1(b(a(a(b(a(b(x)))))))))))))
+                               b(a(a(a(a(b(b(a1(b(b(a1(a1(b(a1(a1(x))))))))))))))))
+   
+   RW311,1 & RW244      --> 
+        RW312:   All x:Any + =(a1(a(b(x))) b(a(a(a(a(b(b(a1(b(b(a1(a1(b(a1(a1(x))))))))))))))))
+   
+   RW312,1 & A8         --> 
+        RW313:   All x:Any + =(b(x) b(a(a(a(a(b(b(a1(b(b(a1(a1(b(a1(a1(x))))))))))))))))
+   
+   RW313,1 & P145       --> 
+        RW314:   All x:Any + =(b(x) a1(b(a(a1(b(b(a1(a1(b(a1(a1(x))))))))))))
+   
+   RW314,1 & A7         --> 
+        RW315:   All x:Any + =(b(x) a1(b(b(b(a1(a1(b(a1(a1(x))))))))))
+   
+   RW315,1 & A7,1       --> 
+        P316:    All x:Any + =(a(b(x)) b(b(b(a1(a1(b(a1(a1(x)))))))))
+   
+   RW315,1 & P316       --> 
+        RW317:   All x:Any + =(b(x) a1(a(b(x))))
+   
+   RW317,1 & A8         --> 
+        RW318:   All x:Any + =(b(x) b(x))
+   
+   A8,1 & P316,1        --> 
+        P319:    All x:Any + =(a(b(a(x))) b(b(b(a1(a1(b(a1(x))))))))
+   
+   P316,1 & P319        --> 
+        RW320:   All x:Any + =(a(b(x)) a(b(a(a1(x)))))
+   
+   RW320,1 & A7         --> 
+        RW321:   All x:Any + =(a(b(x)) a(b(x)))
+   
+   A8,1 & P319,1        --> 
+        P322:    All x:Any + =(a(b(a(a(x)))) b(b(b(a1(a1(b(x)))))))
+   
+   P319,1 & P322        --> 
+        RW323:   All x:Any + =(a(b(a(x))) a(b(a(a(a1(x))))))
+   
+   RW323,1 & A7         --> 
+        RW324:   All x:Any + =(a(b(a(x))) a(b(a(x))))
+   
+   P145,1 & RW213,1     --> 
+        P325:    All x:Any + =(a1(b(a1(b(a(a(b(b(x)))))))) b(a(a(a(b(b(a1(a1(b(a(a(b(a(a1(b(a(x)))))))))))))))))
+   
+   P325,1 & A7          --> 
+        RW326:   All x:Any + =(a1(b(a1(b(a(a(b(b(x)))))))) b(a(a(a(b(b(a1(a1(b(a(a(b(b(a(x)))))))))))))))
+   
+   RW326,1 & P307       --> 
+        RW327:   All x:Any + =(a1(b(a1(b(a(a(b(b(x)))))))) b(a(a(a(a(a(x)))))))
+   
+   P145,1 & RW212,1     --> 
+        P328:    All x:Any + =(a1(b(a(a(b(b(x)))))) b(b(a1(a1(b(a(b(b(a1(a1(b(a(a(b(a(a1(b(a(x)))))))))))))))))))
+   
+   P328,1 & A7          --> 
+        RW329:   All x:Any + =(a1(b(a(a(b(b(x)))))) b(b(a1(a1(b(a(b(b(a1(a1(b(a(a(b(b(a(x)))))))))))))))))
+   
+   RW329,1 & P307       --> 
+        RW330:   All x:Any + =(a1(b(a(a(b(b(x)))))) b(b(a1(a1(b(a(a(a(x)))))))))
+   
+   RW306,1 & RW297,1    --> 
+        P331:    All x:Any + =(a1(b(b(a1(a1(b(a(a(b(a1(a(b(x))))))))))))
+                               a(a(a(a(b(b(a1(b(b(a1(a1(b(a1(a1(x)))))))))))))))
+   
+   P331,1 & A8          --> 
+        RW332:   All x:Any + =(a1(b(b(a1(a1(b(a(a(b(b(x)))))))))) a(a(a(a(b(b(a1(b(b(a1(a1(b(a1(a1(x)))))))))))))))
+   
+   RW332,1 & P307       --> 
+        RW333:   All x:Any + =(a1(a(x)) a(a(a(a(b(b(a1(b(b(a1(a1(b(a1(a1(x)))))))))))))))
+   
+   RW333,1 & A8         --> 
+        RW334:   All x:Any + =(x a(a(a(a(b(b(a1(b(b(a1(a1(b(a1(a1(x)))))))))))))))
+   
+   RW306,1 & RW302,1    --> 
+        P335:    All x:Any + =(b(b(a1(a1(b(a1(a1(a1(b(b(a1(a1(b(a(a(b(a1(b(b(a1(a1(b(a1(a1(x))))))))))))))))))))))))
+                               a1(b(b(a1(a1(b(a(a(b(a(a1(a1(b(b(a1(a1(b(a(a(b(a(b(x)))))))))))))))))))))))
+   
+   P335,1 & RW302       --> 
+        RW336:   All x:Any + =(a1(b(b(a1(a1(b(a(a(b(a(a1(b(b(a1(a1(b(a1(a1(x))))))))))))))))))
+                               a1(b(b(a1(a1(b(a(a(b(a(a1(a1(b(b(a1(a1(b(a(a(b(a(b(x)))))))))))))))))))))))
+   
+   RW336,1 & A7         --> 
+        RW337:   All x:Any + =(a1(b(b(a1(a1(b(a(a(b(b(b(a1(a1(b(a1(a1(x))))))))))))))))
+                               a1(b(b(a1(a1(b(a(a(b(a(a1(a1(b(b(a1(a1(b(a(a(b(a(b(x)))))))))))))))))))))))
+   
+   RW337,1 & P322       --> 
+        RW338:   All x:Any + =(a1(b(b(a1(a1(b(a(a(a(b(a(a(a1(a1(x))))))))))))))
+                               a1(b(b(a1(a1(b(a(a(b(a(a1(a1(b(b(a1(a1(b(a(a(b(a(b(x)))))))))))))))))))))))
+   
+   RW338,1 & A7         --> 
+        RW339:   All x:Any + =(a1(b(b(a1(a1(b(a(a(a(b(a(a1(x))))))))))))
+                               a1(b(b(a1(a1(b(a(a(b(a(a1(a1(b(b(a1(a1(b(a(a(b(a(b(x)))))))))))))))))))))))
+   
+   RW339,1 & A7         --> 
+        RW340:   All x:Any + =(a1(b(b(a1(a1(b(a(a(a(b(x))))))))))
+                               a1(b(b(a1(a1(b(a(a(b(a(a1(a1(b(b(a1(a1(b(a(a(b(a(b(x)))))))))))))))))))))))
+   
+   RW340,1 & RW330      --> 
+        RW341:   All x:Any + =(a1(a1(b(a(a(b(b(b(x))))))))
+                               a1(b(b(a1(a1(b(a(a(b(a(a1(a1(b(b(a1(a1(b(a(a(b(a(b(x)))))))))))))))))))))))
+   
+   RW341,1 & A7         --> 
+        RW342:   All x:Any + =(a1(a1(b(a(a(b(b(b(x))))))))
+                               a1(b(b(a1(a1(b(a(a(b(a1(b(b(a1(a1(b(a(a(b(a(b(x)))))))))))))))))))))
+   
+   RW342,1 & RW244      --> 
+        RW343:   All x:Any + =(a1(a1(b(a(a(b(b(b(x)))))))) a1(b(b(a1(a1(b(a(a(a(b(x)))))))))))
+   
+   RW343,1 & RW330      --> 
+        RW344:   All x:Any + =(a1(a1(b(a(a(b(b(b(x)))))))) a1(a1(b(a(a(b(b(b(x)))))))))
+   
+   P322,1 & P307,1      --> 
+        P345:    All x:Any + =(a(b(a1(a1(b(x))))) b(b(a1(a1(b(a(a(a(b(a(a(x))))))))))))
+   
+   P345,1 & RW330       --> 
+        RW346:   All x:Any + =(a(b(a1(a1(b(x))))) a1(b(a(a(b(b(b(a(a(x))))))))))
+   
+   RW327,1 & A7,1       --> 
+        P347:    All x:Any + =(a(b(a(a(a(a(a(x))))))) b(a1(b(a(a(b(b(x))))))))
+   
+   RW327,1 & P347       --> 
+        RW348:   All x:Any + =(a1(a(b(a(a(a(a(a(x)))))))) b(a(a(a(a(a(x)))))))
+   
+   RW348,1 & A8         --> 
+        RW349:   All x:Any + =(b(a(a(a(a(a(x)))))) b(a(a(a(a(a(x)))))))
+   
+   A7,1 & RW330,1       --> 
+        P350:    All x:Any + =(a1(b(a(a(b(b(a1(x))))))) b(b(a1(a1(b(a(a(x))))))))
+   
+   P350,1 & P307,1      --> 
+        P351:    All x:Any + =(a(a1(x)) b(b(a1(b(b(a1(a1(b(a(a(x)))))))))))
+   
+   P351,1 & A7          --> 
+        RW352:   All x:Any + =(x b(b(a1(b(b(a1(a1(b(a(a(x)))))))))))
+   
+   A7,1 & RW352,1       --> 
+        P353:    All x:Any + =(a1(x) b(b(a1(b(b(a1(a1(b(a(x))))))))))
+   
+   RW352,1 & P353       --> 
+        RW354:   All x:Any + =(x a1(a(x)))
+   
+   RW354,1 & A8         --> 
+        RW355:   All x:Any + =(x x)
+   
+   A7,1 & P353,1        --> 
+        P356:    All x:Any + =(a1(a1(x)) b(b(a1(b(b(a1(a1(b(x)))))))))
+   
+   RW334,1 & P356       --> 
+        RW357:   All x:Any + =(x a(a(a(a(a1(a1(a1(a1(x)))))))))
+   
+   RW357,1 & A7         --> 
+        RW358:   All x:Any + =(x a(a(a(a1(a1(a1(x)))))))
+   
+   RW358,1 & A7         --> 
+        RW359:   All x:Any + =(x a(a(a1(a1(x)))))
+   
+   RW359,1 & A7         --> 
+        RW360:   All x:Any + =(x a(a1(x)))
+   
+   RW360,1 & A7         --> 
+        RW361:   All x:Any + =(x x)
+   
+   P353,1 & P356        --> 
+        RW362:   All x:Any + =(a1(x) a1(a1(a(x))))
+   
+   RW362,1 & A8         --> 
+        RW363:   All x:Any + =(a1(x) a1(x))
+   
+   RW346,1 & A7,1       --> 
+        P364:    All x:Any + =(a(a(b(a1(a1(b(x)))))) b(a(a(b(b(b(a(a(x)))))))))
+   
+   RW346,1 & P364       --> 
+        RW365:   All x:Any + =(a(b(a1(a1(b(x))))) a1(a(a(b(a1(a1(b(x))))))))
+   
+   RW365,1 & A8         --> 
+        RW366:   All x:Any + =(a(b(a1(a1(b(x))))) a(b(a1(a1(b(x))))))
+   
+   P350,1 & A7,1        --> 
+        P367:    All x:Any + =(a(b(b(a1(a1(b(a(a(x)))))))) b(a(a(b(b(a1(x)))))))
+   
+   RW289,1 & P367       --> 
+        RW368:   All x:Any + =(d1(x) a(b(b(a1(a1(b(a(a(a1(b(b(a1(a1(b(a(a(b(x))))))))))))))))))
+   
+   RW368,1 & A7         --> 
+        RW369:   All x:Any + =(d1(x) a(b(b(a1(a1(b(a(b(b(a1(a1(b(a(a(b(x))))))))))))))))
+   
+   P350,1 & P367        --> 
+        RW370:   All x:Any + =(a1(a(b(b(a1(a1(b(a(a(x))))))))) b(b(a1(a1(b(a(a(x))))))))
+   
+   RW370,1 & A8         --> 
+        RW371:   All x:Any + =(b(b(a1(a1(b(a(a(x))))))) b(b(a1(a1(b(a(a(x))))))))
+   
+   P145,1 & P356,1      --> 
+        P372:    All x:Any + =(a1(a1(a(a(a(a(b(b(x)))))))) b(b(a1(b(b(a1(a1(a1(b(a(x)))))))))))
+   
+   P372,1 & A8          --> 
+        RW373:   All x:Any + =(a1(a(a(a(b(b(x)))))) b(b(a1(b(b(a1(a1(a1(b(a(x)))))))))))
+   
+   RW373,1 & A8         --> 
+        RW374:   All x:Any + =(a(a(b(b(x)))) b(b(a1(b(b(a1(a1(a1(b(a(x)))))))))))
+   
+   A7,1 & P364,1        --> 
+        P375:    All x:Any + =(a(a(b(a1(a1(b(a1(x))))))) b(a(a(b(b(b(a(x))))))))
+   
+   P364,1 & P375        --> 
+        RW376:   All x:Any + =(a(a(b(a1(a1(b(x)))))) a(a(b(a1(a1(b(a1(a(x)))))))))
+   
+   RW376,1 & A8         --> 
+        RW377:   All x:Any + =(a(a(b(a1(a1(b(x)))))) a(a(b(a1(a1(b(x)))))))
+   
+   A7,1 & RW374,1       --> 
+        P378:    All x:Any + =(a(a(b(b(a1(x))))) b(b(a1(b(b(a1(a1(a1(b(x))))))))))
+   
+   RW374,1 & P378       --> 
+        RW379:   All x:Any + =(a(a(b(b(x)))) a(a(b(b(a1(a(x)))))))
+   
+   RW379,1 & A8         --> 
+        RW380:   All x:Any + =(a(a(b(b(x)))) a(a(b(b(x)))))
+   
+   A7,1 & P375,1        --> 
+        P381:    All x:Any + =(a(a(b(a1(a1(b(a1(a1(x)))))))) b(a(a(b(b(b(x)))))))
+   
+   P375,1 & P381        --> 
+        RW382:   All x:Any + =(a(a(b(a1(a1(b(a1(x))))))) a(a(b(a1(a1(b(a1(a1(a(x))))))))))
+   
+   RW382,1 & A8         --> 
+        RW383:   All x:Any + =(a(a(b(a1(a1(b(a1(x))))))) a(a(b(a1(a1(b(a1(x))))))))
+   
+   P145,1 & RW244,1     --> 
+        P384:    All x:Any + =(b(a1(b(b(a1(a1(b(a(a(a1(b(a(x)))))))))))) a(a(a(a(b(b(x)))))))
+   
+   P384,1 & A7          --> 
+        RW385:   All x:Any + =(b(a1(b(b(a1(a1(b(a(b(a(x)))))))))) a(a(a(a(b(b(x)))))))
+   
+   P307,1 & RW219,1     --> 
+        P386:    All x:Any + =(a1(b(b(b(x)))) b(a(b(b(a1(a1(b(a(a(b(a(a(x)))))))))))))
+   
+   P322,1 & P145,1      --> 
+        P387:    All x:Any + =(a1(b(a(b(a1(a1(b(x))))))) b(a(a(a(a(a(b(a(a(x))))))))))
+   
+   P307,1 & P322,1      --> 
+        P388:    All x:Any + =(a(b(a(a(b(a1(a1(b(a(a(b(b(x)))))))))))) b(b(b(a1(a1(a(x)))))))
+   
+   P388,1 & A8          --> 
+        RW389:   All x:Any + =(a(b(a(a(b(a1(a1(b(a(a(b(b(x)))))))))))) b(b(b(a1(x)))))
+   
+   RW244,1 & P322,1     --> 
+        P390:    All x:Any + =(a(b(a(a(a1(b(b(a1(a1(b(a(a(b(x))))))))))))) b(b(b(a1(a1(x))))))
+   
+   P390,1 & A7          --> 
+        RW391:   All x:Any + =(a(b(a(b(b(a1(a1(b(a(a(b(x))))))))))) b(b(b(a1(a1(x))))))
+   
+   RW199,1 & RW391      --> 
+        RW392:   All x:Any + =(b(b(b(a1(a1(x))))) d(x))
+   
+   RW201,1 & RW391      --> 
+        RW393:   All x:Any + =(b(a(b(b(a1(a1(b(a(a(b(b(b(b(a1(a1(x))))))))))))))) e(x))
+   
+   RW393,1 & P307       --> 
+        RW394:   All x:Any + =(b(a(a(b(b(a1(a1(x))))))) e(x))
+   
+   RW394,1 & P367       --> 
+        RW395:   All x:Any + =(a(b(b(a1(a1(b(a(a(a1(x))))))))) e(x))
+   
+   RW395,1 & A7         --> 
+        RW396:   All x:Any + =(a(b(b(a1(a1(b(a(x))))))) e(x))
+   
+   RW209,1 & RW391      --> 
+        RW397:   All x:Any + =(b(a1(a1(b(a(a(b(a(b(a(a(a(a(x)))))))))))))
+                               a(b(b(a1(a1(b(a(a(b(b(b(b(a1(a1(a(x))))))))))))))))
+   
+   RW397,1 & P307       --> 
+        RW398:   All x:Any + =(b(a1(a1(b(a(a(b(a(b(a(a(a(a(x))))))))))))) a(a(b(b(a1(a1(a(x))))))))
+   
+   RW398,1 & A8         --> 
+        RW399:   All x:Any + =(b(a1(a1(b(a(a(b(a(b(a(a(a(a(x))))))))))))) a(a(b(b(a1(x))))))
+   
+   RW219,1 & RW391      --> 
+        RW400:   All x:Any + =(a1(b(b(x))) b(a(b(b(a1(a1(b(a(b(b(b(a1(a1(x))))))))))))))
+   
+   RW284,1 & RW399      --> 
+        RW401:   All x:Any + =(b(b(a1(a1(b(a1(a1(b(a1(a1(b(a(a(b(x)))))))))))))) a(a(b(b(a1(b(x)))))))
+   
+   RW330,1 & P145,1     --> 
+        P402:    All x:Any + =(a1(b(a(a1(a1(b(a(a(a(x))))))))) b(a(a(a(a(a1(b(a(a(b(b(x))))))))))))
+   
+   P402,1 & A7          --> 
+        RW403:   All x:Any + =(a1(b(a1(b(a(a(a(x))))))) b(a(a(a(a(a1(b(a(a(b(b(x))))))))))))
+   
+   RW403,1 & A7         --> 
+        RW404:   All x:Any + =(a1(b(a1(b(a(a(a(x))))))) b(a(a(a(b(a(a(b(b(x))))))))))
+   
+   RW330,1 & RW244,1    --> 
+        P405:    All x:Any + =(b(a1(b(b(a1(a1(b(a(a(a1(b(a(a(b(b(x))))))))))))))) b(a1(a1(b(a(a(a(x))))))))
+   
+   P405,1 & A7          --> 
+        RW406:   All x:Any + =(b(a1(b(b(a1(a1(b(a(b(a(a(b(b(x))))))))))))) b(a1(a1(b(a(a(a(x))))))))
+   
+   RW406,1 & RW385      --> 
+        RW407:   All x:Any + =(a(a(a(a(b(b(a(b(b(x))))))))) b(a1(a1(b(a(a(a(x))))))))
+   
+   RW330,1 & P307,1     --> 
+        P408:    All x:Any + =(a(a1(a1(b(a(a(a(x))))))) b(b(a1(a1(b(a(a(a1(b(a(a(b(b(x))))))))))))))
+   
+   P408,1 & A7          --> 
+        RW409:   All x:Any + =(a1(b(a(a(a(x))))) b(b(a1(a1(b(a(a(a1(b(a(a(b(b(x))))))))))))))
+   
+   RW409,1 & A7         --> 
+        RW410:   All x:Any + =(a1(b(a(a(a(x))))) b(b(a1(a1(b(a(b(a(a(b(b(x))))))))))))
+   
+   P145,1 & RW330,1     --> 
+        P411:    All x:Any + =(a1(b(a(a(b(b(a(b(b(x))))))))) b(b(a1(a1(a1(b(a(x))))))))
+   
+   RW330,1 & P356,1     --> 
+        P412:    All x:Any + =(a1(a1(b(a1(a1(b(a(a(a(x))))))))) b(b(a1(b(b(a1(a1(a1(b(a(a(b(b(x))))))))))))))
+   
+   P412,1 & P378        --> 
+        RW413:   All x:Any + =(a1(a1(b(a1(a1(b(a(a(a(x))))))))) a(a(b(b(a1(a(a(b(b(x))))))))))
+   
+   RW413,1 & A8         --> 
+        RW414:   All x:Any + =(a1(a1(b(a1(a1(b(a(a(a(x))))))))) a(a(b(b(a(b(b(x))))))))
+   
+   RW407,1 & RW414      --> 
+        RW415:   All x:Any + =(a(a(a1(a1(b(a1(a1(b(a(a(a(x))))))))))) b(a1(a1(b(a(a(a(x))))))))
+   
+   RW415,1 & A7         --> 
+        RW416:   All x:Any + =(a(a1(b(a1(a1(b(a(a(a(x))))))))) b(a1(a1(b(a(a(a(x))))))))
+   
+   RW416,1 & A7         --> 
+        RW417:   All x:Any + =(b(a1(a1(b(a(a(a(x))))))) b(a1(a1(b(a(a(a(x))))))))
+   
+   P411,1 & RW414       --> 
+        RW418:   All x:Any + =(a1(b(a1(a1(b(a1(a1(b(a(a(a(x))))))))))) b(b(a1(a1(a1(b(a(x))))))))
+   
+   P322,1 & P356,1      --> 
+        P419:    All x:Any + =(a1(a1(b(b(a1(a1(b(x))))))) b(b(a1(b(b(a1(a1(a(b(a(a(x))))))))))))
+   
+   P419,1 & A8          --> 
+        RW420:   All x:Any + =(a1(a1(b(b(a1(a1(b(x))))))) b(b(a1(b(b(a1(b(a(a(x))))))))))
+   
+   P307,1 & P356,1      --> 
+        P421:    All x:Any + =(a1(a1(b(a1(a1(b(a(a(b(b(x)))))))))) b(b(a1(b(b(a1(a1(a(x)))))))))
+   
+   P421,1 & A8          --> 
+        RW422:   All x:Any + =(a1(a1(b(a1(a1(b(a(a(b(b(x)))))))))) b(b(a1(b(b(a1(x)))))))
+   
+   P356,1 & RW422       --> 
+        RW423:   All x:Any + =(a1(a1(x)) a1(a1(b(a1(a1(b(a(a(b(b(a1(b(x)))))))))))))
+   
+   RW423,1 & P367       --> 
+        RW424:   All x:Any + =(a1(a1(x)) a1(a1(b(a1(a1(a(b(b(a1(a1(b(a(a(b(x)))))))))))))))
+   
+   RW424,1 & A8         --> 
+        RW425:   All x:Any + =(a1(a1(x)) a1(a1(b(a1(b(b(a1(a1(b(a(a(b(x)))))))))))))
+   
+   RW425,1 & RW244      --> 
+        RW426:   All x:Any + =(a1(a1(x)) a1(a1(x)))
+   
+   P378,1 & RW422       --> 
+        RW427:   All x:Any + =(a(a(b(b(a1(x))))) a1(a1(b(a1(a1(b(a(a(b(b(a1(a1(b(x))))))))))))))
+   
+   RW427,1 & P367       --> 
+        RW428:   All x:Any + =(a(a(b(b(a1(x))))) a1(a1(b(a1(a1(a(b(b(a1(a1(b(a(a(a1(b(x))))))))))))))))
+   
+   RW428,1 & A7         --> 
+        RW429:   All x:Any + =(a(a(b(b(a1(x))))) a1(a1(b(a1(a1(a(b(b(a1(a1(b(a(b(x))))))))))))))
+   
+   RW429,1 & A8         --> 
+        RW430:   All x:Any + =(a(a(b(b(a1(x))))) a1(a1(b(a1(b(b(a1(a1(b(a(b(x))))))))))))
+   
+   RW420,1 & RW422      --> 
+        RW431:   All x:Any + =(a1(a1(b(b(a1(a1(b(x))))))) a1(a1(b(a1(a1(b(a(a(b(b(b(a(a(x))))))))))))))
+   
+   RW431,1 & P381       --> 
+        RW432:   All x:Any + =(a1(a1(b(b(a1(a1(b(x))))))) a1(a1(b(a1(a1(a(a(b(a1(a1(b(a1(a1(a(a(x))))))))))))))))
+   
+   RW432,1 & A8         --> 
+        RW433:   All x:Any + =(a1(a1(b(b(a1(a1(b(x))))))) a1(a1(b(a1(a1(a(a(b(a1(a1(b(a1(a(x))))))))))))))
+   
+   RW433,1 & A8         --> 
+        RW434:   All x:Any + =(a1(a1(b(b(a1(a1(b(x))))))) a1(a1(b(a1(a1(a(a(b(a1(a1(b(x))))))))))))
+   
+   RW434,1 & A8         --> 
+        RW435:   All x:Any + =(a1(a1(b(b(a1(a1(b(x))))))) a1(a1(b(a1(a(b(a1(a1(b(x))))))))))
+   
+   RW435,1 & A8         --> 
+        RW436:   All x:Any + =(a1(a1(b(b(a1(a1(b(x))))))) a1(a1(b(b(a1(a1(b(x))))))))
+   
+   RW212,1 & P367,1     --> 
+        P437:    All x:Any + =(a(b(b(a1(a1(b(a(a(a1(b(a(b(b(a1(a1(b(a(a(b(a(b(a(a(x)))))))))))))))))))))))
+                               b(a(a(a1(b(x))))))
+   
+   P437,1 & A7          --> 
+        RW438:   All x:Any + =(a(b(b(a1(a1(b(a(b(a(b(b(a1(a1(b(a(a(b(a(b(a(a(x)))))))))))))))))))))
+                               b(a(a(a1(b(x))))))
+   
+   RW438,1 & RW391      --> 
+        RW439:   All x:Any + =(a(b(b(a1(a1(b(b(b(b(a1(a1(a(b(a(a(x))))))))))))))) b(a(a(a1(b(x))))))
+   
+   RW439,1 & A8         --> 
+        RW440:   All x:Any + =(a(b(b(a1(a1(b(b(b(b(a1(b(a(a(x))))))))))))) b(a(a(a1(b(x))))))
+   
+   RW440,1 & A7         --> 
+        RW441:   All x:Any + =(a(b(b(a1(a1(b(b(b(b(a1(b(a(a(x))))))))))))) b(a(b(x))))
+   
+   P381,1 & P347,1      --> 
+        P442:    All x:Any + =(a(b(a(a(a(a(a(b(x)))))))) b(a1(a(a(b(a1(a1(b(a1(a1(x)))))))))))
+   
+   P442,1 & A8          --> 
+        RW443:   All x:Any + =(a(b(a(a(a(a(a(b(x)))))))) b(a(b(a1(a1(b(a1(a1(x)))))))))
+   
+   A7,1 & RW385,1       --> 
+        P444:    All x:Any + =(b(a1(b(b(a1(a1(b(a(b(x))))))))) a(a(a(a(b(b(a1(x))))))))
+   
+   RW430,1 & P444       --> 
+        RW445:   All x:Any + =(a(a(b(b(a1(x))))) a1(a1(a(a(a(a(b(b(a1(x))))))))))
+   
+   RW445,1 & A8         --> 
+        RW446:   All x:Any + =(a(a(b(b(a1(x))))) a1(a(a(a(b(b(a1(x))))))))
+   
+   RW446,1 & A8         --> 
+        RW447:   All x:Any + =(a(a(b(b(a1(x))))) a(a(b(b(a1(x))))))
+   
+   RW385,1 & P444       --> 
+        RW448:   All x:Any + =(a(a(a(a(b(b(a1(a(x)))))))) a(a(a(a(b(b(x)))))))
+   
+   RW448,1 & A8         --> 
+        RW449:   All x:Any + =(a(a(a(a(b(b(x)))))) a(a(a(a(b(b(x)))))))
+   
+   A7,1 & P386,1        --> 
+        P450:    All x:Any + =(a1(b(b(b(a1(x))))) b(a(b(b(a1(a1(b(a(a(b(a(x))))))))))))
+   
+   RW212,1 & P450       --> 
+        RW451:   All x:Any + =(a1(b(x)) b(b(a1(a1(a1(b(b(b(a1(b(a(a(x)))))))))))))
+   
+   P386,1 & P450        --> 
+        RW452:   All x:Any + =(a1(b(b(b(x)))) a1(b(b(b(a1(a(x)))))))
+   
+   RW452,1 & A8         --> 
+        RW453:   All x:Any + =(a1(b(b(b(x)))) a1(b(b(b(x)))))
+   
+   RW306,1 & P367,1     --> 
+        P454:    All x:Any + =(a(b(b(a1(a1(b(a(a(a1(b(b(a1(a1(b(a(a(b(a(b(x)))))))))))))))))))
+                               b(a(a(b(b(a1(b(b(a1(a1(b(a1(a1(x))))))))))))))
+   
+   P454,1 & A7          --> 
+        RW455:   All x:Any + =(a(b(b(a1(a1(b(a(b(b(a1(a1(b(a(a(b(a(b(x)))))))))))))))))
+                               b(a(a(b(b(a1(b(b(a1(a1(b(a1(a1(x))))))))))))))
+   
+   RW455,1 & P450       --> 
+        RW456:   All x:Any + =(a(b(b(a1(a1(a1(b(b(b(a1(b(x))))))))))) b(a(a(b(b(a1(b(b(a1(a1(b(a1(a1(x))))))))))))))
+   
+   RW456,1 & P367       --> 
+        RW457:   All x:Any + =(a(b(b(a1(a1(a1(b(b(b(a1(b(x)))))))))))
+                               a(b(b(a1(a1(b(a(a(b(b(a1(a1(b(a1(a1(x))))))))))))))))
+   
+   RW457,1 & P307       --> 
+        RW458:   All x:Any + =(a(b(b(a1(a1(a1(b(b(b(a1(b(x))))))))))) a(a(a1(a1(b(a1(a1(x))))))))
+   
+   RW458,1 & A7         --> 
+        RW459:   All x:Any + =(a(b(b(a1(a1(a1(b(b(b(a1(b(x))))))))))) a(a1(b(a1(a1(x))))))
+   
+   RW459,1 & A7         --> 
+        RW460:   All x:Any + =(a(b(b(a1(a1(a1(b(b(b(a1(b(x))))))))))) b(a1(a1(x))))
+   
+   A7,1 & RW451,1       --> 
+        P461:    All x:Any + =(a1(b(a1(x))) b(b(a1(a1(a1(b(b(b(a1(b(a(x))))))))))))
+   
+   RW451,1 & P461       --> 
+        RW462:   All x:Any + =(a1(b(x)) a1(b(a1(a(x)))))
+   
+   RW462,1 & A8         --> 
+        RW463:   All x:Any + =(a1(b(x)) a1(b(x)))
+   
+   RW460,1 & A8,1       --> 
+        P464:    All x:Any + =(a1(b(a1(a1(x)))) b(b(a1(a1(a1(b(b(b(a1(b(x)))))))))))
+   
+   RW460,1 & P464       --> 
+        RW465:   All x:Any + =(a(a1(b(a1(a1(x))))) b(a1(a1(x))))
+   
+   RW465,1 & A7         --> 
+        RW466:   All x:Any + =(b(a1(a1(x))) b(a1(a1(x))))
+   
+   P461,1 & P464        --> 
+        RW467:   All x:Any + =(a1(b(a1(x))) a1(b(a1(a1(a(x))))))
+   
+   RW467,1 & A8         --> 
+        RW468:   All x:Any + =(a1(b(a1(x))) a1(b(a1(x))))
+   
+   P387,1 & A7,1        --> 
+        P469:    All x:Any + =(a(b(a(a(a(a(a(b(a(a(x)))))))))) b(a(b(a1(a1(b(x)))))))
+   
+   P387,1 & P469        --> 
+        RW470:   All x:Any + =(a1(a(b(a(a(a(a(a(b(a(a(x))))))))))) b(a(a(a(a(a(b(a(a(x))))))))))
+   
+   RW470,1 & A8         --> 
+        RW471:   All x:Any + =(b(a(a(a(a(a(b(a(a(x))))))))) b(a(a(a(a(a(b(a(a(x))))))))))
+   
+   RW443,1 & P469       --> 
+        RW472:   All x:Any + =(a(b(a(a(a(a(a(b(x)))))))) a(b(a(a(a(a(a(b(a(a(a1(a1(x)))))))))))))
+   
+   RW472,1 & A7         --> 
+        RW473:   All x:Any + =(a(b(a(a(a(a(a(b(x)))))))) a(b(a(a(a(a(a(b(a(a1(x)))))))))))
+   
+   RW473,1 & A7         --> 
+        RW474:   All x:Any + =(a(b(a(a(a(a(a(b(x)))))))) a(b(a(a(a(a(a(b(x)))))))))
+   
+   RW389,1 & A8,1       --> 
+        P475:    All x:Any + =(a1(b(b(b(a1(x))))) b(a(a(b(a1(a1(b(a(a(b(b(x))))))))))))
+   
+   RW389,1 & P475       --> 
+        RW476:   All x:Any + =(a(a1(b(b(b(a1(x)))))) b(b(b(a1(x)))))
+   
+   RW476,1 & A7         --> 
+        RW477:   All x:Any + =(b(b(b(a1(x)))) b(b(b(a1(x)))))
+   
+   A8,1 & RW400,1       --> 
+        P478:    All x:Any + =(a1(b(b(a(x)))) b(a(b(b(a1(a1(b(a(b(b(b(a1(x)))))))))))))
+   
+   RW400,1 & P478       --> 
+        RW479:   All x:Any + =(a1(b(b(x))) a1(b(b(a(a1(x))))))
+   
+   RW479,1 & A7         --> 
+        RW480:   All x:Any + =(a1(b(b(x))) a1(b(b(x))))
+   
+   P145,1 & RW399,1     --> 
+        P481:    All x:Any + =(b(a1(a1(b(a(a(b(a(a1(b(a(x))))))))))) a(a(b(b(a1(b(b(x))))))))
+   
+   P481,1 & A7          --> 
+        RW482:   All x:Any + =(b(a1(a1(b(a(a(b(b(a(x))))))))) a(a(b(b(a1(b(b(x))))))))
+   
+   RW391,1 & A8,1       --> 
+        P483:    All x:Any + =(a1(b(b(b(a1(a1(x)))))) b(a(b(b(a1(a1(b(a(a(b(x)))))))))))
+   
+   RW369,1 & P483       --> 
+        RW484:   All x:Any + =(d1(x) a(b(b(a1(a1(a1(b(b(b(a1(a1(x))))))))))))
+   
+   RW391,1 & P483       --> 
+        RW485:   All x:Any + =(a(a1(b(b(b(a1(a1(x))))))) b(b(b(a1(a1(x))))))
+   
+   RW485,1 & A7         --> 
+        RW486:   All x:Any + =(b(b(b(a1(a1(x))))) b(b(b(a1(a1(x))))))
+   
+   P450,1 & P483        --> 
+        RW487:   All x:Any + =(a1(b(b(b(a1(x))))) a1(b(b(b(a1(a1(a(x))))))))
+   
+   RW487,1 & A8         --> 
+        RW488:   All x:Any + =(a1(b(b(b(a1(x))))) a1(b(b(b(a1(x))))))
+   
+   RW306,1 & RW404,1    --> 
+        P489:    All x:Any + =(a1(b(a1(b(a(a(a(a1(a1(b(b(a1(a1(b(a(a(b(a(b(x)))))))))))))))))))
+                               b(a(a(a(b(a(a(b(b(a1(b(b(a1(a1(b(a1(a1(x))))))))))))))))))
+   
+   P489,1 & A7          --> 
+        RW490:   All x:Any + =(a1(b(a1(b(a(a(a1(b(b(a1(a1(b(a(a(b(a(b(x)))))))))))))))))
+                               b(a(a(a(b(a(a(b(b(a1(b(b(a1(a1(b(a1(a1(x))))))))))))))))))
+   
+   RW490,1 & A7         --> 
+        RW491:   All x:Any + =(a1(b(a1(b(a(b(b(a1(a1(b(a(a(b(a(b(x)))))))))))))))
+                               b(a(a(a(b(a(a(b(b(a1(b(b(a1(a1(b(a1(a1(x))))))))))))))))))
+   
+   RW491,1 & P483       --> 
+        RW492:   All x:Any + =(a1(b(a1(a1(b(b(b(a1(a1(a(b(x)))))))))))
+                               b(a(a(a(b(a(a(b(b(a1(b(b(a1(a1(b(a1(a1(x))))))))))))))))))
+   
+   RW492,1 & A8         --> 
+        RW493:   All x:Any + =(a1(b(a1(a1(b(b(b(a1(b(x)))))))))
+                               b(a(a(a(b(a(a(b(b(a1(b(b(a1(a1(b(a1(a1(x))))))))))))))))))
+   
+   RW493,1 & RW404      --> 
+        RW494:   All x:Any + =(a1(b(a1(a1(b(b(b(a1(b(x)))))))))
+                               a1(b(a1(b(a(a(a(a1(b(b(a1(a1(b(a1(a1(x))))))))))))))))
+   
+   RW494,1 & A7         --> 
+        RW495:   All x:Any + =(a1(b(a1(a1(b(b(b(a1(b(x))))))))) a1(b(a1(b(a(a(b(b(a1(a1(b(a1(a1(x))))))))))))))
+   
+   RW495,1 & P367       --> 
+        RW496:   All x:Any + =(a1(b(a1(a1(b(b(b(a1(b(x)))))))))
+                               a1(b(a1(a(b(b(a1(a1(b(a(a(a1(b(a1(a1(x))))))))))))))))
+   
+   RW496,1 & A7         --> 
+        RW497:   All x:Any + =(a1(b(a1(a1(b(b(b(a1(b(x))))))))) a1(b(a1(a(b(b(a1(a1(b(a(b(a1(a1(x))))))))))))))
+   
+   RW497,1 & A8         --> 
+        RW498:   All x:Any + =(a1(b(a1(a1(b(b(b(a1(b(x))))))))) a1(b(b(b(a1(a1(b(a(b(a1(a1(x))))))))))))
+   
+   RW498,1 & P322       --> 
+        RW499:   All x:Any + =(a1(b(a1(a1(b(b(b(a1(b(x))))))))) a1(a(b(a(a(a(b(a1(a1(x))))))))))
+   
+   RW499,1 & A8         --> 
+        RW500:   All x:Any + =(a1(b(a1(a1(b(b(b(a1(b(x))))))))) b(a(a(a(b(a1(a1(x))))))))
+   
+   RW306,1 & RW410,1    --> 
+        P501:    All x:Any + =(a1(b(a(a(a(a1(a1(b(b(a1(a1(b(a(a(b(a(b(x)))))))))))))))))
+                               b(b(a1(a1(b(a(b(a(a(b(b(a1(b(b(a1(a1(b(a1(a1(x))))))))))))))))))))
+   
+   P501,1 & A7          --> 
+        RW502:   All x:Any + =(a1(b(a(a(a1(b(b(a1(a1(b(a(a(b(a(b(x)))))))))))))))
+                               b(b(a1(a1(b(a(b(a(a(b(b(a1(b(b(a1(a1(b(a1(a1(x))))))))))))))))))))
+   
+   RW502,1 & A7         --> 
+        RW503:   All x:Any + =(a1(b(a(b(b(a1(a1(b(a(a(b(a(b(x)))))))))))))
+                               b(b(a1(a1(b(a(b(a(a(b(b(a1(b(b(a1(a1(b(a1(a1(x))))))))))))))))))))
+   
+   RW503,1 & P483       --> 
+        RW504:   All x:Any + =(a1(a1(b(b(b(a1(a1(a(b(x)))))))))
+                               b(b(a1(a1(b(a(b(a(a(b(b(a1(b(b(a1(a1(b(a1(a1(x))))))))))))))))))))
+   
+   RW504,1 & A8         --> 
+        RW505:   All x:Any + =(a1(a1(b(b(b(a1(b(x)))))))
+                               b(b(a1(a1(b(a(b(a(a(b(b(a1(b(b(a1(a1(b(a1(a1(x))))))))))))))))))))
+   
+   RW505,1 & RW410      --> 
+        RW506:   All x:Any + =(a1(a1(b(b(b(a1(b(x))))))) a1(b(a(a(a(a1(b(b(a1(a1(b(a1(a1(x))))))))))))))
+   
+   RW506,1 & A7         --> 
+        RW507:   All x:Any + =(a1(a1(b(b(b(a1(b(x))))))) a1(b(a(a(b(b(a1(a1(b(a1(a1(x))))))))))))
+   
+   RW507,1 & P367       --> 
+        RW508:   All x:Any + =(a1(a1(b(b(b(a1(b(x))))))) a1(a(b(b(a1(a1(b(a(a(a1(b(a1(a1(x))))))))))))))
+   
+   RW508,1 & A7         --> 
+        RW509:   All x:Any + =(a1(a1(b(b(b(a1(b(x))))))) a1(a(b(b(a1(a1(b(a(b(a1(a1(x))))))))))))
+   
+   RW509,1 & A8         --> 
+        RW510:   All x:Any + =(a1(a1(b(b(b(a1(b(x))))))) b(b(a1(a1(b(a(b(a1(a1(x))))))))))
+   
+   A7,1 & RW418,1       --> 
+        P511:    All x:Any + =(a1(b(a1(a1(b(a1(a1(b(a(a(x)))))))))) b(b(a1(a1(a1(b(a(a1(x)))))))))
+   
+   P511,1 & A7          --> 
+        RW512:   All x:Any + =(a1(b(a1(a1(b(a1(a1(b(a(a(x)))))))))) b(b(a1(a1(a1(b(x)))))))
+   
+   RW401,1 & RW512      --> 
+        RW513:   All x:Any + =(b(b(a1(b(b(a1(a1(a1(b(b(x)))))))))) a(a(b(b(a1(b(x)))))))
+   
+   RW513,1 & RW422      --> 
+        RW514:   All x:Any + =(a1(a1(b(a1(a1(b(a(a(b(b(a1(a1(b(b(x)))))))))))))) a(a(b(b(a1(b(x)))))))
+   
+   RW514,1 & P367       --> 
+        RW515:   All x:Any + =(a1(a1(b(a1(a1(a(b(b(a1(a1(b(a(a(a1(b(b(x)))))))))))))))) a(a(b(b(a1(b(x)))))))
+   
+   RW515,1 & A7         --> 
+        RW516:   All x:Any + =(a1(a1(b(a1(a1(a(b(b(a1(a1(b(a(b(b(x)))))))))))))) a(a(b(b(a1(b(x)))))))
+   
+   RW516,1 & A8         --> 
+        RW517:   All x:Any + =(a1(a1(b(a1(b(b(a1(a1(b(a(b(b(x)))))))))))) a(a(b(b(a1(b(x)))))))
+   
+   RW517,1 & P444       --> 
+        RW518:   All x:Any + =(a1(a1(a(a(a(a(b(b(a1(b(x)))))))))) a(a(b(b(a1(b(x)))))))
+   
+   RW518,1 & A8         --> 
+        RW519:   All x:Any + =(a1(a(a(a(b(b(a1(b(x)))))))) a(a(b(b(a1(b(x)))))))
+   
+   RW519,1 & A8         --> 
+        RW520:   All x:Any + =(a(a(b(b(a1(b(x)))))) a(a(b(b(a1(b(x)))))))
+   
+   RW414,1 & A8,1       --> 
+        P521:    All x:Any + =(a1(a1(a1(b(a1(a1(b(a(a(a(x)))))))))) a(b(b(a(b(b(x)))))))
+   
+   RW414,1 & P521       --> 
+        RW522:   All x:Any + =(a1(a1(b(a1(a1(b(a(a(a(x))))))))) a(a1(a1(a1(b(a1(a1(b(a(a(a(x))))))))))))
+   
+   RW522,1 & A7         --> 
+        RW523:   All x:Any + =(a1(a1(b(a1(a1(b(a(a(a(x))))))))) a1(a1(b(a1(a1(b(a(a(a(x))))))))))
+   
+   RW441,1 & A8,1       --> 
+        P524:    All x:Any + =(a1(b(a(b(x)))) b(b(a1(a1(b(b(b(b(a1(b(a(a(x)))))))))))))
+   
+   RW441,1 & P524       --> 
+        RW525:   All x:Any + =(a(a1(b(a(b(x))))) b(a(b(x))))
+   
+   RW525,1 & A7         --> 
+        RW526:   All x:Any + =(b(a(b(x))) b(a(b(x))))
+   
+   P464,1 & P367,1      --> 
+        P527:    All x:Any + =(a(b(b(a1(a1(b(a(a(a1(a1(b(b(b(a1(b(x))))))))))))))) b(a(a(a1(b(a1(a1(x))))))))
+   
+   P527,1 & A7          --> 
+        RW528:   All x:Any + =(a(b(b(a1(a1(b(a(a1(b(b(b(a1(b(x))))))))))))) b(a(a(a1(b(a1(a1(x))))))))
+   
+   RW528,1 & A7         --> 
+        RW529:   All x:Any + =(a(b(b(a1(a1(b(b(b(b(a1(b(x))))))))))) b(a(a(a1(b(a1(a1(x))))))))
+   
+   RW529,1 & A7         --> 
+        RW530:   All x:Any + =(a(b(b(a1(a1(b(b(b(b(a1(b(x))))))))))) b(a(b(a1(a1(x))))))
+   
+   RW213,1 & P464,1     --> 
+        P531:    All x:Any + =(a1(b(a1(a1(a(a(a(b(b(a1(a1(b(a(a(b(a(b(a(a(x)))))))))))))))))))
+                               b(b(a1(a1(a1(b(b(b(a1(a1(b(a1(b(x))))))))))))))
+   
+   P531,1 & A8          --> 
+        RW532:   All x:Any + =(a1(b(a1(a(a(b(b(a1(a1(b(a(a(b(a(b(a(a(x)))))))))))))))))
+                               b(b(a1(a1(a1(b(b(b(a1(a1(b(a1(b(x))))))))))))))
+   
+   RW532,1 & A8         --> 
+        RW533:   All x:Any + =(a1(b(a(b(b(a1(a1(b(a(a(b(a(b(a(a(x)))))))))))))))
+                               b(b(a1(a1(a1(b(b(b(a1(a1(b(a1(b(x))))))))))))))
+   
+   RW533,1 & P483       --> 
+        RW534:   All x:Any + =(a1(a1(b(b(b(a1(a1(a(b(a(a(x))))))))))) b(b(a1(a1(a1(b(b(b(a1(a1(b(a1(b(x))))))))))))))
+   
+   RW534,1 & A8         --> 
+        RW535:   All x:Any + =(a1(a1(b(b(b(a1(b(a(a(x))))))))) b(b(a1(a1(a1(b(b(b(a1(a1(b(a1(b(x))))))))))))))
+   
+   RW535,1 & P322       --> 
+        RW536:   All x:Any + =(a1(a1(b(b(b(a1(b(a(a(x))))))))) b(b(a1(a1(a1(a(b(a(a(a1(b(x))))))))))))
+   
+   RW536,1 & A7         --> 
+        RW537:   All x:Any + =(a1(a1(b(b(b(a1(b(a(a(x))))))))) b(b(a1(a1(a1(a(b(a(b(x))))))))))
+   
+   RW537,1 & A8         --> 
+        RW538:   All x:Any + =(a1(a1(b(b(b(a1(b(a(a(x))))))))) b(b(a1(a1(b(a(b(x))))))))
+   
+   A8,1 & P478,1        --> 
+        P539:    All x:Any + =(a1(b(b(a(a(x))))) b(a(b(b(a1(a1(b(a(b(b(b(x))))))))))))
+   
+   P478,1 & P539        --> 
+        RW540:   All x:Any + =(a1(b(b(a(x)))) a1(b(b(a(a(a1(x)))))))
+   
+   RW540,1 & A7         --> 
+        RW541:   All x:Any + =(a1(b(b(a(x)))) a1(b(b(a(x)))))
+   
+   RW422,1 & P539,1     --> 
+        P542:    All x:Any + =(a1(b(b(a(a(a1(b(b(a1(x)))))))))
+                               b(a(b(b(a1(a1(b(a(b(a1(a1(b(a1(a1(b(a(a(b(b(x))))))))))))))))))))
+   
+   P542,1 & A7          --> 
+        RW543:   All x:Any + =(a1(b(b(a(b(b(a1(x)))))))
+                               b(a(b(b(a1(a1(b(a(b(a1(a1(b(a1(a1(b(a(a(b(b(x))))))))))))))))))))
+   
+   RW543,1 & RW510      --> 
+        RW544:   All x:Any + =(a1(b(b(a(b(b(a1(x))))))) b(a(a1(a1(b(b(b(a1(b(b(a1(a1(b(a(a(b(b(x))))))))))))))))))
+   
+   RW544,1 & RW422      --> 
+        RW545:   All x:Any + =(a1(b(b(a(b(b(a1(x)))))))
+                               b(a(a1(a1(b(a1(a1(b(a1(a1(b(a(a(b(b(a1(b(a(a(b(b(x))))))))))))))))))))))
+   
+   RW545,1 & P367       --> 
+        RW546:   All x:Any + =(a1(b(b(a(b(b(a1(x)))))))
+                               b(a(a1(a1(b(a1(a1(b(a1(a1(a(b(b(a1(a1(b(a(a(b(a(a(b(b(x))))))))))))))))))))))))
+   
+   RW546,1 & A8         --> 
+        RW547:   All x:Any + =(a1(b(b(a(b(b(a1(x)))))))
+                               b(a(a1(a1(b(a1(a1(b(a1(b(b(a1(a1(b(a(a(b(a(a(b(b(x))))))))))))))))))))))
+   
+   RW547,1 & RW244      --> 
+        RW548:   All x:Any + =(a1(b(b(a(b(b(a1(x))))))) b(a(a1(a1(b(a1(a1(a(a(b(b(x))))))))))))
+   
+   RW548,1 & A8         --> 
+        RW549:   All x:Any + =(a1(b(b(a(b(b(a1(x))))))) b(a(a1(a1(b(a1(a(b(b(x))))))))))
+   
+   RW549,1 & A8         --> 
+        RW550:   All x:Any + =(a1(b(b(a(b(b(a1(x))))))) b(a(a1(a1(b(b(b(x))))))))
+   
+   RW550,1 & A7         --> 
+        RW551:   All x:Any + =(a1(b(b(a(b(b(a1(x))))))) b(a1(b(b(b(x))))))
+   
+   RW551,1 & A7,1       --> 
+        P552:    All x:Any + =(a(b(a1(b(b(b(x)))))) b(b(a(b(b(a1(x)))))))
+   
+   RW551,1 & P552       --> 
+        RW553:   All x:Any + =(a1(a(b(a1(b(b(b(x))))))) b(a1(b(b(b(x))))))
+   
+   RW553,1 & A8         --> 
+        RW554:   All x:Any + =(b(a1(b(b(b(x))))) b(a1(b(b(b(x))))))
+   
+   A8,1 & P552,1        --> 
+        P555:    All x:Any + =(a(b(a1(b(b(b(a(x))))))) b(b(a(b(b(x))))))
+   
+   P555,1 & A8,1        --> 
+        P556:    All x:Any + =(a1(b(b(a(b(b(x)))))) b(a1(b(b(b(a(x)))))))
+   
+   P555,1 & P556        --> 
+        RW557:   All x:Any + =(a(a1(b(b(a(b(b(x))))))) b(b(a(b(b(x))))))
+   
+   RW557,1 & A7         --> 
+        RW558:   All x:Any + =(b(b(a(b(b(x))))) b(b(a(b(b(x))))))
+   
+   P444,1 & P552,1      --> 
+        P559:    All x:Any + =(a(b(a1(b(b(b(b(b(a1(a1(b(a(b(x))))))))))))) b(b(a(b(a(a(a(a(b(b(a1(x))))))))))))
+   
+   P559,1 & P322        --> 
+        RW560:   All x:Any + =(a(b(a1(b(b(a(b(a(a(a(b(x))))))))))) b(b(a(b(a(a(a(a(b(b(a1(x))))))))))))
+   
+   RW560,1 & P145       --> 
+        RW561:   All x:Any + =(a(b(a1(b(b(a(b(a(a(a(b(x))))))))))) b(b(a(a1(b(a(a1(x))))))))
+   
+   RW561,1 & A7         --> 
+        RW562:   All x:Any + =(a(b(a1(b(b(a(b(a(a(a(b(x))))))))))) b(b(a(a1(b(x))))))
+   
+   RW562,1 & A7         --> 
+        RW563:   All x:Any + =(a(b(a1(b(b(a(b(a(a(a(b(x))))))))))) b(b(b(x))))
+   
+   RW244,1 & RW563,1    --> 
+        P564:    All x:Any + =(a(b(a1(b(b(a(b(a(a(a(x)))))))))) b(b(b(a1(b(b(a1(a1(b(a(a(b(x)))))))))))))
+   
+   P564,1 & RW422       --> 
+        RW565:   All x:Any + =(a(b(a1(b(b(a(b(a(a(a(x))))))))))
+                               b(a1(a1(b(a1(a1(b(a(a(b(b(a1(b(a(a(b(x)))))))))))))))))
+   
+   RW565,1 & P367       --> 
+        RW566:   All x:Any + =(a(b(a1(b(b(a(b(a(a(a(x))))))))))
+                               b(a1(a1(b(a1(a1(a(b(b(a1(a1(b(a(a(b(a(a(b(x)))))))))))))))))))
+   
+   RW566,1 & A8         --> 
+        RW567:   All x:Any + =(a(b(a1(b(b(a(b(a(a(a(x))))))))))
+                               b(a1(a1(b(a1(b(b(a1(a1(b(a(a(b(a(a(b(x)))))))))))))))))
+   
+   RW567,1 & RW244      --> 
+        RW568:   All x:Any + =(a(b(a1(b(b(a(b(a(a(a(x)))))))))) b(a1(a1(a(a(b(x)))))))
+   
+   RW568,1 & A8         --> 
+        RW569:   All x:Any + =(a(b(a1(b(b(a(b(a(a(a(x)))))))))) b(a1(a(b(x)))))
+   
+   RW569,1 & A8         --> 
+        RW570:   All x:Any + =(a(b(a1(b(b(a(b(a(a(a(x)))))))))) b(b(x)))
+   
+   RW570,1 & A8,1       --> 
+        P571:    All x:Any + =(a1(b(b(x))) b(a1(b(b(a(b(a(a(a(x))))))))))
+   
+   RW570,1 & P571       --> 
+        RW572:   All x:Any + =(a(a1(b(b(x)))) b(b(x)))
+   
+   RW572,1 & A7         --> 
+        RW573:   All x:Any + =(b(b(x)) b(b(x)))
+   
+   A7,1 & P571,1        --> 
+        P574:    All x:Any + =(a1(b(b(a1(x)))) b(a1(b(b(a(b(a(a(x)))))))))
+   
+   P571,1 & P574        --> 
+        RW575:   All x:Any + =(a1(b(b(x))) a1(b(b(a1(a(x))))))
+   
+   RW575,1 & A8         --> 
+        RW576:   All x:Any + =(a1(b(b(x))) a1(b(b(x))))
+   
+   A7,1 & P574,1        --> 
+        P577:    All x:Any + =(a1(b(b(a1(a1(x))))) b(a1(b(b(a(b(a(x))))))))
+   
+   P574,1 & P577        --> 
+        RW578:   All x:Any + =(a1(b(b(a1(x)))) a1(b(b(a1(a1(a(x)))))))
+   
+   RW578,1 & A8         --> 
+        RW579:   All x:Any + =(a1(b(b(a1(x)))) a1(b(b(a1(x)))))
+   
+   A7,1 & P577,1        --> 
+        P580:    All x:Any + =(a1(b(b(a1(a1(a1(x)))))) b(a1(b(b(a(b(x)))))))
+   
+   P577,1 & P580        --> 
+        RW581:   All x:Any + =(a1(b(b(a1(a1(x))))) a1(b(b(a1(a1(a1(a(x))))))))
+   
+   RW581,1 & A8         --> 
+        RW582:   All x:Any + =(a1(b(b(a1(a1(x))))) a1(b(b(a1(a1(x))))))
+   
+   P556,1 & P367,1      --> 
+        P583:    All x:Any + =(a(b(b(a1(a1(b(a(a(b(b(b(a(x)))))))))))) b(a(a(b(a1(b(b(a(b(b(x)))))))))))
+   
+   P583,1 & P307        --> 
+        RW584:   All x:Any + =(a(a(b(a(x)))) b(a(a(b(a1(b(b(a(b(b(x)))))))))))
+   
+   RW584,1 & P580       --> 
+        RW585:   All x:Any + =(a(a(b(a(x)))) b(a(a(a1(b(b(a1(a1(a1(b(x)))))))))))
+   
+   RW585,1 & A7         --> 
+        RW586:   All x:Any + =(a(a(b(a(x)))) b(a(b(b(a1(a1(a1(b(x)))))))))
+   
+   RW586,1 & P552,1     --> 
+        P587:    All x:Any + =(a(b(a1(b(b(b(a1(a1(b(x))))))))) b(a(a(b(a(x))))))
+   
+   P587,1 & P322        --> 
+        RW588:   All x:Any + =(a(b(a1(a(b(a(a(x))))))) b(a(a(b(a(x))))))
+   
+   RW588,1 & A8         --> 
+        RW589:   All x:Any + =(a(b(b(a(a(x))))) b(a(a(b(a(x))))))
+   
+   RW303,1 & RW589      --> 
+        RW590:   All x:Any + =(b(a1(a1(b(b(a1(a1(b(a(a(b(a(x))))))))))))
+                               a(a(a(b(a(a(b(a(a(b(b(a(a(a(b(b(a(a(a(b(b(a1(a1(b(b(a1(a1(b(a(a(x)))))))))))))))))))))
+                                                 ))))))))))
+   
+   RW590,1 & RW589      --> 
+        RW591:   All x:Any + =(b(a1(a1(b(b(a1(a1(b(a(a(b(a(x))))))))))))
+                               a(a(a(b(a(a(b(a(b(a(a(b(a(a(b(b(a(a(a(b(b(a1(a1(b(b(a1(a1(b(a(a(x)))))))))))))))))))))
+                                                 ))))))))))
+   
+   RW591,1 & RW589      --> 
+        RW592:   All x:Any + =(b(a1(a1(b(b(a1(a1(b(a(a(b(a(x))))))))))))
+                               a(a(a(b(a(a(b(a(b(a(a(b(a(b(a(a(b(a(a(b(b(a1(a1(b(b(a1(a1(b(a(a(x)))))))))))))))))))))
+                                                 ))))))))))
+   
+   RW592,1 & P367       --> 
+        RW593:   All x:Any + =(b(a1(a1(b(b(a1(a1(b(a(a(b(a(x))))))))))))
+                               a(a(a(b(a(a(b(a(b(a(a(b(a(b(a(a(a(b(b(a1(a1(b(a(a(a1(b(b(a1(a1(b(a(a(x))))))))))))))))
+                                                               )))))))))))))))))
+   
+   RW593,1 & A7         --> 
+        RW594:   All x:Any + =(b(a1(a1(b(b(a1(a1(b(a(a(b(a(x))))))))))))
+                               a(a(a(b(a(a(b(a(b(a(a(b(a(b(a(a(a(b(b(a1(a1(b(a(b(b(a1(a1(b(a(a(x)))))))))))))))))))))
+                                                 ))))))))))
+   
+   A7,1 & RW589,1       --> 
+        P595:    All x:Any + =(a(b(b(a(x)))) b(a(a(b(a(a1(x)))))))
+   
+   P595,1 & A7          --> 
+        RW596:   All x:Any + =(a(b(b(a(x)))) b(a(a(b(x)))))
+   
+   RW482,1 & RW596      --> 
+        RW597:   All x:Any + =(b(a1(a1(b(a(b(a(a(b(x))))))))) a(a(b(b(a1(b(b(x))))))))
+   
+   P521,1 & RW596       --> 
+        RW598:   All x:Any + =(a1(a1(a1(b(a1(a1(b(a(a(a(x)))))))))) b(a(a(b(b(b(x)))))))
+   
+   RW598,1 & P381       --> 
+        RW599:   All x:Any + =(a1(a1(a1(b(a1(a1(b(a(a(a(x)))))))))) a(a(b(a1(a1(b(a1(a1(x)))))))))
+   
+   P381,1 & RW599       --> 
+        RW600:   All x:Any + =(a1(a1(a1(b(a1(a1(b(a(a(a(x)))))))))) b(a(a(b(b(b(x)))))))
+   
+   RW410,1 & RW597      --> 
+        RW601:   All x:Any + =(a1(b(a(a(a(x))))) b(a(a(b(b(a1(b(b(b(x))))))))))
+   
+   RW601,1 & P367       --> 
+        RW602:   All x:Any + =(a1(b(a(a(a(x))))) a(b(b(a1(a1(b(a(a(b(b(b(x))))))))))))
+   
+   RW602,1 & P307       --> 
+        RW603:   All x:Any + =(a1(b(a(a(a(x))))) a(a(b(x))))
+   
+   RW330,1 & RW603      --> 
+        RW604:   All x:Any + =(a1(b(a(a(b(b(x)))))) b(b(a1(a(a(b(x)))))))
+   
+   RW604,1 & A8         --> 
+        RW605:   All x:Any + =(a1(b(a(a(b(b(x)))))) b(b(a(b(x)))))
+   
+   RW600,1 & RW603      --> 
+        RW606:   All x:Any + =(a1(a1(a1(b(a1(a(a(b(x)))))))) b(a(a(b(b(b(x)))))))
+   
+   RW606,1 & A8         --> 
+        RW607:   All x:Any + =(a1(a1(a1(b(a(b(x)))))) b(a(a(b(b(b(x)))))))
+   
+   RW404,1 & RW603      --> 
+        RW608:   All x:Any + =(a1(b(a(a(b(x))))) b(a(a(a(b(a(a(b(b(x))))))))))
+   
+   RW599,1 & RW603      --> 
+        RW609:   All x:Any + =(a1(a1(a1(b(a1(a(a(b(x)))))))) a(a(b(a1(a1(b(a1(a1(x)))))))))
+   
+   RW609,1 & A8         --> 
+        RW610:   All x:Any + =(a1(a1(a1(b(a(b(x)))))) a(a(b(a1(a1(b(a1(a1(x)))))))))
+   
+   P552,1 & RW605       --> 
+        RW611:   All x:Any + =(a(b(a1(b(b(b(x)))))) a1(b(a(a(b(b(b(a1(x)))))))))
+   
+   RW611,1 & RW607      --> 
+        RW612:   All x:Any + =(a(b(a1(b(b(b(x)))))) a1(a1(a1(a1(b(a(b(a1(x)))))))))
+   
+   P556,1 & RW605       --> 
+        RW613:   All x:Any + =(a1(a1(b(a(a(b(b(b(x)))))))) b(a1(b(b(b(a(x)))))))
+   
+   RW613,1 & RW607      --> 
+        RW614:   All x:Any + =(a1(a1(a1(a1(a1(b(a(b(x)))))))) b(a1(b(b(b(a(x)))))))
+   
+   P580,1 & RW605       --> 
+        RW615:   All x:Any + =(a1(b(b(a1(a1(a1(x)))))) b(a1(a1(b(a(a(b(b(x)))))))))
+   
+   P307,1 & RW615       --> 
+        RW616:   All x:Any + =(a(x) b(a1(b(b(a1(a1(a1(x))))))))
+   
+   RW422,1 & RW615      --> 
+        RW617:   All x:Any + =(a1(a1(a1(b(b(a1(a1(a1(x)))))))) b(b(a1(b(b(a1(x)))))))
+   
+   P475,1 & RW615       --> 
+        RW618:   All x:Any + =(a1(b(b(b(a1(x))))) b(a(a(a1(b(b(a1(a1(a1(x))))))))))
+   
+   RW618,1 & A7         --> 
+        RW619:   All x:Any + =(a1(b(b(b(a1(x))))) b(a(b(b(a1(a1(a1(x))))))))
+   
+   RW586,1 & RW619      --> 
+        RW620:   All x:Any + =(a(a(b(a(x)))) a1(b(b(b(a1(b(x)))))))
+   
+   P464,1 & RW620       --> 
+        RW621:   All x:Any + =(a1(b(a1(a1(x)))) b(b(a1(a1(a(a(b(a(x)))))))))
+   
+   RW621,1 & A8         --> 
+        RW622:   All x:Any + =(a1(b(a1(a1(x)))) b(b(a1(a(b(a(x)))))))
+   
+   RW622,1 & A8         --> 
+        RW623:   All x:Any + =(a1(b(a1(a1(x)))) b(b(b(a(x)))))
+   
+   RW500,1 & RW620      --> 
+        RW624:   All x:Any + =(a1(b(a1(a(a(b(a(x))))))) b(a(a(a(b(a1(a1(x))))))))
+   
+   RW624,1 & A8         --> 
+        RW625:   All x:Any + =(a1(b(a(b(a(x))))) b(a(a(a(b(a1(a1(x))))))))
+   
+   RW510,1 & RW620      --> 
+        RW626:   All x:Any + =(a1(a(a(b(a(x))))) b(b(a1(a1(b(a(b(a1(a1(x))))))))))
+   
+   RW626,1 & A8         --> 
+        RW627:   All x:Any + =(a(b(a(x))) b(b(a1(a1(b(a(b(a1(a1(x))))))))))
+   
+   RW538,1 & RW620      --> 
+        RW628:   All x:Any + =(a1(a(a(b(a(a(a(x))))))) b(b(a1(a1(b(a(b(x))))))))
+   
+   RW628,1 & A8         --> 
+        RW629:   All x:Any + =(a(b(a(a(a(x))))) b(b(a1(a1(b(a(b(x))))))))
+   
+   RW594,1 & RW629      --> 
+        RW630:   All x:Any + =(b(a1(a1(b(b(a1(a1(b(a(a(b(a(x))))))))))))
+                               a(a(a(b(a(a(b(a(b(a(a(b(a(b(a(a(a(a(b(a(a(a(b(a1(a1(b(a(a(x)))))))))))))))))))))))))))
+                                 ))
+   
+   RW630,1 & RW625      --> 
+        RW631:   All x:Any + =(b(a1(a1(b(b(a1(a1(b(a(a(b(a(x))))))))))))
+                               a(a(a(b(a(a(b(a(b(a(a(b(a(b(a(a(a(a(a1(b(a(b(a(b(a(a(x)))))))))))))))))))))))))))
+   
+   RW631,1 & A7         --> 
+        RW632:   All x:Any + =(b(a1(a1(b(b(a1(a1(b(a(a(b(a(x))))))))))))
+                               a(a(a(b(a(a(b(a(b(a(a(b(a(b(a(a(a(b(a(b(a(b(a(a(x)))))))))))))))))))))))))
+   
+   P444,1 & RW629       --> 
+        RW633:   All x:Any + =(b(a1(a(b(a(a(a(x))))))) a(a(a(a(b(b(a1(x))))))))
+   
+   RW633,1 & A8         --> 
+        RW634:   All x:Any + =(b(b(a(a(a(x))))) a(a(a(a(b(b(a1(x))))))))
+   
+   RW627,1 & RW629      --> 
+        RW635:   All x:Any + =(a(b(a(x))) a(b(a(a(a(a1(a1(x))))))))
+   
+   RW635,1 & A7         --> 
+        RW636:   All x:Any + =(a(b(a(x))) a(b(a(a(a1(x))))))
+   
+   RW636,1 & A7         --> 
+        RW637:   All x:Any + =(a(b(a(x))) a(b(a(x))))
+   
+   P539,1 & RW629       --> 
+        RW638:   All x:Any + =(a1(b(b(a(a(x))))) b(a(a(b(a(a(a(b(b(x))))))))))
+   
+   RW297,1 & RW634      --> 
+        RW639:   All x:Any + =(a1(b(b(a1(a1(b(a(a(b(a1(x)))))))))) b(b(a(a(a(a1(b(b(a1(a1(b(a(a(b(x)))))))))))))))
+   
+   RW639,1 & A7         --> 
+        RW640:   All x:Any + =(a1(b(b(a1(a1(b(a(a(b(a1(x)))))))))) b(b(a(a(b(b(a1(a1(b(a(a(b(x)))))))))))))
+   
+   RW640,1 & P367       --> 
+        RW641:   All x:Any + =(a1(b(b(a1(a1(b(a(a(b(a1(x)))))))))) b(a(b(b(a1(a1(b(a(a(a1(b(a(a(b(x)))))))))))))))
+   
+   RW641,1 & A7         --> 
+        RW642:   All x:Any + =(a1(b(b(a1(a1(b(a(a(b(a1(x)))))))))) b(a(b(b(a1(a1(b(a(b(a(a(b(x)))))))))))))
+   
+   RW642,1 & RW597      --> 
+        RW643:   All x:Any + =(a1(b(b(a1(a1(b(a(a(b(a1(x)))))))))) b(a(b(a(a(b(b(a1(b(b(x)))))))))))
+   
+   RW643,1 & P367       --> 
+        RW644:   All x:Any + =(a1(b(b(a1(a1(b(a(a(b(a1(x)))))))))) b(a(a(b(b(a1(a1(b(a(a(b(b(x)))))))))))))
+   
+   RW644,1 & RW615      --> 
+        RW645:   All x:Any + =(a1(b(b(a1(a1(b(a(a(b(a1(x)))))))))) b(a(a(b(a1(b(b(a1(a1(a1(x)))))))))))
+   
+   RW645,1 & RW616      --> 
+        RW646:   All x:Any + =(a1(b(b(a1(a1(b(a(a(b(a1(x)))))))))) b(a(a(a(x)))))
+   
+   RW614,1 & RW623      --> 
+        RW647:   All x:Any + =(a1(a1(a1(a1(a1(b(a(b(x)))))))) b(a1(a1(b(a1(a1(x)))))))
+   
+   RW306,1 & RW647      --> 
+        RW648:   All x:Any + =(b(a1(b(a1(a1(a1(a1(a1(b(a(b(x))))))))))) b(a1(a1(b(b(a1(a1(b(a(a(b(a(b(x))))))))))))))
+   
+   RW302,1 & RW647      --> 
+        RW649:   All x:Any + =(b(a1(a1(a1(a1(a1(b(a(b(a1(b(b(a1(a1(b(a(a(b(x))))))))))))))))))
+                               a1(b(b(a1(a1(b(a(a(b(a(x)))))))))))
+   
+   RW649,1 & RW244      --> 
+        RW650:   All x:Any + =(b(a1(a1(a1(a1(a1(b(a(x)))))))) a1(b(b(a1(a1(b(a(a(b(a(x)))))))))))
+   
+   RW512,1 & RW647      --> 
+        RW651:   All x:Any + =(a1(a1(a1(a1(a1(a1(b(a(b(b(a(a(x)))))))))))) b(b(a1(a1(a1(b(x)))))))
+   
+   RW651,1 & RW596      --> 
+        RW652:   All x:Any + =(a1(a1(a1(a1(a1(a1(b(b(a(a(b(a(x)))))))))))) b(b(a1(a1(a1(b(x)))))))
+   
+   RW610,1 & RW647      --> 
+        RW653:   All x:Any + =(a1(a1(a1(b(a(b(x)))))) a(a(a1(a1(a1(a1(a1(b(a(b(x)))))))))))
+   
+   RW653,1 & A7         --> 
+        RW654:   All x:Any + =(a1(a1(a1(b(a(b(x)))))) a(a1(a1(a1(a1(b(a(b(x)))))))))
+   
+   RW654,1 & A7         --> 
+        RW655:   All x:Any + =(a1(a1(a1(b(a(b(x)))))) a1(a1(a1(b(a(b(x)))))))
+   
+   RW648,1 & RW650      --> 
+        RW656:   All x:Any + =(b(a1(b(a1(a1(a1(a1(a1(b(a(b(x))))))))))) b(a1(b(a1(a1(a1(a1(a1(b(a(b(x))))))))))))
+   
+   RW632,1 & RW650      --> 
+        RW657:   All x:Any + =(b(a1(b(a1(a1(a1(a1(a1(b(a(x))))))))))
+                               a(a(a(b(a(a(b(a(b(a(a(b(a(b(a(a(a(b(a(b(a(b(a(a(x)))))))))))))))))))))))))
+   
+   RW646,1 & RW244,1    --> 
+        P658:    All x:Any + =(b(b(a(a(a(x))))) a1(x))
+   
+   RW634,1 & P658       --> 
+        RW659:   All x:Any + =(a1(x) a(a(a(a(b(b(a1(x))))))))
+   
+   RW659,1 & P145,1     --> 
+        P660:    All x:Any + =(a1(b(a(a1(x)))) b(a1(x)))
+   
+   P660,1 & A7          --> 
+        RW661:   All x:Any + =(a1(b(x)) b(a1(x)))
+   
+   RW392,1 & RW661      --> 
+        RW662:   All x:Any + =(b(b(a1(b(a1(x))))) d(x))
+   
+   RW662,1 & RW661      --> 
+        RW663:   All x:Any + =(b(a1(b(b(a1(x))))) d(x))
+   
+   RW663,1 & RW661      --> 
+        RW664:   All x:Any + =(b(a1(b(a1(b(x))))) d(x))
+   
+   RW664,1 & RW661      --> 
+        RW665:   All x:Any + =(b(a1(a1(b(b(x))))) d(x))
+   
+   RW665,1 & RW661      --> 
+        RW666:   All x:Any + =(a1(b(a1(b(b(x))))) d(x))
+   
+   RW666,1 & RW661      --> 
+        RW667:   All x:Any + =(a1(a1(b(b(b(x))))) d(x))
+   
+   RW396,1 & RW661      --> 
+        RW668:   All x:Any + =(a(b(a1(b(a1(b(a(x))))))) e(x))
+   
+   RW668,1 & RW661      --> 
+        RW669:   All x:Any + =(a(a1(b(b(a1(b(a(x))))))) e(x))
+   
+   RW669,1 & RW661      --> 
+        RW670:   All x:Any + =(a(a1(b(a1(b(b(a(x))))))) e(x))
+   
+   RW670,1 & RW661      --> 
+        RW671:   All x:Any + =(a(a1(a1(b(b(b(a(x))))))) e(x))
+   
+   RW671,1 & RW623      --> 
+        RW672:   All x:Any + =(a(a1(a1(a1(b(a1(a1(x))))))) e(x))
+   
+   RW672,1 & RW661      --> 
+        RW673:   All x:Any + =(a(a1(a1(a1(a1(b(a1(x))))))) e(x))
+   
+   RW673,1 & RW661      --> 
+        RW674:   All x:Any + =(a(a1(a1(a1(a1(a1(b(x))))))) e(x))
+   
+   RW674,1 & A7         --> 
+        RW675:   All x:Any + =(a1(a1(a1(a1(b(x))))) e(x))
+   
+   RW202,1 & RW661      --> 
+        RW676:   All x:Any + =(c(x) a(b(a1(b(a1(b(a(a(b(x))))))))))
+   
+   RW676,1 & RW661      --> 
+        RW677:   All x:Any + =(c(x) a(a1(b(b(a1(b(a(a(b(x))))))))))
+   
+   RW677,1 & RW661      --> 
+        RW678:   All x:Any + =(c(x) a(a1(b(a1(b(b(a(a(b(x))))))))))
+   
+   RW678,1 & RW661      --> 
+        RW679:   All x:Any + =(c(x) a(a1(a1(b(b(b(a(a(b(x))))))))))
+   
+   RW679,1 & RW623      --> 
+        RW680:   All x:Any + =(c(x) a(a1(a1(a1(b(a1(a1(a(b(x))))))))))
+   
+   RW680,1 & RW661      --> 
+        RW681:   All x:Any + =(c(x) a(a1(a1(a1(a1(b(a1(a(b(x))))))))))
+   
+   RW681,1 & RW661      --> 
+        RW682:   All x:Any + =(c(x) a(a1(a1(a1(a1(a1(b(a(b(x))))))))))
+   
+   RW682,1 & A7         --> 
+        RW683:   All x:Any + =(c(x) a1(a1(a1(a1(b(a(b(x))))))))
+   
+   RW75,1 & RW661       --> 
+        RW684:   All x:Any + =(e1(x) a(b(a1(b(a1(x))))))
+   
+   RW684,1 & RW661      --> 
+        RW685:   All x:Any + =(e1(x) a(a1(b(b(a1(x))))))
+   
+   RW685,1 & RW661      --> 
+        RW686:   All x:Any + =(e1(x) a(a1(b(a1(b(x))))))
+   
+   RW686,1 & RW661      --> 
+        RW687:   All x:Any + =(e1(x) a(a1(a1(b(b(x))))))
+   
+   RW687,1 & A7         --> 
+        RW688:   All x:Any + =(e1(x) a1(b(b(x))))
+   
+   RW484,1 & RW661      --> 
+        RW689:   All x:Any + =(d1(x) a(b(a1(b(a1(a1(b(b(b(a1(a1(x))))))))))))
+   
+   RW689,1 & RW661      --> 
+        RW690:   All x:Any + =(d1(x) a(a1(b(b(a1(a1(b(b(b(a1(a1(x))))))))))))
+   
+   RW690,1 & RW661      --> 
+        RW691:   All x:Any + =(d1(x) a(a1(b(a1(b(a1(b(b(b(a1(a1(x))))))))))))
+   
+   RW691,1 & RW661      --> 
+        RW692:   All x:Any + =(d1(x) a(a1(b(a1(a1(b(b(b(b(a1(a1(x))))))))))))
+   
+   RW692,1 & RW661      --> 
+        RW693:   All x:Any + =(d1(x) a(a1(b(a1(a1(b(b(b(a1(b(a1(x))))))))))))
+   
+   RW693,1 & RW661      --> 
+        RW694:   All x:Any + =(d1(x) a(a1(b(a1(a1(b(b(b(a1(a1(b(x))))))))))))
+   
+   RW694,1 & RW661      --> 
+        RW695:   All x:Any + =(d1(x) a(a1(b(a1(a1(b(b(a1(b(a1(b(x))))))))))))
+   
+   RW695,1 & RW661      --> 
+        RW696:   All x:Any + =(d1(x) a(a1(b(a1(a1(b(b(a1(a1(b(b(x))))))))))))
+   
+   RW696,1 & RW661      --> 
+        RW697:   All x:Any + =(d1(x) a(a1(b(a1(a1(b(a1(b(a1(b(b(x))))))))))))
+   
+   RW697,1 & RW661      --> 
+        RW698:   All x:Any + =(d1(x) a(a1(b(a1(a1(b(a1(a1(b(b(b(x))))))))))))
+   
+   RW698,1 & RW661      --> 
+        RW699:   All x:Any + =(d1(x) a(a1(b(a1(a1(a1(b(a1(b(b(b(x))))))))))))
+   
+   RW699,1 & RW661      --> 
+        RW700:   All x:Any + =(d1(x) a(a1(b(a1(a1(a1(a1(b(b(b(b(x))))))))))))
+   
+   RW700,1 & RW661      --> 
+        RW701:   All x:Any + =(d1(x) a(a1(a1(b(a1(a1(a1(b(b(b(b(x))))))))))))
+   
+   RW701,1 & RW661      --> 
+        RW702:   All x:Any + =(d1(x) a(a1(a1(a1(b(a1(a1(b(b(b(b(x))))))))))))
+   
+   RW702,1 & RW661      --> 
+        RW703:   All x:Any + =(d1(x) a(a1(a1(a1(a1(b(a1(b(b(b(b(x))))))))))))
+   
+   RW703,1 & RW661      --> 
+        RW704:   All x:Any + =(d1(x) a(a1(a1(a1(a1(a1(b(b(b(b(b(x))))))))))))
+   
+   RW704,1 & A7         --> 
+        RW705:   All x:Any + =(d1(x) a1(a1(a1(a1(b(b(b(b(b(x))))))))))
+   
+   P71,1 & RW661        --> 
+        RW706:   All x:Any + =(c1(x) a1(b(a1(x))))
+   
+   RW706,1 & RW661      --> 
+        RW707:   All x:Any + =(c1(x) a1(a1(b(x))))
+   
+   RW399,1 & RW661      --> 
+        RW708:   All x:Any + =(a1(b(a1(b(a(a(b(a(b(a(a(a(a(x))))))))))))) a(a(b(b(a1(x))))))
+   
+   RW708,1 & RW661      --> 
+        RW709:   All x:Any + =(a1(a1(b(b(a(a(b(a(b(a(a(a(a(x))))))))))))) a(a(b(b(a1(x))))))
+   
+   RW709,1 & RW661      --> 
+        RW710:   All x:Any + =(a1(a1(b(b(a(a(b(a(b(a(a(a(a(x))))))))))))) a(a(b(a1(b(x))))))
+   
+   RW710,1 & RW661      --> 
+        RW711:   All x:Any + =(a1(a1(b(b(a(a(b(a(b(a(a(a(a(x))))))))))))) a(a(a1(b(b(x))))))
+   
+   RW711,1 & A7         --> 
+        RW712:   All x:Any + =(a1(a1(b(b(a(a(b(a(b(a(a(a(a(x))))))))))))) a(b(b(x))))
+   
+   RW657,1 & RW661      --> 
+        RW713:   All x:Any + =(a1(b(b(a1(a1(a1(a1(a1(b(a(x))))))))))
+                               a(a(a(b(a(a(b(a(b(a(a(b(a(b(a(a(a(b(a(b(a(b(a(a(x)))))))))))))))))))))))))
+   
+   RW713,1 & RW661      --> 
+        RW714:   All x:Any + =(a1(b(a1(b(a1(a1(a1(a1(b(a(x))))))))))
+                               a(a(a(b(a(a(b(a(b(a(a(b(a(b(a(a(a(b(a(b(a(b(a(a(x)))))))))))))))))))))))))
+   
+   RW714,1 & RW661      --> 
+        RW715:   All x:Any + =(a1(b(a1(a1(b(a1(a1(a1(b(a(x))))))))))
+                               a(a(a(b(a(a(b(a(b(a(a(b(a(b(a(a(a(b(a(b(a(b(a(a(x)))))))))))))))))))))))))
+   
+   RW715,1 & RW661      --> 
+        RW716:   All x:Any + =(a1(b(a1(a1(a1(b(a1(a1(b(a(x))))))))))
+                               a(a(a(b(a(a(b(a(b(a(a(b(a(b(a(a(a(b(a(b(a(b(a(a(x)))))))))))))))))))))))))
+   
+   RW716,1 & RW661      --> 
+        RW717:   All x:Any + =(a1(b(a1(a1(a1(a1(b(a1(b(a(x))))))))))
+                               a(a(a(b(a(a(b(a(b(a(a(b(a(b(a(a(a(b(a(b(a(b(a(a(x)))))))))))))))))))))))))
+   
+   RW717,1 & RW661      --> 
+        RW718:   All x:Any + =(a1(b(a1(a1(a1(a1(a1(b(b(a(x))))))))))
+                               a(a(a(b(a(a(b(a(b(a(a(b(a(b(a(a(a(b(a(b(a(b(a(a(x)))))))))))))))))))))))))
+   
+   RW718,1 & RW661      --> 
+        RW719:   All x:Any + =(a1(a1(b(a1(a1(a1(a1(b(b(a(x))))))))))
+                               a(a(a(b(a(a(b(a(b(a(a(b(a(b(a(a(a(b(a(b(a(b(a(a(x)))))))))))))))))))))))))
+   
+   RW719,1 & RW661      --> 
+        RW720:   All x:Any + =(a1(a1(a1(b(a1(a1(a1(b(b(a(x))))))))))
+                               a(a(a(b(a(a(b(a(b(a(a(b(a(b(a(a(a(b(a(b(a(b(a(a(x)))))))))))))))))))))))))
+   
+   RW720,1 & RW661      --> 
+        RW721:   All x:Any + =(a1(a1(a1(a1(b(a1(a1(b(b(a(x))))))))))
+                               a(a(a(b(a(a(b(a(b(a(a(b(a(b(a(a(a(b(a(b(a(b(a(a(x)))))))))))))))))))))))))
+   
+   RW721,1 & RW661      --> 
+        RW722:   All x:Any + =(a1(a1(a1(a1(a1(b(a1(b(b(a(x))))))))))
+                               a(a(a(b(a(a(b(a(b(a(a(b(a(b(a(a(a(b(a(b(a(b(a(a(x)))))))))))))))))))))))))
+   
+   RW722,1 & RW661      --> 
+        RW723:   All x:Any + =(a1(a1(a1(a1(a1(a1(b(b(b(a(x))))))))))
+                               a(a(a(b(a(a(b(a(b(a(a(b(a(b(a(a(a(b(a(b(a(b(a(a(x)))))))))))))))))))))))))
+   
+   RW723,1 & RW623      --> 
+        RW724:   All x:Any + =(a1(a1(a1(a1(a1(a1(a1(b(a1(a1(x))))))))))
+                               a(a(a(b(a(a(b(a(b(a(a(b(a(b(a(a(a(b(a(b(a(b(a(a(x)))))))))))))))))))))))))
+   
+   RW724,1 & RW661      --> 
+        RW725:   All x:Any + =(a1(a1(a1(a1(a1(a1(a1(a1(b(a1(x))))))))))
+                               a(a(a(b(a(a(b(a(b(a(a(b(a(b(a(a(a(b(a(b(a(b(a(a(x)))))))))))))))))))))))))
+   
+   RW725,1 & RW661      --> 
+        RW726:   All x:Any + =(a1(a1(a1(a1(a1(a1(a1(a1(a1(b(x))))))))))
+                               a(a(a(b(a(a(b(a(b(a(a(b(a(b(a(a(a(b(a(b(a(b(a(a(x)))))))))))))))))))))))))
+   
+   RW295,1 & RW661      --> 
+        RW727:   All x:Any + =(a1(a1(a1(a1(a1(b(b(b(a1(a1(b(a(a(x)))))))))))))
+                               a1(a1(a1(a1(a1(b(b(a1(a1(b(a(a(b(x))))))))))))))
+   
+   RW727,1 & P322       --> 
+        RW728:   All x:Any + =(a1(a1(a1(a1(a1(a(b(a(a(a(a(x)))))))))))
+                               a1(a1(a1(a1(a1(b(b(a1(a1(b(a(a(b(x))))))))))))))
+   
+   RW728,1 & A8         --> 
+        RW729:   All x:Any + =(a1(a1(a1(a1(b(a(a(a(a(x))))))))) a1(a1(a1(a1(a1(b(b(a1(a1(b(a(a(b(x))))))))))))))
+   
+   RW729,1 & RW603      --> 
+        RW730:   All x:Any + =(a1(a1(a1(a(a(b(a(x))))))) a1(a1(a1(a1(a1(b(b(a1(a1(b(a(a(b(x))))))))))))))
+   
+   RW730,1 & A8         --> 
+        RW731:   All x:Any + =(a1(a1(a(b(a(x))))) a1(a1(a1(a1(a1(b(b(a1(a1(b(a(a(b(x))))))))))))))
+   
+   RW731,1 & A8         --> 
+        RW732:   All x:Any + =(a1(b(a(x))) a1(a1(a1(a1(a1(b(b(a1(a1(b(a(a(b(x))))))))))))))
+   
+   RW732,1 & RW661      --> 
+        RW733:   All x:Any + =(a1(b(a(x))) a1(a1(a1(a1(a1(b(a1(b(a1(b(a(a(b(x))))))))))))))
+   
+   RW733,1 & RW661      --> 
+        RW734:   All x:Any + =(a1(b(a(x))) a1(a1(a1(a1(a1(b(a1(a1(b(b(a(a(b(x))))))))))))))
+   
+   RW734,1 & RW661      --> 
+        RW735:   All x:Any + =(a1(b(a(x))) a1(a1(a1(a1(a1(a1(b(a1(b(b(a(a(b(x))))))))))))))
+   
+   RW735,1 & RW661      --> 
+        RW736:   All x:Any + =(a1(b(a(x))) a1(a1(a1(a1(a1(a1(a1(b(b(b(a(a(b(x))))))))))))))
+   
+   RW736,1 & RW623      --> 
+        RW737:   All x:Any + =(a1(b(a(x))) a1(a1(a1(a1(a1(a1(a1(a1(b(a1(a1(a(b(x))))))))))))))
+   
+   RW737,1 & RW661      --> 
+        RW738:   All x:Any + =(a1(b(a(x))) a1(a1(a1(a1(a1(a1(a1(a1(a1(b(a1(a(b(x))))))))))))))
+   
+   RW738,1 & RW661      --> 
+        RW739:   All x:Any + =(a1(b(a(x))) a1(a1(a1(a1(a1(a1(a1(a1(a1(a1(b(a(b(x))))))))))))))
+   
+   RW646,1 & RW661      --> 
+        RW740:   All x:Any + =(a1(b(a1(b(a1(b(a(a(b(a1(x)))))))))) b(a(a(a(x)))))
+   
+   RW740,1 & RW661      --> 
+        RW741:   All x:Any + =(a1(a1(b(b(a1(b(a(a(b(a1(x)))))))))) b(a(a(a(x)))))
+   
+   RW741,1 & RW661      --> 
+        RW742:   All x:Any + =(a1(a1(b(a1(b(b(a(a(b(a1(x)))))))))) b(a(a(a(x)))))
+   
+   RW742,1 & RW661      --> 
+        RW743:   All x:Any + =(a1(a1(b(a1(b(b(a(a(a1(b(x)))))))))) b(a(a(a(x)))))
+   
+   RW743,1 & A7         --> 
+        RW744:   All x:Any + =(a1(a1(b(a1(b(b(a(b(x)))))))) b(a(a(a(x)))))
+   
+   RW744,1 & RW605      --> 
+        RW745:   All x:Any + =(a1(a1(b(a1(a1(b(a(a(b(b(x)))))))))) b(a(a(a(x)))))
+   
+   RW745,1 & RW615      --> 
+        RW746:   All x:Any + =(a1(a1(a1(b(b(a1(a1(a1(x)))))))) b(a(a(a(x)))))
+   
+   RW746,1 & RW661      --> 
+        RW747:   All x:Any + =(a1(a1(a1(b(a1(b(a1(a1(x)))))))) b(a(a(a(x)))))
+   
+   RW747,1 & RW661      --> 
+        RW748:   All x:Any + =(a1(a1(a1(b(a1(a1(b(a1(x)))))))) b(a(a(a(x)))))
+   
+   RW748,1 & RW661      --> 
+        RW749:   All x:Any + =(a1(a1(a1(b(a1(a1(a1(b(x)))))))) b(a(a(a(x)))))
+   
+   RW749,1 & RW661      --> 
+        RW750:   All x:Any + =(a1(a1(a1(a1(b(a1(a1(b(x)))))))) b(a(a(a(x)))))
+   
+   RW750,1 & RW661      --> 
+        RW751:   All x:Any + =(a1(a1(a1(a1(a1(b(a1(b(x)))))))) b(a(a(a(x)))))
+   
+   RW751,1 & RW661      --> 
+        RW752:   All x:Any + =(a1(a1(a1(a1(a1(a1(b(b(x)))))))) b(a(a(a(x)))))
+   
+   RW213,1 & RW661      --> 
+        RW753:   All x:Any + =(a1(a1(b(b(x)))) b(a(a(a(b(b(a1(a1(b(a(a(b(a(b(a(a(x)))))))))))))))))
+   
+   RW753,1 & RW661      --> 
+        RW754:   All x:Any + =(a1(a1(b(b(x)))) b(a(a(a(b(a1(b(a1(b(a(a(b(a(b(a(a(x)))))))))))))))))
+   
+   RW754,1 & RW661      --> 
+        RW755:   All x:Any + =(a1(a1(b(b(x)))) b(a(a(a(b(a1(a1(b(b(a(a(b(a(b(a(a(x)))))))))))))))))
+   
+   RW755,1 & RW661      --> 
+        RW756:   All x:Any + =(a1(a1(b(b(x)))) b(a(a(a(a1(b(a1(b(b(a(a(b(a(b(a(a(x)))))))))))))))))
+   
+   RW756,1 & RW661      --> 
+        RW757:   All x:Any + =(a1(a1(b(b(x)))) b(a(a(a(a1(a1(b(b(b(a(a(b(a(b(a(a(x)))))))))))))))))
+   
+   RW757,1 & RW623      --> 
+        RW758:   All x:Any + =(a1(a1(b(b(x)))) b(a(a(a(a1(a1(a1(b(a1(a1(a(b(a(b(a(a(x)))))))))))))))))
+   
+   RW758,1 & RW661      --> 
+        RW759:   All x:Any + =(a1(a1(b(b(x)))) b(a(a(a(a1(a1(a1(a1(b(a1(a(b(a(b(a(a(x)))))))))))))))))
+   
+   RW759,1 & RW661      --> 
+        RW760:   All x:Any + =(a1(a1(b(b(x)))) b(a(a(a(a1(a1(a1(a1(a1(b(a(b(a(b(a(a(x)))))))))))))))))
+   
+   RW760,1 & A7         --> 
+        RW761:   All x:Any + =(a1(a1(b(b(x)))) b(a(a(a1(a1(a1(a1(b(a(b(a(b(a(a(x)))))))))))))))
+   
+   RW761,1 & A7         --> 
+        RW762:   All x:Any + =(a1(a1(b(b(x)))) b(a(a1(a1(a1(b(a(b(a(b(a(a(x)))))))))))))
+   
+   RW762,1 & A7         --> 
+        RW763:   All x:Any + =(a1(a1(b(b(x)))) b(a1(a1(b(a(b(a(b(a(a(x)))))))))))
+   
+   RW763,1 & RW661      --> 
+        RW764:   All x:Any + =(a1(a1(b(b(x)))) a1(b(a1(b(a(b(a(b(a(a(x)))))))))))
+   
+   RW764,1 & RW661      --> 
+        RW765:   All x:Any + =(a1(a1(b(b(x)))) a1(a1(b(b(a(b(a(b(a(a(x)))))))))))
+   
+   RW765,1 & RW605      --> 
+        RW766:   All x:Any + =(a1(a1(b(b(x)))) a1(a1(a1(b(a(a(b(b(a(b(a(a(x)))))))))))))
+   
+   RW766,1 & RW596      --> 
+        RW767:   All x:Any + =(a1(a1(b(b(x)))) a1(a1(a1(b(a(b(a(a(b(b(a(a(x)))))))))))))
+   
+   RW767,1 & RW596      --> 
+        RW768:   All x:Any + =(a1(a1(b(b(x)))) a1(a1(a1(b(a(b(a(b(a(a(b(a(x)))))))))))))
+   
+   RW244,1 & RW661      --> 
+        RW769:   All x:Any + =(a1(b(b(b(a1(a1(b(a(a(b(x)))))))))) x)
+   
+   RW769,1 & P322       --> 
+        RW770:   All x:Any + =(a1(a(b(a(a(a(a(b(x)))))))) x)
+   
+   RW770,1 & A8         --> 
+        RW771:   All x:Any + =(b(a(a(a(a(b(x)))))) x)
+   
+   RW650,1 & RW661      --> 
+        RW772:   All x:Any + =(a1(b(a1(a1(a1(a1(b(a(x)))))))) a1(b(b(a1(a1(b(a(a(b(a(x)))))))))))
+   
+   RW772,1 & RW661      --> 
+        RW773:   All x:Any + =(a1(a1(b(a1(a1(a1(b(a(x)))))))) a1(b(b(a1(a1(b(a(a(b(a(x)))))))))))
+   
+   RW773,1 & RW661      --> 
+        RW774:   All x:Any + =(a1(a1(a1(b(a1(a1(b(a(x)))))))) a1(b(b(a1(a1(b(a(a(b(a(x)))))))))))
+   
+   RW774,1 & RW661      --> 
+        RW775:   All x:Any + =(a1(a1(a1(a1(b(a1(b(a(x)))))))) a1(b(b(a1(a1(b(a(a(b(a(x)))))))))))
+   
+   RW775,1 & RW661      --> 
+        RW776:   All x:Any + =(a1(a1(a1(a1(a1(b(b(a(x)))))))) a1(b(b(a1(a1(b(a(a(b(a(x)))))))))))
+   
+   RW776,1 & RW661      --> 
+        RW777:   All x:Any + =(a1(a1(a1(a1(a1(b(b(a(x)))))))) a1(b(a1(b(a1(b(a(a(b(a(x)))))))))))
+   
+   RW777,1 & RW661      --> 
+        RW778:   All x:Any + =(a1(a1(a1(a1(a1(b(b(a(x)))))))) a1(b(a1(a1(b(b(a(a(b(a(x)))))))))))
+   
+   RW778,1 & RW661      --> 
+        RW779:   All x:Any + =(a1(a1(a1(a1(a1(b(b(a(x)))))))) a1(a1(b(a1(b(b(a(a(b(a(x)))))))))))
+   
+   RW779,1 & RW661      --> 
+        RW780:   All x:Any + =(a1(a1(a1(a1(a1(b(b(a(x)))))))) a1(a1(a1(b(b(b(a(a(b(a(x)))))))))))
+   
+   RW780,1 & RW623      --> 
+        RW781:   All x:Any + =(a1(a1(a1(a1(a1(b(b(a(x)))))))) a1(a1(a1(a1(b(a1(a1(a(b(a(x)))))))))))
+   
+   RW781,1 & RW661      --> 
+        RW782:   All x:Any + =(a1(a1(a1(a1(a1(b(b(a(x)))))))) a1(a1(a1(a1(a1(b(a1(a(b(a(x)))))))))))
+   
+   RW782,1 & RW661      --> 
+        RW783:   All x:Any + =(a1(a1(a1(a1(a1(b(b(a(x)))))))) a1(a1(a1(a1(a1(a1(b(a(b(a(x)))))))))))
+   
+   P285,1 & RW661       --> 
+        RW784:   All x:Any + =(a1(b(a1(b(a1(b(a(a(b(x))))))))) b1(x))
+   
+   RW784,1 & RW661      --> 
+        RW785:   All x:Any + =(a1(a1(b(b(a1(b(a(a(b(x))))))))) b1(x))
+   
+   RW785,1 & RW661      --> 
+        RW786:   All x:Any + =(a1(a1(b(a1(b(b(a(a(b(x))))))))) b1(x))
+   
+   RW786,1 & RW661      --> 
+        RW787:   All x:Any + =(a1(a1(a1(b(b(b(a(a(b(x))))))))) b1(x))
+   
+   RW787,1 & RW623      --> 
+        RW788:   All x:Any + =(a1(a1(a1(a1(b(a1(a1(a(b(x))))))))) b1(x))
+   
+   RW788,1 & RW661      --> 
+        RW789:   All x:Any + =(a1(a1(a1(a1(a1(b(a1(a(b(x))))))))) b1(x))
+   
+   RW789,1 & RW661      --> 
+        RW790:   All x:Any + =(a1(a1(a1(a1(a1(a1(b(a(b(x))))))))) b1(x))
+   
+   RW616,1 & RW661      --> 
+        RW791:   All x:Any + =(a(x) a1(b(b(b(a1(a1(a1(x))))))))
+   
+   RW791,1 & RW661      --> 
+        RW792:   All x:Any + =(a(x) a1(b(b(a1(b(a1(a1(x))))))))
+   
+   RW792,1 & RW661      --> 
+        RW793:   All x:Any + =(a(x) a1(b(b(a1(a1(b(a1(x))))))))
+   
+   RW793,1 & RW661      --> 
+        RW794:   All x:Any + =(a(x) a1(b(b(a1(a1(a1(b(x))))))))
+   
+   RW794,1 & RW661      --> 
+        RW795:   All x:Any + =(a(x) a1(b(a1(b(a1(a1(b(x))))))))
+   
+   RW795,1 & RW661      --> 
+        RW796:   All x:Any + =(a(x) a1(b(a1(a1(b(a1(b(x))))))))
+   
+   RW796,1 & RW661      --> 
+        RW797:   All x:Any + =(a(x) a1(b(a1(a1(a1(b(b(x))))))))
+   
+   RW797,1 & RW661      --> 
+        RW798:   All x:Any + =(a(x) a1(a1(b(a1(a1(b(b(x))))))))
+   
+   RW798,1 & RW661      --> 
+        RW799:   All x:Any + =(a(x) a1(a1(a1(b(a1(b(b(x))))))))
+   
+   RW799,1 & RW661      --> 
+        RW800:   All x:Any + =(a(x) a1(a1(a1(a1(b(b(b(x))))))))
+   
+   P322,1 & RW661       --> 
+        RW801:   All x:Any + =(a(b(a(a(x)))) b(b(a1(b(a1(b(x)))))))
+   
+   RW801,1 & RW661      --> 
+        RW802:   All x:Any + =(a(b(a(a(x)))) b(a1(b(b(a1(b(x)))))))
+   
+   RW802,1 & RW661      --> 
+        RW803:   All x:Any + =(a(b(a(a(x)))) b(a1(b(a1(b(b(x)))))))
+   
+   RW803,1 & RW661      --> 
+        RW804:   All x:Any + =(a(b(a(a(x)))) b(a1(a1(b(b(b(x)))))))
+   
+   RW804,1 & RW661      --> 
+        RW805:   All x:Any + =(a(b(a(a(x)))) a1(b(a1(b(b(b(x)))))))
+   
+   RW805,1 & RW661      --> 
+        RW806:   All x:Any + =(a(b(a(a(x)))) a1(a1(b(b(b(b(x)))))))
+   
+   P347,1 & RW661       --> 
+        RW807:   All x:Any + =(a(b(a(a(a(a(a(x))))))) a1(b(b(a(a(b(b(x))))))))
+   
+   P367,1 & RW661       --> 
+        RW808:   All x:Any + =(a(b(a1(b(a1(b(a(a(x)))))))) b(a(a(b(b(a1(x)))))))
+   
+   RW808,1 & RW661      --> 
+        RW809:   All x:Any + =(a(a1(b(b(a1(b(a(a(x)))))))) b(a(a(b(b(a1(x)))))))
+   
+   RW809,1 & RW661      --> 
+        RW810:   All x:Any + =(a(a1(b(a1(b(b(a(a(x)))))))) b(a(a(b(b(a1(x)))))))
+   
+   RW810,1 & RW661      --> 
+        RW811:   All x:Any + =(a(a1(a1(b(b(b(a(a(x)))))))) b(a(a(b(b(a1(x)))))))
+   
+   RW811,1 & RW623      --> 
+        RW812:   All x:Any + =(a(a1(a1(a1(b(a1(a1(a(x)))))))) b(a(a(b(b(a1(x)))))))
+   
+   RW812,1 & RW661      --> 
+        RW813:   All x:Any + =(a(a1(a1(a1(a1(b(a1(a(x)))))))) b(a(a(b(b(a1(x)))))))
+   
+   RW813,1 & RW661      --> 
+        RW814:   All x:Any + =(a(a1(a1(a1(a1(a1(b(a(x)))))))) b(a(a(b(b(a1(x)))))))
+   
+   RW814,1 & A7         --> 
+        RW815:   All x:Any + =(a1(a1(a1(a1(b(a(x)))))) b(a(a(b(b(a1(x)))))))
+   
+   RW815,1 & RW661      --> 
+        RW816:   All x:Any + =(a1(a1(a1(a1(b(a(x)))))) b(a(a(b(a1(b(x)))))))
+   
+   RW816,1 & RW661      --> 
+        RW817:   All x:Any + =(a1(a1(a1(a1(b(a(x)))))) b(a(a(a1(b(b(x)))))))
+   
+   RW817,1 & A7         --> 
+        RW818:   All x:Any + =(a1(a1(a1(a1(b(a(x)))))) b(a(b(b(x)))))
+   
+   RW617,1 & RW661      --> 
+        RW819:   All x:Any + =(a1(a1(a1(b(a1(b(a1(a1(x)))))))) b(b(a1(b(b(a1(x)))))))
+   
+   RW819,1 & RW661      --> 
+        RW820:   All x:Any + =(a1(a1(a1(a1(b(b(a1(a1(x)))))))) b(b(a1(b(b(a1(x)))))))
+   
+   RW820,1 & RW661      --> 
+        RW821:   All x:Any + =(a1(a1(a1(a1(b(a1(b(a1(x)))))))) b(b(a1(b(b(a1(x)))))))
+   
+   RW821,1 & RW661      --> 
+        RW822:   All x:Any + =(a1(a1(a1(a1(b(a1(a1(b(x)))))))) b(b(a1(b(b(a1(x)))))))
+   
+   RW822,1 & RW661      --> 
+        RW823:   All x:Any + =(a1(a1(a1(a1(a1(b(a1(b(x)))))))) b(b(a1(b(b(a1(x)))))))
+   
+   RW823,1 & RW661      --> 
+        RW824:   All x:Any + =(a1(a1(a1(a1(a1(a1(b(b(x)))))))) b(b(a1(b(b(a1(x)))))))
+   
+   RW824,1 & RW752      --> 
+        RW825:   All x:Any + =(b(a(a(a(x)))) b(b(a1(b(b(a1(x)))))))
+   
+   RW825,1 & RW661      --> 
+        RW826:   All x:Any + =(b(a(a(a(x)))) b(a1(b(b(b(a1(x)))))))
+   
+   RW826,1 & RW661      --> 
+        RW827:   All x:Any + =(b(a(a(a(x)))) b(a1(b(b(a1(b(x)))))))
+   
+   RW827,1 & RW661      --> 
+        RW828:   All x:Any + =(b(a(a(a(x)))) b(a1(b(a1(b(b(x)))))))
+   
+   RW828,1 & RW661      --> 
+        RW829:   All x:Any + =(b(a(a(a(x)))) b(a1(a1(b(b(b(x)))))))
+   
+   RW829,1 & RW661      --> 
+        RW830:   All x:Any + =(b(a(a(a(x)))) a1(b(a1(b(b(b(x)))))))
+   
+   RW830,1 & RW661      --> 
+        RW831:   All x:Any + =(b(a(a(a(x)))) a1(a1(b(b(b(b(x)))))))
+   
+   RW831,1 & RW806      --> 
+        RW832:   All x:Any + =(b(a(a(a(x)))) a(b(a(a(x)))))
+   
+   RW659,1 & RW661      --> 
+        RW833:   All x:Any + =(a1(x) a(a(a(a(b(a1(b(x))))))))
+   
+   RW833,1 & RW661      --> 
+        RW834:   All x:Any + =(a1(x) a(a(a(a(a1(b(b(x))))))))
+   
+   RW834,1 & A7         --> 
+        RW835:   All x:Any + =(a1(x) a(a(a(b(b(x))))))
+   
+   RW623,1 & RW661      --> 
+        RW836:   All x:Any + =(a1(a1(b(a1(x)))) b(b(b(a(x)))))
+   
+   RW836,1 & RW661      --> 
+        RW837:   All x:Any + =(a1(a1(a1(b(x)))) b(b(b(a(x)))))
+   
+   P469,1 & RW661       --> 
+        RW838:   All x:Any + =(a(b(a(a(a(a(a(b(a(a(x)))))))))) b(a(a1(b(a1(b(x)))))))
+   
+   RW838,1 & RW832      --> 
+        RW839:   All x:Any + =(a(a(b(a(a(a(a(b(a(a(x)))))))))) b(a(a1(b(a1(b(x)))))))
+   
+   RW839,1 & RW771      --> 
+        RW840:   All x:Any + =(a(a(a(a(x)))) b(a(a1(b(a1(b(x)))))))
+   
+   RW840,1 & A7         --> 
+        RW841:   All x:Any + =(a(a(a(a(x)))) b(b(a1(b(x)))))
+   
+   RW841,1 & RW661      --> 
+        RW842:   All x:Any + =(a(a(a(a(x)))) b(a1(b(b(x)))))
+   
+   RW842,1 & RW661      --> 
+        RW843:   All x:Any + =(a(a(a(a(x)))) a1(b(b(b(x)))))
+   
+   RW619,1 & RW661      --> 
+        RW844:   All x:Any + =(a1(b(b(a1(b(x))))) b(a(b(b(a1(a1(a1(x))))))))
+   
+   RW844,1 & RW661      --> 
+        RW845:   All x:Any + =(a1(b(a1(b(b(x))))) b(a(b(b(a1(a1(a1(x))))))))
+   
+   RW845,1 & RW661      --> 
+        RW846:   All x:Any + =(a1(a1(b(b(b(x))))) b(a(b(b(a1(a1(a1(x))))))))
+   
+   RW846,1 & RW843      --> 
+        RW847:   All x:Any + =(a1(a(a(a(a(x))))) b(a(b(b(a1(a1(a1(x))))))))
+   
+   RW847,1 & A8         --> 
+        RW848:   All x:Any + =(a(a(a(x))) b(a(b(b(a1(a1(a1(x))))))))
+   
+   RW848,1 & RW818      --> 
+        RW849:   All x:Any + =(a(a(a(x))) a1(a1(a1(a1(b(a(a1(a1(a1(x))))))))))
+   
+   RW849,1 & A7         --> 
+        RW850:   All x:Any + =(a(a(a(x))) a1(a1(a1(a1(b(a1(a1(x))))))))
+   
+   RW850,1 & RW661      --> 
+        RW851:   All x:Any + =(a(a(a(x))) a1(a1(a1(a1(a1(b(a1(x))))))))
+   
+   RW851,1 & RW661      --> 
+        RW852:   All x:Any + =(a(a(a(x))) a1(a1(a1(a1(a1(a1(b(x))))))))
+   
+   RW597,1 & RW661      --> 
+        RW853:   All x:Any + =(a1(b(a1(b(a(b(a(a(b(x))))))))) a(a(b(b(a1(b(b(x))))))))
+   
+   RW853,1 & RW661      --> 
+        RW854:   All x:Any + =(a1(a1(b(b(a(b(a(a(b(x))))))))) a(a(b(b(a1(b(b(x))))))))
+   
+   RW854,1 & RW605      --> 
+        RW855:   All x:Any + =(a1(a1(a1(b(a(a(b(b(a(a(b(x))))))))))) a(a(b(b(a1(b(b(x))))))))
+   
+   RW855,1 & RW596      --> 
+        RW856:   All x:Any + =(a1(a1(a1(b(a(b(a(a(b(a(b(x))))))))))) a(a(b(b(a1(b(b(x))))))))
+   
+   RW856,1 & RW661      --> 
+        RW857:   All x:Any + =(a1(a1(a1(b(a(b(a(a(b(a(b(x))))))))))) a(a(b(a1(b(b(b(x))))))))
+   
+   RW857,1 & RW843      --> 
+        RW858:   All x:Any + =(a1(a1(a1(b(a(b(a(a(b(a(b(x))))))))))) a(a(b(a(a(a(a(x))))))))
+   
+   RW858,1 & RW832      --> 
+        RW859:   All x:Any + =(a1(a1(a1(b(a(b(a(a(b(a(b(x))))))))))) a(a(a(b(a(a(a(x))))))))
+   
+   RW859,1 & RW832      --> 
+        RW860:   All x:Any + =(a1(a1(a1(b(a(b(a(a(b(a(b(x))))))))))) a(a(a(a(b(a(a(x))))))))
+   
+   P483,1 & RW661       --> 
+        RW861:   All x:Any + =(a1(b(b(a1(b(a1(x)))))) b(a(b(b(a1(a1(b(a(a(b(x)))))))))))
+   
+   RW861,1 & RW661      --> 
+        RW862:   All x:Any + =(a1(b(a1(b(b(a1(x)))))) b(a(b(b(a1(a1(b(a(a(b(x)))))))))))
+   
+   RW862,1 & RW661      --> 
+        RW863:   All x:Any + =(a1(b(a1(b(a1(b(x)))))) b(a(b(b(a1(a1(b(a(a(b(x)))))))))))
+   
+   RW863,1 & RW661      --> 
+        RW864:   All x:Any + =(a1(b(a1(a1(b(b(x)))))) b(a(b(b(a1(a1(b(a(a(b(x)))))))))))
+   
+   RW864,1 & RW661      --> 
+        RW865:   All x:Any + =(a1(a1(b(a1(b(b(x)))))) b(a(b(b(a1(a1(b(a(a(b(x)))))))))))
+   
+   RW865,1 & RW661      --> 
+        RW866:   All x:Any + =(a1(a1(a1(b(b(b(x)))))) b(a(b(b(a1(a1(b(a(a(b(x)))))))))))
+   
+   RW866,1 & RW843      --> 
+        RW867:   All x:Any + =(a1(a1(a(a(a(a(x)))))) b(a(b(b(a1(a1(b(a(a(b(x)))))))))))
+   
+   RW867,1 & A8         --> 
+        RW868:   All x:Any + =(a1(a(a(a(x)))) b(a(b(b(a1(a1(b(a(a(b(x)))))))))))
+   
+   RW868,1 & A8         --> 
+        RW869:   All x:Any + =(a(a(x)) b(a(b(b(a1(a1(b(a(a(b(x)))))))))))
+   
+   RW869,1 & RW818      --> 
+        RW870:   All x:Any + =(a(a(x)) a1(a1(a1(a1(b(a(a1(a1(b(a(a(b(x)))))))))))))
+   
+   RW870,1 & A7         --> 
+        RW871:   All x:Any + =(a(a(x)) a1(a1(a1(a1(b(a1(b(a(a(b(x)))))))))))
+   
+   RW871,1 & RW661      --> 
+        RW872:   All x:Any + =(a(a(x)) a1(a1(a1(a1(a1(b(b(a(a(b(x)))))))))))
+   
+   RW625,1 & RW661      --> 
+        RW873:   All x:Any + =(a1(b(a(b(a(x))))) b(a(a(a(a1(b(a1(x))))))))
+   
+   RW873,1 & RW832      --> 
+        RW874:   All x:Any + =(a1(b(a(b(a(x))))) a(b(a(a(a1(b(a1(x))))))))
+   
+   RW874,1 & A7         --> 
+        RW875:   All x:Any + =(a1(b(a(b(a(x))))) a(b(a(b(a1(x))))))
+   
+   RW875,1 & RW661      --> 
+        RW876:   All x:Any + =(a1(b(a(b(a(x))))) a(b(a(a1(b(x))))))
+   
+   RW876,1 & A7         --> 
+        RW877:   All x:Any + =(a1(b(a(b(a(x))))) a(b(b(x))))
+   
+   RW652,1 & RW661      --> 
+        RW878:   All x:Any + =(a1(a1(a1(a1(a1(a1(b(b(a(a(b(a(x)))))))))))) b(a1(b(a1(a1(b(x)))))))
+   
+   RW878,1 & RW752      --> 
+        RW879:   All x:Any + =(b(a(a(a(a(a(b(a(x)))))))) b(a1(b(a1(a1(b(x)))))))
+   
+   RW879,1 & RW832      --> 
+        RW880:   All x:Any + =(a(b(a(a(a(a(b(a(x)))))))) b(a1(b(a1(a1(b(x)))))))
+   
+   RW880,1 & RW771      --> 
+        RW881:   All x:Any + =(a(a(x)) b(a1(b(a1(a1(b(x)))))))
+   
+   RW881,1 & RW661      --> 
+        RW882:   All x:Any + =(a(a(x)) a1(b(b(a1(a1(b(x)))))))
+   
+   RW882,1 & RW661      --> 
+        RW883:   All x:Any + =(a(a(x)) a1(b(a1(b(a1(b(x)))))))
+   
+   RW883,1 & RW661      --> 
+        RW884:   All x:Any + =(a(a(x)) a1(b(a1(a1(b(b(x)))))))
+   
+   RW884,1 & RW661      --> 
+        RW885:   All x:Any + =(a(a(x)) a1(a1(b(a1(b(b(x)))))))
+   
+   RW885,1 & RW661      --> 
+        RW886:   All x:Any + =(a(a(x)) a1(a1(a1(b(b(b(x)))))))
+   
+   RW886,1 & RW843      --> 
+        RW887:   All x:Any + =(a(a(x)) a1(a1(a(a(a(a(x)))))))
+   
+   RW887,1 & A8         --> 
+        RW888:   All x:Any + =(a(a(x)) a1(a(a(a(x)))))
+   
+   RW888,1 & A8         --> 
+        RW889:   All x:Any + =(a(a(x)) a(a(x)))
+   
+   P524,1 & RW661       --> 
+        RW890:   All x:Any + =(a1(b(a(b(x)))) b(a1(b(a1(b(b(b(b(a1(b(a(a(x)))))))))))))
+   
+   RW890,1 & RW661      --> 
+        RW891:   All x:Any + =(a1(b(a(b(x)))) a1(b(b(a1(b(b(b(b(a1(b(a(a(x)))))))))))))
+   
+   RW891,1 & RW661      --> 
+        RW892:   All x:Any + =(a1(b(a(b(x)))) a1(b(a1(b(b(b(b(b(a1(b(a(a(x)))))))))))))
+   
+   RW892,1 & RW843      --> 
+        RW893:   All x:Any + =(a1(b(a(b(x)))) a1(b(a(a(a(a(b(b(a1(b(a(a(x)))))))))))))
+   
+   RW893,1 & RW835      --> 
+        RW894:   All x:Any + =(a1(b(a(b(x)))) a1(b(a(a1(a1(b(a(a(x)))))))))
+   
+   RW894,1 & A7         --> 
+        RW895:   All x:Any + =(a1(b(a(b(x)))) a1(b(a1(b(a(a(x)))))))
+   
+   RW895,1 & RW661      --> 
+        RW896:   All x:Any + =(a1(b(a(b(x)))) a1(a1(b(b(a(a(x)))))))
+   
+   RW530,1 & RW661      --> 
+        RW897:   All x:Any + =(a(b(a1(b(a1(b(b(b(b(a1(b(x))))))))))) b(a(b(a1(a1(x))))))
+   
+   RW897,1 & RW661      --> 
+        RW898:   All x:Any + =(a(a1(b(b(a1(b(b(b(b(a1(b(x))))))))))) b(a(b(a1(a1(x))))))
+   
+   RW898,1 & RW661      --> 
+        RW899:   All x:Any + =(a(a1(b(a1(b(b(b(b(b(a1(b(x))))))))))) b(a(b(a1(a1(x))))))
+   
+   RW899,1 & RW843      --> 
+        RW900:   All x:Any + =(a(a1(b(a(a(a(a(b(b(a1(b(x))))))))))) b(a(b(a1(a1(x))))))
+   
+   RW900,1 & RW835      --> 
+        RW901:   All x:Any + =(a(a1(b(a(a1(a1(b(x))))))) b(a(b(a1(a1(x))))))
+   
+   RW901,1 & A7         --> 
+        RW902:   All x:Any + =(a(a1(b(a1(b(x))))) b(a(b(a1(a1(x))))))
+   
+   RW902,1 & RW661      --> 
+        RW903:   All x:Any + =(a(a1(a1(b(b(x))))) b(a(b(a1(a1(x))))))
+   
+   RW903,1 & A7         --> 
+        RW904:   All x:Any + =(a1(b(b(x))) b(a(b(a1(a1(x))))))
+   
+   RW904,1 & RW661      --> 
+        RW905:   All x:Any + =(a1(b(b(x))) b(a(a1(b(a1(x))))))
+   
+   RW905,1 & RW661      --> 
+        RW906:   All x:Any + =(a1(b(b(x))) b(a(a1(a1(b(x))))))
+   
+   RW906,1 & A7         --> 
+        RW907:   All x:Any + =(a1(b(b(x))) b(a1(b(x))))
+   
+   RW907,1 & RW661      --> 
+        RW908:   All x:Any + =(a1(b(b(x))) a1(b(b(x))))
+   
+   RW629,1 & RW661      --> 
+        RW909:   All x:Any + =(a(b(a(a(a(x))))) b(a1(b(a1(b(a(b(x))))))))
+   
+   RW909,1 & RW832      --> 
+        RW910:   All x:Any + =(a(a(b(a(a(x))))) b(a1(b(a1(b(a(b(x))))))))
+   
+   RW910,1 & RW661      --> 
+        RW911:   All x:Any + =(a(a(b(a(a(x))))) a1(b(b(a1(b(a(b(x))))))))
+   
+   RW911,1 & RW661      --> 
+        RW912:   All x:Any + =(a(a(b(a(a(x))))) a1(b(a1(b(b(a(b(x))))))))
+   
+   RW912,1 & RW605      --> 
+        RW913:   All x:Any + =(a(a(b(a(a(x))))) a1(b(a1(a1(b(a(a(b(b(x))))))))))
+   
+   RW913,1 & RW615      --> 
+        RW914:   All x:Any + =(a(a(b(a(a(x))))) a1(a1(b(b(a1(a1(a1(x))))))))
+   
+   RW914,1 & RW661      --> 
+        RW915:   All x:Any + =(a(a(b(a(a(x))))) a1(a1(b(a1(b(a1(a1(x))))))))
+   
+   RW915,1 & RW661      --> 
+        RW916:   All x:Any + =(a(a(b(a(a(x))))) a1(a1(b(a1(a1(b(a1(x))))))))
+   
+   RW916,1 & RW661      --> 
+        RW917:   All x:Any + =(a(a(b(a(a(x))))) a1(a1(b(a1(a1(a1(b(x))))))))
+   
+   RW917,1 & RW661      --> 
+        RW918:   All x:Any + =(a(a(b(a(a(x))))) a1(a1(a1(b(a1(a1(b(x))))))))
+   
+   RW918,1 & RW661      --> 
+        RW919:   All x:Any + =(a(a(b(a(a(x))))) a1(a1(a1(a1(b(a1(b(x))))))))
+   
+   RW919,1 & RW661      --> 
+        RW920:   All x:Any + =(a(a(b(a(a(x))))) a1(a1(a1(a1(a1(b(b(x))))))))
+   
+   RW612,1 & RW661      --> 
+        RW921:   All x:Any + =(a(a1(b(b(b(b(x)))))) a1(a1(a1(a1(b(a(b(a1(x)))))))))
+   
+   RW921,1 & A7         --> 
+        RW922:   All x:Any + =(b(b(b(b(x)))) a1(a1(a1(a1(b(a(b(a1(x)))))))))
+   
+   RW922,1 & RW661      --> 
+        RW923:   All x:Any + =(b(b(b(b(x)))) a1(a1(a1(a1(b(a(a1(b(x)))))))))
+   
+   RW923,1 & A7         --> 
+        RW924:   All x:Any + =(b(b(b(b(x)))) a1(a1(a1(a1(b(b(x)))))))
+   
+   RW647,1 & RW661      --> 
+        RW925:   All x:Any + =(a1(a1(a1(a1(a1(b(a(b(x)))))))) a1(b(a1(b(a1(a1(x)))))))
+   
+   RW925,1 & RW661      --> 
+        RW926:   All x:Any + =(a1(a1(a1(a1(a1(b(a(b(x)))))))) a1(a1(b(b(a1(a1(x)))))))
+   
+   RW926,1 & RW661      --> 
+        RW927:   All x:Any + =(a1(a1(a1(a1(a1(b(a(b(x)))))))) a1(a1(b(a1(b(a1(x)))))))
+   
+   RW927,1 & RW661      --> 
+        RW928:   All x:Any + =(a1(a1(a1(a1(a1(b(a(b(x)))))))) a1(a1(b(a1(a1(b(x)))))))
+   
+   RW928,1 & RW661      --> 
+        RW929:   All x:Any + =(a1(a1(a1(a1(a1(b(a(b(x)))))))) a1(a1(a1(b(a1(b(x)))))))
+   
+   RW929,1 & RW661      --> 
+        RW930:   All x:Any + =(a1(a1(a1(a1(a1(b(a(b(x)))))))) a1(a1(a1(a1(b(b(x)))))))
+   
+   RW615,1 & RW661      --> 
+        RW931:   All x:Any + =(a1(b(a1(b(a1(a1(x)))))) b(a1(a1(b(a(a(b(b(x)))))))))
+   
+   RW931,1 & RW661      --> 
+        RW932:   All x:Any + =(a1(a1(b(b(a1(a1(x)))))) b(a1(a1(b(a(a(b(b(x)))))))))
+   
+   RW932,1 & RW661      --> 
+        RW933:   All x:Any + =(a1(a1(b(a1(b(a1(x)))))) b(a1(a1(b(a(a(b(b(x)))))))))
+   
+   RW933,1 & RW661      --> 
+        RW934:   All x:Any + =(a1(a1(b(a1(a1(b(x)))))) b(a1(a1(b(a(a(b(b(x)))))))))
+   
+   RW934,1 & RW661      --> 
+        RW935:   All x:Any + =(a1(a1(a1(b(a1(b(x)))))) b(a1(a1(b(a(a(b(b(x)))))))))
+   
+   RW935,1 & RW661      --> 
+        RW936:   All x:Any + =(a1(a1(a1(a1(b(b(x)))))) b(a1(a1(b(a(a(b(b(x)))))))))
+   
+   RW936,1 & RW661      --> 
+        RW937:   All x:Any + =(a1(a1(a1(a1(b(b(x)))))) a1(b(a1(b(a(a(b(b(x)))))))))
+   
+   RW937,1 & RW661      --> 
+        RW938:   All x:Any + =(a1(a1(a1(a1(b(b(x)))))) a1(a1(b(b(a(a(b(b(x)))))))))
+   
+   RW938,1 & RW807      --> 
+        RW939:   All x:Any + =(a1(a1(a1(a1(b(b(x)))))) a1(a(b(a(a(a(a(a(x)))))))))
+   
+   RW939,1 & RW832      --> 
+        RW940:   All x:Any + =(a1(a1(a1(a1(b(b(x)))))) a1(a(a(b(a(a(a(a(x)))))))))
+   
+   RW940,1 & RW832      --> 
+        RW941:   All x:Any + =(a1(a1(a1(a1(b(b(x)))))) a1(a(a(a(b(a(a(a(x)))))))))
+   
+   RW941,1 & RW832      --> 
+        RW942:   All x:Any + =(a1(a1(a1(a1(b(b(x)))))) a1(a(a(a(a(b(a(a(x)))))))))
+   
+   RW942,1 & A8         --> 
+        RW943:   All x:Any + =(a1(a1(a1(a1(b(b(x)))))) a(a(a(b(a(a(x)))))))
+   
+   RW620,1 & RW661      --> 
+        RW944:   All x:Any + =(a(a(b(a(x)))) a1(b(b(a1(b(b(x)))))))
+   
+   RW944,1 & RW661      --> 
+        RW945:   All x:Any + =(a(a(b(a(x)))) a1(b(a1(b(b(b(x)))))))
+   
+   RW945,1 & RW843      --> 
+        RW946:   All x:Any + =(a(a(b(a(x)))) a1(b(a(a(a(a(x)))))))
+   
+   RW946,1 & RW832      --> 
+        RW947:   All x:Any + =(a(a(b(a(x)))) a1(a(b(a(a(a(x)))))))
+   
+   RW947,1 & RW832      --> 
+        RW948:   All x:Any + =(a(a(b(a(x)))) a1(a(a(b(a(a(x)))))))
+   
+   RW948,1 & A8         --> 
+        RW949:   All x:Any + =(a(a(b(a(x)))) a(b(a(a(x)))))
+   
+   RW712,1 & RW949      --> 
+        RW950:   All x:Any + =(a1(a1(b(b(a(a(b(a(a(b(a(a(a(x))))))))))))) a(b(b(x))))
+   
+   RW950,1 & RW896      --> 
+        RW951:   All x:Any + =(a1(b(a(b(b(a(a(b(a(a(a(x))))))))))) a(b(b(x))))
+   
+   RW951,1 & RW818      --> 
+        RW952:   All x:Any + =(a1(a1(a1(a1(a1(b(a(a(a(b(a(a(a(x))))))))))))) a(b(b(x))))
+   
+   RW952,1 & RW603      --> 
+        RW953:   All x:Any + =(a1(a1(a1(a1(a(a(b(b(a(a(a(x))))))))))) a(b(b(x))))
+   
+   RW953,1 & RW596      --> 
+        RW954:   All x:Any + =(a1(a1(a1(a1(a(b(a(a(b(a(a(x))))))))))) a(b(b(x))))
+   
+   RW954,1 & RW949      --> 
+        RW955:   All x:Any + =(a1(a1(a1(a1(a(b(a(a(a(b(a(x))))))))))) a(b(b(x))))
+   
+   RW955,1 & RW832      --> 
+        RW956:   All x:Any + =(a1(a1(a1(a1(a(a(b(a(a(b(a(x))))))))))) a(b(b(x))))
+   
+   RW956,1 & RW949      --> 
+        RW957:   All x:Any + =(a1(a1(a1(a1(a(a(a(b(a(b(a(x))))))))))) a(b(b(x))))
+   
+   RW957,1 & A8         --> 
+        RW958:   All x:Any + =(a1(a1(a1(a(a(b(a(b(a(x))))))))) a(b(b(x))))
+   
+   RW958,1 & A8         --> 
+        RW959:   All x:Any + =(a1(a1(a(b(a(b(a(x))))))) a(b(b(x))))
+   
+   RW959,1 & A8         --> 
+        RW960:   All x:Any + =(a1(b(a(b(a(x))))) a(b(b(x))))
+   
+   RW960,1 & RW877      --> 
+        RW961:   All x:Any + =(a(b(b(x))) a(b(b(x))))
+   
+   RW726,1 & RW949      --> 
+        RW962:   All x:Any + =(a1(a1(a1(a1(a1(a1(a1(a1(a1(b(x))))))))))
+                               a(a(a(a(b(a(b(a(b(a(a(b(a(b(a(a(a(b(a(b(a(b(a(a(x)))))))))))))))))))))))))
+   
+   RW962,1 & RW852      --> 
+        RW963:   All x:Any + =(a1(a1(a1(a(a(a(x))))))
+                               a(a(a(a(b(a(b(a(b(a(a(b(a(b(a(a(a(b(a(b(a(b(a(a(x)))))))))))))))))))))))))
+   
+   RW963,1 & A8         --> 
+        RW964:   All x:Any + =(a1(a1(a(a(x))))
+                               a(a(a(a(b(a(b(a(b(a(a(b(a(b(a(a(a(b(a(b(a(b(a(a(x)))))))))))))))))))))))))
+   
+   RW964,1 & A8         --> 
+        RW965:   All x:Any + =(a1(a(x)) a(a(a(a(b(a(b(a(b(a(a(b(a(b(a(a(a(b(a(b(a(b(a(a(x)))))))))))))))))))))))))
+   
+   RW965,1 & A8         --> 
+        RW966:   All x:Any + =(x a(a(a(a(b(a(b(a(b(a(a(b(a(b(a(a(a(b(a(b(a(b(a(a(x)))))))))))))))))))))))))
+   
+   RW966,1 & RW949      --> 
+        RW967:   All x:Any + =(x a(a(a(a(b(a(b(a(a(b(a(b(a(b(a(a(a(b(a(b(a(b(a(a(x)))))))))))))))))))))))))
+   
+   RW967,1 & RW949      --> 
+        RW968:   All x:Any + =(x a(a(a(a(b(a(b(a(a(b(a(b(a(a(b(a(a(b(a(b(a(b(a(a(x)))))))))))))))))))))))))
+   
+   RW968,1 & RW949      --> 
+        RW969:   All x:Any + =(x a(a(a(a(b(a(b(a(a(b(a(b(a(a(a(b(a(b(a(b(a(b(a(a(x)))))))))))))))))))))))))
+   
+   RW969,1 & RW949      --> 
+        RW970:   All x:Any + =(x a(a(a(a(b(a(b(a(a(b(a(b(a(a(a(b(a(b(a(b(a(a(b(a(x)))))))))))))))))))))))))
+   
+   RW970,1 & RW949      --> 
+        RW971:   All x:Any + =(x a(a(a(a(b(a(b(a(a(b(a(b(a(a(a(b(a(b(a(a(b(a(b(a(x)))))))))))))))))))))))))
+   
+   RW971,1 & RW949      --> 
+        RW972:   All x:Any + =(x a(a(a(a(b(a(b(a(a(b(a(b(a(a(a(b(a(a(b(a(b(a(b(a(x)))))))))))))))))))))))))
+   
+   RW972,1 & RW949      --> 
+        RW973:   All x:Any + =(x a(a(a(a(b(a(b(a(a(b(a(b(a(a(a(a(b(a(b(a(b(a(b(a(x)))))))))))))))))))))))))
+   
+   RW973,1 & RW771      --> 
+        RW974:   All x:Any + =(x a(a(a(a(b(a(b(a(a(b(a(a(b(a(b(a(b(a(x)))))))))))))))))))
+   
+   RW974,1 & RW949      --> 
+        RW975:   All x:Any + =(x a(a(a(a(b(a(b(a(a(a(b(a(b(a(b(a(b(a(x)))))))))))))))))))
+   
+   RW975,1 & RW832      --> 
+        RW976:   All x:Any + =(x a(a(a(a(b(a(a(b(a(a(b(a(b(a(b(a(b(a(x)))))))))))))))))))
+   
+   RW976,1 & RW949      --> 
+        RW977:   All x:Any + =(x a(a(a(a(b(a(a(a(b(a(b(a(b(a(b(a(b(a(x)))))))))))))))))))
+   
+   RW977,1 & RW832      --> 
+        RW978:   All x:Any + =(x a(a(a(a(a(b(a(a(b(a(b(a(b(a(b(a(b(a(x)))))))))))))))))))
+   
+   RW978,1 & RW949      --> 
+        RW979:   All x:Any + =(x a(a(a(a(a(a(b(a(b(a(b(a(b(a(b(a(b(a(x)))))))))))))))))))
+   
+   RW768,1 & RW949      --> 
+        RW980:   All x:Any + =(a1(a1(b(b(x)))) a1(a1(a1(b(a(b(a(a(b(a(b(a(x)))))))))))))
+   
+   RW980,1 & RW860      --> 
+        RW981:   All x:Any + =(a1(a1(b(b(x)))) a(a(a(a(b(a(a(a(x)))))))))
+   
+   RW981,1 & RW949      --> 
+        RW982:   All x:Any + =(a1(a1(b(b(x)))) a(a(a(a(a(b(a(a(x)))))))))
+   
+   RW982,1 & RW949      --> 
+        RW983:   All x:Any + =(a1(a1(b(b(x)))) a(a(a(a(a(a(b(a(x)))))))))
+   
+   RW806,1 & RW949      --> 
+        RW984:   All x:Any + =(a(a(b(a(x)))) a1(a1(b(b(b(b(x)))))))
+   
+   RW984,1 & RW983      --> 
+        RW985:   All x:Any + =(a(a(b(a(x)))) a(a(a(a(a(a(b(a(b(b(x)))))))))))
+   
+   RW985,1 & RW818      --> 
+        RW986:   All x:Any + =(a(a(b(a(x)))) a(a(a(a(a(a(a1(a1(a1(a1(b(a(x)))))))))))))
+   
+   RW986,1 & A7         --> 
+        RW987:   All x:Any + =(a(a(b(a(x)))) a(a(a(a(a(a1(a1(a1(b(a(x)))))))))))
+   
+   RW987,1 & A7         --> 
+        RW988:   All x:Any + =(a(a(b(a(x)))) a(a(a(a(a1(a1(b(a(x)))))))))
+   
+   RW988,1 & A7         --> 
+        RW989:   All x:Any + =(a(a(b(a(x)))) a(a(a(a1(b(a(x)))))))
+   
+   RW989,1 & A7         --> 
+        RW990:   All x:Any + =(a(a(b(a(x)))) a(a(b(a(x)))))
+   
+   RW807,1 & RW949      --> 
+        RW991:   All x:Any + =(a(a(b(a(a(a(a(x))))))) a1(b(b(a(a(b(b(x))))))))
+   
+   RW991,1 & RW949      --> 
+        RW992:   All x:Any + =(a(a(a(b(a(a(a(x))))))) a1(b(b(a(a(b(b(x))))))))
+   
+   RW992,1 & RW949      --> 
+        RW993:   All x:Any + =(a(a(a(a(b(a(a(x))))))) a1(b(b(a(a(b(b(x))))))))
+   
+   RW993,1 & RW949      --> 
+        RW994:   All x:Any + =(a(a(a(a(a(b(a(x))))))) a1(b(b(a(a(b(b(x))))))))
+   
+   RW608,1 & RW949      --> 
+        RW995:   All x:Any + =(a1(b(a(a(b(x))))) b(a(a(a(a(b(a(b(b(x))))))))))
+   
+   RW995,1 & RW771      --> 
+        RW996:   All x:Any + =(a1(b(a(a(b(x))))) a(b(b(x))))
+   
+   RW832,1 & RW949      --> 
+        RW997:   All x:Any + =(b(a(a(a(x)))) a(a(b(a(x)))))
+   
+   RW860,1 & RW949      --> 
+        RW998:   All x:Any + =(a1(a1(a1(b(a(a(b(a(b(a(b(x))))))))))) a(a(a(a(b(a(a(x))))))))
+   
+   RW998,1 & RW996      --> 
+        RW999:   All x:Any + =(a1(a1(a(b(b(a(b(a(b(x))))))))) a(a(a(a(b(a(a(x))))))))
+   
+   RW999,1 & RW596      --> 
+        RW1000:  All x:Any + =(a1(a1(b(a(a(b(b(a(b(x))))))))) a(a(a(a(b(a(a(x))))))))
+   
+   RW1000,1 & RW596     --> 
+        RW1001:  All x:Any + =(a1(a1(b(a(b(a(a(b(b(x))))))))) a(a(a(a(b(a(a(x))))))))
+   
+   RW1001,1 & RW949     --> 
+        RW1002:  All x:Any + =(a1(a1(b(a(a(b(a(b(b(x))))))))) a(a(a(a(b(a(a(x))))))))
+   
+   RW1002,1 & RW818     --> 
+        RW1003:  All x:Any + =(a1(a1(b(a(a(a1(a1(a1(a1(b(a(x))))))))))) a(a(a(a(b(a(a(x))))))))
+   
+   RW1003,1 & A7        --> 
+        RW1004:  All x:Any + =(a1(a1(b(a(a1(a1(a1(b(a(x))))))))) a(a(a(a(b(a(a(x))))))))
+   
+   RW1004,1 & A7        --> 
+        RW1005:  All x:Any + =(a1(a1(b(a1(a1(b(a(x))))))) a(a(a(a(b(a(a(x))))))))
+   
+   RW1005,1 & RW661     --> 
+        RW1006:  All x:Any + =(a1(a1(a1(b(a1(b(a(x))))))) a(a(a(a(b(a(a(x))))))))
+   
+   RW1006,1 & RW661     --> 
+        RW1007:  All x:Any + =(a1(a1(a1(a1(b(b(a(x))))))) a(a(a(a(b(a(a(x))))))))
+   
+   RW1007,1 & RW983     --> 
+        RW1008:  All x:Any + =(a1(a1(a(a(a(a(a(a(b(a(a(x))))))))))) a(a(a(a(b(a(a(x))))))))
+   
+   RW1008,1 & RW949     --> 
+        RW1009:  All x:Any + =(a1(a1(a(a(a(a(a(a(a(b(a(x))))))))))) a(a(a(a(b(a(a(x))))))))
+   
+   RW1009,1 & A8        --> 
+        RW1010:  All x:Any + =(a1(a(a(a(a(a(a(b(a(x))))))))) a(a(a(a(b(a(a(x))))))))
+   
+   RW1010,1 & A8        --> 
+        RW1011:  All x:Any + =(a(a(a(a(a(b(a(x))))))) a(a(a(a(b(a(a(x))))))))
+   
+   RW1011,1 & RW949     --> 
+        RW1012:  All x:Any + =(a(a(a(a(a(b(a(x))))))) a(a(a(a(a(b(a(x))))))))
+   
+   RW920,1 & RW949      --> 
+        RW1013:  All x:Any + =(a(a(a(b(a(x))))) a1(a1(a1(a1(a1(b(b(x))))))))
+   
+   RW1013,1 & RW943     --> 
+        RW1014:  All x:Any + =(a(a(a(b(a(x))))) a1(a(a(a(b(a(a(x))))))))
+   
+   RW1014,1 & RW949     --> 
+        RW1015:  All x:Any + =(a(a(a(b(a(x))))) a1(a(a(a(a(b(a(x))))))))
+   
+   RW1015,1 & A8        --> 
+        RW1016:  All x:Any + =(a(a(a(b(a(x))))) a(a(a(b(a(x))))))
+   
+   RW638,1 & RW949      --> 
+        RW1017:  All x:Any + =(a1(b(b(a(a(x))))) b(a(a(a(b(a(a(b(b(x))))))))))
+   
+   RW1017,1 & RW997     --> 
+        RW1018:  All x:Any + =(a1(b(b(a(a(x))))) a(a(b(a(b(a(a(b(b(x))))))))))
+   
+   RW1018,1 & RW949     --> 
+        RW1019:  All x:Any + =(a1(b(b(a(a(x))))) a(a(b(a(a(b(a(b(b(x))))))))))
+   
+   RW1019,1 & RW818     --> 
+        RW1020:  All x:Any + =(a1(b(b(a(a(x))))) a(a(b(a(a(a1(a1(a1(a1(b(a(x))))))))))))
+   
+   RW1020,1 & A7        --> 
+        RW1021:  All x:Any + =(a1(b(b(a(a(x))))) a(a(b(a(a1(a1(a1(b(a(x))))))))))
+   
+   RW1021,1 & A7        --> 
+        RW1022:  All x:Any + =(a1(b(b(a(a(x))))) a(a(b(a1(a1(b(a(x))))))))
+   
+   RW1022,1 & RW661     --> 
+        RW1023:  All x:Any + =(a1(b(b(a(a(x))))) a(a(a1(b(a1(b(a(x))))))))
+   
+   RW1023,1 & RW661     --> 
+        RW1024:  All x:Any + =(a1(b(b(a(a(x))))) a(a(a1(a1(b(b(a(x))))))))
+   
+   RW1024,1 & RW983     --> 
+        RW1025:  All x:Any + =(a1(b(b(a(a(x))))) a(a(a(a(a(a(a(a(b(a(a(x))))))))))))
+   
+   RW1025,1 & RW949     --> 
+        RW1026:  All x:Any + =(a1(b(b(a(a(x))))) a(a(a(a(a(a(a(a(a(b(a(x))))))))))))
+   
+   RW943,1 & RW949      --> 
+        RW1027:  All x:Any + =(a1(a1(a1(a1(b(b(x)))))) a(a(a(a(b(a(x)))))))
+   
+   RW1027,1 & RW983     --> 
+        RW1028:  All x:Any + =(a1(a1(a(a(a(a(a(a(b(a(x)))))))))) a(a(a(a(b(a(x)))))))
+   
+   RW1028,1 & A8        --> 
+        RW1029:  All x:Any + =(a1(a(a(a(a(a(b(a(x)))))))) a(a(a(a(b(a(x)))))))
+   
+   RW1029,1 & A8        --> 
+        RW1030:  All x:Any + =(a(a(a(a(b(a(x)))))) a(a(a(a(b(a(x)))))))
+   
+   RW994,1 & RW1026     --> 
+        RW1031:  All x:Any + =(a(a(a(a(a(b(a(x))))))) a(a(a(a(a(a(a(a(a(b(a(b(b(x))))))))))))))
+   
+   RW1031,1 & RW818     --> 
+        RW1032:  All x:Any + =(a(a(a(a(a(b(a(x))))))) a(a(a(a(a(a(a(a(a(a1(a1(a1(a1(b(a(x))))))))))))))))
+   
+   RW1032,1 & A7        --> 
+        RW1033:  All x:Any + =(a(a(a(a(a(b(a(x))))))) a(a(a(a(a(a(a(a(a1(a1(a1(b(a(x))))))))))))))
+   
+   RW1033,1 & A7        --> 
+        RW1034:  All x:Any + =(a(a(a(a(a(b(a(x))))))) a(a(a(a(a(a(a(a1(a1(b(a(x))))))))))))
+   
+   RW1034,1 & A7        --> 
+        RW1035:  All x:Any + =(a(a(a(a(a(b(a(x))))))) a(a(a(a(a(a(a1(b(a(x))))))))))
+   
+   RW1035,1 & A7        --> 
+        RW1036:  All x:Any + =(a(a(a(a(a(b(a(x))))))) a(a(a(a(a(b(a(x))))))))
+   
+   RW872,1 & RW1026     --> 
+        RW1037:  All x:Any + =(a(a(x)) a1(a1(a1(a1(a(a(a(a(a(a(a(a(a(b(a(b(x)))))))))))))))))
+   
+   RW1037,1 & A8        --> 
+        RW1038:  All x:Any + =(a(a(x)) a1(a1(a1(a(a(a(a(a(a(a(a(b(a(b(x)))))))))))))))
+   
+   RW1038,1 & A8        --> 
+        RW1039:  All x:Any + =(a(a(x)) a1(a1(a(a(a(a(a(a(a(b(a(b(x)))))))))))))
+   
+   RW1039,1 & A8        --> 
+        RW1040:  All x:Any + =(a(a(x)) a1(a(a(a(a(a(a(b(a(b(x)))))))))))
+   
+   RW1040,1 & A8        --> 
+        RW1041:  All x:Any + =(a(a(x)) a(a(a(a(a(b(a(b(x)))))))))
+   
+   RW896,1 & RW1026     --> 
+        RW1042:  All x:Any + =(a1(b(a(b(x)))) a1(a(a(a(a(a(a(a(a(a(b(a(x)))))))))))))
+   
+   RW1042,1 & A8        --> 
+        RW1043:  All x:Any + =(a1(b(a(b(x)))) a(a(a(a(a(a(a(a(b(a(x)))))))))))
+   
+   RW605,1 & RW996      --> 
+        RW1044:  All x:Any + =(a(b(b(b(x)))) b(b(a(b(x)))))
+   
+   RW739,1 & RW930      --> 
+        RW1045:  All x:Any + =(a1(b(a(x))) a1(a1(a1(a1(a1(a1(a1(a1(a1(b(b(x))))))))))))
+   
+   RW1045,1 & RW752     --> 
+        RW1046:  All x:Any + =(a1(b(a(x))) a1(a1(a1(b(a(a(a(x))))))))
+   
+   RW1046,1 & RW997     --> 
+        RW1047:  All x:Any + =(a1(b(a(x))) a1(a1(a1(a(a(b(a(x))))))))
+   
+   RW1047,1 & A8        --> 
+        RW1048:  All x:Any + =(a1(b(a(x))) a1(a1(a(b(a(x))))))
+   
+   RW1048,1 & A8        --> 
+        RW1049:  All x:Any + =(a1(b(a(x))) a1(b(a(x))))
+   
+   RW783,1 & RW930      --> 
+        RW1050:  All x:Any + =(a1(a1(a1(a1(a1(b(b(a(x)))))))) a1(a1(a1(a1(a1(b(b(a(x)))))))))
+   
+   RW1050,1 & RW983     --> 
+        RW1051:  All x:Any + =(a1(a1(a1(a(a(a(a(a(a(b(a(a(x)))))))))))) a1(a1(a1(a1(a1(b(b(a(x)))))))))
+   
+   RW1051,1 & RW949     --> 
+        RW1052:  All x:Any + =(a1(a1(a1(a(a(a(a(a(a(a(b(a(x)))))))))))) a1(a1(a1(a1(a1(b(b(a(x)))))))))
+   
+   RW1052,1 & A8        --> 
+        RW1053:  All x:Any + =(a1(a1(a(a(a(a(a(a(b(a(x)))))))))) a1(a1(a1(a1(a1(b(b(a(x)))))))))
+   
+   RW1053,1 & A8        --> 
+        RW1054:  All x:Any + =(a1(a(a(a(a(a(b(a(x)))))))) a1(a1(a1(a1(a1(b(b(a(x)))))))))
+   
+   RW1054,1 & A8        --> 
+        RW1055:  All x:Any + =(a(a(a(a(b(a(x)))))) a1(a1(a1(a1(a1(b(b(a(x)))))))))
+   
+   RW1055,1 & RW983     --> 
+        RW1056:  All x:Any + =(a(a(a(a(b(a(x)))))) a1(a1(a1(a(a(a(a(a(a(b(a(a(x)))))))))))))
+   
+   RW1056,1 & RW949     --> 
+        RW1057:  All x:Any + =(a(a(a(a(b(a(x)))))) a1(a1(a1(a(a(a(a(a(a(a(b(a(x)))))))))))))
+   
+   RW1057,1 & A8        --> 
+        RW1058:  All x:Any + =(a(a(a(a(b(a(x)))))) a1(a1(a(a(a(a(a(a(b(a(x)))))))))))
+   
+   RW1058,1 & A8        --> 
+        RW1059:  All x:Any + =(a(a(a(a(b(a(x)))))) a1(a(a(a(a(a(b(a(x)))))))))
+   
+   RW1059,1 & A8        --> 
+        RW1060:  All x:Any + =(a(a(a(a(b(a(x)))))) a(a(a(a(b(a(x)))))))
+   
+   RW790,1 & RW930      --> 
+        RW1061:  All x:Any + =(a1(a1(a1(a1(a1(b(b(x))))))) b1(x))
+   
+   RW1061,1 & RW983     --> 
+        RW1062:  All x:Any + =(a1(a1(a1(a(a(a(a(a(a(b(a(x))))))))))) b1(x))
+   
+   RW1062,1 & A8        --> 
+        RW1063:  All x:Any + =(a1(a1(a(a(a(a(a(b(a(x))))))))) b1(x))
+   
+   RW1063,1 & A8        --> 
+        RW1064:  All x:Any + =(a1(a(a(a(a(b(a(x))))))) b1(x))
+   
+   RW1064,1 & A8        --> 
+        RW1065:  All x:Any + =(a(a(a(b(a(x))))) b1(x))
+   
+   RW705,1 & RW924      --> 
+        RW1066:  All x:Any + =(d1(x) a1(a1(a1(a1(a1(a1(a1(a1(b(b(b(x))))))))))))
+   
+   RW1066,1 & RW752     --> 
+        RW1067:  All x:Any + =(d1(x) a1(a1(b(a(a(a(b(x))))))))
+   
+   RW1067,1 & RW997     --> 
+        RW1068:  All x:Any + =(d1(x) a1(a1(a(a(b(a(b(x))))))))
+   
+   RW1068,1 & A8        --> 
+        RW1069:  All x:Any + =(d1(x) a1(a(b(a(b(x))))))
+   
+   RW1069,1 & A8        --> 
+        RW1070:  All x:Any + =(d1(x) b(a(b(x))))
+   
+   RW683,1 & RW1043     --> 
+        RW1071:  All x:Any + =(c(x) a1(a1(a1(a(a(a(a(a(a(a(a(b(a(x))))))))))))))
+   
+   RW1071,1 & A8        --> 
+        RW1072:  All x:Any + =(c(x) a1(a1(a(a(a(a(a(a(a(b(a(x))))))))))))
+   
+   RW1072,1 & A8        --> 
+        RW1073:  All x:Any + =(c(x) a1(a(a(a(a(a(a(b(a(x))))))))))
+   
+   RW1073,1 & A8        --> 
+        RW1074:  All x:Any + =(c(x) a(a(a(a(a(b(a(x))))))))
+   
+   RW607,1 & RW1043     --> 
+        RW1075:  All x:Any + =(a1(a1(a(a(a(a(a(a(a(a(b(a(x)))))))))))) b(a(a(b(b(b(x)))))))
+   
+   RW1075,1 & A8        --> 
+        RW1076:  All x:Any + =(a1(a(a(a(a(a(a(a(b(a(x)))))))))) b(a(a(b(b(b(x)))))))
+   
+   RW1076,1 & A8        --> 
+        RW1077:  All x:Any + =(a(a(a(a(a(a(b(a(x)))))))) b(a(a(b(b(b(x)))))))
+   
+   RW877,1 & RW1043     --> 
+        RW1078:  All x:Any + =(a(a(a(a(a(a(a(a(b(a(a(x))))))))))) a(b(b(x))))
+   
+   RW1078,1 & RW949     --> 
+        RW1079:  All x:Any + =(a(a(a(a(a(a(a(a(a(b(a(x))))))))))) a(b(b(x))))
+   
+   RW930,1 & RW1043     --> 
+        RW1080:  All x:Any + =(a1(a1(a1(a1(a(a(a(a(a(a(a(a(b(a(x)))))))))))))) a1(a1(a1(a1(b(b(x)))))))
+   
+   RW1080,1 & A8        --> 
+        RW1081:  All x:Any + =(a1(a1(a1(a(a(a(a(a(a(a(b(a(x)))))))))))) a1(a1(a1(a1(b(b(x)))))))
+   
+   RW1081,1 & A8        --> 
+        RW1082:  All x:Any + =(a1(a1(a(a(a(a(a(a(b(a(x)))))))))) a1(a1(a1(a1(b(b(x)))))))
+   
+   RW1082,1 & A8        --> 
+        RW1083:  All x:Any + =(a1(a(a(a(a(a(b(a(x)))))))) a1(a1(a1(a1(b(b(x)))))))
+   
+   RW1083,1 & A8        --> 
+        RW1084:  All x:Any + =(a(a(a(a(b(a(x)))))) a1(a1(a1(a1(b(b(x)))))))
+   
+   RW1084,1 & RW983     --> 
+        RW1085:  All x:Any + =(a(a(a(a(b(a(x)))))) a1(a1(a(a(a(a(a(a(b(a(x)))))))))))
+   
+   RW1085,1 & A8        --> 
+        RW1086:  All x:Any + =(a(a(a(a(b(a(x)))))) a1(a(a(a(a(a(b(a(x)))))))))
+   
+   RW1086,1 & A8        --> 
+        RW1087:  All x:Any + =(a(a(a(a(b(a(x)))))) a(a(a(a(b(a(x)))))))
+   
+   P145,1 & RW1079      --> 
+        RW1088:  All x:Any + =(a1(b(a(x))) b(a(a(a(a(a(a(a(a(a(a(a(a(b(a(x))))))))))))))))
+   
+   RW1088,1 & RW997     --> 
+        RW1089:  All x:Any + =(a1(b(a(x))) a(a(b(a(a(a(a(a(a(a(a(a(a(b(a(x))))))))))))))))
+   
+   RW1089,1 & RW949     --> 
+        RW1090:  All x:Any + =(a1(b(a(x))) a(a(a(b(a(a(a(a(a(a(a(a(a(b(a(x))))))))))))))))
+   
+   RW1090,1 & RW949     --> 
+        RW1091:  All x:Any + =(a1(b(a(x))) a(a(a(a(b(a(a(a(a(a(a(a(a(b(a(x))))))))))))))))
+   
+   RW1091,1 & RW949     --> 
+        RW1092:  All x:Any + =(a1(b(a(x))) a(a(a(a(a(b(a(a(a(a(a(a(a(b(a(x))))))))))))))))
+   
+   RW1092,1 & RW949     --> 
+        RW1093:  All x:Any + =(a1(b(a(x))) a(a(a(a(a(a(b(a(a(a(a(a(a(b(a(x))))))))))))))))
+   
+   RW1093,1 & RW949     --> 
+        RW1094:  All x:Any + =(a1(b(a(x))) a(a(a(a(a(a(a(b(a(a(a(a(a(b(a(x))))))))))))))))
+   
+   RW1094,1 & RW949     --> 
+        RW1095:  All x:Any + =(a1(b(a(x))) a(a(a(a(a(a(a(a(b(a(a(a(a(b(a(x))))))))))))))))
+   
+   RW1095,1 & RW949     --> 
+        RW1096:  All x:Any + =(a1(b(a(x))) a(a(a(a(a(a(a(a(a(b(a(a(a(b(a(x))))))))))))))))
+   
+   RW1096,1 & RW949     --> 
+        RW1097:  All x:Any + =(a1(b(a(x))) a(a(a(a(a(a(a(a(a(a(b(a(a(b(a(x))))))))))))))))
+   
+   RW1097,1 & RW949     --> 
+        RW1098:  All x:Any + =(a1(b(a(x))) a(a(a(a(a(a(a(a(a(a(a(b(a(b(a(x))))))))))))))))
+   
+   RW1098,1 & RW1041    --> 
+        RW1099:  All x:Any + =(a1(b(a(x))) a(a(a(a(a(a(a(a(a(x))))))))))
+   
+   RW1044,1 & RW1079    --> 
+        RW1100:  All x:Any + =(a(a(a(a(a(a(a(a(a(b(a(b(x)))))))))))) b(b(a(b(x)))))
+   
+   RW1100,1 & RW1041    --> 
+        RW1101:  All x:Any + =(a(a(a(a(a(a(x)))))) b(b(a(b(x)))))
+   
+   RW818,1 & RW1079     --> 
+        RW1102:  All x:Any + =(a1(a1(a1(a1(b(a(x)))))) b(a(a(a(a(a(a(a(a(a(b(a(x)))))))))))))
+   
+   RW1102,1 & RW1099    --> 
+        RW1103:  All x:Any + =(a1(a1(a1(a(a(a(a(a(a(a(a(a(x)))))))))))) b(a(a(a(a(a(a(a(a(a(b(a(x)))))))))))))
+   
+   RW1103,1 & A8        --> 
+        RW1104:  All x:Any + =(a1(a1(a(a(a(a(a(a(a(a(x)))))))))) b(a(a(a(a(a(a(a(a(a(b(a(x)))))))))))))
+   
+   RW1104,1 & A8        --> 
+        RW1105:  All x:Any + =(a1(a(a(a(a(a(a(a(x)))))))) b(a(a(a(a(a(a(a(a(a(b(a(x)))))))))))))
+   
+   RW1105,1 & A8        --> 
+        RW1106:  All x:Any + =(a(a(a(a(a(a(x)))))) b(a(a(a(a(a(a(a(a(a(b(a(x)))))))))))))
+   
+   RW1106,1 & RW997     --> 
+        RW1107:  All x:Any + =(a(a(a(a(a(a(x)))))) a(a(b(a(a(a(a(a(a(a(b(a(x)))))))))))))
+   
+   RW1107,1 & RW949     --> 
+        RW1108:  All x:Any + =(a(a(a(a(a(a(x)))))) a(a(a(b(a(a(a(a(a(a(b(a(x)))))))))))))
+   
+   RW1108,1 & RW949     --> 
+        RW1109:  All x:Any + =(a(a(a(a(a(a(x)))))) a(a(a(a(b(a(a(a(a(a(b(a(x)))))))))))))
+   
+   RW1109,1 & RW949     --> 
+        RW1110:  All x:Any + =(a(a(a(a(a(a(x)))))) a(a(a(a(a(b(a(a(a(a(b(a(x)))))))))))))
+   
+   RW1110,1 & RW949     --> 
+        RW1111:  All x:Any + =(a(a(a(a(a(a(x)))))) a(a(a(a(a(a(b(a(a(a(b(a(x)))))))))))))
+   
+   RW1111,1 & RW949     --> 
+        RW1112:  All x:Any + =(a(a(a(a(a(a(x)))))) a(a(a(a(a(a(a(b(a(a(b(a(x)))))))))))))
+   
+   RW1112,1 & RW949     --> 
+        RW1113:  All x:Any + =(a(a(a(a(a(a(x)))))) a(a(a(a(a(a(a(a(b(a(b(a(x)))))))))))))
+   
+   RW1113,1 & RW1041    --> 
+        RW1114:  All x:Any + =(a(a(a(a(a(a(x)))))) a(a(a(a(a(a(x)))))))
+   
+   RW1077,1 & RW1079    --> 
+        RW1115:  All x:Any + =(a(a(a(a(a(a(b(a(x)))))))) b(a(a(a(a(a(a(a(a(a(a(b(a(b(x)))))))))))))))
+   
+   RW1115,1 & RW997     --> 
+        RW1116:  All x:Any + =(a(a(a(a(a(a(b(a(x)))))))) a(a(b(a(a(a(a(a(a(a(a(b(a(b(x)))))))))))))))
+   
+   RW1116,1 & RW949     --> 
+        RW1117:  All x:Any + =(a(a(a(a(a(a(b(a(x)))))))) a(a(a(b(a(a(a(a(a(a(a(b(a(b(x)))))))))))))))
+   
+   RW1117,1 & RW949     --> 
+        RW1118:  All x:Any + =(a(a(a(a(a(a(b(a(x)))))))) a(a(a(a(b(a(a(a(a(a(a(b(a(b(x)))))))))))))))
+   
+   RW1118,1 & RW949     --> 
+        RW1119:  All x:Any + =(a(a(a(a(a(a(b(a(x)))))))) a(a(a(a(a(b(a(a(a(a(a(b(a(b(x)))))))))))))))
+   
+   RW1119,1 & RW949     --> 
+        RW1120:  All x:Any + =(a(a(a(a(a(a(b(a(x)))))))) a(a(a(a(a(a(b(a(a(a(a(b(a(b(x)))))))))))))))
+   
+   RW1120,1 & RW949     --> 
+        RW1121:  All x:Any + =(a(a(a(a(a(a(b(a(x)))))))) a(a(a(a(a(a(a(b(a(a(a(b(a(b(x)))))))))))))))
+   
+   RW1121,1 & RW949     --> 
+        RW1122:  All x:Any + =(a(a(a(a(a(a(b(a(x)))))))) a(a(a(a(a(a(a(a(b(a(a(b(a(b(x)))))))))))))))
+   
+   RW1122,1 & RW949     --> 
+        RW1123:  All x:Any + =(a(a(a(a(a(a(b(a(x)))))))) a(a(a(a(a(a(a(a(a(b(a(b(a(b(x)))))))))))))))
+   
+   RW1123,1 & RW1041    --> 
+        RW1124:  All x:Any + =(a(a(a(a(a(a(b(a(x)))))))) a(a(a(a(a(a(a(b(x)))))))))
+   
+   RW996,1 & RW1079     --> 
+        RW1125:  All x:Any + =(a1(b(a(a(b(x))))) a(a(a(a(a(a(a(a(a(b(a(x))))))))))))
+   
+   RW1125,1 & RW1099    --> 
+        RW1126:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(b(x))))))))))) a(a(a(a(a(a(a(a(a(b(a(x))))))))))))
+   
+   RW1126,1 & RW1124    --> 
+        RW1127:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(b(x))))))))))) a(a(a(a(a(a(a(a(a(a(b(x))))))))))))
+   
+   RW835,1 & RW1079     --> 
+        RW1128:  All x:Any + =(a1(x) a(a(a(a(a(a(a(a(a(a(a(b(a(x))))))))))))))
+   
+   RW1128,1 & RW1124    --> 
+        RW1129:  All x:Any + =(a1(x) a(a(a(a(a(a(a(a(a(a(a(a(b(x))))))))))))))
+   
+   RW596,1 & RW1079     --> 
+        RW1130:  All x:Any + =(a(a(a(a(a(a(a(a(a(b(a(a(x)))))))))))) b(a(a(b(x)))))
+   
+   RW1130,1 & RW1124    --> 
+        RW1131:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(b(a(x)))))))))))) b(a(a(b(x)))))
+   
+   RW1131,1 & RW1124    --> 
+        RW1132:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(b(x)))))))))))) b(a(a(b(x)))))
+   
+   RW979,1 & RW1124     --> 
+        RW1133:  All x:Any + =(x a(a(a(a(a(a(a(b(b(a(b(a(b(a(b(a(b(a(x)))))))))))))))))))
+   
+   RW1133,1 & RW1079    --> 
+        RW1134:  All x:Any + =(x a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(b(a(a(b(a(b(a(b(a(b(a(x)))))))))))))))))))))))))))
+   
+   RW1134,1 & RW1124    --> 
+        RW1135:  All x:Any + =(x a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(b(a(b(a(b(a(b(a(b(a(x)))))))))))))))))))))))))))
+   
+   RW1135,1 & RW1124    --> 
+        RW1136:  All x:Any + =(x a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(b(b(a(b(a(b(a(b(a(x)))))))))))))))))))))))))))
+   
+   RW1136,1 & RW1079    --> 
+        RW1137:  All x:Any + =(x
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(b(a(a(b(a(b(a(b(a(x)))))))))))))))))
+                                                                 ))))))))))))))))))
+   
+   RW1137,1 & RW1124    --> 
+        RW1138:  All x:Any + =(x
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(b(a(b(a(b(a(b(a(x)))))))))))))))))
+                                                                 ))))))))))))))))))
+   
+   RW1138,1 & RW1124    --> 
+        RW1139:  All x:Any + =(x
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(b(b(a(b(a(b(a(x)))))))))))))))))
+                                                                 ))))))))))))))))))
+   
+   RW1139,1 & RW1079    --> 
+        RW1140:  All x:Any + =(x
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(b(a(a(b(a(b(a(x)
+                                                                                                                 ))))
+                                                                                                         ))))))))))))
+                                                                                 ))))))))))))))))))))))))))
+   
+   RW1140,1 & RW1124    --> 
+        RW1141:  All x:Any + =(x
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(b(a(b(a(b(a(x)
+                                                                                                                 ))))
+                                                                                                         ))))))))))))
+                                                                                 ))))))))))))))))))))))))))
+   
+   RW1141,1 & RW1124    --> 
+        RW1142:  All x:Any + =(x
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(b(b(a(b(a(x)
+                                                                                                                 ))))
+                                                                                                         ))))))))))))
+                                                                                 ))))))))))))))))))))))))))
+   
+   RW1142,1 & RW1079    --> 
+        RW1143:  All x:Any + =(x
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(b(a(a(b(a(
+x()))))))))))))))))))))))))))))))))))))))))))))))))))
+   
+   RW1143,1 & RW1124    --> 
+        RW1144:  All x:Any + =(x
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(b(a(b(a(
+x()))))))))))))))))))))))))))))))))))))))))))))))))))
+   
+   RW1144,1 & RW1124    --> 
+        RW1145:  All x:Any + =(x
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(b(b(a(
+x()))))))))))))))))))))))))))))))))))))))))))))))))))
+   
+   RW1145,1 & RW1079    --> 
+        RW1146:  All x:Any + =(x
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(b(a(a(
+x()))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+   
+   RW1146,1 & RW1124    --> 
+        RW1147:  All x:Any + =(x
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(b(a(
+x()))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+   
+   RW1147,1 & RW1124    --> 
+        RW1148:  All x:Any + =(x
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(b(
+x()))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+   
+   RW1148,1 & RW1129    --> 
+        RW1149:  All x:Any + =(x
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a1(
+x()))))))))))))))))))))))))))))))))))))))))))))))
+   
+   RW1149,1 & A7        --> 
+        RW1150:  All x:Any + =(x
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(
+x()))))))))))))))))))))))))))))))))))))))))))))
+   
+   RW983,1 & RW1124     --> 
+        RW1151:  All x:Any + =(a1(a1(b(b(x)))) a(a(a(a(a(a(a(b(x)))))))))
+   
+   RW1079,1 & RW1124    --> 
+        RW1152:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(b(x))))))))))) a(b(b(x))))
+   
+   RW1043,1 & RW1124    --> 
+        RW1153:  All x:Any + =(a1(b(a(b(x)))) a(a(a(a(a(a(a(a(a(b(x)))))))))))
+   
+   RW1153,1 & RW1099    --> 
+        RW1154:  All x:Any + =(a(a(a(a(a(a(a(a(a(b(x)))))))))) a(a(a(a(a(a(a(a(a(b(x)))))))))))
+   
+   RW1026,1 & RW1124    --> 
+        RW1155:  All x:Any + =(a1(b(b(a(a(x))))) a(a(a(a(a(a(a(a(a(a(b(x))))))))))))
+   
+   RW603,1 & RW1099     --> 
+        RW1156:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(x))))))))))) a(a(b(x))))
+   
+   RW1074,1 & RW1156    --> 
+        RW1157:  All x:Any + =(c(x) a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x))))))))))))))))
+   
+   RW1151,1 & RW1156    --> 
+        RW1158:  All x:Any + =(a1(a1(b(b(x)))) a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))))))))
+   
+   RW771,1 & RW1156     --> 
+        RW1159:  All x:Any + =(b(a(a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))))) x)
+   
+   RW1159,1 & RW997     --> 
+        RW1160:  All x:Any + =(a(a(b(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))))) x)
+   
+   RW1160,1 & RW1156    --> 
+        RW1161:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))))))))))))) x)
+   
+   RW1065,1 & RW1156    --> 
+        RW1162:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(a(x))))))))))))) b1(x))
+   
+   RW1124,1 & RW1156    --> 
+        RW1163:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))))))) a(a(a(a(a(a(a(b(x)))))))))
+   
+   RW1163,1 & RW1156    --> 
+        RW1164:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x))))))))))))))))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))))))))
+   
+   RW997,1 & RW1156     --> 
+        RW1165:  All x:Any + =(b(a(a(a(x)))) a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))))
+   
+   RW1129,1 & RW1156    --> 
+        RW1166:  All x:Any + =(a1(x) a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x))))))))))))))))))))))
+   
+   RW1041,1 & RW1156    --> 
+        RW1167:  All x:Any + =(a(a(x)) a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(b(x)))))))))))))))))
+   
+   RW1167,1 & RW1156    --> 
+        RW1168:  All x:Any + =(a(a(x)) a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))))))))))))))))
+   
+   RW1168,1 & RW1161    --> 
+        RW1169:  All x:Any + =(a(a(x)) a(a(x)))
+   
+   RW1152,1 & RW1156    --> 
+        RW1170:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x))))))))))))))))))) a(b(b(x))))
+   
+   RW1155,1 & RW1156    --> 
+        RW1171:  All x:Any + =(a1(b(b(a(a(x))))) a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x))))))))))))))))))))
+   
+   RW1171,1 & RW1166    --> 
+        RW1172:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(b(b(a(a(x)))))))))))))))))))))))))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x))))))))))))))))))))
+   
+   RW1172,1 & RW1156    --> 
+        RW1173:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(b(a(a(x)))))))))))))))))))
+                                                           ))))))))))))))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x))))))))))))))))))))
+   
+   RW1173,1 & RW1156    --> 
+        RW1174:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x)))
+                                                                                                           ))))))))))
+                                                                                       ))))))))))))))))))))))))))))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x))))))))))))))))))))
+   
+   RW1174,1 & RW1161    --> 
+        RW1175:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))))))))))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x))))))))))))))))))))
+   
+   RW949,1 & RW1156     --> 
+        RW1176:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))) a(b(a(a(x)))))
+   
+   RW1132,1 & RW1156    --> 
+        RW1177:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))))))))))) b(a(a(b(x)))))
+   
+   RW1177,1 & RW1156    --> 
+        RW1178:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x))))))))))))))))))))
+                               b(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))))
+   
+   RW1178,1 & RW1165    --> 
+        RW1179:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x))))))))))))))))))))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))))))))))))
+   
+   RW752,1 & RW852      --> 
+        RW1180:  All x:Any + =(a(a(a(b(x)))) b(a(a(a(x)))))
+   
+   RW1180,1 & RW1156    --> 
+        RW1181:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))) b(a(a(a(x)))))
+   
+   RW1181,1 & RW1165    --> 
+        RW1182:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))) a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))))
+   
+   RW667,1 & RW843      --> 
+        RW1183:  All x:Any + =(a1(a(a(a(a(x))))) d(x))
+   
+   RW1183,1 & A8        --> 
+        RW1184:  All x:Any + =(a(a(a(x))) d(x))
+   
+   RW800,1 & RW843      --> 
+        RW1185:  All x:Any + =(a(x) a1(a1(a1(a(a(a(a(x))))))))
+   
+   RW1185,1 & RW1166    --> 
+        RW1186:  All x:Any + =(a(x)
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a1(a1(a(a(a(a(x))))))))))))))))))))))))))))
+   
+   RW1186,1 & A7        --> 
+        RW1187:  All x:Any + =(a(x) a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a1(a(a(a(a(x))))))))))))))))))))))))))
+   
+   RW1187,1 & A8        --> 
+        RW1188:  All x:Any + =(a(x) a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x))))))))))))))))))))))))
+   
+   RW1188,1 & RW1161    --> 
+        RW1189:  All x:Any + =(a(x) a(x))
+   
+   RW675,1 & RW1166     --> 
+        RW1190:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a1(a1(a1(b(x))))))))))))))))))))))))) e(x))
+   
+   RW1190,1 & A7        --> 
+        RW1191:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a1(a1(b(x))))))))))))))))))))))) e(x))
+   
+   RW1191,1 & RW1166    --> 
+        RW1192:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a1(b(
+x()))))))))))))))))))))))))))))))))))))))))))
+                               e(x))
+   
+   RW1192,1 & A7        --> 
+        RW1193:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(b(x)))
+                                                                                                           ))))))))))
+                                                                                       ))))))))))))))))))))))))))))
+                               e(x))
+   
+   RW1193,1 & RW1156    --> 
+        RW1194:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(
+x()))))))))))))))))))))))))))))))))))))))))))))))))
+                               e(x))
+   
+   RW1194,1 & RW1161    --> 
+        RW1195:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))))))))))))))))))
+                               e(x))
+   
+   RW1195,1 & RW1161    --> 
+        RW1196:  All x:Any + =(a(a(a(a(a(x))))) e(x))
+   
+   A7,1 & RW1166        --> 
+        RW1197:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))))))))))))) x)
+   
+   RW1197,1 & RW1161    --> 
+        RW1198:  All x:Any + =(x x)
+   
+   A8,1 & RW1166        --> 
+        RW1199:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))))))))))))) x)
+   
+   RW1199,1 & RW1161    --> 
+        RW1200:  All x:Any + =(x x)
+   
+   RW688,1 & RW1166     --> 
+        RW1201:  All x:Any + =(e1(x) a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(b(b(x))))))))))))))))))))))))
+   
+   RW1201,1 & RW1156    --> 
+        RW1202:  All x:Any + =(e1(x)
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(b(x)))))))))))))))))))))))
+                                               )))))))))
+   
+   RW1202,1 & RW1156    --> 
+        RW1203:  All x:Any + =(e1(x)
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x)))))))
+                                                                                               ))))))))))))))))))))))
+                                                   )))))))))))
+   
+   RW1203,1 & RW1161    --> 
+        RW1204:  All x:Any + =(e1(x) a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x))))))))))))))))))
+   
+   RW707,1 & RW1166     --> 
+        RW1205:  All x:Any + =(c1(x) a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a1(b(x))))))))))))))))))))))))
+   
+   RW1205,1 & RW1166    --> 
+        RW1206:  All x:Any + =(c1(x)
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(b(
+x())))))))))))))))))))))))))))))))))))))))))))
+   
+   RW1206,1 & RW1156    --> 
+        RW1207:  All x:Any + =(c1(x)
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(
+x())))))))))))))))))))))))))))))))))))))))))))))))))))
+   
+   RW1207,1 & RW1161    --> 
+        RW1208:  All x:Any + =(c1(x)
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))))))))))))))))))
+                                   )))
+   
+   RW1208,1 & RW1161    --> 
+        RW1209:  All x:Any + =(c1(x) a(a(a(a(a(a(a(x))))))))
+   
+   RW1099,1 & RW1166    --> 
+        RW1210:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(b(a(x)))))))))))))))))))))))
+                               a(a(a(a(a(a(a(a(a(x))))))))))
+   
+   RW1210,1 & RW1156    --> 
+        RW1211:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))))))))))))))
+                                               ))))))))
+                               a(a(a(a(a(a(a(a(a(x))))))))))
+   
+   RW1211,1 & RW1161    --> 
+        RW1212:  All x:Any + =(a(a(a(a(a(a(a(a(a(x))))))))) a(a(a(a(a(a(a(a(a(x))))))))))
+   
+   RW1158,1 & RW1166    --> 
+        RW1213:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a1(b(b(x))))))))))))))))))))))))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))))))))
+   
+   RW1213,1 & RW1166    --> 
+        RW1214:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(b(b(
+x())))))))))))))))))))))))))))))))))))))))))))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))))))))
+   
+   RW1214,1 & RW1156    --> 
+        RW1215:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(b(
+x())))))))))))))))))))))))))))))))))))))))))))))))))))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))))))))
+   
+   RW1215,1 & RW1156    --> 
+        RW1216:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(
+x())))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))))))))
+   
+   RW1216,1 & RW1161    --> 
+        RW1217:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))
+                                                                                         ))))))))))))))))))))))))))))
+                                 )
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))))))))
+   
+   RW1217,1 & RW1161    --> 
+        RW1218:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x))))))))))))))))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))))))))
+   
+   RW837,1 & RW1166     --> 
+        RW1219:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a1(a1(b(x))))))))))))))))))))))))
+                               b(b(b(a(x)))))
+   
+   RW1219,1 & RW1166    --> 
+        RW1220:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a1(b(
+x())))))))))))))))))))))))))))))))))))))))))))
+                               b(b(b(a(x)))))
+   
+   RW1220,1 & RW1166    --> 
+        RW1221:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(b(
+x())))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+                               b(b(b(a(x)))))
+   
+   RW1221,1 & RW1156    --> 
+        RW1222:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(
+x())))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+                               b(b(b(a(x)))))
+   
+   RW1222,1 & RW1161    --> 
+        RW1223:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(
+x())))))))))))))))))))))))))))))))))))))))))))))))))
+                               b(b(b(a(x)))))
+   
+   RW1223,1 & RW1161    --> 
+        RW1224:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x))))))))))))))))))))))))))))
+                               b(b(b(a(x)))))
+   
+   RW1224,1 & RW1161    --> 
+        RW1225:  All x:Any + =(a(a(a(a(a(a(x)))))) b(b(b(a(x)))))
+   
+   RW843,1 & RW1166     --> 
+        RW1226:  All x:Any + =(a(a(a(a(x))))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(b(b(b(x)))))))))))))))))))))))))
+   
+   RW1226,1 & RW1156    --> 
+        RW1227:  All x:Any + =(a(a(a(a(x))))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(b(b(x)))))))))))))))))))))
+                                                     ))))))))))))
+   
+   RW1227,1 & RW1156    --> 
+        RW1228:  All x:Any + =(a(a(a(a(x))))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(b(x)))))
+                                                                                                     ))))))))))))))))
+                                                                     ))))))))))))))))))))
+   
+   RW1228,1 & RW1156    --> 
+        RW1229:  All x:Any + =(a(a(a(a(x))))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(
+x()))))))))))))))))))))))))))))))))))))))))))))))))
+   
+   RW1229,1 & RW1161    --> 
+        RW1230:  All x:Any + =(a(a(a(a(x))))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))))))))))))))))))
+   
+   RW1230,1 & RW1161    --> 
+        RW1231:  All x:Any + =(a(a(a(a(x)))) a(a(a(a(x)))))
+   
+   RW852,1 & RW1166     --> 
+        RW1232:  All x:Any + =(a(a(a(x)))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a1(a1(a1(a1(a1(b(x))))))))))))))))))))))))))
+                                 ))
+   
+   RW1232,1 & RW1166    --> 
+        RW1233:  All x:Any + =(a(a(a(x)))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a1(a1(a1(a1(b(
+x())))))))))))))))))))))))))))))))))))))))))))))))
+   
+   RW1233,1 & RW1166    --> 
+        RW1234:  All x:Any + =(a(a(a(x)))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a1(a1(a1(b(
+x())))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+   
+   RW1234,1 & RW1166    --> 
+        RW1235:  All x:Any + =(a(a(a(x)))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a1(a1(b(
+x())))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+   
+   RW1235,1 & RW1166    --> 
+        RW1236:  All x:Any + =(a(a(a(x)))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a1(b(
+x())))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+   
+   RW1236,1 & RW1166    --> 
+        RW1237:  All x:Any + =(a(a(a(x)))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(b(
+x())))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+   
+   RW1237,1 & RW1156    --> 
+        RW1238:  All x:Any + =(a(a(a(x)))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(
+x())))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+   
+   RW1238,1 & RW1161    --> 
+        RW1239:  All x:Any + =(a(a(a(x)))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(
+x())))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+   
+   RW1239,1 & RW1161    --> 
+        RW1240:  All x:Any + =(a(a(a(x)))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(
+x())))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+   
+   RW1240,1 & RW1161    --> 
+        RW1241:  All x:Any + =(a(a(a(x)))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(
+x())))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+   
+   RW1241,1 & RW1161    --> 
+        RW1242:  All x:Any + =(a(a(a(x)))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(
+x())))))))))))))))))))))))))))))))))))))))))))))))
+   
+   RW1242,1 & RW1161    --> 
+        RW1243:  All x:Any + =(a(a(a(x)))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x))))))))))))))))))))))))))
+   
+   RW1243,1 & RW1161    --> 
+        RW1244:  All x:Any + =(a(a(a(x))) a(a(a(x))))
+   
+   RW924,1 & RW1166     --> 
+        RW1245:  All x:Any + =(b(b(b(b(x))))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a1(a1(a1(b(b(x)))))))))))))))))))))))))))
+   
+   RW1245,1 & RW1166    --> 
+        RW1246:  All x:Any + =(b(b(b(b(x))))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a1(a1(b(b(
+x()))))))))))))))))))))))))))))))))))))))))))))))
+   
+   RW1246,1 & RW1166    --> 
+        RW1247:  All x:Any + =(b(b(b(b(x))))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a1(b(b(
+x()))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+   
+   RW1247,1 & RW1166    --> 
+        RW1248:  All x:Any + =(b(b(b(b(x))))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(b(b(
+x()))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+   
+   RW1248,1 & RW1156    --> 
+        RW1249:  All x:Any + =(b(b(b(b(x))))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(b(
+x()))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+   
+   RW1249,1 & RW1156    --> 
+        RW1250:  All x:Any + =(b(b(b(b(x))))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(
+x()))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+   
+   RW1250,1 & RW1161    --> 
+        RW1251:  All x:Any + =(b(b(b(b(x))))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(
+x()))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+   
+   RW1251,1 & RW1161    --> 
+        RW1252:  All x:Any + =(b(b(b(b(x))))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(
+x()))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+   
+   RW1252,1 & RW1161    --> 
+        RW1253:  All x:Any + =(b(b(b(b(x))))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))))
+                                                                             ))))))))))))))))))))))))
+   
+   RW1253,1 & RW1161    --> 
+        RW1254:  All x:Any + =(b(b(b(b(x)))) a(a(a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))))))
+   
+   P658,1 & RW1166      --> 
+        RW1255:  All x:Any + =(b(b(a(a(a(x))))) a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x))))))))))))))))))))))
+   
+   RW1255,1 & RW1165    --> 
+        RW1256:  All x:Any + =(b(a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x))))))))))))))))))))))
+   
+   RW1256,1 & RW1165    --> 
+        RW1257:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))))))))))))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x))))))))))))))))))))))
+   
+   RW661,1 & RW1166     --> 
+        RW1258:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(b(x)))))))))))))))))))))) b(a1(x)))
+   
+   RW1258,1 & RW1156    --> 
+        RW1259:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))))))))))))))))
+                                         )))))
+                               b(a1(x)))
+   
+   RW1259,1 & RW1161    --> 
+        RW1260:  All x:Any + =(a(a(a(a(a(a(a(a(x)))))))) b(a1(x)))
+   
+   RW1260,1 & RW1166    --> 
+        RW1261:  All x:Any + =(a(a(a(a(a(a(a(a(x))))))))
+                               b(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))))))))))))))
+   
+   RW1261,1 & RW1165    --> 
+        RW1262:  All x:Any + =(a(a(a(a(a(a(a(a(x))))))))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))))))))))))))))
+                                         ))))))
+   
+   RW1262,1 & RW1161    --> 
+        RW1263:  All x:Any + =(a(a(a(a(a(a(a(a(x)))))))) a(a(a(a(a(a(a(a(x)))))))))
+   
+   RW1150,1 & RW1161    --> 
+        RW1264:  All x:Any + =(x a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))))))))))))))
+   
+   RW1264,1 & RW1161    --> 
+        RW1265:  All x:Any + =(x x)
+   
+   RW1161,1 & RW1225,1  --> 
+        P1266:   All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))))))))))))))))))
+                               b(b(b(x))))
+   
+   P1266,1 & RW1161     --> 
+        RW1267:  All x:Any + =(a(a(a(a(a(x))))) b(b(b(x))))
+   
+   RW1254,1 & RW1267    --> 
+        RW1268:  All x:Any + =(a(a(a(a(a(b(x)))))) a(a(a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))))))
+   
+   RW1268,1 & RW1156    --> 
+        RW1269:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x))))))))))))))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))))))
+   
+   RW1156,1 & RW1161,1  --> 
+        P1270:   All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))))))))))))))
+                                               ))))))))
+                               b(x))
+   
+   P1270,1 & RW1161     --> 
+        RW1271:  All x:Any + =(a(a(a(a(a(a(a(a(a(x))))))))) b(x))
+   
+   RW1070,1 & RW1271    --> 
+        RW1272:  All x:Any + =(d1(x) a(a(a(a(a(a(a(a(a(a(b(x))))))))))))
+   
+   RW1272,1 & RW1156    --> 
+        RW1273:  All x:Any + =(d1(x) a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x))))))))))))))))))))
+   
+   RW1101,1 & RW1271    --> 
+        RW1274:  All x:Any + =(a(a(a(a(a(a(x)))))) a(a(a(a(a(a(a(a(a(b(a(b(x)))))))))))))
+   
+   RW1274,1 & RW1156    --> 
+        RW1275:  All x:Any + =(a(a(a(a(a(a(x)))))) a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(b(x)))))))))))))))))))))
+   
+   RW1275,1 & RW1156    --> 
+        RW1276:  All x:Any + =(a(a(a(a(a(a(x))))))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))))))))))))))))))))
+   
+   RW1276,1 & RW1161    --> 
+        RW1277:  All x:Any + =(a(a(a(a(a(a(x)))))) a(a(a(a(a(a(x)))))))
+   
+   RW1156,1 & RW1271    --> 
+        RW1278:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(x))))))))))) a(a(a(a(a(a(a(a(a(a(a(x))))))))))))
+   
+   RW1170,1 & RW1271    --> 
+        RW1279:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))))))))))
+                               a(a(a(a(a(a(a(a(a(a(b(x))))))))))))
+   
+   RW1279,1 & RW1271    --> 
+        RW1280:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))))))))))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x))))))))))))))))))))
+   
+   RW1176,1 & RW1271    --> 
+        RW1281:  All x:Any + =(a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))) a(a(a(a(a(a(a(a(a(a(a(a(x)))))))))))))
+   
+   RW1267,1 & RW1271    --> 
+        RW1282:  All x:Any + =(a(a(a(a(a(x))))) a(a(a(a(a(a(a(a(a(b(b(x))))))))))))
+   
+   RW1282,1 & RW1271    --> 
+        RW1283:  All x:Any + =(a(a(a(a(a(x))))) a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(b(x))))))))))))))))))))
+   
+   RW1283,1 & RW1271    --> 
+        RW1284:  All x:Any + =(a(a(a(a(a(x)))))
+                               a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x))))))))))))))))))))))))))))
+   
+   RW1284,1 & RW1161    --> 
+        RW1285:  All x:Any + =(a(a(a(a(a(x))))) a(a(a(a(a(x))))))
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   The theorem(s) could not be proved.
+
+
+
+   Time Used for Refutation: 6621 seconds

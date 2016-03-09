@@ -1,0 +1,34 @@
+
+(problem group1 initialized 
+	 ((type-constants i o)
+	  (type-variables aa bb)
+	  (constants (= (o aa aa))
+		     (false o)
+		     (true o)
+		     (and (o o o))
+		     (or (o o o))
+		     (implies (o o o))
+		     (equiv (o o o))
+		     (not (o o))
+		     (forall (o (o aa)))
+		     (exists (o (o aa))))
+	  (type-constants A)
+	  (constants (one a)
+		     (inv (a a))
+		     (comp (a a a)))
+	  (assumption one-def
+		      (forall (lam (x a) 
+				   (= (comp one x) x))))
+	  (assumption inv-def
+		      (forall (lam (x a) 
+				   (= (comp (inv x) x) one))))
+	  (assumption assoc
+		      (forall (lam (x a)
+				   (forall (lam (z a)
+						(forall (lam (y a) 
+							     (= (comp (comp y z) x)
+								(comp y (comp z x))))))))))
+	  (conclusion conc
+		      (forall (lam (x a) (= (inv (inv x)) x))))
+	  ))
+

@@ -1,0 +1,483 @@
+ 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 24-JAN-85                                                     *
+                    *         DATE : 13-FEB-85  02:22:02                                           *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   12-FEB-85 09:11:12
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   3.10.3.UHG.R.RLR
+                                                                        
+************************************************************************
+                                                                        
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : SORT MENGE,VERKN,ELEMENT,INDEX,INDEXMENGE:ANY
+           TYPE LIDEAL(MENGE MENGE VERKN)
+           TYPE RIDEAL(MENGE MENGE VERKN)
+           TYPE UHG(MENGE MENGE VERKN)
+           TYPE ME(MENGE MENGE)
+           TYPE NICHTLEER(MENGE)
+           TYPE HG(MENGE VERKN)
+           TYPE NICHTLEER-IND(INDEXMENGE)
+           TYPE GLEICH(MENGE MENGE)
+           TYPE EL-IND(INDEX INDEXMENGE)
+           TYPE EL(ELEMENT MENGE)
+           TYPE MINIMAL(MENGE MENGE VERKN)
+           TYPE MINIMAL-BED-L(MENGE VERKN)
+           TYPE MINIMAL-BED-R(MENGE VERKN)
+           TYPE MPROD(MENGE MENGE VERKN) :MENGE
+           TYPE U(INDEX) :MENGE
+           TYPE VER-IND(INDEXMENGE) :MENGE
+           TYPE SM-IND(INDEXMENGE) :MENGE
+           TYPE APPLYV(VERKN ELEMENT ELEMENT) :ELEMENT
+           TYPE F*X(MENGE ELEMENT VERKN) :MENGE
+           TYPE SM(MENGE MENGE) :MENGE
+           TYPE T*(MENGE VERKN MENGE ELEMENT) :MENGE
+           * DEF. RIDEAL *
+           ALL T,H:MENGE  ALL MAL:VERKN  
+             RIDEAL(T H MAL) EQV(HG(H MAL) AND NICHTLEER(T) AND ME(T H) AND ME(MPROD(T H MAL) T))
+           * DEF. LIDEAL *
+           ALL L,F:MENGE ALL MAL:VERKN LIDEAL(L F MAL) IMPL NICHTLEER(L) AND ME(L F)
+           * A*B IST NICHTLEER, A*B IN F *
+           ALL A,B,F:MENGE  ALL MAL:VERKN  
+                  HG(F MAL) AND ME(A F) AND ME(B F) AND NICHTLEER(A) AND NICHTLEER(B)
+             IMPL NICHTLEER(MPROD(A B MAL)) AND ME(MPROD(A B MAL) F)
+           * ASSOZIATIVITAET VON MPROD *
+           ALL A,B,C,F:MENGE ALL MAL:VERKN HG(F MAL) IMPL MPROD(MPROD(A B MAL) C MAL) := MPROD(A MPROD(B C MAL) MAL)
+           * B IN C = NIL A*B IN A*C *
+           ALL A,B,C,F:MENGE ALL MAL:VERKN HG(F MAL) AND ME(A B) IMPL ME(MPROD(C A MAL) MPROD(C B MAL))
+ 
+THEOREMS : ALL R,L,F:MENGE  ALL MAL:VERKN  
+             HG(F MAL) AND RIDEAL(R F MAL) AND LIDEAL(L F MAL) IMPL RIDEAL(MPROD(MPROD(R L MAL) R MAL) F MAL)
+ 
+ 
+ 
+ 
+CONSTANTS : 
+=========== 
+ 
+| NAME          | SORT                        |            | ATTRIBUTES                                                 
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+| C_1           | VERKN                       |            |                                                            
+|
+| C_2           | MENGE                       |            |                                                            
+|
+| C_3           | MENGE                       |            |                                                            
+|
+| C_4           | MENGE                       |            |                                                            
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+ 
+ 
+ 
+FUNCTIONS : 
+=========== 
+ 
+| NAME          | DOMAIN                      | RANGE      | ATTRIBUTES                                                 
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+| MPROD         | MENGE MENGE VERKN           | MENGE      |                                                            
+|
+| U             | INDEX                       | MENGE      |                                                            
+|
+| VER-IND       | INDEXMENGE                  | MENGE      |                                                            
+|
+| SM-IND        | INDEXMENGE                  | MENGE      |                                                            
+|
+| APPLYV        | VERKN ELEMENT ELEMENT       | ELEMENT    |                                                            
+|
+| F*X           | MENGE ELEMENT VERKN         | MENGE      |                                                            
+|
+| SM            | MENGE MENGE                 | MENGE      |                                                            
+|
+| T*            | MENGE VERKN MENGE ELEMENT   | MENGE      |                                                            
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+ 
+ 
+ 
+PREDICATES : 
+============ 
+ 
+| NAME          | DOMAIN                      |            | ATTRIBUTES                                                 
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+| TRUE          |                             |            | DEFINED                                                    
+|
+| FALSE         |                             |            | DEFINED                                                    
+|
+| LIDEAL        | MENGE MENGE VERKN           |            |                                                            
+|
+| RIDEAL        | MENGE MENGE VERKN           |            |                                                            
+|
+| UHG           | MENGE MENGE VERKN           |            |                                                            
+|
+| ME            | MENGE MENGE                 |            |                                                            
+|
+| NICHTLEER     | MENGE                       |            |                                                            
+|
+| HG            | MENGE VERKN                 |            |                                                            
+|
+| NICHTLEER-IND | INDEXMENGE                  |            |                                                            
+|
+| GLEICH        | MENGE MENGE                 |            |                                                            
+|
+| EL-IND        | INDEX INDEXMENGE            |            |                                                            
+|
+| EL            | ELEMENT MENGE               |            |                                                            
+|
+| MINIMAL       | MENGE MENGE VERKN           |            |                                                            
+|
+| MINIMAL-BED-L | MENGE VERKN                 |            |                                                            
+|
+| MINIMAL-BED-R | MENGE VERKN                 |            |                                                            
+|
+| =             | ANY ANY                     |            | DEFINED SYMMETRIC REFLEXIVE SYMMETRIC REFLEXIVE SYMMETRIC  
+|
+|               |                             |            | REFLEXIVE                                                  
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+ 
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+  A1   : ALL X:ANY  + =(X X)
+* A2   : ALL X:VERKN  Y,Z:MENGE  - LIDEAL(Z Y X)  + NICHTLEER(Z)
+* A3   : ALL X:VERKN  Y,Z:MENGE  - LIDEAL(Z Y X)  + ME(Z Y)
+* A4   : ALL X,Y,Z,U:MENGE  V:VERKN  - HG(U V)  + =(MPROD(MPROD(Z Y V) X V) MPROD(Z MPROD(Y X V) V))
+* A5   : ALL X,Y,Z,U:MENGE  V:VERKN  - HG(U V)  - ME(Z Y)  + ME(MPROD(X Z V) MPROD(X Y V))
+* A6   : ALL X,Y,Z:MENGE  U:VERKN  
+              - HG(Z U)  - ME(Y Z)  - ME(X Z)  - NICHTLEER(Y)  - NICHTLEER(X)  + NICHTLEER(MPROD(Y X U))
+* A7   : ALL X,Y,Z:MENGE  U:VERKN  - HG(Z U)  - ME(Y Z)  - ME(X Z)  - NICHTLEER(Y)  - NICHTLEER(X)  + ME(MPROD(Y X U) Z)
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+* T8   : + HG(C_4 C_1)
+  T9   : + HG(C_4 C_1)
+* T10  : + NICHTLEER(C_2)
+* T11  : + ME(C_2 C_4)
+* T12  : + ME(MPROD(C_2 C_4 C_1) C_2)
+* T13  : + LIDEAL(C_3 C_4 C_1)
+* T14  : - HG(C_4 C_1)  - NICHTLEER(MPROD(MPROD(C_2 C_3 C_1) C_2 C_1))  - ME(MPROD(MPROD(C_2 C_3 C_1) C_2 C_1) C_4)
+           - ME(MPROD(MPROD(MPROD(C_2 C_3 C_1) C_2 C_1) C_4 C_1) MPROD(MPROD(C_2 C_3 C_1) C_2 C_1))
+ 
+ 
+ 
+ 
+ 
+ 
+INITIAL OPERATIONS ON THEOREMS
+==============================
+ 
+ 
+T14,1 & T8,1   -->  * R1 : - NICHTLEER(MPROD(MPROD(C_2 C_3 C_1) C_2 C_1))  - ME(MPROD(MPROD(C_2 C_3 C_1) C_2 C_1) C_4)
+                             - ME(MPROD(MPROD(MPROD(C_2 C_3 C_1) C_2 C_1) C_4 C_1) MPROD(MPROD(C_2 C_3 C_1) C_2 C_1))
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION
+ 
+INITIAL CLAUSES :      A1  : ALL X:ANY  + =(X X)
+                     * A2  : ALL X:VERKN  Y,Z:MENGE  - LIDEAL(Z Y X)  + NICHTLEER(Z)
+                     * A3  : ALL X:VERKN  Y,Z:MENGE  - LIDEAL(Z Y X)  + ME(Z Y)
+                     * A4  : ALL X,Y,Z,U:MENGE  V:VERKN  - HG(U V)  + =(MPROD(MPROD(Z Y V) X V) MPROD(Z MPROD(Y X V) V))
+                     * A5  : ALL X,Y,Z,U:MENGE  V:VERKN  - HG(U V)  - ME(Z Y)  + ME(MPROD(X Z V) MPROD(X Y V))
+                     * A6  : ALL X,Y,Z:MENGE  U:VERKN  
+                                  - HG(Z U)  - ME(Y Z)  - ME(X Z)  - NICHTLEER(Y)  - NICHTLEER(X)
+                                    + NICHTLEER(MPROD(Y X U))
+                     * A7  : ALL X,Y,Z:MENGE  U:VERKN  
+                                  - HG(Z U)  - ME(Y Z)  - ME(X Z)  - NICHTLEER(Y)  - NICHTLEER(X)  + ME(MPROD(Y X U) Z)
+                     * T8  : + HG(C_4 C_1)
+                     * T10 : + NICHTLEER(C_2)
+                     * T11 : + ME(C_2 C_4)
+                     * T12 : + ME(MPROD(C_2 C_4 C_1) C_2)
+                     * T13 : + LIDEAL(C_3 C_4 C_1)
+                     * R1  : - NICHTLEER(MPROD(MPROD(C_2 C_3 C_1) C_2 C_1))
+                               - ME(MPROD(MPROD(C_2 C_3 C_1) C_2 C_1) C_4)
+                               - ME(MPROD(MPROD(MPROD(C_2 C_3 C_1) C_2 C_1) C_4 C_1) MPROD(MPROD(C_2 C_3 C_1) C_2 C_1))
+ 
+T13,1 & A2,1    -->  * R2  : + NICHTLEER(C_3)
+ 
+T13,1 & A3,1    -->  * R3  : + ME(C_3 C_4)
+ 
+T8,1 & A4,1     -->  * R4  : ALL X,Y,Z:MENGE  + =(MPROD(MPROD(Z Y C_1) X C_1) MPROD(Z MPROD(Y X C_1) C_1))
+ 
+T8,1 & A5,1     -->  * R5  : ALL X,Y,Z:MENGE  - ME(Z Y)  + ME(MPROD(X Z C_1) MPROD(X Y C_1))
+ 
+T8,1 & A6,1     -->  * R6  : ALL X,Y:MENGE  - ME(Y C_4)  - ME(X C_4)  - NICHTLEER(Y)  - NICHTLEER(X)
+                                              + NICHTLEER(MPROD(Y X C_1))
+ 
+T8,1 & A7,1     -->  * R7  : ALL X,Y:MENGE  - ME(Y C_4)  - ME(X C_4)  - NICHTLEER(Y)  - NICHTLEER(X)
+                                              + ME(MPROD(Y X C_1) C_4)
+ 
+R3,1 & R5,1     -->    R8  : ALL X:MENGE  + ME(MPROD(X C_3 C_1) MPROD(X C_4 C_1))
+ 
+R4,1 & R8,1     -->    P9  : ALL X,Y:MENGE  + ME(MPROD(Y MPROD(X C_3 C_1) C_1) MPROD(MPROD(Y X C_1) C_4 C_1))
+ 
+R4,1 & R8,1     -->    P10 : ALL X,Y:MENGE  + ME(MPROD(MPROD(Y X C_1) C_3 C_1) MPROD(Y MPROD(X C_4 C_1) C_1))
+ 
+T12,1 & R5,1    -->  * R11 : ALL X:MENGE  + ME(MPROD(X MPROD(C_2 C_4 C_1) C_1) MPROD(X C_2 C_1))
+ 
+R4,1 & R11,1    -->    P12 : ALL X,Y:MENGE  + ME(MPROD(Y MPROD(X MPROD(C_2 C_4 C_1) C_1) C_1)
+                                                 MPROD(MPROD(Y X C_1) C_2 C_1))
+ 
+ 
+R4,1 & R11,1    -->  * P13 : ALL X:MENGE  + ME(MPROD(MPROD(X C_2 C_1) C_4 C_1) MPROD(X C_2 C_1))
+ 
+R1,3 & P13,1    -->  * R14 : - NICHTLEER(MPROD(MPROD(C_2 C_3 C_1) C_2 C_1))  - ME(MPROD(MPROD(C_2 C_3 C_1) C_2 C_1) C_4)
+ 
+R4,1 & R11,1    -->    P15 : ALL X,Y:MENGE  + ME(MPROD(MPROD(Y X C_1) MPROD(C_2 C_4 C_1) C_1)
+                                                 MPROD(Y MPROD(X C_2 C_1) C_1))
+ 
+ 
+T11,1 & R5,1    -->    R16 : ALL X:MENGE  + ME(MPROD(X C_2 C_1) MPROD(X C_4 C_1))
+ 
+R4,1 & R16,1    -->    P17 : ALL X,Y:MENGE  + ME(MPROD(Y MPROD(X C_2 C_1) C_1) MPROD(MPROD(Y X C_1) C_4 C_1))
+ 
+R4,1 & R16,1    -->    P18 : ALL X,Y:MENGE  + ME(MPROD(MPROD(Y X C_1) C_2 C_1) MPROD(Y MPROD(X C_4 C_1) C_1))
+ 
+R8,1 & R5,1     -->    R19 : ALL X,Y:MENGE  + ME(MPROD(Y MPROD(X C_3 C_1) C_1) MPROD(Y MPROD(X C_4 C_1) C_1))
+ 
+R4,1 & R19,1    -->    P20 : ALL X,Y,Z:MENGE  + ME(MPROD(Z MPROD(Y MPROD(X C_3 C_1) C_1) C_1)
+                                                   MPROD(MPROD(Z Y C_1) MPROD(X C_4 C_1) C_1))
+ 
+ 
+R4,1 & R19,1    -->    P21 : ALL X,Y:MENGE  + ME(MPROD(MPROD(Y X C_1) C_3 C_1) MPROD(Y MPROD(X C_4 C_1) C_1))
+ 
+R4,1 & R19,1    -->    P22 : ALL X,Y,Z:MENGE  + ME(MPROD(MPROD(Z Y C_1) MPROD(X C_3 C_1) C_1)
+                                                   MPROD(Z MPROD(Y MPROD(X C_4 C_1) C_1) C_1))
+ 
+ 
+R4,1 & R19,1    -->    P23 : ALL X,Y:MENGE  + ME(MPROD(Y MPROD(X C_3 C_1) C_1) MPROD(MPROD(Y X C_1) C_4 C_1))
+ 
+R11,1 & R5,1    -->    R24 : ALL X,Y:MENGE  + ME(MPROD(Y MPROD(X MPROD(C_2 C_4 C_1) C_1) C_1)
+                                                 MPROD(Y MPROD(X C_2 C_1) C_1))
+ 
+ 
+R4,1 & R24,1    -->    P25 : ALL X,Y,Z:MENGE  + ME(MPROD(Z MPROD(Y MPROD(X MPROD(C_2 C_4 C_1) C_1) C_1) C_1)
+                                                   MPROD(MPROD(Z Y C_1) MPROD(X C_2 C_1) C_1))
+ 
+ 
+R4,1 & R24,1    -->    P26 : ALL X,Y:MENGE  + ME(MPROD(MPROD(Y X C_1) MPROD(C_2 C_4 C_1) C_1)
+                                                 MPROD(Y MPROD(X C_2 C_1) C_1))
+ 
+ 
+R4,1 & R24,1    -->    P27 : ALL X,Y,Z:MENGE  + ME(MPROD(MPROD(Z Y C_1) MPROD(X MPROD(C_2 C_4 C_1) C_1) C_1)
+                                                   MPROD(Z MPROD(Y MPROD(X C_2 C_1) C_1) C_1))
+ 
+ 
+R4,1 & R24,1    -->    P28 : ALL X,Y:MENGE  + ME(MPROD(Y MPROD(X MPROD(C_2 C_4 C_1) C_1) C_1)
+                                                 MPROD(MPROD(Y X C_1) C_2 C_1))
+ 
+ 
+R16,1 & R5,1    -->    R29 : ALL X,Y:MENGE  + ME(MPROD(Y MPROD(X C_2 C_1) C_1) MPROD(Y MPROD(X C_4 C_1) C_1))
+ 
+R4,1 & R29,1    -->    P30 : ALL X,Y,Z:MENGE  + ME(MPROD(Z MPROD(Y MPROD(X C_2 C_1) C_1) C_1)
+                                                   MPROD(MPROD(Z Y C_1) MPROD(X C_4 C_1) C_1))
+ 
+ 
+R4,1 & R29,1    -->    P31 : ALL X,Y:MENGE  + ME(MPROD(MPROD(Y X C_1) C_2 C_1) MPROD(Y MPROD(X C_4 C_1) C_1))
+ 
+R4,1 & R29,1    -->    P32 : ALL X,Y,Z:MENGE  + ME(MPROD(MPROD(Z Y C_1) MPROD(X C_2 C_1) C_1)
+                                                   MPROD(Z MPROD(Y MPROD(X C_4 C_1) C_1) C_1))
+ 
+ 
+R4,1 & R29,1    -->    P33 : ALL X,Y:MENGE  + ME(MPROD(Y MPROD(X C_2 C_1) C_1) MPROD(MPROD(Y X C_1) C_4 C_1))
+ 
+P9,1 & R5,1     -->    R34 : ALL X,Y,Z:MENGE  + ME(MPROD(Z MPROD(Y MPROD(X C_3 C_1) C_1) C_1)
+                                                   MPROD(Z MPROD(MPROD(Y X C_1) C_4 C_1) C_1))
+ 
+ 
+P10,1 & R5,1    -->    R35 : ALL X,Y,Z:MENGE  + ME(MPROD(Z MPROD(MPROD(Y X C_1) C_3 C_1) C_1)
+                                                   MPROD(Z MPROD(Y MPROD(X C_4 C_1) C_1) C_1))
+ 
+ 
+P12,1 & R5,1    -->    R36 : ALL X,Y,Z:MENGE  + ME(MPROD(Z MPROD(Y MPROD(X MPROD(C_2 C_4 C_1) C_1) C_1) C_1)
+                                                   MPROD(Z MPROD(MPROD(Y X C_1) C_2 C_1) C_1))
+ 
+ 
+P13,1 & R5,1    -->    R37 : ALL X,Y:MENGE  + ME(MPROD(Y MPROD(MPROD(X C_2 C_1) C_4 C_1) C_1)
+                                                 MPROD(Y MPROD(X C_2 C_1) C_1))
+ 
+ 
+P15,1 & R5,1    -->    R38 : ALL X,Y,Z:MENGE  + ME(MPROD(Z MPROD(MPROD(Y X C_1) MPROD(C_2 C_4 C_1) C_1) C_1)
+                                                   MPROD(Z MPROD(Y MPROD(X C_2 C_1) C_1) C_1))
+ 
+ 
+P17,1 & R5,1    -->    R39 : ALL X,Y,Z:MENGE  + ME(MPROD(Z MPROD(Y MPROD(X C_2 C_1) C_1) C_1)
+                                                   MPROD(Z MPROD(MPROD(Y X C_1) C_4 C_1) C_1))
+ 
+ 
+P18,1 & R5,1    -->    R40 : ALL X,Y,Z:MENGE  + ME(MPROD(Z MPROD(MPROD(Y X C_1) C_2 C_1) C_1)
+                                                   MPROD(Z MPROD(Y MPROD(X C_4 C_1) C_1) C_1))
+ 
+ 
+R19,1 & R5,1    -->    R41 : ALL X,Y,Z:MENGE  + ME(MPROD(Z MPROD(Y MPROD(X C_3 C_1) C_1) C_1)
+                                                   MPROD(Z MPROD(Y MPROD(X C_4 C_1) C_1) C_1))
+ 
+ 
+R4,1 & R41,1    -->    P42 : ALL X,Y,Z,U:MENGE  
+                                  + ME(MPROD(U MPROD(Z MPROD(Y MPROD(X C_3 C_1) C_1) C_1) C_1)
+                                       MPROD(MPROD(U Z C_1) MPROD(Y MPROD(X C_4 C_1) C_1) C_1))
+ 
+ 
+R4,1 & R41,1    -->    P43 : ALL X,Y,Z:MENGE  + ME(MPROD(MPROD(Z Y C_1) MPROD(X C_3 C_1) C_1)
+                                                   MPROD(Z MPROD(Y MPROD(X C_4 C_1) C_1) C_1))
+ 
+ 
+R4,1 & R41,1    -->    P44 : ALL X,Y,Z,U:MENGE  
+                                  + ME(MPROD(MPROD(U Z C_1) MPROD(Y MPROD(X C_3 C_1) C_1) C_1)
+                                       MPROD(U MPROD(Z MPROD(Y MPROD(X C_4 C_1) C_1) C_1) C_1))
+ 
+ 
+R4,1 & R41,1    -->    P45 : ALL X,Y,Z:MENGE  + ME(MPROD(Z MPROD(Y MPROD(X C_3 C_1) C_1) C_1)
+                                                   MPROD(MPROD(Z Y C_1) MPROD(X C_4 C_1) C_1))
+ 
+ 
+R24,1 & R5,1    -->    R46 : ALL X,Y,Z:MENGE  + ME(MPROD(Z MPROD(Y MPROD(X MPROD(C_2 C_4 C_1) C_1) C_1) C_1)
+                                                   MPROD(Z MPROD(Y MPROD(X C_2 C_1) C_1) C_1))
+ 
+ 
+R4,1 & R46,1    -->    P47 : ALL X,Y,Z,U:MENGE  
+                                  + ME(MPROD(U MPROD(Z MPROD(Y MPROD(X MPROD(C_2 C_4 C_1) C_1) C_1) C_1) C_1)
+                                       MPROD(MPROD(U Z C_1) MPROD(Y MPROD(X C_2 C_1) C_1) C_1))
+ 
+ 
+R4,1 & R46,1    -->    P48 : ALL X,Y,Z:MENGE  + ME(MPROD(MPROD(Z Y C_1) MPROD(X MPROD(C_2 C_4 C_1) C_1) C_1)
+                                                   MPROD(Z MPROD(Y MPROD(X C_2 C_1) C_1) C_1))
+ 
+ 
+R4,1 & R46,1    -->    P49 : ALL X,Y,Z,U:MENGE  
+                                  + ME(MPROD(MPROD(U Z C_1) MPROD(Y MPROD(X MPROD(C_2 C_4 C_1) C_1) C_1) C_1)
+                                       MPROD(U MPROD(Z MPROD(Y MPROD(X C_2 C_1) C_1) C_1) C_1))
+ 
+ 
+R4,1 & R46,1    -->    P50 : ALL X,Y,Z:MENGE  + ME(MPROD(Z MPROD(Y MPROD(X MPROD(C_2 C_4 C_1) C_1) C_1) C_1)
+                                                   MPROD(MPROD(Z Y C_1) MPROD(X C_2 C_1) C_1))
+ 
+ 
+R29,1 & R5,1    -->    R51 : ALL X,Y,Z:MENGE  + ME(MPROD(Z MPROD(Y MPROD(X C_2 C_1) C_1) C_1)
+                                                   MPROD(Z MPROD(Y MPROD(X C_4 C_1) C_1) C_1))
+ 
+ 
+R4,1 & R51,1    -->    P52 : ALL X,Y,Z,U:MENGE  
+                                  + ME(MPROD(U MPROD(Z MPROD(Y MPROD(X C_2 C_1) C_1) C_1) C_1)
+                                       MPROD(MPROD(U Z C_1) MPROD(Y MPROD(X C_4 C_1) C_1) C_1))
+ 
+ 
+R4,1 & R51,1    -->    P53 : ALL X,Y,Z:MENGE  + ME(MPROD(MPROD(Z Y C_1) MPROD(X C_2 C_1) C_1)
+                                                   MPROD(Z MPROD(Y MPROD(X C_4 C_1) C_1) C_1))
+ 
+ 
+R4,1 & R51,1    -->    P54 : ALL X,Y,Z,U:MENGE  
+                                  + ME(MPROD(MPROD(U Z C_1) MPROD(Y MPROD(X C_2 C_1) C_1) C_1)
+                                       MPROD(U MPROD(Z MPROD(Y MPROD(X C_4 C_1) C_1) C_1) C_1))
+ 
+ 
+R4,1 & R51,1    -->    P55 : ALL X,Y,Z:MENGE  + ME(MPROD(Z MPROD(Y MPROD(X C_2 C_1) C_1) C_1)
+                                                   MPROD(MPROD(Z Y C_1) MPROD(X C_4 C_1) C_1))
+ 
+ 
+R6,5 & R14,1    -->  * R56 : - ME(MPROD(C_2 C_3 C_1) C_4)  - ME(C_2 C_4)  - NICHTLEER(MPROD(C_2 C_3 C_1))
+                               - NICHTLEER(C_2)  - ME(MPROD(MPROD(C_2 C_3 C_1) C_2 C_1) C_4)
+ 
+R56,5 & R7,5    -->  * R57 : - ME(MPROD(C_2 C_3 C_1) C_4)  - ME(C_2 C_4)  - NICHTLEER(MPROD(C_2 C_3 C_1))
+                               - NICHTLEER(C_2)  - ME(MPROD(C_2 C_3 C_1) C_4)  - ME(C_2 C_4)
+                               - NICHTLEER(MPROD(C_2 C_3 C_1))  - NICHTLEER(C_2)
+ 
+R57 1=5         -->  * D58 : - ME(MPROD(C_2 C_3 C_1) C_4)  - ME(C_2 C_4)  - NICHTLEER(MPROD(C_2 C_3 C_1))
+                               - NICHTLEER(C_2)  - ME(C_2 C_4)  - NICHTLEER(MPROD(C_2 C_3 C_1))  - NICHTLEER(C_2)
+ 
+D58 2=5         -->  * D59 : - ME(MPROD(C_2 C_3 C_1) C_4)  - ME(C_2 C_4)  - NICHTLEER(MPROD(C_2 C_3 C_1))
+                               - NICHTLEER(C_2)  - NICHTLEER(MPROD(C_2 C_3 C_1))  - NICHTLEER(C_2)
+ 
+D59 3=5         -->  * D60 : - ME(MPROD(C_2 C_3 C_1) C_4)  - ME(C_2 C_4)  - NICHTLEER(MPROD(C_2 C_3 C_1))
+                               - NICHTLEER(C_2)  - NICHTLEER(C_2)
+ 
+D60 4=5         -->  * D61 : - ME(MPROD(C_2 C_3 C_1) C_4)  - ME(C_2 C_4)  - NICHTLEER(MPROD(C_2 C_3 C_1))
+                               - NICHTLEER(C_2)
+ 
+D61,4 & T10,1   -->  * R62 : - ME(MPROD(C_2 C_3 C_1) C_4)  - ME(C_2 C_4)  - NICHTLEER(MPROD(C_2 C_3 C_1))
+ 
+R62,2 & T11,1   -->  * R63 : - ME(MPROD(C_2 C_3 C_1) C_4)  - NICHTLEER(MPROD(C_2 C_3 C_1))
+ 
+R7,5 & R63,1    -->  * R64 : - ME(C_2 C_4)  - ME(C_3 C_4)  - NICHTLEER(C_2)  - NICHTLEER(C_3)
+                               - NICHTLEER(MPROD(C_2 C_3 C_1))
+ 
+R64,5 & R6,5    -->  * R65 : - ME(C_2 C_4)  - ME(C_3 C_4)  - NICHTLEER(C_2)  - NICHTLEER(C_3)  - ME(C_2 C_4)
+                               - ME(C_3 C_4)  - NICHTLEER(C_2)  - NICHTLEER(C_3)
+ 
+R65 1=5         -->  * D66 : - ME(C_2 C_4)  - ME(C_3 C_4)  - NICHTLEER(C_2)  - NICHTLEER(C_3)  - ME(C_3 C_4)
+                               - NICHTLEER(C_2)  - NICHTLEER(C_3)
+ 
+D66 2=5         -->  * D67 : - ME(C_2 C_4)  - ME(C_3 C_4)  - NICHTLEER(C_2)  - NICHTLEER(C_3)  - NICHTLEER(C_2)
+                               - NICHTLEER(C_3)
+ 
+D67 3=5         -->  * D68 : - ME(C_2 C_4)  - ME(C_3 C_4)  - NICHTLEER(C_2)  - NICHTLEER(C_3)  - NICHTLEER(C_3)
+ 
+D68 4=5         -->  * D69 : - ME(C_2 C_4)  - ME(C_3 C_4)  - NICHTLEER(C_2)  - NICHTLEER(C_3)
+ 
+D69,4 & R2,1    -->  * R70 : - ME(C_2 C_4)  - ME(C_3 C_4)  - NICHTLEER(C_2)
+ 
+R70,3 & T10,1   -->  * R71 : - ME(C_2 C_4)  - ME(C_3 C_4)
+ 
+R71,2 & R3,1    -->  * R72 : - ME(C_2 C_4)
+ 
+R72,1 & T11,1   -->  * R73 :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+STOP
+ 

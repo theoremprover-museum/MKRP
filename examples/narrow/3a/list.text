@@ -1,0 +1,106 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 47.7                                                *
+                     *           DATE: 12-MAR,1991  15:34                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 12-MAR,1991 14:28 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   ALL X + (0 X) = X
+             ALL X,Y + (S (X) Y) = S (+ (X Y))
+             ALL X * (0 X) = 0
+             ALL X,Y * (S (X) Y) = + (Y * (X Y))
+             
+   Theorems: EX X,Y P (+ (* (X X) * (Y Y))) OR NOT P (S (S (0)))
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+           * A2:   All x:Any + =(+(0 x) x)
+           * A3:   All x,y:Any + =(+(s(y) x) s(+(y x)))
+           * A4:   All x:Any + =(*(0 x) 0)
+           * A5:   All x,y:Any + =(*(s(y) x) +(x *(y x)))
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T6: All x,y:Any - P(+(*(y y) *(x x)))
+           * T7: + P(s(s(0)))
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:     A1:   All x:Any + =(x x)
+                      * A2:   All x:Any + =(+(0 x) x)
+                      * A3:   All x,y:Any + =(+(s(y) x) s(+(y x)))
+                      * A4:   All x:Any + =(*(0 x) 0)
+                      * A5:   All x,y:Any + =(*(s(y) x) +(x *(y x)))
+                      * T6:   All x,y:Any - P(+(*(y y) *(x x)))
+                      * T7:   + P(s(s(0)))
+                      
+
+   
+   T6,1 & A5,1    --> * P1:   All x,y:Any - P(+(+(s(y) *(y s(y))) *(x x)))
+   
+   P1,1 & (A3 A3) --> * RW2:  All x,y:Any - P(s(+(+(y *(y s(y))) *(x x))))
+   
+   RW2,1 & A4,1   --> * P3:   All x:Any - P(s(+(+(0 0) *(x x))))
+   
+   P3,1 & (A2 A2) --> * RW4:  All x:Any - P(s(*(x x)))
+   
+   RW4,1 & A5,1   --> * P5:   All x:Any - P(s(+(s(x) *(x s(x)))))
+   
+   P5,1 & (A3)    --> * RW6:  All x:Any - P(s(s(+(x *(x s(x))))))
+   
+   RW6,1 & A4,1   --> * P7:   - P(s(s(+(0 0))))
+   
+   P7,1 & (A2)    --> * RW8:  - P(s(s(0)))
+   
+   RW8,1 & T7,1   --> * R9:   []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 6 seconds

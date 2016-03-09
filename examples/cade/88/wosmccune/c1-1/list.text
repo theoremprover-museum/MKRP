@@ -1,0 +1,94 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 45.36 EQUALITY 16.1                                 *
+                     *           DATE: 17-AUG,1990  22:03                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 17-AUG,1990 22:02 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * AXIOMS *
+             ALL X,Y,Z A (A (A (S X) Y) Z) = A (A (X Z) A (Y Z))
+             ALL X,Y,Z A (A (A (B X) Y) Z) = A (X A (Y Z))
+             ALL X,Y,Z A (A (A (C X) Y) Z) = A (A (X Z) Y)
+             ALL X A (I X) = X
+             
+   Theorems: * THEOREM *
+             ALL F EX Y Y = A (F Y)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+           * A2:   All x,y,z:Any + =(a(a(a(s z) y) x) a(a(z x) a(y x)))
+           * A3:   All x,y,z:Any + =(a(a(a(b z) y) x) a(z a(y x)))
+           * A4:   All x,y,z:Any + =(a(a(a(c z) y) x) a(a(z x) y))
+             A5:   All x:Any + =(a(i x) x)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T6: All x:Any - =(x a(c_1 x))
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:    A1:  All x:Any + =(x x)
+                     * A2:  All x,y,z:Any + =(a(a(a(s z) y) x) a(a(z x) a(y x)))
+                     * A3:  All x,y,z:Any + =(a(a(a(b z) y) x) a(z a(y x)))
+                     * A4:  All x,y,z:Any + =(a(a(a(c z) y) x) a(a(z x) y))
+                       A5:  All x:Any + =(a(i x) x)
+                     * T6:  All x:Any - =(x a(c_1 x))
+                     
+
+   
+   A4,1 & A3,1  -->  * P4:  All x,y,z:Any + =(a(a(a(c a(b z)) y) x) a(z a(x y)))
+   
+   P4,1 & A2,1  -->  * P5:  All x,y,z:Any + =(a(a(a(s a(c a(b z))) y) x) a(z a(a(y x) x)))
+   
+   P5,1 & T6,1  -->  * R6:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 198 seconds

@@ -1,0 +1,303 @@
+;;; -*- Package: MKRP; Base: 10. -*-
+
+
+
+                    ********************************************************************************
+                    *                                                                              *
+                    *     MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN                   *
+                    *                                                                              *
+                    *       22-MAY-85                                                              *
+                    *          22-MAY-85  08:17:38                                                 *
+                    *                                                                              *
+                    ********************************************************************************
+
+
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   22-MAY-85 08:13:47
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   D315A
+                                                                        
+************************************************************************
+                                                                        
+
+
+ADJUSTMENT OF THE OPTIONS : 
+============================
+
+
+
+TWO:RULES                             NIL                   TWO:RULES.MAXLEVEL                    1.
+TWO:SUPPRESS.NORULES                  NIL
+
+
+RED.I:CLAUSE.MULTIPLE.LITERALS        T                     RED.I:CLAUSE.PURITY                   T
+RED.I:CLAUSE.TAUTOLOGY                T                     RED.I:CLAUSE.TAUTOLOGY.RECHECK        PARTIAL
+RED.I:CLAUSE.SUBSUMPTION              T                     RED.I:CLAUSE.SUBSUMPTION.RECHECK      PARTIAL
+RED.I:CLAUSE.REPL.FACTORING           T                     RED.I:CLAUSE.REPL.FACTORING.RECHECK   T
+RED.I:CLAUSE.REPL.RESOLUTION          SIMPLE                RED.I:CLAUSE.REPL.RESOLUTION.RECHECK  T
+RED.I:CLAUSE.REWRITING                T                     RED.I:LINK.INCOMPATIBILITY            NIL
+RED.I:LINK.TAUTOLOGY                  NIL                   RED.I:LINK.TAUTOLOGY.RECHECK          NIL
+RED.I:LINK.SUBSUMPTION                NIL                   RED.I:LINK.SUBSUMPTION.RECHECK        NIL
+
+RED.D:CLAUSE.MULTIPLE.LITERALS        T                     RED.D:CLAUSE.PURITY                   T
+RED.D:CLAUSE.TAUTOLOGY                REMOVE-INHIBIT        RED.D:CLAUSE.TAUTOLOGY.RECHECK        NIL
+RED.D:CLAUSE.SUBSUMPTION.FORWARD      REMOVE-INHIBIT        RED.D:CLAUSE.SUBSUMPTION.BACKWARD     REMOVE
+RED.D:CLAUSE.SUBSUMPTION.RECHECK      NIL                   RED.D:CLAUSE.REPL.FACTORING           T
+RED.D:CLAUSE.REPL.FACTORING.RECHECK   T                     RED.D:CLAUSE.REPL.RESOLUTION          SIMPLE
+RED.D:CLAUSE.REPL.RESOLUTION.RECHECK  T                     RED.D:LINK.INCOMPATIBILITY            NIL
+RED.D:LINK.TAUTOLOGY                  REMOVE-INHIBIT        RED.D:LINK.TAUTOLOGY.RECHECK          NIL
+RED.D:LINK.SUBSUMPTION                REMOVE-INHIBIT        RED.D:LINK.SUBSUMPTION.RECHECK        NIL
+
+FAC:INITIAL                           NIL                   FAC:EACH.STEP                         NIL
+
+STR:RESOLUTION                        SET-OF-SUPPORT        STR:E-RESOLUTION                      NIL
+STR:PARAMODULATION                    UNIT-ANCESTRY         STR:LINK.DEPTH                        NIL
+STR:TERM.DEPTH                        NIL                   STR:R.DEMODULATION                    T
+STR:P.DEMODULATION                    T                     STR:INDUCTION                         NIL
+
+TERM:UNITS                            T                     TERM:ITERATIONS                       0.
+TERM:SET.OF.SUPPORT                   NIL                   TERM:BREADTH.FIRST                    NIL
+
+GEN:SPLITTING                         0.                    GEN:MANUAL.CONTROL                    NIL
+GEN:MAXIMUM.STEPS                     NIL                   GEN:GRAPH.SAVING                      NIL
+GEN:SAVE.FILE                         SAVE.DEFAULT
+
+
+TR:PREPROCESSING                      NIL                   TR:STEP.MODE                          LR
+TR:DUMP                               NIL                   TR:CLAUSE.MODE                        I
+TR:LINK.MODE                          I                     TR:TRACE.FILE                         NIL
+TR:TERMINAL                           T
+
+
+PR:INFIX.FORM                         T                     PR:PREFIX.FORM                        NIL
+PR:OPTIONS                            T                     PR:AXIOM.CLAUSES                      NIL
+PR:SYMBOLS                            NIL                   PR:STATISTICS                         NIL
+PR:PROTOCOL                           T                     PR:LEFT.MARGIN                        0.
+PR:LINELENGTH                         120.
+
+
+
+
+FORMULAE GIVEN TO THE EDITOR
+============================
+
+
+AXIOMS   : SORT MENGE,VERKN,ELEMENT:ANY
+           TYPE LIDEAL (MENGE MENGE VERKN)
+           TYPE RIDEAL (MENGE MENGE VERKN)
+           TYPE UHG (MENGE MENGE VERKN)
+           TYPE ME (MENGE MENGE)
+           TYPE NICHTLEER (MENGE)
+           TYPE HG (MENGE VERKN)
+           TYPE EL (ELEMENT MENGE)
+           TYPE MINIMAL (MENGE MENGE VERKN)
+           TYPE MPROD (MENGE MENGE VERKN) :MENGE
+           TYPE APPLYV (VERKN ELEMENT ELEMENT) :ELEMENT
+           TYPE F*X (MENGE ELEMENT VERKN) :MENGE
+           TYPE SM (MENGE MENGE) :MENGE
+           TYPE SET (ELEMENT) :MENGE
+           TYPE VER (MENGE MENGE) :MENGE
+           TYPE GR (MENGE VERKN ELEMENT)
+           TYPE INVERS (VERKN ELEMENT) :ELEMENT
+           TYPE MINIMAL-BED-L (MENGE VERKN)
+           TYPE MINIMAL-BED-R (MENGE VERKN)
+           TYPE EL-IND (INDEX INDEXMENGE)
+           TYPE U (INDEX) : MENGE
+           TYPE E (INDEX INDEX) : ELEMENT
+           * LEMMA 3.15A1 *
+             * VORAUSSETZUNG315A (F MAL I1 I2 X J) BEDEUTET : HG (F MAL)
+             AND  
+             MINIMAL-BED-L (F MAL)
+             AND  
+             MINIMAL-BED-R (F MAL)
+             AND  
+             (ALL L:INDEX EL-IND (L I1) IMPL LIDEAL (U (L) F MAL) AND MINIMAL (U (L) F MAL))
+             AND  
+             (ALL K:INDEX EL-IND (K I2) IMPL RIDEAL (U (K) F MAL) AND MINIMAL (U (K) F MAL))
+             AND  
+             EL-IND (J I1)
+             AND  
+             EL (X F) *
+           ALL F:MENGE  ALL MAL:VERKN  ALL I1,I2:INDEXMENGE  ALL J:INDEX  ALL X:ELEMENT  
+               VORAUSSETZUNG315A (F MAL I1 I2 X J)
+               IMPL  
+               (EX L:INDEX EL-IND (L I2) AND F*X (U (J) X MAL) = F*X (U (J) APPLYV (MAL E (L J) X) MAL))
+           * LEMMA 3.15A2 *
+           ALL F:MENGE  ALL MAL:VERKN  ALL I1,I2:INDEXMENGE  ALL J,L:INDEX  ALL X:ELEMENT  
+                 VORAUSSETZUNG315A (F MAL I1 I2 X J)
+                 AND  
+                 EL-IND (L I2)
+                 AND  
+                 F*X (U (J) X MAL) = F*X (U (J) APPLYV (MAL E (L J) X) MAL)
+               IMPL  
+               (EX K:INDEX EL-IND (K I1) IMPL EL (APPLYV (MAL E (L J) X) U (K)))
+           * SATZ 3.8 *
+           ALL L,M,F:MENGE  ALL MAL:VERKN  ALL X:ELEMENT  
+               LIDEAL (L F MAL) AND MINIMAL (L F MAL) AND LIDEAL (M F MAL) AND MINIMAL (M F MAL) AND EL (X M)
+               IMPL  
+               F*X (L X MAL) = M
+
+THEOREMS : ALL F:MENGE  ALL MAL:VERKN  ALL I1,I2:INDEXMENGE  ALL X:ELEMENT  ALL J:INDEX  
+                 HG (F MAL)
+                 AND  
+                 MINIMAL-BED-L (F MAL)
+                 AND  
+                 MINIMAL-BED-R (F MAL)
+                 AND  
+                 (ALL L:INDEX EL-IND (L I1) IMPL LIDEAL (U (L) F MAL) AND MINIMAL (U (L) F MAL))
+                 AND  
+                 (ALL K:INDEX EL-IND (K I2) IMPL RIDEAL (U (K) F MAL) AND MINIMAL (U (K) F MAL))
+                 AND  
+                 EL-IND (J I1)
+                 AND  
+                 EL (X F)
+                 AND  
+                 VORAUSSETZUNG315A (F MAL I1 I2 X J)
+               IMPL  
+               (EX K:INDEX EL-IND (K I1) IMPL F*X (U (J) X MAL) = U (K))
+
+
+
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+  A1   : ALL X:ANY  + =(X X)
+* A2   : ALL X:INDEX  Y:ELEMENT  Z,U:INDEXMENGE  V:VERKN  W:MENGE  
+              - VORAUSSETZUNG315A(W V U Z Y X)  + =(F*X(U(X) Y V) F*X(U(X) APPLYV(V E(F_1(X Z V Y) X) Y) V))
+* A3   : ALL X:INDEX  Y:ELEMENT  Z,U:INDEXMENGE  V:VERKN  W:MENGE  
+              - VORAUSSETZUNG315A(W V U Z Y X)  + EL-IND(F_1(X Z V Y) Z)
+* A4   : ALL X,Y:INDEX  Z:ELEMENT  U,V:INDEXMENGE  W:VERKN  XX:MENGE  
+              - VORAUSSETZUNG315A(XX W V U Z Y)  - EL-IND(X U)  - =(F*X(U(Y) Z W) F*X(U(Y) APPLYV(W E(X Y) Z) W))
+                - EL-IND(F_2(X V Y W Z) V)  + EL(APPLYV(W E(X Y) Z) U(F_3(X V Y W Z)))
+* A5   : ALL X:ELEMENT  Y,Z,U:MENGE  V:VERKN  
+              - LIDEAL(U Z V)  - MINIMAL(U Z V)  - LIDEAL(Y Z V)  - MINIMAL(Y Z V)  - EL(X Y)  + =(F*X(U X V) Y)
+
+
+
+
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+  T6   : + HG(C_2 C_5)
+  T7   : + MINIMAL-BED-L(C_2 C_5)
+  T8   : + MINIMAL-BED-R(C_2 C_5)
+* T9   : ALL X:INDEX  - EL-IND(X C_6)  + LIDEAL(U(X) C_2 C_5)
+* T10  : ALL X:INDEX  - EL-IND(X C_6)  + MINIMAL(U(X) C_2 C_5)
+  T11  : ALL X:INDEX  - EL-IND(X C_1)  + RIDEAL(U(X) C_2 C_5)
+  T12  : ALL X:INDEX  - EL-IND(X C_1)  + MINIMAL(U(X) C_2 C_5)
+  T13  : + EL-IND(C_3 C_6)
+  T14  : + EL(C_4 C_2)
+* T15  : + VORAUSSETZUNG315A(C_2 C_5 C_6 C_1 C_4 C_3)
+* T16  : ALL X:INDEX  + EL-IND(X C_6)
+* T17  : ALL X:INDEX  - =(F*X(U(C_3) C_4 C_5) U(X))
+
+
+
+
+
+
+INITIAL OPERATIONS ON THEOREMS
+==============================
+
+
+T9,1 & T16,1    -->  * R1 : ALL X:INDEX  + LIDEAL(U(X) C_2 C_5)
+
+T10,1 & T16,1   -->  * R2 : ALL X:INDEX  + MINIMAL(U(X) C_2 C_5)
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+REFUTATION
+
+INITIAL CLAUSES :      A1  : ALL X:ANY  + =(X X)
+                     * A2  : ALL X:INDEX  Y:ELEMENT  Z,U:INDEXMENGE  V:VERKN  W:MENGE  
+                                  - VORAUSSETZUNG315A(W V U Z Y X)
+                                    + =(F*X(U(X) Y V) F*X(U(X) APPLYV(V E(F_1(X Z V Y) X) Y) V))
+                     * A3  : ALL X:INDEX  Y:ELEMENT  Z,U:INDEXMENGE  V:VERKN  W:MENGE  
+                                  - VORAUSSETZUNG315A(W V U Z Y X)  + EL-IND(F_1(X Z V Y) Z)
+                     * A4  : ALL X,Y:INDEX  Z:ELEMENT  U,V:INDEXMENGE  W:VERKN  XX:MENGE  
+                                  - VORAUSSETZUNG315A(XX W V U Z Y)  - EL-IND(X U)
+                                    - =(F*X(U(Y) Z W) F*X(U(Y) APPLYV(W E(X Y) Z) W))  - EL-IND(F_2(X V Y W Z) V)
+                                    + EL(APPLYV(W E(X Y) Z) U(F_3(X V Y W Z)))
+                     * A5  : ALL X:ELEMENT  Y,Z,U:MENGE  V:VERKN  
+                                  - LIDEAL(U Z V)  - MINIMAL(U Z V)  - LIDEAL(Y Z V)  - MINIMAL(Y Z V)  - EL(X Y)
+                                    + =(F*X(U X V) Y)
+                       T6  : + HG(C_2 C_5)
+                       T7  : + MINIMAL-BED-L(C_2 C_5)
+                       T8  : + MINIMAL-BED-R(C_2 C_5)
+                     * R1  : ALL X:INDEX  + LIDEAL(U(X) C_2 C_5)
+                     * R2  : ALL X:INDEX  + MINIMAL(U(X) C_2 C_5)
+                       T11 : ALL X:INDEX  - EL-IND(X C_1)  + RIDEAL(U(X) C_2 C_5)
+                       T14 : + EL(C_4 C_2)
+                     * T15 : + VORAUSSETZUNG315A(C_2 C_5 C_6 C_1 C_4 C_3)
+                     * T16 : ALL X:INDEX  + EL-IND(X C_6)
+                     * T17 : ALL X:INDEX  - =(F*X(U(C_3) C_4 C_5) U(X))
+
+T16,1 & A4,4    -->  * R3  : ALL X,Y:INDEX  Z:ELEMENT  U:INDEXMENGE  V:VERKN  W:MENGE  
+                                  - VORAUSSETZUNG315A(W V C_6 U Z Y)  - EL-IND(X U)
+                                    - =(F*X(U(Y) Z V) F*X(U(Y) APPLYV(V E(X Y) Z) V))
+                                    + EL(APPLYV(V E(X Y) Z) U(F_3(X C_6 Y V Z)))
+
+T15,1 & R3,1    -->  * R4  : ALL X:INDEX  - EL-IND(X C_1)
+                                            - =(F*X(U(C_3) C_4 C_5) F*X(U(C_3) APPLYV(C_5 E(X C_3) C_4) C_5))
+                                            + EL(APPLYV(C_5 E(X C_3) C_4) U(F_3(X C_6 C_3 C_5 C_4)))
+
+T15,1 & A2,1    -->  * R5  : + =(F*X(U(C_3) C_4 C_5) F*X(U(C_3) APPLYV(C_5 E(F_1(C_3 C_1 C_5 C_4) C_3) C_4) C_5))
+
+T15,1 & A3,1    -->  * R6  : + EL-IND(F_1(C_3 C_1 C_5 C_4) C_1)
+
+R6,1 & T11,1    -->    R7  : + RIDEAL(U(F_1(C_3 C_1 C_5 C_4)) C_2 C_5)
+
+R6,1 & R4,1     -->  * R8  : - =(F*X(U(C_3) C_4 C_5) F*X(U(C_3) APPLYV(C_5 E(F_1(C_3 C_1 C_5 C_4) C_3) C_4) C_5))
+                             + EL(APPLYV(C_5 E(F_1(C_3 C_1 C_5 C_4) C_3) C_4)
+                                  U(F_3(F_1(C_3 C_1 C_5 C_4) C_6 C_3 C_5 C_4)))
+
+
+R8,1 & R5,1     -->  * R9  : + EL(APPLYV(C_5 E(F_1(C_3 C_1 C_5 C_4) C_3) C_4)
+                                  U(F_3(F_1(C_3 C_1 C_5 C_4) C_6 C_3 C_5 C_4)))
+
+
+R2,1 & A5,4     -->  * R10 : ALL X:ELEMENT  Y:INDEX  Z:MENGE  
+                                  - LIDEAL(Z C_2 C_5)  - MINIMAL(Z C_2 C_5)  - LIDEAL(U(Y) C_2 C_5)  - EL(X U(Y))
+                                    + =(F*X(Z X C_5) U(Y))
+
+R10,3 & R1,1    -->  * R11 : ALL X:ELEMENT  Y:MENGE  Z:INDEX  
+                                  - LIDEAL(Y C_2 C_5)  - MINIMAL(Y C_2 C_5)  - EL(X U(Z))  + =(F*X(Y X C_5) U(Z))
+
+R1,1 & R11,1    -->  * R12 : ALL X,Y:INDEX  Z:ELEMENT  - MINIMAL(U(Y) C_2 C_5)  - EL(Z U(X))  + =(F*X(U(Y) Z C_5) U(X))
+
+R12,1 & R2,1    -->  * R13 : ALL X,Y:INDEX  Z:ELEMENT  - EL(Z U(X))  + =(F*X(U(Y) Z C_5) U(X))
+
+R9,1 & R13,1    -->  * R14 : ALL X:INDEX  + =(F*X(U(X) APPLYV(C_5 E(F_1(C_3 C_1 C_5 C_4) C_3) C_4) C_5)
+                                              U(F_3(F_1(C_3 C_1 C_5 C_4) C_6 C_3 C_5 C_4)))
+
+
+R14,1 & T17,1   -->  * P15 : ALL X:INDEX  - =(F*X(U(C_3) C_4 C_5)
+                                              F*X(U(X) APPLYV(C_5 E(F_1(C_3 C_1 C_5 C_4) C_3) C_4) C_5))
+
+
+P15,1 & R5,1    -->  * R16 :  ce
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+  Q. E. D. 

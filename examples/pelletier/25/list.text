@@ -1,0 +1,100 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 34.1 EQUALITY 16.1                                  *
+                     *           DATE: 31-OCT,1989  22:45                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 31-OCT,1989 22:45 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * AXIOMS *
+             EX X P (X)
+             ALL X F (X) IMPL (NOT (G (X)) AND R (X))
+             ALL X P (X) IMPL (G (X) AND F (X))
+             (ALL X P (X) IMPL Q (X)) OR (EX X P (X) AND R (X))
+             
+   Theorems: * THEOREMS *
+             EX X Q (X) AND P (X)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+           * A1:   + P(c_1)
+           * A2:   All x:Any - F(x)  - G(x)
+             A3:   All x:Any - F(x)  + R(x)
+           * A4:   All x:Any - P(x)  + G(x)
+           * A5:   All x:Any - P(x)  + F(x)
+             A6:   All x:Any - P(x)  + Q(x)  + P(c_2)
+             A7:   All x:Any - P(x)  + Q(x)  + R(c_2)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+             T8: All x:Any - Q(x)  - P(x)
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:  * A1:   + P(c_1)
+                     * A2:   All x:Any - F(x)  - G(x)
+                       A3:   All x:Any - F(x)  + R(x)
+                     * A4:   All x:Any - P(x)  + G(x)
+                     * A5:   All x:Any - P(x)  + F(x)
+                       R5:   + P(c_2)
+                       R6:   + R(c_2)
+                       T8:   All x:Any - Q(x)  - P(x)
+                     
+
+   
+   A4,2 & A2,2  -->  * R7:   All x:Any - P(x)  - F(x)
+   
+   R7,2 & A5,2  -->  * R8:   All x:Any - P(x)  - P(x)
+   
+   R8 1=2       -->  * D9:   All x:Any - P(x)
+   
+   D9,1 & A1,1  -->  * R10:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 8 seconds

@@ -1,0 +1,434 @@
+;;; -*- package: MKRP; syntax: common-lisp; mode: lisp -*-
+
+
+(IN-PACKAGE "MKRP" :USE '("CL"))
+
+
+
+(defun test-create (term)
+  (if (consp term)
+      (eds-term_create (test-create (first term)) (mapcar #'test-create (rest term)))
+      (symbol-value term)))
+
+(defun test-apply (t1 t2)
+  (list t1 t2))
+
+(setq plus (eds-fct_create "+" 2 0))
+(setq minus (eds-fct_create "-" 1 0))
+(setq null (eds-const_create "0" 0))
+(setq equal (eds-fct_create "=" 2 0))
+(setq x (eds-var_create "X"))
+(setq y (eds-var_create "Y"))
+(setq z (eds-var_create "Z"))
+(setq v (eds-var_create "V"))
+(setq u (eds-var_create "U"))
+(setq w (eds-var_create "W"))
+(setq c1 (eds-clause_create "A1" (list (test-create '(equal (minus null) null)))))
+(setq c2 (eds-clause_create "A2" (list (test-create '(equal (minus (minus x)) x)))))
+(setq c3 (eds-clause_create "A3" (list (test-create '(equal (minus (plus x y)) (plus (minus y) (minus x)))))))
+(setq c4 (eds-clause_create "A4" (list (test-create '(equal (plus x null) x)))))
+(setq c5 (eds-clause_create "A5" (list (test-create '(equal (plus null x) x)))))
+(setq c6 (eds-clause_create "A6" (list (test-create '(equal (plus (minus x) x) null)))))
+(setq c7 (eds-clause_create "A7" (list (test-create '(equal (plus x (minus x)) null)))))
+(setq c8 (eds-clause_create "A8" (list (test-create '(equal (plus x (plus (minus x) y)) y)))))
+(setq c9 (eds-clause_create "A9" (list (test-create '(equal (plus (minus x) (plus x y)) y)))))
+(setq c10 (eds-clause_create "A10" (list (test-create '(equal (plus (plus x y) z) (plus x (plus y z)))))))
+
+
+(setq tt (etree-create :subtrees nil))
+
+
+(setq cc (list c1 c2 c3 c4 c5 c6 c7 c8 c9 c10))
+
+(mapc #'(lambda (clause)
+	  (let ((store (etree-store_create :contents (second (eds-term_arguments (first (eds-clause_literals clause))))))
+		(term (first (eds-term_arguments (first (eds-clause_literals clause))))))
+	  (etree-insert tt (list term) store)))
+      cc) 
+
+
+(progn
+  (setq equal (eds-fct_create "=" 2))
+  (setq plus (eds-fct_create "+" 2))
+  (setq minus (eds-fct_create "-" 1))
+  (setq null (eds-const_create "0"))
+  (setq u (eds-var_create "U"))
+  (setq x (eds-var_create "X"))
+  (setq c11 (eds-clause_create "A11" (list (test-create '(equal (plus u u) null)))))
+  (setq c4 (eds-clause_create "A4" (list (test-create '(equal (plus x null) x)))))
+  (setq tt1 (etree-create :subtrees nil))
+  (setq cc1 (list c11))
+  (mapc #'(lambda (clause)
+	    (let ((store (etree-store_create :contents (second (eds-term_arguments (first (eds-clause_literals clause))))))
+		  (term (first (eds-term_arguments (first (eds-clause_literals clause))))))
+	      (etree-insert tt1 (list term) store)))
+	cc1) 
+  (setq tt2 (etree-create :subtrees nil))
+  (setq cc2 (list c4))
+  (mapc #'(lambda (clause)
+	    (let ((store (etree-store_create :contents (second (eds-term_arguments (first (eds-clause_literals clause))))))
+		  (term (first (eds-term_arguments (first (eds-clause_literals clause))))))
+	      (etree-insert tt2 (list term) store)))
+	cc2) 
+  (unless (equal (euni-top (etree-subtrees tt2) (etree-subtrees tt1) #'test-apply) (list (list null) (list null)))
+    (error "1")))
+
+(progn
+  (setq plus (eds-fct_create "+" 2))
+  (setq minus (eds-fct_create "-" 1))
+  (setq null (eds-const_create "0"))
+  (setq u (eds-var_create "U"))
+  (setq c11 (eds-clause_create "A11" (list (test-create '(equal (plus u u) null)))))
+  (setq c5 (eds-clause_create "A5" (list (test-create '(equal (plus null x) x)))))
+  (setq tt1 (etree-create :subtrees nil))
+  (setq cc1 (list c11))
+  (mapc #'(lambda (clause)
+	    (let ((store (etree-store_create :contents (second (eds-term_arguments (first (eds-clause_literals clause))))))
+		  (term (first (eds-term_arguments (first (eds-clause_literals clause))))))
+	      (etree-insert tt1 (list term) store)))
+	cc1) 
+  (setq tt3 (etree-create :subtrees nil))
+  (setq cc3 (list c5))
+  (mapc #'(lambda (clause)
+	    (let ((store (etree-store_create :contents (second (eds-term_arguments (first (eds-clause_literals clause))))))
+		  (term (first (eds-term_arguments (first (eds-clause_literals clause))))))
+	      (etree-insert tt3 (list term) store)))
+	cc3) 
+  (unless (equal (euni-top (etree-subtrees tt3) (etree-subtrees tt1) #'test-apply) (list (list null) (list null)))
+    (error "2")))
+
+
+
+
+
+ 
+(progn
+  (setq x (eds-var_create "X"))
+  (setq equal (eds-fct_create "=" 2))
+  (setq null (eds-const_create "0"))
+  (setq minus (eds-fct_create "-" 1))
+  (setq u (eds-var_create "U"))
+  (setq v (eds-var_create "V"))
+  (setq c1 (eds-clause_create "A1" (list (test-create '(equal (minus u) null)))))
+  (setq c2 (eds-clause_create "A2" (list (test-create '(equal (minus v) null)))))
+  (setq c3 (eds-clause_create "A2" (list (test-create '(equal v null)))))
+
+  (setq tt1 (etree-create :subtrees nil))
+  (setq tt2 (etree-create :subtrees nil))
+
+  (setq cc1 (list c1 c2))
+  (setq cc2 (list c3))
+
+  (mapc #'(lambda (clause)
+	    (let ((store (etree-store_create :contents (second (eds-term_arguments (first (eds-clause_literals clause))))))
+		  (term (first (eds-term_arguments (first (eds-clause_literals clause))))))
+	      (etree-insert tt1 (list term) store)))
+	cc1) 
+  (mapc #'(lambda (clause)
+	    (let ((store (etree-store_create :contents (second (eds-term_arguments (first (eds-clause_literals clause))))))
+		  (term (first (eds-term_arguments (first (eds-clause_literals clause))))))
+	      (etree-insert tt2 (list term) store)))
+	cc2) 
+
+  (unless (equal (euni-top (etree-subtrees tt2) (etree-subtrees tt1) #'test-apply) (list (list null) (list null)))
+    (error "3")))
+
+(progn 
+  (setq null (eds-const_create "0"))
+  (setq minus (eds-fct_create "-" 1))
+  (setq c1 (eds-clause_create "A1" (list (test-create '(equal (minus null) null)))))
+  (setq c2 (eds-clause_create "A2" (list (test-create '(equal (minus null) null)))))
+
+  (setq tt1 (etree-create :subtrees nil))
+  (setq tt2 (etree-create :subtrees nil))
+
+  (setq cc1 (list c1))
+  (setq cc2 (list c2))
+
+  (mapc #'(lambda (clause)
+	    (let ((store (etree-store_create :contents (second (eds-term_arguments (first (eds-clause_literals clause))))))
+		  (term (first (eds-term_arguments (first (eds-clause_literals clause))))))
+	      (etree-insert tt1 (list term) store)))
+	cc1) 
+  (mapc #'(lambda (clause)
+	    (let ((store (etree-store_create :contents (second (eds-term_arguments (first (eds-clause_literals clause))))))
+		  (term (first (eds-term_arguments (first (eds-clause_literals clause))))))
+	      (etree-insert tt2 (list term) store)))
+	cc2) 
+
+  (unless (equal (euni-top (etree-subtrees tt2) (etree-subtrees tt1) #'test-apply) (list (list null) (list null)))
+    (error "4")))
+
+(progn 
+  (setq null (eds-const_create "0"))
+  (setq plus (eds-fct_create "+" 2))
+  (setq u (eds-var_create "U"))
+  (setq v (eds-var_create "V"))
+  (setq c1 (eds-clause_create "A1" (list (test-create '(equal (plus u null) null)))))
+  (setq c2 (eds-clause_create "A2" (list (test-create '(equal (plus v null) null)))))
+  (setq c3 (eds-clause_create "A2" (list (test-create '(equal v null)))))
+
+  (setq tt1 (etree-create :subtrees nil))
+  (setq tt2 (etree-create :subtrees nil))
+
+  (setq cc1 (list c1 c2))
+  (setq cc2 (list c3))
+
+  (mapc #'(lambda (clause)
+	    (let ((store (etree-store_create :contents (second (eds-term_arguments (first (eds-clause_literals clause))))))
+		  (term (first (eds-term_arguments (first (eds-clause_literals clause))))))
+	      (etree-insert tt1 (list term) store)))
+	cc1) 
+  (mapc #'(lambda (clause)
+	    (let ((store (etree-store_create :contents (second (eds-term_arguments (first (eds-clause_literals clause))))))
+		  (term (first (eds-term_arguments (first (eds-clause_literals clause))))))
+	      (etree-insert tt2 (list term) store)))
+	cc2) 
+
+  (unless (equal (euni-top (etree-subtrees tt2) (etree-subtrees tt1) #'test-apply) (list (list null) (list null)))
+    (error "5")))
+
+(progn 
+  (setq null (eds-const_create "0"))
+  (setq plus (eds-fct_create "+" 2))
+  (setq u (eds-var_create "U"))
+  (setq v (eds-var_create "V"))
+  (setq c1 (eds-clause_create "A1" (list (test-create '(equal (plus null u) null)))))
+  (setq c2 (eds-clause_create "A2" (list (test-create '(equal (plus null v) null)))))
+  (setq c3 (eds-clause_create "A2" (list (test-create '(equal v null)))))
+
+  (setq tt1 (etree-create :subtrees nil))
+  (setq tt2 (etree-create :subtrees nil))
+
+  (setq cc1 (list c1 c2))
+  (setq cc2 (list c3))
+
+  (mapc #'(lambda (clause)
+	    (let ((store (etree-store_create :contents (second (eds-term_arguments (first (eds-clause_literals clause))))))
+		  (term (first (eds-term_arguments (first (eds-clause_literals clause))))))
+	      (etree-insert tt1 (list term) store)))
+	cc1) 
+  (mapc #'(lambda (clause)
+	    (let ((store (etree-store_create :contents (second (eds-term_arguments (first (eds-clause_literals clause))))))
+		  (term (first (eds-term_arguments (first (eds-clause_literals clause))))))
+	      (etree-insert tt2 (list term) store)))
+	cc2) 
+
+  (unless (equal (euni-top (etree-subtrees tt2) (etree-subtrees tt1) #'test-apply) (list (list null) (list null)))
+    (error "6")))
+
+(progn 
+  (setq null (eds-const_create "0"))
+  (setq plus (eds-fct_create "+" 2))
+  (setq minus (eds-fct_create "-" 1))
+  (setq x (eds-var_create "X"))  
+  (setq u (eds-var_create "U"))
+  (setq v (eds-var_create "V"))
+  (setq c2 (eds-clause_create "A2" (list (test-create '(equal (plus (minus v) u) u)))))
+  (setq c3 (eds-clause_create "A2" (list (test-create '(equal (plus u x) x)))))
+
+  (setq tt1 (etree-create :subtrees nil))
+  (setq tt2 (etree-create :subtrees nil))
+
+  (setq cc1 (list c2))
+  (setq cc2 (list c3))
+
+  (mapc #'(lambda (clause)
+	    (let ((store (etree-store_create :contents (second (eds-term_arguments (first (eds-clause_literals clause))))))
+		  (term (first (eds-term_arguments (first (eds-clause_literals clause))))))
+	      (etree-insert tt1 (list term) store)))
+	cc1) 
+  (mapc #'(lambda (clause)
+	    (let ((store (etree-store_create :contents (second (eds-term_arguments (first (eds-clause_literals clause))))))
+		  (term (first (eds-term_arguments (first (eds-clause_literals clause))))))
+	      (etree-insert tt2 (list term) store)))
+	cc2) 
+
+  (unless (equal (euni-top (etree-subtrees tt2) (etree-subtrees tt1) #'test-apply) (list (list (eds-term_create minus (list v)))
+											 (list (eds-term_create minus (list v)))))
+    (error "7")))
+
+(progn 
+  (setq null (eds-const_create "0"))
+  (setq plus (eds-fct_create "+" 2))
+  (setq minus (eds-fct_create "-" 1))
+  (setq x (eds-var_create "X"))  
+  (setq u (eds-var_create "U"))
+  (setq v (eds-var_create "V"))
+  (setq c1 (eds-clause_create "A1" (list (test-create '(equal (plus (minus v) x) u)))))
+  (setq c2 (eds-clause_create "A2" (list (test-create '(equal (plus (minus v) u) u)))))
+  (setq c3 (eds-clause_create "A2" (list (test-create '(equal (plus u x) x)))))
+
+  (setq tt1 (etree-create :subtrees nil))
+  (setq tt2 (etree-create :subtrees nil))
+
+  (setq cc1 (list c1 c2))
+  (setq cc2 (list c3))
+
+  (mapc #'(lambda (clause)
+	    (let ((store (etree-store_create :contents (second (eds-term_arguments (first (eds-clause_literals clause))))))
+		  (term (first (eds-term_arguments (first (eds-clause_literals clause))))))
+	      (etree-insert tt1 (list term) store)))
+	cc1) 
+  (mapc #'(lambda (clause)
+	    (let ((store (etree-store_create :contents (second (eds-term_arguments (first (eds-clause_literals clause))))))
+		  (term (first (eds-term_arguments (first (eds-clause_literals clause))))))
+	      (etree-insert tt2 (list term) store)))
+	cc2) 
+
+  (unless (equal (euni-top (etree-subtrees tt2) (etree-subtrees tt1) #'test-apply) (list (list x)
+											 (list (eds-term_create minus (list v)))
+											 (list (eds-term_create minus (list v)))
+											 (list (eds-term_create minus (list v)))))
+    (error "8")))
+
+(progn 
+  (setq null (eds-const_create "0"))
+  (setq plus (eds-fct_create "+" 2))
+  (setq minus (eds-fct_create "-" 1))
+  (setq x (eds-var_create "X"))  
+  (setq u (eds-var_create "U"))
+  (setq v (eds-var_create "V"))
+  (setq c1 (eds-clause_create "A1" (list (test-create '(equal (plus (minus x) u) null)))))
+  (setq c3 (eds-clause_create "A2" (list (test-create '(equal (plus u x) null)))))
+
+  (setq tt1 (etree-create :subtrees nil))
+  (setq tt2 (etree-create :subtrees nil))
+
+  (setq cc1 (list c1))
+  (setq cc2 (list c3))
+
+  (mapc #'(lambda (clause)
+	    (let ((store (etree-store_create :contents (second (eds-term_arguments (first (eds-clause_literals clause))))))
+		  (term (first (eds-term_arguments (first (eds-clause_literals clause))))))
+	      (etree-insert tt1 (list term) store)))
+	cc1) 
+  (mapc #'(lambda (clause)
+	    (let ((store (etree-store_create :contents (second (eds-term_arguments (first (eds-clause_literals clause))))))
+		  (term (first (eds-term_arguments (first (eds-clause_literals clause))))))
+	      (etree-insert tt2 (list term) store)))
+	cc2) 
+
+  (unless (equal (euni-top (etree-subtrees tt2) (etree-subtrees tt1) #'test-apply) nil)
+    (error "9")))
+
+
+(progn 
+  (setq null (eds-const_create "0"))
+  (setq plus (eds-fct_create "+" 2))
+  (setq minus (eds-fct_create "-" 1))
+  (setq x (eds-var_create "X"))  
+  (setq u (eds-var_create "U"))
+  (setq v (eds-var_create "V"))
+  (setq c1 (eds-clause_create "A1" (list (test-create '(equal (plus (minus x) u) null)))))
+  (setq c2 (eds-clause_create "A2" (list (test-create '(equal (plus (minus v) u) null)))))
+  (setq c3 (eds-clause_create "A2" (list (test-create '(equal (plus u x) null)))))
+
+  (setq tt1 (etree-create :subtrees nil))
+  (setq tt2 (etree-create :subtrees nil))
+
+  (setq cc1 (list c1 c2))
+  (setq cc2 (list c3))
+
+  (mapc #'(lambda (clause)
+	    (let ((store (etree-store_create :contents (second (eds-term_arguments (first (eds-clause_literals clause))))))
+		  (term (first (eds-term_arguments (first (eds-clause_literals clause))))))
+	      (etree-insert tt1 (list term) store)))
+	cc1) 
+  (mapc #'(lambda (clause)
+	    (let ((store (etree-store_create :contents (second (eds-term_arguments (first (eds-clause_literals clause))))))
+		  (term (first (eds-term_arguments (first (eds-clause_literals clause))))))
+	      (etree-insert tt2 (list term) store)))
+	cc2) 
+
+  (unless (equal (euni-top (etree-subtrees tt2) (etree-subtrees tt1) #'test-apply) (list (list null) (list null)))
+    (error "10")))
+
+
+(progn 
+  (setq null (eds-const_create "0"))
+  (setq plus (eds-fct_create "+" 2))
+  (setq minus (eds-fct_create "-" 1))
+  (setq x (eds-var_create "X"))  
+  (setq u (eds-var_create "U"))
+  (setq v (eds-var_create "V"))
+  (setq z (eds-var_create "Z"))
+  (setq c1 (eds-clause_create "A1" (list (test-create '(equal (plus (plus (minus x) u) (plus u x)) null)))))
+  (setq c3 (eds-clause_create "A2" (list (test-create '(equal (plus z z) null)))))
+
+  (setq tt1 (etree-create :subtrees nil))
+  (setq tt2 (etree-create :subtrees nil))
+
+  (setq cc1 (list c1))
+  (setq cc2 (list c3))
+
+  (mapc #'(lambda (clause)
+	    (let ((store (etree-store_create :contents (second (eds-term_arguments (first (eds-clause_literals clause))))))
+		  (term (first (eds-term_arguments (first (eds-clause_literals clause))))))
+	      (etree-insert tt1 (list term) store)))
+	cc1) 
+  (mapc #'(lambda (clause)
+	    (let ((store (etree-store_create :contents (second (eds-term_arguments (first (eds-clause_literals clause))))))
+		  (term (first (eds-term_arguments (first (eds-clause_literals clause))))))
+	      (etree-insert tt2 (list term) store)))
+	cc2) 
+
+  (unless (equal (euni-top (etree-subtrees tt2) (etree-subtrees tt1) #'test-apply) nil)
+    (error "11")))
+
+(progn 
+  (setq null (eds-const_create "0"))
+  (setq plus (eds-fct_create "+" 2))
+  (setq minus (eds-fct_create "-" 1))
+  (setq equal (eds-fct_create "=" 2))
+  (setq x (eds-var_create "X"))  
+  (setq u (eds-var_create "U"))
+  (setq v (eds-var_create "V"))
+  (setq z (eds-var_create "Z"))
+  (setq c1 (eds-clause_create "A1" (list (test-create '(equal (plus (plus (minus v) u) (plus u x)) x)))))
+  (setq c3 (eds-clause_create "A2" (list (test-create '(equal (plus z z) z)))))
+
+  (setq tt1 (etree-create :subtrees nil))
+  (setq tt2 (etree-create :subtrees nil))
+
+  (setq cc1 (list c1))
+  (setq cc2 (list c3))
+
+  (mapc #'(lambda (clause)
+	    (let ((store (etree-store_create :contents (second (eds-term_arguments (first (eds-clause_literals clause))))))
+		  (term (first (eds-term_arguments (first (eds-clause_literals clause))))))
+	      (etree-insert tt1 (list term) store)))
+	cc1) 
+  (mapc #'(lambda (clause)
+	    (let ((store (etree-store_create :contents (second (eds-term_arguments (first (eds-clause_literals clause))))))
+		  (term (first (eds-term_arguments (first (eds-clause_literals clause))))))
+	      (etree-insert tt2 (list term) store)))
+	cc2) 
+
+  (unless (equal (euni-top (etree-subtrees tt2) (etree-subtrees tt1) #'test-apply) (list (list (eds-term_create minus (list v)))
+											 (list (eds-term_create
+												 plus
+												 (list (eds-term_create minus
+															(list v))
+												       (eds-term_create minus
+															(list v)))))))
+    (error "12")))
+
+
+
+(let ((tt1 (etree-create)) (tt2 (etree-create))
+      (t1 (test-create '(plus (minus (plus x (minus y))) (plus x z))))
+      (t2 (test-create '(plus u (plus v (plus (minus v) w))))))
+  (etree-insert tt1 (list t1) (eds-rule_create t1 nil))
+  (etree-insert tt2 (list t2) (eds-rule_create t2 nil))
+  (euni-top (etree-subtrees tt1) (etree-subtrees tt2) #'(lambda (term s1 s2)
+							  (print (list (eds-ib_term s1) (eds-ib_term s2))))))
+
+
+(let ((tt1 (etree-create)) (tt2 (etree-create))
+      (t1 (test-create '(plus y (minus (plus x y)))))
+      (t2 (test-create '(plus u v))))
+  (etree-insert tt1 (list t1) (eds-rule_create t1 nil))
+  (etree-insert tt2 (list t2) (eds-rule_create t2 nil))
+  (euni-top (etree-subtrees tt1) (etree-subtrees tt2) #'(lambda (term s1 s2)
+							  (print (list (eds-ib_term s1) (eds-ib_term s2))))))

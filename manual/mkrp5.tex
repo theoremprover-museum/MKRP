@@ -1,0 +1,2171 @@
+\chapter{Setting the MKRP Parameters}
+\label{SettingtheMKRPParameters}
+
+
+First it should be stated that for most problems the coding and not
+the option setting is the basis of automatically finding a proof, just
+as it is in programming: Giving an optimize option to the compiler
+very rarely leads to a drastically faster algorithm. The effect is
+even more remarkable when using an automatic theorem prover (see also
+\cite{KePr92}).
+
+The OPTIONS command enters the options module. It offers the
+possibility to adjust various parameters to govern the overall search
+behaviour and influence trace and protocol. The options are divided
+into various areas according to their tasks.
+
+
+\section{Explanation of the Commands}
+
+In the options module, the following commands are available:
+
+H[ELP]  P[RINT]  PP[RINT]  R[EAD]  W[RITE]  OK          V
+
+On window capable systems these commands are available via menus.
+
+\begin{tabbing}
+PP[RINT]  $<$File$>$ \=\kill
+H[ELP]\> prints a list of all available commands \\
+H[ELP]  $<$Com$>$ 	\> explains the command $<$Com$>$.\\
+\\
+P[RINT] $<$Area$>$ 	\> prints the options of $<$Area$>$ and their current values.
+\\
+PP[RINT]  $<$File$>$\> prints all areas , their options and default values 
+together\\
+\> with a detailed explanation on $<$File$>$.\\ 
+\>$<$File$>$ is handled like the file arguments of the operating system commands.\\
+\>It is written into the directory specified by DD and DE.\\
+\\
+R[EAD] $<$File$>$   \> 	 reads the option-values from $<$File$>$. This file 
+must have been \\
+\> created  by a W[RITE] $<$File$>$ command.\\
+\\
+W[RITE] $<$File$>$  \> writes all options and their current values on $<$File$>$.\\
+\\
+V  T/Y/YES/OK   \> 	 turns the manual terminal control on. \\
+V  NIL/N/NO     \>	 turns it off again. This doesn't work for all
+machines.\\
+\\
+$<$Area$>$       \>       prints all the options of the area $<$Area$>$\\
+\\
+$<$Opt$>$ $<$Val$>$   \>    sets the option $<$Opt$>$ to the new value $<$Val$>$
+\end{tabbing}
+
+\section{Explanation of the Options}
+
+The purpose of the options is to adjust the general search behaviour of the 
+theorem prover to the characteristics of the given problem. According  to 
+their tasks the options are grouped in the following categories: 
+
+ \quad     TWO   RED.I   RED.D   STR   SORT   ER  GEN   TR   PR
+
+All options have default values. 
+
+To influence the construction of the initial connection graph (CONSTRUCT) 
+the user can change the values of the options of TWO, RED.I, ER, SORT, and the option 
+SPLITTING of the area GEN.
+
+The search behaviour during the deduction process (REFUTE) can be 
+governed by the options of the areas RED.D, ER, SORT, and STR. 
+
+Tracing of the deduction process can be influenced by options of the area 
+TR. The information on the protocol can be selected by options of the area 
+PR (options of the areas TR and PR are discussed in detail in chapter \ref{TheOutputFacilities}).
+
+The options of the area ER enable the user to control equality reasoning
+for construction and refutation.
+
+All other options which do not fit in any of these areas are put into the 
+area GEN.
+
+To solve difficult problems it seems to be very useful to change the values 
+of the options:
+
+\begin{tabbing}
+STR\_TERM.BREADTH.FIRST\quad \=\kill
+        STR\_R.SELECTION \> (see page \pageref{strrselection})\\
+	ER\_PARAMODULATION \> (see page \pageref{erparamodulation})\\
+        ER\_WEIGHT.POLYNOMIALS \> (see page \pageref{erweightpolynomials})\\
+        ER\_P.SELECTION \> (see page \pageref{erpselection})\\
+	ER\_NARROW.DEPTH  \> (see page \pageref{ernarrowdepth})\\
+	ER\_COMPLETION  \> (see page \pageref{ercompletion})\\
+	TERM\_UNITS  \> (see page \pageref{termunits})\\
+ 	TERM\_ITERATIONS  \> (see page \pageref{termiterations})\\
+        GEN\_MANUAL.CONTROL \> (see page \pageref{genmanualcontrol})
+\end{tabbing}
+
+Advantages and disadvantages of the various option settings are discussed 
+below. Reduction operations should be switched off for efficiency reasons 
+if it is known that there is no possibility for applying a reduction 
+operation (especially link reductions).
+
+In the following description some effects of options of the areas TWO, 
+RED.I, and RED.D are demonstrated by examples of simple refutation graphs. 
+The default values of options are marked with *.
+
+
+\subsection{Options of the Category TWO}
+
+This category consists of options handling two-literal clauses during the 
+construction of the initial connection graph in a special way. The special 
+handling results in the insertion of additional links representing a 
+sequence of two or more deduction steps. 
+
+\subsubsection{TWO\_RULES}
+\index{{\sc two\_rules}}
+\index{rules} \index{option rules} \index{two option rules}
+
+The value of this option controls the special handling of two-literal
+clauses. 
+
+\begin{samepage}
+\Ex
+
+\begin{enumerate}
+\item
+Resolving link $L_1$ in figure \ref{TwoLiteralClause}a and
+inheriting link $L_2$
+creates the situation of figure \ref{TwoLiteralClause}b. Another resolution 
+leads to the clause of figure \ref{TwoLiteralClause}c.
+                                     
+This deduction process can be abbreviated by inserting a link between $C_2$ 
+and $C_3$ as done in figure \ref{TwoLiteralClause}d. Resolving on this new link has the same effect as resolving on $L_3$, 
+but needs only one resolution step.   
+
+\begin{figure}[ht]
+\caption{Two-Literal Clauses}
+\label{TwoLiteralClause}
+\hfill
+\parbox[t]{7cm}{
+\begin{picture}(64,10)
+\put(0,7){a)}
+% Klauselnamen
+\put(6,5){$C_2$}
+\put(30,5){$C_1$}
+\put(54,5){$C_3$}
+% Linknamen
+\put(18,3){$L_1$}
+\put(42,3){$L_2$}
+% Links
+\put(16,2){\line(1,0){8}}
+\put(40,2){\line(1,0){8}}
+% Letzte Zeile
+\put(0,0){\framebox(8,4){$T$}}
+\put(8,0){\framebox(8,4){$Pab$}}
+\put(24,0){\framebox(9,4){$\neg Pxy$}}
+\put(33,0){\framebox(7,4){$Ryx$}}
+\put(48,0){\framebox(9,4){$\neg Rba$}}
+\put(57,0){\framebox(7,4){$S$}}
+\end{picture}\\[3mm]
+\begin{picture}(64,10)
+\put(0,7){b)}
+% Klauselnamen
+\put(6,5){$C_4$}
+\put(54,5){$C_3$}
+% Linknamen
+\put(30,3){$L_3$}
+% Links
+\put(16,2){\line(1,0){32}}
+% Letzte Zeile
+\put(0,0){\framebox(8,4){$T$}}
+\put(8,0){\framebox(8,4){$Rba$}}
+\put(48,0){\framebox(9,4){$\neg Rba$}}
+\put(57,0){\framebox(7,4){$S$}}
+\end{picture}}
+\hfill
+\parbox[t]{7cm}{
+\begin{picture}(16,10)
+\put(0,7){c)}
+% Klauselnamen
+\put(6,5){$C_5$}
+% Letzte Zeile
+\put(0,0){\framebox(8,4){$T$}}
+\put(8,0){\framebox(8,4){$S$}}
+\end{picture}\\[3mm]
+\begin{picture}(64,10)
+\put(0,7){d)}
+% Klauselnamen
+\put(6,5){$C_2$}
+\put(54,5){$C_3$}
+% Linknamen
+\put(30,3){$L_4$}
+% Links
+\put(16,2){\line(1,0){32}}
+% Letzte Zeile
+\put(0,0){\framebox(8,4){$T$}}
+\put(8,0){\framebox(8,4){$Pab$}}
+\put(48,0){\framebox(9,4){$\neg Rba$}}
+\put(57,0){\framebox(7,4){$S$}}
+\end{picture}}
+\hfill
+\end{figure}
+
+                                        
+\item By this method we can save more than one resolution step as 
+shown in figure \ref{MoreTwoLiteralClause}
+    ($f$ is a binary function symbol).  The links with strokes are 
+replaced by the one without.
+By this way, chains of two-literal clauses of any length can be simulated 
+by one link. 
+
+\begin{figure}[ht]
+\caption{More Two-Literal Clauses}
+\label{MoreTwoLiteralClause}
+\begin{center}
+\begin{picture}(46,39)
+% Linkdurchstreichungen
+\put(32,12){\line(1,-1){4}}
+\put(10,28){\line(1,-1){4}}
+\put(24,26){\line(1,0){4}}
+% Links
+\put(6,16){\line(1,-1){14}}
+\put(28,4){\line(1,1){12}}
+\put(6,20){\line(1,1){12}}
+\put(26,32){\line(0,-1){12}}
+% Klauseln Oben
+\put(12,32){\framebox(10,4){$\neg Pxy$}}
+\put(22,32){\framebox(8,4){$Ryx$}}
+% Mitte 
+\put(0,16){\framebox(15,4){$Pfafbcd$}}
+\put(18,16){\framebox(20,4){$\neg Rufxfyz$}}
+\put(38,16){\framebox(15,4){$Puffxyz$}}
+% Letzte Zeile
+\put(20,0){\framebox(16,4){$\neg Pdffabc$}}
+\end{picture}
+\end{center}
+\end{figure}
+
+\item The special handling of two-literal clauses can also connect a clause 
+with        itself as in the situation in figure \ref{SelfResolvent}. 
+
+In the original graph without the circle link it is possible to deduce 
+the empty 
+clause. In the graph resulting from the special handling of two-literal
+clauses this is only possible when resolving on a circle link. 
+
+\begin{figure}[ht]
+\caption{Self Resolvent}
+\label{SelfResolvent}
+\begin{center}
+\begin{picture}(16,24)
+% Linkdurchstreichungen
+\put(3,13){\line(1,0){10}}
+% Links
+\put(8,8){\line(-1,3){4}}
+\put(8,8){\line(1,3){4}}
+\put(8,4){\oval(6,3)[b]}
+% Klauseln Oben
+\put(0,20){\framebox(8,4){$Pxy$}}
+\put(8,20){\framebox(8,4){$Pyx$}}
+% Letzte Zeile
+\put(3,4){\framebox(10,4){$\neg Paa$}}
+\end{picture}
+\end{center}
+\end{figure}
+
+\end{enumerate}
+\end{samepage}
+
+\PO
+
+\oline{T/Y/YES}{Two-literal clauses are treated as described above.}
+\oline{PARTIAL}{Link insertion only if the two clauses connected by the new 
+		link are different.}
+\oline{$^*$NIL/N/NO}{The two-literal clause algorithm is switched off.}
+
+\paragraph{Effects of the Special Handling of Two-Literal Clauses}
+
+The advantages of the special handling are at the one hand that the proof 
+procedure needs less deduction steps to deduce the empty clause, on the 
+other hand all intermediate clauses are not inserted 
+in the graph.
+Switching on the two-literal rule algorithm may  cause the system to 
+consume more time. The completion of the graph by this way may cause an
+increasing size of the graph. 
+
+The computations enforced by the of two-literal clauses are
+executed during the construction of the initial connection graph
+(CONSTRUCT) but take effect to the deduction steps during REFUTE.
+
+\paragraph{Remark}
+This option is incompatible with the equality predicate and its setting is 
+ignored if equations are present.
+
+\subsubsection{TWO\_SUPPRESS.NO.RULES}
+\index{{\sc two\_suppress.no.rules}}\index{suppress no rules} 
+\index{option suppress no rules} \index{two option suppress no rules}
+
+This option controls what to do if there 
+are chains of two-literal clauses which are longer  than the maximal 
+length. 
+
+\PO
+\oline{T/Y/YES}{The clauses are explicitly created and inserted into the 
+connection graph.}
+\oline{$^*$NIL/N/NO}{The creation of these clauses is suppressed and 
+therefore the potential links are ignored.}
+
+\paragraph{Remark}
+With value NIL for this option the proof procedure becomes incomplete. 
+
+ 
+\subsubsection{TWO\_RULES.MAXLEVEL}
+\index{{\sc two\_rules.maxlevel}}
+\index{rules maxlevel}\index{option rules maxlevel} 
+\index{two option rules maxlevel}
+
+The value of this option is the maximal length of two-literal clause
+chains which are substituted by one link. 
+
+\PO 
+\olineeins{Natural Numbers}
+\oline{Default Value}{1}
+
+
+\subsection{Options of the Category RED.I}
+
+This area contains options which influence the construction of the initial 
+connection graph
+
+\subsubsection{RED.I\_CLAUSE.MULTIPLE.LITERALS}
+\index{{\sc red.i\_clause.multiple.literals}}
+\index{clause multiple literals} \index{option clause multiple literals} \index{initial reduction option clause multiple literals}
+
+A clause containing identical literals can be simplified by deletion 
+of the multiple literals. Two literals are identical if they are connected 
+by an S2-link with empty substitution. With two-literal rules switched off, that is just the case when they have 
+\begin{itemize}
+\item the same sign,
+\item the same predicate symbol, and
+\item equal term lists.
+\end{itemize}
+(equal means here equal under a certain theory)
+
+Figure \ref{MultipleLiterals} shows examples,                   
+where $R$ is symmetric and $f$ is associative.
+
+\begin{figure}[ht]
+\caption{Multiple Literals}
+\label{MultipleLiterals}
+\begin{center}
+\begin{picture}(48,4)
+\put(0,0){\framebox(12,4){$Pa$}}
+\put(12,0){\framebox(12,4){$Pa$}}
+\put(28,2){$\rightarrow$}
+\put(36,0){\framebox(12,4){$Pa$}}
+\end{picture}
+\qquad\qquad
+\begin{picture}(64,4)
+\put(0,0){\framebox(16,4){$Rafxfyz$}}
+\put(16,0){\framebox(16,4){$Rffxyza$}}
+\put(38,2){$\rightarrow$}
+\put(48,0){\framebox(16,4){$Rafxfyz$}}
+\end{picture}
+\end{center}
+\end{figure}
+
+
+
+\PO
+\oline{$^*$T/Y/YES}{Multiple literals are removed.}
+\oline{NIL/N/NO}{Clauses with multiple literals remain unchanged.}
+
+\subsubsection{RED.I\_CLAUSE.PURITY}
+\index{{\sc red.i\_clause.purity}}
+\index{clause purity} \index{option clause purity} \index{initial reduction option clause purity}
+
+This option offers the possibility to delete all clauses of the connection 
+graph which cannot contribute to the deduction of the empty clause, because 
+they are ``pure''. A clause is pure, if and only if it contains a literal which 
+is not connectecd by an R1-link. This means no deduction step is 
+possible to reduce a pure clause to the empty clause, i.e.\ pure clauses 
+cannot support the deduction of the empty clause.
+
+
+
+
+\Ex
+
+The clause $C_1$ of figure \ref{PureLiterals} is pure because the literal 
+$S$ is not connected by an R-link and is therefore eliminated. All links 
+connecting $C_1$ to other clauses 
+are also deleted.             
+  
+            
+\begin{figure}[ht]
+\caption{Pure Literals}
+\label{PureLiterals}
+\begin{center}
+\begin{picture}(56,22)
+\put(0,18){$C_1$}
+\put(4,16){\framebox(6,4){$S$}}
+\put(10,16){\framebox(6,4){$R$}}
+\put(13,16){\line(0,-1){2}}
+\put(13,16){\line(-1,-1){2}}
+\put(13,16){\line(1,-1){2}}
+\put(16,16){\framebox(6,4){$O$}}
+\put(19,20){\line(0,1){2}}
+\put(22,16){\framebox(6,4){$Qy$}}
+\put(25,20){\line(0,1){2}}
+\put(28,16){\framebox(6,4){$Px$}}
+\put(31,16){\line(0,-1){12}}
+\put(28,0){\framebox(6,4){$Pa$}}
+\put(34,0){\framebox(6,4){$T$}}
+\put(37,4){\line(0,1){2}}
+\put(40,0){\framebox(6,4){$Uz$}}
+\put(47,2){$C_3$}
+\put(43,16){\line(0,-1){12}}
+\put(40,16){\framebox(6,4){$Ub$}}
+\put(43,20){\line(0,1){2}}
+\put(46,16){\framebox(6,4){$V$}}
+\put(53,18){$C_2$}
+\put(49,20){\line(0,1){2}}
+\end{picture}
+\end{center}
+\end{figure}
+
+
+                               
+                   		
+This operation changes the clause $C_3$ to a pure  clause, causing the 
+deletion of $C_3$.
+   
+                  
+                 
+This example shows an effect which is caused by the reduction rules 
+described in this and the following paragraph: Every deletion of a clause 
+may cause further deletions of clauses and links (snowball effect).\index{snowball effect}
+
+
+
+\PO
+\oline{T/Y/YES}{Pure clauses are deleted.}
+\oline{$^*$P/PARTIAL}{Removal only if no equations are in the clauses.}
+\oline{NIL/N/NO}{Pure clauses remain in the graph.}
+
+
+\subsubsection{RED.I\_CLAUSE.TAUTOLOGY}
+\index{{\sc red.i\_clause.tautology}}
+\index{clause tautology} \index{option clause tautology} \index{initial reduction option clause tautology}
+
+This option controls the treatment of tautological clauses. A 
+tautological clause is always true under the actual theory. 
+
+\begin{figure}[ht]
+\caption{Tautologies}
+\label{Tautologies}
+\begin{center}
+\begin{picture}(24,24)
+\put(0,13){a)}
+\put(4,4){\framebox(10,4){$Pa$}}
+\put(14,4){\framebox(10,4){$\neg Pa$}}
+\put(4,20){\framebox(10,4){$Rab$}}
+\put(14,20){\framebox(10,4){$\neg Rba$}}
+\end{picture}
+\qquad
+\begin{picture}(30,24)
+\put(0,13){b)}
+\put(7,4){\framebox(20,4){$ga=ga$}}
+\put(4,20){\framebox(26,4){$fafbc=ffabc$}}
+\end{picture}
+\qquad
+\begin{picture}(24,24)
+\put(0,13){c)}
+\put(0,4){\framebox(8,4){$\neg Px$}}
+\put(8,4){\framebox(8,4){$Qb$}}
+\put(16,4){\framebox(8,4){$Rx$}}
+\put(4,20){\framebox(8,4){$Py$}}
+\put(12,20){\framebox(8,4){$\neg Ry$}}
+\put(4,8){\line(1,3){4}}
+\put(20,8){\line(-1,3){4}}
+\put(12,4){\oval(16,8)[b]}
+\end{picture}
+\end{center}
+\end{figure}
+
+
+\begin{enumerate}
+\item A clause containing two literals which have
+\begin{itemize}
+\item different signs,
+\item the same predicate symbol, and
+\item equal term lists
+\end{itemize}
+is a tautology.
+Figure \ref{Tautologies}a shows two examples ($R$ is symmetric).
+
+
+\item  A clause containing a literal of the form $t_1 = t_2$ with $t_1$
+equal to $t_2$ is a tautology.
+Figure \ref{Tautologies}b shows two examples ($f$ is associative).
+
+
+\item A clause containing two literals which 
+are connected by an R-link with $\epsilon$-unifier caused by the
+two-rule algorithm is a tautology.  Figure \ref{Tautologies}c shows an
+example.
+\end{enumerate}
+
+                            
+Additional links created by the two-rule algorithm can also trigger other 
+reduction rules. In the following we do not mention this explicitly.
+
+\PO 
+\oline{$^*$T/Y/YES}{Removal of initial tautological clauses.}
+\oline{NIL/N/NO}{No removal.}
+
+\subsubsection{RED.I\_CLAUSE.TAUTOLOGY.RECHECK}
+\index{{\sc red.i\_clause.tautology.recheck}}
+\index{clause tautology recheck} \index{option clause tautology recheck} \index{initial reduction option clause tautology recheck}
+The tautology reduction rule described so far is incomplete. For example 
+suppose we have the three clauses in figure \ref{TautologyLinkCondition}.
+
+\begin{figure}[ht]
+\caption{Tautology Link Condition}
+\label{TautologyLinkCondition}
+\begin{center}
+\begin{picture}(38,26)
+\put(0,21){$C_1$}
+\put(4,20){\framebox(6,4){}}
+\put(10,20){\framebox(6,4){$P$}}
+\put(10,4){\framebox(6,4){$\neg P$}}
+\put(13,8){\line(0,1){12}}
+\put(16,4){\framebox(6,4){}}
+\put(18,1){$C_3$}
+\put(16,22){\line(1,0){6}}
+\put(17,23){$L_1$}
+\put(22,20){\framebox(6,4){$\neg P$}}
+\put(22,4){\framebox(6,4){$P$}}
+\put(25,8){\line(0,1){12}}
+\put(28,20){\framebox(6,4){}}
+\put(35,21){$C_2$}
+\end{picture}
+\end{center}
+\end{figure}
+ 
+                                            
+               
+If the link $L_1$ is missing, possible deduction steps can be lost by the 
+deletion of the tautology $C_3$. The existence of the link $L_1$ is here 
+termed as\index{link condition} 
+``link condition''. For the reduction rule subsumption a 
+similar link condition exists. These link 
+conditions make several additional checks necessary: 
+\begin{itemize}
+\item after link insertion to check if a link condition is now fulfilled
+\item after link deletion to check if a link condition becomes now superfluous
+\end{itemize}
+All recheck options manage additional checks to ensure these conditions
+after removals or insertions of links.
+The adjustment of the tautology recheck
+option controls a renewed tautology check after 
+link insertion and deletion. After link deletion the link condition can 
+become superfluous.
+
+\Ex
+
+In figure \ref{TautologyLinkCondition} the link condition would be not
+fulfilled and the tautology $C_3$ could not be deleted when link $L_1$
+was missing. In this case deleting one of the other links would cause
+the link condition to become superfluous and $C_3$ could be deleted.
+After link insertion a renewed check is also necessary because the
+inserted link can fulfill the link condition. If a link is inserted by
+the two-rule algorithm, a clause which was no tautology can now become
+a tautology.
+                                     
+\PO
+\oline{$^*$PARTIAL/P}{Only clauses which are incident
+(i.e. directly connected) to 
+the clauses the link is inserted (or deleted) between are 
+checked.}
+\oline{NIL/N/NO}{The option is switched off.}
+
+
+
+\subsubsection{RED.I\_CLAUSE.SUBSUMPTION}
+\index{{\sc red.i\_clause.subsumption}}
+\index{clause subsumption} \index{option clause subsumption} \index{initial reduction option clause subsumption}
+
+This option controls the treatment of subsumed clauses in the initial
+graph. A clause $C$ subsumes a clause $D$ if $C$ has less than or the same
+number of literals as
+$D$ and there exists a substitution such that $\sigma(C) \subset
+D$. If the deduction of the empty clause by $D$ is possible it is also
+possible and in most cases even shorter by using the clause $D$. By
+this it seems useful to delete the subsumed clause (see also
+\cite{Loveland78,Raph84}).
+
+In figure \ref{Subsumption}
+$C_1$ can be deleted because it is subsumed by $C_2$. Subsumption
+possibilities are checked by using so-called S1-links (see \cite{Eisinger89}).
+
+\begin{figure}[ht]
+\caption{Subsumption}
+\label{Subsumption}
+\begin{center}
+\begin{picture}(28,20)
+\put(0,1){$C_1$}
+\put(0,17){$C_2$}
+\put(4,0){\framebox(8,4){$Pz$}}
+\put(12,0){\framebox(8,4){$Pfa$}}
+\put(20,0){\framebox(8,4){$Sb$}}
+\put(4,16){\framebox(8,4){$Px$}}
+\put(12,16){\framebox(8,4){$Pfy$}}
+\put(8,4){\line(0,1){12}}
+\put(16,4){\line(0,1){12}}
+\end{picture}
+\end{center}
+\end{figure}
+
+
+\PO
+\oline{$^*$T/Y/YES}{Subsumed initial clauses are removed.}
+\oline{NIL/N/NO}{No removal.}
+
+\subsubsection{RED.I\_CLAUSE.SUBSUMPTION.RECHECK}
+\index{{\sc red.i\_clause.subsumption.recheck}}
+\index{clause subsumption recheck} \index{option clause subsumption recheck} 
+\index{initial reduction option clause subsumption re\-check}
+
+The link condition for the subsumption rule is managed similar to that of
+tautology.
+
+                                       
+\PO
+\oline{$*$PARTIAL/P}{Only clauses which are incident (i.e.\ directly 
+connected) to the clauses between which the link is inserted (or deleted)
+are checked.}
+\oline{NIL/N/NO  }{The option is switched off.}
+
+
+\subsubsection{RED.I\_REPL.FACTORING}
+\index{{\sc red.i\_repl.factoring}}
+\index{replacement factoring} \index{option replacement factoring} \index{initial reduction option replacement factoring}
+
+A factor $C$ may subsume its parent clause $D$ and therefore $D$ can 
+be deleted. 
+Instead of executing the factorization step and then deleting the subsumed 
+clause, $C$ can be obtained by simply erasing the appropriate literal of the 
+parent clause $D$, i.e.\ factorization and the application of the subsumption 
+reduction rule can be grouped together to a macro graph operation. 
+
+\begin{samepage}
+
+\Ex
+A factor of $C_1$ in figure \ref{ReplFactoring}a is $C_2$.
+$C_1$ is subsumed by $C_2$ and can be deleted. The instantiation and 
+erasure of the three 
+literals as in figure \ref{ReplFactoring}b has the same effect.
+\end{samepage}
+
+\begin{figure}[ht]
+\caption{Replacement Factoring}
+\label{ReplFactoring}
+\begin{center}
+\begin{picture}(54,6)
+\put(0,1){$C_1$}
+\put(0,5){a)}
+\put(4,0){\framebox(10,4){$Px$}}
+\put(14,0){\framebox(10,4){$Qay$}}
+\put(24,0){\framebox(10,4){$Pa$}}
+\put(34,0){\framebox(10,4){$Qxy$}}
+\put(44,0){\framebox(10,4){$Qaz$}}
+\end{picture}
+\quad
+\begin{picture}(22,6)
+\put(0,1){$C_2$}
+\put(4,0){\framebox(10,4){$Pa$}}
+\put(14,0){\framebox(10,4){$Qaz$}}
+\end{picture}\\
+\vspace{0.8cm}
+\begin{picture}(54,8)
+\put(0,3){$C_1$}
+\put(0,7){b)}
+\put(4,2){\framebox(10,4){$Px$}}
+\put(5,0){\line(1,1){8}}
+\put(13,0){\line(-1,1){8}}
+\put(14,2){\framebox(10,4){$Qay$}}
+\put(15,0){\line(1,1){8}}
+\put(23,0){\line(-1,1){8}}
+\put(24,2){\framebox(10,4){$Pa$}}
+\put(34,2){\framebox(10,4){$Qxy$}}
+\put(35,0){\line(1,1){8}}
+\put(43,0){\line(-1,1){8}}
+\put(44,2){\framebox(10,4){$Qaz$}}
+\end{picture}
+\end{center}
+\end{figure}
+
+
+                                 
+
+A possible generalization is the erasure of literals which become false 
+under all theories by the instantiation step as in figure \ref{RFfalse}. 
+
+                                     
+\begin{figure}[ht]
+\caption{Replacement Factoring with False Literals}
+\label{RFfalse}
+\begin{center}
+\begin{picture}(64,8)
+\put(4,2){\framebox(10,4){$Px$}}
+\put(5,0){\line(1,1){8}}
+\put(13,0){\line(-1,1){8}}
+\put(14,2){\framebox(10,4){$Pa$}}
+\put(24,2){\framebox(10,4){$Qx$}}
+\put(25,0){\line(1,1){8}}
+\put(33,0){\line(-1,1){8}}
+\put(34,2){\framebox(10,4){$x \neq a$}}
+\put(35,0){\line(1,1){8}}
+\put(43,0){\line(-1,1){8}}
+\put(48,4){$\rightarrow$}
+\put(54,2){\framebox(10,4){$Pa$}}
+\end{picture}
+\end{center}
+\end{figure}
+
+%\begin{samepage}
+
+\PO
+
+\oline{$^*$T/Y/YES}{Switched on.}
+\oline{NIL/N/NO}{Switched off.}
+%\end{samepage}
+
+
+
+
+\subsubsection{RED.I\_REPLACEMENT.FACTORING.RECHECK}
+\index{{\sc red.i\_replacement.factoring.re\-check}}
+\index{replacement factoring recheck} 
+\index{option replacement factoring recheck} 
+\index{initial reduction option replacement factoring re\-check}
+
+The adjustment of this option controls a renewed check for replacement 
+factoring after link deletion or link insertion. For example suppose the 
+situation where a link is inserted by the two-rule algorithm and makes a 
+replacement factoring possible. 
+
+\PO
+\oline{$^*$T/Y/YES}{Replacement factoring recheck is switched on.}
+\oline{NIL/N/NO}{Switched off.}
+
+
+
+\subsubsection{RED.I\_CLAUSE.REPL.RESOLUTION}
+\index{{\sc red.i\_clause.repl.resolution}}
+\index{clause replacement resolution} \index{option clause replacement resolution} \index{initial reduction option clause replacement resolution}
+
+Just as a factor may subsume its parent, a resolvent may subsume one of 
+its parents. As above (for RED.I\_CLAUSE.REPL.FACTORING) some 
+deduction steps can be 
+grouped together to a macro graph operation. 
+
+\begin{enumerate}
+\item The simplest case is 
+the following:
+Suppose we have a unit clause $\{Pa\}$ and a clause  $C_2$: $\{\neg Pa, Qy\}$.
+The result of the resolution step $\{Qy\}$ with subsequent subsumption of
+the second clause can be 
+obtained by simply erasing the literal  $Pa$ in clause $C_2$.
+
+\item One possible generalization is to merge literals: Given clauses
+$C_1$: $\{Qb, Pa\}$ and $C_2$: $\{\neg Pa, Qb\}$ one can just erase $Pa$
+instead of resolving and subsuming $C_1$.
+
+\item Taking the instantiation process into account we can solve the 
+following example by this method:
+Resolution between the clauses $C_1$: $\{\neg Px, Pa\}$ and
+$C_2$: $\{\neg Pa, Qa\}$ leads to the resolvent
+$C_3$: $\{\neg Px, Qa\}$ which subsumes $C_2$. Hence we can achieve the same
+effect by replacing the first literal of $C_2$
+by the more general $Px$.
+\end{enumerate}
+
+A further generalization possibility is the deletion of literals which 
+become false in any interpretation by the instantiation process. 
+
+\PO 
+\oline{GENERALIZING}{One of the resolution literals can be substituted by a more 
+general one of the other clause, as described in 3.}
+\oline{$^*$SIMPLE}{A Resolution literal is erased and possible
+merging, factoring, and unit-re\-so\-lu\-tion is done (as in 2).}
+\oline{UNIT}{One of the parent clauses must be a unit clause (see 1).}
+\oline{NIL/N/NO}{Replacement resolution is switched off.}
+
+
+
+
+
+
+\subsubsection{RED.I\_CLAUSE.REPL.RESOLUTION.RECHECK}
+\index{{\sc red.i\_clause.repl.resolution.re\-check}}
+\index{clause replacement resolution recheck} 
+\index{option clause replacement resolution recheck} 
+\index{initial reduction option clause replacement resolution recheck}
+
+After link deletion or link insertion it is necessary to check a second time 
+for replacement resolution. The adjustment of this 
+option controls this renewed check for replacement resolution. 
+Suppose again that the two-rule algorithm inserts new links.
+
+                                                        
+\PO
+\oline{$^*$T/Y/YES}{Replacement resolution recheck is switched on.}
+\oline{NIL/N/NO}{Switched off.}
+
+\subsubsection{RED.I\_CLAUSE.REWRITING}
+\index{{\sc red.i\_clause.rewriting}}
+\index{clause rewriting} 
+\index{option clause rewriting} 
+\index{initial reduction option clause rewriting}
+
+This option controls two different reduction possiblities.
+The first one is the application of equations as rewrite rule system.
+The second serves as an abbreviation for definitions.
+Both can be combined.
+To make the axioms better readable (and to save time when typing the 
+axioms) it is possible to abbreviate some complex terms. These 
+abbreviations are replaced by the original terms during construction of the 
+initial graph. This replacement operation is controlled by this option
+if set to T or DEF. There are two possibilities
+
+\begin{enumerate}
+\item $a = t$     with: $a$ constant, $t$ ground term and $a \not\in t$.
+\item $f(x_1, \dots , x_n) = t$  with:   $x_i$ variables with maximal 
+domainsort, $f \not\in t$, and $t$ contains no variables $\neq x_i$.
+
+\Ex
+\begin{enumerate}
+    \item    $sq (x) = times (x\ x)$
+    \item   $x \le sq(x)$
+will be expanded to   $x \le times (x\ x)$.
+\end{enumerate}
+\end{enumerate}
+
+Additionally term rewriting is controlled by this option if it is
+adjusted to T or DEMODULATION (see section \ref{EqualityReasoning}).
+Then all terms are reduced to a normal form according to the
+Knuth-Bendix completion algorithm (see the option ER\_COMPLETION).
+
+\PO
+
+\oline{$^*$T/Y/YES}{Clause rewriting is switched on using elimination
+with definitions and normalization with ordered equations.}
+\oline{DEF}{Elimination of constant and function symbols in initial
+clauses using definitions as described above.}
+\oline{DEMODULATION}{Normalization with rewrite rules only.}
+\oline{NIL/N/NO}{Clause rewriting is switched off.}
+
+\subsubsection{RED.I\_LINK.INCOMPATIBILITY}
+\index{{\sc red.i\_link.incompatibility}}
+\index{link incompatibility} \index{option link incompatibility} \index{initial reduction option link incompatibility}
+
+An R1-link represents a possible deduction step and is marked with the 
+most general unifier of the two literals connected by this R1-link. 
+Resolving upon an R1-link makes instantiations of some literals necessary. 
+Such an instantiation can block further resolution possibilities. Two links 
+are compatible if their unifiers do not contradict each other, i.e.\
+resolution upon one link does not block resolving on the other link. Some 
+links are simultaneously compatible if their substitutions don't contradict 
+each other. A link can be deleted as incompatible, if not every other literal 
+has at least one link so that they are simultaneously compatible.
+
+\PO
+\oline{T/Y/YES}{Incompatible links are deleted.}
+\oline{$^*$PARTIAL}{Only one step purity look-ahead.}
+\oline{NIL/N/NO}{No removal of incompatible links.}
+
+\paragraph{Remark} 
+The check for link incompatibility is often very expensive and only a
+few links are removed. Therefore it seems very useful to choose only
+the ``partial''-adjustment or even to switch this option off.
+
+
+
+\subsubsection{RED.I\_LINK.TAUTOLOGY}
+\index{{\sc red.i\_link.tautology}}
+\index{link tautology} \index{option link tautology} \index{initial reduction option link tautology}
+
+The resolvent of two clauses can be a tautology. Tautologies can be 
+removed from the graph. Therefore it seems useful to remove links which 
+would generate tautologies.
+
+For the handling of the link condition we introduce a state ``inhibited''
+for links, which can not be removed. Inhibited links are not selected for
+any operation until no other links are available. This state is not inherited.
+
+\PO
+\oline{T/Y/YES}{Removal of tautology-generating links without link
+condition  check.}
+\oline{$^*$REMOVE-INHIBIT/RI}%
+{Removal of the links complying with the link condition.
+Inhibition of the others.}
+\oline{INHIBIT/I}{Inhibition of tautology-generating links.}
+\oline{REMOVE/R}{Removal of the links complying with the link condition.}
+\oline{NIL/N/NO}{No removal, no inhibition.}
+
+\subsubsection{RED.I\_LINK.TAUTOLOGY.RECHECK}
+\index{{\sc red.i\_link.tautology.recheck}}
+\index{link tautology recheck} \index{option link tautology recheck} \index{initial reduction option link tautology recheck}
+
+The adjustment of this option controls a renewed check for a link
+tautology after link insertion or link removal.
+
+\PO
+\oline{T/Y/YES}{The option is switched on.}
+\oline{$^*$NIL/N/NO}{switched off.}  
+
+\subsubsection{RED.I\_LINK.SUBSUMPTION}
+\index{{\sc red.i\_link.subsumption}}
+\index{link subsumption} \index{option link subsumption} \index{initial reduction option link subsumption}
+
+Links which generate clauses that are subsumed by other clauses can be 
+removed. This removal operation is controlled by this option.
+
+
+\PO
+\oline{T/Y/YES}{Removal of the links without link condition check.}
+\oline{$^*$REMOVE-INHIBIT/RI}{Removal of the links complying with the
+link condition. Inhibition of the others.}
+\oline{INHIBIT/I}{Inhibition of the links.}
+\oline{REMOVE/R}{Removal of the links complying with the link 
+condition.}
+\oline{NIL/N/NO}{No removal, no inhibition.}
+
+\subsubsection{RED.I\_LINK.SUBSUMPTION.RECHECK}
+\index{{\sc red.i\_link.subsumption.recheck}}
+\index{link subsumption recheck} \index{option link subsumption recheck} \index{initial reduction option link subsumption recheck}
+
+This option influences a renewed link subsumption check upon link removal 
+or link insertion.
+
+\PO
+\oline{T/Y/YES}{Switched on.}
+\oline{$^*$NIL/N/NO}{Switched off.}
+
+
+\subsection{Options of the Category RED.D}
+
+This option-area consists of options for various reduction rules during 
+deduction.
+
+\subsubsection{RED.D\_CLAUSE.MULTIPLE.LITERALS}
+\index{{\sc red.d\_clause.multiple.literals}}
+\index{clause multiple literals} \index{option clause multiple literals} \index{deduction reduction option clause multiple literals}
+
+This option has the same effect as RED.I\_CLAUSE.MULTIPLE.LITERALS.
+
+\PO
+\oline{$^*$T/Y/YES}{Option is switched on.}
+\oline{NIL/N/NO}{Option is switched off.}
+
+\subsubsection{RED.D\_CLAUSE.PURITY}
+\index{{\sc red.d\_clause.purity}}
+\index{clause purity} \index{option clause purity} \index{deduction reduction option clause purity}
+
+The option has the same effect as RED.I\_CLAUSE.PURITY.
+
+\PO
+
+\oline{T/Y/YES}{Pure clauses are deleted.}
+\oline{$^*$P/PARTIAL}{Removal only if no equations are in the clauses.}
+\oline{NIL/N/NO}{Pure clauses remain in the graph.}
+
+
+
+\subsubsection{RED.D\_CLAUSE.TAUTOLOGY}
+\index{{\sc red.d\_clause.tautology}}
+\index{clause tautology} \index{option clause tautology} \index{deduction reduction option clause tautology}
+
+Treatment of deduced tautology clauses.
+Such clauses can be removed if no deduction possibility is lost by the 
+removal (for precise explanation see RED.I\_CLAUSE.TAUTOLOGY).
+
+\PO
+\oline{T/Y/YES}{Removal of the tautology clauses 
+without link                                                    condition check.}
+\oline{$^*$REMOVE-INHIBIT/RI}{Removal of the clauses where link condition is 
+met, reinsertion and inhibition of creator links.}
+\oline{INHIBIT/I}{Removal of the clauses as well as reinsertion and
+inhibition of creator links.}
+\oline{REMOVE/R}{Removal of the links complying with the link 
+condition.}
+\oline{NIL/N/NO}{No removal, no inhibition.}
+
+\subsubsection{RED.D\_CLAUSE.TAUTOLOGY.RECHECK}
+\index{{\sc red.d\_clause.tautology.recheck}}
+\index{clause tautology recheck} \index{option clause tautology recheck} 
+\index{deduction reduction option clause tautology re\-check}
+
+Renewed tautology check and treatment after insertion or removal of links 
+(for precise explanation see RED.I\_CLAUSE.TAUTOLOGY.RECHECK).
+
+
+\PO
+\oline{T/Y/YES}{Switched on for insertion and removal.}
+\oline{PARTIAL/P}{Switched on for insertion of incident links.}
+\oline{$^*$NIL}{Switched off.}
+
+
+\subsubsection{RED.D\_CLAUSE.SUBSUMPTION.FORWARD}
+\index{{\sc red.d\_clause.subsumption.for\-ward}}
+\index{clause subsumption forward} \index{option clause subsumption forward} \index{deduction reduction option clause subsumption forward}
+
+Treatment of deduced clauses which are subsumed by previous clauses.
+
+\PO
+\oline{T/Y/YES}{ Removal of the clauses without link condition check.}
+\oline{$^*$REMOVE-INHIBIT/RI}{In case of a deduced subsumed clause, removal of 
+the clause. If link condition is met reinsertion and                      
+inhibitation  of creator link.}
+\oline{INHIBIT/I}{Removal of the clauses as well as reinsertion and 
+inhibition                                of creator links.}
+\oline{REMOVE/R}{Removal of the clauses complying with the link
+condition.}
+\oline{NIL/N/NO}{No removal, no inhibition.}
+
+\subsubsection{RED.D\_CLAUSE.SUBSUMPTION.BACKWARD}
+\index{{\sc red.d\_clause.subsumption.back\-ward}}
+\index{clause subsumption backward} \index{option clause subsumption backward} \index{deduction reduction option clause subsumption backward}
+
+Treatment of clauses that are subsumed by deduced new clauses.
+
+
+\PO
+\oline{T/Y/YES}{Removal of all appropriate clauses without link condition 	check.}
+\oline{$^*$REMOVE}{Only removal of such clauses which comply with the link 	condition.}
+\oline{NIL/N/NO}{No removal.}
+
+
+\subsubsection{RED.D\_CLAUSE.SUBSUMPTION.RECHECK}
+\index{{\sc red.d\_clause.subsumption.re\-check}}
+\index{clause subsumption recheck} 
+\index{option clause subsumption recheck} 
+\index{deduction reduction option clause subsumption re\-check}
+
+This option controls a renewed subsumption check, if subsumptions 
+become possible or no longer possible by link insertion or 
+removal, respectively.
+
+\PO
+\oline{T/Y/YES}{Switched on for insertion and removal of links.}
+\oline{$^*$REMOVE/R}{Removal of the clauses complying with the link condition.}
+\oline{NIL/N/NO}{The option is switched off.}
+
+\subsubsection{RED.D\_CLAUSE.REPL.FACTORING}
+\index{{\sc red.d\_clause.repl.factoring}}
+\index{clause replacement factoring} \index{option clause replacement factoring} \index{deduction reduction option clause replacement factoring}
+
+The option has the same effect as RED.I\_CLAUSE.REPL.FACTORING.
+
+\PO
+\oline{$^*$T/YES/Y}{Switched on.}
+\oline{NIL/N/NO}{Switched off.}
+
+\subsubsection{RED.D\_CLAUSE.REPL.FACTORING.RECHECK}
+\index{{\sc red.d\_clause.repl.factoring.re\-check}}
+\index{clause replacement factoring recheck} 
+\index{option clause replacement factoring recheck} 
+\index{deduction reduction option clause replacement factoring re\-check}
+
+The option has the same effect as RED.I\_CLAUSE.REPL.FACTORING.RECHECK.
+
+\PO
+\oline{$^*$T/Y/YES}{Switched on.}
+\oline{NIL/N/NO}{Switched off.}
+
+\subsubsection{RED.D\_CLAUSE.REPL.RESOLUTION}
+\index{{\sc red.d\_clause.repl.resolution}}
+\index{clause replacement resolution} \index{option clause replacement resolution} \index{deduction reduction option clause replacement resolution}
+
+The option has the same effect as RED.I\_CLAUSE.REPL.RESOLUTION
+
+\PO
+\oline{GENERALIZING/G}{One of the resolution literals is replaced by a more 
+general                                 one of the other clause.}
+\oline{$^*$SIMPLE/S}{Switched on, only for one step, without generalizing.}
+\oline{UNIT/U}{Switched on for unit partner only.}
+\oline{NIL/N/NO}{Switched off.}
+
+\subsubsection{RED.D\_CLAUSE.REPL.RESOLUTION.RECHECK}
+\index{{\sc red.d\_clause.repl.resolution.re\-check}}
+\index{clause replacement resolution recheck} \index{option clause replacement resolution recheck} \index{deduction reduction option clause replacement resolution recheck}
+
+The option has the same effect as RED.I\_CLAUSE.REPL.RESOLUTION.RECHECK.
+
+\PO
+\oline{$^*$T/YES/Y}{Switched on.}
+\oline{NIL/N/NO}{Switched off.}
+
+\subsubsection{RED.D\_CLAUSE.REWRITING}
+\index{{\sc red.d\_clause.rewriting}}
+\index{clause rewriting} \index{option clause rewriting} \index{deduction reduction option clause rewriting}
+
+See RED.I\_CLAUSE.REWRITING.
+\PO
+
+\oline{$^*$T/Y/YES}{Clause rewriting is switched on using elimination
+with definitions and normalization with ordered equations.}
+\oline{DEF}{Elimination of constant and function symbols in initial
+clauses using definitions as described above.}
+\oline{DEMODULATION}{Normalization with rewrite rules only.}
+\oline{NIL/N/NO}{Clause rewriting is switched off.}
+
+
+
+\subsubsection{RED.D\_LINK.INCOMPATIBILITY}
+\index{{\sc red.d\_link.incompatibility}}
+\index{link incompatibility} \index{option link incompatibility} \index{deduction reduction option link incompatibility}
+
+The option has the same effect as RED.I\_LINK.INCOMPATIBILITY.
+
+\PO
+\oline{$^*$T/YES/Y}{Removal of the links.}
+\oline{NIL/N/NO}{No removal.}
+
+\subsubsection{RED.D\_LINK.TAUTOLOGY}
+\index{{\sc red.d\_link.tautology}}
+\index{link tautology} \index{option link tautology} 
+\index{deduction reduction option link tautology}
+
+The option has the same effect as RED.I\_LINK.TAUTOLOGY.
+
+\PO
+\oline{T/Y/YES}{Removal of the links without link condition check.}
+\oline{$^*$REMOVE-INHIBIT/RI}{Removal of the links complying with the link 
+condition. 	           Inhibition of the others.}
+\oline{INHIBIT/I}{Inhibition of the links.}
+\oline{REMOVE/R}{Removal of the links complying with the link condition.}
+\oline{NIL/N/NO}{No removal, no inhibition.}
+
+
+
+\subsubsection{RED.D\_LINK.TAUTOLOGY.RECHECK}
+\index{{\sc red.d\_link.tautology.recheck}}
+\index{link tautology recheck} \index{option link tautology recheck} 
+\index{deduction reduction option link tautology re\-check}
+
+The option has the same effect as RED.I\_LINK.TAUTOLOGY.RECHECK.
+
+\PO
+\oline{T/Y/YES}{Switched on for removal and insertion.}
+\oline{PARTIAL/P}{Switched on for insertion of adjacent links.}
+\oline{$^*$NIL/N/NO}{Switched off.}
+
+\subsubsection{RED.D\_LINK.SUBSUMPTION}
+\index{{\sc red.d\_link.subsumption}}
+\index{link subsumption} \index{option link subsumption} \index{deduction reduction option link subsumption}
+
+The option has the same effect as RED.I\_LINK.SUBSUMPTION.
+
+\PO
+\oline{T/YES/Y}{Removal of links without link condition check.}
+\oline{$^*$REMOVE-INHIBIT/RI}{Removal of the links complying with the link 
+condition. Inhibition of the others.}
+\oline{INHIBIT/I}{Inhibition of the links.}
+\oline{REMOVE/R}{Removal of the links complying with the link condition.}
+\oline{NIL/N/NO}{No removal, no inhibition.}
+
+\subsubsection{RED.D\_LINK.SUBSUMPTION.RECHECK}
+\index{{\sc red.d\_link.subsumption.recheck}}
+\index{link subsumption recheck} \index{option link subsumption recheck} 
+\index{deduction reduction option link subsumption re\-check}
+
+The option has the same effect as RED.I\_LINK.SUBSUMPTION.RECHECK.
+
+\PO
+\oline{T/Y/YES}{Switched on for removal and insertion.}
+\oline{PARTIAL/P}{Switched on for insertion of adjacent links.}
+\oline{$^*$NIL/N/NO}{Switched off.}
+
+
+
+
+\subsection{Options of the Category STR}
+
+This area consists of options, which direct the search-behaviour while 
+looking for a proof.
+
+\subsubsection{FAC\_INITIAL}
+\index{{\sc fac\_initial}}
+\index{initial} \index{option initial} \index{fac option initial}
+
+This option controls factorizations in the initial graph.
+
+\PO
+\oline{T/Y/YES}{The option is switched on.}
+\oline{$^*$NIL/N/NO}{The option is switched off.}
+
+\subsubsection{FAC\_EACH.STEP}
+\index{{\sc fac\_each.step}}
+\index{each step} \index{option each step} \index{fac option each step}
+
+Factorizing after each deduction step.
+
+\PO
+\oline{T/Y/YES}{The option is switched on.}
+\oline{$^*$NIL/N/NO}{The option is switched off.}
+
+\subsubsection{STR\_RESOLUTION}
+\index{{\sc str\_resolution}}
+\index{resolution} \index{option resolution} \index{strategy option resolution}
+
+Adjustment of the basic deduction strategy during proof search. Various 
+classical refinement strategies like set-of-support, linear etc.\ are 
+available and are simulated in the connection graph calculus by marking
+R-links as ``active'' or ``passive''.
+
+\PO
+\olineeins{BASIC-RESOLUTION/BASIC/B}
+\oline{}{All links are marked as active such that 
+the 		selection module does a breadth first 		search.}
+\olineeins{$^*$SET-OF-SUPPORT/SOS/S}
+\oline{}{Only if there is at least one theorem 
+clause 		the Set-of-Support strategy will be 
+applied, 		else the strategy is switched to basic. }
+\olineeins{UNIT-REFUTATION/UNIT/U}
+\oline{}{All links connected to unit clauses are activated, the other 
+ones are marked passive.}
+\olineeins{LINEAR/L/LINEAR.AXM\#/LINEAR.THM\#/L.AXM\#/L.THM\#}
+\oline{\quad}{The first clause the linear strategy 
+starts with (i.e. the ``top clause'') is either 
+defined by using a concatenation of ``linear.axm'' or ``linear.thm''  and 
+the printname of the top clause as the 
+strategy name, or is asked for by the system if one 
+uses STR\_RESOLUTION = LINEAR (in this case 
+the system prints all clauses with their printname).}
+
+Combined strategies: 	
+
+U-B/Unit-Basic
+
+U-SOS/Unit-Set-of-Support
+
+U-L/U-L.AXM\#/U-L.THM\#-LINEAR
+ 
+Unit Resolution prunes the search space considerably, but
+unfortunately it is not complete for all clause sets. The user can
+define strategies: U-SOS, U-B, and U-L saying 	``if
+the clause set is horn renamable the unit-resolution, else
+Set-of-Support (basic, or linear strategy, respectively)''.
+
+
+
+\subsubsection{STR\_LINK.DEPTH}
+\index{{\sc str\_link.depth}}
+\index{link depth} \index{option link depth} \index{strategy option link depth}
+
+This option restricts the depth of the search space for the empty
+clause (with respect to the initial clauses).
+This link depth is defined as follows:
+
+	Links between clauses in the initial graph have the link 
+depth 	$d(L) = 0$.
+	For all other $L$: $d(L) = 1 + max (d(L_1), d(L_2))$ where $L_1$ and 
+$L_2$ 	are the links which generated the two clauses connected 
+by $L$.
+
+\PO
+\oline{Positive integer}{Upper bound for link depth.}
+\oline{$^*$N/NO/NIL}{No upper bound.}
+
+
+\subsubsection{STR\_R.SELECTION}
+\label{strrselection}
+\index{{\sc str\_r.selection}}
+\index{r selection} \index{option r selection} \index{strategy option r selection}
+
+The value of this option determines the selection function for R-links
+in the H-C strategy of ER\_PA\-RA\-MO\-DU\-LA\-TION. The smallest link relative to this function
+is selected. The value must be positive.
+
+The argumentlist of the selection function is
+(WEIGHT NOLIT VARIABLES DEPTH SUPPORT EQUATIONAL).
+
+WEIGHT is the weight of the link, that is, a value computed from the
+potential result. It is determined by the heuristic value function
+defined by STR\_WEIGHT.POLYNOMIALS. WEIGHT is always 0 for R-links 
+if ER\_PARAMODULATION is switched to HEURISTIC-COMPLETION. 
+
+NOLIT is the number of literals in the result clause.
+
+VARIABLES is the potential number of variables in the result clause.
+
+DEPTH is the depth of the link in the search space.
+
+SUPPORT is true iff one of
+the parents is in the set of support.
+
+EQUATIONAL is true iff all literals in the clause are positive
+equations. For this this option EQUATIONAL is always true.
+
+\PO  
+\olineeins{A Lisp expression using the six parameters above as free variables.}
+\oline{Default Value}{(* 10 (+ 2 VARIABLES (* 2 DEPTH) (* 3 NOLIT)))}  
+
+
+\subsubsection{STR\_TERM.DEPTH}
+\index{{\sc str\_term.depth}}
+\index{term depth} \index{option term depth} \index{strategy option term depth}
+
+By this option an upper bound for the term nesting depth can be specified. 
+This prevents deducing terms with depth greater than the specified one 
+and thereby restricting  the search-space. It is defined as $d(c) = 0$
+for constants, $d(x) = 0$ for variables, and $d(f(t_1,\dots ,t_n)) =
+1+ max(d(t_1),\dots ,d(t_n))$.
+
+\PO
+\oline{Positive integer}{Upper bound for term nesting depth.}
+\oline{$^*$N/NO/NIL}{No upper bound.}
+
+\subsubsection{STR\_FINITE.DOMAIN}
+\index{{\sc str\_finite.domain} \index{finite domain} }
+\index{option finite domain}   \index{strategy option finite domain}
+
+\PO
+\oline{$^*$T/Y/YES}{Special way of handling finite domains,
+           which are defined via clauses X=A1, X=A2, ..., X=AN, by
+instantiating all derived clauses (possibly incomplete).}
+\oline{N/NIL/NO}{No special handling.}
+
+
+\subsubsection{TERM\_UNITS}
+\index{{\sc term\_units}}
+\index{units} \index{option units} \index{terminator option units}
+\label{termunits}
+
+The option controls processing of proof patterns leading to unit
+clauses found by the terminator.
+
+\PO
+
+\oline{$^*$T/Y/YES}{The resolution steps necessary to produce the unit clauses 
+proposed by the terminator are performed.}
+\oline{NIL/N/NO}{Resolution possibilities leading to unit clauses found by 
+the 	terminator are ignored.}
+
+\subsubsection{TERM\_ITERATIONS}
+\index{{\sc term\_iterations}}
+\index{iterations} \index{option iterations} 
+\index{terminator option iterations}\label{termiterations}
+
+This option influences the length of a path which will be processed by
+the terminator proceeding from each clause to detect a ``terminator
+situation''. Terminator situations are like the one displayed in
+figure \ref{TerminatorSituation}. This connection graph \index{terminator situation}
+has no cycles in contrast to
+figure \ref{ConnectionGraph}. They are searched beginning with unit
+clauses (see \cite{AnOh83}).
+
+\begin{figure}[ht]
+\caption{Terminator Situation}
+\label{TerminatorSituation}
+\begin{center}
+\begin{picture}(56,40)
+% Oberste Zeile
+\put(0,33){\framebox(6,4){}}
+\put(18,33){\framebox(6,4){}}
+\put(24,33){\framebox(6,4){}}
+\put(30,33){\framebox(6,4){}}
+\put(42,33){\framebox(6,4){}}
+\put(48,33){\framebox(6,4){}}
+% Links zwischen erster und zweiter Zeile
+\put(3,33){\line(0,-1){6}}
+\put(21,33){\line(-2,-1){12}}
+\put(27,33){\line(0,-1){6}}
+\put(36,35){\line(1,0){6}}
+\put(51,33){\line(-2,-1){12}}
+% 2. Zeile
+\put(0,23){\framebox(6,4){}}
+\put(6,23){\framebox(6,4){}}
+\put(12,23){\framebox(6,4){}}
+\put(24,23){\framebox(6,4){}}
+\put(36,23){\framebox(6,4){}}
+% Links zw 2. und 3. Zeile
+\put(15,23){\line(0,-1){6}}
+% 3. Zeile
+\put(0,13){\framebox(6,4){}}
+\put(6,13){\framebox(6,4){}}
+\put(12,13){\framebox(6,4){}}
+% Links zwischen 3. und 4. Zeile
+\put(3,13){\line(0,-1){6}}
+\put(9,13){\line(1,-1){6}}
+% Letzte Zeile
+\put(0,3){\framebox(6,4){}}
+\put(12,3){\framebox(6,4){}}
+\end{picture}
+\end{center}
+\end{figure}
+
+
+\PO
+\oline{$^*$0}{No new unit clauses are generated and only the one level 	terminator situations can be found.}
+\oline{integer $>$ 0}{Deeper level terminator situations can be found, but more
+	time consuming.}
+
+
+\paragraph{Remark}	The number of TERM\_ITERATIONS should not be chosen too high 	(normally 3-5) because the time for one deduction step 	increases explosively. However this option can be 	coordinated with 
+STR\_TERM.DEPTH to restrict the set of clauses to 	examine.
+ 	
+\subsubsection{TERM\_SET.OF.SUPPORT}
+\index{{\sc term\_set.of.support}}
+\index{set of support} \index{option set of support} \index{terminator option set of support}
+
+Allows restricting the set of unit clauses examined by the terminator
+to detect a terminator situation.
+
+\PO
+\oline{$^*$NIL/N/NO}{No restriction of the unit clauses.}
+\oline{T/Y/YES}{The terminator only uses unit clauses of the set of support.}
+
+\subsubsection{TERM\_BREADTH.FIRST}
+\index{{\sc term\_breadth.first}}
+\index{breadth first} \index{option breadth first} \index{terminator option breadth first}
+
+Allows switching the search strategy of the terminator to breadth
+first.
+
+\PO
+\oline{T/Y/YES}{Pure breadth first search.}
+
+\oline{$^*$NIL/N/NO}{The basic search strategy of the terminator is used 
+(similar to 		the usual linear strategies).}
+
+
+\subsection{Options of the Category SORT}
+
+These options control the behaviour of the unifier 
+construction for a version of {\sc Mkrp} with dynamic sorts.
+
+The unification problem for dynamic sorts is in general undecidable and
+of type {\em infinitary\/}. Therefore it is necessary to restrict the search
+tree of the unification algorithm. This is controlled by the options
+SORT\_MAX.UNIFICATION.RULE.STEPS, SORT\_MAX.UNIFICATION.TREE.DEPTH,
+SORT\_MAX.UNIFICATION.TREE.OPEN.NODES, and SORT\_UNIFIER.STOP.NUMBER. If
+the algorithm stops due to the restriction imposed by one of the
+parameters, the unsolved subproblems are added to the resolvent as
+residues. Hence the completeness of the calculus is preserved.
+
+\subsubsection{SORT\_LITERALS}
+\index{{\sc sort\_literals}}
+\index{literals} \index{option literals} \index{sort option literals}
+
+\PO                      
+\oline{T/Y/YES}{Special way of handling sorts using sort literals (see
+\cite{Weidenbach91,Weidenbach93}).}
+\oline{$^*$N/NIL/NO}{Normal sorts.}
+
+\subsubsection{SORT\_MAX.UNIFICATION.RULE.STEPS}
+\index{{\sc sort\_max.unification.rule.steps}}
+\index{max unification rule steps} \index{option max unification rule steps} 
+\index{sort option max unification rule steps}
+
+\PO
+\olineeins{$^*$100}
+\oline{integer $>$ 0}{Upper bound for the number of rule steps to
+                be performed.}
+
+
+\subsubsection{SORT\_MAX.UNIFICATION.TREE.DEPTH}
+\index{{\sc sort\_max.unification.tree.depth}}
+\index{max unification tree depth} \index{option max unification tree depth} 
+\index{sort option max unification tree depth}
+
+\PO
+\olineeins{$^*$100}
+\oline{integer $>$ 0}{Upper bound for the depth of the search tree
+                in the unification algorithm.}
+
+
+\pagebreak[4]
+\subsubsection{SORT\_MAX.UNIFICATION.TREE.OPEN.NODES}
+\index{{\sc sort\_max.unification.tree.open.nodes}}
+\index{max unification tree open nodes} \index{option max unification tree open nodes}
+\index{sort option max unification tree open nodes}
+
+\PO
+\olineeins{$^*$20}
+\oline{integer $>$ 0}{Upper bound for the leaf number of the search tree
+                in the unification algorithm.}
+
+
+\subsubsection{SORT\_UNIFIER.STOP.NUMBER}
+\index{{\sc sort\_unifier.stop.number}}
+\index{unifier stop number} \index{option unifier stop number} 
+\index{sort option unifier stop number}
+
+\PO
+\olineeins{$^*$100}
+\oline{integer $>$ 0}{Upper bound for the number of most general unifiers to
+                be searched.}
+
+\subsubsection{SORT\_SHOW.VARIABLE.SORTS}
+\index{{\sc sort\_show.variable.sorts}}
+\index{show variable sorts} \index{option show variable sorts} 
+\index{sort option show variable sorts}
+
+\PO                      
+\oline{$^*$T/Y/YES}{When SORT\_LITERALS is switched on all Variables are printed
+           together with their sorts.}
+\oline{N/NIL/NO}{Normal output.}
+
+
+\subsection{Options of the Category ER}
+
+These are the options to control the built in equality resoning
+procedure. For the general procedure see section \ref{EqualityReasoning}.
+
+
+
+
+\subsubsection{ER\_PARAMODULATION}
+\index{{\sc er\_paramodulation}}
+\index{paramodulation} \index{option paramodulation}
+\index{equality option paramodulation}\label{erparamodulation}
+
+Choosing the paramodulation-strategy:
+
+\newdimen\il
+\newlength{\rulewithif}
+\newlength{\rulewithoutif}
+\newlength{\iflength}
+\newlength{\rulerestwidth}
+\newlength{\malength}
+\newbox\block
+\newbox\blocka
+\newbox\blockb
+
+
+\def\hlineblocktwo#1#2#3#4{%
+  \setbox\blocka=\hbox{#2}
+  \setbox\blockb=\hbox{#3}
+  \ifdim\wd\blocka<\wd\blockb\il=\wd\blockb\else\il=\wd\blocka\fi
+  \setbox\blockb=\hbox{#4}
+  \ifdim\il<\wd\blockb\il=\wd\blockb\else\fi
+  {\tolerance=2000
+  \spaceskip=3.33pt plus 10pt minus 1.11pt
+  \global\setbox\block=\vbox{\hsize=\il #3\\#4 \hrule  #2}}}
+
+\def\inferencerule#1{% Block in box \block   1: condition
+  \tolerance=2000
+  \spaceskip=3.33pt plus 10pt minus 1.11pt
+  \topsep0cm
+  \itemsep0cm
+  \parskip0mm
+  \parsep1mm
+  \setlength{\rulewithoutif}{\wd\block}
+  \settowidth{\iflength}{\quad if \quad}
+  \setlength{\rulewithif}{\rulewithoutif}
+  \addtolength{\rulewithif}{\iflength}
+  \setlength{\rulerestwidth}{\textwidth}
+  \addtolength{\rulerestwidth}{-1\rulewithif}  % Verbleibende Textbreite
+  \setbox\blocka=\vbox{\parbox{\rulerestwidth}{\raggedright #1}}
+  %\ifdim\ht\block>\ht\blocka{%
+   \setbox\blocka=\vbox{\parbox{\rulerestwidth}{#1}}
+   \hbox{$\vcenter{\box\block}$\quad \hfil if \hfil
+      $\left\{ \box\blocka \right. $}\hfil%}%
+  %\else{%
+  % \centerline{\hbox{\box\block}}
+  % \centerline{if}
+  % \begin{center}\begin{minipage}{10cm}#1\end{minipage}\end{center}}%
+  %\fi
+}
+
+
+
+\olineeins{$^*$HEURISTIC-COMPLETION}
+\oline{}{Paramodulation steps are used to generate new clauses from
+critical pairs. The resolution strategy STR\_RESOLUTION is followed
+for resolutions, that is, the resolution part of the theorem prover
+behaves as if no equality is present. All other strategies change the
+resolution behaviour, then it is controlled by the option
+ER\_P.SELECTION instead of STR\_R.SELECTION.}
+\oline{CLAUSE-GRAPH}{Ordered resolution and paramodulation with inheritance 
+of R-links.}
+\oline{ZHANG-KAPUR}{Strategy corresponding to \cite{ZhKa88}}
+{\samepage
+\olineeins{BACHMAIR-GANZINGER}
+\oline{}{Strategy corresponding to \cite{BaGa90}.}}
+\oline{SNYDER-LYNCH}{Basic paramodulation strategy, like basic narrowing \cite{SnLy91}.}
+\oline{DERSHOWITZ}{Unit-strategy \cite{Dershowitz91} if Horn clauses, else incomplete.}
+\pagebreak[3]
+
+
+For a brief introduction into the history of the superposition
+approach see section \ref{EqualityReasoning}.  The ordering is
+extended from the usual reduction ordering of the Knuth-Bendix
+algorithm to the literals in the clauses. For the following
+definitions we call a Literal $L$ {\em maximal in} a set of literals
+$\{L_1$, $\dots$, $L_n\}$ iff for all $i$ $L_i \not> L$, we call it
+strictly maximal if $L_i \not> L$ and $L_i \not= L$.
+
+
+
+The inference rule scheme for the Z-K strategy is:
+
+
+\hlineblocktwo%
+{\ }%
+{$\sigma(s[u\leftarrow r] = t$, $L_1$, $\dots$, $L_n$, $K_1$,
+$\dots$, $K_m)$}%
+{$s = t$, $L_1$, $\dots$, $L_n$}%
+{$l = r$, $K_1$, $\dots$, $K_m$}
+\inferencerule{%
+$u$ is a non variable position of $s$, $\sigma$ is an mgu of $s|u$ and $l$, $s=t$ 
+is maximal, { $l=r$ is maximal}, {$t \not> s$}, and $\sigma(r) \not> \sigma(l)$.}
+
+
+This inference rule is incomplete together with the tautology removal
+rule, as L.\ Bachmair and H.\ Ganzinger argue. The repaired the
+calculus in the following way: Two rules must be defined. The first
+one is strict superposition:
+
+
+\hlineblocktwo%
+{+}%
+{$\sigma(sign(s[u\leftarrow r] = t)$, $L_1$, $\dots$, $L_n$, $K_1$,
+$\dots$, $K_m)$}%
+{$sign(s = t)$, $L_1$, $\dots$, $L_n$}%
+{$(l = r)$, $K_1$, $\dots$, $K_m$}
+\inferencerule{
+\begin{itemize}
+\topsep0cm
+\itemsep0cm
+\tabcolsep1mm
+\item $u$ is a non variable position of $s$, 
+$\sigma$ is an mgu of $s|u$ and $l$.
+\item $\sigma(r) \not> \sigma(l)$ 
+\item $\sigma(l = r)$ strictly maximal in $\sigma(K_1$, $\dots$, $K_m)$
+\item $\sigma(l)$ does not occur in the negative literals of $\sigma(K_1$, $\dots$, $K_m)$
+\item $\sigma(t) \not> \sigma(s)$
+\item $\sigma(sign(s = t))$ is strictly maximal in all positive literals of
+$\sigma(L_1$, $\dots$, $L_n)$. If $sign$ is positive it is also strictly maximal for all
+negative literals, else it is only maximal
+\end{itemize}}
+
+
+The second one is named merging paramodulation:
+
+
+\hlineblocktwo%
+{+}%
+{$\sigma(s = t[u\leftarrow r]$, $s = t'$, $L_1$, $\dots$, $L_n$, $K_1$,
+$\dots$, $K_m)$}%
+{$(s = t)$, $(s' = t')$, $L_1$, $\dots$, $L_n$}%
+{$(l = r)$, $K_1$, $\dots$, $K_m$}
+\inferencerule{%
+\topsep0cm
+\itemsep0cm
+\tabcolsep1mm
+\begin{itemize}
+\item $\sigma = \tau\rho$ where $\tau$ is an mgu of $t|u$ and $l$, $\rho$ an
+      mgu of $\tau(s)$ and $\tau(s')$, and $u$ is a non variable position of $t$.
+\item $\sigma(r) \not> \sigma(l)$.
+\item $\sigma(l = r)$ strictly maximal in $\sigma(K_1$, $\dots$, $K_m)$
+\item $\sigma(l)$ does not occur in the negative literals of $\sigma(K_1$, $\dots$, $K_m)$
+\item $\sigma(s) \not> \sigma(t)$.
+\item $\sigma(s = t)$ strictly maximal in $\sigma(L_1$, $\dots$, $L_n)$
+\item $\sigma(s)$ does not occur in the negative literals of $\sigma(L_1$, $\dots$, $L_n)$
+\item $\tau(s) > \tau(t)$ and $\sigma(t') \not\geq \sigma(t)$.
+\end{itemize}}
+
+
+Of course for all strategies a factoring rule on maximal literals has
+to be added. We omit the rules for the other strategies because they have
+more intuitive names.
+
+\pagebreak[3]
+
+\subsubsection{ER\_COMPLETION }
+\index{{\sc er\_completion }}
+\index{completion } \index{option completion } 
+\index{equality option completion}\label{ercompletion}
+
+  Selection of completion strategy:
+
+\oline{IGNORING}{If undirectable equations occur they are ignored.}
+\oline{FAILING}{If undirectable equations occur the proof is aborted.}
+\oline{$^*$UNFAILING}{If undirectable equations occur they are used in both
+               directions and demodulation can be done with instances
+of them.}
+\olineeins{CONSTANT-CONGRUENCE}
+\oline{\quad}{If undirectable equations occur they are reduced considering
+variables as constants.}
+
+\subsubsection{ER\_WEIGHT.POLYNOMIALS}
+\label{erweightpolynomials}
+\index{{\sc er\_weight.polynomials}}
+\index{weight polynomials} \index{option weight polynomials} \index{equality option weight polynomials}
+
+Specification of the polynomials for the weighting of function symbols and
+the values for the constants in form of an associationlist.
+
+This weighting is used as WEIGHT in STR\_R.SELECTION and ER\_P.SELECTION
+in all strategies and for all links but not for
+R-links in HEURISTIC-COMPLETION, there the heuristic value is always 0 (compatibility reasons).
+The most similar value for ER\_PARAMODULATION to use WEIGHT would be CLAUSE-GRAPH.
+
+Syntax of polynomials:
+
+\begin{tabbing}		
+atom \quad \= ::= \quad \= \ \kill		    
+pol \> ::= \> (+ mon ... mon) {\tt |} mon\\
+mon \> ::= \> (* atom ... atom) {\tt |} atom\\
+atom \> ::= \> $<$number$>$ {\tt |} $<$variable$>$\\
+$<$number$>$ \>\> is positive integer or zero.\\
+$<$variable$>$ \>\> is one of the argument variables.
+\end{tabbing}
+
+\PO
+\olineeins{An association list associating polynomial to names.}
+\oline{Default value}{()}
+
+\Ex
+\begin{tabbing}
+(\=(P (X Y) (+ 3 X Y))\\
+\> (f (X Y) (+ X (* X Y)))\\ 
+\> (inv (X) (* X X))
+\\ \> (zero () 1)\\ 
+\> (id () 2))
+\end{tabbing}
+
+The heuristic value of {\tt P(f(zero id) id)} would be 8.
+
+
+\subsubsection{ER\_P.SELECTION}
+\label{erpselection}
+\index{{\sc er\_p.selection}}
+\index{p selection} \index{option p selection} \index{equality option p selection}
+
+The value of this option determines the selection function for R-links
+in all strategies of ER\_PA\-RA\-MO\-DU\-LA\-TION but
+HEURISTIC-COMPLETION and the selection function for P-links in all
+strategies. The smallest link relative to this function is selected. The
+value must be positive.
+
+The argumentlist of the function is
+(WEIGHT NOLIT VARIABLES DEPTH SUPPORT EQUA\-fTIO\-NAL).
+
+WEIGHT is the weight of the link, that is, a value computed from the
+potential result. 
+It is determined by the heuristic value function
+defined by STR\_WEIGHT.POLYNOMIALS.
+WEIGHT is always 0 for R-links if ER\_PARAMODULATION is switched
+to HEURISTIC-COMPLETION.
+
+NOLIT is the number of literals in the result clause.
+
+VARIABLES is the potential number of variables in the result clause.
+For this option VARIABLES is always 1.
+
+DEPTH is the depth of the link in the search space.
+
+SUPPORT is true iff one of the parents is in the set of support.
+
+EQUATIONAL is true iff all literals in the clause are positive
+equations.
+
+\PO  
+\olineeins{A Lisp expression using the six parameters above as free variables.}
+\oline{Default Value}{(* WEIGHT (if SUPPORT 1 1.5) (if EQUATIONAL 1 2))}  
+
+\subsubsection{ER\_CP.REDUCTION}
+\index{{\sc er\_cp.reduction}}
+\index{cp reduction} \index{option cp reduction} \index{equality option cp reduction}
+
+\oline{NIL/N/NO}{Critical pairs are not reduced, that is, no preview on the
+rewriting of links.}
+\oline{PARTIAL/P}{Critical pairs are just reduced if they are constructed.}
+\oline{$^*$T/Y/YES}{Critical pairs that is links are kept always reduced.
+In the case of HEURISTIC-COMPLETION only P1- and P2-links are considered, in
+the others R2-links are considered too.}
+
+
+\subsubsection{ER\_ORDERING}
+\index{{\sc er\_ordering}}
+\index{ordering} \index{option ordering} \index{equality option ordering}
+
+Selection of the reduction ordering.  For all orderings $0, 1, *, +, -$
+are wired in the corresponding ordering option as default. The actual
+ordering can be printed on the screen with {\tt (ord-show)}. The
+automatically generated one is automatically sort compatible. The user
+has to keep his one also sort compatible, else the inference system is
+incomplete.
+
+\PO
+\oline{KNUTH-BENDIX}{The ordering as defined by D.\ Knuth and P.\ Bendix 
+in their historical paper \cite{KnBe70}. The operator ordering 
+is defined via ER\_OPERATOR.ORDERING. The weights are defined using 
+the option ER\_KNUTH.BENDIX.WEIGHT. }
+\olineeins{KNUTH-BENDIX-REVERSE}
+\oline{}{Counting subterms in reverse order, i.e.\ left associative.}
+\oline{POLYNOMIAL}{Polynomial ordering. The polynomials are defined with the option ER\_POLYNOMIAL.WEIGHT.}
+\oline{RECURSIVE-PATH}{For the recursive path ordering the ordering of the operators
+ is determined according to 
+the option  ER\_OPERATOR.ORDERING. It is based on multi set orderings to compare sets of subterms.}
+\olineeins{$^*$LEXICOGRAPHIC-RECURSIVE-PATH}
+\oline{\quad }{Usual extension of the Recursive Path Ordering replacing the multiset ordering by a lexicographic one.}
+\pagebreak
+
+\subsubsection{ER\_OPERATOR.ORDERING}
+\index{{\sc er\_operator.ordering}}
+\index{operator ordering} \index{option operator ordering} \index{equality option operator ordering}
+
+The operator ordering for all orderings.
+
+\PO
+\olineeins{A list of arbitrary valid {\sc Mkrp}-symbols.}
+\oline{Default value}{($*\ -\ +\ 0\ 1$))}
+
+\subsubsection{ER\_KNUTH.BENDIX.WEIGHT}
+\index{{\sc er\_knuth.bendix.weight}}
+\index{knuth bendix weight} \index{option knuth bendix weight} \index{equality option knuth bendix weight}
+
+  An associationlist associating function and constant names to
+values.
+
+\PO
+
+\oline{Default value}{$((+\ 1)\ (*\ 1)\ (-\ 0)\ (0\ 1)\ (1\ 1))$}
+
+\subsubsection{ER\_POLYNOMIAL.WEIGHT}
+\index{{\sc er\_polynomial.weight}}
+\index{polynomial weight} \index{option polynomial weight} \index{equality option polynomial weight}
+
+  Specification of the polynomials for the function symbols and the
+values for the constants in form of an association list.
+Each entry is a triple ({\em name arguments polynomial\/}), where {\em
+name\/} is the name of a function, constant, or predicate symbol and args
+is the list of names of the variables in the polynomials.  The
+variables are associated in the given order to the subterms of terms.
+{\em Polynomial\/} is a polynomial with +, *, and \^ all two place functions
+and positive integers.
+
+Syntax of polynomials:
+
+\begin{tabbing}		
+atom \quad \= ::= \quad \= \ \kill		    
+pol \> ::= \> (+ mon ... mon) {\tt |} mon\\
+mon \> ::= \> (* exp ... exp) {\tt |} exp\\
+exp \> ::= \> (\^ exp $<$number$>$) {\tt |} $<$number$>$ {\tt |} $<$variable$>$\\
+$<$number$>$ \>\> is positive integer or zero.\\
+$<$variable$>$ \>\> is one of the argument variables.
+\end{tabbing}
+
+ 
+\PO
+\olineeins{An association list associating polynomial to names.}
+\oline{Default value}{%
+\vspace{-1em}
+\begin{tabbing}
+(\=(+ (X Y) (+ X (* 2 Y)))\\
+\> (* (X Y) (+ X (* X Y)))\\ 
+\> ($-$ (X) (* X X))
+\\ \> (0 () 2)\\ \> (1 () 2))
+\end{tabbing}\hfill}
+
+
+\subsubsection{ER\_NARROW.DEPTH}
+\index{{\sc er\_narrow.depth}}
+\index{narrow depth} \index{option narrow depth} 
+\index{equality option narrow depth}\label{ernarrowdepth}
+
+
+After the discovery of canonical rewrite systems attempts were made to use
+them in a wider context than simple reduction, such that not only the
+equality of terms can be decided but proper solutions for equations can be
+computed. By this way the matching in the directed application of equations
+for rewriting is replaced by complete unification. Of course this is no
+reduction operation and hence the complete search space must be regarded,
+which is nevertheless considerably reduced by the orientation of the
+equations. For this constrained usage of equations the notion ``narrowing'' was
+coined.
+
+M.\ Fay and J.\ M.\ Hullot \cite{Fay79,Hullot80} were the first
+to use narrowing techniques to construct unification 
+algorithms for a  canonical theory, J.\ M.\ Hullot found further
+constraints and called his procedure basic narrowing, that means 
+that postions that are prefixes of the narrow position must 
+not be considered for further steps.
+
+L.\ Fribourg \cite{Fribourg84,Fribourg85a,Fribourg85b} made additional
+restrictions, he used an innermost strategy, but for his method
+more conditions must hold for the equational theory. 
+
+This parameter determines the depth of the look-ahead via narrowing.
+
+\PO
+
+\olineeins{Integers between 0 and 10 inclusive.}
+\oline{Default value}{0}   
+
+\subsubsection{ER\_NARROW.NEXT}
+\index{{\sc er\_narrow.next}}
+\index{narrow next} \index{option narrow next} \index{equality option narrow next}
+
+    Determines how the heuristic is computed that decides which
+equation in the narrow-tree is inspected next:
+
+\PO
+\oline{$^*$:DEPTH}{The depth of the narrow-step.}
+\oline{:EQ}{The number of symbols in the equation.}
+\oline{:CLAUSE}{The number of symbols in the equation and the additional literals.}
+\oline{:TAU}{The number of symbols in the substitution that instantiates the
+          original equation to the actual one.}
+\oline{:ALL}{The sum of :DEPTH and :EQ.}
+\oline{:TRICK}{Allows to use an own function (USER:NAR=TRICK).}
+
+\subsubsection{ER\_NARROW.TEST}
+\index{{\sc er\_narrow.test}}
+\index{narrow test} \index{option narrow test} \index{equality option narrow test}
+
+    Choosing the narrowing-strategy and -tests. For a detailed
+    description see \cite{Krischer90} and \cite{Richts91}.
+
+\oline{Default value}{(:NORM :C :DELTA :SL :N)}
+\oline{:NORM}{Normal-narrowing: normalization after each narrow-step.}
+\oline{:C}{Commutative-narrowing.}
+\oline{:N}{Normalization-test: successful if the substitution that instantiates
+          the original equation to the actual one is reducible.}
+\oline{:DELTA}{Delta-test: successful if the substitution of a narrow-step from one
+          equation has been computed for another narrow-step before.}
+\oline{:SL}{Sufficient-large-test: successful if a non-basic occurrence is reducible.}
+
+The options ER\_NARROW.NEXT and  ER\_NARROW.TEST are actually not used.
+
+\subsubsection{ER\_COMPILE}
+\index{{\sc er\_compile}}
+\index{compile} \index{option compile} \index{equality option compile}
+
+Controls the compilation of rewrite rules into Lisp code (see
+\cite{Praecklein92}).
+
+\pagebreak
+\PO
+\oline{$^*$NIL}{Single non compiled rules are used for rewriting.}
+\oline{1 - 1000}{Specifies the number of steps after which
+                 the single rewrite rules are compiled.}
+\oline{TREE-INTERPRETER}{A tree is constructed for each function symbol
+                 and dynamically updated if deleting and inserting
+rules.}
+
+
+
+\subsection{Options of the Category GEN}
+
+This area consists of several general options.
+
+\subsubsection{GEN\_SPLITTING}
+\index{{\sc gen\_splitting}}
+\index{splitting} \index{option splitting} \index{general option splitting}
+
+This option allows partitioning of the theorem into several
+independent subproblems if the theorem contains conjunctions
+(Reduction of a problem in several smaller subproblems). The option
+causes a transformation of the theorem in DNF and then the DNF is
+splitted.
+
+\Ex
+
+$[(\exists x \forall y Px = Py) \Leftrightarrow ((\exists x Qx)
+\Leftrightarrow (\forall y Py))]
+\quad\Leftrightarrow\quad
+[(\exists x \forall y Qx = Qy) \Leftrightarrow ((\exists x Px)
+\Leftrightarrow (\forall y Qy))]$
+
+This is an example giben by Andrews. Direct transformation into clausal
+normal form would generate 128 clauses each having 8 literals to be
+inserted into the graph.  Splitting of the theorem with depth 2 produces
+8 independent graphs with 8 clauses each of which has two literals, that
+is, 8 relatively trivial subproblems must be solved.
+
+\PO
+\oline{NIL/N/NO}{Option is switched off.}
+\oline{Integer $\ge$ 0}{Switched on. Maximal nesting depth up to which 
+multiplication into DNF takes place in order to enable splitting.}
+\oline{T/Y/YES}{Switched on. Multiplication in all nesting depth.}
+\oline{Default Value}{0}
+
+\subsubsection{GEN\_PRESIMPLIFICATION}
+\index{{\sc gen\_presimplification} }
+\index{presimplification} 
+\index{option presimplification} \index{general option presimplification}
+   Removing obviously true and false components and expanding
+definitions.\index{definitions}\index{expanding definitions}
+
+Definitions are formulae of the form {\tt ALL X,Y P(X Y) EQV
+<}formula{\tt >} with different variables if {\tt P} does not occur in
+{\tt <}formula{\tt >}. They can be expanded by replacing all
+occurrences of {\tt P}s by an instance of the defining {\tt
+<}formula{\tt >}.
+
+\Ex
+
+{\tt ALL X,Y,Z P(X Y) EQV ...} is {\em not} a definition.
+
+{\tt ALL X,Y P(X Y) EQV ALL Z ...} is a definition.
+
+The quantified variables must have the same sort as specified for {\tt
+P}.
+
+\Ex
+
+{\tt ALL N,M:NAT P(N M) EQV ...} is a definition, only if {\tt P} is
+defined by {\tt TYPE P(NAT NAT)}.
+
+\pagebreak
+\PO
+\oline{NIL/N/NO}{Switched off.}
+\oline{PARTIAL/P}{Switched on only the removal of obviously true and false components.}
+\oline{$^*$T/Y/YES}{Switched on also for exanding of definitions.}
+
+\subsubsection{GEN\_MIN.EXPRESSION.LENGTH.FOR.FILE}
+\index{{\sc gen\_min.expression.length.for.file}}
+\index{min expression length for file} 
+\index{option min expression length for file}
+\index{general option min expression length for file}
+    Usage of a file to store the splitparts:
+
+\PO
+\oline{$^*$NIL/N/NO}{Store in virtual memory.}
+\oline{T/Y/YES}{Store in file.}
+\oline{Natural number}{If expression resulting from normalization is longer
+           than this number, store in file, else in virtual memory.}
+
+\paragraph{Remark}
+This option is only useful for problems with intensive normalization
+and on machines with small virtual memory.
+
+\subsubsection{GEN\_MIN.EXPRESSION.SIZE.FOR.FILE}
+\index{{\sc gen\_min.expression.size.for.file}}
+\index{min expression size for file}
+\index{option min expression size for file}
+\index{general option min expression size for file}
+    Usage of a file to store the splitparts:
+
+\PO
+\oline{$^*$NIL/N/NO}{Store in main memory.}
+\oline{T/Y/YES}{Store in file.}
+\oline{Natural number}{If expression resulting from normalization is larger
+           than this number, store in file, else in virtual memory.}
+
+\paragraph{Remark}
+This option is only useful for problems with intensive normalization
+and on machines with small virtual memory.
+
+
+\subsubsection{GEN\_MANUAL.CONTROL}
+\index{{\sc gen\_manual.control}}
+\index{manual control} \index{option manual control} 
+\index{option manual control}\label{genmanualcontrol}
+
+Allows the user to influence the proof. Links to be used for deduction can 
+be chosen interactively by the user. The potential result of active
+links is labeled with an asterisk. The manual selection can be slow if
+a lot of links exist and the menu facility is used to select among them.
+
+\pagebreak
+\PO
+\oline{T/Y/YES}{The option is switched on.}
+\oline{$^*$NIL/N/NO}{The option is switched off.}
+
+\paragraph{Remark}
+This option is very useful for debugging the input formula set
+(completeness of axioms, correct sorts). Here one can enter a hand
+made proof and examine whether the system is able to execute it.
+
+
+\subsubsection{GEN\_MAXIMUM.STEPS}
+\index{{\sc gen\_maximum steps}}
+\index{maximum steps} \index{option maximum steps} \index{general option maximum steps}
+
+Allows to limit the number of deduction steps of a proof. When reaching 
+the specified number of steps {\sc Mkrp} stops with the message 
+``RESULT: FAILURE.ABORTED.MAXSTEPS''.
+
+\PO
+\oline{$^*$NIL}{Infinite.}
+\oline{Positive integer}{Maximum number of deduction steps of a proof.}
+
+\paragraph{Remark}
+This option is important especially if the prover runs without
+supervision of a user. If for example the machine runs out of swap space
+and no refutation has been 
+found so far, the prover stops ``abnormal'', that is, it is not possible to create a 
+listing of the deduction steps made so far. If one can approximate the 
+maximal number of deduction steps, GEN\_MAXIMUM.STEPS can be set to this 
+number. After  reaching the specified step the deduction process stops  
+and it is now possible to create a listing to evaluate the successless work
+of {\sc Mkrp}. 
+
+\subsubsection{GEN\_GRAPH.SAVING}
+\index{{\sc gen\_graph.saving}}
+\index{graph saving} \index{option graph saving} \index{general option graph saving}
+
+Enables the user to store the actual state of the graph after a certain 
+number of deduction-steps in order to have the possibility to restart the 
+deduction process at this state. It is useful to save the graph a few steps 
+before GEN\_MAXIMUM.STEPS is reached, so that the graph can be continued, 
+if this seems promising. The save file can be very big, that is, up to some
+MByte.
+
+\PO
+\oline{$^*$NIL}{No effect.}
+\oline{Positive integer}{Number of deduction-steps between two savings of the                                     
+graph.}
+
+\paragraph{Remark} The option GEN\_SAVE.FILE allows specifying a file-name for the 
+graph  stored by the user.
+
+\subsubsection{GEN\_SAVE.FILE}
+\index{{\sc gen\_save.file}}
+\index{save file} \index{option save file} \index{general option save file}
+
+Allows to specify a file name on which the graph(s) (see 
+GEN:GRAPH.SAVING) will be stored. 
+
+\pagebreak
+\PO
+\oline{$<$File name$>$}{The system saves the graph on this file.}
+\oline{$^*$NIL/N/NO}{A default name for the saved graph will be used.}
+
+
+\subsubsection{GEN\_LISP.GARBAGE.COLLECTION}
+\index{{\sc gen\_lisp.garbage.collection}}
+\index{lisp garbage collection} \index{option lisp garbage collection} \index{general option lisp garbage collection}
+    Switch on the lisp garbage collector before address space becomes low.
+
+\PO
+    \oline{T/Y/YES}{Switched on.}
+    \oline{$^*$NIL/N/NO}{Switched off.}
+
+\subsubsection{GEN\_COMMON.LISP}
+\index{{\sc gen\_common.lisp}}
+\index{common lisp} \index{option common lisp} \index{general option common lisp}
+    Says whether to use pure Common Lisp.
+
+\PO
+    \oline{$^*$T/Y/YES}{Use pure Common Lisp.}
+    \oline{NIL/N/NO}{Use Symbolics or X-window features (editor options).}
+
+\subsubsection{GEN\_OTHER.PROVER}
+
+Using another theorem prover.
+
+\oline{mkrp}{A clause graph is printed on the graph file in a form readable for the REFUTE subsystem.}
+\oline{C}{A compiling version of the equality handling is used.
+Sorts and terminator don't work for
+this option.  Strategy corresponding to \cite{BaGa90},
+Ordering is the same as for HC strategy. This procedure is implemented
+in C and must be handled in a different way than {\sc Mkrp}. It is
+only used as input module to the C-program. The graph file is a compilable MAIN program for C.}
+\oline{ER}{The graph file is a compilable LISP program.}
+
+
+
+
+
+On a Symbolics or if an X-window capable system and terminal is used,
+the values of the options can be chosen using the mouse and a  
+window oriented menu system.

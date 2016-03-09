@@ -1,0 +1,280 @@
+ 
+ 
+ 
+             ****************************************************
+             *                                                  *
+             *   ATP-SYSTEM :  M K R P , UNI KARLSRUHE          *
+             *                                                  *
+             *      VERSION : 3-FEB-84                          *
+             *         DATE : 3-JUL-84  10:34:45                *
+             *                                                  *
+             ****************************************************
+ 
+ 
+ 
+ 
+ADJUSTMENT OF THE OPTIONS : 
+============================
+ 
+ 
+ 
+RED.I:CLAUSE.PURITY                   T
+RED.I:CLAUSE.TAUTOLOGY                T
+RED.I:CLAUSE.SUBSUMPTION              T
+RED.I:CLAUSE.REPL.FACTORING           T
+RED.I:CLAUSE.REPL.RESOLUTION          SIMPLE
+RED.I:CLAUSE.REWRITING                T
+RED.I:LINK.INCOMPATIBILITY            T
+RED.I:LINK.TAUTOLOGY                  REMOVE-INHIBIT
+RED.I:LINK.SUBSUMPTION                REMOVE-INHIBIT
+ 
+ 
+RED.D:CLAUSE.PURITY                   REMOVE
+RED.D:CLAUSE.TAUTOLOGY                REMOVE
+RED.D:CLAUSE.TAUTOLOGY.RECHECK        T
+RED.D:CLAUSE.SUBSUMPTION.FORWARD      REMOVE-INHIBIT
+RED.D:CLAUSE.SUBSUMPTION.BACKWARD     REMOVE
+RED.D:CLAUSE.SUBSUMPTION.RECHECK      T
+RED.D:CLAUSE.REPL.FACTORING           T
+RED.D:CLAUSE.REPL.FACTORING.RECHECK   T
+RED.D:CLAUSE.REPL.RESOLUTION          SIMPLE
+RED.D:CLAUSE.REPL.RESOLUTION.RECHECK  T
+RED.D:LINK.INCOMPATIBILITY            REMOVE
+RED.D:LINK.TAUTOLOGY                  REMOVE-INHIBIT
+RED.D:LINK.TAUTOLOGY.RECHECK          T
+RED.D:LINK.SUBSUMPTION                REMOVE-INHIBIT
+RED.D:LINK.SUBSUMPTION.RECHECK        T
+ 
+ 
+RED:SUB.CLAUSES.INITIAL               T
+RED:SUB.CLAUSES.EACH.STEP             T
+RED:SUB.INITIAL                       T
+RED:SUB.EACH.STEP                     T
+RED:PUR.CLAUSES.INITIAL               T
+RED:PUR.CLAUSES.EACH.STEP             T
+RED:PUR.INITIAL                       T
+RED:PUR.EACH.STEP                     T
+RED:TAU.CLAUSES.INITIAL               T
+RED:TAU.CLAUSES.EACH.STEP             T
+RED:TAU.INITIAL                       T
+RED:TAU.EACH.STEP                     T
+ 
+FAC:INITIAL                           NIL
+FAC:EACH.STEP                         NIL
+ 
+STR:RESOLUTION                        SET-OF-SUPPORT
+STR:E-RESOLUTION                      NIL
+STR:PARAMODULATION                    UNIT-ANCESTRY
+STR:LINK.DEPTH                        NIL
+STR:TERM.DEPTH                        NIL
+STR:R.DEMODULATION                    T
+STR:P.DEMODULATION                    T
+ 
+ 
+TERM:UNITS                            T
+TERM:ITERATIONS                       5
+TERM:SET.OF.SUPPORT                   NIL
+TERM:BREADTH.FIRST                    NIL
+ 
+GEN:SPLITTING                         0
+GEN:MANUAL.CONTROL                    NIL
+GEN:SYSTEM.STRIP                      NIL
+GEN:MAXIMUM.STEPS                     NIL
+GEN:GRAPH.SAVING                      NIL
+GEN:SAVE.FILE                         SAVE.DEFAULT
+GEN:BATCH.ANSWER                      SC
+ 
+ 
+TR:PREPROCESSING                      NIL
+TR:STEP.MODE                          LR
+TR:DUMP                               NIL
+TR:CLAUSE.MODE                        I
+TR:LINK.MODE                          I
+TR:TRACE.FILE                         NIL
+TR:TERMINAL                           NIL
+ 
+ 
+PR:INFIX.FORM                         T
+PR:PREFIX.FORM                        NIL
+PR:OPTIONS                            T
+PR:AXIOM.CLAUSES                      T
+PR:SYMBOLS                            NIL
+PR:STATISTICS                         NIL
+PR:PROOF.FILE                         PR.DEU.1.15.LEMMA.IS
+PR:LEFT.MARGIN                        0
+PR:LINELENGTH                         80
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : SORT ELEMENT,MENGE,VERKN,INDEX:ANY
+           TYPE EHG (MENGE VERKN INDEX) :MENGE
+           TYPE PLUS (INDEX INDEX) :INDEX
+           TYPE APPLY (VERKN ELEMENT ELEMENT) :ELEMENT
+           TYPE 1,M:INDEX
+           ALL X,Y:ELEMENT  ALL E:MENGE  ALL N,NSTRICH:INDEX  ALL PHI:VERKN  
+                 KLEINERGLEICH (NSTRICH N)
+                 AND  
+                 EL (X EHG (E PHI M))
+                 AND  
+                 EL (Y EHG (E PHI NSTRICH))
+               IMPL  
+               EL (APPLY (PHI X Y) EHG (E PHI PLUS (M NSTRICH)))
+           ALL K:INDEX  ALL X,Y:ELEMENT  ALL PHI:VERKN  ALL E:MENGE  
+               EL (X EHG (E PHI K)) AND EL (Y EHG (E PHI 1))
+               IMPL  
+               EL (APPLY (PHI X Y) EHG (E PHI PLUS (K 1)))
+           ALL K:INDEX  ALL X,Y,Z:ELEMENT  ALL PHI:VERKN  ALL E:MENGE  
+             EL (X EHG (E PHI PLUS (K 1))) IMPL X = APPLY (PHI Y Z)
+           ALL K:INDEX  ALL X,Y,Z:ELEMENT  ALL PHI:VERKN  ALL E:MENGE  
+               EL (X EHG (E PHI PLUS (K 1))) AND X = APPLY (PHI Y Z)
+               IMPL  
+               EL (Y EHG (E PHI K)) AND EL (Z EHG (E PHI 1))
+           ALL PHI:VERKN  ALL X,Y,Z:ELEMENT  
+             APPLY (PHI X APPLY (PHI Y Z)) = APPLY (PHI APPLY (PHI X Y)
+Z)
+ 
+THEOREMS : ALL E,F:MENGE  ALL X,Y:ELEMENT  ALL PHI:VERKN  ALL N,NSTRICH:INDEX  
+                 HG (F PHI)
+                 AND  
+                 ME (E F)
+                 AND  
+                 EL (X EHG (E PHI M))
+                 AND  
+                 EL (Y EHG (E PHI PLUS (NSTRICH 1)))
+                 AND  
+                 KLEINERGLEICH (NSTRICH N)
+               IMPL  
+               EL (APPLY (PHI X Y) EHG (E PHI PLUS (PLUS (M NSTRICH) 1)))
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+* A1   : ALL X,Y:INDEX  Z,U:ELEMENT  V:MENGE  W:VERKN  
+              -KLEINERGLEICH(X Y) -EL(Z EHG(V W M)) -EL(U EHG(V W X)) 
+              +EL(APPLY(W Z U) EHG(V W PLUS(M X))) 
+  R.=  : ALL X:ANY  +=(X X)
+* A2   : ALL X,Y:ELEMENT  Z:MENGE  U:VERKN  V:INDEX  
+              -EL(X EHG(Z U V)) -EL(Y EHG(Z U 1)) 
+              +EL(APPLY(U X Y) EHG(Z U PLUS(V 1))) 
+* A3   : ALL X,Y,Z:ELEMENT  U:MENGE  V:VERKN  W:INDEX  
+              -EL(X EHG(U V PLUS(W 1))) +=(X APPLY(V Y Z)) 
+* A4   : ALL X,Y,Z:ELEMENT  U:MENGE  V:VERKN  W:INDEX  
+              -EL(X EHG(U V PLUS(W 1))) -=(X APPLY(V Y Z)) +EL(Y EHG(U V W)) 
+* A5   : ALL X,Y,Z:ELEMENT  U:MENGE  V:VERKN  W:INDEX  
+              -EL(X EHG(U V PLUS(W 1))) -=(X APPLY(V Y Z)) +EL(Z EHG(U V 1)) 
+* A6   : ALL X:VERKN  Y,Z,U:ELEMENT  
+              +=(APPLY(X Y APPLY(X Z U)) APPLY(X APPLY(X Y Z) U)) 
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+  T7   : +HG(C_6 C_1)
+  T8   : +ME(C_2 C_6)
+* T9   : +EL(C_4 EHG(C_2 C_1 M))
+* T10  : +EL(C_3 EHG(C_2 C_1 PLUS(C_5 1)))
+* T11  : +KLEINERGLEICH(C_5 C_7)
+* T12  : -EL(APPLY(C_1 C_4 C_3) EHG(C_2 C_1 PLUS(PLUS(M C_5) 1)))
+ 
+ 
+ 
+ 
+--------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION
+ 
+INITIAL CLAUSES :       R.= : ALL X:ANY  +=(X X)
+                      * A1  : ALL X,Y:INDEX  Z,U:ELEMENT  V:MENGE  W:VERKN  
+                                   -KLEINERGLEICH(X Y) -EL(Z EHG(V W M)) 
+                                   -EL(U EHG(V W X)) 
+                                   +EL(APPLY(W Z U) EHG(V W PLUS(M X))) 
+                      * A2  : ALL X,Y:ELEMENT  Z:MENGE  U:VERKN  V:INDEX  
+                                   -EL(X EHG(Z U V)) -EL(Y EHG(Z U 1)) 
+                                   +EL(APPLY(U X Y) EHG(Z U PLUS(V 1))) 
+                      * A3  : ALL X,Y,Z:ELEMENT  U:MENGE  V:VERKN  W:INDEX  
+                                   -EL(X EHG(U V PLUS(W 1))) 
+                                   +=(X APPLY(V Y Z)) 
+                      * A4  : ALL X,Y,Z:ELEMENT  U:MENGE  V:VERKN  W:INDEX  
+                                   -EL(X EHG(U V PLUS(W 1))) 
+                                   -=(X APPLY(V Y Z)) +EL(Y EHG(U V W)) 
+                      * A5  : ALL X,Y,Z:ELEMENT  U:MENGE  V:VERKN  W:INDEX  
+                                   -EL(X EHG(U V PLUS(W 1))) 
+                                   -=(X APPLY(V Y Z)) +EL(Z EHG(U V 1)) 
+                      * A6  : ALL X:VERKN  Y,Z,U:ELEMENT  
+                                   +=(APPLY(X Y APPLY(X Z U))
+                                      APPLY(X APPLY(X Y Z) U))
+                        T7  : +HG(C_6 C_1)
+                        T8  : +ME(C_2 C_6)
+                      * T9  : +EL(C_4 EHG(C_2 C_1 M))
+                      * T10 : +EL(C_3 EHG(C_2 C_1 PLUS(C_5 1)))
+                      * T11 : +KLEINERGLEICH(C_5 C_7)
+                      * T12 : -EL(APPLY(C_1 C_4 C_3)
+                                  EHG(C_2 C_1 PLUS(PLUS(M C_5) 1)))
+ 
+ 
+T11,1  +  A1,1   -->  * R1  : ALL X,Y:ELEMENT  Z:MENGE  U:VERKN  
+                                   -EL(X EHG(Z U M)) -EL(Y EHG(Z U C_5)) 
+                                   +EL(APPLY(U X Y) EHG(Z U PLUS(M C_5))) 
+T10,1  +  A3,1   -->  * R2  : ALL X,Y:ELEMENT  +=(C_3 APPLY(C_1 X Y))
+R2,1  +  A5,2    -->  * R3  : ALL X:ELEMENT  
+                                   -EL(C_3 EHG(C_2 C_1 PLUS(C_5 1))) 
+                                   +EL(X EHG(C_2 C_1 1)) 
+T10,1  +  R3,1   -->  * R4  : ALL X:ELEMENT  +EL(X EHG(C_2 C_1 1))
+A2,3  +  T12,1   -->  * R5  : -EL(C_4 EHG(C_2 C_1 PLUS(M C_5))) 
+                              -EL(C_3 EHG(C_2 C_1 1)) 
+R4,1  +  R5,2    -->  * R6  : -EL(C_4 EHG(C_2 C_1 PLUS(M C_5)))
+R2,1  +  A4,2    -->  * R7  : ALL X:ELEMENT  
+                                   -EL(C_3 EHG(C_2 C_1 PLUS(C_5 1))) 
+                                   +EL(X EHG(C_2 C_1 C_5)) 
+T10,1  +  R7,1   -->  * R8  : ALL X:ELEMENT  +EL(X EHG(C_2 C_1 C_5))
+T9,1  +  R1,1    -->  * R9  : ALL X:ELEMENT  
+                                   -EL(X EHG(C_2 C_1 C_5)) 
+                                   +EL(APPLY(C_1 C_4 X)
+                                       EHG(C_2 C_1 PLUS(M C_5)))
+ 
+R8,1  +  R9,1    -->  * R10 : ALL X:ELEMENT  
+                                   +EL(APPLY(C_1 C_4 X)
+                                       EHG(C_2 C_1 PLUS(M C_5)))
+ 
+R10,1  +  A2,1   -->  * R11 : ALL X,Y:ELEMENT  
+                                   -EL(X EHG(C_2 C_1 1)) 
+                                   +EL(APPLY(C_1 APPLY(C_1 C_4 Y) X)
+                                       EHG(C_2 C_1 PLUS(PLUS(M C_5) 1)))
+ 
+R4,1  +  R11,1   -->  * R12 : ALL X,Y:ELEMENT  
+                                   +EL(APPLY(C_1 APPLY(C_1 C_4 X) Y)
+                                       EHG(C_2 C_1 PLUS(PLUS(M C_5) 1)))
+ 
+R12,1  +  A4,1   -->  * R13 : ALL X,Y:ELEMENT  
+                                   -=(APPLY(C_1 APPLY(C_1 C_4 X) Y)
+                                      APPLY(C_1 C_4 APPLY(C_1 X Y)))
+                                   +EL(C_4 EHG(C_2 C_1 PLUS(M C_5))) 
+A6,1  +  R13,1   -->  * R14 : +EL(C_4 EHG(C_2 C_1 PLUS(M C_5)))
+R14,1  +  R6,1   -->  * R15 : 
+ 
+ 
+ 
+--------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+ 

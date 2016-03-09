@@ -1,0 +1,168 @@
+ 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 4-APR-85                                                      *
+                    *         DATE : 13-JUN-85  00:55:05                                           *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:    5-JUN-85 16:54:13
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   K.A.2.12.4.COMMENT
+                                                                        
+************************************************************************
+                                                                        
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : * ***************************************************************************
+           * DEFINITIONEN DER MENGENLEHRE **********************************************
+           SORT SET:ANY
+           SORT ELEMENT:SET
+           TYPE EL(ELEMENT SET)
+           * DEFINITION 1.1: TEILMENGE
+           TYPE SUBSET(SET SET)
+           * DEFINITION 1.3: KARTESISCHES PRODUKT
+           TYPE CARTES(SET SET) :SET
+           TYPE PAIR(ELEMENT ELEMENT) :ELEMENT
+           * ***************************************************************************
+           * DEFINTIONEN VON RELATIONEN AUF EINER FESTEN MENGE S ***********************
+           SORT REL:SET
+           TYPE S:SET
+           SORT EL.OF.S:ELEMENT
+           ALL A:EL.OF.S EL(A S)
+           * DEFINITION 2.5: REFLEXIV
+           TYPE REFLEXIV(REL)
+           * DEFINITION 2.6: SYMMETRISCH
+           TYPE SYMMETRISCH(REL)
+           * DEFINITION 2.7: TRANSITIV
+           TYPE TRANSITIV(REL)
+           * DEFINITION 2.8: AEQUIVALENZRELATION
+           TYPE EQU.REL(REL)
+           ALL RHO:REL EQU.REL(RHO) EQV REFLEXIV(RHO) AND SYMMETRISCH(RHO) AND TRANSITIV(RHO)
+           * DEFINITION 2.10: REFLEXIV-SYMMETRISCHER ABSCHLUSS
+           TYPE REF.SYM.CLOS(REL) :REL
+           * DEFINITION 2.11: TRANSITIVER ABSCHLUSS
+           TYPE TRANS.CLOS(REL) :REL
+           * DEFINITION 2.12: ERZEUGTE AEQUIVALENZRELATION
+           TYPE GEN.EQU.REL(REL) :REL
+           ALL RHO:REL GEN.EQU.REL(RHO) = TRANS.CLOS(REF.SYM.CLOS(RHO))
+           * LEMMA 2.10.2
+           ALL RHO:REL REFLEXIV(REF.SYM.CLOS(RHO))
+           * LEMMA 2.10.4
+           ALL RHO:REL SYMMETRISCH(REF.SYM.CLOS(RHO))
+           * LEMMA 2.11.5
+           ALL RHO:REL TRANSITIV(TRANS.CLOS(RHO))
+           * LEMMA 2.12.1
+           ALL RHO:REL REFLEXIV(RHO) IMPL REFLEXIV(TRANS.CLOS(RHO))
+           * LEMMA 2.12.3
+           ALL RHO:REL SYMMETRISCH(RHO) IMPL SYMMETRISCH(TRANS.CLOS(RHO))
+ 
+THEOREMS : ALL RHO:REL EQU.REL(GEN.EQU.REL(RHO))
+ 
+ 
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+  A1   : ALL X:ANY  + =(X X)
+  A2   : ALL X:EL.OF.S  + EL(X S)
+* A3   : ALL X:REL  + =(GEN.EQU.REL(X) TRANS.CLOS(REF.SYM.CLOS(X)))
+* A4   : ALL X:REL  + REFLEXIV(REF.SYM.CLOS(X))
+* A5   : ALL X:REL  + SYMMETRISCH(REF.SYM.CLOS(X))
+* A6   : ALL X:REL  + TRANSITIV(TRANS.CLOS(X))
+* A7   : ALL X:REL  - REFLEXIV(X)  + REFLEXIV(TRANS.CLOS(X))
+* A8   : ALL X:REL  - SYMMETRISCH(X)  + SYMMETRISCH(TRANS.CLOS(X))
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION AND SPLITTING
+=================================================================
+ 
+ 
+SPLITPART 1
+ 
+* T9   : - REFLEXIV(GEN.EQU.REL(C_1))
+ 
+ 
+ 
+SPLITPART 2
+ 
+* T10  : - SYMMETRISCH(GEN.EQU.REL(C_1))
+ 
+ 
+ 
+SPLITPART 3
+ 
+* T11  : - TRANSITIV(GEN.EQU.REL(C_1))
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+INITIAL OPERATIONS ON THEOREMS
+==============================
+ 
+ 
+ 
+SPLITPART  1 :
+ 
+T9,1 & A3      -->  * RW1 : - REFLEXIV(TRANS.CLOS(REF.SYM.CLOS(C_1)))
+ 
+RW1,1 & A7,2   -->  * R2  : - REFLEXIV(REF.SYM.CLOS(C_1))
+ 
+R2,1 & A4,1    -->  * R3  :  []
+ 
+ 
+ 
+ 
+SPLITPART  2 :
+ 
+T10,1 & A3     -->  * RW4 : - SYMMETRISCH(TRANS.CLOS(REF.SYM.CLOS(C_1)))
+ 
+RW4,1 & A8,2   -->  * R5  : - SYMMETRISCH(REF.SYM.CLOS(C_1))
+ 
+R5,1 & A5,1    -->  * R6  :  []
+ 
+ 
+ 
+ 
+SPLITPART  3 :
+ 
+T11,1 & A3     -->  * RW7 : - TRANSITIV(TRANS.CLOS(REF.SYM.CLOS(C_1)))
+ 
+RW7,1 & A6,1   -->  * R8  :  []
+ 
+ 
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+  Q. E. D. 
+STOP

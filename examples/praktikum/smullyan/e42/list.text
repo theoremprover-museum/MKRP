@@ -1,0 +1,260 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 35.2 EQUALITY 16.1                                  *
+                     *           DATE: 15-DEC,1989  14:36                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 15-DEC,1989 14:35 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * AXIOMS FOR PROBLEM 42 %.
+             * GIVEN TWO PEOPLE A AND B.
+             * EACH OF THEM IS KNIGHT, KNAVE OR NORMAL.
+             * A SAYS : I AM OF LOWER RANK THAN B.
+             * B SAYS : THAT IS NOT TRUE.
+             *
+             * CAN THE RANKS OF A OR B BE DETERMINED ?
+             * CAN IT BE DETERMINED, IF ONE OF THESE STATEMENTS IS TRUE OR FALSE.
+             *
+             * LRANK2 (X Y) MEANS : X IS OF A LOWER RANK THAN Y.
+             * LRANK3 (X Y Z) MEANS : X SAYS : Y IS OF A LOWER RANK THAN Z.
+             * NLRANK3 (X Y Z) MEANS : X SAYS : Y IS NOT OF A LOWER RANK THAN Z.
+             *
+             ALL X KNIGHT (X) EQV NOT KNAVE (X) AND NOT NORMAL (X)
+             ALL X KNAVE (X) EQV NOT KNIGHT (X) AND NOT NORMAL (X)
+             ALL X NORMAL (X) EQV NOT KNIGHT (X) AND NOT KNAVE (X)
+             ALL X,Y LRANK (X Y) EQV KNAVE (X) AND (NORMAL (Y) OR KNIGHT (Y)) OR NORMAL (X) AND KNIGHT (Y)
+             ALL X,Y,Z LRANK3 (X Y Z) AND KNAVE (X) IMPL NOT LRANK (Y Z)
+             ALL X,Y,Z LRANK3 (X Y Z) AND KNIGHT (X) IMPL LRANK (Y Z)
+             ALL X,Y,Z NLRANK3 (X Y Z) AND KNAVE (X) IMPL LRANK (Y Z)
+             ALL X,Y,Z NLRANK3 (X Y Z) AND KNIGHT (X) IMPL NOT LRANK (Y Z)
+             LRANK3 (A A B)
+             NLRANK3 (B A B)
+             
+   Theorems: NOT LRANK (A B)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+           * A1:   + LRANK3(a a b)
+           * A2:   + NLRANK3(b a b)
+             A3:   All x:Any - KNAVE(x)  - NORMAL(x)
+             A4:   All x:Any - NORMAL(x)  - KNAVE(x)
+             A5:   All x:Any + KNAVE(x)  - KNAVE(x)  + NORMAL(x)
+             A6:   All x:Any + KNAVE(x)  - NORMAL(x)  + NORMAL(x)
+             A7:   All x:Any - KNAVE(x)  + KNAVE(x)  + NORMAL(x)
+             A8:   All x:Any + NORMAL(x)  - KNAVE(x)  + KNAVE(x)
+             A9:   All x:Any + NORMAL(x)  - NORMAL(x)  + KNAVE(x)
+             A10:  All x:Any - NORMAL(x)  + KNAVE(x)  + NORMAL(x)
+           * A11:  All x,y,z:Any - LRANK3(z y x)  - KNAVE(z)  - KNAVE(y)  - NORMAL(x)
+             A12:  All x,y,z:Any - NLRANK3(z y x)  - KNAVE(z)  + KNAVE(y)  + NORMAL(y)
+             A13:  All x,y,z:Any - NLRANK3(z y x)  - KNAVE(z)  + KNAVE(y)  - KNAVE(x)
+             A14:  All x,y,z:Any - NLRANK3(z y x)  - KNAVE(z)  + KNAVE(y)  - NORMAL(x)
+             A15:  All x,y,z:Any - LRANK3(z y x)  - KNAVE(z)  - KNAVE(y)  + KNAVE(x)  + NORMAL(x)
+             A16:  All x,y,z:Any - LRANK3(z y x)  - KNAVE(z)  - NORMAL(y)  + KNAVE(x)  + NORMAL(x)
+             A17:  All x,y,z:Any - LRANK3(z y x)  + KNAVE(z)  + NORMAL(z)  + KNAVE(y)  + NORMAL(y)
+             A18:  All x,y,z:Any - LRANK3(z y x)  + KNAVE(z)  + NORMAL(z)  + KNAVE(y)  - KNAVE(x)
+             A19:  All x,y,z:Any - LRANK3(z y x)  + KNAVE(z)  + NORMAL(z)  + KNAVE(y)  - NORMAL(x)
+             A20:  All x,y,z:Any - NLRANK3(z y x)  - KNAVE(z)  + NORMAL(x)  - KNAVE(x)  + NORMAL(y)
+             A21:  All x,y,z:Any - NLRANK3(z y x)  - KNAVE(z)  + NORMAL(x)  - KNAVE(x)  - KNAVE(x)
+             A22:  All x,y,z:Any - NLRANK3(z y x)  - KNAVE(z)  + NORMAL(x)  - KNAVE(x)  - NORMAL(x)
+             A23:  All x,y,z:Any - NLRANK3(z y x)  - KNAVE(z)  + NORMAL(x)  - NORMAL(x)  + NORMAL(y)
+             A24:  All x,y,z:Any - NLRANK3(z y x)  - KNAVE(z)  + NORMAL(x)  - NORMAL(x)  - KNAVE(x)
+             A25:  All x,y,z:Any - NLRANK3(z y x)  - KNAVE(z)  + NORMAL(x)  - NORMAL(x)  - NORMAL(x)
+           * A26:  All x,y,z:Any - NLRANK3(z y x)  + KNAVE(z)  + NORMAL(z)  - KNAVE(y)  - NORMAL(x)
+             A27:  All x,y,z:Any - LRANK3(z y x)  + KNAVE(z)  + NORMAL(z)  + NORMAL(x)  - KNAVE(x)  + NORMAL(y)
+             A28:  All x,y,z:Any - LRANK3(z y x)  + KNAVE(z)  + NORMAL(z)  + NORMAL(x)  - KNAVE(x)  - KNAVE(x)
+             A29:  All x,y,z:Any - LRANK3(z y x)  + KNAVE(z)  + NORMAL(z)  + NORMAL(x)  - KNAVE(x)  - NORMAL(x)
+             A30:  All x,y,z:Any - LRANK3(z y x)  + KNAVE(z)  + NORMAL(z)  + NORMAL(x)  - NORMAL(x)  + NORMAL(y)
+             A31:  All x,y,z:Any - LRANK3(z y x)  + KNAVE(z)  + NORMAL(z)  + NORMAL(x)  - NORMAL(x)  - KNAVE(x)
+             A32:  All x,y,z:Any - LRANK3(z y x)  + KNAVE(z)  + NORMAL(z)  + NORMAL(x)  - NORMAL(x)  - NORMAL(x)
+           * A33:  All x,y,z:Any - NLRANK3(z y x)  + KNAVE(z)  + NORMAL(z)  - KNAVE(y)  + KNAVE(x)  + NORMAL(x)
+           * A34:  All x,y,z:Any - NLRANK3(z y x)  + KNAVE(z)  + NORMAL(z)  - NORMAL(y)  + KNAVE(x)  + NORMAL(x)
+           
+
+
+
+
+             Initial Operations on Axioms
+             ============================
+
+
+          
+   A33,6 & A26,5  --> * R13: All x,y,z:Any - NLRANK3(x y z)  + KNAVE(x)  + NORMAL(x)  - KNAVE(y)  + KNAVE(z)
+                                           - NLRANK3(x y z)  + KNAVE(x)  + NORMAL(x)  - KNAVE(y)
+   
+   R13 1=6        --> * D14: All x,y,z:Any - NLRANK3(x y z)  + KNAVE(x)  + NORMAL(x)  - KNAVE(y)  + KNAVE(z)
+                                           + KNAVE(x)  + NORMAL(x)  - KNAVE(y)
+   
+   D14 2=6        --> * D15: All x,y,z:Any - NLRANK3(x y z)  + KNAVE(x)  + NORMAL(x)  - KNAVE(y)  + KNAVE(z)
+                                           + NORMAL(x)  - KNAVE(y)
+   
+   D15 3=6        --> * D16: All x,y,z:Any - NLRANK3(x y z)  + KNAVE(x)  + NORMAL(x)  - KNAVE(y)  + KNAVE(z)
+                                           - KNAVE(y)
+   
+   D16 4=6        --> * D17: All x,y,z:Any - NLRANK3(x y z)  + KNAVE(x)  + NORMAL(x)  - KNAVE(y)  + KNAVE(z)
+   
+
+   
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization and Splitting
+             =================================================================
+
+   Splitpart 1
+
+           * T35: + KNAVE(a)
+           * T36: + NORMAL(b)  - KNAVE(b)
+             T37: + NORMAL(b)  - NORMAL(b)
+
+   Splitpart 2
+
+           * T38: + NORMAL(a)
+           * T39: - KNAVE(b)
+           * T40: - NORMAL(b)
+
+
+   End of Splitparts
+
+
+
+
+
+             Initial Operations on Theorems
+             ==============================
+
+
+          
+   Splitpart 1:
+   
+   T36,2 & D17,5  --> * R18: + NORMAL(b)  - NLRANK3(b a b)  + KNAVE(b)  + NORMAL(b)  - KNAVE(a)
+   
+   R18 1=4        --> * D19: + NORMAL(b)  - NLRANK3(b a b)  + KNAVE(b)  - KNAVE(a)
+   
+   D19,2 & A2,1   --> * R20: + NORMAL(b)  + KNAVE(b)  - KNAVE(a)
+   
+   R20,2 & T36,2  --> * R21: + NORMAL(b)  - KNAVE(a)  + NORMAL(b)
+   
+   R21 1=3        --> * D22: + NORMAL(b)  - KNAVE(a)
+   
+   D22,2 & T35,1  --> * R23: + NORMAL(b)
+   
+
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation of Splitpart 1:
+   ==========================
+   
+   Initial Clauses:    * A1:   + LRANK3(a a b)
+                       * A2:   + NLRANK3(b a b)
+                         A3:   All x:Any - KNAVE(x)  - NORMAL(x)
+                       * A11:  All x,y,z:Any - LRANK3(z y x)  - KNAVE(z)  - KNAVE(y)  - NORMAL(x)
+                         A12:  All x,y,z:Any - NLRANK3(z y x)  - KNAVE(z)  + KNAVE(y)  + NORMAL(y)
+                         A14:  All x,y,z:Any - NLRANK3(z y x)  - KNAVE(z)  + KNAVE(y)  - NORMAL(x)
+                         A15:  All x,y,z:Any - LRANK3(z y x)  - KNAVE(z)  - KNAVE(y)  + KNAVE(x)  + NORMAL(x)
+                         A16:  All x,y,z:Any - LRANK3(z y x)  - KNAVE(z)  - NORMAL(y)  + KNAVE(x)  + NORMAL(x)
+                         A17:  All x,y,z:Any - LRANK3(z y x)  + KNAVE(z)  + NORMAL(z)  + KNAVE(y)  + NORMAL(y)
+                         A19:  All x,y,z:Any - LRANK3(z y x)  + KNAVE(z)  + NORMAL(z)  + KNAVE(y)  - NORMAL(x)
+                         D5:   All x,y,z:Any - NLRANK3(y x z)  - KNAVE(y)  - KNAVE(z)
+                       * A26:  All x,y,z:Any - NLRANK3(z y x)  + KNAVE(z)  + NORMAL(z)  - KNAVE(y)  - NORMAL(x)
+                         D11:  All x,y,z:Any - LRANK3(y x z)  + KNAVE(y)  + NORMAL(y)  - KNAVE(z)
+                       * D17:  All x,y,z:Any - NLRANK3(x y z)  + KNAVE(x)  + NORMAL(x)  - KNAVE(y)  + KNAVE(z)
+                         A34:  All x,y,z:Any - NLRANK3(z y x)  + KNAVE(z)  + NORMAL(z)  - NORMAL(y)  + KNAVE(x)
+                                             + NORMAL(x)
+                       * T35:  + KNAVE(a)
+                       * R23:  + NORMAL(b)
+                       
+
+   
+   T35,1 & A11,3  -->  * R24:  - LRANK3(a a b)  - KNAVE(a)  - NORMAL(b)
+   
+   R24,2 & T35,1  -->  * R25:  - LRANK3(a a b)  - NORMAL(b)
+   
+   R25,1 & A1,1   -->  * R26:  - NORMAL(b)
+   
+   R26,1 & R23,1  -->  * R27:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation of Splitpart 2:
+   ==========================
+   
+   Initial Clauses:      A1:   + LRANK3(a a b)
+                       * A2:   + NLRANK3(b a b)
+                         A3:   All x:Any - KNAVE(x)  - NORMAL(x)
+                         A11:  All x,y,z:Any - LRANK3(z y x)  - KNAVE(z)  - KNAVE(y)  - NORMAL(x)
+                         A12:  All x,y,z:Any - NLRANK3(z y x)  - KNAVE(z)  + KNAVE(y)  + NORMAL(y)
+                         A14:  All x,y,z:Any - NLRANK3(z y x)  - KNAVE(z)  + KNAVE(y)  - NORMAL(x)
+                         A15:  All x,y,z:Any - LRANK3(z y x)  - KNAVE(z)  - KNAVE(y)  + KNAVE(x)  + NORMAL(x)
+                         A16:  All x,y,z:Any - LRANK3(z y x)  - KNAVE(z)  - NORMAL(y)  + KNAVE(x)  + NORMAL(x)
+                         A17:  All x,y,z:Any - LRANK3(z y x)  + KNAVE(z)  + NORMAL(z)  + KNAVE(y)  + NORMAL(y)
+                         A19:  All x,y,z:Any - LRANK3(z y x)  + KNAVE(z)  + NORMAL(z)  + KNAVE(y)  - NORMAL(x)
+                         D5:   All x,y,z:Any - NLRANK3(y x z)  - KNAVE(y)  - KNAVE(z)
+                         A26:  All x,y,z:Any - NLRANK3(z y x)  + KNAVE(z)  + NORMAL(z)  - KNAVE(y)  - NORMAL(x)
+                         D11:  All x,y,z:Any - LRANK3(y x z)  + KNAVE(y)  + NORMAL(y)  - KNAVE(z)
+                         D17:  All x,y,z:Any - NLRANK3(x y z)  + KNAVE(x)  + NORMAL(x)  - KNAVE(y)  + KNAVE(z)
+                       * A34:  All x,y,z:Any - NLRANK3(z y x)  + KNAVE(z)  + NORMAL(z)  - NORMAL(y)  + KNAVE(x)
+                                             + NORMAL(x)
+                       * T38:  + NORMAL(a)
+                       * T39:  - KNAVE(b)
+                       * T40:  - NORMAL(b)
+                       
+
+   
+   A34 (factor)   -->  * F28:  - NLRANK3(b a b)  + KNAVE(b)  + NORMAL(b)  - NORMAL(a)  + KNAVE(b)
+   
+   F28,4 & T38,1  -->  * R29:  - NLRANK3(b a b)  + KNAVE(b)  + NORMAL(b)  + KNAVE(b)
+   
+   R29 2=4        -->  * D30:  - NLRANK3(b a b)  + KNAVE(b)  + NORMAL(b)
+   
+   D30,3 & T40,1  -->  * R31:  - NLRANK3(b a b)  + KNAVE(b)
+   
+   R31,2 & T39,1  -->  * R32:  - NLRANK3(b a b)
+   
+   R32,1 & A2,1   -->  * R33:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation of Splitpart 1: 10 seconds
+   Time Used for Refutation of Splitpart 2: 10 seconds

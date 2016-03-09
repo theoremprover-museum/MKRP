@@ -1,0 +1,291 @@
+;;; -*- Package: MKRP; Base: 10; Mode: text; Syntax: Common-lisp -*-
+
+
+
+                  ******************************************************************************
+                  *                                                                            *
+                  *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN     *
+                  *                                                                            *
+                  *        VERSION: Unix                                                       *
+                  *           DATE: 09-JUL,1992  10:27                                         *
+                  *                                                                            *
+                  ******************************************************************************
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+Edit:     Axioms and Theorems edited: 05-MAR,1992 19:56 
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+          Formulae given to the editor
+          ============================
+
+
+Axioms:   * MONTAGUE (QUOTE S) PARADOX OF GROUNDED CLASSES *
+          * AXIOMS *
+          ALL Y (EX Z (ALL X ELEMENT-OF (X Z) EQV X = Y))
+          * Z = {Y} *
+          ALL X REG (X)
+                EQV (ALL K ELEMENT-OF (X K)
+                           IMPL (EX Y ELEMENT-OF (Y K) AND NOT (EX Z ELEMENT-OF (Z K) AND ELEMENT-OF (Z Y))))
+          
+Theorems: * THEOREMS *
+          NOT (EX W (ALL X ELEMENT-OF (X W) EQV REG (X)))
+          * REG OF MONTAGUE DOESN (QUOTE T) EXIST *
+          
+
+
+
+          Set of Axiom Clauses Resulting from Normalization
+          =================================================
+
+        * A1:   All x:Any + =(x x)
+        * A2:   All x,y:Any + ELEMENT-OF(y f_1(x))  - =(y x)
+        * A3:   All x,y:Any - ELEMENT-OF(y f_1(x))  + =(y x)
+        
+
+
+
+
+          Set of Theorem Clauses Resulting from Normalization
+          ===================================================
+
+        * T4: All x:Any + ELEMENT-OF(x c_1)  + ELEMENT-OF(x f_2(x))
+        * T5: All x,y:Any + ELEMENT-OF(y c_1)  - ELEMENT-OF(x f_2(y))  + ELEMENT-OF(f_3(x y) f_2(y))
+        * T6: All x,y:Any + ELEMENT-OF(y c_1)  - ELEMENT-OF(x f_2(y))  + ELEMENT-OF(f_3(x y) x)
+        * T7: All x,y:Any - ELEMENT-OF(y c_1)  - ELEMENT-OF(y x)  + ELEMENT-OF(f_4(x y) x)
+        * T8: All x,y,z:Any - ELEMENT-OF(z c_1)  - ELEMENT-OF(z y)  - ELEMENT-OF(x y)  - ELEMENT-OF(x f_4(y z))
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+Refutation:
+===========
+
+Initial Clauses:   * A1:    All x:Any + =(x x)
+                   * A2:    All x,y:Any + ELEMENT-OF(y f_1(x))  - =(y x)
+                   * A3:    All x,y:Any - ELEMENT-OF(y f_1(x))  + =(y x)
+                   * T4:    All x:Any + ELEMENT-OF(x c_1)  + ELEMENT-OF(x f_2(x))
+                   * T5:    All x,y:Any + ELEMENT-OF(y c_1)  - ELEMENT-OF(x f_2(y))  + ELEMENT-OF(f_3(x y) f_2(y))
+                   * T6:    All x,y:Any + ELEMENT-OF(y c_1)  - ELEMENT-OF(x f_2(y))  + ELEMENT-OF(f_3(x y) x)
+                   * T7:    All x,y:Any - ELEMENT-OF(y c_1)  - ELEMENT-OF(y x)  + ELEMENT-OF(f_4(x y) x)
+                   * T8:    All x,y,z:Any - ELEMENT-OF(z c_1)  - ELEMENT-OF(z y)  - ELEMENT-OF(x y)
+                                          - ELEMENT-OF(x f_4(y z))
+                   
+
+
+A1,1 & A2,2    --> * R1:    All x:Any + ELEMENT-OF(x f_1(x))
+
+T4,2 & T5,2    --> * R2:    All x:Any + ELEMENT-OF(x c_1)  + ELEMENT-OF(x c_1)  + ELEMENT-OF(f_3(x x) f_2(x))
+
+R2 2=1         --> * D3:    All x:Any + ELEMENT-OF(x c_1)  + ELEMENT-OF(f_3(x x) f_2(x))
+
+T4,2 & T6,2    --> * R4:    All x:Any + ELEMENT-OF(x c_1)  + ELEMENT-OF(x c_1)  + ELEMENT-OF(f_3(x x) x)
+
+R4 2=1         --> * D5:    All x:Any + ELEMENT-OF(x c_1)  + ELEMENT-OF(f_3(x x) x)
+
+R1,1 & T7,2    -->   R6:    All x:Any - ELEMENT-OF(x c_1)  + ELEMENT-OF(f_4(f_1(x) x) f_1(x))
+
+D3,2 & T6,2    -->   R7:    All x:Any + ELEMENT-OF(x c_1)  + ELEMENT-OF(x c_1)
+                                      + ELEMENT-OF(f_3(f_3(x x) x) f_3(x x))
+
+R7 2=1         -->   D8:    All x:Any + ELEMENT-OF(x c_1)  + ELEMENT-OF(f_3(f_3(x x) x) f_3(x x))
+
+D3,2 & T5,2    -->   R9:    All x:Any + ELEMENT-OF(x c_1)  + ELEMENT-OF(x c_1)  + ELEMENT-OF(f_3(f_3(x x) x) f_2(x))
+
+R9 1=2         -->   D10:   All x:Any + ELEMENT-OF(x c_1)  + ELEMENT-OF(f_3(f_3(x x) x) f_2(x))
+
+D5,2 & A3,1    -->   R11:   All x:Any + ELEMENT-OF(f_1(x) c_1)  + =(f_3(f_1(x) f_1(x)) x)
+
+R11,2 & D3,2   -->   P12:   All x:Any + ELEMENT-OF(x f_2(f_1(x)))  + ELEMENT-OF(f_1(x) c_1)
+                                      + ELEMENT-OF(f_1(x) c_1)
+
+P12 2=3        -->   D13:   All x:Any + ELEMENT-OF(x f_2(f_1(x)))  + ELEMENT-OF(f_1(x) c_1)
+
+R11,2 & D10,2  -->   P14:   All x:Any + ELEMENT-OF(f_3(x f_1(x)) f_2(f_1(x)))  + ELEMENT-OF(f_1(x) c_1)
+                                      + ELEMENT-OF(f_1(x) c_1)
+
+P14 2=3        -->   D15:   All x:Any + ELEMENT-OF(f_3(x f_1(x)) f_2(f_1(x)))  + ELEMENT-OF(f_1(x) c_1)
+
+R11,2 & D8,2   -->   P16:   All x:Any + ELEMENT-OF(f_3(x f_1(x)) f_3(f_1(x) f_1(x)))  + ELEMENT-OF(f_1(x) c_1)
+                                      + ELEMENT-OF(f_1(x) c_1)
+
+P16 2=3        -->   D17:   All x:Any + ELEMENT-OF(f_3(x f_1(x)) f_3(f_1(x) f_1(x)))  + ELEMENT-OF(f_1(x) c_1)
+
+D17,1 & R11    -->   RW18:  All x:Any + ELEMENT-OF(f_3(x f_1(x)) x)  + ELEMENT-OF(f_1(x) c_1)
+
+R11,2 & D8,2   -->   P19:   All x:Any + ELEMENT-OF(f_3(f_3(f_1(x) f_1(x)) f_1(x)) x)  + ELEMENT-OF(f_1(x) c_1)
+                                      + ELEMENT-OF(f_1(x) c_1)
+
+P19 2=3        -->   D20:   All x:Any + ELEMENT-OF(f_3(f_3(f_1(x) f_1(x)) f_1(x)) x)  + ELEMENT-OF(f_1(x) c_1)
+
+D20,1 & R11    -->   RW21:  All x:Any + ELEMENT-OF(f_3(x f_1(x)) x)  + ELEMENT-OF(f_1(x) c_1)
+
+T4,1 & T7,2    -->   R22:   All x:Any + ELEMENT-OF(x f_2(x))  - ELEMENT-OF(x c_1)  + ELEMENT-OF(f_4(c_1 x) c_1)
+
+R22,2 & T4,1   -->   R23:   All x:Any + ELEMENT-OF(x f_2(x))  + ELEMENT-OF(f_4(c_1 x) c_1)  + ELEMENT-OF(x f_2(x))
+
+R23 1=3        -->   D24:   All x:Any + ELEMENT-OF(x f_2(x))  + ELEMENT-OF(f_4(c_1 x) c_1)
+
+D5,2 & R6,1    -->   R25:   + ELEMENT-OF(c_1 c_1)
+                            + ELEMENT-OF(f_4(f_1(f_3(c_1 c_1)) f_3(c_1 c_1)) f_1(f_3(c_1 c_1)))
+
+T6,3 & A3,1    -->   R26:   All x,y:Any + ELEMENT-OF(y c_1)  - ELEMENT-OF(f_1(x) f_2(y))  + =(f_3(f_1(x) y) x)
+
+R26,3 & T5,3   -->   P27:   All x,y:Any + ELEMENT-OF(y f_2(x))  + ELEMENT-OF(x c_1)  - ELEMENT-OF(f_1(y) f_2(x))
+                                        + ELEMENT-OF(x c_1)  - ELEMENT-OF(f_1(y) f_2(x))
+
+P27 3=5        -->   D28:   All x,y:Any + ELEMENT-OF(x f_2(y))  + ELEMENT-OF(y c_1)  - ELEMENT-OF(f_1(x) f_2(y))
+                                        + ELEMENT-OF(y c_1)
+
+D28 2=4        -->   D29:   All x,y:Any + ELEMENT-OF(y f_2(x))  + ELEMENT-OF(x c_1)  - ELEMENT-OF(f_1(y) f_2(x))
+
+R26,3 & D8,2   -->   P30:   All x:Any + ELEMENT-OF(f_3(x f_1(x)) f_3(f_1(x) f_1(x)))  + ELEMENT-OF(f_1(x) c_1)
+                                      - ELEMENT-OF(f_1(x) f_2(f_1(x)))  + ELEMENT-OF(f_1(x) c_1)
+
+P30 4=2        -->   D31:   All x:Any + ELEMENT-OF(f_3(x f_1(x)) f_3(f_1(x) f_1(x)))
+                                      - ELEMENT-OF(f_1(x) f_2(f_1(x)))  + ELEMENT-OF(f_1(x) c_1)
+
+D31,2 & T4,2   -->   R32:   All x:Any + ELEMENT-OF(f_3(x f_1(x)) f_3(f_1(x) f_1(x)))  + ELEMENT-OF(f_1(x) c_1)
+                                      + ELEMENT-OF(f_1(x) c_1)
+
+R32 2=3        -->   D33:   All x:Any + ELEMENT-OF(f_3(x f_1(x)) f_3(f_1(x) f_1(x)))  + ELEMENT-OF(f_1(x) c_1)
+
+D33,1 & R11    -->   RW34:  All x:Any + ELEMENT-OF(f_3(x f_1(x)) x)  + ELEMENT-OF(f_1(x) c_1)
+
+R26,3 & D8,2   -->   P35:   All x:Any + ELEMENT-OF(f_3(f_3(f_1(x) f_1(x)) f_1(x)) x)  + ELEMENT-OF(f_1(x) c_1)
+                                      - ELEMENT-OF(f_1(x) f_2(f_1(x)))  + ELEMENT-OF(f_1(x) c_1)
+
+P35 4=2        -->   D36:   All x:Any + ELEMENT-OF(f_3(f_3(f_1(x) f_1(x)) f_1(x)) x)
+                                      - ELEMENT-OF(f_1(x) f_2(f_1(x)))  + ELEMENT-OF(f_1(x) c_1)
+
+D36,2 & T4,2   -->   R37:   All x:Any + ELEMENT-OF(f_3(f_3(f_1(x) f_1(x)) f_1(x)) x)  + ELEMENT-OF(f_1(x) c_1)
+                                      + ELEMENT-OF(f_1(x) c_1)
+
+R37 2=3        -->   D38:   All x:Any + ELEMENT-OF(f_3(f_3(f_1(x) f_1(x)) f_1(x)) x)  + ELEMENT-OF(f_1(x) c_1)
+
+D38,1 & R11    -->   RW39:  All x:Any + ELEMENT-OF(f_3(x f_1(x)) x)  + ELEMENT-OF(f_1(x) c_1)
+
+T5,3 & T6,2    -->   R40:   All x,y:Any + ELEMENT-OF(y c_1)  - ELEMENT-OF(x f_2(y))  + ELEMENT-OF(y c_1)
+                                        + ELEMENT-OF(f_3(f_3(x y) y) f_3(x y))
+
+R40 3=1        -->   D41:   All x,y:Any - ELEMENT-OF(y f_2(x))  + ELEMENT-OF(x c_1)
+                                        + ELEMENT-OF(f_3(f_3(y x) x) f_3(y x))
+
+R26,3 & D41,3  -->   P42:   All x,y:Any + ELEMENT-OF(f_3(y x) f_3(f_1(y) x))  + ELEMENT-OF(x c_1)
+                                        - ELEMENT-OF(f_1(y) f_2(x))  - ELEMENT-OF(f_1(y) f_2(x))
+                                        + ELEMENT-OF(x c_1)
+
+P42 2=5        -->   D43:   All x,y:Any + ELEMENT-OF(f_3(y x) f_3(f_1(y) x))  + ELEMENT-OF(x c_1)
+                                        - ELEMENT-OF(f_1(y) f_2(x))  - ELEMENT-OF(f_1(y) f_2(x))
+
+D43 3=4        -->   D44:   All x,y:Any + ELEMENT-OF(f_3(y x) f_3(f_1(y) x))  + ELEMENT-OF(x c_1)
+                                        - ELEMENT-OF(f_1(y) f_2(x))
+
+D44,1 & R26    -->   RW45:  All x,y:Any + ELEMENT-OF(f_3(y x) y)  + ELEMENT-OF(x c_1)  - ELEMENT-OF(f_1(y) f_2(x))
+
+R26,3 & D41,3  -->   P46:   All x,y:Any + ELEMENT-OF(f_3(f_3(f_1(y) x) x) y)  + ELEMENT-OF(x c_1)
+                                        - ELEMENT-OF(f_1(y) f_2(x))  - ELEMENT-OF(f_1(y) f_2(x))
+                                        + ELEMENT-OF(x c_1)
+
+P46 2=5        -->   D47:   All x,y:Any + ELEMENT-OF(f_3(f_3(f_1(y) x) x) y)  + ELEMENT-OF(x c_1)
+                                        - ELEMENT-OF(f_1(y) f_2(x))  - ELEMENT-OF(f_1(y) f_2(x))
+
+D47 3=4        -->   D48:   All x,y:Any + ELEMENT-OF(f_3(f_3(f_1(y) x) x) y)  + ELEMENT-OF(x c_1)
+                                        - ELEMENT-OF(f_1(y) f_2(x))
+
+D48,1 & R26    -->   RW49:  All x,y:Any + ELEMENT-OF(f_3(y x) y)  + ELEMENT-OF(x c_1)  - ELEMENT-OF(f_1(y) f_2(x))
+
+R11,2 & D41,3  -->   P50:   All x:Any + ELEMENT-OF(f_3(x f_1(x)) f_3(f_1(x) f_1(x)))  + ELEMENT-OF(f_1(x) c_1)
+                                      - ELEMENT-OF(f_1(x) f_2(f_1(x)))  + ELEMENT-OF(f_1(x) c_1)
+
+P50 2=4        -->   D51:   All x:Any + ELEMENT-OF(f_3(x f_1(x)) f_3(f_1(x) f_1(x)))  + ELEMENT-OF(f_1(x) c_1)
+                                      - ELEMENT-OF(f_1(x) f_2(f_1(x)))
+
+D51,3 & T4,2   -->   R52:   All x:Any + ELEMENT-OF(f_3(x f_1(x)) f_3(f_1(x) f_1(x)))  + ELEMENT-OF(f_1(x) c_1)
+                                      + ELEMENT-OF(f_1(x) c_1)
+
+R52 2=3        -->   D53:   All x:Any + ELEMENT-OF(f_3(x f_1(x)) f_3(f_1(x) f_1(x)))  + ELEMENT-OF(f_1(x) c_1)
+
+D53,1 & R11    -->   RW54:  All x:Any + ELEMENT-OF(f_3(x f_1(x)) x)  + ELEMENT-OF(f_1(x) c_1)
+
+R11,2 & D41,3  -->   P55:   All x:Any + ELEMENT-OF(f_3(f_3(f_1(x) f_1(x)) f_1(x)) x)  + ELEMENT-OF(f_1(x) c_1)
+                                      - ELEMENT-OF(f_1(x) f_2(f_1(x)))  + ELEMENT-OF(f_1(x) c_1)
+
+P55 2=4        -->   D56:   All x:Any + ELEMENT-OF(f_3(f_3(f_1(x) f_1(x)) f_1(x)) x)  + ELEMENT-OF(f_1(x) c_1)
+                                      - ELEMENT-OF(f_1(x) f_2(f_1(x)))
+
+D56,3 & T4,2   -->   R57:   All x:Any + ELEMENT-OF(f_3(f_3(f_1(x) f_1(x)) f_1(x)) x)  + ELEMENT-OF(f_1(x) c_1)
+                                      + ELEMENT-OF(f_1(x) c_1)
+
+R57 2=3        -->   D58:   All x:Any + ELEMENT-OF(f_3(f_3(f_1(x) f_1(x)) f_1(x)) x)  + ELEMENT-OF(f_1(x) c_1)
+
+D58,1 & R11    -->   RW59:  All x:Any + ELEMENT-OF(f_3(x f_1(x)) x)  + ELEMENT-OF(f_1(x) c_1)
+
+T7,3 & A3,1    --> * R60:   All x,y:Any - ELEMENT-OF(y c_1)  - ELEMENT-OF(y f_1(x))  + =(f_4(f_1(x) y) x)
+
+R60,3 & T8,4   --> * P61:   All x,y,z:Any - ELEMENT-OF(z y)  - ELEMENT-OF(x c_1)  - ELEMENT-OF(x f_1(y))
+                                          - ELEMENT-OF(x c_1)  - ELEMENT-OF(x f_1(y))  - ELEMENT-OF(z f_1(y))
+
+P61 5=3        --> * D62:   All x,y,z:Any - ELEMENT-OF(z y)  - ELEMENT-OF(x c_1)  - ELEMENT-OF(x c_1)
+                                          - ELEMENT-OF(x f_1(y))  - ELEMENT-OF(z f_1(y))
+
+D62 3=2        --> * D63:   All x,y,z:Any - ELEMENT-OF(z y)  - ELEMENT-OF(x c_1)  - ELEMENT-OF(x f_1(y))
+                                          - ELEMENT-OF(z f_1(y))
+
+D63 (factor)   --> * F64:   All x:Any - ELEMENT-OF(x f_1(c_1))  - ELEMENT-OF(x c_1)
+
+R25,1 & F64,2  -->   R65:   + ELEMENT-OF(f_4(f_1(f_3(c_1 c_1)) f_3(c_1 c_1)) f_1(f_3(c_1 c_1)))
+                            - ELEMENT-OF(c_1 f_1(c_1))
+
+R65,2 & R1,1   -->   R66:   + ELEMENT-OF(f_4(f_1(f_3(c_1 c_1)) f_3(c_1 c_1)) f_1(f_3(c_1 c_1)))
+
+R1,1 & F64,1   --> * R67:   - ELEMENT-OF(c_1 c_1)
+
+D5,1 & R67,1   --> * R68:   + ELEMENT-OF(f_3(c_1 c_1) c_1)
+
+D3,1 & R67,1   --> * R69:   + ELEMENT-OF(f_3(c_1 c_1) f_2(c_1))
+
+R69,1 & T7,2   --> * R70:   - ELEMENT-OF(f_3(c_1 c_1) c_1)  + ELEMENT-OF(f_4(f_2(c_1) f_3(c_1 c_1)) f_2(c_1))
+
+R70,1 & R68,1  --> * R71:   + ELEMENT-OF(f_4(f_2(c_1) f_3(c_1 c_1)) f_2(c_1))
+
+R71,1 & T6,2   --> * R72:   + ELEMENT-OF(c_1 c_1)
+                            + ELEMENT-OF(f_3(f_4(f_2(c_1) f_3(c_1 c_1)) c_1) f_4(f_2(c_1) f_3(c_1 c_1)))
+
+R72,1 & R67,1  --> * R73:   + ELEMENT-OF(f_3(f_4(f_2(c_1) f_3(c_1 c_1)) c_1) f_4(f_2(c_1) f_3(c_1 c_1)))
+
+R71,1 & T5,2   --> * R74:   + ELEMENT-OF(c_1 c_1)  + ELEMENT-OF(f_3(f_4(f_2(c_1) f_3(c_1 c_1)) c_1) f_2(c_1))
+
+R74,1 & R67,1  --> * R75:   + ELEMENT-OF(f_3(f_4(f_2(c_1) f_3(c_1 c_1)) c_1) f_2(c_1))
+
+R75,1 & T8,3   --> * R76:   - ELEMENT-OF(f_3(c_1 c_1) c_1)  - ELEMENT-OF(f_3(c_1 c_1) f_2(c_1))
+                            - ELEMENT-OF(f_3(f_4(f_2(c_1) f_3(c_1 c_1)) c_1) f_4(f_2(c_1) f_3(c_1 c_1)))
+
+R76,2 & R69,1  --> * R77:   - ELEMENT-OF(f_3(c_1 c_1) c_1)
+                            - ELEMENT-OF(f_3(f_4(f_2(c_1) f_3(c_1 c_1)) c_1) f_4(f_2(c_1) f_3(c_1 c_1)))
+
+R77,1 & R68,1  --> * R78:   - ELEMENT-OF(f_3(f_4(f_2(c_1) f_3(c_1 c_1)) c_1) f_4(f_2(c_1) f_3(c_1 c_1)))
+
+R78,1 & R73,1  --> * R79:   []
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+  q.e.d. 
+
+
+Time Used for Refutation: 162 seconds

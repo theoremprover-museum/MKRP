@@ -1,0 +1,152 @@
+ 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 23-JAN-85                                                     *
+                    *         DATE : 15-MAR-85  14:55:43                                           *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+                                                                         
+*************************************************************************
+                                                                         
+ FORMULA:     DATE:  15-MAR-85 14:36:16
+              AXIOMS AND THEOREMS FOR THIS PROOF HAVE BEEN READ FROM:    
+              AXIOM-FILE:    F.RIDDLE.THIEVES.TH
+              THEOREM-FILE:  NIL
+                                                                         
+*************************************************************************
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : THIEF(WILLIE) OR THIEF(LUCKY) OR THIEF(JACKY)
+           NOT(THIEF(WILLIE) AND THIEF(LUCKY) OR THIEF(WILLIE) AND THIEF(JACKY) OR THIEF(LUCKY) AND THIEF(JACKY))
+           ALL X THIEF(X) IMPL IN.HOTEL(X)
+           NOT(NOT THIEF(LUCKY) AND NOT IN.HOTEL(LUCKY) AND THIEF(WILLIE))
+           NOT(NOT THIEF(WILLIE) AND THIEF(LUCKY) AND IN.HOTEL(LUCKY) AND NOT THIEF(WILLIE) AND NOT THIEF(JACKY))
+           NOT(NOT THIEF(JACKY) AND IN.HOTEL(LUCKY) AND(NOT THIEF(LUCKY) OR NOT IN.HOTEL(LUCKY) OR THIEF(WILLIE)))
+ 
+THEOREMS : THIEF(JACKY)
+ 
+ 
+ 
+ 
+CONSTANTS : 
+=========== 
+ 
+| NAME     | SORT     |            | ATTRIBUTES |
+-------------------------------------------------
+| WILLIE   | ANY      |            |            |
+| LUCKY    | ANY      |            |            |
+| JACKY    | ANY      |            |            |
+-------------------------------------------------
+ 
+ 
+ 
+PREDICATES : 
+============ 
+ 
+| NAME     | DOMAIN   |            | ATTRIBUTES |
+-------------------------------------------------
+| TRUE     |          |            | DEFINED    |
+| FALSE    |          |            | DEFINED    |
+| THIEF    | ANY      |            |            |
+| IN.HOTEL | ANY      |            |            |
+-------------------------------------------------
+ 
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+* A1   : - THIEF(WILLIE)  - THIEF(LUCKY)
+* A2   : - THIEF(WILLIE)  - THIEF(JACKY)
+* A3   : - THIEF(LUCKY)  - THIEF(JACKY)
+* A4   : ALL X:ANY  - THIEF(X)  + IN.HOTEL(X)
+* A5   : + THIEF(WILLIE)  + THIEF(LUCKY)  + THIEF(JACKY)
+* A6   : + THIEF(LUCKY)  + IN.HOTEL(LUCKY)  - THIEF(WILLIE)
+  A7   : + THIEF(JACKY)  - IN.HOTEL(LUCKY)  + THIEF(LUCKY)
+  A8   : + THIEF(JACKY)  - IN.HOTEL(LUCKY)  + IN.HOTEL(LUCKY)
+* A9   : + THIEF(JACKY)  - IN.HOTEL(LUCKY)  - THIEF(WILLIE)
+* A10  : + THIEF(WILLIE)  - THIEF(LUCKY)  - IN.HOTEL(LUCKY)  + THIEF(WILLIE)  + THIEF(JACKY)
+ 
+ 
+ 
+ 
+OPERATIONS ON AXIOMS
+====================
+ 
+ 
+A6,1 & A1,2    -->  * R1  : + IN.HOTEL(LUCKY)  - THIEF(WILLIE)  - THIEF(WILLIE)
+ 
+R1 2=3         -->  * D2  : + IN.HOTEL(LUCKY)  - THIEF(WILLIE)
+ 
+A9,2 & D2,1    -->  * R3  : + THIEF(JACKY)  - THIEF(WILLIE)  - THIEF(WILLIE)
+ 
+R3 2=3         -->  * D4  : + THIEF(JACKY)  - THIEF(WILLIE)
+ 
+D4,1 & A2,2    -->  * R5  : - THIEF(WILLIE)  - THIEF(WILLIE)
+ 
+R5 1=2         -->  * D6  : - THIEF(WILLIE)
+ 
+A5,1 & D6,1    -->  * R7  : + THIEF(LUCKY)  + THIEF(JACKY)
+ 
+A10 1=4        -->  * D8  : + THIEF(WILLIE)  - THIEF(LUCKY)  - IN.HOTEL(LUCKY)  + THIEF(JACKY)
+ 
+D8,4 & A3,2    -->  * R9  : + THIEF(WILLIE)  - THIEF(LUCKY)  - IN.HOTEL(LUCKY)  - THIEF(LUCKY)
+ 
+R9 2=4         -->  * D10 : + THIEF(WILLIE)  - THIEF(LUCKY)  - IN.HOTEL(LUCKY)
+ 
+D10,3 & A4,2   -->  * R11 : + THIEF(WILLIE)  - THIEF(LUCKY)  - THIEF(LUCKY)
+ 
+R11 2=3        -->  * D12 : + THIEF(WILLIE)  - THIEF(LUCKY)
+ 
+D12,1 & D6,1   -->  * R13 : - THIEF(LUCKY)
+ 
+R7,1 & R13,1   -->  * R14 : + THIEF(JACKY)
+ 
+ 
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+* T11  : - THIEF(JACKY)
+ 
+ 
+ 
+ 
+ 
+ 
+INITIAL OPERATIONS ON THEOREMS
+==============================
+ 
+ 
+T11,1 & R14,1   -->  * R15 :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+  Q. E. D. 
+STOP
+ 

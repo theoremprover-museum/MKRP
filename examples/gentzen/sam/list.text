@@ -1,0 +1,258 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 48.7                                                *
+                     *           DATE: 02-SEP,1991  11:10                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 02-SEP,1991 10:54 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   ALL X MAX (1 X 1)
+             ALL X MAX (X X X)
+             ALL X MAX (0 X X)
+             ALL X MIN (0 X 0)
+             ALL X MIN (X X X)
+             ALL X MIN (1 X X)
+             ALL X,Y,Z MIN (X Y Z) IMPL MAX (X Z X)
+             ALL X,Y,Z MAX (X Y Z) IMPL MIN (X Z X)
+             ALL X,Y,Z,XY,YZ,XYZ MIN (X Y XY) AND MIN (Y Z YZ)
+                                 IMPL ((MIN (X YZ XYZ) IMPL MIN (XY Z XYZ)) AND (MIN (XY Z XYZ) IMPL MIN (X YZ XYZ)))
+             ALL X,Y,Z,XY,YZ,XYZ MAX (X Y XY) AND MAX (Y Z YZ)
+                                 IMPL ((MAX (X YZ XYZ) IMPL MAX (XY Z XYZ)) AND (MAX (XY Z XYZ) IMPL MAX (X YZ XYZ)))
+             ALL X,Y,Z,X1,Y1,Z1 MIN (X Z X) AND MAX (X Y X1) AND MIN (Y Z Y1) AND MIN (Z X1 Z1) IMPL MAX (X Y1 Z1)
+             ALL X,Y,Z,X1,Y1,Z1 MIN (X Z X) AND MAX (X Y X1) AND MIN (Y Z Y1) AND MAX (X Y1 Z1) IMPL MIN (Z X1 Z1)
+             ALL X,Y,Z,X1,Y1,Z1 MIN (X Z Z) AND MAX (Y Z Y1) AND MIN (X Y X1) AND MIN (X Y1 Z1) IMPL MAX (Z X1 Z1)
+             ALL X,Y,Z,X1,Y1,Z1 MIN (X Z Z) AND MAX (Y Z Y1) AND MIN (X Y X1) AND MAX (Z X1 Z1) IMPL MIN (X Y1 Z1)
+             ALL X,Y,Z MIN (X Y Z) IMPL MIN (Y X Z)
+             ALL X,Y,Z MAX (X Y Z) IMPL MAX (Y X Z)
+             
+   Theorems: MIN (A B C)
+             AND MAX (C D 1)
+             AND MIN (B D E)
+             AND MIN (A E 0)
+             AND MAX (B A2 B2)
+             AND MAX (A B2 1)
+             AND MAX (A B C2)
+             AND MIN (A2 C2 0)
+             AND MIN (D A D2)
+             AND MAX (A2 D2 E2)
+             AND MIN (D B A3)
+             AND MAX (A2 A3 B3)
+             IMPL MIN (B3 E2 A2)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+             A2:   All x:Any + MAX(1 x 1)
+             A3:   All x:Any + MAX(x x x)
+           * A4:   All x:Any + MAX(0 x x)
+             A5:   All x:Any + MIN(0 x 0)
+           * A6:   All x:Any + MIN(x x x)
+           * A7:   All x:Any + MIN(1 x x)
+           * A8:   All x,y,z:Any - MIN(z y x)  + MAX(z x z)
+           * A9:   All x,y,z:Any - MAX(z y x)  + MIN(z x z)
+           * A10:  All x,y,z:Any - MIN(z y x)  + MIN(y z x)
+           * A11:  All x,y,z:Any - MAX(z y x)  + MAX(y z x)
+           * A12:  All x,y,z,u,v,w:Any - MIN(w v u)  - MIN(v z y)  - MIN(w y x)  + MIN(u z x)
+           * A13:  All x,y,z,u,v,w:Any - MIN(w v u)  - MIN(v z y)  - MIN(u z x)  + MIN(w y x)
+             A14:  All x,y,z,u,v,w:Any - MAX(w v u)  - MAX(v z y)  - MAX(w y x)  + MAX(u z x)
+           * A15:  All x,y,z,u,v,w:Any - MAX(w v u)  - MAX(v z y)  - MAX(u z x)  + MAX(w y x)
+           * A16:  All x,y,z,u,v,w:Any - MIN(w v w)  - MAX(w u z)  - MIN(u v y)  - MIN(v z x)  + MAX(w y x)
+           * A17:  All x,y,z,u,v,w:Any - MIN(w v w)  - MAX(w u z)  - MIN(u v y)  - MAX(w y x)  + MIN(v z x)
+             A18:  All x,y,z,u,v,w:Any - MIN(w v v)  - MAX(u v z)  - MIN(w u y)  - MIN(w z x)  + MAX(v y x)
+             A19:  All x,y,z,u,v,w:Any - MIN(w v v)  - MAX(u v z)  - MIN(w u y)  - MAX(v y x)  + MIN(w z x)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+             T20: + MIN(a b c)
+             T21: + MAX(c d 1)
+           * T22: + MIN(b d e)
+           * T23: + MIN(a e 0)
+             T24: + MAX(b a2 b2)
+             T25: + MAX(a b2 1)
+           * T26: + MAX(a b c2)
+           * T27: + MIN(a2 c2 0)
+           * T28: + MIN(d a d2)
+           * T29: + MAX(a2 d2 e2)
+           * T30: + MIN(d b a3)
+           * T31: + MAX(a2 a3 b3)
+           * T32: - MIN(b3 e2 a2)
+
+
+
+    Literals: ((T32 59) (T31 58) (T30 57) (T29 56) (T28 55) (T27 54) (T26 53) (T25 52) (T24 51) (T23 50) (T22 49) (T21 48) (T20 47) (A19 38 39 40 41 42) (A18 33 34 35 36 37) (A17 28 29 30 31 32) (A16 23 24 25 26 27) (A15 17 18 21 22) (A14 17 18 19 20) (A13 11 12 15 16) (A12 11 12 13 14) (A11 45 46) (A10 43 44) (A9 9 10) (A8 7 8) (A7 6) (A6 5) (A5 4) (A4 3) (A3 2) (A2 1) (A1 NIL))
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:     A1:   All x:Any + =(x x)
+                        A2:   All x:Any + MAX(1 x 1)
+                        A3:   All x:Any + MAX(x x x)
+                      * A4:   All x:Any + MAX(0 x x)
+                        A5:   All x:Any + MIN(0 x 0)
+                      * A6:   All x:Any + MIN(x x x)
+                      * A7:   All x:Any + MIN(1 x x)
+                      * A8:   All x,y,z:Any - MIN(z y x)  + MAX(z x z)
+                      * A9:   All x,y,z:Any - MAX(z y x)  + MIN(z x z)
+                      * A10:  All x,y,z:Any - MIN(z y x)  + MIN(y z x)
+                      * A11:  All x,y,z:Any - MAX(z y x)  + MAX(y z x)
+                      * A12:  All x,y,z,u,v,w:Any - MIN(w v u)  - MIN(v z y)  - MIN(w y x)  + MIN(u z x)
+                      * A13:  All x,y,z,u,v,w:Any - MIN(w v u)  - MIN(v z y)  - MIN(u z x)  + MIN(w y x)
+                        A14:  All x,y,z,u,v,w:Any - MAX(w v u)  - MAX(v z y)  - MAX(w y x)  + MAX(u z x)
+                      * A15:  All x,y,z,u,v,w:Any - MAX(w v u)  - MAX(v z y)  - MAX(u z x)  + MAX(w y x)
+                      * A16:  All x,y,z,u,v,w:Any - MIN(w v w)  - MAX(w u z)  - MIN(u v y)  - MIN(v z x)
+                                                  + MAX(w y x)
+                      * A17:  All x,y,z,u,v,w:Any - MIN(w v w)  - MAX(w u z)  - MIN(u v y)  - MAX(w y x)
+                                                  + MIN(v z x)
+                        A18:  All x,y,z,u,v,w:Any - MIN(w v v)  - MAX(u v z)  - MIN(w u y)  - MIN(w z x)
+                                                  + MAX(v y x)
+                        A19:  All x,y,z,u,v,w:Any - MIN(w v v)  - MAX(u v z)  - MIN(w u y)  - MAX(v y x)
+                                                  + MIN(w z x)
+                        T20:  + MIN(a b c)
+                        T21:  + MAX(c d 1)
+                      * T22:  + MIN(b d e)
+                      * T23:  + MIN(a e 0)
+                        T24:  + MAX(b a2 b2)
+                        T25:  + MAX(a b2 1)
+                      * T26:  + MAX(a b c2)
+                      * T27:  + MIN(a2 c2 0)
+                      * T28:  + MIN(d a d2)
+                      * T29:  + MAX(a2 d2 e2)
+                      * T30:  + MIN(d b a3)
+                      * T31:  + MAX(a2 a3 b3)
+                      * T32:  - MIN(b3 e2 a2)
+                      
+
+   
+   A10,2 & T32,1  --> * R1:   - MIN(e2 b3 a2)
+   
+   A4,1 & A11,1   --> * R2:   All x:Any + MAX(x 0 x)
+   
+   T29,1 & A9,1   --> * R3:   + MIN(a2 e2 a2)
+   
+   T22,1 & A10,1  --> * R4:   + MIN(d b e)
+   
+   A7,1 & A10,1   --> * R5:   All x:Any + MIN(x 1 x)
+   
+   R5,1 & A12,2   --> * R6:   - MIN(d b a3)  - MIN(d b e)  + MIN(a3 1 e)
+   
+   R6,1 & T30,1   --> * R7:   - MIN(d b e)  + MIN(a3 1 e)
+   
+   R7,1 & R4,1    --> * R8:   + MIN(a3 1 e)
+   
+   T31,1 & A16,2  --> * R9:   - MIN(a2 1 a2)  - MIN(a3 1 e)  - MIN(1 b3 b3)  + MAX(a2 e b3)
+   
+   R9,1 & R5,1    --> * R10:  - MIN(a3 1 e)  - MIN(1 b3 b3)  + MAX(a2 e b3)
+   
+   R10,1 & R8,1   --> * R11:  - MIN(1 b3 b3)  + MAX(a2 e b3)
+   
+   R11,1 & A7,1   --> * R12:  + MAX(a2 e b3)
+   
+   R12,1 & A17,2  --> * R13:  - MIN(a2 e2 a2)  - MIN(e e2 0)  - MAX(a2 0 a2)  + MIN(e2 b3 a2)
+   
+   R13,1 & R3,1   --> * R14:  - MIN(e e2 0)  - MAX(a2 0 a2)  + MIN(e2 b3 a2)
+   
+   R14,2 & R2,1   --> * R15:  - MIN(e e2 0)  + MIN(e2 b3 a2)
+   
+   R15,2 & R1,1   --> * R16:  - MIN(e e2 0)
+   
+   T23,1 & A10,1  --> * R17:  + MIN(e a 0)
+   
+   A6,1 & A12,2   --> * R18:  - MIN(b d e)  - MIN(b d e)  + MIN(e d e)
+   
+   R18 1=2        --> * D19:  - MIN(b d e)  + MIN(e d e)
+   
+   D19,1 & T22,1  --> * R20:  + MIN(e d e)
+   
+   T28,1 & A13,2  --> * R21:  - MIN(e d e)  - MIN(e a 0)  + MIN(e d2 0)
+   
+   R21,1 & R20,1  --> * R22:  - MIN(e a 0)  + MIN(e d2 0)
+   
+   R22,1 & R17,1  --> * R23:  + MIN(e d2 0)
+   
+   T22,1 & A8,1   --> * R24:  + MAX(b e b)
+   
+   R24,1 & A11,1  --> * R25:  + MAX(e b b)
+   
+   T26,1 & A11,1  --> * R26:  + MAX(b a c2)
+   
+   R26,1 & A15,2  --> * R27:  - MAX(e b b)  - MAX(b a c2)  + MAX(e c2 c2)
+   
+   R27,1 & R25,1  --> * R28:  - MAX(b a c2)  + MAX(e c2 c2)
+   
+   R28,1 & R26,1  --> * R29:  + MAX(e c2 c2)
+   
+   R29,1 & A9,1   --> * R30:  + MIN(e c2 e)
+   
+   T26,1 & A9,1   --> * R31:  + MIN(a c2 a)
+   
+   R31,1 & A12,2  --> * R32:  - MIN(d a d2)  - MIN(d a d2)  + MIN(d2 c2 d2)
+   
+   R32 1=2        --> * D33:  - MIN(d a d2)  + MIN(d2 c2 d2)
+   
+   D33,1 & T28,1  --> * R34:  + MIN(d2 c2 d2)
+   
+   T29,1 & A11,1  --> * R35:  + MAX(d2 a2 e2)
+   
+   R35,1 & A17,2  --> * R36:  - MIN(d2 c2 d2)  - MIN(a2 c2 0)  - MAX(d2 0 d2)  + MIN(c2 e2 d2)
+   
+   R36,1 & R34,1  --> * R37:  - MIN(a2 c2 0)  - MAX(d2 0 d2)  + MIN(c2 e2 d2)
+   
+   R37,1 & T27,1  --> * R38:  - MAX(d2 0 d2)  + MIN(c2 e2 d2)
+   
+   R38,1 & R2,1   --> * R39:  + MIN(c2 e2 d2)
+   
+   R39,1 & A12,2  --> * R40:  - MIN(e c2 e)  - MIN(e d2 0)  + MIN(e e2 0)
+   
+   R40,1 & R30,1  --> * R41:  - MIN(e d2 0)  + MIN(e e2 0)
+   
+   R41,1 & R23,1  --> * R42:  + MIN(e e2 0)
+   
+   R42,1 & R16,1  --> * R43:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 1160 seconds

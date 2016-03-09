@@ -1,0 +1,333 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 35.2 EQUALITY 16.1                                  *
+                     *           DATE: 15-DEC,1989  14:47                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 15-DEC,1989 14:47 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * AXIOMS FOR PROBLEM 43 %.
+             * GIVEN THREE PEOPLE A,B AND C.
+             * ONE IS A KNIGHT ,ONE A KNAVE ,ONE A NORMAL.
+             * A SAYS : B IS OF HIGHER RANK THAN C.
+             * B SAYS : C IS OF A HIGHER RANK THAN A.
+             *
+             * THEN C IS ASKED : WHO HAS A HIGHER RANK ,A OR B. WHAT DOES C ANSWER?
+             *
+             *
+             * HRANK2 (X Y) MEANS : X IS OF A HIGHER RANK THAN Y.
+             * HRANK3 (X Y Z) MEANS : X SAYS : Y IS OF A HIGHER RANK THAN Z.
+             *
+             *
+             ALL X KNIGHT (X) EQV NOT KNAVE (X) AND NOT NORMAL (X)
+             ALL X KNAVE (X) EQV NOT KNIGHT (X) AND NOT NORMAL (X)
+             ALL X NORMAL (X) EQV NOT KNIGHT (X) AND NOT KNAVE (X)
+             ALL X,Y,Z HRANK3 (X Y Z) AND KNAVE (X) IMPL NOT HRANK2 (Y Z)
+             ALL X,Y,Z HRANK3 (X Y Z) AND KNIGHT (X) IMPL HRANK2 (Y Z)
+             ALL X,Y HRANK2 (X Y) EQV KNIGHT (X) AND NOT KNIGHT (Y) OR NORMAL (X) AND KNAVE (Y)
+             NORMAL (A) OR NORMAL (B) OR NORMAL (C)
+             KNIGHT (A) OR KNIGHT (B) OR KNIGHT (C)
+             KNAVE (A) OR KNAVE (B) OR KNAVE (C)
+             HRANK3 (A B C)
+             HRANK3 (B C A)
+             HRANK3 (C B A) OR HRANK3 (C A B)
+             
+   Theorems: HRANK3 (C B A)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+           * A1:   + HRANK3(a b c)
+           * A2:   + HRANK3(b c a)
+           * A3:   All x:Any - KNAVE(x)  - NORMAL(x)
+             A4:   All x:Any - NORMAL(x)  - KNAVE(x)
+           * A5:   + HRANK3(c b a)  + HRANK3(c a b)
+             A6:   All x:Any + KNAVE(x)  - KNAVE(x)  + NORMAL(x)
+             A7:   All x:Any + KNAVE(x)  - NORMAL(x)  + NORMAL(x)
+             A8:   All x:Any - KNAVE(x)  + KNAVE(x)  + NORMAL(x)
+             A9:   All x:Any + NORMAL(x)  - KNAVE(x)  + KNAVE(x)
+             A10:  All x:Any + NORMAL(x)  - NORMAL(x)  + KNAVE(x)
+             A11:  All x:Any - NORMAL(x)  + KNAVE(x)  + NORMAL(x)
+           * A12:  + NORMAL(a)  + NORMAL(b)  + NORMAL(c)
+           * A13:  - KNAVE(a)  - KNAVE(b)  - KNAVE(c)
+           * A14:  - KNAVE(a)  - KNAVE(b)  - NORMAL(c)
+           * A15:  - KNAVE(a)  - NORMAL(b)  - KNAVE(c)
+           * A16:  - KNAVE(a)  - NORMAL(b)  - NORMAL(c)
+           * A17:  - NORMAL(a)  - KNAVE(b)  - KNAVE(c)
+           * A18:  - NORMAL(a)  - KNAVE(b)  - NORMAL(c)
+           * A19:  - NORMAL(a)  - NORMAL(b)  - KNAVE(c)
+             A20:  - NORMAL(a)  - NORMAL(b)  - NORMAL(c)
+           * A21:  + KNAVE(a)  + KNAVE(b)  + KNAVE(c)
+           * A22:  All x,y,z:Any - HRANK3(z y x)  - KNAVE(z)  - NORMAL(y)  - KNAVE(x)
+           * A23:  All x,y,z:Any - HRANK3(z y x)  - KNAVE(z)  + KNAVE(y)  + NORMAL(y)  - KNAVE(x)
+           * A24:  All x,y,z:Any - HRANK3(z y x)  - KNAVE(z)  + KNAVE(y)  + NORMAL(y)  - NORMAL(x)
+           * A25:  All x,y,z:Any - HRANK3(z y x)  + KNAVE(z)  + NORMAL(z)  - KNAVE(y)  + NORMAL(y)
+             A26:  All x,y,z:Any - HRANK3(z y x)  + KNAVE(z)  + NORMAL(z)  - KNAVE(y)  + KNAVE(x)
+             A27:  All x,y,z:Any - HRANK3(z y x)  + KNAVE(z)  + NORMAL(z)  - NORMAL(y)  + NORMAL(y)
+             A28:  All x,y,z:Any - HRANK3(z y x)  + KNAVE(z)  + NORMAL(z)  - NORMAL(y)  + KNAVE(x)
+             A29:  All x,y,z:Any - HRANK3(z y x)  + KNAVE(z)  + NORMAL(z)  + KNAVE(x)  + NORMAL(x)  + NORMAL(y)
+             A30:  All x,y,z:Any - HRANK3(z y x)  + KNAVE(z)  + NORMAL(z)  + KNAVE(x)  + NORMAL(x)  + KNAVE(x)
+           
+
+
+
+
+             Initial Operations on Axioms
+             ============================
+
+
+          
+   A25,5 & A3,2  --> * R1: All x,y,z:Any - HRANK3(y z x)  + KNAVE(y)  + NORMAL(y)  - KNAVE(z)  - KNAVE(z)
+   
+   R1 4=5        --> * D2: All x,y,z:Any - HRANK3(y z x)  + KNAVE(y)  + NORMAL(y)  - KNAVE(z)
+   
+
+   
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T31: - HRANK3(c b a)
+
+
+
+
+
+
+             Initial Operations on Theorems
+             ==============================
+
+
+          
+   A5,1 & T31,1  --> * R4: + HRANK3(c a b)
+   
+
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:      * A1:    + HRANK3(a b c)
+                         * A2:    + HRANK3(b c a)
+                         * A3:    All x:Any - KNAVE(x)  - NORMAL(x)
+                         * R4:    + HRANK3(c a b)
+                         * A12:   + NORMAL(a)  + NORMAL(b)  + NORMAL(c)
+                         * A13:   - KNAVE(a)  - KNAVE(b)  - KNAVE(c)
+                         * A14:   - KNAVE(a)  - KNAVE(b)  - NORMAL(c)
+                         * A15:   - KNAVE(a)  - NORMAL(b)  - KNAVE(c)
+                         * A16:   - KNAVE(a)  - NORMAL(b)  - NORMAL(c)
+                         * A17:   - NORMAL(a)  - KNAVE(b)  - KNAVE(c)
+                         * A18:   - NORMAL(a)  - KNAVE(b)  - NORMAL(c)
+                         * A19:   - NORMAL(a)  - NORMAL(b)  - KNAVE(c)
+                           A20:   - NORMAL(a)  - NORMAL(b)  - NORMAL(c)
+                         * A21:   + KNAVE(a)  + KNAVE(b)  + KNAVE(c)
+                         * A22:   All x,y,z:Any - HRANK3(z y x)  - KNAVE(z)  - NORMAL(y)  - KNAVE(x)
+                         * A23:   All x,y,z:Any - HRANK3(z y x)  - KNAVE(z)  + KNAVE(y)  + NORMAL(y)  - KNAVE(x)
+                         * A24:   All x,y,z:Any - HRANK3(z y x)  - KNAVE(z)  + KNAVE(y)  + NORMAL(y)  - NORMAL(x)
+                         * D2:    All x,y,z:Any - HRANK3(y z x)  + KNAVE(y)  + NORMAL(y)  - KNAVE(z)
+                           A28:   All x,y,z:Any - HRANK3(z y x)  + KNAVE(z)  + NORMAL(z)  - NORMAL(y)  + KNAVE(x)
+                           D3:    All x,y,z:Any - HRANK3(z y x)  + KNAVE(z)  + NORMAL(z)  + KNAVE(x)  + NORMAL(x)
+                         * T31:   - HRANK3(c b a)
+                         
+
+   
+   R4,1 & D2,1      -->  * R5:    + KNAVE(c)  + NORMAL(c)  - KNAVE(a)
+   
+   A21,1 & R5,3     -->  * R6:    + KNAVE(b)  + KNAVE(c)  + KNAVE(c)  + NORMAL(c)
+   
+   R6 2=3           -->  * D7:    + KNAVE(b)  + KNAVE(c)  + NORMAL(c)
+   
+   R5,2 & A14,3     -->  * R8:    + KNAVE(c)  - KNAVE(a)  - KNAVE(a)  - KNAVE(b)
+   
+   R8 3=2           -->  * D9:    + KNAVE(c)  - KNAVE(a)  - KNAVE(b)
+   
+   D9,1 & A13,3     -->  * R10:   - KNAVE(a)  - KNAVE(b)  - KNAVE(a)  - KNAVE(b)
+   
+   R10 1=3          -->  * D11:   - KNAVE(a)  - KNAVE(b)  - KNAVE(b)
+   
+   D11 2=3          -->  * D12:   - KNAVE(a)  - KNAVE(b)
+   
+   R5,2 & A16,3     -->  * R13:   + KNAVE(c)  - KNAVE(a)  - KNAVE(a)  - NORMAL(b)
+   
+   R13 3=2          -->  * D14:   + KNAVE(c)  - KNAVE(a)  - NORMAL(b)
+   
+   D14,1 & A15,3    -->  * R15:   - KNAVE(a)  - NORMAL(b)  - KNAVE(a)  - NORMAL(b)
+   
+   R15 1=3          -->  * D16:   - KNAVE(a)  - NORMAL(b)  - NORMAL(b)
+   
+   D16 2=3          -->  * D17:   - KNAVE(a)  - NORMAL(b)
+   
+   R4,1 & A23,1     -->  * R18:   - KNAVE(c)  + KNAVE(a)  + NORMAL(a)  - KNAVE(b)
+   
+   R18,3 & A17,1    -->  * R19:   - KNAVE(c)  + KNAVE(a)  - KNAVE(b)  - KNAVE(b)  - KNAVE(c)
+   
+   R19 3=4          -->  * D20:   - KNAVE(c)  + KNAVE(a)  - KNAVE(b)  - KNAVE(c)
+   
+   D20 1=4          -->  * D21:   - KNAVE(c)  + KNAVE(a)  - KNAVE(b)
+   
+   D21,2 & D12,1    -->  * R22:   - KNAVE(c)  - KNAVE(b)  - KNAVE(b)
+   
+   R22 2=3          -->  * D23:   - KNAVE(c)  - KNAVE(b)
+   
+   R4,1 & A24,1     -->  * R24:   - KNAVE(c)  + KNAVE(a)  + NORMAL(a)  - NORMAL(b)
+   
+   R24,3 & A19,1    -->  * R25:   - KNAVE(c)  + KNAVE(a)  - NORMAL(b)  - NORMAL(b)  - KNAVE(c)
+   
+   R25 3=4          -->  * D26:   - KNAVE(c)  + KNAVE(a)  - NORMAL(b)  - KNAVE(c)
+   
+   D26 1=4          -->  * D27:   - KNAVE(c)  + KNAVE(a)  - NORMAL(b)
+   
+   D27,2 & A22,2    -->  * R28:   - KNAVE(c)  - NORMAL(b)  - HRANK3(a b c)  - NORMAL(b)  - KNAVE(c)
+   
+   R28 2=4          -->  * D29:   - KNAVE(c)  - NORMAL(b)  - HRANK3(a b c)  - KNAVE(c)
+   
+   D29 1=4          -->  * D30:   - KNAVE(c)  - NORMAL(b)  - HRANK3(a b c)
+   
+   D30,3 & A1,1     -->  * R31:   - KNAVE(c)  - NORMAL(b)
+   
+   A12,2 & R31,2    -->  * R32:   + NORMAL(a)  + NORMAL(c)  - KNAVE(c)
+   
+   R32,2 & A3,2     -->  * R33:   + NORMAL(a)  - KNAVE(c)  - KNAVE(c)
+   
+   R33 2=3          -->  * D34:   + NORMAL(a)  - KNAVE(c)
+   
+   D34,1 & A3,2     -->  * R35:   - KNAVE(c)  - KNAVE(a)
+   
+   R5,1 & R35,1     -->  * R36:   + NORMAL(c)  - KNAVE(a)  - KNAVE(a)
+   
+   R36 2=3          -->  * D37:   + NORMAL(c)  - KNAVE(a)
+   
+   A21,3 & R31,1    -->  * R38:   + KNAVE(a)  + KNAVE(b)  - NORMAL(b)
+   
+   R38,2 & A3,1     -->  * R39:   + KNAVE(a)  - NORMAL(b)  - NORMAL(b)
+   
+   R39 2=3          -->  * D40:   + KNAVE(a)  - NORMAL(b)
+   
+   D40,1 & D17,1    -->  * R41:   - NORMAL(b)  - NORMAL(b)
+   
+   R41 1=2          -->  * D42:   - NORMAL(b)
+   
+   A21,3 & D34,2    -->  * R47:   + KNAVE(a)  + KNAVE(b)  + NORMAL(a)
+   
+   R47,2 & D2,4     -->  * R48:   + KNAVE(a)  + NORMAL(a)  - HRANK3(a b c)  + KNAVE(a)  + NORMAL(a)
+   
+   R48 1=4          -->  * D49:   + KNAVE(a)  + NORMAL(a)  - HRANK3(a b c)  + NORMAL(a)
+   
+   D49,3 & A1,1     -->  * R50:   + KNAVE(a)  + NORMAL(a)  + NORMAL(a)
+   
+   R50,3 & D42,1    -->  * R51:   + KNAVE(a)  + NORMAL(a)
+   
+   R51,1 & D12,1    -->  * R52:   + NORMAL(a)  - KNAVE(b)
+   
+   A18,1 & R52,1    -->  * R53:   - KNAVE(b)  - NORMAL(c)  - KNAVE(b)
+   
+   R53 1=3          -->  * D54:   - KNAVE(b)  - NORMAL(c)
+   
+   D2,3 & D42,1     -->  * R56:   All x,y:Any - HRANK3(b y x)  + KNAVE(b)  - KNAVE(y)
+   
+   A21,3 & R56,3    -->  * R57:   + KNAVE(a)  + KNAVE(b)  - HRANK3(b c a)  + KNAVE(b)
+   
+   R57 2=4          -->  * D58:   + KNAVE(a)  + KNAVE(b)  - HRANK3(b c a)
+   
+   D58,3 & A2,1     -->  * R59:   + KNAVE(a)  + KNAVE(b)
+   
+   D7,2 & R56,3     -->  * R60:   + KNAVE(b)  + NORMAL(c)  - HRANK3(b c a)  + KNAVE(b)
+   
+   R60 1=4          -->  * D61:   + KNAVE(b)  + NORMAL(c)  - HRANK3(b c a)
+   
+   D61,3 & A2,1     -->  * R62:   + KNAVE(b)  + NORMAL(c)
+   
+   A2,1 & R56,1     -->  * R63:   + KNAVE(b)  - KNAVE(c)
+   
+   R63,1 & D23,2    -->  * R64:   - KNAVE(c)  - KNAVE(c)
+   
+   R64 1=2          -->  * D65:   - KNAVE(c)
+   
+   D37,1 & A22,3    -->  * R73:   All x,y:Any - KNAVE(a)  - HRANK3(y c x)  - KNAVE(y)  - KNAVE(x)
+   
+   R59,1 & R73,4    -->  * R76:   All x:Any + KNAVE(b)  - KNAVE(a)  - HRANK3(x c a)  - KNAVE(x)
+   
+   R76,2 & R59,1    -->  * R77:   All x:Any + KNAVE(b)  - HRANK3(x c a)  - KNAVE(x)  + KNAVE(b)
+   
+   R77 1=4          -->  * D78:   All x:Any + KNAVE(b)  - HRANK3(x c a)  - KNAVE(x)
+   
+   D78,1 & D12,2    -->  * R84:   All x:Any - HRANK3(x c a)  - KNAVE(x)  - KNAVE(a)
+   
+   D78,1 & D54,1    -->  * R85:   All x:Any - HRANK3(x c a)  - KNAVE(x)  - NORMAL(c)
+   
+   R59,2 & R85,2    -->  * R86:   + KNAVE(a)  - HRANK3(b c a)  - NORMAL(c)
+   
+   R86,2 & A2,1     -->  * R87:   + KNAVE(a)  - NORMAL(c)
+   
+   A24,4 & D42,1    -->  * R115:  All x,y:Any - HRANK3(y b x)  - KNAVE(y)  + KNAVE(b)  - NORMAL(x)
+   
+   A1,1 & R115,1    -->  * R116:  - KNAVE(a)  + KNAVE(b)  - NORMAL(c)
+   
+   R116,3 & R62,2   -->  * R117:  - KNAVE(a)  + KNAVE(b)  + KNAVE(b)
+   
+   R117 2=3         -->  * D118:  - KNAVE(a)  + KNAVE(b)
+   
+   D118,2 & R84,2   -->  * R119:  - KNAVE(a)  - HRANK3(b c a)  - KNAVE(a)
+   
+   R119 1=3         -->  * D120:  - KNAVE(a)  - HRANK3(b c a)
+   
+   D120,2 & A2,1    -->  * R121:  - KNAVE(a)
+   
+   R87,1 & R121,1   -->  * R123:  - NORMAL(c)
+   
+   R51,1 & R121,1   -->  * R124:  + NORMAL(a)
+   
+   R59,1 & R121,1   -->  * R125:  + KNAVE(b)
+   
+   R123,1 & A24,4   -->  * R126:  - HRANK3(b c a)  - KNAVE(b)  + KNAVE(c)  - NORMAL(a)
+   
+   R126,1 & A2,1    -->  * R127:  - KNAVE(b)  + KNAVE(c)  - NORMAL(a)
+   
+   R127,1 & R125,1  -->  * R128:  + KNAVE(c)  - NORMAL(a)
+   
+   R128,1 & D65,1   -->  * R129:  - NORMAL(a)
+   
+   R129,1 & R124,1  -->  * R130:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 441 seconds

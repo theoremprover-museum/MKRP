@@ -1,0 +1,986 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                  ******************************************************************************
+                  *                                                                            *
+                  *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN     *
+                  *                                                                            *
+                  *        VERSION: MKRP 53.6 GENTRAFO 3.0                                     *
+                  *           DATE: 14-APR,1992  21:14                                         *
+                  *                                                                            *
+                  ******************************************************************************
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+Edit:     Axioms and Theorems edited: 30-JUL,1990 14:06 
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+          Formulae given to the editor
+          ============================
+
+
+Axioms:   ALL X A (B (C (X))) = D (X)
+          ALL X B (C (D (X))) = E (X)
+          ALL X C (D (E (X))) = A (X)
+          ALL X D (E (A (X))) = B (X)
+          ALL X E (A (B (X))) = C (X)
+          ALL X A (A1 (X)) = X
+          ALL X A1 (A (X)) = X
+          ALL X B (B1 (X)) = X
+          ALL X B1 (B (X)) = X
+          ALL X C (C1 (X)) = X
+          ALL X C1 (C (X)) = X
+          ALL X D (D1 (X)) = X
+          ALL X D1 (D (X)) = X
+          ALL X E (E1 (X)) = X
+          ALL X E1 (E (X)) = X
+          
+Theorems: (ALL X D (X) = A (A (A (X)))) AND (ALL X D (X) = E (E (E (E (E (X))))))
+          
+
+
+
+          Set of Axiom Clauses Resulting from Normalization
+          =================================================
+
+        * A1:   All x:Any + =(x x)
+        * A2:   All x:Any + =(a(b(c(x))) d(x))
+        * A3:   All x:Any + =(b(c(d(x))) e(x))
+        * A4:   All x:Any + =(c(d(e(x))) a(x))
+        * A5:   All x:Any + =(d(e(a(x))) b(x))
+        * A6:   All x:Any + =(e(a(b(x))) c(x))
+        * A7:   All x:Any + =(a(a1(x)) x)
+          A8:   All x:Any + =(a1(a(x)) x)
+          A9:   All x:Any + =(b(b1(x)) x)
+        * A10:  All x:Any + =(b1(b(x)) x)
+        * A11:  All x:Any + =(c(c1(x)) x)
+        * A12:  All x:Any + =(c1(c(x)) x)
+        * A13:  All x:Any + =(d(d1(x)) x)
+        * A14:  All x:Any + =(d1(d(x)) x)
+        * A15:  All x:Any + =(e(e1(x)) x)
+        * A16:  All x:Any + =(e1(e(x)) x)
+        
+
+
+
+
+          Initial Operations on Axioms
+          ============================
+
+
+       
+A2,1 & A4   --> * RW1:  All x:Any + =(c(d(e(b(c(x))))) d(x))
+
+A5,1 & A4   --> * RW2:  All x:Any + =(d(e(c(d(e(x))))) b(x))
+
+RW1,1 & RW2 --> * RW3:  All x:Any + =(c(d(e(d(e(c(d(e(c(x))))))))) d(x))
+
+A3,1 & RW2  --> * RW4:  All x:Any + =(d(e(c(d(e(c(d(x))))))) e(x))
+
+A6,1 & RW2  --> * RW5:  All x:Any + =(e(a(d(e(c(d(e(x))))))) c(x))
+
+RW5,1 & A4  --> * RW6:  All x:Any + =(e(c(d(e(d(e(c(d(e(x))))))))) c(x))
+
+A7,1 & A4   --> * RW7:  All x:Any + =(c(d(e(a1(x)))) x)
+
+A10,1 & RW2 --> * RW10: All x:Any + =(b1(d(e(c(d(e(x)))))) x)
+
+
+
+
+
+
+
+          Set of Theorem Clauses Resulting from Normalization
+          ===================================================
+
+        * T17: - =(d(c_1) a(a(a(c_1))))  - =(d(c_2) e(e(e(e(e(c_2))))))
+
+
+
+
+
+
+          Initial Operations on Theorems
+          ==============================
+
+
+       
+T17,1 & A4   --> * RW11: - =(d(c_1) c(d(e(a(a(c_1))))))  - =(d(c_2) e(e(e(e(e(c_2))))))
+
+RW11,1 & A4  --> * RW12: - =(d(c_1) c(d(e(c(d(e(a(c_1))))))))  - =(d(c_2) e(e(e(e(e(c_2))))))
+
+RW12,1 & A4  --> * RW13: - =(d(c_1) c(d(e(c(d(e(c(d(e(c_1))))))))))  - =(d(c_2) e(e(e(e(e(c_2))))))
+
+RW13,1 & RW4 --> * RW14: - =(d(c_1) c(e(e(c_1))))  - =(d(c_2) e(e(e(e(e(c_2))))))
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+Refutation:
+===========
+
+Initial Clauses:       * A1:     All x:Any + =(x x)
+                       * RW3:    All x:Any + =(c(d(e(d(e(c(d(e(c(x))))))))) d(x))
+                       * RW4:    All x:Any + =(d(e(c(d(e(c(d(x))))))) e(x))
+                       * A4:     All x:Any + =(c(d(e(x))) a(x))
+                       * RW2:    All x:Any + =(d(e(c(d(e(x))))) b(x))
+                       * RW6:    All x:Any + =(e(c(d(e(d(e(c(d(e(x))))))))) c(x))
+                       * RW7:    All x:Any + =(c(d(e(a1(x)))) x)
+                         RW8:    All x:Any + =(a1(c(d(e(x)))) x)
+                         RW9:    All x:Any + =(d(e(c(d(e(b1(x)))))) x)
+                       * RW10:   All x:Any + =(b1(d(e(c(d(e(x)))))) x)
+                       * A11:    All x:Any + =(c(c1(x)) x)
+                       * A12:    All x:Any + =(c1(c(x)) x)
+                       * A13:    All x:Any + =(d(d1(x)) x)
+                       * A14:    All x:Any + =(d1(d(x)) x)
+                       * A15:    All x:Any + =(e(e1(x)) x)
+                       * A16:    All x:Any + =(e1(e(x)) x)
+                       * RW14:   - =(d(c_1) c(e(e(c_1))))  - =(d(c_2) e(e(e(e(e(c_2))))))
+                       
+
+
+RW3,1 & RW6,1      --> * P15:    All x:Any + =(e(d(x)) c(c(x)))
+
+RW4,1 & RW10,1     --> * P16:    All x:Any + =(b1(e(x)) c(d(x)))
+
+RW7,1 & RW10,1     --> * P17:    All x:Any + =(b1(d(e(x))) a1(x))
+
+RW7,1 & P17        --> * RW18:   All x:Any + =(c(d(e(b1(d(e(x)))))) x)
+
+A15,1 & RW18,1     --> * P21:    All x:Any + =(c(d(e(b1(d(x))))) e1(x))
+
+P21,1 & A12,1      --> * P24:    All x:Any + =(c1(e1(x)) d(e(b1(d(x)))))
+
+P24,1 & A14,1      --> * P27:    All x:Any + =(d1(c1(e1(x))) e(b1(d(x))))
+
+P27,1 & A16,1      --> * P30:    All x:Any + =(e1(d1(c1(e1(x)))) b1(d(x)))
+
+A13,1 & P30,1      --> * P40:    All x:Any + =(e1(d1(c1(e1(d1(x))))) b1(x))
+
+P16,1 & P40        --> * RW47:   All x:Any + =(e1(d1(c1(e1(d1(e(x)))))) c(d(x)))
+
+P15,1 & A12,1      --> * P50:    All x:Any + =(c1(e(d(x))) c(x))
+
+A11,1 & P15,1      --> * P51:    All x:Any + =(e(d(c1(x))) c(x))
+
+A13,1 & P50,1      --> * P52:    All x:Any + =(c1(e(x)) c(d1(x)))
+
+P51,1 & A16,1      --> * P55:    All x:Any + =(e1(c(x)) d(c1(x)))
+
+A15,1 & P52,1      --> * P58:    All x:Any + =(c1(x) c(d1(e1(x))))
+
+RW47,1 & P58       --> * RW64:   All x:Any + =(e1(d1(c(d1(e1(e1(d1(e(x)))))))) c(d(x)))
+
+P55,1 & P58        --> * RW69:   All x:Any + =(e1(c(x)) d(c(d1(e1(x)))))
+
+A16,1 & RW69,1     --> * P70:    All x:Any + =(e1(c(e(x))) d(c(d1(x))))
+
+P70,1 & A14,1      --> * P73:    All x:Any + =(d1(e1(c(e(x)))) c(d1(x)))
+
+RW64,1 & P73       --> * RW79:   All x:Any + =(e1(d1(d1(e1(c(e(e1(e1(d1(e(x)))))))))) c(d(x)))
+
+RW79,1 & A15       --> * RW80:   All x:Any + =(e1(d1(d1(e1(c(e1(d1(e(x)))))))) c(d(x)))
+
+RW80,1 & A15,1     --> * P96:    All x:Any + =(e(c(d(x))) d1(d1(e1(c(e1(d1(e(x))))))))
+
+P96,1 & A13,1      --> * P99:    All x:Any + =(d(e(c(d(x)))) d1(e1(c(e1(d1(e(x)))))))
+
+P99,1 & P73,1      --> * P102:   All x:Any + =(d1(e1(c(e(e1(c(e1(d1(e(x))))))))) c(d(e(c(d(x))))))
+
+P102,1 & A15       --> * RW103:  All x:Any + =(d1(e1(c(c(e1(d1(e(x))))))) c(d(e(c(d(x))))))
+
+RW103,1 & P15      --> * RW104:  All x:Any + =(d1(e1(e(d(e1(d1(e(x))))))) c(d(e(c(d(x))))))
+
+RW104,1 & A16      --> * RW105:  All x:Any + =(d1(d(e1(d1(e(x))))) c(d(e(c(d(x))))))
+
+RW105,1 & A14      --> * RW106:  All x:Any + =(e1(d1(e(x))) c(d(e(c(d(x))))))
+
+RW106,1 & RW3,1    --> * P110:   All x:Any + =(c(d(e(d(e(e1(d1(e(x)))))))) d(d(x)))
+
+P110,1 & A15       --> * RW111:  All x:Any + =(c(d(e(d(d1(e(x)))))) d(d(x)))
+
+RW111,1 & A13      --> * RW112:  All x:Any + =(c(d(e(e(x)))) d(d(x)))
+
+A15,1 & RW112,1    --> * P113:   All x:Any + =(c(d(e(x))) d(d(e1(x))))
+
+RW3,1 & P113       --> * RW114:  All x:Any + =(d(d(e1(d(e(c(d(e(c(x))))))))) d(x))
+
+RW114,1 & P113     --> * RW115:  All x:Any + =(d(d(e1(d(e(d(d(e1(c(x))))))))) d(x))
+
+RW6,1 & P113       --> * RW118:  All x:Any + =(e(d(d(e1(d(e(c(d(e(x))))))))) c(x))
+
+RW118,1 & P113     --> * RW119:  All x:Any + =(e(d(d(e1(d(e(d(d(e1(x))))))))) c(x))
+
+RW106,1 & P113     --> * RW120:  All x:Any + =(e1(d1(e(x))) d(d(e1(c(d(x))))))
+
+RW115,1 & RW119    --> * RW123:  All x:Any + =(d(d(e1(d(e(d(d(e1(e(d(d(e1(d(e(d(d(e1(x))))))))))))))))) d(x))
+
+RW123,1 & A16      --> * RW124:  All x:Any + =(d(d(e1(d(e(d(d(d(d(e1(d(e(d(d(e1(x))))))))))))))) d(x))
+
+RW14,1 & RW119     --> * RW125:  - =(d(c_1) e(d(d(e1(d(e(d(d(e1(e(e(c_1))))))))))))  - =(d(c_2) e(e(e(e(e(c_2))))))
+
+RW125,1 & A16      --> * RW126:  - =(d(c_1) e(d(d(e1(d(e(d(d(e(c_1))))))))))  - =(d(c_2) e(e(e(e(e(c_2))))))
+
+P73,1 & RW119      --> * RW141:  All x:Any + =(d1(e1(e(d(d(e1(d(e(d(d(e1(e(x)))))))))))) c(d1(x)))
+
+RW141,1 & RW119    --> * RW142:  All x:Any + =(d1(e1(e(d(d(e1(d(e(d(d(e1(e(x))))))))))))
+                                               e(d(d(e1(d(e(d(d(e1(d1(x)))))))))))
+
+RW142,1 & A16      --> * RW143:  All x:Any + =(d1(d(d(e1(d(e(d(d(e1(e(x)))))))))) e(d(d(e1(d(e(d(d(e1(d1(x)))))))))))
+
+RW143,1 & A16      --> * RW144:  All x:Any + =(d1(d(d(e1(d(e(d(d(x)))))))) e(d(d(e1(d(e(d(d(e1(d1(x)))))))))))
+
+RW144,1 & A14      --> * RW145:  All x:Any + =(d(e1(d(e(d(d(x)))))) e(d(d(e1(d(e(d(d(e1(d1(x)))))))))))
+
+RW120,1 & RW119    --> * RW153:  All x:Any + =(e1(d1(e(x))) d(d(e1(e(d(d(e1(d(e(d(d(e1(d(x))))))))))))))
+
+RW153,1 & A16      --> * RW154:  All x:Any + =(e1(d1(e(x))) d(d(d(d(e1(d(e(d(d(e1(d(x))))))))))))
+
+P113,1 & RW119     --> * RW155:  All x:Any + =(e(d(d(e1(d(e(d(d(e1(d(e(x))))))))))) d(d(e1(x))))
+
+A15,1 & RW154,1    --> * P158:   All x:Any + =(e1(d1(x)) d(d(d(d(e1(d(e(d(d(e1(d(e1(x)))))))))))))
+
+RW145,1 & P158     --> * RW160:  All x:Any + =(d(e1(d(e(d(d(x))))))
+                                               e(d(d(e1(d(e(d(d(d(d(d(d(e1(d(e(d(d(e1(d(e1(x)))))))))))))))))))))
+
+A15,1 & RW155,1    --> * P163:   All x:Any + =(e(d(d(e1(d(e(d(d(e1(d(x)))))))))) d(d(e1(e1(x)))))
+
+RW124,1 & A14,1    --> * P167:   All x:Any + =(d1(d(x)) d(e1(d(e(d(d(d(d(e1(d(e(d(d(e1(x)))))))))))))))
+
+P167,1 & A14       --> * RW168:  All x:Any + =(x d(e1(d(e(d(d(d(d(e1(d(e(d(d(e1(x)))))))))))))))
+
+P158,1 & A15,1     --> * P170:   All x:Any + =(e(d(d(d(d(e1(d(e(d(d(e1(d(e1(x))))))))))))) d1(x))
+
+A13,1 & P170       --> * RW171:  All x:Any + =(d(e(d(d(d(d(e1(d(e(d(d(e1(d(e1(x)))))))))))))) x)
+
+A14,1 & P170       --> * RW172:  All x:Any + =(e(d(d(d(d(e1(d(e(d(d(e1(d(e1(d(x)))))))))))))) x)
+
+P163,1 & A16,1     --> * P175:   All x:Any + =(e1(d(d(e1(e1(x))))) d(d(e1(d(e(d(d(e1(d(x))))))))))
+
+RW171,1 & P175     --> * RW176:  All x:Any + =(d(e(d(d(e1(d(d(e1(e1(e1(x)))))))))) x)
+
+RW172,1 & P175     --> * RW177:  All x:Any + =(e(d(d(e1(d(d(e1(e1(e1(d(x)))))))))) x)
+
+RW160,1 & P175     --> * RW179:  All x:Any + =(d(e1(d(e(d(d(x))))))
+                                               e(d(d(e1(d(e(d(d(d(d(e1(d(d(e1(e1(e1(x)))))))))))))))))
+
+RW177,1 & A16,1    --> * P184:   All x:Any + =(e1(x) d(d(e1(d(d(e1(e1(e1(d(x))))))))))
+
+A16,1 & RW176,1    --> * P187:   All x:Any + =(d(e(d(d(e1(d(d(e1(e1(x))))))))) e(x))
+
+P187,1 & P175,1    --> * P190:   All x:Any + =(e1(d(d(e1(e1(d(e1(e1(x)))))))) d(d(e1(e(x)))))
+
+P190,1 & A16       --> * RW191:  All x:Any + =(e1(d(d(e1(e1(d(e1(e1(x)))))))) d(d(x)))
+
+A16,1 & P187,1     --> * P192:   All x:Any + =(d(e(d(d(e1(d(d(e1(x)))))))) e(e(x)))
+
+RW191,1 & A15,1    --> * P200:   All x:Any + =(e(d(d(x))) d(d(e1(e1(d(e1(e1(x))))))))
+
+A16,1 & P192,1     --> * P205:   All x:Any + =(d(e(d(d(e1(d(d(x))))))) e(e(e(x))))
+
+A16,1 & P200,1     --> * P208:   All x:Any + =(e(d(d(e(x)))) d(d(e1(e1(d(e1(x)))))))
+
+P208,1 & P205,1    --> * P215:   All x:Any + =(d(e(d(d(e1(e(d(d(e(x))))))))) e(e(e(e1(e1(d(e1(x))))))))
+
+P215,1 & A16       --> * RW216:  All x:Any + =(d(e(d(d(d(d(e(x))))))) e(e(e(e1(e1(d(e1(x))))))))
+
+RW216,1 & A15      --> * RW217:  All x:Any + =(d(e(d(d(d(d(e(x))))))) e(e(e1(d(e1(x))))))
+
+RW217,1 & A15      --> * RW218:  All x:Any + =(d(e(d(d(d(d(e(x))))))) e(d(e1(x))))
+
+A16,1 & P208,1     --> * P219:   All x:Any + =(e(d(d(e(e(x))))) d(d(e1(e1(d(x))))))
+
+A15,1 & RW218,1    --> * P224:   All x:Any + =(d(e(d(d(d(d(x)))))) e(d(e1(e1(x)))))
+
+RW179,1 & P224     --> * RW225:  All x:Any + =(d(e1(d(e(d(d(x))))))
+                                               e(d(d(e1(e(d(e1(e1(e1(d(d(e1(e1(e1(x)))))))))))))))
+
+RW225,1 & A16      --> * RW226:  All x:Any + =(d(e1(d(e(d(d(x)))))) e(d(d(d(e1(e1(e1(d(d(e1(e1(e1(x)))))))))))))
+
+RW168,1 & P224     --> * RW227:  All x:Any + =(x d(e1(e(d(e1(e1(e1(d(e(d(d(e1(x)))))))))))))
+
+RW227,1 & A16      --> * RW228:  All x:Any + =(x d(d(e1(e1(e1(d(e(d(d(e1(x)))))))))))
+
+A16,1 & RW228,1    --> * P231:   All x:Any + =(e(x) d(d(e1(e1(e1(d(e(d(d(x))))))))))
+
+P175,1 & P224,1    --> * P234:   All x:Any + =(d(e(d(d(e1(d(d(e1(e1(x)))))))))
+                                               e(d(e1(e1(e1(d(e(d(d(e1(d(x))))))))))))
+
+P234,1 & P205      --> * RW235:  All x:Any + =(e(e(e(e1(e1(x))))) e(d(e1(e1(e1(d(e(d(d(e1(d(x))))))))))))
+
+RW235,1 & A15      --> * RW236:  All x:Any + =(e(e(e1(x))) e(d(e1(e1(e1(d(e(d(d(e1(d(x))))))))))))
+
+RW236,1 & A15      --> * RW237:  All x:Any + =(e(x) e(d(e1(e1(e1(d(e(d(d(e1(d(x))))))))))))
+
+RW237,1 & A16,1    --> * P238:   All x:Any + =(e1(e(x)) d(e1(e1(e1(d(e(d(d(e1(d(x)))))))))))
+
+P238,1 & A16       --> * RW239:  All x:Any + =(x d(e1(e1(e1(d(e(d(d(e1(d(x)))))))))))
+
+P184,1 & P205,1    --> * P241:   All x:Any + =(d(e(d(d(e1(e1(x)))))) e(e(e(e1(d(d(e1(e1(e1(d(x)))))))))))
+
+P241,1 & A15       --> * RW242:  All x:Any + =(d(e(d(d(e1(e1(x)))))) e(e(d(d(e1(e1(e1(d(x)))))))))
+
+P205,1 & P219,1    --> * P247:   All x:Any + =(e(d(d(e(e(e(d(d(e1(d(d(x))))))))))) d(d(e1(e1(e(e(e(x))))))))
+
+P247,1 & A16       --> * RW248:  All x:Any + =(e(d(d(e(e(e(d(d(e1(d(d(x))))))))))) d(d(e1(e(e(x))))))
+
+RW248,1 & A16      --> * RW249:  All x:Any + =(e(d(d(e(e(e(d(d(e1(d(d(x))))))))))) d(d(e(x))))
+
+P175,1 & RW239,1   --> * P252:   All x:Any + =(e(d(d(e1(d(x))))) d(e1(e1(e1(d(e(e1(d(d(e1(e1(x))))))))))))
+
+P252,1 & A15       --> * RW253:  All x:Any + =(e(d(d(e1(d(x))))) d(e1(e1(e1(d(d(d(e1(e1(x))))))))))
+
+A16,1 & RW242,1    --> * P254:   All x:Any + =(d(e(d(d(e1(x))))) e(e(d(d(e1(e1(e1(d(e(x))))))))))
+
+P175,1 & P254      --> * RW269:  All x:Any + =(e1(d(d(e1(e1(x))))) d(d(e1(e(e(d(d(e1(e1(e1(d(e(d(x))))))))))))))
+
+RW269,1 & A16      --> * RW270:  All x:Any + =(e1(d(d(e1(e1(x))))) d(d(e(d(d(e1(e1(e1(d(e(d(x))))))))))))
+
+RW270,1 & P254     --> * RW271:  All x:Any + =(e1(d(d(e1(e1(x)))))
+                                               d(e(e(d(d(e1(e1(e1(d(e(e1(e1(d(e(d(x))))))))))))))))
+
+RW271,1 & A15      --> * RW272:  All x:Any + =(e1(d(d(e1(e1(x))))) d(e(e(d(d(e1(e1(e1(d(e1(d(e(d(x))))))))))))))
+
+RW239,1 & P254     --> * RW275:  All x:Any + =(x d(e1(e1(e1(e(e(d(d(e1(e1(e1(d(e(d(x)))))))))))))))
+
+RW275,1 & A16      --> * RW276:  All x:Any + =(x d(e1(e1(e(d(d(e1(e1(e1(d(e(d(x)))))))))))))
+
+RW276,1 & A16      --> * RW277:  All x:Any + =(x d(e1(d(d(e1(e1(e1(d(e(d(x)))))))))))
+
+RW249,1 & A16,1    --> * P283:   All x:Any + =(e1(d(d(e(x)))) d(d(e(e(e(d(d(e1(d(d(x)))))))))))
+
+A16,1 & RW253,1    --> * P289:   All x:Any + =(e(d(d(e1(d(e(x)))))) d(e1(e1(e1(d(d(d(e1(x)))))))))
+
+A16,1 & P254,1     --> * P292:   All x:Any + =(d(e(d(d(x)))) e(e(d(d(e1(e1(e1(d(e(e(x)))))))))))
+
+A16,1 & P289,1     --> * P302:   All x:Any + =(e(d(d(e1(d(e(e(x))))))) d(e1(e1(e1(d(d(d(x))))))))
+
+P292,1 & A16,1     --> * P305:   All x:Any + =(e1(d(e(d(d(x))))) e(d(d(e1(e1(e1(d(e(e(x))))))))))
+
+P305,1 & A16,1     --> * P308:   All x:Any + =(e1(e1(d(e(d(d(x)))))) d(d(e1(e1(e1(d(e(e(x)))))))))
+
+P224,1 & P219,1    --> * P314:   All x:Any + =(e(d(d(e(e(e(d(d(d(d(x)))))))))) d(d(e1(e1(e(d(e1(e1(x)))))))))
+
+P314,1 & A16       --> * RW315:  All x:Any + =(e(d(d(e(e(e(d(d(d(d(x)))))))))) d(d(e1(d(e1(e1(x)))))))
+
+P219,1 & P224,1    --> * P316:   All x:Any + =(d(e(d(d(e(d(d(e(e(x))))))))) e(d(e1(e1(e1(e1(d(x))))))))
+
+P231,1 & RW226,1   --> * P317:   All x:Any + =(d(e1(d(e(d(d(d(e(d(d(x)))))))))) e(d(d(d(e1(e1(e1(e(x)))))))))
+
+P317,1 & A16       --> * RW318:  All x:Any + =(d(e1(d(e(d(d(d(e(d(d(x)))))))))) e(d(d(d(e1(e1(x)))))))
+
+P231,1 & P184,1    --> * P319:   All x:Any + =(e1(d(e1(e1(e1(d(e(d(d(x))))))))) d(d(e1(d(d(e1(e1(e1(e(x))))))))))
+
+P319,1 & A16       --> * RW320:  All x:Any + =(e1(d(e1(e1(e1(d(e(d(d(x))))))))) d(d(e1(d(d(e1(e1(x))))))))
+
+P231,1 & P219,1    --> * P331:   All x:Any + =(e(d(d(e(e(d(e1(e1(e1(d(e(d(d(x))))))))))))) d(d(e1(e1(e(x))))))
+
+P331,1 & A16       --> * RW332:  All x:Any + =(e(d(d(e(e(d(e1(e1(e1(d(e(d(d(x))))))))))))) d(d(e1(x))))
+
+P224,1 & RW277,1   --> * P334:   All x:Any + =(e(d(d(d(d(x))))) d(e1(d(d(e1(e1(e1(d(e(e(d(e1(e1(x))))))))))))))
+
+P334,1 & P308      --> * RW335:  All x:Any + =(e(d(d(d(d(x))))) d(e1(e1(e1(d(e(d(d(d(e1(e1(x))))))))))))
+
+P231,1 & P254,1    --> * P336:   All x:Any + =(d(e(e(x))) e(e(d(d(e1(e1(e1(d(e(e1(e1(d(e(d(d(x))))))))))))))))
+
+P336,1 & A15       --> * RW337:  All x:Any + =(d(e(e(x))) e(e(d(d(e1(e1(e1(d(e1(d(e(d(d(x))))))))))))))
+
+P219,1 & P254,1    --> * P338:   All x:Any + =(d(e(e(d(d(e(e(x))))))) e(e(d(d(e1(e1(e1(d(e(e1(d(x))))))))))))
+
+P338,1 & A15       --> * RW339:  All x:Any + =(d(e(e(d(d(e(e(x))))))) e(e(d(d(e1(e1(e1(d(d(x))))))))))
+
+P302,1 & RW339,1   --> * P340:   All x:Any + =(d(e(e(d(d(e(e(e1(e1(e1(d(d(d(x)))))))))))))
+                                               e(e(d(d(e1(e1(e1(d(e(d(d(e1(d(e(e(x))))))))))))))))
+
+P340,1 & P254      --> * RW341:  All x:Any + =(d(e(e(d(d(e(e(e1(e1(e1(d(d(d(x)))))))))))))
+                                               e(e(d(d(e1(e1(e1(e(e(d(d(e1(e1(e1(d(e(d(e(e(x))))))))))))))))))))
+
+RW341,1 & A16      --> * RW342:  All x:Any + =(d(e(e(d(d(e(e(e1(e1(e1(d(d(d(x)))))))))))))
+                                               e(e(d(d(e1(e1(e(d(d(e1(e1(e1(d(e(d(e(e(x))))))))))))))))))
+
+RW342,1 & A16      --> * RW343:  All x:Any + =(d(e(e(d(d(e(e(e1(e1(e1(d(d(d(x)))))))))))))
+                                               e(e(d(d(e1(d(d(e1(e1(e1(d(e(d(e(e(x))))))))))))))))
+
+RW343,1 & RW320    --> * RW344:  All x:Any + =(d(e(e(d(d(e(e(e1(e1(e1(d(d(d(x)))))))))))))
+                                               e(e(e1(d(e1(e1(e1(d(e(d(d(e1(d(e(d(e(e(x))))))))))))))))))
+
+RW344,1 & P254     --> * RW345:  All x:Any + =(d(e(e(d(d(e(e(e1(e1(e1(d(d(d(x)))))))))))))
+                                               e(e(e1(d(e1(e1(e1(e(e(d(d(e1(e1(e1(d(e(d(e(d(e(e(x))))))))))))))))))))
+                                                 ))
+
+RW345,1 & A16      --> * RW346:  All x:Any + =(d(e(e(d(d(e(e(e1(e1(e1(d(d(d(x)))))))))))))
+                                               e(e(e1(d(e1(e1(e(d(d(e1(e1(e1(d(e(d(e(d(e(e(x))))))))))))))))))))
+
+RW346,1 & A16      --> * RW347:  All x:Any + =(d(e(e(d(d(e(e(e1(e1(e1(d(d(d(x)))))))))))))
+                                               e(e(e1(d(e1(d(d(e1(e1(e1(d(e(d(e(d(e(e(x))))))))))))))))))
+
+RW347,1 & RW277    --> * RW348:  All x:Any + =(d(e(e(d(d(e(e(e1(e1(e1(d(d(d(x))))))))))))) e(e(e1(e(d(e(e(x))))))))
+
+RW348,1 & A16      --> * RW349:  All x:Any + =(d(e(e(d(d(e(e(e1(e1(e1(d(d(d(x))))))))))))) e(e(d(e(e(x))))))
+
+RW349,1 & A15      --> * RW350:  All x:Any + =(d(e(e(d(d(e(e1(e1(d(d(d(x))))))))))) e(e(d(e(e(x))))))
+
+RW350,1 & A15      --> * RW351:  All x:Any + =(d(e(e(d(d(e1(d(d(d(x))))))))) e(e(d(e(e(x))))))
+
+P302,1 & RW277,1   --> * P359:   All x:Any + =(e1(e1(e1(d(d(d(x))))))
+                                               d(e1(d(d(e1(e1(e1(d(e(e(d(d(e1(d(e(e(x)))))))))))))))))
+
+P359,1 & P308      --> * RW360:  All x:Any + =(e1(e1(e1(d(d(d(x))))))
+                                               d(e1(e1(e1(d(e(d(d(d(d(e1(d(e(e(x)))))))))))))))
+
+RW360,1 & P224     --> * RW361:  All x:Any + =(e1(e1(e1(d(d(d(x)))))) d(e1(e1(e1(e(d(e1(e1(e1(d(e(e(x)))))))))))))
+
+RW361,1 & A16      --> * RW362:  All x:Any + =(e1(e1(e1(d(d(d(x)))))) d(e1(e1(d(e1(e1(e1(d(e(e(x)))))))))))
+
+P231,1 & P302,1    --> * P363:   All x:Any + =(e(d(d(e1(d(e(e(e1(e1(e1(d(e(d(d(x))))))))))))))
+                                               d(e1(e1(e1(d(e(x)))))))
+
+P363,1 & A15       --> * RW364:  All x:Any + =(e(d(d(e1(d(e(e1(e1(d(e(d(d(x)))))))))))) d(e1(e1(e1(d(e(x)))))))
+
+RW364,1 & A15      --> * RW365:  All x:Any + =(e(d(d(e1(d(e1(d(e(d(d(x)))))))))) d(e1(e1(e1(d(e(x)))))))
+
+P308,1 & P224,1    --> * P369:   All x:Any + =(d(e(d(d(d(e1(e1(d(e(d(d(x)))))))))))
+                                               e(d(e1(e1(d(e1(e1(e1(d(e(e(x))))))))))))
+
+P369,1 & RW362     --> * RW370:  All x:Any + =(d(e(d(d(d(e1(e1(d(e(d(d(x))))))))))) e(e1(e1(e1(d(d(d(x))))))))
+
+RW370,1 & P219     --> * RW371:  All x:Any + =(d(e(d(e(d(d(e(e(e(d(d(x))))))))))) e(e1(e1(e1(d(d(d(x))))))))
+
+RW371,1 & A15      --> * RW372:  All x:Any + =(d(e(d(e(d(d(e(e(e(d(d(x))))))))))) e1(e1(d(d(d(x))))))
+
+P283,1 & RW372,1   --> * P373:   All x:Any + =(d(e(d(e(e1(d(d(e(x)))))))) e1(e1(d(d(d(e1(d(d(x)))))))))
+
+P373,1 & A15       --> * RW374:  All x:Any + =(d(e(d(d(d(e(x)))))) e1(e1(d(d(d(e1(d(d(x)))))))))
+
+P231,1 & RW372,1   --> * P375:   All x:Any + =(d(e(d(e(d(d(e(e(e(e(x))))))))))
+                                               e1(e1(d(d(d(e1(e1(e1(d(e(d(d(x)))))))))))))
+
+P375,1 & P231      --> * RW376:  All x:Any + =(d(e(d(e(d(d(e(e(e(e(x)))))))))) e1(e1(d(e(x)))))
+
+A15,1 & RW376,1    --> * P377:   All x:Any + =(d(e(d(e(d(d(e(e(e(x))))))))) e1(e1(d(e(e1(x))))))
+
+P377,1 & A15       --> * RW378:  All x:Any + =(d(e(d(e(d(d(e(e(e(x))))))))) e1(e1(d(x))))
+
+A15,1 & RW378,1    --> * P379:   All x:Any + =(d(e(d(e(d(d(e(e(x)))))))) e1(e1(d(e1(x)))))
+
+A15,1 & P379,1     --> * P382:   All x:Any + =(d(e(d(e(d(d(e(x))))))) e1(e1(d(e1(e1(x))))))
+
+A15,1 & P382,1     --> * P385:   All x:Any + =(d(e(d(e(d(d(x)))))) e1(e1(d(e1(e1(e1(x)))))))
+
+P219,1 & P231,1    --> * P388:   All x:Any + =(e(d(e1(e1(d(x))))) d(d(e1(e1(e1(d(e(d(e(d(d(e(e(x))))))))))))))
+
+P388,1 & P385      --> * RW389:  All x:Any + =(e(d(e1(e1(d(x))))) d(d(e1(e1(e1(e1(e1(d(e1(e1(e1(e(e(x))))))))))))))
+
+RW389,1 & A16      --> * RW390:  All x:Any + =(e(d(e1(e1(d(x))))) d(d(e1(e1(e1(e1(e1(d(e1(e1(e(x))))))))))))
+
+RW390,1 & A16      --> * RW391:  All x:Any + =(e(d(e1(e1(d(x))))) d(d(e1(e1(e1(e1(e1(d(e1(x))))))))))
+
+P219,1 & RW335,1   --> * P392:   All x:Any + =(e(d(d(d(d(d(x)))))) d(e1(e1(e1(d(e(d(e(d(d(e(e(x)))))))))))))
+
+P392,1 & P385      --> * RW393:  All x:Any + =(e(d(d(d(d(d(x)))))) d(e1(e1(e1(e1(e1(d(e1(e1(e1(e(e(x)))))))))))))
+
+RW393,1 & A16      --> * RW394:  All x:Any + =(e(d(d(d(d(d(x)))))) d(e1(e1(e1(e1(e1(d(e1(e1(e(x)))))))))))
+
+RW394,1 & A16      --> * RW395:  All x:Any + =(e(d(d(d(d(d(x)))))) d(e1(e1(e1(e1(e1(d(e1(x)))))))))
+
+RW374,1 & A15,1    --> * P396:   All x:Any + =(e(d(e(d(d(d(e(x))))))) e1(d(d(d(e1(d(d(x))))))))
+
+P385,1 & P224,1    --> * P399:   All x:Any + =(d(e(d(d(d(e1(e1(d(e1(e1(e1(x)))))))))))
+                                               e(d(e1(e1(e(d(e(d(d(x))))))))))
+
+P399,1 & P219      --> * RW400:  All x:Any + =(d(e(d(e(d(d(e(e(e1(e1(e1(x))))))))))) e(d(e1(e1(e(d(e(d(d(x))))))))))
+
+RW400,1 & P385     --> * RW401:  All x:Any + =(e1(e1(d(e1(e1(e1(e(e(e1(e1(e1(x)))))))))))
+                                               e(d(e1(e1(e(d(e(d(d(x))))))))))
+
+RW401,1 & A16      --> * RW402:  All x:Any + =(e1(e1(d(e1(e1(e(e1(e1(e1(x))))))))) e(d(e1(e1(e(d(e(d(d(x))))))))))
+
+RW402,1 & A16      --> * RW403:  All x:Any + =(e1(e1(d(e1(e1(e1(e1(x))))))) e(d(e1(e1(e(d(e(d(d(x))))))))))
+
+RW403,1 & A16      --> * RW404:  All x:Any + =(e1(e1(d(e1(e1(e1(e1(x))))))) e(d(e1(d(e(d(d(x))))))))
+
+P231,1 & RW351,1   --> * P405:   All x:Any + =(d(e(e(d(d(e1(d(e(x)))))))) e(e(d(e(e(e1(e1(e1(d(e(d(d(x)))))))))))))
+
+P405,1 & A15       --> * RW406:  All x:Any + =(d(e(e(d(d(e1(d(e(x)))))))) e(e(d(e(e1(e1(d(e(d(d(x)))))))))))
+
+RW406,1 & A15      --> * RW407:  All x:Any + =(d(e(e(d(d(e1(d(e(x)))))))) e(e(d(e1(d(e(d(d(x)))))))))
+
+RW407,1 & RW404    --> * RW408:  All x:Any + =(d(e(e(d(d(e1(d(e(x)))))))) e(e1(e1(d(e1(e1(e1(e1(x)))))))))
+
+RW408,1 & A15      --> * RW409:  All x:Any + =(d(e(e(d(d(e1(d(e(x)))))))) e1(d(e1(e1(e1(e1(x)))))))
+
+P231,1 & RW339,1   --> * P410:   All x:Any + =(d(e(e(d(d(e(e(e1(e1(e1(d(e(d(d(x))))))))))))))
+                                               e(e(d(d(e1(e1(e1(e(x)))))))))
+
+P410,1 & A16       --> * RW411:  All x:Any + =(d(e(e(d(d(e(e(e1(e1(e1(d(e(d(d(x)))))))))))))) e(e(d(d(e1(e1(x)))))))
+
+RW411,1 & A15      --> * RW412:  All x:Any + =(d(e(e(d(d(e(e1(e1(d(e(d(d(x)))))))))))) e(e(d(d(e1(e1(x)))))))
+
+RW412,1 & A15      --> * RW413:  All x:Any + =(d(e(e(d(d(e1(d(e(d(d(x)))))))))) e(e(d(d(e1(e1(x)))))))
+
+RW413,1 & RW409    --> * RW414:  All x:Any + =(e1(d(e1(e1(e1(e1(d(d(x)))))))) e(e(d(d(e1(e1(x)))))))
+
+RW320,1 & P385,1   --> * P415:   All x:Any + =(d(e(d(e(e1(d(e1(e1(e1(d(e(d(d(x)))))))))))))
+                                               e1(e1(d(e1(e1(e1(e1(d(d(e1(e1(x))))))))))))
+
+P415,1 & RW414     --> * RW416:  All x:Any + =(d(e(d(e(e1(d(e1(e1(e1(d(e(d(d(x)))))))))))))
+                                               e1(e(e(d(d(e1(e1(e1(e1(x))))))))))
+
+RW416,1 & A16      --> * RW417:  All x:Any + =(d(e(d(e(e1(d(e1(e1(e1(d(e(d(d(x)))))))))))))
+                                               e(d(d(e1(e1(e1(e1(x))))))))
+
+RW417,1 & A15      --> * RW418:  All x:Any + =(d(e(d(d(e1(e1(e1(d(e(d(d(x))))))))))) e(d(d(e1(e1(e1(e1(x))))))))
+
+RW418,1 & P254     --> * RW419:  All x:Any + =(e(e(d(d(e1(e1(e1(d(e(e1(e1(d(e(d(d(x)))))))))))))))
+                                               e(d(d(e1(e1(e1(e1(x))))))))
+
+RW419,1 & A15      --> * RW420:  All x:Any + =(e(e(d(d(e1(e1(e1(d(e1(d(e(d(d(x)))))))))))))
+                                               e(d(d(e1(e1(e1(e1(x))))))))
+
+RW420,1 & RW337    --> * RW421:  All x:Any + =(d(e(e(x))) e(d(d(e1(e1(e1(e1(x))))))))
+
+RW421,1 & A16,1    --> * P422:   All x:Any + =(e1(d(e(e(x)))) d(d(e1(e1(e1(e1(x)))))))
+
+RW391,1 & P422     --> * RW423:  All x:Any + =(e(d(e1(e1(d(x))))) e1(d(e(e(e1(d(e1(x))))))))
+
+RW423,1 & A15      --> * RW424:  All x:Any + =(e(d(e1(e1(d(x))))) e1(d(e(d(e1(x))))))
+
+P422,1 & RW318,1   --> * P427:   All x:Any + =(d(e1(d(e(d(d(d(e(e1(d(e(e(x))))))))))))
+                                               e(d(d(d(e1(e1(e1(e1(e1(e1(x)))))))))))
+
+P427,1 & P422      --> * RW428:  All x:Any + =(d(e1(d(e(d(d(d(e(e1(d(e(e(x)))))))))))) e(d(e1(d(e(e(e1(e1(x)))))))))
+
+RW428,1 & A15      --> * RW429:  All x:Any + =(d(e1(d(e(d(d(d(d(e(e(x)))))))))) e(d(e1(d(e(e(e1(e1(x)))))))))
+
+RW429,1 & P224     --> * RW430:  All x:Any + =(d(e1(e(d(e1(e1(e(e(x)))))))) e(d(e1(d(e(e(e1(e1(x)))))))))
+
+RW430,1 & A16      --> * RW431:  All x:Any + =(d(d(e1(e1(e(e(x)))))) e(d(e1(d(e(e(e1(e1(x)))))))))
+
+RW431,1 & A16      --> * RW432:  All x:Any + =(d(d(e1(e(x)))) e(d(e1(d(e(e(e1(e1(x)))))))))
+
+RW432,1 & A16      --> * RW433:  All x:Any + =(d(d(x)) e(d(e1(d(e(e(e1(e1(x)))))))))
+
+RW433,1 & A15      --> * RW434:  All x:Any + =(d(d(x)) e(d(e1(d(e(e1(x)))))))
+
+RW434,1 & A15      --> * RW435:  All x:Any + =(d(d(x)) e(d(e1(d(x)))))
+
+RW404,1 & RW435    --> * RW436:  All x:Any + =(e1(e1(d(e1(e1(e1(e1(x))))))) d(d(e(d(d(x))))))
+
+P316,1 & RW436     --> * RW437:  All x:Any + =(d(e(e1(e1(d(e1(e1(e1(e1(e(e(x))))))))))) e(d(e1(e1(e1(e1(d(x))))))))
+
+RW437,1 & A16      --> * RW438:  All x:Any + =(d(e(e1(e1(d(e1(e1(e1(e(x))))))))) e(d(e1(e1(e1(e1(d(x))))))))
+
+RW438,1 & A16      --> * RW439:  All x:Any + =(d(e(e1(e1(d(e1(e1(x))))))) e(d(e1(e1(e1(e1(d(x))))))))
+
+RW439,1 & A15      --> * RW440:  All x:Any + =(d(e1(d(e1(e1(x))))) e(d(e1(e1(e1(e1(d(x))))))))
+
+RW315,1 & RW440    --> * RW443:  All x:Any + =(e(d(d(e(e(e(d(d(d(d(x)))))))))) d(e(d(e1(e1(e1(e1(d(x)))))))))
+
+RW277,1 & RW435,1  --> * P447:   All x:Any + =(d(d(e1(d(d(e1(e1(e1(d(e(d(x))))))))))) e(d(e1(x))))
+
+P447,1 & RW320     --> * RW448:  All x:Any + =(e1(d(e1(e1(e1(d(e(d(d(e1(d(e(d(x))))))))))))) e(d(e1(x))))
+
+RW448,1 & P254     --> * RW449:  All x:Any + =(e1(d(e1(e1(e1(e(e(d(d(e1(e1(e1(d(e(d(e(d(x)))))))))))))))))
+                                               e(d(e1(x))))
+
+RW449,1 & A16      --> * RW450:  All x:Any + =(e1(d(e1(e1(e(d(d(e1(e1(e1(d(e(d(e(d(x))))))))))))))) e(d(e1(x))))
+
+RW450,1 & A16      --> * RW451:  All x:Any + =(e1(d(e1(d(d(e1(e1(e1(d(e(d(e(d(x))))))))))))) e(d(e1(x))))
+
+RW451,1 & RW277    --> * RW452:  All x:Any + =(e1(e(d(x))) e(d(e1(x))))
+
+RW452,1 & A16      --> * RW453:  All x:Any + =(d(x) e(d(e1(x))))
+
+P224,1 & RW453     --> * RW454:  All x:Any + =(d(e(d(d(d(d(x)))))) d(e1(x)))
+
+RW443,1 & RW453    --> * RW455:  All x:Any + =(e(d(d(e(e(e(d(d(d(d(x)))))))))) d(d(e1(e1(e1(d(x)))))))
+
+RW440,1 & RW453    --> * RW456:  All x:Any + =(d(e1(d(e1(e1(x))))) d(e1(e1(e1(d(x))))))
+
+RW332,1 & RW453    --> * RW462:  All x:Any + =(e(d(d(e(d(e1(e1(d(e(d(d(x))))))))))) d(d(e1(x))))
+
+RW462,1 & RW453    --> * RW463:  All x:Any + =(e(d(d(d(e1(d(e(d(d(x))))))))) d(d(e1(x))))
+
+RW424,1 & RW453    --> * RW465:  All x:Any + =(d(e1(d(x))) e1(d(e(d(e1(x))))))
+
+RW465,1 & RW453    --> * RW466:  All x:Any + =(d(e1(d(x))) e1(d(d(x))))
+
+RW126,1 & RW466    --> * RW470:  - =(d(c_1) e(d(e1(d(d(e(d(d(e(c_1))))))))))  - =(d(c_2) e(e(e(e(e(c_2))))))
+
+RW470,1 & RW466    --> * RW471:  - =(d(c_1) e(e1(d(d(d(e(d(d(e(c_1))))))))))  - =(d(c_2) e(e(e(e(e(c_2))))))
+
+RW471,1 & RW436    --> * RW472:  - =(d(c_1) e(e1(d(e1(e1(d(e1(e1(e1(e1(e(c_1))))))))))))
+                                 - =(d(c_2) e(e(e(e(e(c_2))))))
+
+RW472,1 & A16      --> * RW473:  - =(d(c_1) e(e1(d(e1(e1(d(e1(e1(e1(c_1))))))))))  - =(d(c_2) e(e(e(e(e(c_2))))))
+
+RW473,1 & A15      --> * RW474:  - =(d(c_1) d(e1(e1(d(e1(e1(e1(c_1))))))))  - =(d(c_2) e(e(e(e(e(c_2))))))
+
+RW272,1 & RW466    --> * RW488:  All x:Any + =(e1(d(d(e1(e1(x))))) d(e(e(d(d(e1(e1(e1(e1(d(d(e(d(x))))))))))))))
+
+RW488,1 & P422     --> * RW489:  All x:Any + =(e1(d(d(e1(e1(x))))) d(e(e(e1(d(e(e(d(d(e(d(x))))))))))))
+
+RW489,1 & A15      --> * RW490:  All x:Any + =(e1(d(d(e1(e1(x))))) d(e(d(e(e(d(d(e(d(x))))))))))
+
+RW277,1 & RW466    --> * RW491:  All x:Any + =(x e1(d(d(d(e1(e1(e1(d(e(d(x)))))))))))
+
+RW456,1 & RW466    --> * RW498:  All x:Any + =(e1(d(d(e1(e1(x))))) d(e1(e1(e1(d(x))))))
+
+RW320,1 & RW466    --> * RW499:  All x:Any + =(e1(d(e1(e1(e1(d(e(d(d(x))))))))) d(e1(d(d(d(e1(e1(x))))))))
+
+RW499,1 & RW466    --> * RW500:  All x:Any + =(e1(d(e1(e1(e1(d(e(d(d(x))))))))) e1(d(d(d(d(e1(e1(x))))))))
+
+RW463,1 & RW466    --> * RW501:  All x:Any + =(e(d(d(e1(d(d(e(d(d(x))))))))) d(d(e1(x))))
+
+RW501,1 & RW466    --> * RW502:  All x:Any + =(e(d(e1(d(d(d(e(d(d(x))))))))) d(d(e1(x))))
+
+RW502,1 & RW466    --> * RW503:  All x:Any + =(e(e1(d(d(d(d(e(d(d(x))))))))) d(d(e1(x))))
+
+RW503,1 & RW436    --> * RW504:  All x:Any + =(e(e1(d(d(e1(e1(d(e1(e1(e1(e1(x))))))))))) d(d(e1(x))))
+
+RW504,1 & P219     --> * RW505:  All x:Any + =(e(e1(e(d(d(e(e(e1(e1(e1(e1(x))))))))))) d(d(e1(x))))
+
+RW505,1 & A16      --> * RW506:  All x:Any + =(e(d(d(e(e(e1(e1(e1(e1(x))))))))) d(d(e1(x))))
+
+RW506,1 & A15      --> * RW507:  All x:Any + =(e(d(d(e(e1(e1(e1(x))))))) d(d(e1(x))))
+
+RW507,1 & A15      --> * RW508:  All x:Any + =(e(d(d(e1(e1(x))))) d(d(e1(x))))
+
+RW351,1 & RW466    --> * RW517:  All x:Any + =(d(e(e(d(e1(d(d(d(d(x))))))))) e(e(d(e(e(x))))))
+
+RW517,1 & RW466    --> * RW518:  All x:Any + =(d(e(e(e1(d(d(d(d(d(x))))))))) e(e(d(e(e(x))))))
+
+RW518,1 & A15      --> * RW519:  All x:Any + =(d(e(d(d(d(d(d(x))))))) e(e(d(e(e(x))))))
+
+RW519,1 & RW454    --> * RW520:  All x:Any + =(d(e1(d(x))) e(e(d(e(e(x))))))
+
+RW520,1 & RW466    --> * RW521:  All x:Any + =(e1(d(d(x))) e(e(d(e(e(x))))))
+
+RW365,1 & RW466    --> * RW533:  All x:Any + =(e(d(e1(d(d(e1(d(e(d(d(x)))))))))) d(e1(e1(e1(d(e(x)))))))
+
+RW533,1 & RW466    --> * RW534:  All x:Any + =(e(e1(d(d(d(e1(d(e(d(d(x)))))))))) d(e1(e1(e1(d(e(x)))))))
+
+RW534,1 & RW466    --> * RW535:  All x:Any + =(e(e1(d(d(e1(d(d(e(d(d(x)))))))))) d(e1(e1(e1(d(e(x)))))))
+
+RW535,1 & RW466    --> * RW536:  All x:Any + =(e(e1(d(e1(d(d(d(e(d(d(x)))))))))) d(e1(e1(e1(d(e(x)))))))
+
+RW536,1 & RW466    --> * RW537:  All x:Any + =(e(e1(e1(d(d(d(d(e(d(d(x)))))))))) d(e1(e1(e1(d(e(x)))))))
+
+RW537,1 & RW436    --> * RW538:  All x:Any + =(e(e1(e1(d(d(e1(e1(d(e1(e1(e1(e1(x)))))))))))) d(e1(e1(e1(d(e(x)))))))
+
+RW538,1 & P219     --> * RW539:  All x:Any + =(e(e1(e1(e(d(d(e(e(e1(e1(e1(e1(x)))))))))))) d(e1(e1(e1(d(e(x)))))))
+
+RW539,1 & A16      --> * RW540:  All x:Any + =(e(e1(d(d(e(e(e1(e1(e1(e1(x)))))))))) d(e1(e1(e1(d(e(x)))))))
+
+RW540,1 & A15      --> * RW541:  All x:Any + =(d(d(e(e(e1(e1(e1(e1(x)))))))) d(e1(e1(e1(d(e(x)))))))
+
+RW541,1 & A15      --> * RW542:  All x:Any + =(d(d(e(e1(e1(e1(x)))))) d(e1(e1(e1(d(e(x)))))))
+
+RW542,1 & A15      --> * RW543:  All x:Any + =(d(d(e1(e1(x)))) d(e1(e1(e1(d(e(x)))))))
+
+P396,1 & RW466     --> * RW547:  All x:Any + =(e(d(e(d(d(d(e(x))))))) e1(d(d(e1(d(d(d(x))))))))
+
+RW547,1 & RW466    --> * RW548:  All x:Any + =(e(d(e(d(d(d(e(x))))))) e1(d(e1(d(d(d(d(x))))))))
+
+RW548,1 & RW466    --> * RW549:  All x:Any + =(e(d(e(d(d(d(e(x))))))) e1(e1(d(d(d(d(d(x))))))))
+
+RW409,1 & RW466    --> * RW550:  All x:Any + =(d(e(e(d(e1(d(d(e(x)))))))) e1(d(e1(e1(e1(e1(x)))))))
+
+RW550,1 & RW466    --> * RW551:  All x:Any + =(d(e(e(e1(d(d(d(e(x)))))))) e1(d(e1(e1(e1(e1(x)))))))
+
+RW551,1 & A15      --> * RW552:  All x:Any + =(d(e(d(d(d(e(x)))))) e1(d(e1(e1(e1(e1(x)))))))
+
+RW549,1 & RW552    --> * RW553:  All x:Any + =(e(e1(d(e1(e1(e1(e1(x))))))) e1(e1(d(d(d(d(d(x))))))))
+
+RW553,1 & RW521    --> * RW554:  All x:Any + =(e(e1(d(e1(e1(e1(e1(x))))))) e1(e(e(d(e(e(d(d(d(x))))))))))
+
+RW554,1 & A16      --> * RW555:  All x:Any + =(e(e1(d(e1(e1(e1(e1(x))))))) e(d(e(e(d(d(d(x))))))))
+
+RW555,1 & A15      --> * RW556:  All x:Any + =(d(e1(e1(e1(e1(x))))) e(d(e(e(d(d(d(x))))))))
+
+RW490,1 & RW543    --> * RW591:  All x:Any + =(e1(d(e1(e1(e1(d(e(x))))))) d(e(d(e(e(d(d(e(d(x))))))))))
+
+P219,1 & RW543     --> * RW592:  All x:Any + =(e(d(d(e(e(x))))) d(e1(e1(e1(d(e(d(x))))))))
+
+RW491,1 & RW543    --> * RW598:  All x:Any + =(x e1(d(d(e1(e1(e1(d(e(e1(d(e(d(x)))))))))))))
+
+RW598,1 & RW543    --> * RW599:  All x:Any + =(x e1(d(e1(e1(e1(d(e(e1(d(e(e1(d(e(d(x)))))))))))))))
+
+RW599,1 & A15      --> * RW600:  All x:Any + =(x e1(d(e1(e1(e1(d(d(e(e1(d(e(d(x)))))))))))))
+
+RW600,1 & RW521    --> * RW601:  All x:Any + =(x e1(d(e1(e1(e(e(d(e(e(e(e1(d(e(d(x)))))))))))))))
+
+RW601,1 & A16      --> * RW602:  All x:Any + =(x e1(d(e1(e(d(e(e(e(e1(d(e(d(x)))))))))))))
+
+RW602,1 & A16      --> * RW603:  All x:Any + =(x e1(d(d(e(e(e(e1(d(e(d(x)))))))))))
+
+RW603,1 & RW521    --> * RW604:  All x:Any + =(x e(e(d(e(e(e(e(e(e1(d(e(d(x)))))))))))))
+
+RW604,1 & A15      --> * RW605:  All x:Any + =(x e(e(d(e(e(e(e(d(e(d(x)))))))))))
+
+P308,1 & RW543     --> * RW612:  All x:Any + =(e1(e1(d(e(d(d(x)))))) d(e1(e1(e1(d(e(e1(d(e(e(x)))))))))))
+
+RW612,1 & A15      --> * RW613:  All x:Any + =(e1(e1(d(e(d(d(x)))))) d(e1(e1(e1(d(d(e(e(x)))))))))
+
+RW613,1 & RW521    --> * RW614:  All x:Any + =(e1(e1(d(e(d(d(x)))))) d(e1(e1(e(e(d(e(e(e(e(x)))))))))))
+
+RW614,1 & A16      --> * RW615:  All x:Any + =(e1(e1(d(e(d(d(x)))))) d(e1(e(d(e(e(e(e(x)))))))))
+
+RW615,1 & A16      --> * RW616:  All x:Any + =(e1(e1(d(e(d(d(x)))))) d(d(e(e(e(e(x)))))))
+
+RW455,1 & RW543    --> * RW617:  All x:Any + =(e(d(d(e(e(e(d(d(d(d(x)))))))))) d(e1(e1(e1(d(e(e1(d(x)))))))))
+
+RW617,1 & A15      --> * RW618:  All x:Any + =(e(d(d(e(e(e(d(d(d(d(x)))))))))) d(e1(e1(e1(d(d(x)))))))
+
+RW618,1 & RW521    --> * RW619:  All x:Any + =(e(d(d(e(e(e(d(d(d(d(x)))))))))) d(e1(e1(e(e(d(e(e(x)))))))))
+
+RW619,1 & A16      --> * RW620:  All x:Any + =(e(d(d(e(e(e(d(d(d(d(x)))))))))) d(e1(e(d(e(e(x)))))))
+
+RW620,1 & A16      --> * RW621:  All x:Any + =(e(d(d(e(e(e(d(d(d(d(x)))))))))) d(d(e(e(x)))))
+
+RW498,1 & RW543    --> * RW622:  All x:Any + =(e1(d(e1(e1(e1(d(e(x))))))) d(e1(e1(e1(d(x))))))
+
+RW500,1 & RW543    --> * RW623:  All x:Any + =(e1(d(e1(e1(e1(d(e(d(d(x))))))))) e1(d(d(d(e1(e1(e1(d(e(x))))))))))
+
+RW623,1 & RW543    --> * RW624:  All x:Any + =(e1(d(e1(e1(e1(d(e(d(d(x)))))))))
+                                               e1(d(d(e1(e1(e1(d(e(e1(d(e(x))))))))))))
+
+RW624,1 & RW543    --> * RW625:  All x:Any + =(e1(d(e1(e1(e1(d(e(d(d(x)))))))))
+                                               e1(d(e1(e1(e1(d(e(e1(d(e(e1(d(e(x))))))))))))))
+
+RW625,1 & A15      --> * RW626:  All x:Any + =(e1(d(e1(e1(e1(d(e(d(d(x)))))))))
+                                               e1(d(e1(e1(e1(d(d(e(e1(d(e(x))))))))))))
+
+RW626,1 & RW521    --> * RW627:  All x:Any + =(e1(d(e1(e1(e1(d(e(d(d(x)))))))))
+                                               e1(d(e1(e1(e(e(d(e(e(e(e1(d(e(x))))))))))))))
+
+RW627,1 & A16      --> * RW628:  All x:Any + =(e1(d(e1(e1(e1(d(e(d(d(x)))))))))
+                                               e1(d(e1(e(d(e(e(e(e1(d(e(x))))))))))))
+
+RW628,1 & A16      --> * RW629:  All x:Any + =(e1(d(e1(e1(e1(d(e(d(d(x))))))))) e1(d(d(e(e(e(e1(d(e(x))))))))))
+
+RW629,1 & RW521    --> * RW630:  All x:Any + =(e1(d(e1(e1(e1(d(e(d(d(x))))))))) e(e(d(e(e(e(e(e(e1(d(e(x))))))))))))
+
+RW630,1 & A15      --> * RW631:  All x:Any + =(e1(d(e1(e1(e1(d(e(d(d(x))))))))) e(e(d(e(e(e(e(d(e(x))))))))))
+
+RW508,1 & RW543    --> * RW632:  All x:Any + =(e(d(e1(e1(e1(d(e(x))))))) d(d(e1(x))))
+
+RW632,1 & RW453    --> * RW633:  All x:Any + =(d(e1(e1(d(e(x))))) d(d(e1(x))))
+
+RW335,1 & RW543    --> * RW634:  All x:Any + =(e(d(d(d(d(x))))) d(e1(e1(e1(d(e(d(d(e1(e1(e1(d(e(x))))))))))))))
+
+RW634,1 & RW543    --> * RW635:  All x:Any + =(e(d(d(d(d(x)))))
+                                               d(e1(e1(e1(d(e(d(e1(e1(e1(d(e(e1(d(e(x))))))))))))))))
+
+RW635,1 & RW453    --> * RW636:  All x:Any + =(e(d(d(d(d(x))))) d(e1(e1(e1(d(d(e1(e1(d(e(e1(d(e(x))))))))))))))
+
+RW636,1 & RW543    --> * RW637:  All x:Any + =(e(d(d(d(d(x)))))
+                                               d(e1(e1(e1(d(e1(e1(e1(d(e(d(e(e1(d(e(x))))))))))))))))
+
+RW637,1 & A15      --> * RW638:  All x:Any + =(e(d(d(d(d(x))))) d(e1(e1(e1(d(e1(e1(e1(d(e(d(d(e(x))))))))))))))
+
+RW339,1 & RW543    --> * RW639:  All x:Any + =(d(e(e(d(d(e(e(x))))))) e(e(d(e1(e1(e1(d(e(e1(d(d(x))))))))))))
+
+RW639,1 & RW521    --> * RW640:  All x:Any + =(d(e(e(d(d(e(e(x))))))) e(e(d(e1(e1(e1(d(e(e(e(d(e(e(x))))))))))))))
+
+RW640,1 & RW453    --> * RW641:  All x:Any + =(d(e(e(d(d(e(e(x))))))) e(d(e1(e1(d(e(e(e(d(e(e(x))))))))))))
+
+RW641,1 & RW453    --> * RW642:  All x:Any + =(d(e(e(d(d(e(e(x))))))) d(e1(d(e(e(e(d(e(e(x))))))))))
+
+RW642,1 & RW466    --> * RW643:  All x:Any + =(d(e(e(d(d(e(e(x))))))) e1(d(d(e(e(e(d(e(e(x))))))))))
+
+RW643,1 & RW521    --> * RW644:  All x:Any + =(d(e(e(d(d(e(e(x))))))) e(e(d(e(e(e(e(e(d(e(e(x))))))))))))
+
+RW414,1 & RW543    --> * RW645:  All x:Any + =(e1(d(e1(e1(e1(e1(d(d(x)))))))) e(e(d(e1(e1(e1(d(e(x)))))))))
+
+RW645,1 & RW521    --> * RW646:  All x:Any + =(e1(d(e1(e1(e1(e(e(d(e(e(x)))))))))) e(e(d(e1(e1(e1(d(e(x)))))))))
+
+RW646,1 & RW453    --> * RW647:  All x:Any + =(e1(d(e1(e1(e1(e(e(d(e(e(x)))))))))) e(d(e1(e1(d(e(x)))))))
+
+RW647,1 & RW453    --> * RW648:  All x:Any + =(e1(d(e1(e1(e1(e(e(d(e(e(x)))))))))) d(e1(d(e(x)))))
+
+RW648,1 & RW466    --> * RW649:  All x:Any + =(e1(d(e1(e1(e1(e(e(d(e(e(x)))))))))) e1(d(d(e(x)))))
+
+RW649,1 & RW521    --> * RW650:  All x:Any + =(e1(d(e1(e1(e1(e(e(d(e(e(x)))))))))) e(e(d(e(e(e(x)))))))
+
+RW650,1 & A16      --> * RW651:  All x:Any + =(e1(d(e1(e1(e(d(e(e(x)))))))) e(e(d(e(e(e(x)))))))
+
+RW651,1 & A16      --> * RW652:  All x:Any + =(e1(d(e1(d(e(e(x)))))) e(e(d(e(e(e(x)))))))
+
+RW652,1 & RW466    --> * RW653:  All x:Any + =(e1(e1(d(d(e(e(x)))))) e(e(d(e(e(e(x)))))))
+
+RW653,1 & RW521    --> * RW654:  All x:Any + =(e1(e(e(d(e(e(e(e(x)))))))) e(e(d(e(e(e(x)))))))
+
+RW654,1 & A16      --> * RW655:  All x:Any + =(e(d(e(e(e(e(x)))))) e(e(d(e(e(e(x)))))))
+
+P422,1 & RW543     --> * RW656:  All x:Any + =(e1(d(e(e(x)))) d(e1(e1(e1(d(e(e1(e1(x)))))))))
+
+RW656,1 & A15      --> * RW657:  All x:Any + =(e1(d(e(e(x)))) d(e1(e1(e1(d(e1(x)))))))
+
+RW638,1 & RW657    --> * RW658:  All x:Any + =(e(d(d(d(d(x))))) e1(d(e(e(e1(e1(d(e(d(d(e(x))))))))))))
+
+RW658,1 & RW616    --> * RW659:  All x:Any + =(e(d(d(d(d(x))))) e1(d(e(e(d(d(e(e(e(e(e(x))))))))))))
+
+RW659,1 & RW644    --> * RW660:  All x:Any + =(e(d(d(d(d(x))))) e1(e(e(d(e(e(e(e(e(d(e(e(e(e(e(x))))))))))))))))
+
+RW660,1 & RW655    --> * RW661:  All x:Any + =(e(d(d(d(d(x))))) e1(e(e(e(d(e(e(e(e(d(e(e(e(e(e(x))))))))))))))))
+
+RW661,1 & RW655    --> * RW662:  All x:Any + =(e(d(d(d(d(x))))) e1(e(e(e(e(d(e(e(e(d(e(e(e(e(e(x))))))))))))))))
+
+RW662,1 & RW655    --> * RW663:  All x:Any + =(e(d(d(d(d(x))))) e1(e(e(e(e(d(e(e(e(e(d(e(e(e(e(x))))))))))))))))
+
+RW663,1 & RW655    --> * RW664:  All x:Any + =(e(d(d(d(d(x))))) e1(e(e(e(e(e(d(e(e(e(d(e(e(e(e(x))))))))))))))))
+
+RW664,1 & RW655    --> * RW665:  All x:Any + =(e(d(d(d(d(x))))) e1(e(e(e(e(e(d(e(e(e(e(d(e(e(e(x))))))))))))))))
+
+RW665,1 & RW655    --> * RW666:  All x:Any + =(e(d(d(d(d(x))))) e1(e(e(e(e(e(e(d(e(e(e(d(e(e(e(x))))))))))))))))
+
+RW666,1 & A16      --> * RW667:  All x:Any + =(e(d(d(d(d(x))))) e(e(e(e(e(d(e(e(e(d(e(e(e(x))))))))))))))
+
+RW605,1 & RW655    --> * RW669:  All x:Any + =(x e(e(e(d(e(e(e(d(e(d(x)))))))))))
+
+RW631,1 & RW655    --> * RW670:  All x:Any + =(e1(d(e1(e1(e1(d(e(d(d(x))))))))) e(e(e(d(e(e(e(d(e(x))))))))))
+
+RW670,1 & RW622    --> * RW671:  All x:Any + =(d(e1(e1(e1(d(d(d(x))))))) e(e(e(d(e(e(e(d(e(x))))))))))
+
+RW671,1 & RW521    --> * RW672:  All x:Any + =(d(e1(e1(e(e(d(e(e(d(x))))))))) e(e(e(d(e(e(e(d(e(x))))))))))
+
+RW672,1 & A16      --> * RW673:  All x:Any + =(d(e1(e(d(e(e(d(x))))))) e(e(e(d(e(e(e(d(e(x))))))))))
+
+RW673,1 & A16      --> * RW674:  All x:Any + =(d(d(e(e(d(x))))) e(e(e(d(e(e(e(d(e(x))))))))))
+
+RW644,1 & RW655    --> * RW675:  All x:Any + =(d(e(e(d(d(e(e(x))))))) e(e(e(d(e(e(e(e(d(e(e(x))))))))))))
+
+RW675,1 & RW655    --> * RW676:  All x:Any + =(d(e(e(d(d(e(e(x))))))) e(e(e(e(d(e(e(e(d(e(e(x))))))))))))
+
+RW454,1 & RW667    --> * RW677:  All x:Any + =(d(e(e(e(e(e(d(e(e(e(d(e(e(e(x)))))))))))))) d(e1(x)))
+
+RW621,1 & RW667    --> * RW680:  All x:Any + =(e(d(d(e(e(e(e(e(e(e(d(e(e(e(d(e(e(e(x)))))))))))))))))) d(d(e(e(x)))))
+
+RW395,1 & RW667    --> * RW688:  All x:Any + =(e(e(e(e(e(d(e(e(e(d(e(e(e(d(x))))))))))))))
+                                               d(e1(e1(e1(e1(e1(d(e1(x)))))))))
+
+RW362,1 & RW521    --> * RW724:  All x:Any + =(e1(e1(e(e(d(e(e(d(x)))))))) d(e1(e1(d(e1(e1(e1(d(e(e(x)))))))))))
+
+RW724,1 & RW622    --> * RW725:  All x:Any + =(e1(e1(e(e(d(e(e(d(x)))))))) d(e1(d(e1(e1(e1(d(e(x)))))))))
+
+RW725,1 & RW622    --> * RW726:  All x:Any + =(e1(e1(e(e(d(e(e(d(x)))))))) d(d(e1(e1(e1(d(x)))))))
+
+RW726,1 & RW633    --> * RW727:  All x:Any + =(e1(e1(e(e(d(e(e(d(x)))))))) d(e1(e1(d(e(e1(e1(d(x)))))))))
+
+RW727,1 & A16      --> * RW728:  All x:Any + =(e1(e(d(e(e(d(x)))))) d(e1(e1(d(e(e1(e1(d(x)))))))))
+
+RW728,1 & A16      --> * RW729:  All x:Any + =(d(e(e(d(x)))) d(e1(e1(d(e(e1(e1(d(x)))))))))
+
+RW729,1 & A15      --> * RW730:  All x:Any + =(d(e(e(d(x)))) d(e1(e1(d(e1(d(x)))))))
+
+RW730,1 & RW466    --> * RW731:  All x:Any + =(d(e(e(d(x)))) d(e1(e1(e1(d(d(x)))))))
+
+RW731,1 & RW521    --> * RW732:  All x:Any + =(d(e(e(d(x)))) d(e1(e1(e(e(d(e(e(x)))))))))
+
+RW732,1 & A16      --> * RW733:  All x:Any + =(d(e(e(d(x)))) d(e1(e(d(e(e(x)))))))
+
+RW733,1 & A16      --> * RW734:  All x:Any + =(d(e(e(d(x)))) d(d(e(e(x)))))
+
+RW592,1 & RW734    --> * RW737:  All x:Any + =(e(d(e(e(d(x))))) d(e1(e1(e1(d(e(d(x))))))))
+
+RW680,1 & RW734    --> * RW744:  All x:Any + =(e(d(e(e(d(e(e(e(e(e(d(e(e(e(d(e(e(e(x)))))))))))))))))) d(d(e(e(x)))))
+
+RW744,1 & RW734    --> * RW745:  All x:Any + =(e(d(e(e(d(e(e(e(e(e(d(e(e(e(d(e(e(e(x)))))))))))))))))) d(e(e(d(x)))))
+
+RW745,1 & RW677    --> * RW746:  All x:Any + =(e(d(e(e(d(e1(x)))))) d(e(e(d(x)))))
+
+RW746,1 & RW453    --> * RW747:  All x:Any + =(e(d(e(d(x)))) d(e(e(d(x)))))
+
+RW674,1 & RW734    --> * RW748:  All x:Any + =(d(e(e(d(d(x))))) e(e(e(d(e(e(e(d(e(x))))))))))
+
+RW676,1 & RW734    --> * RW749:  All x:Any + =(d(e(e(d(e(e(d(x))))))) e(e(e(e(d(e(e(e(d(e(e(x))))))))))))
+
+RW591,1 & RW748    --> * RW756:  All x:Any + =(e1(d(e1(e1(e1(d(e(x))))))) d(e(e(e(e(d(e(e(e(d(e(e(d(x))))))))))))))
+
+RW756,1 & RW747    --> * RW757:  All x:Any + =(e1(d(e1(e1(e1(d(e(x))))))) d(e(e(e(e(d(e(e(e(e(d(e(d(x))))))))))))))
+
+RW757,1 & RW655    --> * RW758:  All x:Any + =(e1(d(e1(e1(e1(d(e(x))))))) d(e(e(e(e(e(d(e(e(e(d(e(d(x))))))))))))))
+
+RW758,1 & RW669    --> * RW759:  All x:Any + =(e1(d(e1(e1(e1(d(e(x))))))) d(e(e(x))))
+
+RW759,1 & RW622    --> * RW760:  All x:Any + =(d(e1(e1(e1(d(x))))) d(e(e(x))))
+
+RW556,1 & RW748    --> * RW761:  All x:Any + =(d(e1(e1(e1(e1(x))))) e(e(e(e(d(e(e(e(d(e(d(x))))))))))))
+
+RW761,1 & RW669    --> * RW762:  All x:Any + =(d(e1(e1(e1(e1(x))))) e(x))
+
+RW688,1 & RW762    --> * RW770:  All x:Any + =(e(e(e(e(e(d(e(e(e(d(e(e(e(d(x)))))))))))))) e(e1(d(e1(x)))))
+
+RW770,1 & A15      --> * RW771:  All x:Any + =(e(e(e(e(e(d(e(e(e(d(e(e(e(d(x)))))))))))))) d(e1(x)))
+
+RW737,1 & RW760    --> * RW777:  All x:Any + =(e(d(e(e(d(x))))) d(e(e(e(d(x))))))
+
+RW777,1 & RW747    --> * RW778:  All x:Any + =(e(e(d(e(d(x))))) d(e(e(e(d(x))))))
+
+RW543,1 & RW760    --> * RW781:  All x:Any + =(d(d(e1(e1(x)))) d(e(e(e(x)))))
+
+RW781,1 & RW633    --> * RW782:  All x:Any + =(d(e1(e1(d(e(e1(x)))))) d(e(e(e(x)))))
+
+RW782,1 & A15      --> * RW783:  All x:Any + =(d(e1(e1(d(x)))) d(e(e(e(x)))))
+
+RW474,1 & RW783    --> * RW790:  - =(d(c_1) d(e(e(e(e1(e1(e1(c_1))))))))  - =(d(c_2) e(e(e(e(e(c_2))))))
+
+RW790,1 & A15      --> * RW791:  - =(d(c_1) d(e(e(e1(e1(c_1))))))  - =(d(c_2) e(e(e(e(e(c_2))))))
+
+RW791,1 & A15      --> * RW792:  - =(d(c_1) d(e(e1(c_1))))  - =(d(c_2) e(e(e(e(e(c_2))))))
+
+RW792,1 & A15      --> * RW793:  - =(d(c_1) d(c_1))  - =(d(c_2) e(e(e(e(e(c_2))))))
+
+RW793,1 & A1,1     --> * R800:   - =(d(c_2) e(e(e(e(e(c_2))))))
+
+RW669,1 & RW778    --> * RW819:  All x:Any + =(x e(e(e(e(e(d(e(d(e(d(x)))))))))))
+
+RW749,1 & RW778    --> * RW831:  All x:Any + =(d(e(e(d(e(e(d(x))))))) e(e(e(e(e(e(d(e(d(e(e(x))))))))))))
+
+RW831,1 & RW747    --> * RW832:  All x:Any + =(e(d(e(d(e(e(d(x))))))) e(e(e(e(e(e(d(e(d(e(e(x))))))))))))
+
+RW832,1 & RW747    --> * RW833:  All x:Any + =(e(d(e(e(d(e(d(x))))))) e(e(e(e(e(e(d(e(d(e(e(x))))))))))))
+
+RW833,1 & RW747    --> * RW834:  All x:Any + =(e(e(d(e(d(e(d(x))))))) e(e(e(e(e(e(d(e(d(e(e(x))))))))))))
+
+RW771,1 & RW778    --> * RW835:  All x:Any + =(e(e(e(e(e(e(e(d(e(d(e(e(e(d(x)))))))))))))) d(e1(x)))
+
+RW835,1 & RW778    --> * RW836:  All x:Any + =(e(e(e(e(e(e(e(d(e(e(e(d(e(d(x)))))))))))))) d(e1(x)))
+
+RW836,1 & RW778    --> * RW837:  All x:Any + =(e(e(e(e(e(e(e(e(e(d(e(d(e(d(x)))))))))))))) d(e1(x)))
+
+RW819,1 & RW834    --> * RW838:  All x:Any + =(x e(e(e(e(e(e(e(e(e(d(e(d(e(e(x)))))))))))))))
+
+RW837,1 & RW834    --> * RW839:  All x:Any + =(e(e(e(e(e(e(e(e(e(e(e(e(e(d(e(d(e(e(x)))))))))))))))))) d(e1(x)))
+
+RW839,1 & RW838    --> * RW842:  All x:Any + =(e(e(e(e(x)))) d(e1(x)))
+
+RW453,1 & RW842    --> * RW866:  All x:Any + =(d(x) e(e(e(e(e(x))))))
+
+RW866,1 & R800,1   --> * R867:   []
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+  q.e.d. 
+
+
+Time Used for Refutation: 3176 seconds

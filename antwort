@@ -1,0 +1,242 @@
+ 
+Hallo Leute,
+
+ich schick die Mail mal an alle, die betroffen sein koennten.
+
+Die mir gemeldeten MKRP-Fehler in Bezug auf das Post-Protokoll
+habe ich am Wochenende repariert, oder es wenigstens versucht.
+Die fuer die ich nicht zustaendig bin, habe ich auch unten erlaeutert,
+wodran es liegen koennte.
+
+1. (Michael)
+--
+
+>Ausserdem kann man das code.lisp nicht einlesen, weil der Typ O nicht
+>bekannt ist. K"onntest Du den mit hereinschreiben? Der scheint
+>verlorenzugehen, denn Du machst ja Typdeklaratinonen f"ur Pr"adikate der
+>Form (constants (P (O I)))
+
+Antwort
+
+Als ich's implementiert habe, liess sich das noch einlesen.
+Eure Behebung des Fehlers in mkrp.lisp scheint mir durchaus 
+adaequat zu sein, sonst muesste man inzwischen eigentlich auch die Definitionen 
+fuer forall... reinschreiben. 
+
+Da aber auch mkrp im Stand-Alone
+Modus POST-Protokolle erzeugen muss,
+habe ich's nun trotzdem in den MKRP eingebaut.
+
+Die Variable irrelevant kann also aus mkrp.lisp entfernt werden.
+
+
+2. (Michael)
+--
+
+>Fehler beim Ausdrucken der leeren KLausel in POST
+
+>Wir haben noch ein Problem mit dem MKRP POST-Protokoll, die leere Klausel
+>wird als (clause name nil nil) ausgegeben, aber Klauseln sollen doch die
+>Syntax (clause name ((X1 T1) ... (Xn Tn)) lit1 ... litm) haben, also
+>insbesondere die leere: (clause name nil).
+
+
+Antwort
+
+Faellt nicht in die Zustaendigkeit von MKRP, der druckt korrekt
+(clause name ()) auf /tmp/code.lisp. Nachdem prob~read und
+post~pprint am Werke waren, taucht dann in /tmp/code.post
+(clause name nil nil) auf. Ich nehme an, post~pprint macht da was falsch.
+
+Passiert in diesem Teil von mkrp~call:
+
+...
+	 (mkrp-proof (with-open-file (stream mkrp-proof-file) ;mkrp-corrected-proof-file
+				     (prob~read (read stream) env-with-O)))                   <---- Hier wird
+                                                                                                    /tmp/code.lisp
+                                                                                                    gelesen
+	 (res-proof (progn (post~pprint mkrp-proof t)                                         <---- Hier ist's
+                                                                                                    schon falsch
+			   (post~print norm-problem t)
+			   (mkrp=merge-problems! mkrp-proof norm-problem))))
+    (with-open-file (out (make-pathname :directory "/tmp" :name  "code" :type "post") :direction :output
+			 :if-does-not-exist :create :if-exists :supersede)
+		    (post~pprint res-proof out))
+
+
+3. (Arthur)
+--
+
+>Wie ist denn das mit dem MKRP?
+
+>ich habe folgendes Problem in Omega mit MKRP bewiesen und das folgende
+>erhalten.
+
+>Leider sind darin noch einige Fehler versteckt (unten aufgef"uhrt),
+>wer will, darf aber auch Fehler-Raten.
+
+>Wann ungef"ahr liefert der Beweiser das POST-Protokoll richtig?
+
+>Verdacht : es fehlt bei der Mother-Position (0 1) die Kennung
+> das Atom d,h,statt (0 1) nun (0 1 1), War bei Schritt 0-4 der Fall!
+
+Antwort
+
+Dein Verdacht ist richtig.
+Das liegt daran, dass MKRP das Atom nicht zaehlt und ich nicht daran
+gedacht habe, dass das anders sein koenne.
+Relativ zu dem Problem mit der fehlenden 1 fuer den Zugriff auf's 
+Atom sollte es funktionieren, wenn man
+/home/mkrp/fasl/post nachlaedt. 
+
+Wann er endgueltig nur noch richtige
+POST-Protokolle liefert, laesst sich so einfach nicht beantworten.
+
+
+4. (Arthur)
+--
+
+>weiterer Fehler: Es werden im RENAMING-Slot nichtverwendete Variablen
+>aufge"uhrt, die nicht deklariert sind , was zu einem Einlesefehler f"uhrt.
+
+Hier gilt das gleiche wie unter 2.: MKRP druckt korrekt die Variablen
+auf /tmp/code.lisp. Nachdem post~read und post~pprint am Werke waren,
+tauchen sie dann in /tmp/code.post nicht mehr auf. Ich nehme an,
+post~pprint macht da was falsch.
+
+Das gleiche gilt fuer alle anderen Fehler in Bezug auf nicht 
+deklarierte Variablen, die praktisch bei jedem Beispiel von
+prob~read und post~pprint geloescht werden.
+
+Noche eine allgemeine Bemerkung zu Variablendeklarationen: MKRP protokolliert
+haeufig mehr Variablen als ueberhaupt in Klausel und Substitutionen 
+vorkommen, vermutlich wird von prob~read und post~pprint hier zuviel wegoptimiert.
+
+
+5. (Abdel)
+--
+
+>Fehlende leere Klausel
+
+>F"ur die anderen Beispiele z.B. ~omega/test/test3.post liefert sogar der MKRP
+>noch ein falsches Protokoll, d.h. die Resolutionsschritte werden noch nicht
+>ausgegeben.
+
+Lag an mir, habe ich hoffentlich behoben. Ist beim Verbessern eines anderen Fehlers
+eingeschleppt worden.
+/home/mkrp/fasl/post nachladen wie oben.
+
+
+6. (Michael, Abdel)
+--
+
+>Hier ist ein test-lauf f"ur ~omega/examples/test/test2.post
+
+>OMEGATOP: read-problem ~omega/examples/test/test2.post
+
+>In Reslution step STEP-0 fehlt in der substitution der Wert f"ur X_8,
+>der sollte der gleiche sein wie X_10, was (das verstehen wir auch
+>nicht) an SK??? gebunden ist
+
+
+Antwort
+
+serious problem with terminator
+
+Die Bindung an SK.. stammt vom Terminator, das hat seine Richtigkeit. Das ist eine
+Resolution mit non-mgu.
+
+Das Fehlen von x_8 ist auch vom Terminator verursacht, das ist irgendwie weniger
+richtig, bisher hat's halt nie gestoert. Ich hoffe, ich hab's jetzt endgueltig im
+Griff. Nachladen wie oben: /home/mkrp/fasl/post
+
+
+
+6.
+--
+
+>defun ignore
+
+Antwort
+
+MKRP scheint mir nicht der Ort zu sein, wo das hingehoert. Das ist eigentlich
+eine normale CL-Funktion, die jeder braucht, aber natuerlich stoert's
+nicht, wie ihr es eingebaut habt.
+
+
+Noch ein bei mir aufgetretener Fehler, der woanders liegen muss:
+----------------------------------------------------------------
+
+1.  
+Normalisierung mit :delta nil
+
+read-problem "omega/axel7.post"
+
+call-mkrp
+
+Error: The slot KEIM::DELTA-RELATION is unbound in the object
+       (Resolution-proof CONC-PROBLEM INITIALIZED) of class
+       #<STANDARD-CLASS KEIM:RES+PROOF @ #xbe829e>
+  [condition type: PROGRAM-ERROR]
+
+
+2. Anregung
+
+Normalisierung von Aequivalenzen von aussen anschaltbar machen
+
+3.
+
+OMEGATOP: read-problem ~omega/examples/test/fix-frei-s.post
+
+OMEGATOP: call-mkrp
+
+Aus /tmp/code.lisp
+          (factoring step-0 
+          (clause A4.Ren1 ((X_61 N)) (+ (= (S ZERO) ZERO)) (- (= (S SK31791) SK31791)))
+          (A4 (position 1) (position 2))
+          (substitution (X_11) (SK31791))    <==========
+          (substitution (X_11) (X_61)))
+Aus /tmp/code.post
+   (FACTORING STEP-0
+   (CLAUSE A4.REN1 NIL (+ (= (S ZERO) ZERO))
+    (- (= (S SK31791) SK31791)))
+   (A4 (POSITION 1) (POSITION 2))
+   (SUBSTITUTION (X_11) (X_61))              <========== ??????????????????
+   (SUBSTITUTION NIL NIL))
+Was treibt ihr da eigentlich??
+
+
+
+Ein paar allgemeine Probleme mit POST-MKRP
+------------------------------------------
+
+1. Multiple Literal Removal darf nicht eingeschaltet werden, ist auch nicht noetig, da von
+Replacementfaktorisierung erschlagen.
+
+2. Sollte der Terminator je bei einem Beispiel als ersten Schritt eine Faktorisierung
+haben wollen, stuerzt das Programm mit einer entsprechenden Fehlermeldung ab. Ich glaube,
+dass das nie passiert, deshalb habe ich den Fall nicht programmiert, sollte es doch
+passieren, baue ich's noch ein. Bitte unbedingt das Beispiel aufheben, falls es passiert.
+
+3. Es gehen keinerlei besondere Features und werden auch nicht gehen, als da waeren
+TWO-Literal-Clauses, Theorieunifikation (auch symm. Praedikate,......
+
+4. Die Symmetrie  von = wird beruecksichtigt und nie protokolliert. Resolution
+von a=b und -b=a ist also moeglich! Wenn unbedingt noetig, koennte ich eine Ersetzung mit
+nachfolgender Resolution mit x=x protokollieren.
+
+5. Replacement Resolution darf nicht auf GENERAL geschaltet werden. Das konnte die
+Protokollierung noch nie. Bringt auch nix.
+
+
+Gruss Axel
+
+
+PS: Bitte gebt bei den naechsten Fehlern bitte an, was ich machen muss, damit der Fehler 
+auftritt. Mit den fehlenden Variablen habe ich mich erst mal verzweifelt
+gefragt, was los sein soll, da call-mkrp problemlos lief. 
+
+Es ist wahrscheinlich am Besten, mich zusaetzlich zur Mail noch anzurufen (0911/3000534, 
+0911/7905939, 07231/78024), dann koennen wir's vielleicht gleich klaeren oder ich kann's
+mir auf Papier anschauen. Wenn was ist, versuch ich' diesmal schneller zu klaeren.
+Bis demnaechst.

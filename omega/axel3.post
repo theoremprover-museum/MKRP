@@ -1,0 +1,28 @@
+
+(problem group1 initialized 
+	 ((type-variables aa) (type-variables bb) (type-constants o) (type-constants i)
+	  (constants (= (o aa aa))
+		     (false o)
+		     (true o)
+		     (and (o o o))
+		     (or (o o o))
+		     (implies (o o o))
+		     (equiv (o o o))
+		     (not (o o))
+		     (forall (o (o aa)))
+		     (exists (o (o aa))))
+	  (constants (wolf o i)
+		     (fox o i)
+		     (bird o i)
+		     (snail o i))
+	  (assumption wolf-ass (forall (lam (x i) (wolf x))))
+	  (assumption bird-ass (forall (lam (x i) (bird x))))
+	  (assumption snail-ass (forall (lam (x i) (snail x))))
+	  (assumption fox-ass (forall (lam (x i) (fox x))))
+	  (conclusion conc
+		      (exists (lam (x i)
+			 (and (and (and (fox x) (bird x)) (wolf x))
+				(snail x)))))
+	  ))
+
+

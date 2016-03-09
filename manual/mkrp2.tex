@@ -1,0 +1,339 @@
+\chapter{The MKRP Operating System}
+\label{TheMKRPOperatingSystem}
+
+\section{Installation Guide for MKRP}
+\label{InstallationGuideforMKRP}
+
+You can select whether to have a German or English user interface for 
+{\sc Markgraf Karl}.
+\index{language}\index{dialogue language}\index{English}\index{German}
+The default is English. To get the German one, you must put the
+atom \verb!:mkrp.deutsch! into the list stored in 
+the Common Lisp variable \verb!*features*! before compiling the system.
+
+To use theory unification you need the {\sc Hades}-system, for the
+c-prover (option GEN\_C.PROVER) the {\sc Erm}-system must be available.
+
+\subsection{Installation on Symbolics Lisp Machines}
+\label{InstallationonSymbolicsLispMachines} 
+\begin{enumerate}
+\item    Place system and translation file in your site directory and update the pathnames therein.
+\item    Use the command ``:compile system MKRP'' to compile the system.
+\item    Use the command ``:load system MKRP'' to load it.
+\end{enumerate}
+\index{installation}
+
+\subsection{Installation on Other Machines}
+\label{InstallationonotherMachines}
+\begin{enumerate}
+\item  	Select ``mkrp'' as working directory, there should be the
+	subdirectories ``prog'', ``sys'', and ``examples''. 
+You can delete examples if you don't have enough room.
+\item  	Call your Lisp.
+\item  	Call {\tt (load "sys/cl-boot.lisp")}
+\item  	Call {\tt (in-package "MKRP")}
+\item  	Call {\tt (mkrp-boot)}, a menu appears, select 
+``Newly Compile all Files''.
+There will be some undefined functions in the package ``HADES'',
+you need not worry about.
+\item 	After the compilation has finished you can do the same procedure with
+selecting ``Load Compiled Files'' to use {\sc Mkrp}.
+Alternatively you can save an image calling {\tt (mkrp-dumper)} which 
+should generate a file {\tt "mkrp/mkrp"}.
+\end{enumerate}
+
+\subsection{Starting MKRP}
+
+\index{start MKRP}
+After loading the system in the same way as described in
+section \ref{InstallationonotherMachines} you have to call
+{\tt (mem-initialize 10000)} and {\tt (mkrp)} (see also 
+\ref{UsingmkrpWithoutUserDialogue}). This is not necessary if you used
+the dumper.
+
+
+\section{Architecture of the System from a User's View}
+\label{ArchitectureoftheSystemfromaUser'sView}
+
+The system consists of the following four subsystems: \index{subsystems}
+
+		EDIT
+		-- CONSTRUCT
+		-- REFUTE
+		-- PROTOCOL
+
+\subsection{Edit}
+
+\index{edit subsystem}
+EDIT provides a set of functions to create and manipulate sets of 
+axioms and theorems, enables the user to create 
+{\em axiom\/}- and {\em theorem\/}-files, \index{theorem file}
+\index{axiom file} \index{formulae file}
+consisting of formulae of the input-language PLL (Predicate Logic
+Language), which is discussed in chapter \ref{TheInputLanguage}. The
+editor checks the syntactic and semantic correctness of the input
+formulae. These formulae are transformed into a formal problem
+description being stored in a so-called
+\index{problem file}
+{\em problem\/} file.
+
+\subsection{Construct}
+
+\index{construct subsystem}
+Given a set of axioms and theorems (created by EDIT), CONSTRUCT
+generates the corresponding initial connection graph(s).  The problem
+file is the input for the CONSTRUCT-subsystem, which generates the
+graph(s) according to the reduction rules for initial graphs as
+specified by the adjustment of the options. The output of this
+subsystem is a {\em graph\/} file.
+\index{graph file} Raw data for the 
+protocol are written to a {\em code\/} file. \label{codefile} 
+\index{code file}
+
+\subsection{Refute}
+
+\index{refute subsystem}
+With the result of CONSTRUCT as input, REFUTE tries to detect a
+refutation by the application of resolution and paramodulation steps
+to the connection graph. It tries to prove the theorem by resolving
+clauses in the connection graph. The user can control the deduction
+process by specifying various options (to be discussed in more detail
+in chapter \ref{SettingtheMKRPParameters}).  REFUTE also writes raw
+data to a code file. In order to get the protocol raw data of
+CONSTRUCT and REFUTE on the same code file use CR (CONSTRUCT.REFUTE,
+see below), else no useful protocol can be printed.
+
+\subsection{Protocol}
+
+\index{protocol subsystem}
+PROTOCOL produces a listing of the input and the proof steps
+performed. The PROTOCOL-subsystem is controlled by the PR-options (see
+chapter \ref{TheOutputFacilities}).
+
+\section {Explanation of the Operating System Commands}
+\label {ExplanationoftheOperatingSystemCommands}
+
+At the toplevel of the {\sc Mkrp}-system, the operating system 
+commands of figure \ref{MKRPInterfaceCommands} are available.
+\begin{figure}[ht]
+\caption{{\sc Mkrp} Interface Commands}
+\label{MKRPInterfaceCommands}
+\begin{center}
+\fbox{\parbox{15cm}{%
+\begin{tabbing}
+\hspace{1cm}\=\hspace{2cm}\=\hspace{2cm}\=\hspace{4cm}\=\hspace{3cm}\=\kill
+   V   \>  H[ELP] \>  EX[IT]  \>  O[PTIONS]        \>  D[EFINE.]E[XAMPLE.NAME]\\
+   HC  \>  L[ISP] \>  LO[GOFF]\>  V[IEW.]P[ROTOCOL]\>  D[EFINE.]D[IRECTORY]   \\
+   H[ARDCOPY.]P[ROTOCOL]\\
+\hspace{2cm}\=\hspace{2cm}\=\hspace{2cm}\=\hspace{2cm}\=\hspace{2cm}\=\hspace{2cm}\=\kill
+ \>\>\>                               EP\\
+ \>\>\>                               FP\\
+ \>\>                         ER      \>\>      CP\\
+ \>\>                         FR\\
+ \>                   EC      \>\>      CR      \>\>      RP\\
+ \>                   FC\\
+     E[DIT]    \>\>    C[ONSTRUCT]  \>\>      R[EFUTE]   \>\> P[ROTOCOL]\\
+      F[ORMULA]
+\end{tabbing}}}
+\end{center}
+\end{figure}
+
+\parbox[t]{4.9cm}{D[EFINE.]D[IRECTORY] 	
+
+\index{define directory} \index{command define directory}
+\quad $<$Directory$>$}
+\hfill\parbox[t]{11cm}{
+	Defines the directories where the files 
+will be written on and read from unless specified otherwise. It is only useful together with DE.}
+
+\parbox[t]{4.9cm}{D[EFINE.]E[XAMPLE.NAME]
+
+\index{define example name} \index{command define example name}
+\quad $<$Example-Name$>$}
+\hfill\parbox[t]{11cm}{Files generated during the session will be put into the subdirectory $<$Example-Name$>$ of the directory defined with DD.
+
+\begin{tabbing}
+Example:\quad\= DD  \= /user2/mkrp/examples/\\
+\>                DE  \> steamroller
+\end{tabbing}
+
+All files are generated in /user2/\-mkrp/\-examples/\-steam\-roller/} 
+
+\index{video control} \index{command video control}
+\parbox[t]{3cm}{V  T$|$Y$|$YES
+
+V  NIL$|$N$|$NO}\hfill\parbox[t]{11cm}{Turns the manual terminal 
+control on or off. This doesn't work for all machines.}
+
+\parbox[t]{3cm}{H[ELP] }\hfill\parbox[t]{11cm}{Prints a list of all 
+available operating system commands on the screen.
+\index{help} \index{command help}}
+
+\parbox[t]{3cm}{H[ELP] $<$Com$>$}\hfill\parbox[t]{11cm}{Explains the 
+command $<$Com$>$.}
+
+\parbox[t]{3cm}{EX[IT]}\hfill\parbox[t]{11cm}{Terminates the {\sc
+Mkrp}-session and returns to Lisp. \index{exit} \index{command exit}}
+
+O[PTIONS]\hfill\parbox[t]{11cm}{Calls the option module for setting
+the parameters of proof-control. The actual options can be stored in
+an options file.  ``OK'' returns to where you came from. The option
+module is described in detail in chapter \ref{SettingtheMKRPParameters}.
+\index{options} \index{command options} \index{options file}}
+
+\parbox[t]{4cm}{H[ARD]C[COPY]   $<$File$>$
+
+\index{hardcopy} \index{command hardcopy} \index{print hardcopy}
+HC     T
+
+HC    N }\hfill\parbox[t]{11cm}{Input and output of the session 
+is printed on $<$File$>$, with T output is directed to the printer, with 
+NIL hardcopy is switched off and $<$File$>$ is closed.}
+
+LO[GOFF]\hfill\parbox[t]{11cm}{Terminates this session.
+\index{logoff} \index{command logoff}}
+
+E[DIT] [$<$Problem File$>$]\hfill\parbox[t]{11cm}{Creates a problem
+description. To that end the formula editor is called
+\index{edit} \index{command edit}
+twice, 	first for the axiom formulae, then for the theorem
+formulae.  The problem description is written on $<$Problem File$>$,
+if given, otherwise a default name is used.}
+
+\parbox[t]{4cm}{F[ORMULA]
+
+\index{formula} \index{command formula}
+\quad $<$Axiom  File$>$  
+
+\quad$<$Theorem File$>$ 
+
+\quad[$<$Problem File$>$] }
+\hfill\parbox[t]{11cm}{
+Creates a problem description from formula files.
+ 
+$<$Axiom File$>$ and $<$Theorem File$>$ contain the compiled (written
+with the WRITE editor command) axiom and theorem formulae or formulae
+acceptable to the GET editor command. Their default names are {\tt
+"ax.lisp"} and {\tt "th.lisp"}. The problem description is written to
+$<$Problem File$>$, if given, otherwise the default name {\tt
+"problem.lisp"} is used. Using this command requires $<$Axiom File$>$
+and $<$Theorem File$>$ to be compatible, i.e.\ they must be created
+during the same editor session, if written with WRITE.  Another
+possibility is that $<$Axiom File$>$ and $<$Theorem File$>$ are both
+in a format acceptable to the GET command of the formula editor (see
+chapter \ref{TheMKRPEditor}).}
+
+
+\parbox[t]{4cm}{C[ONSTRUCT]
+
+\index{construct} \index{command construct}
+\quad [$<$Problem File$>$
+
+\quad [$<$Graph File$>$
+
+\quad [$<$Code File$>$ 	
+
+\quad [$<$Comment$>$]]]]}
+\hfill\parbox[t]{11cm}{Creates a set of initial graphs from a 
+problem description.  $<$Problem File$>$ contains the problem
+description. If not specified, the last one created is used, if such a
+file exists in the directory defined with DD and DE.
+$<$Graph File$>$ is the file the initial graph(s) will be
+written on, and defaults to {\tt "graph.lisp"} if NIL is used.
+$<$Code File$>$ is the file, where the raw data for the protocol
+will be written to. If NIL is used,
+the default file name {\tt "code.lisp"} is used.
+$<$Comment$>$ is inserted into the proof protocol. It must be a list
+or string, each element is printed in a separate line.}
+
+\parbox[t]{4cm}{R[EFUTE]
+
+\index{refute} \index{command refute}
+\quad[$<$Graph File$>$
+
+\quad[$<$Number$>$
+
+\quad[$<$Code File$>$]]]}
+\hfill\parbox[t]{11cm}{
+Refutes a set of initial graphs and creates raw data for the
+protocol. $<$Graph File$>$ is the file containing the initial
+graph(s).  If NIL is given, the last one created is used, if such a file exists
+in the directory defined with DD and DE.  If a $<$Number$>$ say $n$,
+is given, only the $n$th graph is refuted, otherwise (i.e.
+$<$number$>$ = NIL) all graphs on the file.  		$<$Code
+File$>$ is the file, where the raw data for the protocol will
+be written to. 
+If C and R commands
+are executed separately the protocol will contain only information
+about construction or refutation. To get a complete protocol you must
+use the combined command CR to generate a code file.}
+
+\parbox[t]{4cm}{P[ROTOCOL]\index{protocol}\index{command
+protocol}
+
+\quad[$<$Code File$>$
+
+\quad[$<$List File$>$]]}
+\hfill\parbox[t]{11cm}{
+Creates a proof protocol from raw data.
+$<$Code File$>$ is the file containing the raw data.
+$<$List File$>$ is the file, where the processed data for protocol
+will be written to in a readable format.
+The default is {\tt "list.text"}.}
+
+The commands Edit, Formula, Construct, Refute, and Protocol can be 
+combined in various different ways. 
+This causes several commands being executed after one another. 
+Possible combinations are depicted in figure \ref{MKRPControlCommands}.
+\begin{figure}[ht]
+\caption{MKRP Control Commands}
+\label{MKRPControlCommands}
+\begin{center}
+\fbox{\parbox{10cm}{%
+%\begin{center}
+\begin{tabbing} 
+\hspace{2cm}\=\hspace{2cm}\=\hspace{4cm}\=\hspace{3cm}\=\kill
+\hspace{3cm}\=\hspace{2cm}\=\hspace{2cm}\=\hspace{2cm}\=\kill
+ \>\>                              EP\\
+ \>\>                               FP\\
+ \>                         ER      \>\>      CP\\
+ \>                         FR\\
+                   EC      \>\>      CR      \>\>      RP\\
+                    FC
+\end{tabbing}
+%\end{center}
+}}
+\end{center}
+\end{figure}
+\index{command EP}
+\index{command FP}
+\index{command ER}
+\index{command CP}
+\index{command FR}
+\index{command EC}
+\index{command CR}
+\index{command RP}
+\index{command FC}
+
+CP $<$Problem File$>$ $<$Graph File$>$ $<$Code File$>$
+                               $<$Comment$>$ $<$List File$>$ for example, 
+causes first CONSTRUCT to create a $<$Code File$>$ starting 
+with $<$Problem File$>$. Then REFUTE tries to refute the graph and writes also 
+protocol raw data to the $<$Code File$>$  and at last
+PROTOCOL creates a $<$List File$>$. Any command combining CONSTRUCT and REFUTE
+produces an empty graph file.
+\section{Using MKRP Without User Dialogue}
+\label{UsingmkrpWithoutUserDialogue}
+
+The system can be used without entering the dialogue system by calling 
+{\tt (mkrp} $<$Directory$>$ $<$Example-Name$>$ $<$Hardcopy$>${\tt )}, where 
+$<$Directory$>$ and $<$Example-Name$>$ \index{start MKRP} are such that they 
+could serve as arguments to the 
+operating system commands DD and DE, respectively. They specify the directory where the 
+system searches for input files and places output files. The input is done either 
+from axiom and theorem files or from a problem file according as they exist.
+If both exist the newer alternative is selected.
+
+The system performs an FP or CP command. If $<$Hardcopy$>$ is true the output of the 
+protocol is sent to the default printer. All terminal traces are
+directed to a file named {\tt "batch.text"}.

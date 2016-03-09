@@ -1,0 +1,998 @@
+ 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 24-JAN-85                                                     *
+                    *         DATE : 12-MAR-85  17:32:52                                           *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   12-MAR-85 16:43:58
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   3.9.1.R.MPROD.ME.NICHTLEER
+                                                                        
+************************************************************************
+                                                                        
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : SORT MENGE,VERKN,ELEMENT,INDEX,INDEXMENGE:ANY
+           TYPE LIDEAL(MENGE MENGE VERKN)
+           TYPE RIDEAL(MENGE MENGE VERKN)
+           TYPE UHG(MENGE MENGE VERKN)
+           TYPE ME(MENGE MENGE)
+           TYPE NICHTLEER(MENGE)
+           TYPE HG(MENGE VERKN)
+           TYPE NICHTLEER-IND(INDEXMENGE)
+           TYPE GLEICH(MENGE MENGE)
+           TYPE EL-IND(INDEX INDEXMENGE)
+           TYPE EL(ELEMENT MENGE)
+           TYPE MINIMAL(MENGE MENGE VERKN)
+           TYPE MINIMAL-BED-L(MENGE VERKN)
+           TYPE MINIMAL-BED-R(MENGE VERKN)
+           TYPE MPROD(MENGE MENGE VERKN) :MENGE
+           TYPE U(INDEX) :MENGE
+           TYPE VER-IND(INDEXMENGE) :MENGE
+           TYPE SM-IND(INDEXMENGE) :MENGE
+           TYPE APPLYV(VERKN ELEMENT ELEMENT) :ELEMENT
+           TYPE F*X(MENGE ELEMENT VERKN) :MENGE
+           TYPE SM(MENGE MENGE) :MENGE
+           TYPE T*(MENGE VERKN MENGE ELEMENT) :MENGE
+           TYPE EL-SET(MENGE MENGE)
+           TYPE MIN-EL(MENGE MENGE)
+           * TRANSITIVITAET VON NICHTLEER BEZGL TEILMENGEN *
+           ALL A,B:MENGE ME(A B) AND NICHTLEER(A) IMPL NICHTLEER(B)
+           * EIGENSCHAFT VON TEILMENGE UND SCHNITTMENGE *
+           ALL A,B,C:MENGE ME(A B) AND ME(A C) IMPL ME(A SM(B C))
+           * DEFINITION VON T* *
+           ALL F,T,L:MENGE  ALL MAL:VERKN  ALL X:ELEMENT  
+                 EL-SET(T T*(F MAL L X))
+             EQV     LIDEAL(T F MAL)
+                 AND ME(T F*X(L X MAL))
+                 AND LIDEAL(L F MAL)
+                 AND MINIMAL(L F MAL)
+                 AND EL(X F)
+                 AND HG(F MAL)
+           * EXISTENZ EINES MINIMALEN ELEMENTS IN T* *
+           ALL F,L:MENGE  ALL MAL:VERKN  ALL X:ELEMENT  
+                  EL(X F) AND LIDEAL(L F MAL) AND MINIMAL-BED-L(F MAL) AND NICHTLEER(T*(F MAL L X))
+             IMPL (EX T0:MENGE MIN-EL(T0 T*(F MAL L X)))
+           * MIN-EL IMPL EL-SET *
+           ALL T0,T:MENGE MIN-EL(T0 T) IMPL EL-SET(T0 T)
+           * EIGENSCHAFT VON MIN-EL *
+           ALL T0,F,L:MENGE  ALL MAL:VERKN  ALL X:ELEMENT  
+             MIN-EL(T0 T*(F MAL L X)) AND LIDEAL(T0 F MAL) IMPL MINIMAL(T0 F MAL)
+           * EIGENSCHAFT VON VER-IND *
+           ALL J:INDEX ALL I:INDEXMENGE EL-IND(J I) IMPL ME(U(J) VER-IND(I))
+           * LEMMA 3.9.1.RIDEAL.NICHTLEER.T* *
+           ALL F,L:MENGE  ALL MAL:VERKN  ALL X:ELEMENT  
+             HG(F MAL) AND LIDEAL(L F MAL) AND EL(X F) IMPL NICHTLEER(T*(F MAL L X))
+           * EIGENSCHAFT LIDEAL *
+           ALL F,L:MENGE ALL MAL:VERKN LIDEAL(L F MAL) IMPL NICHTLEER(L)
+ 
+THEOREMS : ALL F:MENGE  ALL MAL:VERKN  ALL I:INDEXMENGE  ALL X,Y:ELEMENT  ALL J:INDEX  
+                      HG(F MAL)
+                  AND MINIMAL-BED-L(F MAL)
+                  AND (ALL K:INDEX EL-IND(K I) IMPL LIDEAL(U(K) F MAL) AND MINIMAL(U(K) F MAL))
+                  AND (ALL M:MENGE LIDEAL(M F MAL) AND MINIMAL(M F MAL) IMPL(EX L:INDEX EL-IND(L I) AND M = U(L)))
+                  AND LIDEAL(VER-IND(I) F MAL)
+                  AND EL(X F)
+                  AND EL-IND(J I)
+                  AND EL(Y U(J))
+             IMPL NICHTLEER(SM(VER-IND(I) F*X(U(J) X MAL)))
+ 
+ 
+ 
+ 
+CONSTANTS : 
+=========== 
+ 
+| NAME          | SORT                        |            | ATTRIBUTES                                                 
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+| C_1           | ELEMENT                     |            |                                                            
+|
+| C_2           | MENGE                       |            |                                                            
+|
+| C_3           | INDEX                       |            |                                                            
+|
+| C_4           | INDEXMENGE                  |            |                                                            
+|
+| C_5           | VERKN                       |            |                                                            
+|
+| C_6           | ELEMENT                     |            |                                                            
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+ 
+ 
+ 
+FUNCTIONS : 
+=========== 
+ 
+| NAME          | DOMAIN                      | RANGE      | ATTRIBUTES                                                 
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+| MPROD         | MENGE MENGE VERKN           | MENGE      |                                                            
+|
+| U             | INDEX                       | MENGE      |                                                            
+|
+| VER-IND       | INDEXMENGE                  | MENGE      |                                                            
+|
+| SM-IND        | INDEXMENGE                  | MENGE      |                                                            
+|
+| APPLYV        | VERKN ELEMENT ELEMENT       | ELEMENT    |                                                            
+|
+| F*X           | MENGE ELEMENT VERKN         | MENGE      |                                                            
+|
+| SM            | MENGE MENGE                 | MENGE      |                                                            
+|
+| T*            | MENGE VERKN MENGE ELEMENT   | MENGE      |                                                            
+|
+| F_1           | MENGE VERKN MENGE ELEMENT   | MENGE      |                                                            
+|
+| F_2           | MENGE                       | INDEX      |                                                            
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+ 
+ 
+ 
+PREDICATES : 
+============ 
+ 
+| NAME          | DOMAIN                      |            | ATTRIBUTES                                                 
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+| TRUE          |                             |            | DEFINED                                                    
+|
+| FALSE         |                             |            | DEFINED                                                    
+|
+| LIDEAL        | MENGE MENGE VERKN           |            |                                                            
+|
+| RIDEAL        | MENGE MENGE VERKN           |            |                                                            
+|
+| UHG           | MENGE MENGE VERKN           |            |                                                            
+|
+| ME            | MENGE MENGE                 |            |                                                            
+|
+| NICHTLEER     | MENGE                       |            |                                                            
+|
+| HG            | MENGE VERKN                 |            |                                                            
+|
+| NICHTLEER-IND | INDEXMENGE                  |            |                                                            
+|
+| GLEICH        | MENGE MENGE                 |            |                                                            
+|
+| EL-IND        | INDEX INDEXMENGE            |            |                                                            
+|
+| EL            | ELEMENT MENGE               |            |                                                            
+|
+| MINIMAL       | MENGE MENGE VERKN           |            |                                                            
+|
+| MINIMAL-BED-L | MENGE VERKN                 |            |                                                            
+|
+| MINIMAL-BED-R | MENGE VERKN                 |            |                                                            
+|
+| EL-SET        | MENGE MENGE                 |            |                                                            
+|
+| MIN-EL        | MENGE MENGE                 |            |                                                            
+|
+| =             | ANY ANY                     |            | DEFINED SYMMETRIC REFLEXIVE SYMMETRIC REFLEXIVE SYMMETRIC  
+|
+|               |                             |            | REFLEXIVE                                                  
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+ 
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+  A1   : ALL X:ANY  + =(X X)
+* A2   : ALL X:ELEMENT  Y,Z,U:MENGE  V:VERKN  - EL-SET(U T*(Z V Y X))  + LIDEAL(U Z V)
+* A3   : ALL X:ELEMENT  Y,Z,U:MENGE  V:VERKN  - EL-SET(U T*(Z V Y X))  + ME(U F*X(Y X V))
+  A4   : ALL X:ELEMENT  Y,Z,U:MENGE  V:VERKN  - EL-SET(U T*(Z V Y X))  + LIDEAL(Y Z V)
+  A5   : ALL X:ELEMENT  Y,Z,U:MENGE  V:VERKN  - EL-SET(U T*(Z V Y X))  + MINIMAL(Y Z V)
+  A6   : ALL X:ELEMENT  Y,Z,U:MENGE  V:VERKN  - EL-SET(U T*(Z V Y X))  + EL(X Z)
+  A7   : ALL X:ELEMENT  Y,Z,U:MENGE  V:VERKN  - EL-SET(U T*(Z V Y X))  + HG(Z V)
+* A8   : ALL X,Y:MENGE  - MIN-EL(Y X)  + EL-SET(Y X)
+* A9   : ALL X:INDEXMENGE  Y:INDEX  - EL-IND(Y X)  + ME(U(Y) VER-IND(X))
+* A10  : ALL X:VERKN  Y,Z:MENGE  - LIDEAL(Z Y X)  + NICHTLEER(Z)
+* A11  : ALL X,Y:MENGE  - ME(Y X)  - NICHTLEER(Y)  + NICHTLEER(X)
+* A12  : ALL X,Y,Z:MENGE  - ME(Z Y)  - ME(Z X)  + ME(Z SM(Y X))
+* A13  : ALL X:ELEMENT  Y,Z,U:MENGE  V:VERKN  - MIN-EL(U T*(Z V Y X))  - LIDEAL(U Z V)  + MINIMAL(U Z V)
+* A14  : ALL X:ELEMENT  Y,Z:MENGE  U:VERKN  - HG(Z U)  - LIDEAL(Y Z U)  - EL(X Z)  + NICHTLEER(T*(Z U Y X))
+* A15  : ALL X:VERKN  Y,Z:MENGE  U:ELEMENT  
+              - EL(U Z)  - LIDEAL(Y Z X)  - MINIMAL-BED-L(Z X)  - NICHTLEER(T*(Z X Y U))
+                + MIN-EL(F_1(Y X Z U) T*(Z X Y U))
+  A16  : ALL X:ELEMENT  Y,Z,U:MENGE  V:VERKN  
+              + EL-SET(U T*(Z V Y X))  - LIDEAL(U Z V)  - ME(U F*X(Y X V))  - LIDEAL(Y Z V)  - MINIMAL(Y Z V)
+                - EL(X Z)  - HG(Z V)
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+* T17  : + HG(C_2 C_5)
+* T18  : + MINIMAL-BED-L(C_2 C_5)
+* T19  : ALL X:INDEX  - EL-IND(X C_4)  + LIDEAL(U(X) C_2 C_5)
+  T20  : ALL X:INDEX  - EL-IND(X C_4)  + MINIMAL(U(X) C_2 C_5)
+* T21  : ALL X:MENGE  - LIDEAL(X C_2 C_5)  - MINIMAL(X C_2 C_5)  + EL-IND(F_2(X) C_4)
+* T22  : ALL X:MENGE  - LIDEAL(X C_2 C_5)  - MINIMAL(X C_2 C_5)  + =(X U(F_2(X)))
+  T23  : + LIDEAL(VER-IND(C_4) C_2 C_5)
+* T24  : + EL(C_6 C_2)
+* T25  : + EL-IND(C_3 C_4)
+  T26  : + EL(C_1 U(C_3))
+* T27  : - NICHTLEER(SM(VER-IND(C_4) F*X(U(C_3) C_6 C_5)))
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION
+ 
+INITIAL CLAUSES :        A1   : ALL X:ANY  + =(X X)
+                       * A2   : ALL X:ELEMENT  Y,Z,U:MENGE  V:VERKN  - EL-SET(U T*(Z V Y X))  + LIDEAL(U Z V)
+                       * A3   : ALL X:ELEMENT  Y,Z,U:MENGE  V:VERKN  - EL-SET(U T*(Z V Y X))  + ME(U F*X(Y X V))
+                         A4   : ALL X:ELEMENT  Y,Z,U:MENGE  V:VERKN  - EL-SET(U T*(Z V Y X))  + LIDEAL(Y Z V)
+                         A5   : ALL X:ELEMENT  Y,Z,U:MENGE  V:VERKN  - EL-SET(U T*(Z V Y X))  + MINIMAL(Y Z V)
+                         A6   : ALL X:ELEMENT  Y,Z,U:MENGE  V:VERKN  - EL-SET(U T*(Z V Y X))  + EL(X Z)
+                         A7   : ALL X:ELEMENT  Y,Z,U:MENGE  V:VERKN  - EL-SET(U T*(Z V Y X))  + HG(Z V)
+                       * A8   : ALL X,Y:MENGE  - MIN-EL(Y X)  + EL-SET(Y X)
+                       * A9   : ALL X:INDEXMENGE  Y:INDEX  - EL-IND(Y X)  + ME(U(Y) VER-IND(X))
+                       * A10  : ALL X:VERKN  Y,Z:MENGE  - LIDEAL(Z Y X)  + NICHTLEER(Z)
+                       * A11  : ALL X,Y:MENGE  - ME(Y X)  - NICHTLEER(Y)  + NICHTLEER(X)
+                       * A12  : ALL X,Y,Z:MENGE  - ME(Z Y)  - ME(Z X)  + ME(Z SM(Y X))
+                       * A13  : ALL X:ELEMENT  Y,Z,U:MENGE  V:VERKN  
+                                     - MIN-EL(U T*(Z V Y X))  - LIDEAL(U Z V)  + MINIMAL(U Z V)
+                       * A14  : ALL X:ELEMENT  Y,Z:MENGE  U:VERKN  
+                                     - HG(Z U)  - LIDEAL(Y Z U)  - EL(X Z)  + NICHTLEER(T*(Z U Y X))
+                       * A15  : ALL X:VERKN  Y,Z:MENGE  U:ELEMENT  
+                                     - EL(U Z)  - LIDEAL(Y Z X)  - MINIMAL-BED-L(Z X)  - NICHTLEER(T*(Z X Y U))
+                                       + MIN-EL(F_1(Y X Z U) T*(Z X Y U))
+                         A16  : ALL X:ELEMENT  Y,Z,U:MENGE  V:VERKN  
+                                     + EL-SET(U T*(Z V Y X))  - LIDEAL(U Z V)  - ME(U F*X(Y X V))  - LIDEAL(Y Z V)
+                                       - MINIMAL(Y Z V)  - EL(X Z)  - HG(Z V)
+                       * T17  : + HG(C_2 C_5)
+                       * T18  : + MINIMAL-BED-L(C_2 C_5)
+                       * T19  : ALL X:INDEX  - EL-IND(X C_4)  + LIDEAL(U(X) C_2 C_5)
+                         T20  : ALL X:INDEX  - EL-IND(X C_4)  + MINIMAL(U(X) C_2 C_5)
+                       * T21  : ALL X:MENGE  - LIDEAL(X C_2 C_5)  - MINIMAL(X C_2 C_5)  + EL-IND(F_2(X) C_4)
+                       * T22  : ALL X:MENGE  - LIDEAL(X C_2 C_5)  - MINIMAL(X C_2 C_5)  + =(X U(F_2(X)))
+                         T23  : + LIDEAL(VER-IND(C_4) C_2 C_5)
+                       * T24  : + EL(C_6 C_2)
+                       * T25  : + EL-IND(C_3 C_4)
+                         T26  : + EL(C_1 U(C_3))
+                       * T27  : - NICHTLEER(SM(VER-IND(C_4) F*X(U(C_3) C_6 C_5)))
+ 
+T18,1 & A15,3     -->  * R1   : ALL X:MENGE  Y:ELEMENT  
+                                     - EL(Y C_2)  - LIDEAL(X C_2 C_5)  - NICHTLEER(T*(C_2 C_5 X Y))
+                                       + MIN-EL(F_1(X C_5 C_2 Y) T*(C_2 C_5 X Y))
+ 
+R1,3 & A14,4      -->  * R2   : ALL X:ELEMENT  Y:MENGE  
+                                     - EL(X C_2)  - LIDEAL(Y C_2 C_5)  + MIN-EL(F_1(Y C_5 C_2 X) T*(C_2 C_5 Y X))
+                                       - HG(C_2 C_5)  - LIDEAL(Y C_2 C_5)  - EL(X C_2)
+ 
+R2 2=5            -->  * D3   : ALL X:ELEMENT  Y:MENGE  
+                                     - EL(X C_2)  - LIDEAL(Y C_2 C_5)  + MIN-EL(F_1(Y C_5 C_2 X) T*(C_2 C_5 Y X))
+                                       - HG(C_2 C_5)  - EL(X C_2)
+ 
+D3 1=5            -->  * D4   : ALL X:ELEMENT  Y:MENGE  
+                                     - EL(X C_2)  - LIDEAL(Y C_2 C_5)  + MIN-EL(F_1(Y C_5 C_2 X) T*(C_2 C_5 Y X))
+                                       - HG(C_2 C_5)
+ 
+D4,4 & T17,1      -->  * R5   : ALL X:ELEMENT  Y:MENGE  
+                                     - EL(X C_2)  - LIDEAL(Y C_2 C_5)  + MIN-EL(F_1(Y C_5 C_2 X) T*(C_2 C_5 Y X))
+ 
+T25,1 & T19,1     -->  * R6   : + LIDEAL(U(C_3) C_2 C_5)
+ 
+R6,1 & R5,2       -->  * R7   : - EL(C_6 C_2)  + MIN-EL(F_1(U(C_3) C_5 C_2 C_6) T*(C_2 C_5 U(C_3) C_6))
+ 
+R7,1 & T24,1      -->  * R8   : + MIN-EL(F_1(U(C_3) C_5 C_2 C_6) T*(C_2 C_5 U(C_3) C_6))
+ 
+T23,1 & R5,2      -->    R9   : - EL(C_6 C_2)  + MIN-EL(F_1(VER-IND(C_4) C_5 C_2 C_6) T*(C_2 C_5 VER-IND(C_4) C_6))
+ 
+R9,1 & T24,1      -->    R10  : + MIN-EL(F_1(VER-IND(C_4) C_5 C_2 C_6) T*(C_2 C_5 VER-IND(C_4) C_6))
+ 
+T25,1 & T20,1     -->    R11  : + MINIMAL(U(C_3) C_2 C_5)
+ 
+R6,1 & T21,1      -->    R12  : - MINIMAL(U(C_3) C_2 C_5)  + EL-IND(F_2(U(C_3)) C_4)
+ 
+R12,1 & R11,1     -->    R13  : + EL-IND(F_2(U(C_3)) C_4)
+ 
+R13,1 & T19,1     -->    R14  : + LIDEAL(U(F_2(U(C_3))) C_2 C_5)
+ 
+R14,1 & R5,2      -->    R15  : - EL(C_6 C_2)  + MIN-EL(F_1(U(F_2(U(C_3))) C_5 C_2 C_6) T*(C_2 C_5 U(F_2(U(C_3))) C_6))
+ 
+R15,1 & T24,1     -->    R16  : + MIN-EL(F_1(U(F_2(U(C_3))) C_5 C_2 C_6) T*(C_2 C_5 U(F_2(U(C_3))) C_6))
+ 
+R8,1 & A8,1       -->  * R17  : + EL-SET(F_1(U(C_3) C_5 C_2 C_6) T*(C_2 C_5 U(C_3) C_6))
+ 
+R17,1 & A2,1      -->  * R18  : + LIDEAL(F_1(U(C_3) C_5 C_2 C_6) C_2 C_5)
+ 
+R18,1 & R5,2      -->    R19  : - EL(C_6 C_2)
+                                + MIN-EL(F_1(F_1(U(C_3) C_5 C_2 C_6) C_5 C_2 C_6)
+                                         T*(C_2 C_5 F_1(U(C_3) C_5 C_2 C_6) C_6))
+ 
+ 
+R19,1 & T24,1     -->    R20  : + MIN-EL(F_1(F_1(U(C_3) C_5 C_2 C_6) C_5 C_2 C_6)
+                                         T*(C_2 C_5 F_1(U(C_3) C_5 C_2 C_6) C_6))
+ 
+ 
+R10,1 & A8,1      -->    R21  : + EL-SET(F_1(VER-IND(C_4) C_5 C_2 C_6) T*(C_2 C_5 VER-IND(C_4) C_6))
+ 
+R21,1 & A2,1      -->    R22  : + LIDEAL(F_1(VER-IND(C_4) C_5 C_2 C_6) C_2 C_5)
+ 
+R22,1 & R5,2      -->    R23  : - EL(C_6 C_2)
+                                + MIN-EL(F_1(F_1(VER-IND(C_4) C_5 C_2 C_6) C_5 C_2 C_6)
+                                         T*(C_2 C_5 F_1(VER-IND(C_4) C_5 C_2 C_6) C_6))
+ 
+ 
+R23,1 & T24,1     -->    R24  : + MIN-EL(F_1(F_1(VER-IND(C_4) C_5 C_2 C_6) C_5 C_2 C_6)
+                                         T*(C_2 C_5 F_1(VER-IND(C_4) C_5 C_2 C_6) C_6))
+ 
+ 
+A10,2 & T27,1     -->    R25  : ALL X:VERKN  Y:MENGE  - LIDEAL(SM(VER-IND(C_4) F*X(U(C_3) C_6 C_5)) Y X)
+ 
+A4,2 & R25,1      -->    R26  : ALL X:ELEMENT  Y:VERKN  Z,U:MENGE  
+                                     - EL-SET(U T*(Z Y SM(VER-IND(C_4) F*X(U(C_3) C_6 C_5)) X))
+ 
+A8,2 & R26,1      -->    R27  : ALL X:ELEMENT  Y:VERKN  Z,U:MENGE  
+                                     - MIN-EL(U T*(Z Y SM(VER-IND(C_4) F*X(U(C_3) C_6 C_5)) X))
+ 
+A2,2 & R25,1      -->    R28  : ALL X:ELEMENT  Y,Z:MENGE  U:VERKN  
+                                     - EL-SET(SM(VER-IND(C_4) F*X(U(C_3) C_6 C_5)) T*(Z U Y X))
+ 
+A8,2 & R28,1      -->    R29  : ALL X:ELEMENT  Y,Z:MENGE  U:VERKN  
+                                     - MIN-EL(SM(VER-IND(C_4) F*X(U(C_3) C_6 C_5)) T*(Z U Y X))
+ 
+R16,1 & A8,1      -->    R30  : + EL-SET(F_1(U(F_2(U(C_3))) C_5 C_2 C_6) T*(C_2 C_5 U(F_2(U(C_3))) C_6))
+ 
+T25,1 & A9,1      -->    R31  : + ME(U(C_3) VER-IND(C_4))
+ 
+R6,1 & A10,1      -->    R32  : + NICHTLEER(U(C_3))
+ 
+R32,1 & A11,2     -->    R33  : - ME(U(C_3) SM(VER-IND(C_4) F*X(U(C_3) C_6 C_5)))
+                                  + NICHTLEER(SM(VER-IND(C_4) F*X(U(C_3) C_6 C_5)))
+ 
+R33,2 & T27,1     -->    R34  : - ME(U(C_3) SM(VER-IND(C_4) F*X(U(C_3) C_6 C_5)))
+ 
+A12,3 & R34,1     -->    R35  : - ME(U(C_3) VER-IND(C_4))  - ME(U(C_3) F*X(U(C_3) C_6 C_5))
+ 
+R35,1 & R31,1     -->    R36  : - ME(U(C_3) F*X(U(C_3) C_6 C_5))
+ 
+A3,2 & R36,1      -->    R37  : ALL X:MENGE  - EL-SET(U(C_3) T*(X C_5 U(C_3) C_6))
+ 
+R31,1 & A12,2     -->    R38  : - ME(U(C_3) VER-IND(C_4))  + ME(U(C_3) SM(VER-IND(C_4) VER-IND(C_4)))
+ 
+R38,1 & R31,1     -->    R39  : + ME(U(C_3) SM(VER-IND(C_4) VER-IND(C_4)))
+ 
+R13,1 & A9,1      -->    R40  : + ME(U(F_2(U(C_3))) VER-IND(C_4))
+ 
+R30,1 & A3,1      -->    R41  : + ME(F_1(U(F_2(U(C_3))) C_5 C_2 C_6) F*X(U(F_2(U(C_3))) C_6 C_5))
+ 
+R17,1 & A3,1      -->    R42  : + ME(F_1(U(C_3) C_5 C_2 C_6) F*X(U(C_3) C_6 C_5))
+ 
+R21,1 & A3,1      -->    R43  : + ME(F_1(VER-IND(C_4) C_5 C_2 C_6) F*X(VER-IND(C_4) C_6 C_5))
+ 
+R39,1 & A12,2     -->    R44  : - ME(U(C_3) VER-IND(C_4))  + ME(U(C_3) SM(VER-IND(C_4) SM(VER-IND(C_4) VER-IND(C_4))))
+ 
+R44,1 & R31,1     -->    R45  : + ME(U(C_3) SM(VER-IND(C_4) SM(VER-IND(C_4) VER-IND(C_4))))
+ 
+R42,1 & A12,2     -->    R46  : - ME(F_1(U(C_3) C_5 C_2 C_6) F*X(U(C_3) C_6 C_5))
+                                  + ME(F_1(U(C_3) C_5 C_2 C_6) SM(F*X(U(C_3) C_6 C_5) F*X(U(C_3) C_6 C_5)))
+ 
+R46,1 & R42,1     -->    R47  : + ME(F_1(U(C_3) C_5 C_2 C_6) SM(F*X(U(C_3) C_6 C_5) F*X(U(C_3) C_6 C_5)))
+ 
+R43,1 & A12,2     -->    R48  : - ME(F_1(VER-IND(C_4) C_5 C_2 C_6) F*X(VER-IND(C_4) C_6 C_5))
+                                + ME(F_1(VER-IND(C_4) C_5 C_2 C_6)
+                                     SM(F*X(VER-IND(C_4) C_6 C_5) F*X(VER-IND(C_4) C_6 C_5)))
+ 
+ 
+R48,1 & R43,1     -->    R49  : + ME(F_1(VER-IND(C_4) C_5 C_2 C_6)
+                                     SM(F*X(VER-IND(C_4) C_6 C_5) F*X(VER-IND(C_4) C_6 C_5)))
+ 
+ 
+R40,1 & A12,2     -->    R50  : - ME(U(F_2(U(C_3))) VER-IND(C_4))  + ME(U(F_2(U(C_3))) SM(VER-IND(C_4) VER-IND(C_4)))
+ 
+R50,1 & R40,1     -->    R51  : + ME(U(F_2(U(C_3))) SM(VER-IND(C_4) VER-IND(C_4)))
+ 
+R39,1 & A12,2     -->    R52  : - ME(U(C_3) SM(VER-IND(C_4) VER-IND(C_4)))
+                                  + ME(U(C_3) SM(SM(VER-IND(C_4) VER-IND(C_4)) SM(VER-IND(C_4) VER-IND(C_4))))
+ 
+R52,1 & R39,1     -->    R53  : + ME(U(C_3) SM(SM(VER-IND(C_4) VER-IND(C_4)) SM(VER-IND(C_4) VER-IND(C_4))))
+ 
+R31,1 & A12,2     -->    R54  : - ME(U(C_3) SM(VER-IND(C_4) VER-IND(C_4)))
+                                  + ME(U(C_3) SM(SM(VER-IND(C_4) VER-IND(C_4)) VER-IND(C_4)))
+ 
+R54,1 & R39,1     -->    R55  : + ME(U(C_3) SM(SM(VER-IND(C_4) VER-IND(C_4)) VER-IND(C_4)))
+ 
+T23,1 & A10,1     -->    R56  : + NICHTLEER(VER-IND(C_4))
+ 
+R56,1 & A11,2     -->    R57  : - ME(VER-IND(C_4) SM(VER-IND(C_4) F*X(U(C_3) C_6 C_5)))
+                                  + NICHTLEER(SM(VER-IND(C_4) F*X(U(C_3) C_6 C_5)))
+ 
+R57,2 & T27,1     -->    R58  : - ME(VER-IND(C_4) SM(VER-IND(C_4) F*X(U(C_3) C_6 C_5)))
+ 
+R14,1 & A10,1     -->    R59  : + NICHTLEER(U(F_2(U(C_3))))
+ 
+R59,1 & A11,2     -->    R60  : - ME(U(F_2(U(C_3))) SM(VER-IND(C_4) F*X(U(C_3) C_6 C_5)))
+                                  + NICHTLEER(SM(VER-IND(C_4) F*X(U(C_3) C_6 C_5)))
+ 
+R60,2 & T27,1     -->    R61  : - ME(U(F_2(U(C_3))) SM(VER-IND(C_4) F*X(U(C_3) C_6 C_5)))
+ 
+R14,1 & A14,2     -->    R62  : - HG(C_2 C_5)  - EL(C_6 C_2)  + NICHTLEER(T*(C_2 C_5 U(F_2(U(C_3))) C_6))
+ 
+R62,1 & T17,1     -->    R63  : - EL(C_6 C_2)  + NICHTLEER(T*(C_2 C_5 U(F_2(U(C_3))) C_6))
+ 
+R63,1 & T24,1     -->    R64  : + NICHTLEER(T*(C_2 C_5 U(F_2(U(C_3))) C_6))
+ 
+R64,1 & A11,2     -->    R65  : - ME(T*(C_2 C_5 U(F_2(U(C_3))) C_6) SM(VER-IND(C_4) F*X(U(C_3) C_6 C_5)))
+                                  + NICHTLEER(SM(VER-IND(C_4) F*X(U(C_3) C_6 C_5)))
+ 
+R65,2 & T27,1     -->    R66  : - ME(T*(C_2 C_5 U(F_2(U(C_3))) C_6) SM(VER-IND(C_4) F*X(U(C_3) C_6 C_5)))
+ 
+R6,1 & A14,2      -->    R67  : - HG(C_2 C_5)  - EL(C_6 C_2)  + NICHTLEER(T*(C_2 C_5 U(C_3) C_6))
+ 
+R67,1 & T17,1     -->    R68  : - EL(C_6 C_2)  + NICHTLEER(T*(C_2 C_5 U(C_3) C_6))
+ 
+R68,1 & T24,1     -->    R69  : + NICHTLEER(T*(C_2 C_5 U(C_3) C_6))
+ 
+R69,1 & A11,2     -->    R70  : - ME(T*(C_2 C_5 U(C_3) C_6) SM(VER-IND(C_4) F*X(U(C_3) C_6 C_5)))
+                                  + NICHTLEER(SM(VER-IND(C_4) F*X(U(C_3) C_6 C_5)))
+ 
+R70,2 & T27,1     -->    R71  : - ME(T*(C_2 C_5 U(C_3) C_6) SM(VER-IND(C_4) F*X(U(C_3) C_6 C_5)))
+ 
+T23,1 & A14,2     -->    R72  : - HG(C_2 C_5)  - EL(C_6 C_2)  + NICHTLEER(T*(C_2 C_5 VER-IND(C_4) C_6))
+ 
+R72,1 & T17,1     -->    R73  : - EL(C_6 C_2)  + NICHTLEER(T*(C_2 C_5 VER-IND(C_4) C_6))
+ 
+R73,1 & T24,1     -->    R74  : + NICHTLEER(T*(C_2 C_5 VER-IND(C_4) C_6))
+ 
+R74,1 & A11,2     -->    R75  : - ME(T*(C_2 C_5 VER-IND(C_4) C_6) SM(VER-IND(C_4) F*X(U(C_3) C_6 C_5)))
+                                  + NICHTLEER(SM(VER-IND(C_4) F*X(U(C_3) C_6 C_5)))
+ 
+R75,2 & T27,1     -->    R76  : - ME(T*(C_2 C_5 VER-IND(C_4) C_6) SM(VER-IND(C_4) F*X(U(C_3) C_6 C_5)))
+ 
+R40,1 & A12,1     -->    R77  : - ME(U(F_2(U(C_3))) F*X(U(C_3) C_6 C_5))
+                                  + ME(U(F_2(U(C_3))) SM(VER-IND(C_4) F*X(U(C_3) C_6 C_5)))
+ 
+R77,2 & R61,1     -->    R78  : - ME(U(F_2(U(C_3))) F*X(U(C_3) C_6 C_5))
+ 
+R13,1 & T20,1     -->    R79  : + MINIMAL(U(F_2(U(C_3))) C_2 C_5)
+ 
+R21,1 & A5,1      -->    R80  : + MINIMAL(VER-IND(C_4) C_2 C_5)
+ 
+T23,1 & T21,1     -->    R81  : - MINIMAL(VER-IND(C_4) C_2 C_5)  + EL-IND(F_2(VER-IND(C_4)) C_4)
+ 
+R81,1 & R80,1     -->    R82  : + EL-IND(F_2(VER-IND(C_4)) C_4)
+ 
+R82,1 & T20,1     -->    R83  : + MINIMAL(U(F_2(VER-IND(C_4))) C_2 C_5)
+ 
+R30,1 & A2,1      -->    R84  : + LIDEAL(F_1(U(F_2(U(C_3))) C_5 C_2 C_6) C_2 C_5)
+ 
+R16,1 & A13,1     -->    R85  : - LIDEAL(F_1(U(F_2(U(C_3))) C_5 C_2 C_6) C_2 C_5)
+                                  + MINIMAL(F_1(U(F_2(U(C_3))) C_5 C_2 C_6) C_2 C_5)
+ 
+R85,1 & R84,1     -->    R86  : + MINIMAL(F_1(U(F_2(U(C_3))) C_5 C_2 C_6) C_2 C_5)
+ 
+R8,1 & A13,1      -->  * R87  : - LIDEAL(F_1(U(C_3) C_5 C_2 C_6) C_2 C_5)  + MINIMAL(F_1(U(C_3) C_5 C_2 C_6) C_2 C_5)
+ 
+R87,1 & R18,1     -->  * R88  : + MINIMAL(F_1(U(C_3) C_5 C_2 C_6) C_2 C_5)
+ 
+R10,1 & A13,1     -->    R89  : - LIDEAL(F_1(VER-IND(C_4) C_5 C_2 C_6) C_2 C_5)
+                                  + MINIMAL(F_1(VER-IND(C_4) C_5 C_2 C_6) C_2 C_5)
+ 
+R89,1 & R22,1     -->    R90  : + MINIMAL(F_1(VER-IND(C_4) C_5 C_2 C_6) C_2 C_5)
+ 
+R32,1 & A11,2     -->    R91  : - ME(U(C_3) SM(VER-IND(C_4) VER-IND(C_4)))  + NICHTLEER(SM(VER-IND(C_4) VER-IND(C_4)))
+ 
+R91,1 & R39,1     -->    R92  : + NICHTLEER(SM(VER-IND(C_4) VER-IND(C_4)))
+ 
+R82,1 & T19,1     -->    R93  : + LIDEAL(U(F_2(VER-IND(C_4))) C_2 C_5)
+ 
+R93,1 & A14,2     -->    R94  : - HG(C_2 C_5)  - EL(C_6 C_2)  + NICHTLEER(T*(C_2 C_5 U(F_2(VER-IND(C_4))) C_6))
+ 
+R94,1 & T17,1     -->    R95  : - EL(C_6 C_2)  + NICHTLEER(T*(C_2 C_5 U(F_2(VER-IND(C_4))) C_6))
+ 
+R95,1 & T24,1     -->    R96  : + NICHTLEER(T*(C_2 C_5 U(F_2(VER-IND(C_4))) C_6))
+ 
+R18,1 & A14,2     -->    R97  : - HG(C_2 C_5)  - EL(C_6 C_2)  + NICHTLEER(T*(C_2 C_5 F_1(U(C_3) C_5 C_2 C_6) C_6))
+ 
+R97,1 & T17,1     -->    R98  : - EL(C_6 C_2)  + NICHTLEER(T*(C_2 C_5 F_1(U(C_3) C_5 C_2 C_6) C_6))
+ 
+R98,1 & T24,1     -->    R99  : + NICHTLEER(T*(C_2 C_5 F_1(U(C_3) C_5 C_2 C_6) C_6))
+ 
+R22,1 & A14,2     -->    R100 : - HG(C_2 C_5)  - EL(C_6 C_2)  + NICHTLEER(T*(C_2 C_5 F_1(VER-IND(C_4) C_5 C_2 C_6) C_6))
+ 
+R100,1 & T17,1    -->    R101 : - EL(C_6 C_2)  + NICHTLEER(T*(C_2 C_5 F_1(VER-IND(C_4) C_5 C_2 C_6) C_6))
+ 
+R101,1 & T24,1    -->    R102 : + NICHTLEER(T*(C_2 C_5 F_1(VER-IND(C_4) C_5 C_2 C_6) C_6))
+ 
+R14,1 & T21,1     -->    R103 : - MINIMAL(U(F_2(U(C_3))) C_2 C_5)  + EL-IND(F_2(U(F_2(U(C_3)))) C_4)
+ 
+R103,1 & R79,1    -->    R104 : + EL-IND(F_2(U(F_2(U(C_3)))) C_4)
+ 
+R18,1 & T21,1     -->  * R105 : - MINIMAL(F_1(U(C_3) C_5 C_2 C_6) C_2 C_5)  + EL-IND(F_2(F_1(U(C_3) C_5 C_2 C_6)) C_4)
+ 
+R105,1 & R88,1    -->  * R106 : + EL-IND(F_2(F_1(U(C_3) C_5 C_2 C_6)) C_4)
+ 
+R22,1 & T21,1     -->    R107 : - MINIMAL(F_1(VER-IND(C_4) C_5 C_2 C_6) C_2 C_5)
+                                  + EL-IND(F_2(F_1(VER-IND(C_4) C_5 C_2 C_6)) C_4)
+ 
+R107,1 & R90,1    -->    R108 : + EL-IND(F_2(F_1(VER-IND(C_4) C_5 C_2 C_6)) C_4)
+ 
+R93,1 & T21,1     -->    R109 : - MINIMAL(U(F_2(VER-IND(C_4))) C_2 C_5)  + EL-IND(F_2(U(F_2(VER-IND(C_4)))) C_4)
+ 
+R109,1 & R83,1    -->    R110 : + EL-IND(F_2(U(F_2(VER-IND(C_4)))) C_4)
+ 
+R6,1 & T22,1      -->    R111 : - MINIMAL(U(C_3) C_2 C_5)  + =(U(C_3) U(F_2(U(C_3))))
+ 
+R111,1 & R11,1    -->    R112 : + =(U(C_3) U(F_2(U(C_3))))
+ 
+T23,1 & T22,1     -->    R113 : - MINIMAL(VER-IND(C_4) C_2 C_5)  + =(VER-IND(C_4) U(F_2(VER-IND(C_4))))
+ 
+R113,1 & R80,1    -->    R114 : + =(VER-IND(C_4) U(F_2(VER-IND(C_4))))
+ 
+R18,1 & T22,1     -->  * R115 : - MINIMAL(F_1(U(C_3) C_5 C_2 C_6) C_2 C_5)
+                                  + =(F_1(U(C_3) C_5 C_2 C_6) U(F_2(F_1(U(C_3) C_5 C_2 C_6))))
+ 
+R115,1 & R88,1    -->  * R116 : + =(F_1(U(C_3) C_5 C_2 C_6) U(F_2(F_1(U(C_3) C_5 C_2 C_6))))
+ 
+R22,1 & T22,1     -->    R117 : - MINIMAL(F_1(VER-IND(C_4) C_5 C_2 C_6) C_2 C_5)
+                                  + =(F_1(VER-IND(C_4) C_5 C_2 C_6) U(F_2(F_1(VER-IND(C_4) C_5 C_2 C_6))))
+ 
+R117,1 & R90,1    -->    R118 : + =(F_1(VER-IND(C_4) C_5 C_2 C_6) U(F_2(F_1(VER-IND(C_4) C_5 C_2 C_6))))
+ 
+R55,1 & A11,1     -->    R119 : - NICHTLEER(U(C_3))  + NICHTLEER(SM(SM(VER-IND(C_4) VER-IND(C_4)) VER-IND(C_4)))
+ 
+R119,1 & A10,2    -->    R120 : + NICHTLEER(SM(SM(VER-IND(C_4) VER-IND(C_4)) VER-IND(C_4)))  - LIDEAL(U(C_3) C_2 C_5)
+ 
+R120,2 & R6,1     -->    R121 : + NICHTLEER(SM(SM(VER-IND(C_4) VER-IND(C_4)) VER-IND(C_4)))
+ 
+R53,1 & A11,1     -->    R122 : - NICHTLEER(U(C_3))
+                                  + NICHTLEER(SM(SM(VER-IND(C_4) VER-IND(C_4)) SM(VER-IND(C_4) VER-IND(C_4))))
+ 
+R122,1 & A10,2    -->    R123 : + NICHTLEER(SM(SM(VER-IND(C_4) VER-IND(C_4)) SM(VER-IND(C_4) VER-IND(C_4))))
+                                  - LIDEAL(U(C_3) C_2 C_5)
+ 
+R123,2 & R6,1     -->    R124 : + NICHTLEER(SM(SM(VER-IND(C_4) VER-IND(C_4)) SM(VER-IND(C_4) VER-IND(C_4))))
+ 
+R45,1 & A11,1     -->    R125 : - NICHTLEER(U(C_3))  + NICHTLEER(SM(VER-IND(C_4) SM(VER-IND(C_4) VER-IND(C_4))))
+ 
+R125,1 & A10,2    -->    R126 : + NICHTLEER(SM(VER-IND(C_4) SM(VER-IND(C_4) VER-IND(C_4))))  - LIDEAL(U(C_3) C_2 C_5)
+ 
+R126,2 & R6,1     -->    R127 : + NICHTLEER(SM(VER-IND(C_4) SM(VER-IND(C_4) VER-IND(C_4))))
+ 
+R127,1 & A11,2    -->    R128 : - ME(SM(VER-IND(C_4) SM(VER-IND(C_4) VER-IND(C_4)))
+                                     SM(VER-IND(C_4) F*X(U(C_3) C_6 C_5)))
+                                  + NICHTLEER(SM(VER-IND(C_4) F*X(U(C_3) C_6 C_5)))
+ 
+R128,2 & T27,1    -->    R129 : - ME(SM(VER-IND(C_4) SM(VER-IND(C_4) VER-IND(C_4)))
+                                     SM(VER-IND(C_4) F*X(U(C_3) C_6 C_5)))
+ 
+ 
+R124,1 & A11,2    -->    R130 : - ME(SM(SM(VER-IND(C_4) VER-IND(C_4)) SM(VER-IND(C_4) VER-IND(C_4)))
+                                     SM(VER-IND(C_4) F*X(U(C_3) C_6 C_5)))
+                                  + NICHTLEER(SM(VER-IND(C_4) F*X(U(C_3) C_6 C_5)))
+ 
+R130,2 & T27,1    -->    R131 : - ME(SM(SM(VER-IND(C_4) VER-IND(C_4)) SM(VER-IND(C_4) VER-IND(C_4)))
+                                     SM(VER-IND(C_4) F*X(U(C_3) C_6 C_5)))
+ 
+ 
+R121,1 & A11,2    -->    R132 : - ME(SM(SM(VER-IND(C_4) VER-IND(C_4)) VER-IND(C_4))
+                                     SM(VER-IND(C_4) F*X(U(C_3) C_6 C_5)))
+                                  + NICHTLEER(SM(VER-IND(C_4) F*X(U(C_3) C_6 C_5)))
+ 
+R132,2 & T27,1    -->    R133 : - ME(SM(SM(VER-IND(C_4) VER-IND(C_4)) VER-IND(C_4))
+                                     SM(VER-IND(C_4) F*X(U(C_3) C_6 C_5)))
+ 
+ 
+R112,1 & T26,1    -->    P134 : + EL(C_1 U(F_2(U(C_3))))
+ 
+R112,1 & R6,1     -->    P135 : + LIDEAL(U(F_2(U(C_3))) C_2 C_5)
+ 
+R112,1 & R11,1    -->    P136 : + MINIMAL(U(F_2(U(C_3))) C_2 C_5)
+ 
+R112,1 & R14,1    -->    P137 : + LIDEAL(U(C_3) C_2 C_5)
+ 
+R112,1 & R31,1    -->    P138 : + ME(U(F_2(U(C_3))) VER-IND(C_4))
+ 
+R112,1 & R40,1    -->    P139 : + ME(U(C_3) VER-IND(C_4))
+ 
+R112,1 & R79,1    -->    P140 : + MINIMAL(U(C_3) C_2 C_5)
+ 
+R114,1 & T23,1    -->    P141 : + LIDEAL(U(F_2(VER-IND(C_4))) C_2 C_5)
+ 
+R114,1 & T27,1    -->    P142 : - NICHTLEER(SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+ 
+R32,1 & A11,2     -->    R143 : - ME(U(C_3) SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+                                  + NICHTLEER(SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+ 
+R143,2 & P142,1   -->    R144 : - ME(U(C_3) SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+ 
+R56,1 & A11,2     -->    R145 : - ME(VER-IND(C_4) SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+                                  + NICHTLEER(SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+ 
+R145,2 & P142,1   -->    R146 : - ME(VER-IND(C_4) SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+ 
+R59,1 & A11,2     -->    R147 : - ME(U(F_2(U(C_3))) SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+                                  + NICHTLEER(SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+ 
+R147,2 & P142,1   -->    R148 : - ME(U(F_2(U(C_3))) SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+ 
+R64,1 & A11,2     -->    R149 : - ME(T*(C_2 C_5 U(F_2(U(C_3))) C_6) SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+                                  + NICHTLEER(SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+ 
+R149,2 & P142,1   -->    R150 : - ME(T*(C_2 C_5 U(F_2(U(C_3))) C_6) SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+ 
+R69,1 & A11,2     -->    R151 : - ME(T*(C_2 C_5 U(C_3) C_6) SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+                                  + NICHTLEER(SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+ 
+R151,2 & P142,1   -->    R152 : - ME(T*(C_2 C_5 U(C_3) C_6) SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+ 
+R74,1 & A11,2     -->    R153 : - ME(T*(C_2 C_5 VER-IND(C_4) C_6) SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+                                  + NICHTLEER(SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+ 
+R153,2 & P142,1   -->    R154 : - ME(T*(C_2 C_5 VER-IND(C_4) C_6) SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+ 
+R92,1 & A11,2     -->    R155 : - ME(SM(VER-IND(C_4) VER-IND(C_4)) SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+                                  + NICHTLEER(SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+ 
+R155,2 & P142,1   -->    R156 : - ME(SM(VER-IND(C_4) VER-IND(C_4)) SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+ 
+R96,1 & A11,2     -->    R157 : - ME(T*(C_2 C_5 U(F_2(VER-IND(C_4))) C_6) SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+                                  + NICHTLEER(SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+ 
+R157,2 & P142,1   -->    R158 : - ME(T*(C_2 C_5 U(F_2(VER-IND(C_4))) C_6) SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+ 
+R99,1 & A11,2     -->    R159 : - ME(T*(C_2 C_5 F_1(U(C_3) C_5 C_2 C_6) C_6)
+                                     SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+                                  + NICHTLEER(SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+ 
+R159,2 & P142,1   -->    R160 : - ME(T*(C_2 C_5 F_1(U(C_3) C_5 C_2 C_6) C_6)
+                                     SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+ 
+ 
+R102,1 & A11,2    -->    R161 : - ME(T*(C_2 C_5 F_1(VER-IND(C_4) C_5 C_2 C_6) C_6)
+                                     SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+                                  + NICHTLEER(SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+ 
+R161,2 & P142,1   -->    R162 : - ME(T*(C_2 C_5 F_1(VER-IND(C_4) C_5 C_2 C_6) C_6)
+                                     SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+ 
+ 
+R121,1 & A11,2    -->    R163 : - ME(SM(SM(VER-IND(C_4) VER-IND(C_4)) VER-IND(C_4))
+                                     SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+                                  + NICHTLEER(SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+ 
+R163,2 & P142,1   -->    R164 : - ME(SM(SM(VER-IND(C_4) VER-IND(C_4)) VER-IND(C_4))
+                                     SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+ 
+ 
+R124,1 & A11,2    -->    R165 : - ME(SM(SM(VER-IND(C_4) VER-IND(C_4)) SM(VER-IND(C_4) VER-IND(C_4)))
+                                     SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+                                  + NICHTLEER(SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+ 
+R165,2 & P142,1   -->    R166 : - ME(SM(SM(VER-IND(C_4) VER-IND(C_4)) SM(VER-IND(C_4) VER-IND(C_4)))
+                                     SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+ 
+ 
+R127,1 & A11,2    -->    R167 : - ME(SM(VER-IND(C_4) SM(VER-IND(C_4) VER-IND(C_4)))
+                                     SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+                                  + NICHTLEER(SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+ 
+R167,2 & P142,1   -->    R168 : - ME(SM(VER-IND(C_4) SM(VER-IND(C_4) VER-IND(C_4)))
+                                     SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+ 
+ 
+A10,2 & P142,1    -->    R169 : ALL X:VERKN  Y:MENGE  - LIDEAL(SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)) Y X)
+ 
+A2,2 & R169,1     -->    R170 : ALL X:ELEMENT  Y,Z:MENGE  U:VERKN  
+                                     - EL-SET(SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)) T*(Z U Y X))
+ 
+A8,2 & R170,1     -->    R171 : ALL X:ELEMENT  Y,Z:MENGE  U:VERKN  
+                                     - MIN-EL(SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)) T*(Z U Y X))
+ 
+R114,1 & R31,1    -->    P172 : + ME(U(C_3) U(F_2(VER-IND(C_4))))
+ 
+P172,1 & A11,1    -->    R173 : - NICHTLEER(U(C_3))  + NICHTLEER(U(F_2(VER-IND(C_4))))
+ 
+R173,1 & A10,2    -->    R174 : + NICHTLEER(U(F_2(VER-IND(C_4))))  - LIDEAL(U(C_3) C_2 C_5)
+ 
+R174,2 & R6,1     -->    R175 : + NICHTLEER(U(F_2(VER-IND(C_4))))
+ 
+P172,1 & A12,2    -->    R176 : - ME(U(C_3) VER-IND(C_4))  + ME(U(C_3) SM(VER-IND(C_4) U(F_2(VER-IND(C_4)))))
+ 
+R176,1 & R31,1    -->    R177 : + ME(U(C_3) SM(VER-IND(C_4) U(F_2(VER-IND(C_4)))))
+ 
+P172,1 & A12,2    -->    R178 : - ME(U(C_3) SM(VER-IND(C_4) VER-IND(C_4)))
+                                  + ME(U(C_3) SM(SM(VER-IND(C_4) VER-IND(C_4)) U(F_2(VER-IND(C_4)))))
+ 
+R178,1 & R39,1    -->    R179 : + ME(U(C_3) SM(SM(VER-IND(C_4) VER-IND(C_4)) U(F_2(VER-IND(C_4)))))
+ 
+P172,1 & A12,2    -->    R180 : - ME(U(C_3) SM(VER-IND(C_4) SM(VER-IND(C_4) VER-IND(C_4))))
+                                  + ME(U(C_3) SM(SM(VER-IND(C_4) SM(VER-IND(C_4) VER-IND(C_4))) U(F_2(VER-IND(C_4)))))
+ 
+R180,1 & R45,1    -->    R181 : + ME(U(C_3) SM(SM(VER-IND(C_4) SM(VER-IND(C_4) VER-IND(C_4))) U(F_2(VER-IND(C_4)))))
+ 
+P172,1 & A12,2    -->    R182 : - ME(U(C_3) SM(SM(VER-IND(C_4) VER-IND(C_4)) SM(VER-IND(C_4) VER-IND(C_4))))
+                                + ME(U(C_3)
+                                     SM(SM(SM(VER-IND(C_4) VER-IND(C_4)) SM(VER-IND(C_4) VER-IND(C_4)))
+                                        U(F_2(VER-IND(C_4)))))
+ 
+ 
+R182,1 & R53,1    -->    R183 : + ME(U(C_3)
+                                     SM(SM(SM(VER-IND(C_4) VER-IND(C_4)) SM(VER-IND(C_4) VER-IND(C_4)))
+                                        U(F_2(VER-IND(C_4)))))
+ 
+ 
+P172,1 & A12,2    -->    R184 : - ME(U(C_3) SM(SM(VER-IND(C_4) VER-IND(C_4)) VER-IND(C_4)))
+                                  + ME(U(C_3) SM(SM(SM(VER-IND(C_4) VER-IND(C_4)) VER-IND(C_4)) U(F_2(VER-IND(C_4)))))
+ 
+R184,1 & R55,1    -->    R185 : + ME(U(C_3) SM(SM(SM(VER-IND(C_4) VER-IND(C_4)) VER-IND(C_4)) U(F_2(VER-IND(C_4)))))
+ 
+P172,1 & A12,2    -->    R186 : - ME(U(C_3) U(F_2(VER-IND(C_4))))
+                                  + ME(U(C_3) SM(U(F_2(VER-IND(C_4))) U(F_2(VER-IND(C_4)))))
+ 
+R186,1 & P172,1   -->    R187 : + ME(U(C_3) SM(U(F_2(VER-IND(C_4))) U(F_2(VER-IND(C_4)))))
+ 
+R55,1 & A12,2     -->    R188 : - ME(U(C_3) U(F_2(VER-IND(C_4))))
+                                  + ME(U(C_3) SM(U(F_2(VER-IND(C_4))) SM(SM(VER-IND(C_4) VER-IND(C_4)) VER-IND(C_4))))
+ 
+R188,1 & P172,1   -->    R189 : + ME(U(C_3) SM(U(F_2(VER-IND(C_4))) SM(SM(VER-IND(C_4) VER-IND(C_4)) VER-IND(C_4))))
+ 
+R53,1 & A12,2     -->    R190 : - ME(U(C_3) U(F_2(VER-IND(C_4))))
+                                + ME(U(C_3)
+                                     SM(U(F_2(VER-IND(C_4)))
+                                        SM(SM(VER-IND(C_4) VER-IND(C_4)) SM(VER-IND(C_4) VER-IND(C_4)))))
+ 
+ 
+R190,1 & P172,1   -->    R191 : + ME(U(C_3)
+                                     SM(U(F_2(VER-IND(C_4)))
+                                        SM(SM(VER-IND(C_4) VER-IND(C_4)) SM(VER-IND(C_4) VER-IND(C_4)))))
+ 
+ 
+R45,1 & A12,2     -->    R192 : - ME(U(C_3) U(F_2(VER-IND(C_4))))
+                                  + ME(U(C_3) SM(U(F_2(VER-IND(C_4))) SM(VER-IND(C_4) SM(VER-IND(C_4) VER-IND(C_4)))))
+ 
+R192,1 & P172,1   -->    R193 : + ME(U(C_3) SM(U(F_2(VER-IND(C_4))) SM(VER-IND(C_4) SM(VER-IND(C_4) VER-IND(C_4)))))
+ 
+R39,1 & A12,2     -->    R194 : - ME(U(C_3) U(F_2(VER-IND(C_4))))
+                                  + ME(U(C_3) SM(U(F_2(VER-IND(C_4))) SM(VER-IND(C_4) VER-IND(C_4))))
+ 
+R194,1 & P172,1   -->    R195 : + ME(U(C_3) SM(U(F_2(VER-IND(C_4))) SM(VER-IND(C_4) VER-IND(C_4))))
+ 
+R31,1 & A12,2     -->    R196 : - ME(U(C_3) U(F_2(VER-IND(C_4))))  + ME(U(C_3) SM(U(F_2(VER-IND(C_4))) VER-IND(C_4)))
+ 
+R196,1 & P172,1   -->    R197 : + ME(U(C_3) SM(U(F_2(VER-IND(C_4))) VER-IND(C_4)))
+ 
+R175,1 & A11,2    -->    R198 : - ME(U(F_2(VER-IND(C_4))) SM(VER-IND(C_4) F*X(U(C_3) C_6 C_5)))
+                                  + NICHTLEER(SM(VER-IND(C_4) F*X(U(C_3) C_6 C_5)))
+ 
+R198,2 & T27,1    -->    R199 : - ME(U(F_2(VER-IND(C_4))) SM(VER-IND(C_4) F*X(U(C_3) C_6 C_5)))
+ 
+R175,1 & A11,2    -->    R200 : - ME(U(F_2(VER-IND(C_4))) SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+                                  + NICHTLEER(SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+ 
+R200,2 & P142,1   -->    R201 : - ME(U(F_2(VER-IND(C_4))) SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+ 
+A12,3 & R144,1    -->    R202 : - ME(U(C_3) U(F_2(VER-IND(C_4))))  - ME(U(C_3) F*X(U(C_3) C_6 C_5))
+ 
+R202,1 & P172,1   -->    R203 : - ME(U(C_3) F*X(U(C_3) C_6 C_5))
+ 
+R197,1 & A11,1    -->    R204 : - NICHTLEER(U(C_3))  + NICHTLEER(SM(U(F_2(VER-IND(C_4))) VER-IND(C_4)))
+ 
+R204,1 & R32,1    -->    R205 : + NICHTLEER(SM(U(F_2(VER-IND(C_4))) VER-IND(C_4)))
+ 
+R195,1 & A11,1    -->    R206 : - NICHTLEER(U(C_3))  + NICHTLEER(SM(U(F_2(VER-IND(C_4))) SM(VER-IND(C_4) VER-IND(C_4))))
+ 
+R206,1 & R32,1    -->    R207 : + NICHTLEER(SM(U(F_2(VER-IND(C_4))) SM(VER-IND(C_4) VER-IND(C_4))))
+ 
+R193,1 & A11,1    -->    R208 : - NICHTLEER(U(C_3))
+                                  + NICHTLEER(SM(U(F_2(VER-IND(C_4))) SM(VER-IND(C_4) SM(VER-IND(C_4) VER-IND(C_4)))))
+ 
+R208,1 & R32,1    -->    R209 : + NICHTLEER(SM(U(F_2(VER-IND(C_4))) SM(VER-IND(C_4) SM(VER-IND(C_4) VER-IND(C_4)))))
+ 
+R191,1 & A11,1    -->    R210 : - NICHTLEER(U(C_3))
+                                + NICHTLEER(SM(U(F_2(VER-IND(C_4)))
+                                               SM(SM(VER-IND(C_4) VER-IND(C_4)) SM(VER-IND(C_4) VER-IND(C_4)))))
+ 
+ 
+R210,1 & R32,1    -->    R211 : + NICHTLEER(SM(U(F_2(VER-IND(C_4)))
+                                               SM(SM(VER-IND(C_4) VER-IND(C_4)) SM(VER-IND(C_4) VER-IND(C_4)))))
+ 
+ 
+R189,1 & A11,1    -->    R212 : - NICHTLEER(U(C_3))
+                                  + NICHTLEER(SM(U(F_2(VER-IND(C_4))) SM(SM(VER-IND(C_4) VER-IND(C_4)) VER-IND(C_4))))
+ 
+R212,1 & R32,1    -->    R213 : + NICHTLEER(SM(U(F_2(VER-IND(C_4))) SM(SM(VER-IND(C_4) VER-IND(C_4)) VER-IND(C_4))))
+ 
+R187,1 & A11,1    -->    R214 : - NICHTLEER(U(C_3))  + NICHTLEER(SM(U(F_2(VER-IND(C_4))) U(F_2(VER-IND(C_4)))))
+ 
+R214,1 & R32,1    -->    R215 : + NICHTLEER(SM(U(F_2(VER-IND(C_4))) U(F_2(VER-IND(C_4)))))
+ 
+R185,1 & A11,1    -->    R216 : - NICHTLEER(U(C_3))
+                                  + NICHTLEER(SM(SM(SM(VER-IND(C_4) VER-IND(C_4)) VER-IND(C_4)) U(F_2(VER-IND(C_4)))))
+ 
+R216,1 & R32,1    -->    R217 : + NICHTLEER(SM(SM(SM(VER-IND(C_4) VER-IND(C_4)) VER-IND(C_4)) U(F_2(VER-IND(C_4)))))
+ 
+R183,1 & A11,1    -->    R218 : - NICHTLEER(U(C_3))
+                                + NICHTLEER(SM(SM(SM(VER-IND(C_4) VER-IND(C_4)) SM(VER-IND(C_4) VER-IND(C_4)))
+                                               U(F_2(VER-IND(C_4)))))
+ 
+ 
+R218,1 & R32,1    -->    R219 : + NICHTLEER(SM(SM(SM(VER-IND(C_4) VER-IND(C_4)) SM(VER-IND(C_4) VER-IND(C_4)))
+                                               U(F_2(VER-IND(C_4)))))
+ 
+ 
+R181,1 & A11,1    -->    R220 : - NICHTLEER(U(C_3))
+                                  + NICHTLEER(SM(SM(VER-IND(C_4) SM(VER-IND(C_4) VER-IND(C_4))) U(F_2(VER-IND(C_4)))))
+ 
+R220,1 & R32,1    -->    R221 : + NICHTLEER(SM(SM(VER-IND(C_4) SM(VER-IND(C_4) VER-IND(C_4))) U(F_2(VER-IND(C_4)))))
+ 
+R179,1 & A11,1    -->    R222 : - NICHTLEER(U(C_3))  + NICHTLEER(SM(SM(VER-IND(C_4) VER-IND(C_4)) U(F_2(VER-IND(C_4)))))
+ 
+R222,1 & R32,1    -->    R223 : + NICHTLEER(SM(SM(VER-IND(C_4) VER-IND(C_4)) U(F_2(VER-IND(C_4)))))
+ 
+R177,1 & A11,1    -->    R224 : - NICHTLEER(U(C_3))  + NICHTLEER(SM(VER-IND(C_4) U(F_2(VER-IND(C_4)))))
+ 
+R224,1 & R32,1    -->    R225 : + NICHTLEER(SM(VER-IND(C_4) U(F_2(VER-IND(C_4)))))
+ 
+R114,1 & R40,1    -->    P226 : + ME(U(F_2(U(C_3))) U(F_2(VER-IND(C_4))))
+ 
+P226,1 & A12,2    -->    R227 : - ME(U(F_2(U(C_3))) VER-IND(C_4))
+                                  + ME(U(F_2(U(C_3))) SM(VER-IND(C_4) U(F_2(VER-IND(C_4)))))
+ 
+R227,1 & R40,1    -->    R228 : + ME(U(F_2(U(C_3))) SM(VER-IND(C_4) U(F_2(VER-IND(C_4)))))
+ 
+P226,1 & A12,2    -->    R229 : - ME(U(F_2(U(C_3))) SM(VER-IND(C_4) VER-IND(C_4)))
+                                  + ME(U(F_2(U(C_3))) SM(SM(VER-IND(C_4) VER-IND(C_4)) U(F_2(VER-IND(C_4)))))
+ 
+R229,1 & R51,1    -->    R230 : + ME(U(F_2(U(C_3))) SM(SM(VER-IND(C_4) VER-IND(C_4)) U(F_2(VER-IND(C_4)))))
+ 
+P226,1 & A12,2    -->    R231 : - ME(U(F_2(U(C_3))) U(F_2(VER-IND(C_4))))
+                                  + ME(U(F_2(U(C_3))) SM(U(F_2(VER-IND(C_4))) U(F_2(VER-IND(C_4)))))
+ 
+R231,1 & P226,1   -->    R232 : + ME(U(F_2(U(C_3))) SM(U(F_2(VER-IND(C_4))) U(F_2(VER-IND(C_4)))))
+ 
+R51,1 & A12,2     -->    R233 : - ME(U(F_2(U(C_3))) U(F_2(VER-IND(C_4))))
+                                  + ME(U(F_2(U(C_3))) SM(U(F_2(VER-IND(C_4))) SM(VER-IND(C_4) VER-IND(C_4))))
+ 
+R233,1 & P226,1   -->    R234 : + ME(U(F_2(U(C_3))) SM(U(F_2(VER-IND(C_4))) SM(VER-IND(C_4) VER-IND(C_4))))
+ 
+R40,1 & A12,2     -->    R235 : - ME(U(F_2(U(C_3))) U(F_2(VER-IND(C_4))))
+                                  + ME(U(F_2(U(C_3))) SM(U(F_2(VER-IND(C_4))) VER-IND(C_4)))
+ 
+R235,1 & P226,1   -->    R236 : + ME(U(F_2(U(C_3))) SM(U(F_2(VER-IND(C_4))) VER-IND(C_4)))
+ 
+R114,1 & R83,1    -->    P237 : + MINIMAL(VER-IND(C_4) C_2 C_5)
+ 
+R114,1 & R93,1    -->    P238 : + LIDEAL(VER-IND(C_4) C_2 C_5)
+ 
+R116,1 & R8,1     -->  * P239 : + MIN-EL(U(F_2(F_1(U(C_3) C_5 C_2 C_6))) T*(C_2 C_5 U(C_3) C_6))
+ 
+P239,1 & A8,1     -->  * R240 : + EL-SET(U(F_2(F_1(U(C_3) C_5 C_2 C_6))) T*(C_2 C_5 U(C_3) C_6))
+ 
+R240,1 & A3,1     -->  * R241 : + ME(U(F_2(F_1(U(C_3) C_5 C_2 C_6))) F*X(U(C_3) C_6 C_5))
+ 
+R241,1 & A12,2    -->    R242 : - ME(U(F_2(F_1(U(C_3) C_5 C_2 C_6))) F*X(U(C_3) C_6 C_5))
+                                  + ME(U(F_2(F_1(U(C_3) C_5 C_2 C_6))) SM(F*X(U(C_3) C_6 C_5) F*X(U(C_3) C_6 C_5)))
+ 
+R242,1 & R241,1   -->    R243 : + ME(U(F_2(F_1(U(C_3) C_5 C_2 C_6))) SM(F*X(U(C_3) C_6 C_5) F*X(U(C_3) C_6 C_5)))
+ 
+R243,1 & A12,2    -->    R244 : - ME(U(F_2(F_1(U(C_3) C_5 C_2 C_6))) F*X(U(C_3) C_6 C_5))
+                                + ME(U(F_2(F_1(U(C_3) C_5 C_2 C_6)))
+                                     SM(F*X(U(C_3) C_6 C_5) SM(F*X(U(C_3) C_6 C_5) F*X(U(C_3) C_6 C_5))))
+ 
+ 
+R244,1 & R241,1   -->    R245 : + ME(U(F_2(F_1(U(C_3) C_5 C_2 C_6)))
+                                     SM(F*X(U(C_3) C_6 C_5) SM(F*X(U(C_3) C_6 C_5) F*X(U(C_3) C_6 C_5))))
+ 
+ 
+R243,1 & A12,2    -->    R246 : - ME(U(F_2(F_1(U(C_3) C_5 C_2 C_6))) SM(F*X(U(C_3) C_6 C_5) F*X(U(C_3) C_6 C_5)))
+                                + ME(U(F_2(F_1(U(C_3) C_5 C_2 C_6)))
+                                     SM(SM(F*X(U(C_3) C_6 C_5) F*X(U(C_3) C_6 C_5))
+                                        SM(F*X(U(C_3) C_6 C_5) F*X(U(C_3) C_6 C_5))))
+ 
+ 
+R246,1 & R243,1   -->    R247 : + ME(U(F_2(F_1(U(C_3) C_5 C_2 C_6)))
+                                     SM(SM(F*X(U(C_3) C_6 C_5) F*X(U(C_3) C_6 C_5))
+                                        SM(F*X(U(C_3) C_6 C_5) F*X(U(C_3) C_6 C_5))))
+ 
+ 
+R241,1 & A12,2    -->    R248 : - ME(U(F_2(F_1(U(C_3) C_5 C_2 C_6))) SM(F*X(U(C_3) C_6 C_5) F*X(U(C_3) C_6 C_5)))
+                                + ME(U(F_2(F_1(U(C_3) C_5 C_2 C_6)))
+                                     SM(SM(F*X(U(C_3) C_6 C_5) F*X(U(C_3) C_6 C_5)) F*X(U(C_3) C_6 C_5)))
+ 
+ 
+R248,1 & R243,1   -->    R249 : + ME(U(F_2(F_1(U(C_3) C_5 C_2 C_6)))
+                                     SM(SM(F*X(U(C_3) C_6 C_5) F*X(U(C_3) C_6 C_5)) F*X(U(C_3) C_6 C_5)))
+ 
+ 
+R240,1 & A2,1     -->  * R250 : + LIDEAL(U(F_2(F_1(U(C_3) C_5 C_2 C_6))) C_2 C_5)
+ 
+R250,1 & A10,1    -->  * R251 : + NICHTLEER(U(F_2(F_1(U(C_3) C_5 C_2 C_6))))
+ 
+R251,1 & A11,2    -->  * R252 : - ME(U(F_2(F_1(U(C_3) C_5 C_2 C_6))) SM(VER-IND(C_4) F*X(U(C_3) C_6 C_5)))
+                                  + NICHTLEER(SM(VER-IND(C_4) F*X(U(C_3) C_6 C_5)))
+ 
+R252,2 & T27,1    -->  * R253 : - ME(U(F_2(F_1(U(C_3) C_5 C_2 C_6))) SM(VER-IND(C_4) F*X(U(C_3) C_6 C_5)))
+ 
+R251,1 & A11,2    -->    R254 : - ME(U(F_2(F_1(U(C_3) C_5 C_2 C_6))) SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+                                  + NICHTLEER(SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+ 
+R254,2 & P142,1   -->    R255 : - ME(U(F_2(F_1(U(C_3) C_5 C_2 C_6))) SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+ 
+R241,1 & A12,2    -->  * R256 : - ME(U(F_2(F_1(U(C_3) C_5 C_2 C_6))) VER-IND(C_4))
+                                  + ME(U(F_2(F_1(U(C_3) C_5 C_2 C_6))) SM(VER-IND(C_4) F*X(U(C_3) C_6 C_5)))
+ 
+R256,2 & R253,1   -->  * R257 : - ME(U(F_2(F_1(U(C_3) C_5 C_2 C_6))) VER-IND(C_4))
+ 
+R241,1 & A12,2    -->    R258 : - ME(U(F_2(F_1(U(C_3) C_5 C_2 C_6))) U(F_2(VER-IND(C_4))))
+                                  + ME(U(F_2(F_1(U(C_3) C_5 C_2 C_6))) SM(U(F_2(VER-IND(C_4))) F*X(U(C_3) C_6 C_5)))
+ 
+R258,2 & R255,1   -->    R259 : - ME(U(F_2(F_1(U(C_3) C_5 C_2 C_6))) U(F_2(VER-IND(C_4))))
+ 
+P239,1 & A13,1    -->    R260 : - LIDEAL(U(F_2(F_1(U(C_3) C_5 C_2 C_6))) C_2 C_5)
+                                  + MINIMAL(U(F_2(F_1(U(C_3) C_5 C_2 C_6))) C_2 C_5)
+ 
+R260,1 & R250,1   -->    R261 : + MINIMAL(U(F_2(F_1(U(C_3) C_5 C_2 C_6))) C_2 C_5)
+ 
+R251,1 & A11,2    -->    R262 : - ME(U(F_2(F_1(U(C_3) C_5 C_2 C_6))) F*X(U(C_3) C_6 C_5))
+                                  + NICHTLEER(F*X(U(C_3) C_6 C_5))
+ 
+R262,1 & R241,1   -->    R263 : + NICHTLEER(F*X(U(C_3) C_6 C_5))
+ 
+R251,1 & A11,2    -->    R264 : - ME(U(F_2(F_1(U(C_3) C_5 C_2 C_6))) SM(F*X(U(C_3) C_6 C_5) F*X(U(C_3) C_6 C_5)))
+                                  + NICHTLEER(SM(F*X(U(C_3) C_6 C_5) F*X(U(C_3) C_6 C_5)))
+ 
+R264,1 & R243,1   -->    R265 : + NICHTLEER(SM(F*X(U(C_3) C_6 C_5) F*X(U(C_3) C_6 C_5)))
+ 
+R257,1 & A9,2     -->  * R266 : - EL-IND(F_2(F_1(U(C_3) C_5 C_2 C_6)) C_4)
+ 
+R266,1 & R106,1   -->  * R267 :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+STOP
+ 

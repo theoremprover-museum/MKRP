@@ -1,0 +1,102 @@
+ 
+ 
+ 
+             ****************************************************
+             *                                                  *
+             *   ATP-SYSTEM :  M K R P , UNI KARLSRUHE          *
+             *                                                  *
+             *      VERSION : 3-FEB-84                          *
+             *         DATE : 10-JUL-84  11:25:21               *
+             *                                                  *
+             ****************************************************
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : SORT ELEMENT,MENGE,VERKN,ABB:ANY
+           ALL A,B:MENGE A = B IMPL GLEICHMAECHTIG (A B)
+           ALL CHI:ABB  ALL A,B:MENGE  
+                 INJEKTIV (CHI A B)
+                 AND  
+                 GLEICHMAECHTIG (A B)
+                 AND  
+                 ENDLICH (A)
+                 AND  
+                 ENDLICH (B)
+               IMPL  
+               BIJEKTIV (CHI A B)
+ 
+THEOREMS : ALL CHI:ABB  ALL U:MENGE  
+             INJEKTIV (CHI U U) AND ENDLICH (U) IMPL BIJEKTIV (CHI U U)
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+* A1   : ALL X,Y:MENGE  -=(X Y) +GLEICHMAECHTIG(X Y)
+  R.:=:: ALL X:ANY  +:=:(X X)
+* A2   : ALL X:ABB  Y,Z:MENGE  
+              -INJEKTIV(X Y Z) -GLEICHMAECHTIG(Y Z) -ENDLICH(Y) -ENDLICH(Z) 
+              +BIJEKTIV(X Y Z) 
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+* T3   : +INJEKTIV(C_1 C_2 C_2)
+* T4   : +ENDLICH(C_2)
+* T5   : -BIJEKTIV(C_1 C_2 C_2)
+ 
+ 
+ 
+ 
+--------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION
+ 
+INITIAL CLAUSES :        R.:=: : ALL X:ANY  +:=:(X X)
+                       * A1    : ALL X,Y:MENGE  -=(X Y) +GLEICHMAECHTIG(X Y)
+                       * A2    : ALL X:ABB  Y,Z:MENGE  
+                                      -INJEKTIV(X Y Z) -GLEICHMAECHTIG(Y Z) 
+                                      -ENDLICH(Y) -ENDLICH(Z) +BIJEKTIV(X Y Z) 
+                       * T3    : +INJEKTIV(C_1 C_2 C_2)
+                       * T4    : +ENDLICH(C_2)
+                       * T5    : -BIJEKTIV(C_1 C_2 C_2)
+ 
+A2,5  +  T5,1     -->  * R1    : -INJEKTIV(C_1 C_2 C_2) 
+                                 -GLEICHMAECHTIG(C_2 C_2) -ENDLICH(C_2) 
+                                 -ENDLICH(C_2) 
+R1 3=4            -->  * R1.1  : -INJEKTIV(C_1 C_2 C_2) 
+                                 -GLEICHMAECHTIG(C_2 C_2) -ENDLICH(C_2) 
+T3,1  +  R1.1,1   -->  * R2    : -GLEICHMAECHTIG(C_2 C_2) -ENDLICH(C_2)
+A1,2  +  R2,1     -->  * R3    : -=(C_2 C_2) -ENDLICH(C_2)
+R3 FALSE:1        -->  * R3.1  : -ENDLICH(C_2)
+T4,1  +  R3.1,1   -->  * R4    : 
+ 
+ 
+ 
+--------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+ 

@@ -1,0 +1,135 @@
+winoserv-1{hsohns}1: mkrp
+AKCL (Austin Kyoto Common Lisp)  Version(1.478) Wed Jun 20 00:30:20 WET DST 1990
+Contains Enhancements by W. Schelter
+
+>(in-package "MKRP")
+#<"MARKGRAF-KARL" package>
+
+MARKGRAF-KARL>(load "start.lisp")
+Loading start.lisp
+Loading schnittst.lisp
+Finished loading schnittst.lisp
+Loading repair.lisp
+Finished loading repair.lisp
+Loading pprint-latex.lisp
+Finished loading pprint-latex.lisp
+Loading prot-latex.lisp
+Finished loading prot-latex.lisp
+Finished loading start.lisp
+T
+
+MARKGRAF-KARL>(mkrp)
+
+
+
+                 M K R P     Theorem Prover
+
+
+The dialogue language is English for this session.
+ H[ELP]        prints a list of all available commands.
+ H[ELP] <COM>  explains the command <COM>.
+
+@  NIL is an illegal command.
+ Command NIL ignored.
+ Try H[ELP].
+
+@ o
+This is the OPTIONS-module. For assistance type H[ELP].
+& pr_latex T
+PR_LATEX = T
+& ok
+
+@ dd /home/hsohns/
+
+@ de examples1
+
+@  p code.lisp code.tex
+
+Error: NIL is not of type NUMBER.
+Error signalled by 1+.
+
+Broken at 1+.  Type :H for Help.
+MARKGRAF-KARL>>:q
+
+Top level.
+MARKGRAF-KARL>(lc_get.axiom.clauses (pds-get.axioms))
+((("* " "A1") (QUANT ALL ((ANY ("X"))) (((BINS "X" "=" "X")))))
+ (("* " "A2")
+  (QUANT ALL ((ANY ("X" "Y" "Z")))
+         (((BINS (BINS (KL (BINS "Z" "+" "Y")) "+" "X") "="
+                 (BINS "Z" "+" (KL (BINS "Y" "+" "X"))))))))
+ (("* " "A3")
+  (QUANT ALL ((ANY ("X"))) (((BINS (BINS "0" "+" "X") "=" "X")))))
+ (("* " "A4")
+  (QUANT ALL ((ANY ("X")))
+         (((BINS (BINS (LOP "-" "X") "+" "X") "=" "0"))))))
+
+MARKGRAF-KARL>(lc_get.ax.operations (pds-get.ax.operations))
+NIL
+
+MARKGRAF-KARL>(lc_get.splitted.theorems (pds-all.proof.parts))
+("Normalisation and splitting"
+ (("Splitpart" 1)
+  (("* " "T5")
+   (QUANT ALL ((ANY ("X" "Y")))
+          (((BINS (BINS "Y" "+" "X") "=" (BINS "X" "+" "Y"))))))
+  (("* " "T6")
+   ((NOT (BINS (BINS (KL (BINS "c_2" "+" "c_1")) "+"
+                     (KL (BINS "c_2" "+" "c_1")))
+               "="
+               (BINS (KL (BINS "c_2" "+" "c_2")) "+"
+                     (KL (BINS "c_1" "+" "c_1"))))))))
+ (("Splitpart" 2)
+  (("* " "T7")
+   (QUANT ALL ((ANY ("X" "Y")))
+          (((BINS (BINS (KL (BINS "Y" "+" "X")) "+"
+                        (KL (BINS "Y" "+" "X")))
+                  "="
+                  (BINS (KL (BINS "Y" "+" "Y")) "+"
+                        (KL (BINS "X" "+" "X"))))))))
+  (("* " "T8")
+   ((NOT (BINS (LOP "-" (KL (BINS "c_4" "+" "c_3"))) "="
+               (BINS (LOP "-" "c_4") "+" (LOP "-" "c_3")))))))
+ (("Splitpart" 3)
+  (("* " "T9")
+   (QUANT ALL ((ANY ("X" "Y")))
+          (((BINS (LOP "-" (KL (BINS "Y" "+" "X"))) "="
+                  (BINS (LOP "-" "Y") "+" (LOP "-" "X")))))))
+  (("* " "T10")
+   ((NOT (BINS (BINS "c_6" "+" "c_5") "=" (BINS "c_5" "+" "c_6")))))))
+
+MARKGRAF-KARL>(lc_get.initial.operations (pds-all.proof.parts))
+((("Splitpart" 1)
+  ("T6,1 \\land  A2"
+   (("* " "RW2")
+    ((NOT (BINS (BINS "c_2" "+"
+                      (KL (BINS "c_1" "+" (KL (BINS "c_2" "+" "c_1")))))
+                "="
+                (BINS (KL (BINS "c_2" "+" "c_2")) "+"
+                      (KL (BINS "c_1" "+" "c_1"))))))))
+  ("RW2,1 \\land  A2"
+   (("* " "RW3")
+    ((NOT (BINS (BINS "c_2" "+"
+                      (KL (BINS "c_1" "+" (KL (BINS "c_2" "+" "c_1")))))
+                "="
+                (BINS "c_2" "+"
+                      (KL (BINS "c_2" "+" (KL (BINS "c_1" "+" "c_1")))))))))))
+ (("Splitpart" 2)
+  ("T7,1 \\land  A2"
+   (("* " "RW4")
+    (QUANT ALL ((ANY ("X" "Y")))
+           (((BINS (BINS "Y" "+"
+                         (KL (BINS "X" "+" (KL (BINS "Y" "+" "X")))))
+                   "="
+                   (BINS (KL (BINS "Y" "+" "Y")) "+"
+                         (KL (BINS "X" "+" "X")))))))))
+  ("RW4,1 \\land  A2"
+   (("* " "RW5")
+    (QUANT ALL ((ANY ("X" "Y")))
+           (((BINS (BINS "Y" "+"
+                         (KL (BINS "X" "+" (KL (BINS "Y" "+" "X")))))
+                   "="
+                   (BINS "Y" "+"
+                         (KL (BINS "Y" "+" (KL (BINS "X" "+" "X")))))))))))))
+
+MARKGRAF-KARL>

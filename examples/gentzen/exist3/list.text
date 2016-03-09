@@ -1,0 +1,86 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 48.6                                                *
+                     *           DATE: 04-AUG,1991  13:21                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 30-JUL,1991 15:22 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   ALL Y Q (Y) IMPL (P (Y) OR P (B))
+             Q (C) OR P (A)
+             
+   Theorems: EX X P (X)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+           * A2:   + Q(c)  + P(a)
+           * A3:   All x:Any - Q(x)  + P(x)  + P(b)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T4: All x:Any - P(x)
+
+
+
+    Literals: ((T4 6) (A3 1 2 3) (A2 4 5) (A1 NIL))
+
+
+
+
+
+
+             Initial Operations on Theorems
+             ==============================
+
+
+          
+   A2,2 & T4,1  --> * R1: + Q(c)
+   
+   A3,3 & T4,1  --> * R2: All x:Any - Q(x)  + P(x)
+   
+   R2,2 & T4,1  --> * R3: All x:Any - Q(x)
+   
+   R3,1 & R1,1  --> * R4: []
+   
+
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+

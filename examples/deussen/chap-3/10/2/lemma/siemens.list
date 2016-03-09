@@ -1,0 +1,411 @@
+;;; -*- Package: MKRP; Base: 10. -*- 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 16-DEC-84                                                     *
+                    *         DATE : 25-JAN-85  21:14:51                                           *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   25-JAN-85 13:20:48
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   3.10.2
+                                                                        
+************************************************************************
+                                                                        
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : SORT MENGE,VERKN,ELEMENT,INDEX,INDEXMENGE:ANY
+           TYPE LIDEAL(MENGE MENGE VERKN)
+           TYPE RIDEAL(MENGE MENGE VERKN)
+           TYPE UHG(MENGE MENGE VERKN)
+           TYPE ME(MENGE MENGE)
+           TYPE NICHTLEER(MENGE)
+           TYPE HG(MENGE VERKN)
+           TYPE NICHTLEER-IND(INDEXMENGE)
+           TYPE GLEICH(MENGE MENGE)
+           TYPE EL-IND(INDEX INDEXMENGE)
+           TYPE EL(ELEMENT MENGE)
+           TYPE MINIMAL(MENGE MENGE VERKN)
+           TYPE MINIMAL-BED-L(MENGE VERKN)
+           TYPE MINIMAL-BED-R(MENGE VERKN)
+           TYPE MPROD(MENGE MENGE VERKN) :MENGE
+           TYPE U(INDEX) :MENGE
+           TYPE VER-IND(INDEXMENGE) :MENGE
+           TYPE SM-IND(INDEXMENGE) :MENGE
+           TYPE APPLYV(VERKN ELEMENT ELEMENT) :ELEMENT
+           TYPE F*X(MENGE ELEMENT VERKN) :MENGE
+           TYPE SM(MENGE MENGE) :MENGE
+           TYPE T*(MENGE VERKN MENGE ELEMENT) :MENGE
+           * DEF. GLEICHHEIT VON MENGEN *
+           ALL A,B :MENGE ME(A B) AND ME(B A) IMPL GLEICH(A B)
+           * SATZ 3,4 *
+           ALL F,R,L:MENGE  ALL MAL:VERKN  
+             HG(F MAL) AND LIDEAL(L F MAL) AND RIDEAL(R F MAL) IMPL ME(MPROD(R L MAL) SM(R L))
+           * LEMMA 3.10.2.ME *
+           ALL F:MENGE  ALL I1,I2:INDEXMENGE  ALL MAL:VERKN  ALL J1,J2:INDEX  
+                      HG(F MAL)
+                  AND MINIMAL-BED-L(F MAL)
+                  AND MINIMAL-BED-R(F MAL)
+                  AND (ALL J1:INDEX EL-IND(J1 I1) IMPL RIDEAL(U(J1) F MAL) AND MINIMAL(U(J1) F MAL))
+                  AND (ALL J2:INDEX EL-IND(J2 I2) IMPL LIDEAL(U(J2) F MAL) AND MINIMAL(U(J2) F MAL))
+                  AND EL-IND(J1 I1)
+                  AND EL-IND(J2 I2)
+             IMPL ME(SM(U(J1) U(J2)) MPROD(U(J1) U(J2) MAL))
+ 
+THEOREMS : ALL F:MENGE  ALL I1,I2:INDEXMENGE  ALL MAL:VERKN  ALL J1,J2:INDEX  
+                      HG(F MAL)
+                  AND MINIMAL-BED-L(F MAL)
+                  AND MINIMAL-BED-R(F MAL)
+                  AND (ALL J1:INDEX EL-IND(J1 I1) IMPL RIDEAL(U(J1) F MAL) AND MINIMAL(U(J1) F MAL))
+                  AND (ALL J2:INDEX EL-IND(J2 I2) IMPL LIDEAL(U(J2) F MAL) AND MINIMAL(U(J2) F MAL))
+                  AND EL-IND(J1 I1)
+                  AND EL-IND(J2 I2)
+             IMPL GLEICH(SM(U(J1) U(J2)) MPROD(U(J1) U(J2) MAL))
+ 
+ 
+ 
+ 
+CONSTANTS : 
+=========== 
+ 
+| NAME          | SORT                                            |            | ATTRIBUTES |
+---------------------------------------------------------------------------------------------
+| C_1           | INDEXMENGE                                      |            |            |
+| C_2           | INDEXMENGE                                      |            |            |
+| C_3           | MENGE                                           |            |            |
+| C_4           | INDEX                                           |            |            |
+| C_5           | VERKN                                           |            |            |
+| C_6           | INDEX                                           |            |            |
+---------------------------------------------------------------------------------------------
+ 
+ 
+ 
+FUNCTIONS : 
+=========== 
+ 
+| NAME          | DOMAIN                                          | RANGE      | ATTRIBUTES |
+---------------------------------------------------------------------------------------------
+| MPROD         | MENGE MENGE VERKN                               | MENGE      |            |
+| U             | INDEX                                           | MENGE      |            |
+| VER-IND       | INDEXMENGE                                      | MENGE      |            |
+| SM-IND        | INDEXMENGE                                      | MENGE      |            |
+| APPLYV        | VERKN ELEMENT ELEMENT                           | ELEMENT    |            |
+| F*X           | MENGE ELEMENT VERKN                             | MENGE      |            |
+| SM            | MENGE MENGE                                     | MENGE      |            |
+| T*            | MENGE VERKN MENGE ELEMENT                       | MENGE      |            |
+| F_1           | INDEXMENGE MENGE INDEX VERKN INDEX              | INDEX      |            |
+| F_2           | INDEXMENGE INDEXMENGE MENGE INDEX VERKN INDEX   | INDEX      |            |
+---------------------------------------------------------------------------------------------
+ 
+ 
+ 
+PREDICATES : 
+============ 
+ 
+| NAME          | DOMAIN                                          |            | ATTRIBUTES |
+---------------------------------------------------------------------------------------------
+| TRUE          |                                                 |            | DEFINED    |
+| FALSE         |                                                 |            | DEFINED    |
+| LIDEAL        | MENGE MENGE VERKN                               |            |            |
+| RIDEAL        | MENGE MENGE VERKN                               |            |            |
+| UHG           | MENGE MENGE VERKN                               |            |            |
+| ME            | MENGE MENGE                                     |            |            |
+| NICHTLEER     | MENGE                                           |            |            |
+| HG            | MENGE VERKN                                     |            |            |
+| NICHTLEER-IND | INDEXMENGE                                      |            |            |
+| GLEICH        | MENGE MENGE                                     |            |            |
+| EL-IND        | INDEX INDEXMENGE                                |            |            |
+| EL            | ELEMENT MENGE                                   |            |            |
+| MINIMAL       | MENGE MENGE VERKN                               |            |            |
+| MINIMAL-BED-L | MENGE VERKN                                     |            |            |
+| MINIMAL-BED-R | MENGE VERKN                                     |            |            |
+---------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+* A1   : ALL X,Y:MENGE  - ME(Y X)  - ME(X Y)  + GLEICH(Y X)
+* A2   : ALL X,Y,Z:MENGE  U:VERKN  - HG(Z U)  - LIDEAL(Y Z U)  - RIDEAL(X Z U)  + ME(MPROD(X Y U) SM(X Y))
+* A3   : ALL X,Y:INDEXMENGE  Z,U:INDEX  V:VERKN  W:MENGE  
+              - HG(W V)  - MINIMAL-BED-L(W V)  - MINIMAL-BED-R(W V)  + EL-IND(F_1(Y W U V Z) Y)
+                + EL-IND(F_2(X Y W U V Z) X)  - EL-IND(Z Y)  - EL-IND(U X)  + ME(SM(U(Z) U(U)) MPROD(U(Z) U(U) V))
+* A4   : ALL X,Y:INDEXMENGE  Z,U:INDEX  V:VERKN  W:MENGE  
+              - HG(W V)  - MINIMAL-BED-L(W V)  - MINIMAL-BED-R(W V)  + EL-IND(F_1(Y W U V Z) Y)
+                - LIDEAL(U(F_2(X Y W U V Z)) W V)  - MINIMAL(U(F_2(X Y W U V Z)) W V)  - EL-IND(Z Y)  - EL-IND(U X)
+                + ME(SM(U(Z) U(U)) MPROD(U(Z) U(U) V))
+* A5   : ALL X,Y:INDEXMENGE  Z,U:INDEX  V:VERKN  W:MENGE  
+              - HG(W V)  - MINIMAL-BED-L(W V)  - MINIMAL-BED-R(W V)  - RIDEAL(U(F_1(Y W U V Z)) W V)
+                - MINIMAL(U(F_1(Y W U V Z)) W V)  + EL-IND(F_2(X Y W U V Z) X)  - EL-IND(Z Y)  - EL-IND(U X)
+                + ME(SM(U(Z) U(U)) MPROD(U(Z) U(U) V))
+* A6   : ALL X,Y:INDEXMENGE  Z,U:INDEX  V:VERKN  W:MENGE  
+              - HG(W V)  - MINIMAL-BED-L(W V)  - MINIMAL-BED-R(W V)  - RIDEAL(U(F_1(Y W U V Z)) W V)
+                - MINIMAL(U(F_1(Y W U V Z)) W V)  - LIDEAL(U(F_2(X Y W U V Z)) W V)  - MINIMAL(U(F_2(X Y W U V Z)) W V)
+                - EL-IND(Z Y)  - EL-IND(U X)  + ME(SM(U(Z) U(U)) MPROD(U(Z) U(U) V))
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+* T7   : + HG(C_3 C_5)
+* T8   : + MINIMAL-BED-L(C_3 C_5)
+* T9   : + MINIMAL-BED-R(C_3 C_5)
+* T10  : ALL X:INDEX  - EL-IND(X C_2)  + RIDEAL(U(X) C_3 C_5)
+* T11  : ALL X:INDEX  - EL-IND(X C_2)  + MINIMAL(U(X) C_3 C_5)
+* T12  : ALL X:INDEX  - EL-IND(X C_1)  + LIDEAL(U(X) C_3 C_5)
+* T13  : ALL X:INDEX  - EL-IND(X C_1)  + MINIMAL(U(X) C_3 C_5)
+* T14  : + EL-IND(C_4 C_2)
+* T15  : + EL-IND(C_6 C_1)
+* T16  : - GLEICH(SM(U(C_4) U(C_6)) MPROD(U(C_4) U(C_6) C_5))
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION
+ 
+INITIAL CLAUSES :    * A1  : ALL X,Y:MENGE  - ME(Y X)  - ME(X Y)  + GLEICH(Y X)
+                     * A2  : ALL X,Y,Z:MENGE  U:VERKN  
+                                  - HG(Z U)  - LIDEAL(Y Z U)  - RIDEAL(X Z U)  + ME(MPROD(X Y U) SM(X Y))
+                     * A3  : ALL X,Y:INDEXMENGE  Z,U:INDEX  V:VERKN  W:MENGE  
+                                  - HG(W V)  - MINIMAL-BED-L(W V)  - MINIMAL-BED-R(W V)  + EL-IND(F_1(Y W U V Z) Y)
+                                    + EL-IND(F_2(X Y W U V Z) X)  - EL-IND(Z Y)  - EL-IND(U X)
+                                    + ME(SM(U(Z) U(U)) MPROD(U(Z) U(U) V))
+                     * A4  : ALL X,Y:INDEXMENGE  Z,U:INDEX  V:VERKN  W:MENGE  
+                                  - HG(W V)  - MINIMAL-BED-L(W V)  - MINIMAL-BED-R(W V)  + EL-IND(F_1(Y W U V Z) Y)
+                                    - LIDEAL(U(F_2(X Y W U V Z)) W V)  - MINIMAL(U(F_2(X Y W U V Z)) W V)
+                                    - EL-IND(Z Y)  - EL-IND(U X)  + ME(SM(U(Z) U(U)) MPROD(U(Z) U(U) V))
+                     * A5  : ALL X,Y:INDEXMENGE  Z,U:INDEX  V:VERKN  W:MENGE  
+                                  - HG(W V)  - MINIMAL-BED-L(W V)  - MINIMAL-BED-R(W V)
+                                    - RIDEAL(U(F_1(Y W U V Z)) W V)  - MINIMAL(U(F_1(Y W U V Z)) W V)
+                                    + EL-IND(F_2(X Y W U V Z) X)  - EL-IND(Z Y)  - EL-IND(U X)
+                                    + ME(SM(U(Z) U(U)) MPROD(U(Z) U(U) V))
+                     * A6  : ALL X,Y:INDEXMENGE  Z,U:INDEX  V:VERKN  W:MENGE  
+                                  - HG(W V)  - MINIMAL-BED-L(W V)  - MINIMAL-BED-R(W V)
+                                    - RIDEAL(U(F_1(Y W U V Z)) W V)  - MINIMAL(U(F_1(Y W U V Z)) W V)
+                                    - LIDEAL(U(F_2(X Y W U V Z)) W V)  - MINIMAL(U(F_2(X Y W U V Z)) W V)
+                                    - EL-IND(Z Y)  - EL-IND(U X)  + ME(SM(U(Z) U(U)) MPROD(U(Z) U(U) V))
+                     * T7  : + HG(C_3 C_5)
+                     * T8  : + MINIMAL-BED-L(C_3 C_5)
+                     * T9  : + MINIMAL-BED-R(C_3 C_5)
+                     * T10 : ALL X:INDEX  - EL-IND(X C_2)  + RIDEAL(U(X) C_3 C_5)
+                     * T11 : ALL X:INDEX  - EL-IND(X C_2)  + MINIMAL(U(X) C_3 C_5)
+                     * T12 : ALL X:INDEX  - EL-IND(X C_1)  + LIDEAL(U(X) C_3 C_5)
+                     * T13 : ALL X:INDEX  - EL-IND(X C_1)  + MINIMAL(U(X) C_3 C_5)
+                     * T14 : + EL-IND(C_4 C_2)
+                     * T15 : + EL-IND(C_6 C_1)
+                     * T16 : - GLEICH(SM(U(C_4) U(C_6)) MPROD(U(C_4) U(C_6) C_5))
+ 
+A1,3 & T16,1    -->  * R1  : - ME(SM(U(C_4) U(C_6)) MPROD(U(C_4) U(C_6) C_5))
+                               - ME(MPROD(U(C_4) U(C_6) C_5) SM(U(C_4) U(C_6)))
+ 
+A2,4 & R1,2     -->  * R2  : ALL X:MENGE  - HG(X C_5)  - LIDEAL(U(C_6) X C_5)  - RIDEAL(U(C_4) X C_5)
+                                            - ME(SM(U(C_4) U(C_6)) MPROD(U(C_4) U(C_6) C_5))
+ 
+T7,1 & R2,1     -->  * R3  : - LIDEAL(U(C_6) C_3 C_5)  - RIDEAL(U(C_4) C_3 C_5)
+                               - ME(SM(U(C_4) U(C_6)) MPROD(U(C_4) U(C_6) C_5))
+ 
+R3,2 & T10,2    -->  * R4  : - LIDEAL(U(C_6) C_3 C_5)  - ME(SM(U(C_4) U(C_6)) MPROD(U(C_4) U(C_6) C_5))
+                               - EL-IND(C_4 C_2)
+ 
+R4,3 & T14,1    -->  * R5  : - LIDEAL(U(C_6) C_3 C_5)  - ME(SM(U(C_4) U(C_6)) MPROD(U(C_4) U(C_6) C_5))
+ 
+R5,1 & T12,2    -->  * R6  : - ME(SM(U(C_4) U(C_6)) MPROD(U(C_4) U(C_6) C_5))  - EL-IND(C_6 C_1)
+ 
+R6,2 & T15,1    -->  * R7  : - ME(SM(U(C_4) U(C_6)) MPROD(U(C_4) U(C_6) C_5))
+ 
+A3,8 & R7,1     -->  * R8  : ALL X,Y:INDEXMENGE  Z:MENGE  
+                                  - HG(Z C_5)  - MINIMAL-BED-L(Z C_5)  - MINIMAL-BED-R(Z C_5)
+                                    + EL-IND(F_1(Y Z C_6 C_5 C_4) Y)  + EL-IND(F_2(X Y Z C_6 C_5 C_4) X)
+                                    - EL-IND(C_4 Y)  - EL-IND(C_6 X)
+ 
+T7,1 & R8,1     -->  * R9  : ALL X,Y:INDEXMENGE  
+                                  - MINIMAL-BED-L(C_3 C_5)  - MINIMAL-BED-R(C_3 C_5)
+                                    + EL-IND(F_1(Y C_3 C_6 C_5 C_4) Y)  + EL-IND(F_2(X Y C_3 C_6 C_5 C_4) X)
+                                    - EL-IND(C_4 Y)  - EL-IND(C_6 X)
+ 
+R9,2 & T9,1     -->  * R10 : ALL X,Y:INDEXMENGE  
+                                  - MINIMAL-BED-L(C_3 C_5)  + EL-IND(F_1(Y C_3 C_6 C_5 C_4) Y)
+                                    + EL-IND(F_2(X Y C_3 C_6 C_5 C_4) X)  - EL-IND(C_4 Y)  - EL-IND(C_6 X)
+ 
+R10,1 & T8,1    -->  * R11 : ALL X,Y:INDEXMENGE  
+                                  + EL-IND(F_1(Y C_3 C_6 C_5 C_4) Y)  + EL-IND(F_2(X Y C_3 C_6 C_5 C_4) X)
+                                    - EL-IND(C_4 Y)  - EL-IND(C_6 X)
+ 
+T14,1 & R11,3   -->  * R12 : ALL X:INDEXMENGE  + EL-IND(F_1(C_2 C_3 C_6 C_5 C_4) C_2)
+                                                 + EL-IND(F_2(X C_2 C_3 C_6 C_5 C_4) X)  - EL-IND(C_6 X)
+ 
+T15,1 & R12,3   -->  * R13 : + EL-IND(F_1(C_2 C_3 C_6 C_5 C_4) C_2)  + EL-IND(F_2(C_1 C_2 C_3 C_6 C_5 C_4) C_1)
+ 
+A4,9 & R7,1     -->  * R14 : ALL X,Y:INDEXMENGE  Z:MENGE  
+                                  - HG(Z C_5)  - MINIMAL-BED-L(Z C_5)  - MINIMAL-BED-R(Z C_5)
+                                    + EL-IND(F_1(Y Z C_6 C_5 C_4) Y)  - LIDEAL(U(F_2(X Y Z C_6 C_5 C_4)) Z C_5)
+                                    - MINIMAL(U(F_2(X Y Z C_6 C_5 C_4)) Z C_5)  - EL-IND(C_4 Y)  - EL-IND(C_6 X)
+ 
+T7,1 & R14,1    -->  * R15 : ALL X,Y:INDEXMENGE  
+                                  - MINIMAL-BED-L(C_3 C_5)  - MINIMAL-BED-R(C_3 C_5)
+                                    + EL-IND(F_1(Y C_3 C_6 C_5 C_4) Y)  - LIDEAL(U(F_2(X Y C_3 C_6 C_5 C_4)) C_3 C_5)
+                                    - MINIMAL(U(F_2(X Y C_3 C_6 C_5 C_4)) C_3 C_5)  - EL-IND(C_4 Y)  - EL-IND(C_6 X)
+ 
+R15,2 & T9,1    -->  * R16 : ALL X,Y:INDEXMENGE  
+                                  - MINIMAL-BED-L(C_3 C_5)  + EL-IND(F_1(Y C_3 C_6 C_5 C_4) Y)
+                                    - LIDEAL(U(F_2(X Y C_3 C_6 C_5 C_4)) C_3 C_5)
+                                    - MINIMAL(U(F_2(X Y C_3 C_6 C_5 C_4)) C_3 C_5)  - EL-IND(C_4 Y)  - EL-IND(C_6 X)
+ 
+R16,1 & T8,1    -->  * R17 : ALL X,Y:INDEXMENGE  
+                                  + EL-IND(F_1(Y C_3 C_6 C_5 C_4) Y)  - LIDEAL(U(F_2(X Y C_3 C_6 C_5 C_4)) C_3 C_5)
+                                    - MINIMAL(U(F_2(X Y C_3 C_6 C_5 C_4)) C_3 C_5)  - EL-IND(C_4 Y)  - EL-IND(C_6 X)
+ 
+T14,1 & R17,4   -->  * R18 : ALL X:INDEXMENGE  + EL-IND(F_1(C_2 C_3 C_6 C_5 C_4) C_2)
+                                                 - LIDEAL(U(F_2(X C_2 C_3 C_6 C_5 C_4)) C_3 C_5)
+                                                 - MINIMAL(U(F_2(X C_2 C_3 C_6 C_5 C_4)) C_3 C_5)  - EL-IND(C_6 X)
+ 
+T15,1 & R18,4   -->  * R19 : + EL-IND(F_1(C_2 C_3 C_6 C_5 C_4) C_2)  - LIDEAL(U(F_2(C_1 C_2 C_3 C_6 C_5 C_4)) C_3 C_5)
+                               - MINIMAL(U(F_2(C_1 C_2 C_3 C_6 C_5 C_4)) C_3 C_5)
+ 
+A5,9 & R7,1     -->  * R20 : ALL X,Y:INDEXMENGE  Z:MENGE  
+                                  - HG(Z C_5)  - MINIMAL-BED-L(Z C_5)  - MINIMAL-BED-R(Z C_5)
+                                    - RIDEAL(U(F_1(Y Z C_6 C_5 C_4)) Z C_5)  - MINIMAL(U(F_1(Y Z C_6 C_5 C_4)) Z C_5)
+                                    + EL-IND(F_2(X Y Z C_6 C_5 C_4) X)  - EL-IND(C_4 Y)  - EL-IND(C_6 X)
+ 
+T7,1 & R20,1    -->  * R21 : ALL X,Y:INDEXMENGE  
+                                  - MINIMAL-BED-L(C_3 C_5)  - MINIMAL-BED-R(C_3 C_5)
+                                    - RIDEAL(U(F_1(Y C_3 C_6 C_5 C_4)) C_3 C_5)
+                                    - MINIMAL(U(F_1(Y C_3 C_6 C_5 C_4)) C_3 C_5)  + EL-IND(F_2(X Y C_3 C_6 C_5 C_4) X)
+                                    - EL-IND(C_4 Y)  - EL-IND(C_6 X)
+ 
+R21,2 & T9,1    -->  * R22 : ALL X,Y:INDEXMENGE  
+                                  - MINIMAL-BED-L(C_3 C_5)  - RIDEAL(U(F_1(Y C_3 C_6 C_5 C_4)) C_3 C_5)
+                                    - MINIMAL(U(F_1(Y C_3 C_6 C_5 C_4)) C_3 C_5)  + EL-IND(F_2(X Y C_3 C_6 C_5 C_4) X)
+                                    - EL-IND(C_4 Y)  - EL-IND(C_6 X)
+ 
+R22,1 & T8,1    -->  * R23 : ALL X,Y:INDEXMENGE  
+                                  - RIDEAL(U(F_1(Y C_3 C_6 C_5 C_4)) C_3 C_5)
+                                    - MINIMAL(U(F_1(Y C_3 C_6 C_5 C_4)) C_3 C_5)  + EL-IND(F_2(X Y C_3 C_6 C_5 C_4) X)
+                                    - EL-IND(C_4 Y)  - EL-IND(C_6 X)
+ 
+T14,1 & R23,4   -->  * R24 : ALL X:INDEXMENGE  - RIDEAL(U(F_1(C_2 C_3 C_6 C_5 C_4)) C_3 C_5)
+                                                 - MINIMAL(U(F_1(C_2 C_3 C_6 C_5 C_4)) C_3 C_5)
+                                                 + EL-IND(F_2(X C_2 C_3 C_6 C_5 C_4) X)  - EL-IND(C_6 X)
+ 
+T15,1 & R24,4   -->  * R25 : - RIDEAL(U(F_1(C_2 C_3 C_6 C_5 C_4)) C_3 C_5)
+                               - MINIMAL(U(F_1(C_2 C_3 C_6 C_5 C_4)) C_3 C_5)
+                               + EL-IND(F_2(C_1 C_2 C_3 C_6 C_5 C_4) C_1)
+ 
+A6,10 & R7,1    -->  * R26 : ALL X,Y:INDEXMENGE  Z:MENGE  
+                                  - HG(Z C_5)  - MINIMAL-BED-L(Z C_5)  - MINIMAL-BED-R(Z C_5)
+                                    - RIDEAL(U(F_1(Y Z C_6 C_5 C_4)) Z C_5)  - MINIMAL(U(F_1(Y Z C_6 C_5 C_4)) Z C_5)
+                                    - LIDEAL(U(F_2(X Y Z C_6 C_5 C_4)) Z C_5)
+                                    - MINIMAL(U(F_2(X Y Z C_6 C_5 C_4)) Z C_5)  - EL-IND(C_4 Y)  - EL-IND(C_6 X)
+ 
+T7,1 & R26,1    -->  * R27 : ALL X,Y:INDEXMENGE  
+                                  - MINIMAL-BED-L(C_3 C_5)  - MINIMAL-BED-R(C_3 C_5)
+                                    - RIDEAL(U(F_1(Y C_3 C_6 C_5 C_4)) C_3 C_5)
+                                    - MINIMAL(U(F_1(Y C_3 C_6 C_5 C_4)) C_3 C_5)
+                                    - LIDEAL(U(F_2(X Y C_3 C_6 C_5 C_4)) C_3 C_5)
+                                    - MINIMAL(U(F_2(X Y C_3 C_6 C_5 C_4)) C_3 C_5)  - EL-IND(C_4 Y)  - EL-IND(C_6 X)
+ 
+R27,2 & T9,1    -->  * R28 : ALL X,Y:INDEXMENGE  
+                                  - MINIMAL-BED-L(C_3 C_5)  - RIDEAL(U(F_1(Y C_3 C_6 C_5 C_4)) C_3 C_5)
+                                    - MINIMAL(U(F_1(Y C_3 C_6 C_5 C_4)) C_3 C_5)
+                                    - LIDEAL(U(F_2(X Y C_3 C_6 C_5 C_4)) C_3 C_5)
+                                    - MINIMAL(U(F_2(X Y C_3 C_6 C_5 C_4)) C_3 C_5)  - EL-IND(C_4 Y)  - EL-IND(C_6 X)
+ 
+R28,1 & T8,1    -->  * R29 : ALL X,Y:INDEXMENGE  
+                                  - RIDEAL(U(F_1(Y C_3 C_6 C_5 C_4)) C_3 C_5)
+                                    - MINIMAL(U(F_1(Y C_3 C_6 C_5 C_4)) C_3 C_5)
+                                    - LIDEAL(U(F_2(X Y C_3 C_6 C_5 C_4)) C_3 C_5)
+                                    - MINIMAL(U(F_2(X Y C_3 C_6 C_5 C_4)) C_3 C_5)  - EL-IND(C_4 Y)  - EL-IND(C_6 X)
+ 
+T14,1 & R29,5   -->  * R30 : ALL X:INDEXMENGE  - RIDEAL(U(F_1(C_2 C_3 C_6 C_5 C_4)) C_3 C_5)
+                                                 - MINIMAL(U(F_1(C_2 C_3 C_6 C_5 C_4)) C_3 C_5)
+                                                 - LIDEAL(U(F_2(X C_2 C_3 C_6 C_5 C_4)) C_3 C_5)
+                                                 - MINIMAL(U(F_2(X C_2 C_3 C_6 C_5 C_4)) C_3 C_5)  - EL-IND(C_6 X)
+ 
+T15,1 & R30,5   -->  * R31 : - RIDEAL(U(F_1(C_2 C_3 C_6 C_5 C_4)) C_3 C_5)
+                               - MINIMAL(U(F_1(C_2 C_3 C_6 C_5 C_4)) C_3 C_5)
+                               - LIDEAL(U(F_2(C_1 C_2 C_3 C_6 C_5 C_4)) C_3 C_5)
+                               - MINIMAL(U(F_2(C_1 C_2 C_3 C_6 C_5 C_4)) C_3 C_5)
+ 
+R13,2 & T12,1   -->  * R34 : + EL-IND(F_1(C_2 C_3 C_6 C_5 C_4) C_2)  + LIDEAL(U(F_2(C_1 C_2 C_3 C_6 C_5 C_4)) C_3 C_5)
+ 
+R19,2 & R34,2   -->  * R35 : + EL-IND(F_1(C_2 C_3 C_6 C_5 C_4) C_2)  - MINIMAL(U(F_2(C_1 C_2 C_3 C_6 C_5 C_4)) C_3 C_5)
+                               + EL-IND(F_1(C_2 C_3 C_6 C_5 C_4) C_2)
+ 
+R35 1=3         -->  * D36 : + EL-IND(F_1(C_2 C_3 C_6 C_5 C_4) C_2)  - MINIMAL(U(F_2(C_1 C_2 C_3 C_6 C_5 C_4)) C_3 C_5)
+ 
+R13,2 & T13,1   -->  * R37 : + EL-IND(F_1(C_2 C_3 C_6 C_5 C_4) C_2)  + MINIMAL(U(F_2(C_1 C_2 C_3 C_6 C_5 C_4)) C_3 C_5)
+ 
+R37,2 & D36,2   -->  * R38 : + EL-IND(F_1(C_2 C_3 C_6 C_5 C_4) C_2)  + EL-IND(F_1(C_2 C_3 C_6 C_5 C_4) C_2)
+ 
+R38 1=2         -->  * D39 : + EL-IND(F_1(C_2 C_3 C_6 C_5 C_4) C_2)
+ 
+D39,1 & T10,1   -->  * R40 : + RIDEAL(U(F_1(C_2 C_3 C_6 C_5 C_4)) C_3 C_5)
+ 
+R25,1 & R40,1   -->  * R41 : - MINIMAL(U(F_1(C_2 C_3 C_6 C_5 C_4)) C_3 C_5)  + EL-IND(F_2(C_1 C_2 C_3 C_6 C_5 C_4) C_1)
+ 
+R31,1 & R40,1   -->  * R42 : - MINIMAL(U(F_1(C_2 C_3 C_6 C_5 C_4)) C_3 C_5)
+                               - LIDEAL(U(F_2(C_1 C_2 C_3 C_6 C_5 C_4)) C_3 C_5)
+                               - MINIMAL(U(F_2(C_1 C_2 C_3 C_6 C_5 C_4)) C_3 C_5)
+ 
+R42,1 & T11,2   -->  * R43 : - LIDEAL(U(F_2(C_1 C_2 C_3 C_6 C_5 C_4)) C_3 C_5)
+                               - MINIMAL(U(F_2(C_1 C_2 C_3 C_6 C_5 C_4)) C_3 C_5)
+                               - EL-IND(F_1(C_2 C_3 C_6 C_5 C_4) C_2)
+ 
+R43,3 & D39,1   -->  * R44 : - LIDEAL(U(F_2(C_1 C_2 C_3 C_6 C_5 C_4)) C_3 C_5)
+                               - MINIMAL(U(F_2(C_1 C_2 C_3 C_6 C_5 C_4)) C_3 C_5)
+ 
+R41,1 & T11,2   -->  * R45 : + EL-IND(F_2(C_1 C_2 C_3 C_6 C_5 C_4) C_1)  - EL-IND(F_1(C_2 C_3 C_6 C_5 C_4) C_2)
+ 
+R45,2 & D39,1   -->  * R46 : + EL-IND(F_2(C_1 C_2 C_3 C_6 C_5 C_4) C_1)
+ 
+R44,2 & T13,2   -->  * R47 : - LIDEAL(U(F_2(C_1 C_2 C_3 C_6 C_5 C_4)) C_3 C_5)
+                               - EL-IND(F_2(C_1 C_2 C_3 C_6 C_5 C_4) C_1)
+ 
+R47,2 & R46,1   -->  * R48 : - LIDEAL(U(F_2(C_1 C_2 C_3 C_6 C_5 C_4)) C_3 C_5)
+ 
+R46,1 & T12,1   -->  * R49 : + LIDEAL(U(F_2(C_1 C_2 C_3 C_6 C_5 C_4)) C_3 C_5)
+ 
+R49,1 & R48,1   -->  * R50 :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+STOP
+ 

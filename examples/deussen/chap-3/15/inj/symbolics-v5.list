@@ -1,0 +1,344 @@
+;;; -*- Package: MKRP; Base: 10. -*-
+
+
+
+                    ********************************************************************************
+                    *                                                                              *
+                    *     MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN                   *
+                    *                                                                              *
+                    *       23-JUL-85                                                              *
+                    *          23-JUL-85  16:35:24                                                 *
+                    *                                                                              *
+                    ********************************************************************************
+
+
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   12-JUN-85 13:46:03
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   D315>INJ
+                                                                        
+************************************************************************
+                                                                        
+
+
+
+
+
+FORMULAE GIVEN TO THE EDITOR
+============================
+
+
+AXIOMS   : SORT MENGE,VERKN,ELEMENT,INDEX,INDEXMENGE:ANY
+           TYPE LIDEAL (MENGE MENGE VERKN)
+           TYPE RIDEAL (MENGE MENGE VERKN)
+           TYPE UHG (MENGE MENGE VERKN)
+           TYPE ME (MENGE MENGE)
+           TYPE NICHTLEER (MENGE)
+           TYPE HG (MENGE VERKN)
+           TYPE EL (ELEMENT MENGE)
+           TYPE MINIMAL (MENGE MENGE VERKN)
+           TYPE MPROD (MENGE MENGE VERKN) :MENGE
+           TYPE APPLYV (VERKN ELEMENT ELEMENT) :ELEMENT
+           TYPE F*X (MENGE ELEMENT VERKN) :MENGE
+           TYPE SM (MENGE MENGE) :MENGE
+           TYPE SET (ELEMENT) :MENGE
+           TYPE VER (MENGE MENGE) :MENGE
+           TYPE GR (MENGE VERKN ELEMENT)
+           TYPE INVERS (VERKN ELEMENT) :ELEMENT
+           TYPE MINIMAL-BED-L (MENGE VERKN)
+           TYPE MINIMAL-BED-R (MENGE VERKN)
+           TYPE EL-IND (INDEX INDEXMENGE)
+           TYPE U (INDEX) : MENGE
+           TYPE E (INDEX INDEX) : ELEMENT
+           TYPE NICHTLEER-IND (INDEXMENGE)
+           TYPE GLEICH (MENGE MENGE)
+           TYPE VER-IND (INDEXMENGE) : MENGE
+           TYPE SM-IND (INDEXMENGE) : MENGE
+           TYPE IDEAL (MENGE MENGE VERKN)
+           TYPE G (INDEX INDEX) : MENGE
+             * VORAUSSETZUNG315A (F MAL I1 I2 X J) BEDEUTET: HG (F MAL)
+             AND  
+             MINIMAL-BED-L (F MAL)
+             AND  
+             MINIMAL-BED-R (F MAL)
+             AND  
+             (ALL L1:INDEX EL-IND (L1 I1) IMPL LIDEAL (U (L1) F MAL) AND MINIMAL (U (L1) F MAL))
+             AND  
+             (ALL L2:INDEX EL-IND (L2 I2) IMPL RIDEAL (U (L2) F MAL) AND MINIMAL (U (L2) F MAL))
+             AND  
+             EL-IND (J I1)
+             AND  
+             EL (X F) *
+           * LEMMA 3.15A *
+           ALL F:MENGE  ALL MAL:VERKN  ALL I1,I2:INDEXMENGE  ALL J:INDEX  ALL X:ELEMENT  
+             VORAUSSETZUNG315A (F MAL I1 I2 X J) IMPL (EX K:INDEX EL-IND (K I1) IMPL F*X (U (J) X MAL) = U (K))
+           * EXPANDIERE ABBVOR *
+           ALL A,B:MENGE  ALL PHI:ABB  ALL Y:ELEMENT  
+             ABBILDUNG (PHI A B) AND (ALL X:ELEMENT ABBVOR (PHI X Y)) IMPL (ALL X:ELEMENT APPLYA (PHI X) = Y)
+           * DEFINITION INJEKTIV *
+           ALL A,B:MENGE  ALL PHI:ABB  
+               ABBILDUNG (PHI A B) AND (ALL X,Y:ELEMENT APPLYA (PHI X) = APPLYA (PHI Y) IMPL X = Y)
+               IMPL  
+               INJEKTIV (PHI A B)
+           * UMFORMUNG VON ELEMENTEN AUS U (J) *
+           ALL F:MENGE  ALL MAL:VERKN  ALL I1,I2:INDEXMENGE  ALL X:ELEMENT  ALL J:INDEX  
+               VORAUSSETZUNG315A (F MAL I1 I2 X J) AND EL-IND (J I1)
+               IMPL  
+                ALL X:ELEMENT  ALL RHO0:INDEX  EX Y:ELEMENT  
+                    EL-IND (RHO0 I2) AND EL (X U (J)) AND EL (Y G (RHO0 J))
+                    IMPL  
+                    (EX RHO1:INDEX APPLYV (MAL E (RHO1 J) Y) = X)
+           * BEWEISTECHNIK : GLEICHHEIT VON PRODUKTEN DURCH GLEICHHEIT DER FAKTOREN *
+           ALL MAL:VERKN  ALL A,B,C,D,X,Y:ELEMENT  
+             X = APPLYV (MAL A B) AND Y = APPLYV (MAL C D) IMPL (A = C AND B = D IMPL X = Y)
+           * LEMMA 3.15.INJEKTIV.A *
+           ALL F:MENGE  ALL MAL:VERKN  ALL I1,I2:INDEXMENGE  ALL X:ELEMENT  ALL J:INDEX  ALL Y:ELEMENT  ALL RHO0:INDEX  
+           EX Z1,Z2:ELEMENT  EX RHO1,RHO2:INDEX  
+                 VORAUSSETZUNG315A (F MAL I1 I2 X J)
+                 AND  
+                 EL (X U (J))
+                 AND  
+                 EL (Y U (J))
+                 AND  
+                 EL-IND (RHO0 I1)
+                 AND  
+                 (EL (Z1 G (RHO0 J)) IMPL APPLYV (MAL E (RHO1 J) Z1) = X)
+                 AND  
+                 (EL (Z2 G (RHO0 J)) IMPL APPLYV (MAL E (RHO2 J) Z2) = Y)
+               IMPL  
+               Z1 = Z2
+           * LEMMA 3.15.INJEKTIV.B *
+           ALL F:MENGE  ALL MAL:VERKN  ALL I1,I2:INDEXMENGE  ALL X:ELEMENT  ALL J:INDEX  ALL Y,Z:ELEMENT  
+           ALL RHO0:INDEX  EX Z1,Z2:ELEMENT  EX RHO1,RHO2:INDEX  
+                 VORAUSSETZUNG315A (F MAL I1 I2 X J)
+                 AND  
+                 EL (X U (J))
+                 AND  
+                 EL (Y U (J))
+                 AND  
+                 EL-IND (RHO0 I1)
+                 AND  
+                 (EL (Z1 G (RHO0 J)) IMPL APPLYV (MAL E (RHO1 J) Z1) = X)
+                 AND  
+                 (EL (Z2 G (RHO0 J)) IMPL APPLYV (MAL E (RHO2 J) Z2) = Y)
+                 AND  
+                 EL (Z F)
+                 AND  
+                 APPLYV (MAL X Z) = APPLYV (MAL Y Z)
+                 AND  
+                 Z1 = Z2
+               IMPL  
+               E (RHO1 J) = E (RHO2 J)
+
+THEOREMS : ALL F:MENGE  ALL MAL:VERKN  ALL I1,I2:INDEXMENGE  ALL J,RHO:INDEX  ALL X:ELEMENT  
+                 HG (F MAL)
+                 AND  
+                 MINIMAL-BED-L (F MAL)
+                 AND  
+                 MINIMAL-BED-R (F MAL)
+                 AND  
+                 (ALL L1:INDEX EL-IND (L1 I1) IMPL LIDEAL (U (L1) F MAL) AND MINIMAL (U (L1) F MAL))
+                 AND  
+                 (ALL L2:INDEX EL-IND (L2 I2) IMPL RIDEAL (U (L2) F MAL) AND MINIMAL (U (L2) F MAL))
+                 AND  
+                 EL-IND (J I1)
+                 AND  
+                 EL (X F)
+                 AND  
+                 EL-IND (RHO I2)
+                 AND  
+                 VORAUSSETZUNG315A (F MAL I1 I2 X J)
+               IMPL  
+                EX K:INDEX  ALL PHI:ABB  
+                    EL-IND (K I1)
+                    IMPL  
+                         F*X (U (J) X MAL) = U (K)
+                         AND  
+                         ABBILDUNG (PHI U (J) U (K))
+                         AND  
+                         (ALL Y:ELEMENT ABBVOR (PHI Y APPLYV (MAL Y X)))
+                       IMPL  
+                       INJEKTIV (PHI U (J) U (K))
+
+
+
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+  A1   : ALL X:ANY  + =(X X)
+  A2   : ALL X:INDEX  Y:ELEMENT  Z,U:INDEXMENGE  V:VERKN  W:MENGE  
+              - VORAUSSETZUNG315A(W V U Z Y X)  - EL-IND(F_1(U X V Y) U)  + =(F*X(U(X) Y V) U(F_2(U X V Y)))
+  A3   : ALL X,Y:MENGE  Z:ABB  - ABBILDUNG(Z Y X)  - =(F_4(X Y Z) F_5(X Y Z))  + INJEKTIV(Z Y X)
+  A4   : ALL X,Y:MENGE  Z:ABB  - ABBILDUNG(Z Y X)  + =(APPLYA(Z F_4(X Y Z)) APPLYA(Z F_5(X Y Z)))  + INJEKTIV(Z Y X)
+  A5   : ALL X,Y:ELEMENT  Z,U:MENGE  V:ABB  - ABBILDUNG(V U Z)  - ABBVOR(V F_3(V Y) Y)  + =(APPLYA(V X) Y)
+  A6   : ALL X,Y,Z,U,V,W:ELEMENT  XX:VERKN  - =(W APPLYV(XX V U))  - =(Z APPLYV(XX Y X))  - =(V Y)  - =(U X)  + =(W Z)
+  A7   : ALL X,Y:ELEMENT  Z,U:INDEX  V,W:INDEXMENGE  XX:VERKN  YY:MENGE  
+              - VORAUSSETZUNG315A(YY XX W V Y U)  - EL-IND(U W)  - EL-IND(Z V)  - EL(X U(U))
+                - EL(F_6(Z X V XX U) G(Z U))  + =(APPLYV(XX E(F_7(X V XX U) U) F_8(X V XX U)) X)
+  A8   : ALL X,Y:INDEX  Z,U:ELEMENT  V,W:INDEXMENGE  XX:VERKN  YY:MENGE  
+              - VORAUSSETZUNG315A(YY XX W V U Y)  - EL(U U(Y))  - EL(Z U(Y))  - EL-IND(X W)
+                - =(APPLYV(XX E(F_9(X Z U W Y XX) Y) F_10(X Z U W Y XX)) U)
+                - =(APPLYV(XX E(F_11(X Z U W Y XX) Y) F_12(X Z U W Y XX)) Z)  + =(C_2 C_1)
+  A9   : ALL X,Y:INDEX  Z,U:ELEMENT  V,W:INDEXMENGE  XX:VERKN  YY:MENGE  
+              - VORAUSSETZUNG315A(YY XX W V U Y)  - EL(U U(Y))  - EL(Z U(Y))  - EL-IND(X W)
+                - =(APPLYV(XX E(F_9(X Z U W Y XX) Y) F_10(X Z U W Y XX)) U)  + EL(F_12(X Z U W Y XX) G(X Y))
+                + =(C_2 C_1)
+  A10  : ALL X,Y:INDEX  Z,U:ELEMENT  V,W:INDEXMENGE  XX:VERKN  YY:MENGE  
+              - VORAUSSETZUNG315A(YY XX W V U Y)  - EL(U U(Y))  - EL(Z U(Y))  - EL-IND(X W)
+                + EL(F_10(X Z U W Y XX) G(X Y))  - =(APPLYV(XX E(F_11(X Z U W Y XX) Y) F_12(X Z U W Y XX)) Z)
+                + =(C_2 C_1)
+  A11  : ALL X,Y:INDEX  Z,U:ELEMENT  V,W:INDEXMENGE  XX:VERKN  YY:MENGE  
+              - VORAUSSETZUNG315A(YY XX W V U Y)  - EL(U U(Y))  - EL(Z U(Y))  - EL-IND(X W)
+                + EL(F_10(X Z U W Y XX) G(X Y))  + EL(F_12(X Z U W Y XX) G(X Y))  + =(C_2 C_1)
+  A12  : ALL X,Y,Z:ELEMENT  U,V:INDEX  W,XX:INDEXMENGE  YY:VERKN  ZZ:MENGE  
+              - VORAUSSETZUNG315A(ZZ YY XX W Z V)  - EL(Z U(V))  - EL(Y U(V))  - EL-IND(U XX)
+                - =(APPLYV(YY E(F_13(U Y ZZ XX YY Z V) V) F_14(U Y ZZ XX YY Z V)) Z)
+                - =(APPLYV(YY E(F_15(U Y ZZ XX YY Z V) V) F_16(U Y ZZ XX YY Z V)) Y)  - EL(X ZZ)
+                - =(APPLYV(YY Z X) APPLYV(YY Y X))  - =(F_17(X U Y ZZ XX YY Z V) F_18(X U Y ZZ XX YY Z V))
+                + =(E(F_19(V) V) E(F_20(V) V))
+  A13  : ALL X,Y,Z:ELEMENT  U,V:INDEX  W,XX:INDEXMENGE  YY:VERKN  ZZ:MENGE  
+              - VORAUSSETZUNG315A(ZZ YY XX W Z V)  - EL(Z U(V))  - EL(Y U(V))  - EL-IND(U XX)
+                - =(APPLYV(YY E(F_13(U Y ZZ XX YY Z V) V) F_14(U Y ZZ XX YY Z V)) Z)
+                + EL(F_16(U Y ZZ XX YY Z V) G(U V))  - EL(X ZZ)  - =(APPLYV(YY Z X) APPLYV(YY Y X))
+                - =(F_17(X U Y ZZ XX YY Z V) F_18(X U Y ZZ XX YY Z V))  + =(E(F_19(V) V) E(F_20(V) V))
+  A14  : ALL X,Y,Z:ELEMENT  U,V:INDEX  W,XX:INDEXMENGE  YY:VERKN  ZZ:MENGE  
+              - VORAUSSETZUNG315A(ZZ YY XX W Z V)  - EL(Z U(V))  - EL(Y U(V))  - EL-IND(U XX)
+                + EL(F_14(U Y ZZ XX YY Z V) G(U V))
+                - =(APPLYV(YY E(F_15(U Y ZZ XX YY Z V) V) F_16(U Y ZZ XX YY Z V)) Y)  - EL(X ZZ)
+                - =(APPLYV(YY Z X) APPLYV(YY Y X))  - =(F_17(X U Y ZZ XX YY Z V) F_18(X U Y ZZ XX YY Z V))
+                + =(E(F_19(V) V) E(F_20(V) V))
+  A15  : ALL X,Y,Z:ELEMENT  U,V:INDEX  W,XX:INDEXMENGE  YY:VERKN  ZZ:MENGE  
+              - VORAUSSETZUNG315A(ZZ YY XX W Z V)  - EL(Z U(V))  - EL(Y U(V))  - EL-IND(U XX)
+                + EL(F_14(U Y ZZ XX YY Z V) G(U V))  + EL(F_16(U Y ZZ XX YY Z V) G(U V))  - EL(X ZZ)
+                - =(APPLYV(YY Z X) APPLYV(YY Y X))  - =(F_17(X U Y ZZ XX YY Z V) F_18(X U Y ZZ XX YY Z V))
+                + =(E(F_19(V) V) E(F_20(V) V))
+
+
+
+
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+  T16  : + HG(C_5 C_8)
+  T17  : + MINIMAL-BED-L(C_5 C_8)
+  T18  : + MINIMAL-BED-R(C_5 C_8)
+  T19  : ALL X:INDEX  - EL-IND(X C_9)  + LIDEAL(U(X) C_5 C_8)
+  T20  : ALL X:INDEX  - EL-IND(X C_9)  + MINIMAL(U(X) C_5 C_8)
+  T21  : ALL X:INDEX  - EL-IND(X C_4)  + RIDEAL(U(X) C_5 C_8)
+  T22  : ALL X:INDEX  - EL-IND(X C_4)  + MINIMAL(U(X) C_5 C_8)
+  T23  : + EL-IND(C_7 C_9)
+  T24  : + EL(C_6 C_5)
+  T25  : + EL-IND(C_3 C_4)
+  T26  : + VORAUSSETZUNG315A(C_5 C_8 C_9 C_4 C_6 C_7)
+  T27  : ALL X:INDEX  + EL-IND(X C_9)
+  T28  : ALL X:INDEX  + =(F*X(U(C_7) C_6 C_8) U(X))
+  T29  : ALL X:INDEX  + ABBILDUNG(F_21(X) U(C_7) U(X))
+  T30  : ALL X:ELEMENT  Y:INDEX  + ABBVOR(F_21(Y) X APPLYV(C_8 X C_6))
+  T31  : ALL X:INDEX  - INJEKTIV(F_21(X) U(C_7) U(X))
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+REFUTATION ( FAILURE : ABORTED.MAXSTEPS )
+
+INITIAL CLAUSES :     A1  : ALL X:ANY  + =(X X)
+                      A2  : ALL X:INDEX  Y:ELEMENT  Z,U:INDEXMENGE  V:VERKN  W:MENGE  
+                                 - VORAUSSETZUNG315A(W V U Z Y X)  - EL-IND(F_1(U X V Y) U)
+                                   + =(F*X(U(X) Y V) U(F_2(U X V Y)))
+                      A3  : ALL X,Y:MENGE  Z:ABB  - ABBILDUNG(Z Y X)  - =(F_4(X Y Z) F_5(X Y Z))  + INJEKTIV(Z Y X)
+                      A4  : ALL X,Y:MENGE  Z:ABB  
+                                 - ABBILDUNG(Z Y X)  + =(APPLYA(Z F_4(X Y Z)) APPLYA(Z F_5(X Y Z)))  + INJEKTIV(Z Y X)
+                      A5  : ALL X,Y:ELEMENT  Z,U:MENGE  V:ABB  
+                                 - ABBILDUNG(V U Z)  - ABBVOR(V F_3(V Y) Y)  + =(APPLYA(V X) Y)
+                      A6  : ALL X,Y,Z,U,V,W:ELEMENT  XX:VERKN  
+                                 - =(W APPLYV(XX V U))  - =(Z APPLYV(XX Y X))  - =(V Y)  - =(U X)  + =(W Z)
+                      A7  : ALL X,Y:ELEMENT  Z,U:INDEX  V,W:INDEXMENGE  XX:VERKN  YY:MENGE  
+                                 - VORAUSSETZUNG315A(YY XX W V Y U)  - EL-IND(U W)  - EL-IND(Z V)  - EL(X U(U))
+                                   - EL(F_6(Z X V XX U) G(Z U))  + =(APPLYV(XX E(F_7(X V XX U) U) F_8(X V XX U)) X)
+                      A8  : ALL X,Y:INDEX  Z,U:ELEMENT  V,W:INDEXMENGE  XX:VERKN  YY:MENGE  
+                                 - VORAUSSETZUNG315A(YY XX W V U Y)  - EL(U U(Y))  - EL(Z U(Y))  - EL-IND(X W)
+                                   - =(APPLYV(XX E(F_9(X Z U W Y XX) Y) F_10(X Z U W Y XX)) U)
+                                   - =(APPLYV(XX E(F_11(X Z U W Y XX) Y) F_12(X Z U W Y XX)) Z)  + =(C_2 C_1)
+                      A9  : ALL X,Y:INDEX  Z,U:ELEMENT  V,W:INDEXMENGE  XX:VERKN  YY:MENGE  
+                                 - VORAUSSETZUNG315A(YY XX W V U Y)  - EL(U U(Y))  - EL(Z U(Y))  - EL-IND(X W)
+                                   - =(APPLYV(XX E(F_9(X Z U W Y XX) Y) F_10(X Z U W Y XX)) U)
+                                   + EL(F_12(X Z U W Y XX) G(X Y))  + =(C_2 C_1)
+                      A10 : ALL X,Y:INDEX  Z,U:ELEMENT  V,W:INDEXMENGE  XX:VERKN  YY:MENGE  
+                                 - VORAUSSETZUNG315A(YY XX W V U Y)  - EL(U U(Y))  - EL(Z U(Y))  - EL-IND(X W)
+                                   + EL(F_10(X Z U W Y XX) G(X Y))
+                                   - =(APPLYV(XX E(F_11(X Z U W Y XX) Y) F_12(X Z U W Y XX)) Z)  + =(C_2 C_1)
+                      A11 : ALL X,Y:INDEX  Z,U:ELEMENT  V,W:INDEXMENGE  XX:VERKN  YY:MENGE  
+                                 - VORAUSSETZUNG315A(YY XX W V U Y)  - EL(U U(Y))  - EL(Z U(Y))  - EL-IND(X W)
+                                   + EL(F_10(X Z U W Y XX) G(X Y))  + EL(F_12(X Z U W Y XX) G(X Y))  + =(C_2 C_1)
+                      A12 : ALL X,Y,Z:ELEMENT  U,V:INDEX  W,XX:INDEXMENGE  YY:VERKN  ZZ:MENGE  
+                                 - VORAUSSETZUNG315A(ZZ YY XX W Z V)  - EL(Z U(V))  - EL(Y U(V))  - EL-IND(U XX)
+                                   - =(APPLYV(YY E(F_13(U Y ZZ XX YY Z V) V) F_14(U Y ZZ XX YY Z V)) Z)
+                                   - =(APPLYV(YY E(F_15(U Y ZZ XX YY Z V) V) F_16(U Y ZZ XX YY Z V)) Y)  - EL(X ZZ)
+                                   - =(APPLYV(YY Z X) APPLYV(YY Y X))
+                                   - =(F_17(X U Y ZZ XX YY Z V) F_18(X U Y ZZ XX YY Z V))
+                                   + =(E(F_19(V) V) E(F_20(V) V))
+                      A13 : ALL X,Y,Z:ELEMENT  U,V:INDEX  W,XX:INDEXMENGE  YY:VERKN  ZZ:MENGE  
+                                 - VORAUSSETZUNG315A(ZZ YY XX W Z V)  - EL(Z U(V))  - EL(Y U(V))  - EL-IND(U XX)
+                                   - =(APPLYV(YY E(F_13(U Y ZZ XX YY Z V) V) F_14(U Y ZZ XX YY Z V)) Z)
+                                   + EL(F_16(U Y ZZ XX YY Z V) G(U V))  - EL(X ZZ)  - =(APPLYV(YY Z X) APPLYV(YY Y X))
+                                   - =(F_17(X U Y ZZ XX YY Z V) F_18(X U Y ZZ XX YY Z V))
+                                   + =(E(F_19(V) V) E(F_20(V) V))
+                      A14 : ALL X,Y,Z:ELEMENT  U,V:INDEX  W,XX:INDEXMENGE  YY:VERKN  ZZ:MENGE  
+                                 - VORAUSSETZUNG315A(ZZ YY XX W Z V)  - EL(Z U(V))  - EL(Y U(V))  - EL-IND(U XX)
+                                   + EL(F_14(U Y ZZ XX YY Z V) G(U V))
+                                   - =(APPLYV(YY E(F_15(U Y ZZ XX YY Z V) V) F_16(U Y ZZ XX YY Z V)) Y)  - EL(X ZZ)
+                                   - =(APPLYV(YY Z X) APPLYV(YY Y X))
+                                   - =(F_17(X U Y ZZ XX YY Z V) F_18(X U Y ZZ XX YY Z V))
+                                   + =(E(F_19(V) V) E(F_20(V) V))
+                      A15 : ALL X,Y,Z:ELEMENT  U,V:INDEX  W,XX:INDEXMENGE  YY:VERKN  ZZ:MENGE  
+                                 - VORAUSSETZUNG315A(ZZ YY XX W Z V)  - EL(Z U(V))  - EL(Y U(V))  - EL-IND(U XX)
+                                   + EL(F_14(U Y ZZ XX YY Z V) G(U V))  + EL(F_16(U Y ZZ XX YY Z V) G(U V))  - EL(X ZZ)
+                                   - =(APPLYV(YY Z X) APPLYV(YY Y X))
+                                   - =(F_17(X U Y ZZ XX YY Z V) F_18(X U Y ZZ XX YY Z V))
+                                   + =(E(F_19(V) V) E(F_20(V) V))
+                      T16 : + HG(C_5 C_8)
+                      T17 : + MINIMAL-BED-L(C_5 C_8)
+                      T18 : + MINIMAL-BED-R(C_5 C_8)
+                      T19 : ALL X:INDEX  - EL-IND(X C_9)  + LIDEAL(U(X) C_5 C_8)
+                      T20 : ALL X:INDEX  - EL-IND(X C_9)  + MINIMAL(U(X) C_5 C_8)
+                      T21 : ALL X:INDEX  - EL-IND(X C_4)  + RIDEAL(U(X) C_5 C_8)
+                      T22 : ALL X:INDEX  - EL-IND(X C_4)  + MINIMAL(U(X) C_5 C_8)
+                      T23 : + EL-IND(C_7 C_9)
+                      T24 : + EL(C_6 C_5)
+                      T25 : + EL-IND(C_3 C_4)
+                      T26 : + VORAUSSETZUNG315A(C_5 C_8 C_9 C_4 C_6 C_7)
+                      T27 : ALL X:INDEX  + EL-IND(X C_9)
+                      T28 : ALL X:INDEX  + =(F*X(U(C_7) C_6 C_8) U(X))
+                      T29 : ALL X:INDEX  + ABBILDUNG(F_21(X) U(C_7) U(X))
+                      T30 : ALL X:ELEMENT  Y:INDEX  + ABBVOR(F_21(Y) X APPLYV(C_8 X C_6))
+                      T31 : ALL X:INDEX  - INJEKTIV(F_21(X) U(C_7) U(X))
+
+A3,3 & T31,1   -->    R1  : ALL X:INDEX  - ABBILDUNG(F_21(X) U(C_7) U(X))
+                                           - =(F_4(U(X) U(C_7) F_21(X)) F_5(U(X) U(C_7) F_21(X)))
+
+R1,1 & T29,1   -->    R2  : ALL X:INDEX  - =(F_4(U(X) U(C_7) F_21(X)) F_5(U(X) U(C_7) F_21(X)))
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+THE THEOREM(S) COULD NOT BE PROVED.
+

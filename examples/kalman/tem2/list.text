@@ -1,0 +1,75 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 41.1 EQUALITY 16.1                                  *
+                     *           DATE: 20-APR,1990  17:02                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 20-APR,1990 17:01 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * ITERATED QUANTIFIERS
+             EX X ALL Y P (X Y)
+             
+   Theorems: ALL Y EX X P (X Y)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+           * A2:   All x:Any + P(c_1 x)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T3: All x:Any - P(x c_2)
+
+
+
+
+
+
+             Initial Operations on Theorems
+             ==============================
+
+
+          
+   T3,1 & A2,1  --> * R1: []
+   
+
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+

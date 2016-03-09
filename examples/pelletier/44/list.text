@@ -1,0 +1,105 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 34.2 EQUALITY 16.1                                  *
+                     *           DATE: 01-NOV,1989  21:24                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 01-NOV,1989 21:24 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * AXIOMS *
+             ALL X F (X) IMPL (EX Y G (Y) AND H (X Y)) AND (EX Y G (Y) AND NOT H (X Y))
+             EX X J (X) AND (ALL Y G (Y) IMPL H (X Y))
+             
+   Theorems: * THEOREMS *
+             EX X J (X) AND NOT F (X)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+           * A1:   + J(c_1)
+             A2:   All x:Any - F(x)  + G(f_1(x))
+             A3:   All x:Any - F(x)  + H(x f_1(x))
+           * A4:   All x:Any - F(x)  + G(f_2(x))
+           * A5:   All x:Any - F(x)  - H(x f_2(x))
+           * A6:   All x:Any - G(x)  + H(c_1 x)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T7: All x:Any - J(x)  + F(x)
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   The following Options have been Changed:NIL
+
+   GEN_SPLITTING   0
+   PR_OPTIONS   NIL
+
+   
+   Initial Clauses:  * A1:  + J(c_1)
+                       A2:  All x:Any - F(x)  + G(f_1(x))
+                       A3:  All x:Any - F(x)  + H(x f_1(x))
+                     * A4:  All x:Any - F(x)  + G(f_2(x))
+                     * A5:  All x:Any - F(x)  - H(x f_2(x))
+                     * A6:  All x:Any - G(x)  + H(c_1 x)
+                     * T7:  All x:Any - J(x)  + F(x)
+                     
+
+   
+   A1,1 & T7,1  -->  * R1:  + F(c_1)
+   
+   A6,2 & A5,2  -->  * R2:  - G(f_2(c_1))  - F(c_1)
+   
+   R2,2 & T7,2  -->  * R3:  - G(f_2(c_1))  - J(c_1)
+   
+   R3,2 & A1,1  -->  * R4:  - G(f_2(c_1))
+   
+   R4,1 & A4,2  -->  * R5:  - F(c_1)
+   
+   R5,1 & R1,1  -->  * R6:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 6 seconds

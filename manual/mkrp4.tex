@@ -1,0 +1,255 @@
+\chapter{The MKRP-Editor}
+\label{TheMKRPEditor}
+
+
+{\sc Markgraf Karl} has an own syntax-directed editor for the 
+sorted logic formulae, written in PLL, but it is not advisable to use it 
+in its full extent. At the end of the chapter we give hints  how to handle
+ the formula input on different machines. On Symbolics computers the Zmacs 
+editor is integrated into the system. 
+
+In the {\sc Mkrp}-editor the formulae are kept in two 
+different areas: if a formula was accepted by the compiler, it is included 
+into the active area. In this case symbol table entries and prefix form 
+exist for the formula and are accessible.
+Other formulae (e.g.\ such with syntax errors) are stored in the passive 
+area. Thus even erroneous input is not lost and the passive area can be 
+used as a scratch pad. 
+
+When terminated the editor returns the list of the formulae in the active 
+area for further processing by the theorem prover. The passive 
+formulae are not considered. 
+
+Below the editor commands are listed. Several commands can be
+concatenated by the separator {\tt \_}. Every command must begin with
+an atom, the command name. In many cases the command name can be
+omitted for the INSERT command.
+
+\newcommand\edc[2]{\pagebreak[3]{\bf #1}\\[1mm] #2}
+
+\index{I[NSERT]}\index{editor command I[NSERT]}\edc{I[NSERT] $<$FORMULA$>$ \\
+$<$FORMULA$>$}%                
+{If formula $<$FORMULA$>$ is syntactically and semantically correct, it
+ will be 
+inserted as last one into the active area, else as first one into the
+ passive area.}
+
+\index{D[ELETE]}\index{editor command D[ELETE]}\edc{D[ELETE] [$<$FROM$>$] [--] [$<$TO$>$]\\
+D[ELETE] [$<$FROM$>$] [/] [$<$TO$>$]}%                
+{If $<$TO$>$ is greater than or equal to the number of the last formula in 
+the active area, the 
+formulae from $<$FROM$>$ to $<$TO$>$ will be deleted. 
+
+\begin{tabular}{lll}
+Examples:&	D--     &	deletes all formulae, \\
+&	D 2&	deletes formula 2,\\
+&	D 3--&	deletes all formulae from the third one, \\
+&	D&	deletes the last formula in the active area if it exists, \\
+&& else the first one in the passive area. 
+\end{tabular}}
+
+\index{+[SHIFT]}\index{editor command +[SHIFT]}\edc{+[SHIFT] [$<$NUMBER$>$]\\
+++[SHIFT]}%                
+{+SHIFT shifts the first $<$NUMBER$>$ formulae of the passive area into the 
+active  area, if they are syntactically and semantically correct. Default
+ of $<$NUMBER$>$ is 1. 
+++SHIFT shifts all formulae. 
+\begin{tabular}{lccc}
+Example: &	* 1 *       &&                   * 1 *\\
+&	   2        &    + 2   &         * 2 *\\
+&	   3   &  $\longrightarrow$   &   * 3 *\\
+&	   4      &&                         4
+\end{tabular}}
+
+\index{--[SHIFT]}\index{editor command --[SHIFT]}\edc{--[SHIFT] 
+[$<$NUMBER$>$]\\
+-- --[SHIFT]}%                
+{--SHIFT shifts the last $<$NUMBER$>$ formulae of the active area into the 
+passive area. Default of $<$NUMBER$>$ is 1. -- --SHIFT shifts all formulae. 
+
+\begin{tabular}{lccc}
+Example:	&* 1 *      &     --      &        * 1 *\\
+	&* 2 * &   $\longrightarrow$  &      2
+\end{tabular}}
+
+\index{E[DIT]}\index{editor command E[DIT]}\edc{E[DIT] [$<$NR$>$]}%
+{The Lisp-Editor is called for the formula $<$NR$>$.
+If the active area is not empty, the default of $<$NR$>$ is the number of 
+the last formula in the active area, else 1.}
+
+\index{C[HANGE]}\index{editor command C[HANGE]}\edc{C[HANGE] [$<$NR$>$]}%
+{The formula $<$NR$>$ is printed on the terminal. The user should enter a new 
+formula to replace the printed one. 
+If the active area is not empty, the default of $<$NR$>$ is the number of the
+ last 
+formula in the active area, else 1. }
+
+\index{R[EAD]}\index{editor command R[EAD]}\edc{R[EAD] $<$FILE$>$}%
+{$<$FILE$>$ must be created by the WRITE-command or can alternatively be in
+ the format acceptable to the GET-command. If the editor is in the 
+initial state, the formulae are inserted into the same areas containing 
+them at write time or are tried to be shifted into the active area if they
+ are acceptable to the GET-command. Otherwise all formulae are inserted into
+ the passive 
+area. }
+
+\index{W[RITE]}\index{editor command W[RITE]}\edc{W[RITE] $<$FILE$>$}%
+{The contents of the editor will be saved on file $<$FILE$>$, so that it can
+ be 
+restored with the read-command. }
+
+\index{W[RITE]G[ET]}\index{editor command W[RITE]G[ET]}\edc{W[RITE]G[ET] $<$FILE$>$}%
+{The contents of the active area is written on file $<$FILE$>$ in a format
+ acceptable to the GET-command.}
+
+\index{G[ET]}\index{editor command G[ET]}\edc{G[ET] $<$FILE$>$}%
+{$<$FILE$>$ contains a sequence of formulae in the following format:
+\begin{center}
+($<$FORMULA$_1$$>$)\\
+($<$FORMULA$_2$$>$)\\
+$\vdots$\\
+($<$FORMULA$_n$$>$)
+\end{center}
+The formulae are inserted into the passive area. If the system is
+installed with communication to an editor (e.g.\ Zmacs on Symbolics)
+they are then all shifted into the
+active area exactly as if SHIFT++ is executed. }
+
+\index{EXEC[UTE]}\index{editor command EXEC[UTE]}\edc{EXEC[UTE] $<$FILE$>$}%
+{The file $<$FILE$>$ contains a sequence of editor commands in the following 
+format:
+\begin{center}
+$<$COMMAND$_1$$>$ {\tt \_}\\
+$<$COMMAND$_2$$>$ {\tt \_}\\
+$\vdots$\\
+$<$COMMAND$_n$$>$ {\tt \_}\\
+OK
+\end{center}
+The commands will be executed. For further dialogue the terminal is used.
+Take care of the right number of closing parentheses. }
+
+\index{SW[ITCH]}\index{editor command SW[ITCH]}\edc{SW[ITCH] [$<$NR$_1$$>$] [$<$NR$_2$$>$]}%
+{If formula $<$NR$_1$$>$ and formula $<$NR$_2$$>$ are in the passive area,
+they will be exchanged. 
+If the user only gives one number, this and the first formula are taken,
+switch alone exchanges the first and the last formula of the passive area. }
+
+\index{U[NDO]}\index{editor command U[NDO]}\edc{U[NDO] [$<$NUMBER$>$]\\
+U[NDO] ON\\
+U[NDO] OFF}%                
+{UNDO ON and UNDO OFF are switching undo-mode ON or OFF, respectively. 
+UNDO undoes the last $<$NUMBER$>$ of destructive commands,  as INSERT, 
+DELETE, EDIT, CHANGE, +SHIFT, --SHIFT, READ, and GET.
+Giving no $<$NUMBER$>$ means one command. }
+
+\index{REP[LACE]}\index{editor command REP[LACE]}\edc{REP[LACE] $<$OLD$>$ $<$NEW$>$\\
+X $<$OLD$>$ $<$NEW$>$}%                
+{REPLACE replaces the symbol $<$OLD$>$ by the symbol $<$NEW$>$ in the active
+and 
+passive area as well as in the symbol-table. REPLACE can not be undone, nor 
+can be any of the commands executed prior to a replace. }
+
+\index{PP[RINT]}\index{editor command PP[RINT]}\edc{PP[RINT] $<$FILE$>$}%
+{PPRINT writes the symbol-table and all formulae in a readable form on the 
+given file. }
+
+\index{S[HOW]}\index{editor command S[HOW]}\edc{S[HOW] $<$X$_1$$>$...$<$X$_n$$>$\\
+S[HOW] --}%                
+{Each $<$X$_i$$>$ must be a symbol-name or a list of kinds. 
+There are the kinds S[ORT], F[UNCTION], P[REDICATE], and C[ONSTANT]. All 
+symbols that are so specified will be shown on the terminal. 
+
+\begin{tabular}{lll}
+Example:&	S (P) H G & will show all predicates and the symbols H and G,\\
+	& S--      &  all symbols. 
+\end{tabular}}
+
+\index{SS[HOW]}\index{editor command SS[HOW]}\edc{SS[HOW] 
+$<$X$_1$$>$...$<$X$_n$$>$\\
+SS[HOW] --}%                
+{SSHOW is a more beautyful version of show.
+Each $<$X$_i$$>$ must be a symbol-name or a list of kinds. 
+There are the kinds S[ORT], F[UNCTION], P[REDICATE], and C[ONSTANT]. All 
+symbols that are so specified will be shown on the terminal.
+
+\begin{tabular}{lll}
+Example:&	SS (P) G & will show all predicates and symbol G,\\
+	& SS--      &  all symbols. 
+\end{tabular}}
+
+\index{PRE[FIX]}\index{editor command PRE[FIX]}\edc{PRE[FIX] [$<$FROM$>$] [--] [$<$TO$>$]\\
+PRE[FIX] [$<$FROM$>$] [/] [$<$TO$>$]\\
+F [$<$FROM$>$] [--] [$<$TO$>$]\\
+F [$<$FROM$>$] [/] [$<$TO$>$]}%                
+{PREFIX or F writes the compiled (prefix) form of the formulae $<$FROM$>$  to 
+$<$TO$>$ on the screen. 
+\begin{tabular}{lll}
+Examples:&	PRE-- or  PRE/  & all formulae of the active area,\\
+&	PRE 3        &       formula 3, if active, \\
+&	PRE --5        &     the formulae 1 to 5, if they are in the active 
+area.
+\end{tabular}}
+
+
+
+\index{IN[FIX]}\index{editor command IN[FIX]}\edc{IN[FIX] [$<$FROM$>$] [--] [$<$TO$>$]\\
+IN[FIX]  [$<$FROM$>$] [/] [$<$TO$>$]\\
+L[IST]   [$<$FROM$>$] [--] [$<$TO$>$]\\
+L[IST]   [$<$FROM$>$] [/] [$<$TO$>$]}%                
+{ INFIX or LIST writes the infixform (input-language) of the formulae 
+$<$FROM$>$ to $<$TO$>$ on the screen.
+
+\begin{tabular}{lll}
+Examples: &	IN-- or IN/  & all formulae,\\
+&	IN7	&   the seventh formula, \\
+&	IN --5	&   the formulae 1 to 5\\
+&	IN	 &  the last formula of active area, or if it doesn't 
+exist \\
+&& the first one of the passive area. 
+\end{tabular}}
+
+\index{ST[ATE]}\index{editor command ST[ATE]}\edc{ST[ATE]}%
+{STATE shows the user, how the formulae are distributed on the areas. 
+
+\begin{tabular}{llll}
+Example:	& AREA 1: & 3   formulae   &   (active area) \\
+&	AREA 0: & 1   formula     &   (passive area)
+\end{tabular}}
+
+\index{OK}\index{editor command OK}\edc{OK}%
+{OK terminates the editor and returns to the calling module. 
+OK used on a file for the execute command terminates the execute 
+command. }
+
+\index{!}\index{editor command !}\edc{!}%
+{! terminates the editor and returns to the {\sc Mkrp}-operatingsystem loop. 
+! in the input of a command cancels it.} 
+
+\index{LISP}\index{editor command LISP}\edc{LISP}%                
+{LISP  calls the LISP system.
+You can return to the editor by OK.}
+
+\index{V}\index{editor command V}\edc{V ON\\
+V [OFF]}%                
+{V ON and V T switch on the possibility to manually control the scrolling of the screen (``more mode''). 
+V OFF and V switch it off. This doesn't work for all machines.} 
+
+\index{H[ELP]}\index{editor command H[ELP]}\edc{H[ELP] [$<$COMMAND$>$]}%     
+{HELP  prints a list of all possible commands on the screen. 
+HELP $<$COMMAND$>$ explaines the command $<$COMMAND$>$.}
+
+\index{HH[ELP]}\index{editor command HH[ELP]}\edc{HH[ELP] $<$FILE$>$}%        
+{HHELP prints explanations for all possible commands on file
+$<$FILE$>$ corresponding to this chapter of the manual.}
+
+
+
+
+In the version running on Symbolics machines, the editor Zmacs should be used to 
+edit the formulae. It is called from the editor subsystem of {\sc Mkrp} by the 
+command I[NSERT] or G[ET] without a parameter.
+
+In both cases every formula has to be enclosed in parentheses as specified for the GET-command. It is then 
+actually inserted into the active area of {\sc Mkrp} by marking it for example
+with the mouse and typing the key $<$END$>$. If more 
+than one formula is marked, all of them are entered in order.

@@ -1,0 +1,689 @@
+;;; -*- mode: lisp; syntax: common-lisp; package: mkrp -*-
+
+;;; Copyright (C) 1991 AG Siekmann, 
+;;;                       Fachbereich Informatik, Universitaet des Saarlandes, 
+;;;                       Saarbruecken, Germany
+;;; 
+;;; This file is part of Markgraf Karl Refutation Procedure (MKRP).
+;;; 
+;;; MKRP is distributed in the hope that it will be useful,
+;;; but WITHOUT ANY WARRANTY.  No author or distributor
+;;; accepts responsibility to anyone for the consequences of using it
+;;; or for whether it serves any particular purpose or works at all,
+;;; unless he says so in writing.  
+;;; 
+;;; Everyone is granted permission to copy, modify and redle.clauistribute
+;;; MKRP, but only if the it is not used for military purposes or any
+;;; military research. It is also forbidden to use MKRP in nuclear plants
+;;; or nuclear research, and for verifying programs in military 
+;;; and nuclear research.  A copy of this license is
+;;; supposed to have been given to you along with MKRP so you
+;;; can know your rights and responsibilities.  
+;;; Among other things, the copyright notice
+;;; must be preserved on all copies.  
+
+(IN-PACKAGE "MARKGRAF-KARL" :use '("CL") :nicknames '("MKRP"))
+
+
+
+(defvar rescounter -1)
+(defvar faccounter -1)
+(defvar paracounter -1)
+(defvar po*indices nil "To record old literals")
+(DEFVAR PO*FILE NIL)
+(defvar PO*INDENTATION 0 "an integer, describing the number of blanks needed at the beginning of a line for formatted output")
+
+
+(defun PO-INIT.COUNTERS ()
+  
+  (declare (edited  "06-MAY-1993 12:30")
+	   (authors KROENER)
+	   (input   "")
+	   (effect  "resets the counters for resolution, factoring and paramodulation")
+	   (value   "undefined"))
+
+  (setq rescounter -1)
+  (setq faccounter -1)
+  (setq paracounter -1))
+ 
+
+(defun PO-PCONSTANTS (CONSTANTS)
+
+  (declare (edited  "19-APR-1993 17:58")
+	   (authors KROENER)
+	   (input   "list of constants")
+	   (effect  "prints name and sort")
+	   (value   "undefined"))
+
+  (when PO*FILE
+    (cond ((consp CONSTANTS)
+	   (format PO*FILE " (~A ~A)" (first (DT-PNAME CONSTANTS)) (DT-CONSTANT.SORT (first CONSTANTS)))
+	   (PO-PCONSTANTS (rest CONSTANTS))))))
+
+
+(defun PO-PPREDICATES (predicates)
+
+  (declare (edited  "19-APR-1993 17:58")
+	   (authors KROENER)
+	   (input   "list of predicates")
+	   (effect  "prints name and sorts")
+	   (value   "undefined"))
+
+  (when PO*FILE
+    (cond ((consp predicates)
+	   (let ((name (dt-predicate.PNAME (first predicates)))
+		 (types (cons 'o (reverse (dt-predicate.DOMAINSORTS (first predicates))))))
+	     (when (not (or (equal '"=" name) (equal '"FALSE" name) (equal '"TRUE" name)))
+	       (format PO*FILE " (~A ~A)" name types))
+	       (PO-PPREDICATES (rest predicates)))))))
+
+
+#+comment(defun PO-PFUNCTIONS (functions)
+
+  (declare (edited  "19-APR-1993 17:58")
+	   (authors KROENER)
+	   (input   "list of functions")
+	   (effect  "prints name and sorts")
+	   (value   "undefined"))
+  
+  (when PO*FILE
+    (cond ((consp functions)
+	   (format PO*FILE " (~A (~A ~{~A~}))"
+		     (dt-function.PNAME (first functions))
+		     (dt-function.max.range.sort (first functions))
+		     (reverse (dt-function.max.domain.sorts (first functions))))
+	   (PO-PFUNCTIONS (rest functions))))))
+
+(defun PO-PFUNCTIONS (functions)
+
+  (declare (edited  "19-APR-1993 17:58")
+	   (authors KROENER)
+	   (input   "list of functions")
+	   (effect  "prints name and sorts")
+	   (value   "undefined"))
+  
+  (when PO*FILE
+    (cond ((consp functions)
+	   (format PO*FILE " (~A (~A ~{ ~A~}))"
+		     (dt-function.PNAME (first functions))
+		     (dt-function.max.range.sort (first functions))
+		     (reverse (dt-function.max.domain.sorts (first functions))))
+	   (PO-PFUNCTIONS (rest functions))))))
+
+
+
+(defun PO-CONSTRUCT.START (FILE comment)
+  
+  (declare (edited  "19-APR-1993 18:06")
+	   (authors KROENER)
+	   (input   "code file")
+	   (effect  "prints problem, <name>, <status>, parts of <problem>")
+	   (value   "undefined"))
+  
+  (PO-INIT.COUNTERS)
+  (when (SETQ PO*FILE FILE)
+    (setq po*indices nil)
+    (format PO*FILE "~%(problem ~A proved" comment)
+    (format PO*FILE "~%~4T((type-constants")
+    (mapcar #'(lambda (constant)
+		(format PO*FILE " ~A" constant))
+	    (DT-SORT.ALL))
+    (PRINC ")" PO*FILE)
+    (format  PO*FILE "~%~4T(constants")
+    (PO-PCONSTANTS (DT-CONSTANT.ALL))
+    (PO-PPREDICATES (DT-PREDICATE.ALL))
+    (PO-PFUNCTIONS  (DT-FUNCTION.ALL))
+    (princ ")" PO*FILE)))
+
+(defun po-modify-quantor (element)
+  
+  (declare (edited  "17-MAY-1993 18:41")
+	   (authors KROENER)
+	   (input   "first element of a clause")
+	   (effect  "changes all->forall and ex->exists")
+	   (value   "modified element"))
+  
+  (let ((foo1 (subst 'exists 'ex element)))
+    (let ((foo2 (subst 'forall 'all foo1)))
+      foo2)))
+
+
+(defun po-rearrange (obj)
+
+  (declare (edited  "03-JUN-1993 19:02")
+	   (authors KROENER)
+	   (input   "a predicate in mkrp-notation")
+	   (effect  "changes obj to post-notation")
+	   (value   "modified predicate"))
+
+  (if (listp obj)
+      (let ((foo1 (first obj))
+	    (foo2 (second obj)))
+	(if (atom foo1)
+	    (cons (dt-pname foo1)
+		  (mapcar #'(lambda (foo2.part)
+			      (dt-pname foo2.part))
+			  foo2))
+	  (mapcar #'(lambda (obj.part) (po-rearrange obj.part)) obj)))))
+
+
+(defun po-modify-pred (term)
+  
+  (declare (edited  "03-JUN-1993 19:05")
+	   (authors KROENER)
+	   (input   "a term")
+	   (effect  "modifies the predicates of the term")
+	   (value   "modified term"))
+
+  (cond ((listp term)
+	 (let* ((op1 (first term))
+		(op (if (listp op1)
+			(first op1)
+		      op1)))
+	   (cond ((equal op 'NOT)
+		  (list op (po-modify-pred (second term))))
+		 ((member op '(IMPL AND OR))
+		  (list op
+			(po-modify-pred (second term))
+			(po-modify-pred (third term))))
+		 (t (po-rearrange term)))))))
+
+
+(defun po-treat-formula (formula)
+  
+  (declare (edited  "29-APR-1993 20:11")
+	   (authors KROENER)
+	   (input   "formula (quantifier variable rest)")
+	   (effect  "changes mkrp-formula to post-formula")
+	   (value   "formula (quantifier (lam (variable-declaration) rest))"))
+  
+  (if (listp formula)
+      (let ((foo (po-modify-quantor (first formula))))
+	(if (member foo '(forall exists))
+	    (let ((full-var (list (second formula) (DT-VARIABLE.SORT (second formula))))
+		  (body (third formula)))
+	      (list foo (list 'lam full-var (po-treat-formula body))))
+	  (if (listp formula)
+	      (po-modify-pred formula))) )))
+
+(defun po-axioms.start ()
+  (when PO*FILE
+	(format PO*FILE "~%~4T(resolution-proof~%~8T(cnf (")))
+
+(DEFUN po-theoremS.END (RESULT)		
+  (when PO*FILE
+	(format po*FILE ")~%~12T(delta-relation)")
+	(PRINC ")" Po*FILE)))
+
+(defun PO-PAXIOMS (axioms.all counter)
+  
+  (declare (edited  "21-APR-1993 17:58")
+	   (authors KROENER)
+	   (input  "list of axioms")
+	   (effect "prints assumption ass1 ...")
+	   (value  "undefined"))
+
+  (WHEN PO*FILE
+	(let* ((axioms1 (remove '+ axioms.all))
+	       (axioms (remove nil axioms1)))
+	  (mapcar #'(lambda (axiom)
+		      (if (NOT (equal axiom '(0)))
+			  (format PO*FILE "~%~4T(assumption ass~D ~A)"
+				  (incf counter) (dt-pname (po-treat-formula axiom)))))
+		  axioms))))
+
+
+(DEFUN PO-PTHEOREMS (theorems.all counter)
+  
+  (declare (edited  "21-APR-1993 17:58")
+	   (authors KROENER)
+	   (input  "list of theorems, normaly 1 theorem")
+	   (effect "prints conclusion  th1 ...")
+	   (value  "undefined"))
+  (let* ((theorems1 (plus-remove-rec theorems.all))
+	 (theorems (nil-remove-rec theorems1)))
+    (WHEN PO*FILE
+	  (mapcar #'(lambda (theorem)
+		      (if (NOT (equal theorem '(0)))
+			  (format PO*FILE "~%~4T(conclusion th~D ~A)"
+				  (incf counter)
+				  (dt-pname (po-treat-formula theorem)))))
+		  theorems))))
+
+
+(DEFUN PO-PREFIX.FORM (AXIOMS THEOREMS)
+  
+  (declare (edited  "19-APR-1993 18:21")
+	   (authors KROENER)
+	   (input  "two lists")
+	   (effect "prints assumptions and conclusions")
+	   (value  "undefined"))
+  
+  (WHEN PO*FILE
+	(PO-PAXIOMS AXIOMS 0)
+	(PO-PTHEOREMS THEOREMS 0)
+	(PRINC ")" PO*FILE)))
+
+
+(DEFUN PO-REFUTATION.START ())
+					; edited: 28-aug-84 10:50:39  by cl
+					; input : a list of lists of integers, a flag indica-
+					;         ting if splitpart is continued, and an in-
+					;         teger (or nil, if new splitpart begins)
+					; effect: prints    <'refutation
+					;                       ('start.time ..in msec..)
+					; value : undefined
+					;  (when PO*FILE
+					;    (format PO*FILE "~&~%(REFUTATION (START.TIME ~D)" (GET-INTERNAL-RUN-TIME))
+					;    (setq PO*INDENTATION 12)
+					;    (PO=OPTIONS PO*FILE))
+
+
+(DEFUN PO-PCLAUSE (CLAUSE FILE &optional record.flag)
+  
+  (declare (edited  "02-MAY-1993 22:09")
+	   (authors KROENER)
+	   (input   "a clause and a filename")
+	   (effect  "prints the clause in the format: (clause address"
+		    "pname parents variables.sorts literals")
+	   (value   "undefined"))
+
+  (when file
+    (format FILE "~%~12T")
+    (PO=CLAUSE CLAUSE FILE t)))
+
+
+(DEFUN PO-PARTIAL.GRAPH (PARTIAL.CLAUSE.LIST)
+  
+  (declare (edited  "02-MAY-1993 21:29")
+	   (authors KROENER)
+	   (input   "list of clauses")
+	   (effect  "prints first part of the <proof-result>")
+	   (value   "undefined"))
+
+  (when (AND PO*FILE PARTIAL.CLAUSE.LIST)
+    (setq PO*INDENTATION (+ PO*indentation 9))
+    (MAPC (FUNCTION (LAMBDA (CLAUSE) (PO-PCLAUSE CLAUSE PO*FILE nil))) PARTIAL.CLAUSE.LIST)
+    (setq PO*INDENTATION (- PO*indentation 9))))
+
+
+
+(DEFUN Po-OPERATION (OPERATION.TYPE ARGUMENTS)
+
+  
+  (declare (edited  "03-JUN-1993 19:19")
+	   (authors PRCKLN KROENER)
+	   (input   "an atom, and arguments according to the type of operation")
+	   (effect  "")
+	   (value   "undefined"))
+
+					; Edited:  02-APO-1992 20:58
+					; Authors: PRCKLN
+					; input : an atom, and arguments according to the type of operation
+					; effect: prints <OPERATION <CLAUSE  ..see PO=CLAUSE..>
+					;                           <op.type ..see PO=op.type..>
+					; value : undefined
+  (when PO*FILE
+	(CASE OPERATION.TYPE
+	      (R.CHAIN   (PO=R.CHAIN ARGUMENTS PO*FILE))
+	      (OTHERWISE (setq PO*INDENTATION (+ PO*indentation 11))
+			 (CASE OPERATION.TYPE
+			       ;; in any case PO=CLAUSE is called first for the resulting clause
+			       (RESOLUTION             (PO=RESOLUTION             ARGUMENTS PO*FILE
+										  (incf rescounter)))
+			       (PARAMODULATION         (PO=PARAMODULATION         ARGUMENTS PO*FILE
+										  (incf paracounter)))
+			       (FACTORIZATION          (PO=FACTORIZATION          ARGUMENTS PO*FILE
+										  (incf faccounter)))
+			       (instantiate            (PO=instantiate            ARGUMENTS PO*FILE))
+			       (REPLACEMENT.OPERATION  (PO=REPLACEMENT.OPERATION  ARGUMENTS PO*FILE
+										  (incf rescounter)))
+			       (DOUBLE.LITERAL         (PO=DOUBLE.LITERAL         ARGUMENTS PO*FILE))
+			       (REWRITE                (PO=REWRITE                ARGUMENTS PO*FILE
+										  (incf paracounter)))
+			       (REWRITE.SYMMETRY       (PO=REWRITE.SYMMETRY       ARGUMENTS PO*FILE))
+			       (REPLACEMENT.RESOLUTION (PO=REPLACEMENT.RESOLUTION ARGUMENTS PO*FILE))
+			       (OTHERWISE              (ERROR "Non-existing operation type: ~S"
+							      OPERATION.TYPE)))
+			 (setq PO*INDENTATION (- PO*indentation 11))))))
+
+(DEFUN PO-REFUTATION.END ()
+  
+  (declare (edited  "06-MAY-1993 12:39")
+	   (authors KROENER)
+	   (input   "")
+	   (effect  "prints '(prover <prover-name> <options>")
+	   (value   "undefined"))
+  
+  (when PO*FILE
+    (format PO*FILE "~%~4T(prover mkrp ")
+    (PO=OPTIONS PO*FILE)
+    (princ ")))" PO*FILE)))
+
+
+(DEFUN PO=OPTIONS (FILE)
+  (when FILE
+    (format file "~%~8T(options~{ ~A~%~8T~})" (OPT-GET.LIST.OPTIONS))))
+
+
+(DEFUN PO=RESOLUTION (LINK.UNI.CLAUSE FILE counter &REST args)
+  
+  
+  (declare (edited  "06-MAY-1993 12:15")
+	   (authors KROENER MIKO)
+	   (input   "a list (link unifier clause), a file and a counter")
+	   (effect  "prints the information to FILE")
+	   (value   "undefined"))
+
+  (when FILE
+	(let ((link (first link.uni.clause))
+	      (uni (second link.uni.clause))
+	      (clause (third link.uni.clause)))
+	  (format FILE "~%~8T(resolution step-~D " counter)
+	  (if args
+	      (PO-PART.CLAUSE args FILE)
+	    (PO=CLAUSE clause FILE))
+	  (PO=LINK.PARENTS link FILE)
+	  (format file " (substitution ~A ~A)"
+		  (dt-pname (uni-unifier.domain uni ))
+		  (dt-pname (uni-unifier.codomain uni))))
+	(princ ")" FILE)))
+
+
+(DEFUN PO=LINK.PARENTS (LINK FILE)
+  
+  (declare (edited  "06-MAY-1993 10:37")
+	   (authors KROENER MIKO)
+	   (input   "a link and a file")
+	   (effect  "writes the parents of the link to FILE")
+	   (value   "undefined"))
+  
+  (when file
+    (format file "(c~A (position ~D)) (c~A (position ~D)) "
+	    (dt-pname (DS-LINK.POSPAR LINK)) (- (DS-LINK.POSLITNO LINK) 1)
+	    (if (member (ds-link.colour link) (ds-link.colours.for 'autolinks))
+		(dt-pname (DS-LINK.POSPAR LINK))
+	      (dt-pname (DS-LINK.NEGPAR LINK)))
+	    (- (DS-LINK.NEGLITNO LINK) 1))))
+
+(DEFUN PO=PARAMODULATION (LINK.UNI.CLAUSE.pos FILE counter)	
+					; Edited:  08-APR-1992 19:06
+					; Authors: PRCKLN CL
+					; input : a list (link unifier clause)  and a file
+					; effect: prints information as described in po=clause
+					;                   and po=link.par respectively
+					; value : undefined
+  (when file
+	(let ((link (first link.uni.clause))
+	      (uni (second link.uni.clause))
+	      (clause (third link.uni.clause)))
+	  (format FILE "~%~8T(paramodulation step-~D " counter)
+	  (PO=CLAUSE clause FILE)
+	  (PO=LINK.par link FILE)
+	  (format file " (substitution ~A ~A)"
+		  (dt-pname (uni-unifier.domain uni)) (dt-pname (uni-unifier.codomain uni)))
+	  (princ ")" FILE))))
+
+
+(DEFUN PO=LINK.PAR (LINK FILE)			
+					; Edited:  08-APR-1992 20:07;
+					; Authors: MKRP CL
+					; input : link# and a file opened for output
+					; effect: prints :  eqpar eqlitno eqfct par litno fct
+					; value : undefined
+  (when file
+    (format file "(c~A (position ~D~{ ~D~})) (c~A (position ~D) ~A)"
+	    (dt-pname (DS-LINK.NEGPAR LINK))
+	    (- (DS-LINK.NEGLITNO LINK) 1)
+	    (mapcar #'1- (ds-link.negfct link))
+	    (dt-pname (DS-LINK.POSPAR LINK))
+	    (- (DS-LINK.POSLITNO LINK) 1)
+	    (if (DT-TAF.IS.LEFT (ds-link.posfct link)) 'lr 'rl))))
+
+
+
+
+
+(DEFUN PO=tksPARAMODULATION (LINK.UNI.CLAUSE FILE counter )
+  
+  (declare (edited  "06-MAY-1993 12:14")
+	   (authors KROENER)
+	   (input   "a list (link unifier clause), a file and a counter")
+	   (effect  "prints the information to FILE")
+	   (value   "undefined"))
+  
+  (when file
+    (let ((link (first link.uni.clause))
+	  (uni (second link.uni.clause))
+	  (clause (third link.uni.clause)))
+      (format FILE "~%(paramodulation step-~D ~A " counter clause)
+      (PO=CLAUSE clause FILE)
+      (PO=LINK.PARENTS link FILE)
+      (format file " (substitution ~A ~A)" (dt-pname (uni-unifier.domain uni)) (dt-pname (uni-unifier.codomain uni))))))
+
+
+(DEFUN PO=R.CHAIN (ARGUMENTS FILE)	; EDITED:  5-SEP-84 16:23:08
+					; INPUT:  A LIST (RESOLVENT TERMLISTS CHAIN-ELEMENT)
+					;         RESOLVENT IS THE NEW CLAUSE,
+					;         CHAIN-ELEMENT IS A LIST
+					;         (UNIFIER CLAUSE LINKS POINTERS LITNOS)
+					;         WHERE CLAUSE IS THE PARENTCLAUSE OF
+					;         RESOLVENT (WHICH IS CREATED BY SIMULTANEUS
+					;         RESOLUTION UPON LINKS WITH 'UNIFIER')
+					;         POINTERS AND LITNOS IS IRRELEVANT.
+					;         TERMLISTS IS THE LIST OF TERMLISTS OF
+					;         THE INTERMEDIATE CLAUSE WHICH WOULD BE
+					;         CREATED BY RESOLUTION UPON THE FIRST ELEMENT
+					;         OF LINKS.
+					; EFFECT: THIS OPERATION IS PROTOCOLLED AS A
+					;         RESOLUTION UPON THE FIRST ELEMENT OF LINKS
+					;         FOLLOWED BY A REPLACEMENT RESOLUTION STEP.
+					; VALUE:  UNDEFINED.
+  (PROG ((RESOLVENT (CAR ARGUMENTS))
+	 (TERMLISTS (SECOND ARGUMENTS))
+	 (UNIFIER (CAR (THIRD ARGUMENTS)))
+	 (CLAUSE (SECOND (THIRD ARGUMENTS)))
+	 (LINKS (THIRD (THIRD ARGUMENTS)));; (LITNOS (CAR (CDDDR (THIRD ARGUMENTS))))
+	 (LITNO 0)
+	 FIRST COLOUR RLINKS DOUBLE.LITS)
+	(SETQ COLOUR (DS-LINK.COLOUR (CAR LINKS)))
+	(SETQ FIRST  (CASE COLOUR
+			   (R  (DS-LINK.THISLITNO (CAR LINKS) CLAUSE))
+			   (SI (DS-LINK.POSLITNO  (CAR LINKS)))
+			   (OTHERWISE (ERROR "ILLEGAL COLOUR IN PO=R.CHAIN: ~A" COLOUR))))
+	(format file "(OPERATION (CLAUSE ~A ~A ~A "
+		RESOLVENT (DS-PNAME RESOLVENT)
+		(CASE COLOUR
+		      (R (LIST CLAUSE (DS-LINK.OTHERPAR (CAR LINKS) CLAUSE)))
+		      (OTHERWISE (LIST CLAUSE))))
+	(PROGN (PRINC "(" FILE)
+	       (MAPC (FUNCTION (LAMBDA (VAR)
+				       (PRINC "(" FILE) (PRINC VAR FILE) (PRINC " . " FILE)
+				       (PRINC (DT-VARIABLE.SORT VAR) FILE) (PRINC ")" FILE)))
+		     (DT-TERMLIST.VARIABLES TERMLISTS))
+	       (PRINC ")" FILE))
+	
+	(progn (PRINC "(" FILE)
+	       (DODOWN (RPTN (DS-CLAUSE.NOLIT CLAUSE))
+		       (PROGN (SETQ LITNO (1+ LITNO))
+			      (COND ((NEQ LITNO FIRST)
+				     (PRINC "(" FILE)
+				     (PRINC (DS-CLAUSE.SIGN CLAUSE LITNO) FILE)
+				     (PRINC " " FILE)
+				     (PRINC (DS-CLAUSE.PREDICATE CLAUSE LITNO) FILE)
+				     (PRINC " " FILE) (PRINC (CAR TERMLISTS) FILE)
+				     (SETQ TERMLISTS (CDR TERMLISTS)) (PRINC ")" FILE)))))
+	       (PRINC "))(" FILE))
+	
+	(CASE COLOUR (SI (PRINC "FACTORIZATION " FILE) (PO=LINK.FAC (CAR LINKS) FILE))
+	      (OTHERWISE (PROGN (PRINC "RESOLUTION " FILE) (PO=LINK.RES (CAR LINKS) FILE))))
+	(PRINC " " FILE) (PRINC UNIFIER FILE) (PRINC " " FILE) (PRINC RESOLVENT FILE) (PRINC "))" FILE)
+	(MAPC
+	 (FUNCTION
+	  (LAMBDA (LINK)
+		  (COND ((EQL 'R (DS-LINK.COLOUR LINK)) (SETQ RLINKS (NCONC1 RLINKS LINK)))
+			(T
+			 (SETQ DOUBLE.LITS
+			       (NCONC1 DOUBLE.LITS
+				       (LIST
+					(CONS RESOLVENT
+					      (COND ((< (DS-LINK.NEGLITNO LINK) FIRST) (DS-LINK.NEGLITNO LINK))
+						    (T (1- (DS-LINK.NEGLITNO LINK)))))
+					(CONS RESOLVENT
+					      (COND ((< (DS-LINK.POSLITNO LINK) FIRST) (DS-LINK.POSLITNO LINK))
+						    (T (1- (DS-LINK.POSLITNO LINK)))))
+					(DS-LINK.RULE LINK))))))))
+	 (CDR LINKS))
+	(COND
+	 ((OR RLINKS DOUBLE.LITS) (PRINC "(OPERATION " FILE) (PO=CLAUSE RESOLVENT FILE)
+	  (PRINC "(REPLACEMENT.OPERATION NIL (" FILE) (PRINC RESOLVENT FILE) (PRINC " " FILE)
+	  (MAPC (FUNCTION (LAMBDA (LINK) (PRINC (DS-LINK.OTHERPAR LINK CLAUSE) FILE) (PRINC " " FILE))) RLINKS) (PRINC ")" FILE)
+	  (COND
+	   (RLINKS (PRINC "(" FILE)
+		   (MAPC
+		    (FUNCTION
+		     (LAMBDA (LINK) (PRINC "((" FILE) (PRINC RESOLVENT FILE) (PRINC " . " FILE)
+			     (SETQ LITNO (DS-LINK.THISLITNO LINK CLAUSE))
+			     (PRINC (COND ((< LITNO FIRST) LITNO) (T (1- LITNO))) FILE) (PRINC ")(" FILE)
+			     (PRINC (DS-LINK.OTHERPAR LINK CLAUSE) FILE) (PRINC " . " FILE)
+			     (PRINC (DS-LINK.OTHERLITNO LINK CLAUSE litno) FILE) (PRINC ")" FILE)
+			     (PRINC (DS-LINK.RULE LINK) FILE)
+			     (PRINC ")" FILE)))
+		    RLINKS)
+		   (PRINC ")" FILE))
+	   (T (PRINC " NIL " FILE)))
+	  (PRINC "(" FILE) (PRINC (OR DOUBLE.LITS " NIL ") FILE)
+	  (MAPC (FUNCTION (LAMBDA (LINK) (PRINC " NIL " FILE))) (CDR RLINKS)) (PRINC ")" FILE)
+	  (PRINC (PO=VARIABLES.SORTS.OF.CODOMAIN NIL) FILE) (PRINC "))" FILE)))))
+
+
+
+(DEFUN PO=REPLACEMENT.RESOLUTION (ARGUMENTS FILE))
+
+
+(DEFUN PO=FACTORIZATION (LINK.UNI.CLAUSE FILE counter)
+
+  (declare (edited  "03-JUN-1993 19:36")
+	   (authors KROENER)
+	   (input   "a list (link unifier clause) and a file")
+	   (effect  "prints a factorization step in post syntax")
+	   (value   "undefined"))
+
+
+  (when file
+    (let ((link (first link.uni.clause))
+	  (uni (second link.uni.clause))
+	  (clause (third link.uni.clause)))
+
+      (when (eq counter 0)
+	(format FILE ")~%~12T(delta-relation))"))
+      (format FILE "~%~8T(factoring step-~D " counter)
+      (PO=CLAUSE clause FILE)
+      (PO=LINK.FAC link FILE)
+      (format file " (substitution ~A ~A)" (dt-pname (uni-unifier.domain uni))
+	      (dt-pname (uni-unifier.codomain uni))))
+    (princ ")" FILE)))
+
+(DEFUN PO=instantiate (UNI.CLAUSE.old FILE))
+
+
+(DEFUN PO=LINK.FAC (LINK FILE)		; edited:  3-jul-84 11:01:00  by cl
+					; input : link# and a file opened for output
+					; effect: prints par
+					; value : undefined
+  (when file
+    (format file "(~A ~D ~D)"
+	    (DS-LINK.POSPAR LINK)
+	    (ds-link.poslitno link)
+	    (ds-link.neglitno link))))
+
+
+(DEFUN PO=REPLACEMENT.OPERATION (link.uni.clause  FILE counter)
+
+  
+  (declare (edited  "24-MAY-1993 20:46")
+	   (authors KROENER)
+	   (input   "a list of three elements <link clause clause> and a counter")
+	   (effect  "prints a resolution-step in post syntax" )
+	   (value   "undefined"))
+  (po=resolution (list (first link.uni.clause) (rest link.uni.clause) (third link.uni.clause))
+		 FILE counter))
+
+(DEFUN PO=VARIABLES.SORTS.OF.CODOMAIN (UNIFIER)	; edited: 15-may-84 09:18:06  by cl
+						; input :  a list with an even number of elements
+						; effect:  finds all the variables appearing in the
+						;          codomain of the unifier
+						; value :  a list of dotted pairs (var . sort)
+  (let (CODOMAIN VARIABLES)
+    (SETQ CODOMAIN  (SMAPCAR #'identity #'CDDR (CDR UNIFIER))
+	  VARIABLES (DT-TERMLIST.VARIABLES CODOMAIN))
+    (MAPCAR #'(LAMBDA (VAR) (CONS VAR (DT-VARIABLE.SORT VAR))) VARIABLES)))
+
+
+(DEFUN PO=DOUBLE.LITERAL (CLAUSE.REMAININGLITNO.DELETEDLITNO.RULE FILE))
+
+(defun po=compute.rw.match (match leftcopy rule)
+  (let* ((left (dt-access (list (ds-clause.lit.rewrite.rule rule 1)) (ds-clause.termlist rule 1)))
+	 (copymatch (first (uni-unify1.terms leftcopy left t))))
+    (UNI-apply.substitution copymatch match)))
+
+(DEFUN PO=REWRITE (RULE.CLAUSE.LITNO.pos FILE counter)
+  (when file
+	(let* ((rule (first rule.clause.litno.pos))
+	       (clause (second rule.clause.litno.pos))
+	       (litno (third rule.clause.litno.pos))
+	       (pos (first (fourth rule.clause.litno.pos)))
+	       (match (second (fourth rule.clause.litno.pos)))
+	       (leftcopy (third (fourth rule.clause.litno.pos))))
+	  (setq match (po=compute.rw.match match leftcopy rule))
+	  (format FILE "~%~8T(paramodulation step-~D " counter)
+	  (PO=CLAUSE clause FILE)
+	  (format file "(c~A (position ~D~{ ~D~})) (c~A (position ~D) ~A)"
+		  (dt-pname clause)
+		  (1- litno)
+		  (mapcar #'1- pos)
+		  (dt-pname rule)
+		  0
+		  'lr)			;(if (DT-TAF.IS.LEFT (ds-link.posfct link)) 'lr 'rl))
+	  (format file " (substitution ~A ~A)"
+		  (dt-pname (uni-unifier.domain match)) (dt-pname (uni-unifier.codomain match)))
+	  (princ ")" FILE))))
+
+
+(DEFUN PO=REWRITE.SYMMETRY (CLAUSE. FILE))
+
+
+(DEFUN PO=CLAUSE (CLAUSE FILE &optional record.flag)
+  
+  (declare (edited  "03-JUN-1993 19:40")
+	   (authors KROENER PRCKLN)
+	   (input   "a clause and a filename")
+	   (effect  "prints the clause")
+	   (value   "undefined"))
+
+  
+  (when file
+    (format file "(clause c~A (" (dt-pname clause))
+    (PROGN (MAPC #'(LAMBDA (VAR)		; Variables and sorts
+			   (format file "(~A ~A)" (dt-pname var) (DT-VARIABLE.SORT VAR)))
+		 (DS-CLAUSE.VARIABLES CLAUSE)))
+    (princ ")" FILE)
+    (let ((indices nil))
+      (dotimes (litno (DS-CLAUSE.NOLIT CLAUSE))
+	(push (ds-clause.lit.getprop clause (1+ litno) 'index) indices)
+	(let ((pname (dt-pname (cons (ds-clause.predicate  clause (1+ litno))
+				     (ds-clause.termlist clause (1+ litno))))))
+	  (if (ds-sign.is.negative (DS-CLAUSE.SIGN CLAUSE (1+ LITNO)))
+	      (setq pname (list '- pname))
+	    (setq pname (list '+ pname)))
+	  (format file " ~A" pname))
+	(when record.flag (push (cons clause (nreverse indices)) po*indices)))
+      (PRINC ") " FILE))))
+
+
+(DEFUN PO=LINK.COLOURS (FILE))
+
+
+
+
+

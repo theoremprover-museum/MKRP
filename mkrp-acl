@@ -1,0 +1,2 @@
+#!/bin/csh -f
+exec acl-4.2 -e '(progn (load "/home/omega/sys/boot") (user::load-sys "mkrp-basic"))'

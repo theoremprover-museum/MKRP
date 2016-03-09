@@ -1,0 +1,129 @@
+ 
+ 
+ 
+             ****************************************************
+             *                                                  *
+             *   ATP-SYSTEM :  M K R P , UNI KARLSRUHE          *
+             *                                                  *
+             *      VERSION : 3-FEB-84                          *
+             *         DATE : 8-AUG-84  13:09:49                *
+             *                                                  *
+             ****************************************************
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : SORT ELEMENT,MENGE,INDEXMENGE,INDEX,VERKN:ANY
+           TYPE SM (MENGE MENGE) :MENGE
+           TYPE APPLY (VERKN ELEMENT ELEMENT) :ELEMENT
+           TYPE S (INDEXMENGE) :MENGE
+           TYPE V (INDEXMENGE INDEX) :INDEXMENGE
+           TYPE U (INDEX) :MENGE
+           ALL I,ISTRICH:INDEXMENGE  ALL F:MENGE  ALL PHI  
+             :VERKN ALL E:ELEMENT ME (ISTRICH I) IMPL UG (S (ISTRICH) F
+PHI E)
+           ALL U1,U2,F  
+             :MENGE ALL  
+               E,X:ELEMENT ALL  
+                     PHI:VERKN UG (U1 F PHI E)
+                     AND  
+                     UG (U2 F PHI E)
+                     AND  
+                     EL (X SM (U1 U2))
+                   IMPL  
+                   EINS (E PHI SM (U1 U2))
+           ALL K:INDEXMENGE ALL J:INDEX SM (S (K) U (J)) = S (V (K J))
+ 
+THEOREMS : ALL I,ISTRICH:INDEXMENGE  ALL J:INDEX  ALL F:MENGE  ALL E  
+             :ELEMENT ALL  
+                   PHI:VERKN ME (ISTRICH I)
+                   AND  
+                   UG (U (J) F PHI E)
+                   AND  
+                   (EX X:ELEMENT EL (X S (V (ISTRICH J))))
+                 IMPL  
+                 EINS (E PHI S (V (ISTRICH J)))
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+* A1   : ALL X,Y:INDEXMENGE  Z:MENGE  U:VERKN  V:ELEMENT  
+              -ME(X Y) +UG(S(X) Z U V) 
+  R.:=:: ALL X:ANY  +:=:(X X)
+* A2   : ALL X,Y,Z:MENGE  U:VERKN  V,W:ELEMENT  
+              -UG(X Y U V) -UG(Z Y U V) -EL(W SM(X Z)) +EINS(V U SM(X Z)) 
+* A3   : ALL X:INDEXMENGE  Y:INDEX  +=(SM(S(X) U(Y)) S(V(X Y)))
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+* T4   : +ME(C_1 C_5)
+* T5   : +UG(U(C_3) C_6 C_4 C_2)
+* T6   : +EL(C_7 S(V(C_1 C_3)))
+* T7   : -EINS(C_2 C_4 S(V(C_1 C_3)))
+ 
+ 
+ 
+ 
+--------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION
+ 
+INITIAL CLAUSES :      R.:=: : ALL X:ANY  +:=:(X X)
+                     * A1    : ALL X,Y:INDEXMENGE  Z:MENGE  U:VERKN  V:ELEMENT  
+                                    -ME(X Y) +UG(S(X) Z U V) 
+                     * A2    : ALL X,Y,Z:MENGE  U:VERKN  V,W:ELEMENT  
+                                    -UG(X Y U V) -UG(Z Y U V) -EL(W SM(X Z)) 
+                                    +EINS(V U SM(X Z)) 
+                     * A3    : ALL X:INDEXMENGE  Y:INDEX  
+                                    +=(SM(S(X) U(Y)) S(V(X Y))) 
+                     * T4    : +ME(C_1 C_5)
+                     * T5    : +UG(U(C_3) C_6 C_4 C_2)
+                     * T6    : +EL(C_7 S(V(C_1 C_3)))
+                     * T7    : -EINS(C_2 C_4 S(V(C_1 C_3)))
+ 
+T4,1  +  A1,1   -->  * R1    : ALL X:MENGE  Y:VERKN  Z:ELEMENT  
+                                    +UG(S(C_1) X Y Z) 
+A3,1  +  T6,1   -->  * P1    : +EL(C_7 SM(S(C_1) U(C_3)))
+A3,1  +  T7,1   -->  * P2    : -EINS(C_2 C_4 SM(S(C_1) U(C_3)))
+T5,1  +  A2,1   -->    R2    : ALL X:MENGE  Y:ELEMENT  
+                                    -UG(X C_6 C_4 C_2) -EL(Y SM(U(C_3) X)) 
+                                    +EINS(C_2 C_4 SM(U(C_3) X)) 
+T5,1  +  A2,2   -->  * R3    : ALL X:MENGE  Y:ELEMENT  
+                                    -UG(X C_6 C_4 C_2) -EL(Y SM(X U(C_3))) 
+                                    +EINS(C_2 C_4 SM(X U(C_3))) 
+R1,1  +  R3,1   -->  * R4    : ALL X:ELEMENT  
+                                    -EL(X SM(S(C_1) U(C_3))) 
+                                    +EINS(C_2 C_4 SM(S(C_1) U(C_3))) 
+P1,1  +  R4,1   -->  * R5    : +EINS(C_2 C_4 SM(S(C_1) U(C_3)))
+R5,1  +  P2,1   -->  * R6    : 
+ 
+ 
+ 
+--------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+ 

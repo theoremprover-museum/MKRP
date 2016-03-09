@@ -1,0 +1,267 @@
+;;; -*- Package: MKRP; Base: 10. -*- 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 5-NOV-84                                                      *
+                    *         DATE : 26-NOV-84  15:47:00                                           *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+                                                                         
+*************************************************************************
+ EDIT:     AXIOME UND THEOREME EDITIERT AM:  26-NOV-84 14:09:55
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:    2.7.RL.PHINULL 
+                                                                        
+************************************************************************
+                                                                        
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : SORT MENGE,ELEMENT,ABB,VERKN:ANY
+           TYPE COMP(ABB ABB) :ABB
+           TYPE INVERS(ABB) :ABB
+           TYPE W(MENGE) :MENGE
+           TYPE RESTRICTION(ABB MENGE) :ABB
+           TYPE PSI:ABB
+           TYPE CONC:VERKN
+           TYPE T:MENGE
+           TYPE MAL:VERKN
+           TYPE EHG(MENGE VERKN) :MENGE
+           TYPE BILD(ABB MENGE) :MENGE
+           ALL PHI:ABB ALL A,B:MENGE ISOMORPH(PHI A B) IMPL HOMOMORPH(PHI A B)
+           ALL PHI1,PHI2:ABB  ALL A,B,C:MENGE  
+             HOMOMORPH(PHI1 A B) AND HOMOMORPH(PHI2 B C) IMPL HOMOMORPH(COMP(PHI2 PHI1) A C)
+           ALL PHI1,PHI2:ABB  ALL A,B,C,D:MENGE  
+                  ISOMORPH(PHI1 A B) AND ME(D B) AND ABBILDUNG(PHI2 BILD(INVERS(PHI1) D) C)
+             IMPL ABBILDUNG(COMP(PHI2 INVERS(PHI1)) D C)
+           ALL A:MENGE FREI(W(A) CONC)
+           ALL A:MENGE EHG(A CONC) = W(A)
+           ALL A:MENGE ME(A W(A))
+           ALL A,B,H:MENGE  ALL MAL1,MAL2:VERKN  ALL PHINULL:ABB  
+                  FREI(A MAL1) AND HG(H MAL2) AND ABBILDUNG(PHINULL B H) AND EHG(B MAL1) = A
+             IMPL (EX PHI:ABB HOMOMORPH(PHI EHG(B MAL1) H) AND RESTRICTION(PHI B) = PHINULL)
+           * LEMMA 2.7.RL.PHINULL.RESTR *
+           ALL X,H:MENGE  ALL MAL2:VERKN  ALL PHI,PHINULL:ABB  
+                      HG(H MAL2)
+                  AND ABBILDUNG(PHINULL BILD(INVERS(PSI) X) H)
+                  AND HOMOMORPH(COMP(PHI PSI) F H)
+                  AND HOMOMORPH(PHI W(X) H)
+                  AND ISOMORPH(PSI F W(X))
+                  AND RESTRICTION(PHI X) = COMP(PHINULL INVERS(PSI))
+             IMPL RESTRICTION(COMP(PHI PSI) BILD(INVERS(PSI) X)) = PHINULL
+ 
+THEOREMS : ALL X,H:MENGE  ALL MAL2:VERKN  ALL PHINULL:ABB  EX PHI:ABB  
+                  HG(F MAL) AND ISOMORPH(PSI F W(X)) AND HG(H MAL2) AND ABBILDUNG(PHINULL BILD(INVERS(PHI) X) H)
+             IMPL HOMOMORPH(PHI F H) AND RESTRICTION(PHI BILD(INVERS(PSI) X)) = PHINULL
+ 
+ 
+ 
+ 
+CONSTANTS : 
+=========== 
+ 
+| NAME        | SORT                    |            | ATTRIBUTES                                                       
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+| PSI         | ABB                     |            |                                                                  
+|
+| CONC        | VERKN                   |            |                                                                  
+|
+| T           | MENGE                   |            |                                                                  
+|
+| MAL         | VERKN                   |            |                                                                  
+|
+| F           | ANY                     |            |                                                                  
+|
+| C_1         | VERKN                   |            |                                                                  
+|
+| C_2         | ABB                     |            |                                                                  
+|
+| C_3         | MENGE                   |            |                                                                  
+|
+| C_4         | MENGE                   |            |                                                                  
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+ 
+ 
+ 
+FUNCTIONS : 
+=========== 
+ 
+| NAME        | DOMAIN                  | RANGE      | ATTRIBUTES                                                       
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+| COMP        | ABB ABB                 | ABB        |                                                                  
+|
+| INVERS      | ABB                     | ABB        |                                                                  
+|
+| W           | MENGE                   | MENGE      |                                                                  
+|
+| RESTRICTION | ABB MENGE               | ABB        |                                                                  
+|
+| EHG         | MENGE VERKN             | MENGE      |                                                                  
+|
+| BILD        | ABB MENGE               | MENGE      |                                                                  
+|
+| F_1         | MENGE VERKN MENGE ABB   | ABB        |                                                                  
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+ 
+ 
+ 
+PREDICATES : 
+============ 
+ 
+| NAME        | DOMAIN                  |            | ATTRIBUTES                                                       
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+| TRUE        |                         |            | DEFINED                                                          
+|
+| FALSE       |                         |            | DEFINED                                                          
+|
+| ISOMORPH    | ANY ANY ANY             |            |                                                                  
+|
+| HOMOMORPH   | ANY ANY ANY             |            |                                                                  
+|
+| ME          | ANY ANY                 |            |                                                                  
+|
+| ABBILDUNG   | ANY ANY ANY             |            |                                                                  
+|
+| FREI        | ANY ANY                 |            |                                                                  
+|
+| =           | ANY ANY                 |            | DEFINED SYMMETRIC REFLEXIVE SYMMETRIC REFLEXIVE SYMMETRIC        
+|
+|             |                         |            | REFLEXIVE                                                        
+|
+| HG          | ANY ANY                 |            |                                                                  
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+ 
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+  A1   : ALL X:ANY  + =(X X)
+  A2   : ALL X:MENGE  + FREI(W(X) CONC)
+  A3   : ALL X:MENGE  + =(EHG(X CONC) W(X))
+  A4   : ALL X:MENGE  + ME(X W(X))
+  A5   : ALL X,Y:MENGE  Z:ABB  - ISOMORPH(Z Y X)  + HOMOMORPH(Z Y X)
+  A6   : ALL X,Y,Z:MENGE  U,V:ABB  - HOMOMORPH(V Z Y)  - HOMOMORPH(U Y X)  + HOMOMORPH(COMP(U V) Z X)
+  A7   : ALL X,Y,Z,U:MENGE  V,W:ABB  
+              - ISOMORPH(W U Z)  - ME(Y Z)  - ABBILDUNG(V BILD(INVERS(W) Y) X)  + ABBILDUNG(COMP(V INVERS(W)) Y X)
+  A8   : ALL X,Y,Z:MENGE  U:ABB  V,W:VERKN  
+              - FREI(Z W)  - HG(Y V)  - ABBILDUNG(U X Y)  - =(EHG(X W) Z)  + HOMOMORPH(F_1(Y W X U) EHG(X W) Y)
+  A9   : ALL X,Y,Z:MENGE  U:ABB  V,W:VERKN  
+              - FREI(Z W)  - HG(Y V)  - ABBILDUNG(U X Y)  - =(EHG(X W) Z)  + =(RESTRICTION(F_1(Y W X U) X) U)
+  A10  : ALL X,Y:ABB  Z,U:MENGE  V:VERKN  
+              - HG(U V)  - ABBILDUNG(Y BILD(INVERS(PSI) Z) U)  - HOMOMORPH(COMP(X PSI) F U)  - HOMOMORPH(X W(Z) U)
+                - ISOMORPH(PSI F W(Z))  - =(RESTRICTION(X Z) COMP(Y INVERS(PSI)))
+                + =(RESTRICTION(COMP(X PSI) BILD(INVERS(PSI) Z)) Y)
+ 
+ 
+ 
+ 
+OPERATIONS ON AXIOMS
+====================
+ 
+ 
+A3           -->    RS1 : ALL X:MENGE  + =(W(X) EHG(X CONC))
+ 
+A2,1 & RS1   -->    RW2 : ALL X:MENGE  + FREI(EHG(X CONC) CONC)
+ 
+A4,1 & RS1   -->    RW3 : ALL X:MENGE  + ME(X EHG(X CONC))
+ 
+A10,5 & RS1  -->    RW4 : ALL X:VERKN  Y,Z:MENGE  U,V:ABB  
+                               - HG(Y X)  - ABBILDUNG(U BILD(INVERS(PSI) Z) Y)  - HOMOMORPH(COMP(V PSI) F Y)
+                                 - HOMOMORPH(V W(Z) Y)  - ISOMORPH(PSI F EHG(Z CONC))
+                                 - =(RESTRICTION(V Z) COMP(U INVERS(PSI)))
+                                 + =(RESTRICTION(COMP(V PSI) BILD(INVERS(PSI) Z)) U)
+ 
+RW4,4 & RS1  -->    RW5 : ALL X:VERKN  Y,Z:MENGE  U,V:ABB  
+                               - HG(Y X)  - ABBILDUNG(U BILD(INVERS(PSI) Z) Y)  - HOMOMORPH(COMP(V PSI) F Y)
+                                 - HOMOMORPH(V EHG(Z CONC) Y)  - ISOMORPH(PSI F EHG(Z CONC))
+                                 - =(RESTRICTION(V Z) COMP(U INVERS(PSI)))
+                                 + =(RESTRICTION(COMP(V PSI) BILD(INVERS(PSI) Z)) U)
+ 
+ 
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+  T11  : + HG(F MAL)
+  T12  : + ISOMORPH(PSI F W(C_3))
+  T13  : + HG(C_4 C_1)
+  T14  : ALL X:ABB  + ABBILDUNG(C_2 BILD(INVERS(X) C_3) C_4)
+  T15  : ALL X:ABB  - HOMOMORPH(X F C_4)  - =(RESTRICTION(X BILD(INVERS(PSI) C_3)) C_2)
+ 
+ 
+ 
+ 
+ 
+ 
+INITIAL OPERATIONS ON THEOREMS
+==============================
+ 
+ 
+T12,1 & RS1  -->    RW6 : + ISOMORPH(PSI F EHG(C_3 CONC))
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION ( FAILURE : GRAPH.COLLAPSED )
+ 
+INITIAL CLAUSES : 
+        A1  : ALL X:ANY  + =(X X)
+        RW2 : ALL X:MENGE  + FREI(EHG(X CONC) CONC)
+        A9  : ALL X,Y,Z:MENGE  U:ABB  V,W:VERKN  
+                   - FREI(Z W)  - HG(Y V)  - ABBILDUNG(U X Y)  - =(EHG(X W) Z)  + =(RESTRICTION(F_1(Y W X U) X) U)
+        T13 : + HG(C_4 C_1)
+        T14 : ALL X:ABB  + ABBILDUNG(C_2 BILD(INVERS(X) C_3) C_4)
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+THE THEOREM(S) COULD NOT BE PROVED.
+ 
+STOP
+ 

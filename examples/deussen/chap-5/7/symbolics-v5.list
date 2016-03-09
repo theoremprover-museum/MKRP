@@ -1,0 +1,723 @@
+;;; -*- Package: MKRP; Base: 10. -*-
+
+
+
+                    ********************************************************************************
+                    *                                                                              *
+                    *     MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN                   *
+                    *                                                                              *
+                    *       11-MAR-86                                                              *
+                    *          11-MAR-86  09:52:18                                                 *
+                    *                                                                              *
+                    ********************************************************************************
+
+
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   11-MAR-86 09:50:37
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   D57>2
+                                                                        
+************************************************************************
+                                                                        
+
+
+ADJUSTMENT OF THE OPTIONS : 
+============================
+
+
+
+TWO:RULES                             NIL                   TWO:RULES.MAXLEVEL                    1.
+TWO:SUPPRESS.NORULES                  NIL
+
+
+RED.I:CLAUSE.MULTIPLE.LITERALS        T                     RED.I:CLAUSE.PURITY                   T
+RED.I:CLAUSE.TAUTOLOGY                T                     RED.I:CLAUSE.TAUTOLOGY.RECHECK        PARTIAL
+RED.I:CLAUSE.SUBSUMPTION              T                     RED.I:CLAUSE.SUBSUMPTION.RECHECK      PARTIAL
+RED.I:CLAUSE.REPL.FACTORING           T                     RED.I:CLAUSE.REPL.FACTORING.RECHECK   T
+RED.I:CLAUSE.REPL.RESOLUTION          SIMPLE                RED.I:CLAUSE.REPL.RESOLUTION.RECHECK  T
+RED.I:CLAUSE.REWRITING                T                     RED.I:LINK.INCOMPATIBILITY            NIL
+RED.I:LINK.TAUTOLOGY                  REMOVE-INHIBIT        RED.I:LINK.TAUTOLOGY.RECHECK          NIL
+RED.I:LINK.SUBSUMPTION                REMOVE-INHIBIT        RED.I:LINK.SUBSUMPTION.RECHECK        NIL
+
+RED.D:CLAUSE.MULTIPLE.LITERALS        T                     RED.D:CLAUSE.PURITY                   T
+RED.D:CLAUSE.TAUTOLOGY                REMOVE-INHIBIT        RED.D:CLAUSE.TAUTOLOGY.RECHECK        NIL
+RED.D:CLAUSE.SUBSUMPTION.FORWARD      REMOVE-INHIBIT        RED.D:CLAUSE.SUBSUMPTION.BACKWARD     REMOVE
+RED.D:CLAUSE.SUBSUMPTION.RECHECK      NIL                   RED.D:CLAUSE.REPL.FACTORING           T
+RED.D:CLAUSE.REPL.FACTORING.RECHECK   T                     RED.D:CLAUSE.REPL.RESOLUTION          SIMPLE
+RED.D:CLAUSE.REPL.RESOLUTION.RECHECK  T                     RED.D:LINK.INCOMPATIBILITY            NIL
+RED.D:LINK.TAUTOLOGY                  REMOVE-INHIBIT        RED.D:LINK.TAUTOLOGY.RECHECK          NIL
+RED.D:LINK.SUBSUMPTION                NIL                   RED.D:LINK.SUBSUMPTION.RECHECK        NIL
+
+FAC:INITIAL                           NIL                   FAC:EACH.STEP                         NIL
+
+STR:RESOLUTION                        SET-OF-SUPPORT        STR:E-RESOLUTION                      NIL
+STR:PARAMODULATION                    UNIT-ANCESTRY         STR:LINK.DEPTH                        NIL
+STR:TERM.DEPTH                        5.                    STR:R.DEMODULATION                    T
+STR:P.DEMODULATION                    T                     STR:INDUCTION                         NIL
+
+TERM:UNITS                            T                     TERM:ITERATIONS                       1.
+TERM:SET.OF.SUPPORT                   NIL                   TERM:BREADTH.FIRST                    NIL
+
+GEN:SPLITTING                         0.                    GEN:MANUAL.CONTROL                    NIL
+GEN:MAXIMUM.STEPS                     NIL                   GEN:GRAPH.SAVING                      NIL
+GEN:SAVE.FILE                         SAVE.DEFAULT
+
+
+TR:PREPROCESSING                      NIL                   TR:STEP.MODE                          LR
+TR:DUMP                               NIL                   TR:CLAUSE.MODE                        I
+TR:LINK.MODE                          I                     TR:TRACE.FILE                         NIL
+TR:TERMINAL                           NIL
+
+
+PR:INFIX.FORM                         T                     PR:PREFIX.FORM                        NIL
+PR:OPTIONS                            T                     PR:AXIOM.CLAUSES                      NIL
+PR:SYMBOLS                            NIL                   PR:STATISTICS                         NIL
+PR:PROTOCOL                           T                     PR:LEFT.MARGIN                        0.
+PR:LINELENGTH                         120.
+
+
+
+
+FORMULAE GIVEN TO THE EDITOR
+============================
+
+
+AXIOMS   : SORT SET:ANY
+           SORT FUNCTION:ANY
+           SORT ELEMENT:SET
+           SORT ELEMENT.F:ELEMENT
+           SORT NAT:SET
+           SORT REL:SET
+           SORT UNARY.FUNC:FUNCTION
+           SORT BINARY.FUNC:FUNCTION
+           SORT EQU.REL-S:REL
+           SORT L.CONGRUENCE-S:EQU.REL-S
+           SORT R.CONGRUENCE-S:EQU.REL-S
+           SORT CONGRUENCE-S:L.CONGRUENCE-S
+           SORT CONGRUENCE-S:R.CONGRUENCE-S
+           * CONSTANTS *
+           TYPE F:SET
+           TYPE CONN.F:BINARY.FUNC
+           TYPE 1:NAT
+           TYPE CONN.F.RHO:BINARY.FUNC
+           * PREDICATES *
+           TYPE SEMIGROUP (SET BINARY.FUNC)
+           TYPE L.CONGRUENCE (REL)
+           TYPE R.CONGRUENCE (REL)
+           TYPE CONGRUENCE (EQU.REL-S)
+           TYPE IN.RELATION (REL ELEMENT.F ELEMENT.F)
+           TYPE INJECTIVE (UNARY.FUNC SET SET)
+           TYPE SURJECTIVE (UNARY.FUNC SET SET)
+           TYPE BIJECTIVE (UNARY.FUNC SET SET)
+           TYPE HOMOMORPH (UNARY.FUNC SET SET)
+           TYPE ISOMORPH (UNARY.FUNC SET SET)
+           TYPE EPIMORPH (UNARY.FUNC SET SET)
+           TYPE MAPPING (UNARY.FUNC SET SET)
+           TYPE MEMBER (ELEMENT SET)
+           * FUNCTIONS *
+           TYPE APPLY1 (UNARY.FUNC SET) :SET
+           TYPE APPLY1-EL (UNARY.FUNC ELEMENT) :ELEMENT
+           TYPE APPLY2 (BINARY.FUNC SET SET) :SET
+           TYPE APPLY2-EL (BINARY.FUNC ELEMENT ELEMENT) :ELEMENT
+           TYPE APPLY2-EL.F (BINARY.FUNC ELEMENT.F ELEMENT.F) :ELEMENT.F
+           TYPE PREIMAGE (REL ELEMENT) :SET
+           TYPE POWER (REL NAT) :REL
+           TYPE PLUS (NAT NAT) :NAT
+           TYPE MODULO (EQU.REL-S) :SET
+           TYPE COMP (REL REL) :REL
+           TYPE TRANS.CLOS (REL) :REL
+           TYPE UNION-REL (REL REL) :REL
+           TYPE TRANS.UNION (EQU.REL-S EQU.REL-S) :EQU.REL-S
+           TYPE CAN.PROJ (EQU.REL-S) :UNARY.FUNC
+           TYPE IND.EQU.REL (UNARY.FUNC SET) :EQU.REL-S
+           TYPE MOD.PHI (UNARY.FUNC SET) :UNARY.FUNC
+           *
+           * DEFINITION OF SURJECTIVE *
+           ALL PHI:UNARY.FUNC  ALL A,B:SET  
+               SURJECTIVE (PHI A B)
+               IMPL  
+                  MAPPING (PHI A B)
+                  AND  
+                  (ALL X:ELEMENT MEMBER (X B) IMPL (EX Y:ELEMENT MEMBER (Y A) AND APPLY1-EL (PHI Y) = X))
+           * DEFINITION OF HOMOMORPH *
+           ALL PHI  
+             :UNARY.FUNC ALL  
+               H1,H2:SET ALL  
+                   CONN.H1,CONN.H2:BINARY.FUNC SEMIGROUP (H1 CONN.H1) AND SEMIGROUP (H2 CONN.H2) AND MAPPING (PHI H1 H2)
+                   IMPL  
+                      HOMOMORPH (PHI H1 H2)
+                      EQV  
+                       ALL X,Y:ELEMENT  
+                           MEMBER (X H1) AND MEMBER (Y H1)
+                           IMPL  
+                           APPLY2 (CONN.H2 APPLY1 (PHI X) APPLY1 (PHI Y)) = APPLY1 (PHI APPLY2 (CONN.H2 X Y))
+           ALL PHI  
+             :UNARY.FUNC ALL  
+                  G,H:SET  
+                  ALL CONN.G,CONN.H:BINARY.FUNC  
+                      SEMIGROUP (G CONN.G)
+                      AND  
+                      SEMIGROUP (H CONN.H)
+                      AND  
+                      MAPPING (PHI G H)
+                      AND  
+                       ALL X,Y:ELEMENT  
+                           MEMBER (X G) AND MEMBER (Y G)
+                           IMPL  
+                            APPLY1-EL  
+                            PHI APPLY2-EL (CONN.G X Y)
+                            =  
+                            APPLY2-EL  
+                            CONN.H APPLY1-EL (PHI X) APPLY1-EL (PHI Y)
+                 IMPL  
+                 HOMOMORPH (PHI G H)
+           * THEOREM 4.11.2 *
+           ALL PHI1,PHI2:UNARY.FUNC  ALL H1,H2:SET  ALL CONN.H1,CONN.H2:BINARY.FUNC  
+               VOR4.11.2 (PHI1 PHI2 H1 H2 CONN.H1 CONN.H2)
+               IMPL  
+                EX GR.PHI:UNARY.FUNC  
+                    MAPPING (GR.PHI H1 H2)
+                    AND  
+                    (ALL X:ELEMENT.F APPLY1-EL (GR.PHI APPLY1-EL (PHI1 X)) = APPLY1-EL (PHI2 X))
+                    AND  
+                    (SURJECTIVE (PHI2 F H2) IMPL SURJECTIVE (GR.PHI H1 H2))
+
+THEOREMS : * THEOREM 5.7.2 *
+           ALL PHI1,PHI2:UNARY.FUNC  ALL H1,H2:SET  ALL CONN.H1,CONN.H2:BINARY.FUNC  
+                 SEMIGROUP (F CONN.F)
+                 AND  
+                 SEMIGROUP (H1 CONN.H1)
+                 AND  
+                 SEMIGROUP (H2 CONN.H2)
+                 AND  
+                 CONGRUENCE (IND.EQU.REL (PHI1 H1))
+                 AND  
+                 CONGRUENCE (IND.EQU.REL (PHI2 H2))
+                 AND  
+                 SUBSET (IND.EQU.REL (PHI1 H1) IND.EQU.REL (PHI2 H2))
+                 AND  
+                 SURJECTIVE (PHI1 F H1)
+                 AND  
+                 HOMOMORPH (PHI1 F H1)
+                 AND  
+                 HOMOMORPH (PHI2 F H2)
+                 AND  
+                 VOR4.11.2 (PHI1 PHI2 H1 H2 CONN.H1 CONN.H2)
+               IMPL  
+                EX GR.PHI:UNARY.FUNC  
+                    HOMOMORPH (GR.PHI H1 H2)
+                    AND  
+                    (ALL X:ELEMENT.F APPLY1-EL (GR.PHI APPLY1-EL (PHI1 X)) = APPLY1-EL (PHI2 X))
+                    AND  
+                    (SURJECTIVE (PHI2 F H2) IMPL SURJECTIVE (GR.PHI H1 H2))
+
+
+
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+  A1   : ALL X:ANY  + =(X X)
+  A2   : ALL X:ELEMENT.F  Y,Z:BINARY.FUNC  U,V:SET  W,XX:UNARY.FUNC  
+              - VOR4.11.2(XX W V U Z Y)  + =(APPLY1-EL(F_10(W U XX V) APPLY1-EL(XX X)) APPLY1-EL(W X))
+  A3   : ALL X,Y:BINARY.FUNC  Z,U:SET  V,W:UNARY.FUNC  - VOR4.11.2(W V U Z Y X)  + MAPPING(F_10(V Z W U) U Z)
+  A4   : ALL X,Y:SET  Z:UNARY.FUNC  - SURJECTIVE(Z Y X)  + MAPPING(Z Y X)
+  A5   : ALL X,Y:BINARY.FUNC  Z,U:SET  V,W:UNARY.FUNC  
+              - VOR4.11.2(W V U Z Y X)  - SURJECTIVE(V F Z)  + SURJECTIVE(F_10(V Z W U) U Z)
+  A6   : ALL X:ELEMENT  Y,Z:SET  U:UNARY.FUNC  - SURJECTIVE(U Z Y)  - MEMBER(X Y)  + =(APPLY1-EL(U F_1(X U Y Z)) X)
+  A7   : ALL X:ELEMENT  Y,Z:SET  U:UNARY.FUNC  - SURJECTIVE(U Z Y)  - MEMBER(X Y)  + MEMBER(F_1(X U Y Z) Z)
+  A8   : ALL X,Y:SET  Z:UNARY.FUNC  
+              - SEMIGROUP(Y F_4(Z X Y))  - SEMIGROUP(X F_5(Z X Y))  - MAPPING(Z Y X)  + MEMBER(F_8(Z X Y) Y)
+                + HOMOMORPH(Z Y X)
+  A9   : ALL X,Y:SET  Z:UNARY.FUNC  
+              - SEMIGROUP(Y F_4(Z X Y))  - SEMIGROUP(X F_5(Z X Y))  - MAPPING(Z Y X)
+              - =(APPLY1-EL(Z APPLY2-EL(F_7(Z X Y) F_8(Z X Y) F_9(Z X Y)))
+                  APPLY2-EL(F_6(Z X Y) APPLY1-EL(Z F_8(Z X Y)) APPLY1-EL(Z F_9(Z X Y))))
+                + HOMOMORPH(Z Y X)
+  A10  : ALL X,Y:SET  Z:UNARY.FUNC  
+              - SEMIGROUP(Y F_4(Z X Y))  - SEMIGROUP(X F_5(Z X Y))  - MAPPING(Z Y X)  + MEMBER(F_9(Z X Y) Y)
+                + HOMOMORPH(Z Y X)
+  A11  : ALL X:UNARY.FUNC  Y,Z:BINARY.FUNC  U,V:SET  
+              - SEMIGROUP(V Z)  - SEMIGROUP(U Y)  - MAPPING(X V U)  + HOMOMORPH(X V U)
+              - =(APPLY2(Y APPLY1(X F_2(X V U Y)) APPLY1(X F_3(X V U Y))) APPLY1(X APPLY2(Y F_2(X V U Y) F_3(X V U Y))))
+  A12  : ALL X:UNARY.FUNC  Y,Z:BINARY.FUNC  U,V:SET  
+              - SEMIGROUP(V Z)  - SEMIGROUP(U Y)  - MAPPING(X V U)  + HOMOMORPH(X V U)  + MEMBER(F_3(X V U Y) V)
+  A13  : ALL X:UNARY.FUNC  Y,Z:BINARY.FUNC  U,V:SET  
+              - SEMIGROUP(V Z)  - SEMIGROUP(U Y)  - MAPPING(X V U)  + HOMOMORPH(X V U)  + MEMBER(F_2(X V U Y) V)
+  A14  : ALL X,Y:ELEMENT  Z:UNARY.FUNC  U,V:BINARY.FUNC  W,XX:SET  
+              - SEMIGROUP(XX V)  - SEMIGROUP(W U)  - MAPPING(Z XX W)  - HOMOMORPH(Z XX W)  - MEMBER(Y XX)
+                - MEMBER(X XX)  + =(APPLY2(U APPLY1(Z Y) APPLY1(Z X)) APPLY1(Z APPLY2(U Y X)))
+
+
+
+
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+  T15  : + SEMIGROUP(F CONN.F)
+  T16  : + SEMIGROUP(C_3 C_2)
+  T17  : + SEMIGROUP(C_4 C_1)
+  T18  : + CONGRUENCE(IND.EQU.REL(C_5 C_3))
+  T19  : + CONGRUENCE(IND.EQU.REL(C_6 C_4))
+  T20  : + SUBSET(IND.EQU.REL(C_5 C_3) IND.EQU.REL(C_6 C_4))
+  T21  : + SURJECTIVE(C_5 F C_3)
+  T22  : + HOMOMORPH(C_5 F C_3)
+  T23  : + HOMOMORPH(C_6 F C_4)
+  T24  : + VOR4.11.2(C_5 C_6 C_3 C_4 C_2 C_1)
+  T25  : ALL X:UNARY.FUNC  - HOMOMORPH(X C_3 C_4)  - =(APPLY1-EL(X APPLY1-EL(C_5 F_11(X))) APPLY1-EL(C_6 F_11(X)))
+                             + SURJECTIVE(C_6 F C_4)
+  T26  : ALL X:UNARY.FUNC  - HOMOMORPH(X C_3 C_4)  - =(APPLY1-EL(X APPLY1-EL(C_5 F_11(X))) APPLY1-EL(C_6 F_11(X)))
+                             - SURJECTIVE(X C_3 C_4)
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+REFUTATION ( FAILURE : GRAPH.COLLAPSED )
+
+INITIAL CLAUSES :      A1  : ALL X:ANY  + =(X X)
+                       A2  : ALL X:ELEMENT.F  Y,Z:BINARY.FUNC  U,V:SET  W,XX:UNARY.FUNC  
+                                  - VOR4.11.2(XX W V U Z Y)
+                                    + =(APPLY1-EL(F_10(W U XX V) APPLY1-EL(XX X)) APPLY1-EL(W X))
+                       A3  : ALL X,Y:BINARY.FUNC  Z,U:SET  V,W:UNARY.FUNC  
+                                  - VOR4.11.2(W V U Z Y X)  + MAPPING(F_10(V Z W U) U Z)
+                       A4  : ALL X,Y:SET  Z:UNARY.FUNC  - SURJECTIVE(Z Y X)  + MAPPING(Z Y X)
+                       A5  : ALL X,Y:BINARY.FUNC  Z,U:SET  V,W:UNARY.FUNC  
+                                  - VOR4.11.2(W V U Z Y X)  - SURJECTIVE(V F Z)  + SURJECTIVE(F_10(V Z W U) U Z)
+                       A6  : ALL X:ELEMENT  Y,Z:SET  U:UNARY.FUNC  
+                                  - SURJECTIVE(U Z Y)  - MEMBER(X Y)  + =(APPLY1-EL(U F_1(X U Y Z)) X)
+                       A7  : ALL X:ELEMENT  Y,Z:SET  U:UNARY.FUNC  
+                                  - SURJECTIVE(U Z Y)  - MEMBER(X Y)  + MEMBER(F_1(X U Y Z) Z)
+                       A11 : ALL X:UNARY.FUNC  Y,Z:BINARY.FUNC  U,V:SET  
+                                  - SEMIGROUP(V Z)  - SEMIGROUP(U Y)  - MAPPING(X V U)  + HOMOMORPH(X V U)
+                                  - =(APPLY2(Y APPLY1(X F_2(X V U Y)) APPLY1(X F_3(X V U Y)))
+                                      APPLY1(X APPLY2(Y F_2(X V U Y) F_3(X V U Y))))
+                       A12 : ALL X:UNARY.FUNC  Y,Z:BINARY.FUNC  U,V:SET  
+                                  - SEMIGROUP(V Z)  - SEMIGROUP(U Y)  - MAPPING(X V U)  + HOMOMORPH(X V U)
+                                    + MEMBER(F_3(X V U Y) V)
+                       A13 : ALL X:UNARY.FUNC  Y,Z:BINARY.FUNC  U,V:SET  
+                                  - SEMIGROUP(V Z)  - SEMIGROUP(U Y)  - MAPPING(X V U)  + HOMOMORPH(X V U)
+                                    + MEMBER(F_2(X V U Y) V)
+                       A14 : ALL X,Y:ELEMENT  Z:UNARY.FUNC  U,V:BINARY.FUNC  W,XX:SET  
+                                  - SEMIGROUP(XX V)  - SEMIGROUP(W U)  - MAPPING(Z XX W)  - HOMOMORPH(Z XX W)
+                                    - MEMBER(Y XX)  - MEMBER(X XX)
+                                    + =(APPLY2(U APPLY1(Z Y) APPLY1(Z X)) APPLY1(Z APPLY2(U Y X)))
+                       T15 : + SEMIGROUP(F CONN.F)
+                       T16 : + SEMIGROUP(C_3 C_2)
+                       T17 : + SEMIGROUP(C_4 C_1)
+                       T21 : + SURJECTIVE(C_5 F C_3)
+                       T22 : + HOMOMORPH(C_5 F C_3)
+                       T23 : + HOMOMORPH(C_6 F C_4)
+                       T24 : + VOR4.11.2(C_5 C_6 C_3 C_4 C_2 C_1)
+                       T25 : ALL X:UNARY.FUNC  - HOMOMORPH(X C_3 C_4)
+                                                 - =(APPLY1-EL(X APPLY1-EL(C_5 F_11(X))) APPLY1-EL(C_6 F_11(X)))
+                                                 + SURJECTIVE(C_6 F C_4)
+                       T26 : ALL X:UNARY.FUNC  - HOMOMORPH(X C_3 C_4)
+                                                 - =(APPLY1-EL(X APPLY1-EL(C_5 F_11(X))) APPLY1-EL(C_6 F_11(X)))
+                                                 - SURJECTIVE(X C_3 C_4)
+
+T24,1 & A2,1    -->    R1  : ALL X:ELEMENT.F  + =(APPLY1-EL(F_10(C_6 C_4 C_5 C_3) APPLY1-EL(C_5 X)) APPLY1-EL(C_6 X))
+
+T24,1 & A3,1    -->    R2  : + MAPPING(F_10(C_6 C_4 C_5 C_3) C_3 C_4)
+
+T24,1 & A5,1    -->    R3  : - SURJECTIVE(C_6 F C_4)  + SURJECTIVE(F_10(C_6 C_4 C_5 C_3) C_3 C_4)
+
+T21,1 & A4,1    -->    R4  : + MAPPING(C_5 F C_3)
+
+T21,1 & A7,1    -->    R5  : ALL X:ELEMENT  - MEMBER(X C_3)  + MEMBER(F_1(X C_5 C_3 F) F)
+
+T21,1 & A6,1    -->    R6  : ALL X:ELEMENT  - MEMBER(X C_3)  + =(APPLY1-EL(C_5 F_1(X C_5 C_3 F)) X)
+
+R1,1 & T26,2    -->    R7  : - HOMOMORPH(F_10(C_6 C_4 C_5 C_3) C_3 C_4)  - SURJECTIVE(F_10(C_6 C_4 C_5 C_3) C_3 C_4)
+
+R1,1 & T25,2    -->    R8  : - HOMOMORPH(F_10(C_6 C_4 C_5 C_3) C_3 C_4)  + SURJECTIVE(C_6 F C_4)
+
+R3,2 & T26,3    -->    R9  : - SURJECTIVE(C_6 F C_4)  - HOMOMORPH(F_10(C_6 C_4 C_5 C_3) C_3 C_4)
+                             - =(APPLY1-EL(F_10(C_6 C_4 C_5 C_3) APPLY1-EL(C_5 F_11(F_10(C_6 C_4 C_5 C_3))))
+                                 APPLY1-EL(C_6 F_11(F_10(C_6 C_4 C_5 C_3))))
+
+
+R9,3 & R1,1     -->    R10 : - SURJECTIVE(C_6 F C_4)  - HOMOMORPH(F_10(C_6 C_4 C_5 C_3) C_3 C_4)
+
+R10,1 & T25,3   -->    R11 : - HOMOMORPH(F_10(C_6 C_4 C_5 C_3) C_3 C_4)  - HOMOMORPH(F_10(C_6 C_4 C_5 C_3) C_3 C_4)
+                             - =(APPLY1-EL(F_10(C_6 C_4 C_5 C_3) APPLY1-EL(C_5 F_11(F_10(C_6 C_4 C_5 C_3))))
+                                 APPLY1-EL(C_6 F_11(F_10(C_6 C_4 C_5 C_3))))
+
+
+R11 1=2         -->    D12 : - HOMOMORPH(F_10(C_6 C_4 C_5 C_3) C_3 C_4)
+                             - =(APPLY1-EL(F_10(C_6 C_4 C_5 C_3) APPLY1-EL(C_5 F_11(F_10(C_6 C_4 C_5 C_3))))
+                                 APPLY1-EL(C_6 F_11(F_10(C_6 C_4 C_5 C_3))))
+
+
+D12,2 & R1,1    -->    R13 : - HOMOMORPH(F_10(C_6 C_4 C_5 C_3) C_3 C_4)
+
+T17,1 & A13,2   -->    R14 : - SEMIGROUP(C_3 C_2)  - MAPPING(F_10(C_6 C_4 C_5 C_3) C_3 C_4)
+                               + HOMOMORPH(F_10(C_6 C_4 C_5 C_3) C_3 C_4)
+                               + MEMBER(F_2(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1) C_3)
+
+R14,1 & T16,1   -->    R15 : - MAPPING(F_10(C_6 C_4 C_5 C_3) C_3 C_4)  + HOMOMORPH(F_10(C_6 C_4 C_5 C_3) C_3 C_4)
+                               + MEMBER(F_2(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1) C_3)
+
+R15,1 & R2,1    -->    R16 : + HOMOMORPH(F_10(C_6 C_4 C_5 C_3) C_3 C_4)
+                               + MEMBER(F_2(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1) C_3)
+
+R16,1 & R13,1   -->    R17 : + MEMBER(F_2(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1) C_3)
+
+T17,1 & A12,2   -->    R18 : - SEMIGROUP(C_3 C_2)  - MAPPING(F_10(C_6 C_4 C_5 C_3) C_3 C_4)
+                               + HOMOMORPH(F_10(C_6 C_4 C_5 C_3) C_3 C_4)
+                               + MEMBER(F_3(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1) C_3)
+
+R18,1 & T16,1   -->    R19 : - MAPPING(F_10(C_6 C_4 C_5 C_3) C_3 C_4)  + HOMOMORPH(F_10(C_6 C_4 C_5 C_3) C_3 C_4)
+                               + MEMBER(F_3(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1) C_3)
+
+R19,1 & R2,1    -->    R20 : + HOMOMORPH(F_10(C_6 C_4 C_5 C_3) C_3 C_4)
+                               + MEMBER(F_3(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1) C_3)
+
+R20,1 & R13,1   -->    R21 : + MEMBER(F_3(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1) C_3)
+
+R21,1 & R5,1    -->    R22 : + MEMBER(F_1(F_3(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1) C_5 C_3 F) F)
+
+R17,1 & R5,1    -->    R23 : + MEMBER(F_1(F_2(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1) C_5 C_3 F) F)
+
+R21,1 & R6,1    -->    R24 : + =(APPLY1-EL(C_5 F_1(F_3(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1) C_5 C_3 F))
+                                 F_3(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1))
+
+
+R17,1 & R6,1    -->    R25 : + =(APPLY1-EL(C_5 F_1(F_2(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1) C_5 C_3 F))
+                                 F_2(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1))
+
+
+T17,1 & A11,2   -->    R26 : - SEMIGROUP(C_3 C_2)  - MAPPING(F_10(C_6 C_4 C_5 C_3) C_3 C_4)
+                               + HOMOMORPH(F_10(C_6 C_4 C_5 C_3) C_3 C_4)
+                             - =(APPLY2(C_1
+                                        APPLY1(F_10(C_6 C_4 C_5 C_3) F_2(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1))
+                                        APPLY1(F_10(C_6 C_4 C_5 C_3) F_3(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1)))
+                                 APPLY1(F_10(C_6 C_4 C_5 C_3)
+                                        APPLY2(C_1
+                                               F_2(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1)
+                                               F_3(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1))))
+
+
+R26,1 & T16,1   -->    R27 : - MAPPING(F_10(C_6 C_4 C_5 C_3) C_3 C_4)  + HOMOMORPH(F_10(C_6 C_4 C_5 C_3) C_3 C_4)
+                             - =(APPLY2(C_1
+                                        APPLY1(F_10(C_6 C_4 C_5 C_3) F_2(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1))
+                                        APPLY1(F_10(C_6 C_4 C_5 C_3) F_3(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1)))
+                                 APPLY1(F_10(C_6 C_4 C_5 C_3)
+                                        APPLY2(C_1
+                                               F_2(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1)
+                                               F_3(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1))))
+
+
+R27,1 & R2,1    -->    R28 : + HOMOMORPH(F_10(C_6 C_4 C_5 C_3) C_3 C_4)
+                             - =(APPLY2(C_1
+                                        APPLY1(F_10(C_6 C_4 C_5 C_3) F_2(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1))
+                                        APPLY1(F_10(C_6 C_4 C_5 C_3) F_3(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1)))
+                                 APPLY1(F_10(C_6 C_4 C_5 C_3)
+                                        APPLY2(C_1
+                                               F_2(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1)
+                                               F_3(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1))))
+
+
+R28,1 & R13,1   -->    R29 : - =(APPLY2(C_1
+                                        APPLY1(F_10(C_6 C_4 C_5 C_3) F_2(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1))
+                                        APPLY1(F_10(C_6 C_4 C_5 C_3) F_3(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1)))
+                                 APPLY1(F_10(C_6 C_4 C_5 C_3)
+                                        APPLY2(C_1
+                                               F_2(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1)
+                                               F_3(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1))))
+
+
+R24,1 & R21,1   -->    P30 : + MEMBER(APPLY1-EL(C_5 F_1(F_3(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1) C_5 C_3 F)) C_3)
+
+R25,1 & R17,1   -->    P31 : + MEMBER(APPLY1-EL(C_5 F_1(F_2(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1) C_5 C_3 F)) C_3)
+
+T25,3 & A4,1    -->    R32 : ALL X:UNARY.FUNC  - HOMOMORPH(X C_3 C_4)
+                                                 - =(APPLY1-EL(X APPLY1-EL(C_5 F_11(X))) APPLY1-EL(C_6 F_11(X)))
+                                                 + MAPPING(C_6 F C_4)
+
+R17,1 & R6,1    -->    R33 : + =(APPLY1-EL(C_5 F_1(F_2(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1) C_5 C_3 F))
+                                 F_2(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1))
+
+
+R17,1 & R5,1    -->    R34 : + MEMBER(F_1(F_2(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1) C_5 C_3 F) F)
+
+R21,1 & R6,1    -->    R35 : + =(APPLY1-EL(C_5 F_1(F_3(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1) C_5 C_3 F))
+                                 F_3(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1))
+
+
+R21,1 & R5,1    -->    R36 : + MEMBER(F_1(F_3(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1) C_5 C_3 F) F)
+
+R3,2 & A7,1     -->    R37 : ALL X:ELEMENT  - SURJECTIVE(C_6 F C_4)  - MEMBER(X C_4)
+                                              + MEMBER(F_1(X F_10(C_6 C_4 C_5 C_3) C_4 C_3) C_3)
+
+R3,2 & A6,1     -->    R38 : ALL X:ELEMENT  - SURJECTIVE(C_6 F C_4)  - MEMBER(X C_4)
+                                            + =(APPLY1-EL(F_10(C_6 C_4 C_5 C_3) F_1(X F_10(C_6 C_4 C_5 C_3) C_4 C_3)) X)
+
+
+R5,2 & A6,2     -->    R39 : ALL X:SET  Y:UNARY.FUNC  Z:ELEMENT  
+                                  - MEMBER(Z C_3)  - SURJECTIVE(Y X F)
+                                    + =(APPLY1-EL(Y F_1(F_1(Z C_5 C_3 F) Y F X)) F_1(Z C_5 C_3 F))
+
+R5,2 & A7,2     -->    R40 : ALL X:SET  Y:UNARY.FUNC  Z:ELEMENT  
+                                  - MEMBER(Z C_3)  - SURJECTIVE(Y X F)  + MEMBER(F_1(F_1(Z C_5 C_3 F) Y F X) X)
+
+A7,3 & R5,1     -->    R41 : ALL X:ELEMENT  Y:SET  Z:UNARY.FUNC  
+                                  - SURJECTIVE(Z C_3 Y)  - MEMBER(X Y)  + MEMBER(F_1(F_1(X Z Y C_3) C_5 C_3 F) F)
+
+A7,3 & R6,1     -->    R42 : ALL X:ELEMENT  Y:SET  Z:UNARY.FUNC  
+                                  - SURJECTIVE(Z C_3 Y)  - MEMBER(X Y)
+                                    + =(APPLY1-EL(C_5 F_1(F_1(X Z Y C_3) C_5 C_3 F)) F_1(X Z Y C_3))
+
+T15,1 & A13,1   -->    R43 : ALL X:UNARY.FUNC  Y:BINARY.FUNC  Z:SET  
+                                  - SEMIGROUP(Z Y)  - MAPPING(X F Z)  + HOMOMORPH(X F Z)  + MEMBER(F_2(X F Z Y) F)
+
+R4,1 & R43,2    -->    R44 : ALL X:BINARY.FUNC  - SEMIGROUP(C_3 X)  + HOMOMORPH(C_5 F C_3)  + MEMBER(F_2(C_5 F C_3 X) F)
+
+T17,1 & R43,1   -->    R45 : ALL X:UNARY.FUNC  - MAPPING(X F C_4)  + HOMOMORPH(X F C_4)  + MEMBER(F_2(X F C_4 C_1) F)
+
+T16,1 & R43,1   -->    R46 : ALL X:UNARY.FUNC  - MAPPING(X F C_3)  + HOMOMORPH(X F C_3)  + MEMBER(F_2(X F C_3 C_2) F)
+
+T15,1 & R43,1   -->    R47 : ALL X:UNARY.FUNC  - MAPPING(X F F)  + HOMOMORPH(X F F)  + MEMBER(F_2(X F F CONN.F) F)
+
+T15,1 & A13,2   -->    R48 : ALL X:UNARY.FUNC  Y:BINARY.FUNC  Z:SET  
+                                  - SEMIGROUP(Z Y)  - MAPPING(X Z F)  + HOMOMORPH(X Z F)  + MEMBER(F_2(X Z F CONN.F) Z)
+
+T15,1 & A12,1   -->    R49 : ALL X:UNARY.FUNC  Y:BINARY.FUNC  Z:SET  
+                                  - SEMIGROUP(Z Y)  - MAPPING(X F Z)  + HOMOMORPH(X F Z)  + MEMBER(F_3(X F Z Y) F)
+
+R4,1 & R49,2    -->    R50 : ALL X:BINARY.FUNC  - SEMIGROUP(C_3 X)  + HOMOMORPH(C_5 F C_3)  + MEMBER(F_3(C_5 F C_3 X) F)
+
+T17,1 & R49,1   -->    R51 : ALL X:UNARY.FUNC  - MAPPING(X F C_4)  + HOMOMORPH(X F C_4)  + MEMBER(F_3(X F C_4 C_1) F)
+
+T16,1 & R49,1   -->    R52 : ALL X:UNARY.FUNC  - MAPPING(X F C_3)  + HOMOMORPH(X F C_3)  + MEMBER(F_3(X F C_3 C_2) F)
+
+T15,1 & R49,1   -->    R53 : ALL X:UNARY.FUNC  - MAPPING(X F F)  + HOMOMORPH(X F F)  + MEMBER(F_3(X F F CONN.F) F)
+
+T15,1 & A12,2   -->    R54 : ALL X:UNARY.FUNC  Y:BINARY.FUNC  Z:SET  
+                                  - SEMIGROUP(Z Y)  - MAPPING(X Z F)  + HOMOMORPH(X Z F)  + MEMBER(F_3(X Z F CONN.F) Z)
+
+T15,1 & A11,1   -->    R55 : ALL X:UNARY.FUNC  Y:BINARY.FUNC  Z:SET  
+                                  - SEMIGROUP(Z Y)  - MAPPING(X F Z)  + HOMOMORPH(X F Z)
+                                  - =(APPLY2(Y APPLY1(X F_2(X F Z Y)) APPLY1(X F_3(X F Z Y)))
+                                      APPLY1(X APPLY2(Y F_2(X F Z Y) F_3(X F Z Y))))
+
+
+R4,1 & R55,2    -->    R56 : ALL X:BINARY.FUNC  
+                                  - SEMIGROUP(C_3 X)  + HOMOMORPH(C_5 F C_3)
+                                  - =(APPLY2(X APPLY1(C_5 F_2(C_5 F C_3 X)) APPLY1(C_5 F_3(C_5 F C_3 X)))
+                                      APPLY1(C_5 APPLY2(X F_2(C_5 F C_3 X) F_3(C_5 F C_3 X))))
+
+
+T17,1 & R55,1   -->    R57 : ALL X:UNARY.FUNC  - MAPPING(X F C_4)  + HOMOMORPH(X F C_4)
+                                               - =(APPLY2(C_1 APPLY1(X F_2(X F C_4 C_1)) APPLY1(X F_3(X F C_4 C_1)))
+                                                   APPLY1(X APPLY2(C_1 F_2(X F C_4 C_1) F_3(X F C_4 C_1))))
+
+
+T16,1 & R55,1   -->    R58 : ALL X:UNARY.FUNC  - MAPPING(X F C_3)  + HOMOMORPH(X F C_3)
+                                               - =(APPLY2(C_2 APPLY1(X F_2(X F C_3 C_2)) APPLY1(X F_3(X F C_3 C_2)))
+                                                   APPLY1(X APPLY2(C_2 F_2(X F C_3 C_2) F_3(X F C_3 C_2))))
+
+
+T15,1 & R55,1   -->    R59 : ALL X:UNARY.FUNC  - MAPPING(X F F)  + HOMOMORPH(X F F)
+                                               - =(APPLY2(CONN.F
+                                                          APPLY1(X F_2(X F F CONN.F))
+                                                          APPLY1(X F_3(X F F CONN.F)))
+                                                   APPLY1(X APPLY2(CONN.F F_2(X F F CONN.F) F_3(X F F CONN.F))))
+
+
+T15,1 & A11,2   -->    R60 : ALL X:UNARY.FUNC  Y:BINARY.FUNC  Z:SET  
+                                  - SEMIGROUP(Z Y)  - MAPPING(X Z F)  + HOMOMORPH(X Z F)
+                                  - =(APPLY2(CONN.F APPLY1(X F_2(X Z F CONN.F)) APPLY1(X F_3(X Z F CONN.F)))
+                                      APPLY1(X APPLY2(CONN.F F_2(X Z F CONN.F) F_3(X Z F CONN.F))))
+
+
+T16,1 & A13,1   -->    R61 : ALL X:UNARY.FUNC  Y:BINARY.FUNC  Z:SET  
+                                  - SEMIGROUP(Z Y)  - MAPPING(X C_3 Z)  + HOMOMORPH(X C_3 Z)
+                                    + MEMBER(F_2(X C_3 Z Y) C_3)
+
+R2,1 & R61,2    -->    R62 : ALL X:BINARY.FUNC  
+                                  - SEMIGROUP(C_4 X)  + HOMOMORPH(F_10(C_6 C_4 C_5 C_3) C_3 C_4)
+                                    + MEMBER(F_2(F_10(C_6 C_4 C_5 C_3) C_3 C_4 X) C_3)
+
+R62,2 & R13,1   -->    R63 : ALL X:BINARY.FUNC  - SEMIGROUP(C_4 X)  + MEMBER(F_2(F_10(C_6 C_4 C_5 C_3) C_3 C_4 X) C_3)
+
+T17,1 & R63,1   -->    R64 : + MEMBER(F_2(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1) C_3)
+
+R63,2 & R5,1    -->    R65 : ALL X:BINARY.FUNC  
+                                  - SEMIGROUP(C_4 X)  + MEMBER(F_1(F_2(F_10(C_6 C_4 C_5 C_3) C_3 C_4 X) C_5 C_3 F) F)
+
+T17,1 & R65,1   -->    R66 : + MEMBER(F_1(F_2(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1) C_5 C_3 F) F)
+
+R63,2 & R6,1    -->    R67 : ALL X:BINARY.FUNC  
+                                  - SEMIGROUP(C_4 X)
+                                  + =(APPLY1-EL(C_5 F_1(F_2(F_10(C_6 C_4 C_5 C_3) C_3 C_4 X) C_5 C_3 F))
+                                      F_2(F_10(C_6 C_4 C_5 C_3) C_3 C_4 X))
+
+
+T17,1 & R67,1   -->    R68 : + =(APPLY1-EL(C_5 F_1(F_2(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1) C_5 C_3 F))
+                                 F_2(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1))
+
+
+T16,1 & A13,2   -->    R69 : ALL X:UNARY.FUNC  Y:BINARY.FUNC  Z:SET  
+                                  - SEMIGROUP(Z Y)  - MAPPING(X Z C_3)  + HOMOMORPH(X Z C_3)
+                                    + MEMBER(F_2(X Z C_3 C_2) Z)
+
+T17,1 & R69,1   -->    R70 : ALL X:UNARY.FUNC  - MAPPING(X C_4 C_3)  + HOMOMORPH(X C_4 C_3)
+                                                 + MEMBER(F_2(X C_4 C_3 C_2) C_4)
+
+T16,1 & A12,1   -->    R71 : ALL X:UNARY.FUNC  Y:BINARY.FUNC  Z:SET  
+                                  - SEMIGROUP(Z Y)  - MAPPING(X C_3 Z)  + HOMOMORPH(X C_3 Z)
+                                    + MEMBER(F_3(X C_3 Z Y) C_3)
+
+R2,1 & R71,2    -->    R72 : ALL X:BINARY.FUNC  
+                                  - SEMIGROUP(C_4 X)  + HOMOMORPH(F_10(C_6 C_4 C_5 C_3) C_3 C_4)
+                                    + MEMBER(F_3(F_10(C_6 C_4 C_5 C_3) C_3 C_4 X) C_3)
+
+R72,2 & R13,1   -->    R73 : ALL X:BINARY.FUNC  - SEMIGROUP(C_4 X)  + MEMBER(F_3(F_10(C_6 C_4 C_5 C_3) C_3 C_4 X) C_3)
+
+T17,1 & R73,1   -->    R74 : + MEMBER(F_3(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1) C_3)
+
+R73,2 & R5,1    -->    R75 : ALL X:BINARY.FUNC  
+                                  - SEMIGROUP(C_4 X)  + MEMBER(F_1(F_3(F_10(C_6 C_4 C_5 C_3) C_3 C_4 X) C_5 C_3 F) F)
+
+T17,1 & R75,1   -->    R76 : + MEMBER(F_1(F_3(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1) C_5 C_3 F) F)
+
+R73,2 & R6,1    -->    R77 : ALL X:BINARY.FUNC  
+                                  - SEMIGROUP(C_4 X)
+                                  + =(APPLY1-EL(C_5 F_1(F_3(F_10(C_6 C_4 C_5 C_3) C_3 C_4 X) C_5 C_3 F))
+                                      F_3(F_10(C_6 C_4 C_5 C_3) C_3 C_4 X))
+
+
+T17,1 & R77,1   -->    R78 : + =(APPLY1-EL(C_5 F_1(F_3(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1) C_5 C_3 F))
+                                 F_3(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1))
+
+
+T16,1 & A12,2   -->    R79 : ALL X:UNARY.FUNC  Y:BINARY.FUNC  Z:SET  
+                                  - SEMIGROUP(Z Y)  - MAPPING(X Z C_3)  + HOMOMORPH(X Z C_3)
+                                    + MEMBER(F_3(X Z C_3 C_2) Z)
+
+T17,1 & R79,1   -->    R80 : ALL X:UNARY.FUNC  - MAPPING(X C_4 C_3)  + HOMOMORPH(X C_4 C_3)
+                                                 + MEMBER(F_3(X C_4 C_3 C_2) C_4)
+
+T16,1 & A11,1   -->    R81 : ALL X:UNARY.FUNC  Y:BINARY.FUNC  Z:SET  
+                                  - SEMIGROUP(Z Y)  - MAPPING(X C_3 Z)  + HOMOMORPH(X C_3 Z)
+                                  - =(APPLY2(Y APPLY1(X F_2(X C_3 Z Y)) APPLY1(X F_3(X C_3 Z Y)))
+                                      APPLY1(X APPLY2(Y F_2(X C_3 Z Y) F_3(X C_3 Z Y))))
+
+
+R2,1 & R81,2    -->    R82 : ALL X:BINARY.FUNC  
+                                  - SEMIGROUP(C_4 X)  + HOMOMORPH(F_10(C_6 C_4 C_5 C_3) C_3 C_4)
+                                  - =(APPLY2(X
+                                             APPLY1(F_10(C_6 C_4 C_5 C_3) F_2(F_10(C_6 C_4 C_5 C_3) C_3 C_4 X))
+                                             APPLY1(F_10(C_6 C_4 C_5 C_3) F_3(F_10(C_6 C_4 C_5 C_3) C_3 C_4 X)))
+                                      APPLY1(F_10(C_6 C_4 C_5 C_3)
+                                             APPLY2(X
+                                                    F_2(F_10(C_6 C_4 C_5 C_3) C_3 C_4 X)
+                                                    F_3(F_10(C_6 C_4 C_5 C_3) C_3 C_4 X))))
+
+
+R82,2 & R13,1   -->    R83 : ALL X:BINARY.FUNC  
+                                  - SEMIGROUP(C_4 X)
+                                  - =(APPLY2(X
+                                             APPLY1(F_10(C_6 C_4 C_5 C_3) F_2(F_10(C_6 C_4 C_5 C_3) C_3 C_4 X))
+                                             APPLY1(F_10(C_6 C_4 C_5 C_3) F_3(F_10(C_6 C_4 C_5 C_3) C_3 C_4 X)))
+                                      APPLY1(F_10(C_6 C_4 C_5 C_3)
+                                             APPLY2(X
+                                                    F_2(F_10(C_6 C_4 C_5 C_3) C_3 C_4 X)
+                                                    F_3(F_10(C_6 C_4 C_5 C_3) C_3 C_4 X))))
+
+
+T17,1 & R83,1   -->    R84 : - =(APPLY2(C_1
+                                        APPLY1(F_10(C_6 C_4 C_5 C_3) F_2(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1))
+                                        APPLY1(F_10(C_6 C_4 C_5 C_3) F_3(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1)))
+                                 APPLY1(F_10(C_6 C_4 C_5 C_3)
+                                        APPLY2(C_1
+                                               F_2(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1)
+                                               F_3(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1))))
+
+
+T16,1 & A11,2   -->    R85 : ALL X:UNARY.FUNC  Y:BINARY.FUNC  Z:SET  
+                                  - SEMIGROUP(Z Y)  - MAPPING(X Z C_3)  + HOMOMORPH(X Z C_3)
+                                  - =(APPLY2(C_2 APPLY1(X F_2(X Z C_3 C_2)) APPLY1(X F_3(X Z C_3 C_2)))
+                                      APPLY1(X APPLY2(C_2 F_2(X Z C_3 C_2) F_3(X Z C_3 C_2))))
+
+
+T17,1 & R85,1   -->    R86 : ALL X:UNARY.FUNC  - MAPPING(X C_4 C_3)  + HOMOMORPH(X C_4 C_3)
+                                               - =(APPLY2(C_2 APPLY1(X F_2(X C_4 C_3 C_2)) APPLY1(X F_3(X C_4 C_3 C_2)))
+                                                   APPLY1(X APPLY2(C_2 F_2(X C_4 C_3 C_2) F_3(X C_4 C_3 C_2))))
+
+
+T17,1 & A13,1   -->    R87 : ALL X:UNARY.FUNC  Y:BINARY.FUNC  Z:SET  
+                                  - SEMIGROUP(Z Y)  - MAPPING(X C_4 Z)  + HOMOMORPH(X C_4 Z)
+                                    + MEMBER(F_2(X C_4 Z Y) C_4)
+
+T17,1 & A12,1   -->    R88 : ALL X:UNARY.FUNC  Y:BINARY.FUNC  Z:SET  
+                                  - SEMIGROUP(Z Y)  - MAPPING(X C_4 Z)  + HOMOMORPH(X C_4 Z)
+                                    + MEMBER(F_3(X C_4 Z Y) C_4)
+
+T17,1 & A11,1   -->    R89 : ALL X:UNARY.FUNC  Y:BINARY.FUNC  Z:SET  
+                                  - SEMIGROUP(Z Y)  - MAPPING(X C_4 Z)  + HOMOMORPH(X C_4 Z)
+                                  - =(APPLY2(Y APPLY1(X F_2(X C_4 Z Y)) APPLY1(X F_3(X C_4 Z Y)))
+                                      APPLY1(X APPLY2(Y F_2(X C_4 Z Y) F_3(X C_4 Z Y))))
+
+
+R4,1 & A14,3    -->    R90 : ALL X,Y:ELEMENT  Z,U:BINARY.FUNC  
+                                  - SEMIGROUP(F U)  - SEMIGROUP(C_3 Z)  - HOMOMORPH(C_5 F C_3)  - MEMBER(Y F)
+                                    - MEMBER(X F)  + =(APPLY2(Z APPLY1(C_5 Y) APPLY1(C_5 X)) APPLY1(C_5 APPLY2(Z Y X)))
+
+R90,3 & T22,1   -->    R91 : ALL X,Y:ELEMENT  Z,U:BINARY.FUNC  
+                                  - SEMIGROUP(F U)  - SEMIGROUP(C_3 Z)  - MEMBER(Y F)  - MEMBER(X F)
+                                    + =(APPLY2(Z APPLY1(C_5 Y) APPLY1(C_5 X)) APPLY1(C_5 APPLY2(Z Y X)))
+
+R91,1 & T15,1   -->    R92 : ALL X,Y:ELEMENT  Z:BINARY.FUNC  
+                                  - SEMIGROUP(C_3 Z)  - MEMBER(Y F)  - MEMBER(X F)
+                                    + =(APPLY2(Z APPLY1(C_5 Y) APPLY1(C_5 X)) APPLY1(C_5 APPLY2(Z Y X)))
+
+T15,1 & A14,1   -->    R93 : ALL X,Y:ELEMENT  Z:UNARY.FUNC  U:BINARY.FUNC  V:SET  
+                                  - SEMIGROUP(V U)  - MAPPING(Z F V)  - HOMOMORPH(Z F V)  - MEMBER(Y F)  - MEMBER(X F)
+                                    + =(APPLY2(U APPLY1(Z Y) APPLY1(Z X)) APPLY1(Z APPLY2(U Y X)))
+
+T15,1 & A14,2   -->    R94 : ALL X,Y:ELEMENT  Z:UNARY.FUNC  U:BINARY.FUNC  V:SET  
+                                  - SEMIGROUP(V U)  - MAPPING(Z V F)  - HOMOMORPH(Z V F)  - MEMBER(Y V)  - MEMBER(X V)
+                                    + =(APPLY2(CONN.F APPLY1(Z Y) APPLY1(Z X)) APPLY1(Z APPLY2(CONN.F Y X)))
+
+T16,1 & A14,1   -->    R95 : ALL X,Y:ELEMENT  Z:UNARY.FUNC  U:BINARY.FUNC  V:SET  
+                                  - SEMIGROUP(V U)  - MAPPING(Z C_3 V)  - HOMOMORPH(Z C_3 V)  - MEMBER(Y C_3)
+                                    - MEMBER(X C_3)  + =(APPLY2(U APPLY1(Z Y) APPLY1(Z X)) APPLY1(Z APPLY2(U Y X)))
+
+T16,1 & A14,2   -->    R96 : ALL X,Y:ELEMENT  Z:UNARY.FUNC  U:BINARY.FUNC  V:SET  
+                                  - SEMIGROUP(V U)  - MAPPING(Z V C_3)  - HOMOMORPH(Z V C_3)  - MEMBER(Y V)
+                                    - MEMBER(X V)  + =(APPLY2(C_2 APPLY1(Z Y) APPLY1(Z X)) APPLY1(Z APPLY2(C_2 Y X)))
+
+T17,1 & A14,1   -->    R97 : ALL X,Y:ELEMENT  Z:UNARY.FUNC  U:BINARY.FUNC  V:SET  
+                                  - SEMIGROUP(V U)  - MAPPING(Z C_4 V)  - HOMOMORPH(Z C_4 V)  - MEMBER(Y C_4)
+                                    - MEMBER(X C_4)  + =(APPLY2(U APPLY1(Z Y) APPLY1(Z X)) APPLY1(Z APPLY2(U Y X)))
+
+R25,1 & R63,2   -->    P98 : + MEMBER(APPLY1-EL(C_5 F_1(F_2(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1) C_5 C_3 F)) C_3)
+                               - SEMIGROUP(C_4 C_1)
+
+R24,1 & R73,2   -->    P99 : + MEMBER(APPLY1-EL(C_5 F_1(F_3(F_10(C_6 C_4 C_5 C_3) C_3 C_4 C_1) C_5 C_3 F)) C_3)
+                               - SEMIGROUP(C_4 C_1)
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+THE THEOREM(S) COULD NOT BE PROVED.
+

@@ -1,0 +1,176 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 48.4                                                *
+                     *           DATE: 12-JUL,1991  20:05                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 12-JUL,1991 19:24 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * AXIOMS *
+             ALL X + (0 X) = X
+             ALL X,Y + (S (X) Y) = S (+ (X Y))
+             ALL X * (0 X) = 0
+             ALL X,Y * (S (X) Y) = + (Y * (X Y))
+             ALL X,Y + (X Y) = + (Y X)
+             ALL X,Y,Z + (+ (X Y) Z) = + (X + (Y Z))
+             ALL X,Y * (X Y) = * (Y X)
+             ALL X,Y,Z * (* (X Y) Z) = * (X * (Y Z))
+             ALL X,Y,Z * (X + (Y Z)) = + (* (X Y) * (X Z))
+             ALL X EXP (X 0) = S (0)
+             ALL X,Y EXP (X S (Y)) = * (X EXP (X Y))
+             ALL X,Y,Z EXP (X + (Y Z)) = * (EXP (X Y) EXP (X Z))
+             
+   Theorems: * THEOREM *
+             ALL X,Y EXP (X * (Y 0)) = EXP (EXP (X Y) 0)
+             ALL X,Y,Z EXP (X * (Y Z)) = EXP (EXP (X Y) Z) IMPL EXP (X * (Y S (Z))) = EXP (EXP (X Y) S (Z))
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+           * A1:   All x:Any + =(x x)
+             A2:   All x:Any + =(+(0 x) x)
+             A3:   All x,y:Any + =(+(s(y) x) s(+(y x)))
+           * A4:   All x:Any + =(*(0 x) 0)
+           * A5:   All x,y:Any + =(*(s(y) x) +(x *(y x)))
+             A6:   All x,y:Any + =(+(y x) +(x y))
+             A7:   All x,y,z:Any + =(+(+(z y) x) +(z +(y x)))
+           * A8:   All x,y:Any + =(*(y x) *(x y))
+             A9:   All x,y,z:Any + =(*(*(z y) x) *(z *(y x)))
+             A10:  All x,y,z:Any + =(*(z +(y x)) +(*(z y) *(z x)))
+           * A11:  All x:Any + =(exp(x 0) s(0))
+           * A12:  All x,y:Any + =(exp(y s(x)) *(y exp(y x)))
+           * A13:  All x,y,z:Any + =(exp(z +(y x)) *(exp(z y) exp(z x)))
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization and Splitting
+             =================================================================
+
+   Splitpart 1
+
+           * T14: - =(exp(c_2 *(c_1 0)) exp(exp(c_2 c_1) 0))
+
+   Splitpart 2
+
+           * T15: + =(exp(c_5 *(c_4 c_3)) exp(exp(c_5 c_4) c_3))
+           * T16: - =(exp(c_5 *(c_4 s(c_3))) exp(exp(c_5 c_4) s(c_3)))
+
+
+   End of Splitparts
+
+
+
+
+
+             Initial Operations on Theorems
+             ==============================
+
+
+          
+   Splitpart 1:
+   
+   T14,1 & A11   -->* RW1: - =(exp(c_2 *(c_1 0)) s(0))
+   
+   RW1,1 & A8    -->* RW2: - =(exp(c_2 *(0 c_1)) s(0))
+   
+   RW2,1 & A4    -->* RW3: - =(exp(c_2 0) s(0))
+   
+   RW3,1 & A11   -->* RW4: - =(s(0) s(0))
+   
+   RW4,1 & A1,1  -->* R5:  []
+   
+
+   
+   Splitpart 2:
+   
+   T16,1 & A12 -->* RW6: - =(exp(c_5 *(c_4 s(c_3))) *(exp(c_5 c_4) exp(exp(c_5 c_4) c_3)))
+   
+   RW6,1 & T15 -->* RW7: - =(exp(c_5 *(c_4 s(c_3))) *(exp(c_5 c_4) exp(c_5 *(c_4 c_3))))
+   
+
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation of Splitpart 1:
+   ==========================
+   
+   See operations on theorems of splitpart 1
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation of Splitpart 2:
+   ==========================
+   
+   Initial Clauses:   * A1:    All x:Any + =(x x)
+                        A2:    All x:Any + =(+(0 x) x)
+                        A3:    All x,y:Any + =(+(s(y) x) s(+(y x)))
+                        A4:    All x:Any + =(*(0 x) 0)
+                      * A5:    All x,y:Any + =(*(s(y) x) +(x *(y x)))
+                        A6:    All x,y:Any + =(+(y x) +(x y))
+                        A7:    All x,y,z:Any + =(+(+(z y) x) +(z +(y x)))
+                      * A8:    All x,y:Any + =(*(y x) *(x y))
+                        A9:    All x,y,z:Any + =(*(*(z y) x) *(z *(y x)))
+                        A10:   All x,y,z:Any + =(*(z +(y x)) +(*(z y) *(z x)))
+                        A11:   All x:Any + =(exp(x 0) s(0))
+                      * A12:   All x,y:Any + =(exp(y s(x)) *(y exp(y x)))
+                      * A13:   All x,y,z:Any + =(exp(z +(y x)) *(exp(z y) exp(z x)))
+                      * T15:   + =(exp(c_5 *(c_4 c_3)) exp(exp(c_5 c_4) c_3))
+                      * RW7:   - =(exp(c_5 *(c_4 s(c_3))) *(exp(c_5 c_4) exp(c_5 *(c_4 c_3))))
+                      
+
+   
+   A8,1 & A5,1    --> * P17:   All x,y:Any + =(*(y s(x)) +(y *(x y)))
+   
+   A8,1 & P17,1   --> * P21:   All x,y:Any + =(*(y s(x)) +(y *(y x)))
+   
+   RW7,1 & P21    --> * RW22:  - =(exp(c_5 +(c_4 *(c_4 c_3))) *(exp(c_5 c_4) exp(c_5 *(c_4 c_3))))
+   
+   RW22,1 & A13   --> * RW23:  - =(*(exp(c_5 c_4) exp(c_5 *(c_4 c_3))) *(exp(c_5 c_4) exp(c_5 *(c_4 c_3))))
+   
+   RW23,1 & A1,1  --> * R28:   []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation of Splitpart 1: 2 seconds
+   Time Used for Refutation of Splitpart 2: 307 seconds

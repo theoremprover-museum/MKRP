@@ -1,0 +1,2692 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 53.8 GENTRAFO 3.0                                   *
+                     *           DATE: 30-APR,1992  10:15                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+                                                                                                                    
+      
+   
+   ******************************************************************************************************************
+   ***
+   
+                                                                                                                    
+      
+   
+    FORMULA:  Date: 02-APR,1992 20:38
+   
+              Axioms und Theorems for this proof have been read from
+   
+                 Axiom-File: NIL
+   
+               Theorem-File: NIL
+   
+                                                                                                                    
+      
+   
+   ******************************************************************************************************************
+   ***
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Adjustment of the Options:
+   ==========================
+
+   TWO_RULES                             NIL
+   TWO_RULES.MAXLEVEL                    1
+   TWO_SUPPRESS.NORULES                  NIL
+
+   RED.I_CLAUSE.MULTIPLE.LITERALS        T
+   RED.I_CLAUSE.PURITY                   NIL
+   RED.I_CLAUSE.TAUTOLOGY                T
+   RED.I_CLAUSE.TAUTOLOGY.RECHECK        PARTIAL
+   RED.I_CLAUSE.SUBSUMPTION              T
+   RED.I_CLAUSE.SUBSUMPTION.RECHECK      PARTIAL
+   RED.I_CLAUSE.REPL.FACTORING           T
+   RED.I_CLAUSE.REPL.FACTORING.RECHECK   T
+   RED.I_CLAUSE.REPL.RESOLUTION          SIMPLE
+   RED.I_CLAUSE.REPL.RESOLUTION.RECHECK  T
+   RED.I_CLAUSE.REWRITING                DEM
+   RED.I_LINK.INCOMPATIBILITY            NIL
+   RED.I_LINK.TAUTOLOGY                  T
+   RED.I_LINK.TAUTOLOGY.RECHECK          NIL
+   RED.I_LINK.SUBSUMPTION                T
+   RED.I_LINK.SUBSUMPTION.RECHECK        NIL
+
+   RED.D_CLAUSE.MULTIPLE.LITERALS        T
+   RED.D_CLAUSE.PURITY                   NIL
+   RED.D_CLAUSE.TAUTOLOGY                T
+   RED.D_CLAUSE.TAUTOLOGY.RECHECK        NIL
+   RED.D_CLAUSE.SUBSUMPTION.FORWARD      REMOVE-INHIBIT
+   RED.D_CLAUSE.SUBSUMPTION.BACKWARD     T
+   RED.D_CLAUSE.SUBSUMPTION.RECHECK      NIL
+   RED.D_CLAUSE.REPL.FACTORING           T
+   RED.D_CLAUSE.REPL.FACTORING.RECHECK   T
+   RED.D_CLAUSE.REPL.RESOLUTION          SIMPLE
+   RED.D_CLAUSE.REPL.RESOLUTION.RECHECK  T
+   RED.D_CLAUSE.REWRITING                DEM
+   RED.D_LINK.INCOMPATIBILITY            NIL
+   RED.D_LINK.TAUTOLOGY                  T
+   RED.D_LINK.TAUTOLOGY.RECHECK          NIL
+   RED.D_LINK.SUBSUMPTION                T
+   RED.D_LINK.SUBSUMPTION.RECHECK        NIL
+
+   FAC_INITIAL                           T
+   FAC_EACH.STEP                         T
+
+   STR_RESOLUTION                        SET-OF-SUPPORT
+   STR_R.SELECTION                       (* 10 (+ 2 VARIABLES (* 2 DEPTH) (* 3 NOLIT)))
+   STR_LINK.DEPTH                        NIL
+   STR_TERM.DEPTH                        NIL
+   STR_FINITE.DOMAIN                     T
+
+   TERM_UNITS                            T
+   TERM_ITERATIONS                       10
+   TERM_SET.OF.SUPPORT                   NIL
+   TERM_BREADTH.FIRST                    NIL
+
+   SORT_LITERALS                         NIL
+   SORT_MAX.UNIFICATION.RULE.STEPS       100
+   SORT_MAX.UNIFICATION.TREE.DEPTH       100
+   SORT_MAX.UNIFICATION.TREE.OPEN.NODES  20
+   SORT_UNIFIER.STOP.NUMBER              100
+   SORT_SHOW.VARIABLE.SORTS              T
+
+   ER_PARAMODULATION                     BACHMAIR-GANZINGER
+   ER_WEIGHT.POLYNOMIALS                 NIL
+   ER_P.SELECTION                        (* WEIGHT 1)
+   ER_COMPLETION                         UNFAILING
+   ER_CP.REDUCTION                       T
+   ER_ORDERING                           LEXICOGRAPHIC-RECURSIVE-PATH
+   ER_OPERATOR.ORDERING                  (= F_1 F_5 F_2 F_3 F_4 F_8 F_7 F_9 F_10 F_6 C_1 C_2 C_3 C_4 P)
+   ER_KNUTH.BENDIX.WEIGHT                ((+ 1) (* 1) (- 0) (0 1) (1 1))
+   ER_POLYNOMIAL.WEIGHT                  ((+ (+ 5 (* 2 X) Y)) (* (+ X (* X Y))) (- (* 2 X)) (0 2) (1 2))
+   ER_NARROW.DEPTH                       0
+   ER_NARROW.NEXT                        DEPTH
+   ER_NARROW.TEST                        (NORM C DELTA SL N)
+   ER_COMPILE                            NIL
+
+   GEN_SPLITTING                         T
+   GEN_PRESIMPLIFICATION                 T
+   GEN_MIN.EXPRESSION.LENGTH.FOR.FILE    NIL
+   GEN_MIN.EXPRESSION.SIZE.FOR.FILE      NIL
+   GEN_MANUAL.CONTROL                    NIL
+   GEN_MAXIMUM.STEPS                     NIL
+   GEN_GRAPH.SAVING                      NIL
+   GEN_SAVE.FILE                         SAVEDEFAULT
+   GEN_LISP.GARBAGE.COLLECTION           NIL
+   GEN_COMMON.LISP                       NIL
+
+   TR_PREPROCESSING                      NIL
+   TR_STEP.MODE                          LR
+   TR_DUMP                               NIL
+   TR_CLAUSE.MODE                        I
+   TR_LINK.MODE                          I
+   TR_TRACE.FILE                         NIL
+   TR_TERMINAL                           T
+
+   PR_INFIX.FORM                         T
+   PR_PREFIX.FORM                        NIL
+   PR_OPTIONS                            T
+   PR_AXIOM.CLAUSES                      T
+   PR_SYMBOLS                            NIL
+   PR_DIRECT.PROOF                       T
+   PR_VARIABLE.PRINT.NAMES               (X Y Z U V W XX YY ZZ UU VV WW XXX YYY ZZZ UUU VVV WWW)
+   PR_PROTOCOL                           STANDARD
+   PR_LEFT.MARGIN                        3
+   PR_RIGHT.MARGIN                       117
+   PR_LATEX                              NIL
+   PR_LINELENGTH                         114
+   PR_LITERALS                           NIL
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * AXIOMS *
+             EX X,Y NOT Y = X AND (ALL Z Z = X OR Z = Y)
+             
+   Theorems: * THEOREMS *
+             (EX Z (ALL X ((EX W (ALL Y (P (X Y) EQV Y = W))) EQV X = Z)))
+             EQV (EX Z (ALL X ((EX W (ALL Y (P (Y X) EQV Y = W))) EQV X = Z)))
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+           * A1:   All x:Any + =(x x)
+           * A2:   - =(c_2 c_1)
+           * A3:   All x:Any + =(x c_1)  + =(x c_2)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization and Splitting
+             =================================================================
+
+   Splitpart 1
+
+           * T4: All x,y:Any - P(f_1(y) f_2(x y))  - =(f_2(x y) x)  - =(f_1(y) y)
+           * T5: All x,y:Any + P(f_1(y) f_2(x y))  + =(f_2(x y) x)  - =(f_1(y) y)
+           * T6: All x,y:Any + P(f_1(y) x)  - =(x f_3(y))  + =(f_1(y) y)
+           * T7: All x,y:Any - P(f_1(y) x)  + =(x f_3(y))  + =(f_1(y) y)
+           * T8: All x,y:Any + P(y x)  - =(y f_4(x))  - =(x c_3)
+           * T9: All x,y:Any - P(y x)  + =(y f_4(x))  - =(x c_3)
+           * T10: All x,y:Any - P(f_5(y x) x)  - =(f_5(y x) y)  + =(x c_3)
+           * T11: All x,y:Any + P(f_5(y x) x)  + =(f_5(y x) y)  + =(x c_3)
+
+   Splitpart 2
+
+           * T12: All x,y:Any + P(y x)  - =(x f_6(y))  - =(y c_4)
+           * T13: All x,y:Any - P(y x)  + =(x f_6(y))  - =(y c_4)
+           * T14: All x,y:Any - P(y f_7(x y))  - =(f_7(x y) x)  + =(y c_4)
+           * T15: All x,y:Any + P(y f_7(x y))  + =(f_7(x y) x)  + =(y c_4)
+           * T16: All x,y:Any - P(f_9(y x) f_8(x))  - =(f_9(y x) y)  - =(f_8(x) x)
+           * T17: All x,y:Any + P(f_9(y x) f_8(x))  + =(f_9(y x) y)  - =(f_8(x) x)
+           * T18: All x,y:Any + P(y f_8(x))  - =(y f_10(x))  + =(f_8(x) x)
+           * T19: All x,y:Any - P(y f_8(x))  + =(y f_10(x))  + =(f_8(x) x)
+
+
+   End of Splitparts
+
+
+
+
+
+             Initial Operations on Theorems
+             ==============================
+
+
+          
+   Splitpart 1:
+   
+   T4 (instance)  ==> * I1:  - P(f_1(c_2) f_2(c_2 c_2))  - =(f_2(c_2 c_2) c_2)  - =(f_1(c_2) c_2)
+   
+   T4 (instance)  ==> * I2:  - P(f_1(c_2) f_2(c_1 c_2))  - =(f_2(c_1 c_2) c_1)  - =(f_1(c_2) c_2)
+   
+   T4 (instance)  ==> * I3:  - P(f_1(c_1) f_2(c_2 c_1))  - =(f_2(c_2 c_1) c_2)  - =(f_1(c_1) c_1)
+   
+   T4 (instance)  ==> * I4:  - P(f_1(c_1) f_2(c_1 c_1))  - =(f_2(c_1 c_1) c_1)  - =(f_1(c_1) c_1)
+   
+   T5 (instance)  ==> * I5:  + P(f_1(c_2) f_2(c_2 c_2))  + =(f_2(c_2 c_2) c_2)  - =(f_1(c_2) c_2)
+   
+   T5 (instance)  ==> * I6:  + P(f_1(c_2) f_2(c_1 c_2))  + =(f_2(c_1 c_2) c_1)  - =(f_1(c_2) c_2)
+   
+   T5 (instance)  ==> * I7:  + P(f_1(c_1) f_2(c_2 c_1))  + =(f_2(c_2 c_1) c_2)  - =(f_1(c_1) c_1)
+   
+   T5 (instance)  ==> * I8:  + P(f_1(c_1) f_2(c_1 c_1))  + =(f_2(c_1 c_1) c_1)  - =(f_1(c_1) c_1)
+   
+   T6 (instance)  ==> * I9:  + P(f_1(c_2) c_2)  - =(c_2 f_3(c_2))  + =(f_1(c_2) c_2)
+   
+   T6 (instance)  ==> * I10: + P(f_1(c_2) c_1)  - =(c_1 f_3(c_2))  + =(f_1(c_2) c_2)
+   
+   T6 (instance)  ==> * I11: + P(f_1(c_1) c_2)  - =(c_2 f_3(c_1))  + =(f_1(c_1) c_1)
+   
+   T6 (instance)  ==> * I12: + P(f_1(c_1) c_1)  - =(c_1 f_3(c_1))  + =(f_1(c_1) c_1)
+   
+   T7 (instance)  ==> * I13: - P(f_1(c_2) c_2)  + =(c_2 f_3(c_2))  + =(f_1(c_2) c_2)
+   
+   T7 (instance)  ==> * I14: - P(f_1(c_2) c_1)  + =(c_1 f_3(c_2))  + =(f_1(c_2) c_2)
+   
+   T7 (instance)  ==> * I15: - P(f_1(c_1) c_2)  + =(c_2 f_3(c_1))  + =(f_1(c_1) c_1)
+   
+   T7 (instance)  ==> * I16: - P(f_1(c_1) c_1)  + =(c_1 f_3(c_1))  + =(f_1(c_1) c_1)
+   
+   T8 (instance)  ==> * I17: + P(c_2 c_2)  - =(c_2 f_4(c_2))  - =(c_2 c_3)
+   
+   T8 (instance)  ==> * I18: + P(c_2 c_1)  - =(c_2 f_4(c_1))  - =(c_1 c_3)
+   
+   T8 (instance)  ==> * I19: + P(c_1 c_2)  - =(c_1 f_4(c_2))  - =(c_2 c_3)
+   
+   T8 (instance)  ==> * I20: + P(c_1 c_1)  - =(c_1 f_4(c_1))  - =(c_1 c_3)
+   
+   T9 (instance)  ==> * I21: - P(c_2 c_2)  + =(c_2 f_4(c_2))  - =(c_2 c_3)
+   
+   T9 (instance)  ==> * I22: - P(c_2 c_1)  + =(c_2 f_4(c_1))  - =(c_1 c_3)
+   
+   T9 (instance)  ==> * I23: - P(c_1 c_2)  + =(c_1 f_4(c_2))  - =(c_2 c_3)
+   
+   T9 (instance)  ==> * I24: - P(c_1 c_1)  + =(c_1 f_4(c_1))  - =(c_1 c_3)
+   
+   T10 (instance) ==> * I25: - P(f_5(c_2 c_2) c_2)  - =(f_5(c_2 c_2) c_2)  + =(c_2 c_3)
+   
+   T10 (instance) ==> * I26: - P(f_5(c_2 c_1) c_1)  - =(f_5(c_2 c_1) c_2)  + =(c_1 c_3)
+   
+   T10 (instance) ==> * I27: - P(f_5(c_1 c_2) c_2)  - =(f_5(c_1 c_2) c_1)  + =(c_2 c_3)
+   
+   T10 (instance) ==> * I28: - P(f_5(c_1 c_1) c_1)  - =(f_5(c_1 c_1) c_1)  + =(c_1 c_3)
+   
+   T11 (instance) ==> * I29: + P(f_5(c_2 c_2) c_2)  + =(f_5(c_2 c_2) c_2)  + =(c_2 c_3)
+   
+   T11 (instance) ==> * I30: + P(f_5(c_2 c_1) c_1)  + =(f_5(c_2 c_1) c_2)  + =(c_1 c_3)
+   
+   T11 (instance) ==> * I31: + P(f_5(c_1 c_2) c_2)  + =(f_5(c_1 c_2) c_1)  + =(c_2 c_3)
+   
+   T11 (instance) ==> * I32: + P(f_5(c_1 c_1) c_1)  + =(f_5(c_1 c_1) c_1)  + =(c_1 c_3)
+   
+
+   
+   Splitpart 2:
+   
+   T12 (instance) ==> * I33: + P(c_2 c_2)  - =(c_2 f_6(c_2))  - =(c_2 c_4)
+   
+   T12 (instance) ==> * I34: + P(c_2 c_1)  - =(c_1 f_6(c_2))  - =(c_2 c_4)
+   
+   T12 (instance) ==> * I35: + P(c_1 c_2)  - =(c_2 f_6(c_1))  - =(c_1 c_4)
+   
+   T12 (instance) ==> * I36: + P(c_1 c_1)  - =(c_1 f_6(c_1))  - =(c_1 c_4)
+   
+   T13 (instance) ==> * I37: - P(c_2 c_2)  + =(c_2 f_6(c_2))  - =(c_2 c_4)
+   
+   T13 (instance) ==> * I38: - P(c_2 c_1)  + =(c_1 f_6(c_2))  - =(c_2 c_4)
+   
+   T13 (instance) ==> * I39: - P(c_1 c_2)  + =(c_2 f_6(c_1))  - =(c_1 c_4)
+   
+   T13 (instance) ==> * I40: - P(c_1 c_1)  + =(c_1 f_6(c_1))  - =(c_1 c_4)
+   
+   T14 (instance) ==> * I41: - P(c_2 f_7(c_2 c_2))  - =(f_7(c_2 c_2) c_2)  + =(c_2 c_4)
+   
+   T14 (instance) ==> * I42: - P(c_2 f_7(c_1 c_2))  - =(f_7(c_1 c_2) c_1)  + =(c_2 c_4)
+   
+   T14 (instance) ==> * I43: - P(c_1 f_7(c_2 c_1))  - =(f_7(c_2 c_1) c_2)  + =(c_1 c_4)
+   
+   T14 (instance) ==> * I44: - P(c_1 f_7(c_1 c_1))  - =(f_7(c_1 c_1) c_1)  + =(c_1 c_4)
+   
+   T15 (instance) ==> * I45: + P(c_2 f_7(c_2 c_2))  + =(f_7(c_2 c_2) c_2)  + =(c_2 c_4)
+   
+   T15 (instance) ==> * I46: + P(c_2 f_7(c_1 c_2))  + =(f_7(c_1 c_2) c_1)  + =(c_2 c_4)
+   
+   T15 (instance) ==> * I47: + P(c_1 f_7(c_2 c_1))  + =(f_7(c_2 c_1) c_2)  + =(c_1 c_4)
+   
+   T15 (instance) ==> * I48: + P(c_1 f_7(c_1 c_1))  + =(f_7(c_1 c_1) c_1)  + =(c_1 c_4)
+   
+   T16 (instance) ==> * I49: - P(f_9(c_2 c_2) f_8(c_2))  - =(f_9(c_2 c_2) c_2)  - =(f_8(c_2) c_2)
+   
+   T16 (instance) ==> * I50: - P(f_9(c_2 c_1) f_8(c_1))  - =(f_9(c_2 c_1) c_2)  - =(f_8(c_1) c_1)
+   
+   T16 (instance) ==> * I51: - P(f_9(c_1 c_2) f_8(c_2))  - =(f_9(c_1 c_2) c_1)  - =(f_8(c_2) c_2)
+   
+   T16 (instance) ==> * I52: - P(f_9(c_1 c_1) f_8(c_1))  - =(f_9(c_1 c_1) c_1)  - =(f_8(c_1) c_1)
+   
+   T17 (instance) ==> * I53: + P(f_9(c_2 c_2) f_8(c_2))  + =(f_9(c_2 c_2) c_2)  - =(f_8(c_2) c_2)
+   
+   T17 (instance) ==> * I54: + P(f_9(c_2 c_1) f_8(c_1))  + =(f_9(c_2 c_1) c_2)  - =(f_8(c_1) c_1)
+   
+   T17 (instance) ==> * I55: + P(f_9(c_1 c_2) f_8(c_2))  + =(f_9(c_1 c_2) c_1)  - =(f_8(c_2) c_2)
+   
+   T17 (instance) ==> * I56: + P(f_9(c_1 c_1) f_8(c_1))  + =(f_9(c_1 c_1) c_1)  - =(f_8(c_1) c_1)
+   
+   T18 (instance) ==> * I57: + P(c_2 f_8(c_2))  - =(c_2 f_10(c_2))  + =(f_8(c_2) c_2)
+   
+   T18 (instance) ==> * I58: + P(c_2 f_8(c_1))  - =(c_2 f_10(c_1))  + =(f_8(c_1) c_1)
+   
+   T18 (instance) ==> * I59: + P(c_1 f_8(c_2))  - =(c_1 f_10(c_2))  + =(f_8(c_2) c_2)
+   
+   T18 (instance) ==> * I60: + P(c_1 f_8(c_1))  - =(c_1 f_10(c_1))  + =(f_8(c_1) c_1)
+   
+   T19 (instance) ==> * I61: - P(c_2 f_8(c_2))  + =(c_2 f_10(c_2))  + =(f_8(c_2) c_2)
+   
+   T19 (instance) ==> * I62: - P(c_2 f_8(c_1))  + =(c_2 f_10(c_1))  + =(f_8(c_1) c_1)
+   
+   T19 (instance) ==> * I63: - P(c_1 f_8(c_2))  + =(c_1 f_10(c_2))  + =(f_8(c_2) c_2)
+   
+   T19 (instance) ==> * I64: - P(c_1 f_8(c_1))  + =(c_1 f_10(c_1))  + =(f_8(c_1) c_1)
+   
+
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation of Splitpart 1:
+   ==========================
+   
+   Initial Clauses:         * A1:      All x:Any + =(x x)
+                            * A2:      - =(c_2 c_1)
+                            * A3:      All x:Any + =(x c_1)  + =(x c_2)
+                            * I1:      - P(f_1(c_2) f_2(c_2 c_2))  - =(f_2(c_2 c_2) c_2)  - =(f_1(c_2) c_2)
+                            * I2:      - P(f_1(c_2) f_2(c_1 c_2))  - =(f_2(c_1 c_2) c_1)  - =(f_1(c_2) c_2)
+                            * I3:      - P(f_1(c_1) f_2(c_2 c_1))  - =(f_2(c_2 c_1) c_2)  - =(f_1(c_1) c_1)
+                            * I4:      - P(f_1(c_1) f_2(c_1 c_1))  - =(f_2(c_1 c_1) c_1)  - =(f_1(c_1) c_1)
+                            * I5:      + P(f_1(c_2) f_2(c_2 c_2))  + =(f_2(c_2 c_2) c_2)  - =(f_1(c_2) c_2)
+                            * I6:      + P(f_1(c_2) f_2(c_1 c_2))  + =(f_2(c_1 c_2) c_1)  - =(f_1(c_2) c_2)
+                            * I7:      + P(f_1(c_1) f_2(c_2 c_1))  + =(f_2(c_2 c_1) c_2)  - =(f_1(c_1) c_1)
+                            * I8:      + P(f_1(c_1) f_2(c_1 c_1))  + =(f_2(c_1 c_1) c_1)  - =(f_1(c_1) c_1)
+                            * I9:      + P(f_1(c_2) c_2)  - =(c_2 f_3(c_2))  + =(f_1(c_2) c_2)
+                            * I10:     + P(f_1(c_2) c_1)  - =(c_1 f_3(c_2))  + =(f_1(c_2) c_2)
+                            * I11:     + P(f_1(c_1) c_2)  - =(c_2 f_3(c_1))  + =(f_1(c_1) c_1)
+                            * I12:     + P(f_1(c_1) c_1)  - =(c_1 f_3(c_1))  + =(f_1(c_1) c_1)
+                            * I13:     - P(f_1(c_2) c_2)  + =(c_2 f_3(c_2))  + =(f_1(c_2) c_2)
+                            * I14:     - P(f_1(c_2) c_1)  + =(c_1 f_3(c_2))  + =(f_1(c_2) c_2)
+                            * I15:     - P(f_1(c_1) c_2)  + =(c_2 f_3(c_1))  + =(f_1(c_1) c_1)
+                            * I16:     - P(f_1(c_1) c_1)  + =(c_1 f_3(c_1))  + =(f_1(c_1) c_1)
+                            * I17:     + P(c_2 c_2)  - =(c_2 f_4(c_2))  - =(c_2 c_3)
+                            * I18:     + P(c_2 c_1)  - =(c_2 f_4(c_1))  - =(c_1 c_3)
+                            * I19:     + P(c_1 c_2)  - =(c_1 f_4(c_2))  - =(c_2 c_3)
+                            * I20:     + P(c_1 c_1)  - =(c_1 f_4(c_1))  - =(c_1 c_3)
+                            * I21:     - P(c_2 c_2)  + =(c_2 f_4(c_2))  - =(c_2 c_3)
+                            * I22:     - P(c_2 c_1)  + =(c_2 f_4(c_1))  - =(c_1 c_3)
+                            * I23:     - P(c_1 c_2)  + =(c_1 f_4(c_2))  - =(c_2 c_3)
+                            * I24:     - P(c_1 c_1)  + =(c_1 f_4(c_1))  - =(c_1 c_3)
+                            * I25:     - P(f_5(c_2 c_2) c_2)  - =(f_5(c_2 c_2) c_2)  + =(c_2 c_3)
+                            * I26:     - P(f_5(c_2 c_1) c_1)  - =(f_5(c_2 c_1) c_2)  + =(c_1 c_3)
+                            * I27:     - P(f_5(c_1 c_2) c_2)  - =(f_5(c_1 c_2) c_1)  + =(c_2 c_3)
+                            * I28:     - P(f_5(c_1 c_1) c_1)  - =(f_5(c_1 c_1) c_1)  + =(c_1 c_3)
+                            * I29:     + P(f_5(c_2 c_2) c_2)  + =(f_5(c_2 c_2) c_2)  + =(c_2 c_3)
+                            * I30:     + P(f_5(c_2 c_1) c_1)  + =(f_5(c_2 c_1) c_2)  + =(c_1 c_3)
+                            * I31:     + P(f_5(c_1 c_2) c_2)  + =(f_5(c_1 c_2) c_1)  + =(c_2 c_3)
+                            * I32:     + P(f_5(c_1 c_1) c_1)  + =(f_5(c_1 c_1) c_1)  + =(c_1 c_3)
+                            
+
+   
+   I23,2 & I21,2        ==> * P65:     + =(c_2 c_1)  - P(c_1 c_2)  - =(c_2 c_3)  - P(c_2 c_2)  - =(c_2 c_3)
+   
+   P65 3=5              ==> * D66:     + =(c_2 c_1)  - P(c_1 c_2)  - =(c_2 c_3)  - P(c_2 c_2)
+   
+   D66,1 & A2,1         ==> * R67:     - P(c_1 c_2)  - =(c_2 c_3)  - P(c_2 c_2)
+   
+   I24,2 & I22,2        ==> * P68:     + =(c_2 c_1)  - P(c_1 c_1)  - =(c_1 c_3)  - P(c_2 c_1)  - =(c_1 c_3)
+   
+   P68 3=5              ==> * D69:     + =(c_2 c_1)  - P(c_1 c_1)  - =(c_1 c_3)  - P(c_2 c_1)
+   
+   D69,1 & A2,1         ==> * R70:     - P(c_1 c_1)  - =(c_1 c_3)  - P(c_2 c_1)
+   
+   A3,1 & I19,2         ==> * P71:     - =(c_1 c_1)  + =(f_4(c_2) c_2)  + P(c_1 c_2)  - =(c_2 c_3)
+   
+   P71,1 & A1,1         ==> * R72:     + =(f_4(c_2) c_2)  + P(c_1 c_2)  - =(c_2 c_3)
+   
+   R72,1 & I17,2        ==> * P74:     - =(c_2 c_2)  + P(c_1 c_2)  - =(c_2 c_3)  + P(c_2 c_2)  - =(c_2 c_3)
+   
+   P74 3=5              ==> * D75:     - =(c_2 c_2)  + P(c_1 c_2)  - =(c_2 c_3)  + P(c_2 c_2)
+   
+   D75,1 & A1,1         ==> * R76:     + P(c_1 c_2)  - =(c_2 c_3)  + P(c_2 c_2)
+   
+   A3,1 & I20,2         ==> * P77:     - =(c_1 c_1)  + =(f_4(c_1) c_2)  + P(c_1 c_1)  - =(c_1 c_3)
+   
+   P77,1 & A1,1         ==> * R78:     + =(f_4(c_1) c_2)  + P(c_1 c_1)  - =(c_1 c_3)
+   
+   R78,1 & I18,2        ==> * P80:     - =(c_2 c_2)  + P(c_1 c_1)  - =(c_1 c_3)  + P(c_2 c_1)  - =(c_1 c_3)
+   
+   P80 3=5              ==> * D81:     - =(c_2 c_2)  + P(c_1 c_1)  - =(c_1 c_3)  + P(c_2 c_1)
+   
+   D81,1 & A1,1         ==> * R82:     + P(c_1 c_1)  - =(c_1 c_3)  + P(c_2 c_1)
+   
+   A3,1 & I29,1         ==> * P83:     + P(c_1 c_2)  + =(f_5(c_2 c_2) c_2)  + =(f_5(c_2 c_2) c_2)  + =(c_2 c_3)
+   
+   P83 2=3              ==> * D84:     + P(c_1 c_2)  + =(f_5(c_2 c_2) c_2)  + =(c_2 c_3)
+   
+   A3,1 & I30,1         ==> * P85:     + P(c_1 c_1)  + =(f_5(c_2 c_1) c_2)  + =(f_5(c_2 c_1) c_2)  + =(c_1 c_3)
+   
+   P85 2=3              ==> * D86:     + P(c_1 c_1)  + =(f_5(c_2 c_1) c_2)  + =(c_1 c_3)
+   
+   A3,1 & I9,1          ==> * P87:     + P(c_1 c_2)  + =(f_1(c_2) c_2)  - =(c_2 f_3(c_2))  + =(f_1(c_2) c_2)
+   
+   P87 2=4              ==> * D88:     + P(c_1 c_2)  + =(f_1(c_2) c_2)  - =(c_2 f_3(c_2))
+   
+   A3,1 & I10,1         ==> * P89:     + P(c_1 c_1)  + =(f_1(c_2) c_2)  - =(c_1 f_3(c_2))  + =(f_1(c_2) c_2)
+   
+   P89 2=4              ==> * D90:     + P(c_1 c_1)  + =(f_1(c_2) c_2)  - =(c_1 f_3(c_2))
+   
+   A3,1 & I13,1         ==> * P91:     - P(c_1 c_2)  + =(f_1(c_2) c_2)  + =(c_2 f_3(c_2))  + =(f_1(c_2) c_2)
+   
+   P91 2=4              ==> * D92:     - P(c_1 c_2)  + =(f_1(c_2) c_2)  + =(c_2 f_3(c_2))
+   
+   A3,1 & I14,1         ==> * P93:     - P(c_1 c_1)  + =(f_1(c_2) c_2)  + =(c_1 f_3(c_2))  + =(f_1(c_2) c_2)
+   
+   P93 2=4              ==> * D94:     - P(c_1 c_1)  + =(f_1(c_2) c_2)  + =(c_1 f_3(c_2))
+   
+   A3,1 & I5,1          ==> * P95:     + P(f_1(c_2) c_1)  + =(f_2(c_2 c_2) c_2)  + =(f_2(c_2 c_2) c_2)
+                                       - =(f_1(c_2) c_2)
+   
+   P95 2=3              ==> * D96:     + P(f_1(c_2) c_1)  + =(f_2(c_2 c_2) c_2)  - =(f_1(c_2) c_2)
+   
+   A3,1 & I7,1          ==> * P97:     + P(f_1(c_1) c_1)  + =(f_2(c_2 c_1) c_2)  + =(f_2(c_2 c_1) c_2)
+                                       - =(f_1(c_1) c_1)
+   
+   P97 2=3              ==> * D98:     + P(f_1(c_1) c_1)  + =(f_2(c_2 c_1) c_2)  - =(f_1(c_1) c_1)
+   
+   D84,2 & I25,1        ==> * P99:     - P(c_2 c_2)  + P(c_1 c_2)  + =(c_2 c_3)  - =(f_5(c_2 c_2) c_2)  + =(c_2 c_3)
+   
+   P99 3=5              ==> * D100:    - P(c_2 c_2)  + P(c_1 c_2)  + =(c_2 c_3)  - =(f_5(c_2 c_2) c_2)
+   
+   D100,4 & D84,2       ==> * R101:    - P(c_2 c_2)  + P(c_1 c_2)  + =(c_2 c_3)  + P(c_1 c_2)  + =(c_2 c_3)
+   
+   R101 2=4             ==> * D102:    - P(c_2 c_2)  + P(c_1 c_2)  + =(c_2 c_3)  + =(c_2 c_3)
+   
+   D102 3=4             ==> * D103:    - P(c_2 c_2)  + P(c_1 c_2)  + =(c_2 c_3)
+   
+   D86,2 & I26,1        ==> * P104:    - P(c_2 c_1)  + P(c_1 c_1)  + =(c_1 c_3)  - =(f_5(c_2 c_1) c_2)  + =(c_1 c_3)
+   
+   P104 3=5             ==> * D105:    - P(c_2 c_1)  + P(c_1 c_1)  + =(c_1 c_3)  - =(f_5(c_2 c_1) c_2)
+   
+   D105,4 & D86,2       ==> * R106:    - P(c_2 c_1)  + P(c_1 c_1)  + =(c_1 c_3)  + P(c_1 c_1)  + =(c_1 c_3)
+   
+   R106 2=4             ==> * D107:    - P(c_2 c_1)  + P(c_1 c_1)  + =(c_1 c_3)  + =(c_1 c_3)
+   
+   D107 3=4             ==> * D108:    - P(c_2 c_1)  + P(c_1 c_1)  + =(c_1 c_3)
+   
+   A3,1 & I27,1         ==> * P109:    - P(c_1 c_2)  + =(f_5(c_1 c_2) c_2)  - =(f_5(c_1 c_2) c_1)  + =(c_2 c_3)
+   
+   P109,3 & A3,1        ==> * R110:    - P(c_1 c_2)  + =(f_5(c_1 c_2) c_2)  + =(c_2 c_3)  + =(f_5(c_1 c_2) c_2)
+   
+   R110 2=4             ==> * D111:    - P(c_1 c_2)  + =(f_5(c_1 c_2) c_2)  + =(c_2 c_3)
+   
+   D111,2 & I31,1       ==> * P120:    + P(c_2 c_2)  - P(c_1 c_2)  + =(c_2 c_3)  + =(f_5(c_1 c_2) c_1)  + =(c_2 c_3)
+   
+   P120 3=5             ==> * D121:    + P(c_2 c_2)  - P(c_1 c_2)  + =(c_2 c_3)  + =(f_5(c_1 c_2) c_1)
+   
+   D121,4 & D111        ==> * RW122:   + P(c_2 c_2)  - P(c_1 c_2)  + =(c_2 c_3)  + =(c_2 c_1)
+   
+   RW122,4 & A2,1       ==> * R123:    + P(c_2 c_2)  - P(c_1 c_2)  + =(c_2 c_3)
+   
+   A3,1 & I28,1         ==> * P130:    - P(c_1 c_1)  + =(f_5(c_1 c_1) c_2)  - =(f_5(c_1 c_1) c_1)  + =(c_1 c_3)
+   
+   P130,3 & A3,1        ==> * R131:    - P(c_1 c_1)  + =(f_5(c_1 c_1) c_2)  + =(c_1 c_3)  + =(f_5(c_1 c_1) c_2)
+   
+   R131 2=4             ==> * D132:    - P(c_1 c_1)  + =(f_5(c_1 c_1) c_2)  + =(c_1 c_3)
+   
+   D132,2 & I32,1       ==> * P141:    + P(c_2 c_1)  - P(c_1 c_1)  + =(c_1 c_3)  + =(f_5(c_1 c_1) c_1)  + =(c_1 c_3)
+   
+   P141 3=5             ==> * D142:    + P(c_2 c_1)  - P(c_1 c_1)  + =(c_1 c_3)  + =(f_5(c_1 c_1) c_1)
+   
+   D142,4 & D132        ==> * RW143:   + P(c_2 c_1)  - P(c_1 c_1)  + =(c_1 c_3)  + =(c_2 c_1)
+   
+   RW143,4 & A2,1       ==> * R144:    + P(c_2 c_1)  - P(c_1 c_1)  + =(c_1 c_3)
+   
+   A3,1 & D98,1         ==> * P151:    + P(c_1 c_1)  + =(f_1(c_1) c_2)  + =(f_2(c_2 c_1) c_2)  - =(f_1(c_1) c_1)
+   
+   P151,4 & A3,1        ==> * R152:    + P(c_1 c_1)  + =(f_1(c_1) c_2)  + =(f_2(c_2 c_1) c_2)  + =(f_1(c_1) c_2)
+   
+   R152 2=4             ==> * D153:    + P(c_1 c_1)  + =(f_1(c_1) c_2)  + =(f_2(c_2 c_1) c_2)
+   
+   A3,1 & I2,1          ==> * P166:    - P(f_1(c_2) c_1)  + =(f_2(c_1 c_2) c_2)  - =(f_2(c_1 c_2) c_1)
+                                       - =(f_1(c_2) c_2)
+   
+   P166,3 & A3,1        ==> * R167:    - P(f_1(c_2) c_1)  + =(f_2(c_1 c_2) c_2)  - =(f_1(c_2) c_2)
+                                       + =(f_2(c_1 c_2) c_2)
+   
+   R167 2=4             ==> * D168:    - P(f_1(c_2) c_1)  + =(f_2(c_1 c_2) c_2)  - =(f_1(c_2) c_2)
+   
+   A3,1 & I3,1          ==> * P179:    - P(c_1 f_2(c_2 c_1))  + =(f_1(c_1) c_2)  - =(f_2(c_2 c_1) c_2)
+                                       - =(f_1(c_1) c_1)
+   
+   P179,4 & A3,1        ==> * R180:    - P(c_1 f_2(c_2 c_1))  + =(f_1(c_1) c_2)  - =(f_2(c_2 c_1) c_2)
+                                       + =(f_1(c_1) c_2)
+   
+   R180 2=4             ==> * D181:    - P(c_1 f_2(c_2 c_1))  + =(f_1(c_1) c_2)  - =(f_2(c_2 c_1) c_2)
+   
+   A3,1 & I4,1          ==> * P185:    - P(f_1(c_1) c_1)  + =(f_2(c_1 c_1) c_2)  - =(f_2(c_1 c_1) c_1)
+                                       - =(f_1(c_1) c_1)
+   
+   P185,3 & A3,1        ==> * R186:    - P(f_1(c_1) c_1)  + =(f_2(c_1 c_1) c_2)  - =(f_1(c_1) c_1)
+                                       + =(f_2(c_1 c_1) c_2)
+   
+   R186 2=4             ==> * D187:    - P(f_1(c_1) c_1)  + =(f_2(c_1 c_1) c_2)  - =(f_1(c_1) c_1)
+   
+   A3,1 & D187,1        ==> * P193:    - P(c_1 c_1)  + =(f_1(c_1) c_2)  + =(f_2(c_1 c_1) c_2)  - =(f_1(c_1) c_1)
+   
+   P193,4 & A3,1        ==> * R194:    - P(c_1 c_1)  + =(f_1(c_1) c_2)  + =(f_2(c_1 c_1) c_2)  + =(f_1(c_1) c_2)
+   
+   R194 2=4             ==> * D195:    - P(c_1 c_1)  + =(f_1(c_1) c_2)  + =(f_2(c_1 c_1) c_2)
+   
+   D94,2 & D96,1        ==> * P247:    + P(c_2 c_1)  - P(c_1 c_1)  + =(c_1 f_3(c_2))  + =(f_2(c_2 c_2) c_2)
+                                       - =(f_1(c_2) c_2)
+   
+   P247,5 & D94,2       ==> * R248:    + P(c_2 c_1)  - P(c_1 c_1)  + =(c_1 f_3(c_2))  + =(f_2(c_2 c_2) c_2)
+                                       - P(c_1 c_1)  + =(c_1 f_3(c_2))
+   
+   R248 2=5             ==> * D249:    + P(c_2 c_1)  - P(c_1 c_1)  + =(c_1 f_3(c_2))  + =(f_2(c_2 c_2) c_2)
+                                       + =(c_1 f_3(c_2))
+   
+   D249 3=5             ==> * D250:    + P(c_2 c_1)  - P(c_1 c_1)  + =(c_1 f_3(c_2))  + =(f_2(c_2 c_2) c_2)
+   
+   D92,2 & D96,1        ==> * P251:    + P(c_2 c_1)  - P(c_1 c_2)  + =(c_2 f_3(c_2))  + =(f_2(c_2 c_2) c_2)
+                                       - =(f_1(c_2) c_2)
+   
+   P251,5 & D92,2       ==> * R252:    + P(c_2 c_1)  - P(c_1 c_2)  + =(c_2 f_3(c_2))  + =(f_2(c_2 c_2) c_2)
+                                       - P(c_1 c_2)  + =(c_2 f_3(c_2))
+   
+   R252 2=5             ==> * D253:    + P(c_2 c_1)  - P(c_1 c_2)  + =(c_2 f_3(c_2))  + =(f_2(c_2 c_2) c_2)
+                                       + =(c_2 f_3(c_2))
+   
+   D253 3=5             ==> * D254:    + P(c_2 c_1)  - P(c_1 c_2)  + =(c_2 f_3(c_2))  + =(f_2(c_2 c_2) c_2)
+   
+   D90,2 & D96,1        ==> * P255:    + P(c_2 c_1)  + P(c_1 c_1)  - =(c_1 f_3(c_2))  + =(f_2(c_2 c_2) c_2)
+                                       - =(f_1(c_2) c_2)
+   
+   P255,5 & D90,2       ==> * R256:    + P(c_2 c_1)  + P(c_1 c_1)  - =(c_1 f_3(c_2))  + =(f_2(c_2 c_2) c_2)
+                                       + P(c_1 c_1)  - =(c_1 f_3(c_2))
+   
+   R256 2=5             ==> * D257:    + P(c_2 c_1)  + P(c_1 c_1)  - =(c_1 f_3(c_2))  + =(f_2(c_2 c_2) c_2)
+                                       - =(c_1 f_3(c_2))
+   
+   D257 3=5             ==> * D258:    + P(c_2 c_1)  + P(c_1 c_1)  - =(c_1 f_3(c_2))  + =(f_2(c_2 c_2) c_2)
+   
+   D88,2 & D96,1        ==> * P259:    + P(c_2 c_1)  + P(c_1 c_2)  - =(c_2 f_3(c_2))  + =(f_2(c_2 c_2) c_2)
+                                       - =(f_1(c_2) c_2)
+   
+   P259,5 & D88,2       ==> * R260:    + P(c_2 c_1)  + P(c_1 c_2)  - =(c_2 f_3(c_2))  + =(f_2(c_2 c_2) c_2)
+                                       + P(c_1 c_2)  - =(c_2 f_3(c_2))
+   
+   R260 2=5             ==> * D261:    + P(c_2 c_1)  + P(c_1 c_2)  - =(c_2 f_3(c_2))  + =(f_2(c_2 c_2) c_2)
+                                       - =(c_2 f_3(c_2))
+   
+   D261 3=5             ==> * D262:    + P(c_2 c_1)  + P(c_1 c_2)  - =(c_2 f_3(c_2))  + =(f_2(c_2 c_2) c_2)
+   
+   D153,2 & I11,1       ==> * P263:    + P(c_2 c_2)  + P(c_1 c_1)  + =(f_2(c_2 c_1) c_2)  - =(c_2 f_3(c_1))
+                                       + =(f_1(c_1) c_1)
+   
+   P263,5 & D153        ==> * RW264:   + P(c_2 c_2)  + P(c_1 c_1)  + =(f_2(c_2 c_1) c_2)  - =(c_2 f_3(c_1))
+                                       + =(c_2 c_1)
+   
+   RW264,5 & A2,1       ==> * R265:    + P(c_2 c_2)  + P(c_1 c_1)  + =(f_2(c_2 c_1) c_2)  - =(c_2 f_3(c_1))
+   
+   D153,2 & I12,1       ==> * P266:    + P(c_2 c_1)  + P(c_1 c_1)  + =(f_2(c_2 c_1) c_2)  - =(c_1 f_3(c_1))
+                                       + =(f_1(c_1) c_1)
+   
+   P266,5 & D153        ==> * RW267:   + P(c_2 c_1)  + P(c_1 c_1)  + =(f_2(c_2 c_1) c_2)  - =(c_1 f_3(c_1))
+                                       + =(c_2 c_1)
+   
+   RW267,5 & A2,1       ==> * R268:    + P(c_2 c_1)  + P(c_1 c_1)  + =(f_2(c_2 c_1) c_2)  - =(c_1 f_3(c_1))
+   
+   D153,2 & I15,1       ==> * P269:    - P(c_2 c_2)  + P(c_1 c_1)  + =(f_2(c_2 c_1) c_2)  + =(c_2 f_3(c_1))
+                                       + =(f_1(c_1) c_1)
+   
+   P269,5 & D153        ==> * RW270:   - P(c_2 c_2)  + P(c_1 c_1)  + =(f_2(c_2 c_1) c_2)  + =(c_2 f_3(c_1))
+                                       + =(c_2 c_1)
+   
+   RW270,5 & A2,1       ==> * R271:    - P(c_2 c_2)  + P(c_1 c_1)  + =(f_2(c_2 c_1) c_2)  + =(c_2 f_3(c_1))
+   
+   D153,2 & I16,1       ==> * P272:    - P(c_2 c_1)  + P(c_1 c_1)  + =(f_2(c_2 c_1) c_2)  + =(c_1 f_3(c_1))
+                                       + =(f_1(c_1) c_1)
+   
+   P272,5 & D153        ==> * RW273:   - P(c_2 c_1)  + P(c_1 c_1)  + =(f_2(c_2 c_1) c_2)  + =(c_1 f_3(c_1))
+                                       + =(c_2 c_1)
+   
+   RW273,5 & A2,1       ==> * R274:    - P(c_2 c_1)  + P(c_1 c_1)  + =(f_2(c_2 c_1) c_2)  + =(c_1 f_3(c_1))
+   
+   D94,2 & D168,1       ==> * P275:    - P(c_2 c_1)  - P(c_1 c_1)  + =(c_1 f_3(c_2))  + =(f_2(c_1 c_2) c_2)
+                                       - =(f_1(c_2) c_2)
+   
+   P275,5 & D94,2       ==> * R276:    - P(c_2 c_1)  - P(c_1 c_1)  + =(c_1 f_3(c_2))  + =(f_2(c_1 c_2) c_2)
+                                       - P(c_1 c_1)  + =(c_1 f_3(c_2))
+   
+   R276 2=5             ==> * D277:    - P(c_2 c_1)  - P(c_1 c_1)  + =(c_1 f_3(c_2))  + =(f_2(c_1 c_2) c_2)
+                                       + =(c_1 f_3(c_2))
+   
+   D277 3=5             ==> * D278:    - P(c_2 c_1)  - P(c_1 c_1)  + =(c_1 f_3(c_2))  + =(f_2(c_1 c_2) c_2)
+   
+   D92,2 & D168,1       ==> * P279:    - P(c_2 c_1)  - P(c_1 c_2)  + =(c_2 f_3(c_2))  + =(f_2(c_1 c_2) c_2)
+                                       - =(f_1(c_2) c_2)
+   
+   P279,5 & D92,2       ==> * R280:    - P(c_2 c_1)  - P(c_1 c_2)  + =(c_2 f_3(c_2))  + =(f_2(c_1 c_2) c_2)
+                                       - P(c_1 c_2)  + =(c_2 f_3(c_2))
+   
+   R280 2=5             ==> * D281:    - P(c_2 c_1)  - P(c_1 c_2)  + =(c_2 f_3(c_2))  + =(f_2(c_1 c_2) c_2)
+                                       + =(c_2 f_3(c_2))
+   
+   D281 3=5             ==> * D282:    - P(c_2 c_1)  - P(c_1 c_2)  + =(c_2 f_3(c_2))  + =(f_2(c_1 c_2) c_2)
+   
+   D90,2 & D168,1       ==> * P283:    - P(c_2 c_1)  + P(c_1 c_1)  - =(c_1 f_3(c_2))  + =(f_2(c_1 c_2) c_2)
+                                       - =(f_1(c_2) c_2)
+   
+   P283,5 & D90,2       ==> * R284:    - P(c_2 c_1)  + P(c_1 c_1)  - =(c_1 f_3(c_2))  + =(f_2(c_1 c_2) c_2)
+                                       + P(c_1 c_1)  - =(c_1 f_3(c_2))
+   
+   R284 2=5             ==> * D285:    - P(c_2 c_1)  + P(c_1 c_1)  - =(c_1 f_3(c_2))  + =(f_2(c_1 c_2) c_2)
+                                       - =(c_1 f_3(c_2))
+   
+   D285 3=5             ==> * D286:    - P(c_2 c_1)  + P(c_1 c_1)  - =(c_1 f_3(c_2))  + =(f_2(c_1 c_2) c_2)
+   
+   D88,2 & D168,1       ==> * P287:    - P(c_2 c_1)  + P(c_1 c_2)  - =(c_2 f_3(c_2))  + =(f_2(c_1 c_2) c_2)
+                                       - =(f_1(c_2) c_2)
+   
+   P287,5 & D88,2       ==> * R288:    - P(c_2 c_1)  + P(c_1 c_2)  - =(c_2 f_3(c_2))  + =(f_2(c_1 c_2) c_2)
+                                       + P(c_1 c_2)  - =(c_2 f_3(c_2))
+   
+   R288 2=5             ==> * D289:    - P(c_2 c_1)  + P(c_1 c_2)  - =(c_2 f_3(c_2))  + =(f_2(c_1 c_2) c_2)
+                                       - =(c_2 f_3(c_2))
+   
+   D289 3=5             ==> * D290:    - P(c_2 c_1)  + P(c_1 c_2)  - =(c_2 f_3(c_2))  + =(f_2(c_1 c_2) c_2)
+   
+   D195,2 & I11,1       ==> * P291:    + P(c_2 c_2)  - P(c_1 c_1)  + =(f_2(c_1 c_1) c_2)  - =(c_2 f_3(c_1))
+                                       + =(f_1(c_1) c_1)
+   
+   P291,5 & D195        ==> * RW292:   + P(c_2 c_2)  - P(c_1 c_1)  + =(f_2(c_1 c_1) c_2)  - =(c_2 f_3(c_1))
+                                       + =(c_2 c_1)
+   
+   RW292,5 & A2,1       ==> * R293:    + P(c_2 c_2)  - P(c_1 c_1)  + =(f_2(c_1 c_1) c_2)  - =(c_2 f_3(c_1))
+   
+   D195,2 & I12,1       ==> * P294:    + P(c_2 c_1)  - P(c_1 c_1)  + =(f_2(c_1 c_1) c_2)  - =(c_1 f_3(c_1))
+                                       + =(f_1(c_1) c_1)
+   
+   P294,5 & D195        ==> * RW295:   + P(c_2 c_1)  - P(c_1 c_1)  + =(f_2(c_1 c_1) c_2)  - =(c_1 f_3(c_1))
+                                       + =(c_2 c_1)
+   
+   RW295,5 & A2,1       ==> * R296:    + P(c_2 c_1)  - P(c_1 c_1)  + =(f_2(c_1 c_1) c_2)  - =(c_1 f_3(c_1))
+   
+   D195,2 & I15,1       ==> * P297:    - P(c_2 c_2)  - P(c_1 c_1)  + =(f_2(c_1 c_1) c_2)  + =(c_2 f_3(c_1))
+                                       + =(f_1(c_1) c_1)
+   
+   P297,5 & D195        ==> * RW298:   - P(c_2 c_2)  - P(c_1 c_1)  + =(f_2(c_1 c_1) c_2)  + =(c_2 f_3(c_1))
+                                       + =(c_2 c_1)
+   
+   RW298,5 & A2,1       ==> * R299:    - P(c_2 c_2)  - P(c_1 c_1)  + =(f_2(c_1 c_1) c_2)  + =(c_2 f_3(c_1))
+   
+   D195,2 & I16,1       ==> * P300:    - P(c_2 c_1)  - P(c_1 c_1)  + =(f_2(c_1 c_1) c_2)  + =(c_1 f_3(c_1))
+                                       + =(f_1(c_1) c_1)
+   
+   P300,5 & D195        ==> * RW301:   - P(c_2 c_1)  - P(c_1 c_1)  + =(f_2(c_1 c_1) c_2)  + =(c_1 f_3(c_1))
+                                       + =(c_2 c_1)
+   
+   RW301,5 & A2,1       ==> * R302:    - P(c_2 c_1)  - P(c_1 c_1)  + =(f_2(c_1 c_1) c_2)  + =(c_1 f_3(c_1))
+   
+   D88,2 & I1,1         ==> * P307:    - P(c_2 f_2(c_2 c_2))  + P(c_1 c_2)  - =(c_2 f_3(c_2))  - =(f_2(c_2 c_2) c_2)
+                                       - =(f_1(c_2) c_2)
+   
+   P307,5 & D88,2       ==> * R308:    - P(c_2 f_2(c_2 c_2))  + P(c_1 c_2)  - =(c_2 f_3(c_2))  - =(f_2(c_2 c_2) c_2)
+                                       + P(c_1 c_2)  - =(c_2 f_3(c_2))
+   
+   R308 2=5             ==> * D309:    - P(c_2 f_2(c_2 c_2))  + P(c_1 c_2)  - =(c_2 f_3(c_2))  - =(f_2(c_2 c_2) c_2)
+                                       - =(c_2 f_3(c_2))
+   
+   D309 3=5             ==> * D310:    - P(c_2 f_2(c_2 c_2))  + P(c_1 c_2)  - =(c_2 f_3(c_2))  - =(f_2(c_2 c_2) c_2)
+   
+   D262,4 & D310,1      ==> * P311:    - P(c_2 c_2)  + P(c_2 c_1)  + P(c_1 c_2)  - =(c_2 f_3(c_2))  + P(c_1 c_2)
+                                       - =(c_2 f_3(c_2))  - =(f_2(c_2 c_2) c_2)
+   
+   P311 4=6             ==> * D312:    - P(c_2 c_2)  + P(c_2 c_1)  + P(c_1 c_2)  - =(c_2 f_3(c_2))  + P(c_1 c_2)
+                                       - =(f_2(c_2 c_2) c_2)
+   
+   D312 5=3             ==> * D313:    - P(c_2 c_2)  + P(c_2 c_1)  - =(c_2 f_3(c_2))  + P(c_1 c_2)
+                                       - =(f_2(c_2 c_2) c_2)
+   
+   D313,5 & D262,4      ==> * R314:    - P(c_2 c_2)  + P(c_2 c_1)  - =(c_2 f_3(c_2))  + P(c_1 c_2)  + P(c_2 c_1)
+                                       + P(c_1 c_2)  - =(c_2 f_3(c_2))
+   
+   R314 2=5             ==> * D315:    - P(c_2 c_2)  + P(c_2 c_1)  - =(c_2 f_3(c_2))  + P(c_1 c_2)  + P(c_1 c_2)
+                                       - =(c_2 f_3(c_2))
+   
+   D315 4=5             ==> * D316:    - P(c_2 c_2)  + P(c_2 c_1)  - =(c_2 f_3(c_2))  + P(c_1 c_2)
+                                       - =(c_2 f_3(c_2))
+   
+   D316 3=5             ==> * D317:    - P(c_2 c_2)  + P(c_2 c_1)  - =(c_2 f_3(c_2))  + P(c_1 c_2)
+   
+   D88,2 & I6,1         ==> * P341:    + P(c_2 f_2(c_1 c_2))  + P(c_1 c_2)  - =(c_2 f_3(c_2))  + =(f_2(c_1 c_2) c_1)
+                                       - =(f_1(c_2) c_2)
+   
+   P341,5 & D88,2       ==> * R342:    + P(c_2 f_2(c_1 c_2))  + P(c_1 c_2)  - =(c_2 f_3(c_2))  + =(f_2(c_1 c_2) c_1)
+                                       + P(c_1 c_2)  - =(c_2 f_3(c_2))
+   
+   R342 2=5             ==> * D343:    + P(c_2 f_2(c_1 c_2))  + P(c_1 c_2)  - =(c_2 f_3(c_2))  + =(f_2(c_1 c_2) c_1)
+                                       - =(c_2 f_3(c_2))
+   
+   D343 3=5             ==> * D344:    + P(c_2 f_2(c_1 c_2))  + P(c_1 c_2)  - =(c_2 f_3(c_2))  + =(f_2(c_1 c_2) c_1)
+   
+   D290,4 & D344,1      ==> * P345:    + P(c_2 c_2)  - P(c_2 c_1)  + P(c_1 c_2)  - =(c_2 f_3(c_2))  + P(c_1 c_2)
+                                       - =(c_2 f_3(c_2))  + =(f_2(c_1 c_2) c_1)
+   
+   P345 4=6             ==> * D346:    + P(c_2 c_2)  - P(c_2 c_1)  + P(c_1 c_2)  - =(c_2 f_3(c_2))  + P(c_1 c_2)
+                                       + =(f_2(c_1 c_2) c_1)
+   
+   D346 5=3             ==> * D347:    + P(c_2 c_2)  - P(c_2 c_1)  - =(c_2 f_3(c_2))  + P(c_1 c_2)
+                                       + =(f_2(c_1 c_2) c_1)
+   
+   D347,5 & D290        ==> * RW348:   + P(c_2 c_2)  - P(c_2 c_1)  - =(c_2 f_3(c_2))  + P(c_1 c_2)  + =(c_2 c_1)
+   
+   RW348,5 & A2,1       ==> * R349:    + P(c_2 c_2)  - P(c_2 c_1)  - =(c_2 f_3(c_2))  + P(c_1 c_2)
+   
+   D90,2 & I1,1         ==> * P355:    - P(c_2 f_2(c_2 c_2))  + P(c_1 c_1)  - =(c_1 f_3(c_2))  - =(f_2(c_2 c_2) c_2)
+                                       - =(f_1(c_2) c_2)
+   
+   P355,5 & D90,2       ==> * R356:    - P(c_2 f_2(c_2 c_2))  + P(c_1 c_1)  - =(c_1 f_3(c_2))  - =(f_2(c_2 c_2) c_2)
+                                       + P(c_1 c_1)  - =(c_1 f_3(c_2))
+   
+   R356 2=5             ==> * D357:    - P(c_2 f_2(c_2 c_2))  + P(c_1 c_1)  - =(c_1 f_3(c_2))  - =(f_2(c_2 c_2) c_2)
+                                       - =(c_1 f_3(c_2))
+   
+   D357 3=5             ==> * D358:    - P(c_2 f_2(c_2 c_2))  + P(c_1 c_1)  - =(c_1 f_3(c_2))  - =(f_2(c_2 c_2) c_2)
+   
+   D258,4 & D358,1      ==> * P359:    - P(c_2 c_2)  + P(c_2 c_1)  + P(c_1 c_1)  - =(c_1 f_3(c_2))  + P(c_1 c_1)
+                                       - =(c_1 f_3(c_2))  - =(f_2(c_2 c_2) c_2)
+   
+   P359 4=6             ==> * D360:    - P(c_2 c_2)  + P(c_2 c_1)  + P(c_1 c_1)  - =(c_1 f_3(c_2))  + P(c_1 c_1)
+                                       - =(f_2(c_2 c_2) c_2)
+   
+   D360 5=3             ==> * D361:    - P(c_2 c_2)  + P(c_2 c_1)  - =(c_1 f_3(c_2))  + P(c_1 c_1)
+                                       - =(f_2(c_2 c_2) c_2)
+   
+   D361,5 & D258,4      ==> * R362:    - P(c_2 c_2)  + P(c_2 c_1)  - =(c_1 f_3(c_2))  + P(c_1 c_1)  + P(c_2 c_1)
+                                       + P(c_1 c_1)  - =(c_1 f_3(c_2))
+   
+   R362 2=5             ==> * D363:    - P(c_2 c_2)  + P(c_2 c_1)  - =(c_1 f_3(c_2))  + P(c_1 c_1)  + P(c_1 c_1)
+                                       - =(c_1 f_3(c_2))
+   
+   D363 4=5             ==> * D364:    - P(c_2 c_2)  + P(c_2 c_1)  - =(c_1 f_3(c_2))  + P(c_1 c_1)
+                                       - =(c_1 f_3(c_2))
+   
+   D364 3=5             ==> * D365:    - P(c_2 c_2)  + P(c_2 c_1)  - =(c_1 f_3(c_2))  + P(c_1 c_1)
+   
+   A3,1 & D365,3        ==> * P366:    - =(c_1 c_1)  + =(f_3(c_2) c_2)  - P(c_2 c_2)  + P(c_2 c_1)  + P(c_1 c_1)
+   
+   P366,1 & A1,1        ==> * R367:    + =(f_3(c_2) c_2)  - P(c_2 c_2)  + P(c_2 c_1)  + P(c_1 c_1)
+   
+   R367,1 & D317,3      ==> * P369:    - =(c_2 c_2)  - P(c_2 c_2)  + P(c_2 c_1)  + P(c_1 c_1)  - P(c_2 c_2)
+                                       + P(c_2 c_1)  + P(c_1 c_2)
+   
+   P369 6=3             ==> * D370:    - =(c_2 c_2)  - P(c_2 c_2)  + P(c_1 c_1)  - P(c_2 c_2)  + P(c_2 c_1)
+                                       + P(c_1 c_2)
+   
+   D370 4=2             ==> * D371:    - =(c_2 c_2)  + P(c_1 c_1)  - P(c_2 c_2)  + P(c_2 c_1)  + P(c_1 c_2)
+   
+   D371,1 & A1,1        ==> * R372:    + P(c_1 c_1)  - P(c_2 c_2)  + P(c_2 c_1)  + P(c_1 c_2)
+   
+   R372,1 & R144,2      ==> * R373:    - P(c_2 c_2)  + P(c_2 c_1)  + P(c_1 c_2)  + P(c_2 c_1)  + =(c_1 c_3)
+   
+   R373 4=2             ==> * D374:    - P(c_2 c_2)  + P(c_1 c_2)  + P(c_2 c_1)  + =(c_1 c_3)
+   
+   D374,2 & R67,1       ==> * R375:    - P(c_2 c_2)  + P(c_2 c_1)  + =(c_1 c_3)  - =(c_2 c_3)  - P(c_2 c_2)
+   
+   R375 5=1             ==> * D376:    + P(c_2 c_1)  + =(c_1 c_3)  - =(c_2 c_3)  - P(c_2 c_2)
+   
+   D376,3 & A3,2        ==> * R377:    + P(c_2 c_1)  + =(c_1 c_3)  - P(c_2 c_2)  + =(c_3 c_1)
+   
+   R377 2=4             ==> * D378:    + P(c_2 c_1)  + =(c_1 c_3)  - P(c_2 c_2)
+   
+   D90,2 & I6,1         ==> * P403:    + P(c_2 f_2(c_1 c_2))  + P(c_1 c_1)  - =(c_1 f_3(c_2))  + =(f_2(c_1 c_2) c_1)
+                                       - =(f_1(c_2) c_2)
+   
+   P403,5 & D90,2       ==> * R404:    + P(c_2 f_2(c_1 c_2))  + P(c_1 c_1)  - =(c_1 f_3(c_2))  + =(f_2(c_1 c_2) c_1)
+                                       + P(c_1 c_1)  - =(c_1 f_3(c_2))
+   
+   R404 2=5             ==> * D405:    + P(c_2 f_2(c_1 c_2))  + P(c_1 c_1)  - =(c_1 f_3(c_2))  + =(f_2(c_1 c_2) c_1)
+                                       - =(c_1 f_3(c_2))
+   
+   D405 3=5             ==> * D406:    + P(c_2 f_2(c_1 c_2))  + P(c_1 c_1)  - =(c_1 f_3(c_2))  + =(f_2(c_1 c_2) c_1)
+   
+   D286,4 & D406,1      ==> * P407:    + P(c_2 c_2)  - P(c_2 c_1)  + P(c_1 c_1)  - =(c_1 f_3(c_2))  + P(c_1 c_1)
+                                       - =(c_1 f_3(c_2))  + =(f_2(c_1 c_2) c_1)
+   
+   P407 4=6             ==> * D408:    + P(c_2 c_2)  - P(c_2 c_1)  + P(c_1 c_1)  - =(c_1 f_3(c_2))  + P(c_1 c_1)
+                                       + =(f_2(c_1 c_2) c_1)
+   
+   D408 5=3             ==> * D409:    + P(c_2 c_2)  - P(c_2 c_1)  - =(c_1 f_3(c_2))  + P(c_1 c_1)
+                                       + =(f_2(c_1 c_2) c_1)
+   
+   D409,5 & D286        ==> * RW410:   + P(c_2 c_2)  - P(c_2 c_1)  - =(c_1 f_3(c_2))  + P(c_1 c_1)  + =(c_2 c_1)
+   
+   RW410,5 & A2,1       ==> * R411:    + P(c_2 c_2)  - P(c_2 c_1)  - =(c_1 f_3(c_2))  + P(c_1 c_1)
+   
+   A3,1 & R411,3        ==> * P412:    - =(c_1 c_1)  + =(f_3(c_2) c_2)  + P(c_2 c_2)  - P(c_2 c_1)  + P(c_1 c_1)
+   
+   P412,1 & A1,1        ==> * R413:    + =(f_3(c_2) c_2)  + P(c_2 c_2)  - P(c_2 c_1)  + P(c_1 c_1)
+   
+   R413,1 & R349,3      ==> * P415:    - =(c_2 c_2)  + P(c_2 c_2)  - P(c_2 c_1)  + P(c_1 c_1)  + P(c_2 c_2)
+                                       - P(c_2 c_1)  + P(c_1 c_2)
+   
+   P415 6=3             ==> * D416:    - =(c_2 c_2)  + P(c_2 c_2)  + P(c_1 c_1)  + P(c_2 c_2)  - P(c_2 c_1)
+                                       + P(c_1 c_2)
+   
+   D416 4=2             ==> * D417:    - =(c_2 c_2)  + P(c_1 c_1)  + P(c_2 c_2)  - P(c_2 c_1)  + P(c_1 c_2)
+   
+   D417,1 & A1,1        ==> * R418:    + P(c_1 c_1)  + P(c_2 c_2)  - P(c_2 c_1)  + P(c_1 c_2)
+   
+   R418,1 & R70,1       ==> * R419:    + P(c_2 c_2)  - P(c_2 c_1)  + P(c_1 c_2)  - =(c_1 c_3)  - P(c_2 c_1)
+   
+   R419 5=2             ==> * D420:    + P(c_2 c_2)  + P(c_1 c_2)  - =(c_1 c_3)  - P(c_2 c_1)
+   
+   D420,2 & R123,2      ==> * R421:    + P(c_2 c_2)  - =(c_1 c_3)  - P(c_2 c_1)  + P(c_2 c_2)  + =(c_2 c_3)
+   
+   R421 4=1             ==> * D422:    - =(c_1 c_3)  - P(c_2 c_1)  + P(c_2 c_2)  + =(c_2 c_3)
+   
+   D422,1 & A3,1        ==> * R423:    - P(c_2 c_1)  + P(c_2 c_2)  + =(c_2 c_3)  + =(c_3 c_2)
+   
+   R423 3=4             ==> * D424:    - P(c_2 c_1)  + P(c_2 c_2)  + =(c_2 c_3)
+   
+   D92,2 & I1,1         ==> * P430:    - P(c_2 f_2(c_2 c_2))  - P(c_1 c_2)  + =(c_2 f_3(c_2))  - =(f_2(c_2 c_2) c_2)
+                                       - =(f_1(c_2) c_2)
+   
+   P430,5 & D92,2       ==> * R431:    - P(c_2 f_2(c_2 c_2))  - P(c_1 c_2)  + =(c_2 f_3(c_2))  - =(f_2(c_2 c_2) c_2)
+                                       - P(c_1 c_2)  + =(c_2 f_3(c_2))
+   
+   R431 2=5             ==> * D432:    - P(c_2 f_2(c_2 c_2))  - P(c_1 c_2)  + =(c_2 f_3(c_2))  - =(f_2(c_2 c_2) c_2)
+                                       + =(c_2 f_3(c_2))
+   
+   D432 3=5             ==> * D433:    - P(c_2 f_2(c_2 c_2))  - P(c_1 c_2)  + =(c_2 f_3(c_2))  - =(f_2(c_2 c_2) c_2)
+   
+   D254,4 & D433,1      ==> * P434:    - P(c_2 c_2)  + P(c_2 c_1)  - P(c_1 c_2)  + =(c_2 f_3(c_2))  - P(c_1 c_2)
+                                       + =(c_2 f_3(c_2))  - =(f_2(c_2 c_2) c_2)
+   
+   P434 4=6             ==> * D435:    - P(c_2 c_2)  + P(c_2 c_1)  - P(c_1 c_2)  + =(c_2 f_3(c_2))  - P(c_1 c_2)
+                                       - =(f_2(c_2 c_2) c_2)
+   
+   D435 5=3             ==> * D436:    - P(c_2 c_2)  + P(c_2 c_1)  + =(c_2 f_3(c_2))  - P(c_1 c_2)
+                                       - =(f_2(c_2 c_2) c_2)
+   
+   D436,5 & D254,4      ==> * R437:    - P(c_2 c_2)  + P(c_2 c_1)  + =(c_2 f_3(c_2))  - P(c_1 c_2)  + P(c_2 c_1)
+                                       - P(c_1 c_2)  + =(c_2 f_3(c_2))
+   
+   R437 2=5             ==> * D438:    - P(c_2 c_2)  + P(c_2 c_1)  + =(c_2 f_3(c_2))  - P(c_1 c_2)  - P(c_1 c_2)
+                                       + =(c_2 f_3(c_2))
+   
+   D438 4=5             ==> * D439:    - P(c_2 c_2)  + P(c_2 c_1)  + =(c_2 f_3(c_2))  - P(c_1 c_2)
+                                       + =(c_2 f_3(c_2))
+   
+   D439 3=5             ==> * D440:    - P(c_2 c_2)  + P(c_2 c_1)  + =(c_2 f_3(c_2))  - P(c_1 c_2)
+   
+   D92,2 & I6,1         ==> * P464:    + P(c_2 f_2(c_1 c_2))  - P(c_1 c_2)  + =(c_2 f_3(c_2))  + =(f_2(c_1 c_2) c_1)
+                                       - =(f_1(c_2) c_2)
+   
+   P464,5 & D92,2       ==> * R465:    + P(c_2 f_2(c_1 c_2))  - P(c_1 c_2)  + =(c_2 f_3(c_2))  + =(f_2(c_1 c_2) c_1)
+                                       - P(c_1 c_2)  + =(c_2 f_3(c_2))
+   
+   R465 2=5             ==> * D466:    + P(c_2 f_2(c_1 c_2))  - P(c_1 c_2)  + =(c_2 f_3(c_2))  + =(f_2(c_1 c_2) c_1)
+                                       + =(c_2 f_3(c_2))
+   
+   D466 3=5             ==> * D467:    + P(c_2 f_2(c_1 c_2))  - P(c_1 c_2)  + =(c_2 f_3(c_2))  + =(f_2(c_1 c_2) c_1)
+   
+   D282,4 & D467,1      ==> * P468:    + P(c_2 c_2)  - P(c_2 c_1)  - P(c_1 c_2)  + =(c_2 f_3(c_2))  - P(c_1 c_2)
+                                       + =(c_2 f_3(c_2))  + =(f_2(c_1 c_2) c_1)
+   
+   P468 4=6             ==> * D469:    + P(c_2 c_2)  - P(c_2 c_1)  - P(c_1 c_2)  + =(c_2 f_3(c_2))  - P(c_1 c_2)
+                                       + =(f_2(c_1 c_2) c_1)
+   
+   D469 5=3             ==> * D470:    + P(c_2 c_2)  - P(c_2 c_1)  + =(c_2 f_3(c_2))  - P(c_1 c_2)
+                                       + =(f_2(c_1 c_2) c_1)
+   
+   D470,5 & D282        ==> * RW471:   + P(c_2 c_2)  - P(c_2 c_1)  + =(c_2 f_3(c_2))  - P(c_1 c_2)  + =(c_2 c_1)
+   
+   RW471,5 & A2,1       ==> * R472:    + P(c_2 c_2)  - P(c_2 c_1)  + =(c_2 f_3(c_2))  - P(c_1 c_2)
+   
+   D94,2 & I1,1         ==> * P478:    - P(c_2 f_2(c_2 c_2))  - P(c_1 c_1)  + =(c_1 f_3(c_2))  - =(f_2(c_2 c_2) c_2)
+                                       - =(f_1(c_2) c_2)
+   
+   P478,5 & D94,2       ==> * R479:    - P(c_2 f_2(c_2 c_2))  - P(c_1 c_1)  + =(c_1 f_3(c_2))  - =(f_2(c_2 c_2) c_2)
+                                       - P(c_1 c_1)  + =(c_1 f_3(c_2))
+   
+   R479 2=5             ==> * D480:    - P(c_2 f_2(c_2 c_2))  - P(c_1 c_1)  + =(c_1 f_3(c_2))  - =(f_2(c_2 c_2) c_2)
+                                       + =(c_1 f_3(c_2))
+   
+   D480 3=5             ==> * D481:    - P(c_2 f_2(c_2 c_2))  - P(c_1 c_1)  + =(c_1 f_3(c_2))  - =(f_2(c_2 c_2) c_2)
+   
+   D250,4 & D481,1      ==> * P482:    - P(c_2 c_2)  + P(c_2 c_1)  - P(c_1 c_1)  + =(c_1 f_3(c_2))  - P(c_1 c_1)
+                                       + =(c_1 f_3(c_2))  - =(f_2(c_2 c_2) c_2)
+   
+   P482 4=6             ==> * D483:    - P(c_2 c_2)  + P(c_2 c_1)  - P(c_1 c_1)  + =(c_1 f_3(c_2))  - P(c_1 c_1)
+                                       - =(f_2(c_2 c_2) c_2)
+   
+   D483 5=3             ==> * D484:    - P(c_2 c_2)  + P(c_2 c_1)  + =(c_1 f_3(c_2))  - P(c_1 c_1)
+                                       - =(f_2(c_2 c_2) c_2)
+   
+   D484,5 & D250,4      ==> * R485:    - P(c_2 c_2)  + P(c_2 c_1)  + =(c_1 f_3(c_2))  - P(c_1 c_1)  + P(c_2 c_1)
+                                       - P(c_1 c_1)  + =(c_1 f_3(c_2))
+   
+   R485 2=5             ==> * D486:    - P(c_2 c_2)  + P(c_2 c_1)  + =(c_1 f_3(c_2))  - P(c_1 c_1)  - P(c_1 c_1)
+                                       + =(c_1 f_3(c_2))
+   
+   D486 4=5             ==> * D487:    - P(c_2 c_2)  + P(c_2 c_1)  + =(c_1 f_3(c_2))  - P(c_1 c_1)
+                                       + =(c_1 f_3(c_2))
+   
+   D487 3=5             ==> * D488:    - P(c_2 c_2)  + P(c_2 c_1)  + =(c_1 f_3(c_2))  - P(c_1 c_1)
+   
+   D440,3 & D488,3      ==> * P489:    + =(c_1 c_2)  - P(c_2 c_2)  + P(c_2 c_1)  - P(c_1 c_2)  - P(c_2 c_2)
+                                       + P(c_2 c_1)  - P(c_1 c_1)
+   
+   P489 6=3             ==> * D490:    + =(c_1 c_2)  - P(c_2 c_2)  - P(c_1 c_2)  - P(c_2 c_2)  + P(c_2 c_1)
+                                       - P(c_1 c_1)
+   
+   D490 4=2             ==> * D491:    + =(c_1 c_2)  - P(c_1 c_2)  - P(c_2 c_2)  + P(c_2 c_1)  - P(c_1 c_1)
+   
+   D491,1 & A2,1        ==> * R492:    - P(c_1 c_2)  - P(c_2 c_2)  + P(c_2 c_1)  - P(c_1 c_1)
+   
+   R82,1 & R492,4       ==> * R493:    - =(c_1 c_3)  + P(c_2 c_1)  - P(c_1 c_2)  - P(c_2 c_2)  + P(c_2 c_1)
+   
+   R493 5=2             ==> * D494:    - =(c_1 c_3)  - P(c_1 c_2)  - P(c_2 c_2)  + P(c_2 c_1)
+   
+   D494,1 & D378,2      ==> * R495:    - P(c_1 c_2)  - P(c_2 c_2)  + P(c_2 c_1)  + P(c_2 c_1)  - P(c_2 c_2)
+   
+   R495 3=4             ==> * D496:    - P(c_1 c_2)  - P(c_2 c_2)  + P(c_2 c_1)  - P(c_2 c_2)
+   
+   D496 2=4             ==> * D497:    - P(c_1 c_2)  - P(c_2 c_2)  + P(c_2 c_1)
+   
+   R372,4 & D497,1      ==> * R501:    + P(c_1 c_1)  - P(c_2 c_2)  + P(c_2 c_1)  - P(c_2 c_2)  + P(c_2 c_1)
+   
+   R501 2=4             ==> * D502:    + P(c_1 c_1)  - P(c_2 c_2)  + P(c_2 c_1)  + P(c_2 c_1)
+   
+   D502 3=4             ==> * D503:    + P(c_1 c_1)  - P(c_2 c_2)  + P(c_2 c_1)
+   
+   D94,2 & I6,1         ==> * P531:    + P(c_2 f_2(c_1 c_2))  - P(c_1 c_1)  + =(c_1 f_3(c_2))  + =(f_2(c_1 c_2) c_1)
+                                       - =(f_1(c_2) c_2)
+   
+   P531,5 & D94,2       ==> * R532:    + P(c_2 f_2(c_1 c_2))  - P(c_1 c_1)  + =(c_1 f_3(c_2))  + =(f_2(c_1 c_2) c_1)
+                                       - P(c_1 c_1)  + =(c_1 f_3(c_2))
+   
+   R532 2=5             ==> * D533:    + P(c_2 f_2(c_1 c_2))  - P(c_1 c_1)  + =(c_1 f_3(c_2))  + =(f_2(c_1 c_2) c_1)
+                                       + =(c_1 f_3(c_2))
+   
+   D533 3=5             ==> * D534:    + P(c_2 f_2(c_1 c_2))  - P(c_1 c_1)  + =(c_1 f_3(c_2))  + =(f_2(c_1 c_2) c_1)
+   
+   D278,4 & D534,1      ==> * P535:    + P(c_2 c_2)  - P(c_2 c_1)  - P(c_1 c_1)  + =(c_1 f_3(c_2))  - P(c_1 c_1)
+                                       + =(c_1 f_3(c_2))  + =(f_2(c_1 c_2) c_1)
+   
+   P535 4=6             ==> * D536:    + P(c_2 c_2)  - P(c_2 c_1)  - P(c_1 c_1)  + =(c_1 f_3(c_2))  - P(c_1 c_1)
+                                       + =(f_2(c_1 c_2) c_1)
+   
+   D536 5=3             ==> * D537:    + P(c_2 c_2)  - P(c_2 c_1)  + =(c_1 f_3(c_2))  - P(c_1 c_1)
+                                       + =(f_2(c_1 c_2) c_1)
+   
+   D537,5 & D278        ==> * RW538:   + P(c_2 c_2)  - P(c_2 c_1)  + =(c_1 f_3(c_2))  - P(c_1 c_1)  + =(c_2 c_1)
+   
+   RW538,5 & A2,1       ==> * R539:    + P(c_2 c_2)  - P(c_2 c_1)  + =(c_1 f_3(c_2))  - P(c_1 c_1)
+   
+   R472,3 & R539,3      ==> * P540:    + =(c_1 c_2)  + P(c_2 c_2)  - P(c_2 c_1)  - P(c_1 c_2)  + P(c_2 c_2)
+                                       - P(c_2 c_1)  - P(c_1 c_1)
+   
+   P540 6=3             ==> * D541:    + =(c_1 c_2)  + P(c_2 c_2)  - P(c_1 c_2)  + P(c_2 c_2)  - P(c_2 c_1)
+                                       - P(c_1 c_1)
+   
+   D541 4=2             ==> * D542:    + =(c_1 c_2)  - P(c_1 c_2)  + P(c_2 c_2)  - P(c_2 c_1)  - P(c_1 c_1)
+   
+   D542,1 & A2,1        ==> * R543:    - P(c_1 c_2)  + P(c_2 c_2)  - P(c_2 c_1)  - P(c_1 c_1)
+   
+   D108,2 & R543,4      ==> * R544:    - P(c_2 c_1)  + =(c_1 c_3)  - P(c_1 c_2)  + P(c_2 c_2)  - P(c_2 c_1)
+   
+   R544 5=1             ==> * D545:    + =(c_1 c_3)  - P(c_1 c_2)  + P(c_2 c_2)  - P(c_2 c_1)
+   
+   R76,1 & D545,2       ==> * R546:    - =(c_2 c_3)  + P(c_2 c_2)  + =(c_1 c_3)  + P(c_2 c_2)  - P(c_2 c_1)
+   
+   R546 4=2             ==> * D547:    - =(c_2 c_3)  + =(c_1 c_3)  + P(c_2 c_2)  - P(c_2 c_1)
+   
+   D547,1 & A3,2        ==> * R548:    + =(c_1 c_3)  + P(c_2 c_2)  - P(c_2 c_1)  + =(c_3 c_1)
+   
+   R548 1=4             ==> * D549:    + =(c_1 c_3)  + P(c_2 c_2)  - P(c_2 c_1)
+   
+   D181,2 & I11,1       ==> * P561:    + P(c_2 c_2)  - P(c_1 f_2(c_2 c_1))  - =(f_2(c_2 c_1) c_2)  - =(c_2 f_3(c_1))
+                                       + =(f_1(c_1) c_1)
+   
+   P561,5 & D181        ==> * RW562:   + P(c_2 c_2)  - P(c_1 f_2(c_2 c_1))  - =(f_2(c_2 c_1) c_2)  - =(c_2 f_3(c_1))
+                                       + =(c_2 c_1)
+   
+   RW562,5 & A2,1       ==> * R563:    + P(c_2 c_2)  - P(c_1 f_2(c_2 c_1))  - =(f_2(c_2 c_1) c_2)  - =(c_2 f_3(c_1))
+   
+   R265,3 & R563,2      ==> * P564:    - P(c_1 c_2)  + P(c_2 c_2)  + P(c_1 c_1)  - =(c_2 f_3(c_1))  + P(c_2 c_2)
+                                       - =(f_2(c_2 c_1) c_2)  - =(c_2 f_3(c_1))
+   
+   P564 4=7             ==> * D565:    - P(c_1 c_2)  + P(c_2 c_2)  + P(c_1 c_1)  - =(c_2 f_3(c_1))  + P(c_2 c_2)
+                                       - =(f_2(c_2 c_1) c_2)
+   
+   D565 5=2             ==> * D566:    - P(c_1 c_2)  + P(c_1 c_1)  - =(c_2 f_3(c_1))  + P(c_2 c_2)
+                                       - =(f_2(c_2 c_1) c_2)
+   
+   D566,5 & R265,3      ==> * R567:    - P(c_1 c_2)  + P(c_1 c_1)  - =(c_2 f_3(c_1))  + P(c_2 c_2)  + P(c_2 c_2)
+                                       + P(c_1 c_1)  - =(c_2 f_3(c_1))
+   
+   R567 4=5             ==> * D568:    - P(c_1 c_2)  + P(c_1 c_1)  - =(c_2 f_3(c_1))  + P(c_2 c_2)  + P(c_1 c_1)
+                                       - =(c_2 f_3(c_1))
+   
+   D568 2=5             ==> * D569:    - P(c_1 c_2)  + P(c_1 c_1)  - =(c_2 f_3(c_1))  + P(c_2 c_2)
+                                       - =(c_2 f_3(c_1))
+   
+   D569 3=5             ==> * D570:    - P(c_1 c_2)  + P(c_1 c_1)  - =(c_2 f_3(c_1))  + P(c_2 c_2)
+   
+   D181,2 & I12,1       ==> * P571:    + P(c_2 c_1)  - P(c_1 f_2(c_2 c_1))  - =(f_2(c_2 c_1) c_2)  - =(c_1 f_3(c_1))
+                                       + =(f_1(c_1) c_1)
+   
+   P571,5 & D181        ==> * RW572:   + P(c_2 c_1)  - P(c_1 f_2(c_2 c_1))  - =(f_2(c_2 c_1) c_2)  - =(c_1 f_3(c_1))
+                                       + =(c_2 c_1)
+   
+   RW572,5 & A2,1       ==> * R573:    + P(c_2 c_1)  - P(c_1 f_2(c_2 c_1))  - =(f_2(c_2 c_1) c_2)  - =(c_1 f_3(c_1))
+   
+   R268,3 & R573,2      ==> * P574:    - P(c_1 c_2)  + P(c_2 c_1)  + P(c_1 c_1)  - =(c_1 f_3(c_1))  + P(c_2 c_1)
+                                       - =(f_2(c_2 c_1) c_2)  - =(c_1 f_3(c_1))
+   
+   P574 4=7             ==> * D575:    - P(c_1 c_2)  + P(c_2 c_1)  + P(c_1 c_1)  - =(c_1 f_3(c_1))  + P(c_2 c_1)
+                                       - =(f_2(c_2 c_1) c_2)
+   
+   D575 5=2             ==> * D576:    - P(c_1 c_2)  + P(c_1 c_1)  - =(c_1 f_3(c_1))  + P(c_2 c_1)
+                                       - =(f_2(c_2 c_1) c_2)
+   
+   D576,5 & R268,3      ==> * R577:    - P(c_1 c_2)  + P(c_1 c_1)  - =(c_1 f_3(c_1))  + P(c_2 c_1)  + P(c_2 c_1)
+                                       + P(c_1 c_1)  - =(c_1 f_3(c_1))
+   
+   R577 4=5             ==> * D578:    - P(c_1 c_2)  + P(c_1 c_1)  - =(c_1 f_3(c_1))  + P(c_2 c_1)  + P(c_1 c_1)
+                                       - =(c_1 f_3(c_1))
+   
+   D578 2=5             ==> * D579:    - P(c_1 c_2)  + P(c_1 c_1)  - =(c_1 f_3(c_1))  + P(c_2 c_1)
+                                       - =(c_1 f_3(c_1))
+   
+   D579 3=5             ==> * D580:    - P(c_1 c_2)  + P(c_1 c_1)  - =(c_1 f_3(c_1))  + P(c_2 c_1)
+   
+   A3,1 & D580,3        ==> * P581:    - =(c_1 c_1)  + =(f_3(c_1) c_2)  - P(c_1 c_2)  + P(c_1 c_1)  + P(c_2 c_1)
+   
+   P581,1 & A1,1        ==> * R582:    + =(f_3(c_1) c_2)  - P(c_1 c_2)  + P(c_1 c_1)  + P(c_2 c_1)
+   
+   R582,1 & D570,3      ==> * P584:    - =(c_2 c_2)  - P(c_1 c_2)  + P(c_1 c_1)  + P(c_2 c_1)  - P(c_1 c_2)
+                                       + P(c_1 c_1)  + P(c_2 c_2)
+   
+   P584 6=3             ==> * D585:    - =(c_2 c_2)  - P(c_1 c_2)  + P(c_2 c_1)  - P(c_1 c_2)  + P(c_1 c_1)
+                                       + P(c_2 c_2)
+   
+   D585 4=2             ==> * D586:    - =(c_2 c_2)  + P(c_2 c_1)  - P(c_1 c_2)  + P(c_1 c_1)  + P(c_2 c_2)
+   
+   D586,1 & A1,1        ==> * R587:    + P(c_2 c_1)  - P(c_1 c_2)  + P(c_1 c_1)  + P(c_2 c_2)
+   
+   R587,4 & D503,2      ==> * R588:    + P(c_2 c_1)  - P(c_1 c_2)  + P(c_1 c_1)  + P(c_1 c_1)  + P(c_2 c_1)
+   
+   R588 3=4             ==> * D589:    + P(c_2 c_1)  - P(c_1 c_2)  + P(c_1 c_1)  + P(c_2 c_1)
+   
+   D589 1=4             ==> * D590:    + P(c_2 c_1)  - P(c_1 c_2)  + P(c_1 c_1)
+   
+   D590,3 & R144,2      ==> * R591:    + P(c_2 c_1)  - P(c_1 c_2)  + P(c_2 c_1)  + =(c_1 c_3)
+   
+   R591 3=1             ==> * D592:    - P(c_1 c_2)  + P(c_2 c_1)  + =(c_1 c_3)
+   
+   R76,1 & D592,1       ==> * R593:    - =(c_2 c_3)  + P(c_2 c_2)  + P(c_2 c_1)  + =(c_1 c_3)
+   
+   R593,3 & D549,3      ==> * R594:    - =(c_2 c_3)  + P(c_2 c_2)  + =(c_1 c_3)  + =(c_1 c_3)  + P(c_2 c_2)
+   
+   R594 3=4             ==> * D595:    - =(c_2 c_3)  + P(c_2 c_2)  + =(c_1 c_3)  + P(c_2 c_2)
+   
+   D595 2=4             ==> * D596:    - =(c_2 c_3)  + P(c_2 c_2)  + =(c_1 c_3)
+   
+   D596,1 & A3,2        ==> * R597:    + P(c_2 c_2)  + =(c_1 c_3)  + =(c_3 c_1)
+   
+   R597 2=3             ==> * D598:    + P(c_2 c_2)  + =(c_1 c_3)
+   
+   D378,3 & D598,1      ==> * R599:    + P(c_2 c_1)  + =(c_1 c_3)  + =(c_1 c_3)
+   
+   R599 2=3             ==> * D600:    + P(c_2 c_1)  + =(c_1 c_3)
+   
+   R82,2 & D600,2       ==> * R603:    + P(c_1 c_1)  + P(c_2 c_1)  + P(c_2 c_1)
+   
+   R603 2=3             ==> * D604:    + P(c_1 c_1)  + P(c_2 c_1)
+   
+   D108,1 & D600,1      ==> * R605:    + P(c_1 c_1)  + =(c_1 c_3)  + =(c_1 c_3)
+   
+   R605 2=3             ==> * D606:    + P(c_1 c_1)  + =(c_1 c_3)
+   
+   R274,1 & D604,2      ==> * R609:    + P(c_1 c_1)  + =(f_2(c_2 c_1) c_2)  + =(c_1 f_3(c_1))  + P(c_1 c_1)
+   
+   R609 1=4             ==> * D610:    + P(c_1 c_1)  + =(f_2(c_2 c_1) c_2)  + =(c_1 f_3(c_1))
+   
+   R296,2 & D604,1      ==> * R611:    + P(c_2 c_1)  + =(f_2(c_1 c_1) c_2)  - =(c_1 f_3(c_1))  + P(c_2 c_1)
+   
+   R611 1=4             ==> * D612:    + P(c_2 c_1)  + =(f_2(c_1 c_1) c_2)  - =(c_1 f_3(c_1))
+   
+   D424,1 & D598        ==> * RW647:   - P(c_2 c_3)  + P(c_2 c_2)  + =(c_2 c_3)
+   
+   R293,2 & D598        ==> * RW651:   + P(c_2 c_2)  - P(c_3 c_1)  + =(f_2(c_1 c_1) c_2)  - =(c_2 f_3(c_1))
+   
+   RW651,2 & D598       ==> * RW652:   + P(c_2 c_2)  - P(c_3 c_3)  + =(f_2(c_1 c_1) c_2)  - =(c_2 f_3(c_1))
+   
+   RW652,3 & D598       ==> * RW653:   + P(c_2 c_2)  - P(c_3 c_3)  + =(f_2(c_3 c_1) c_2)  - =(c_2 f_3(c_1))
+   
+   RW653,3 & D598       ==> * RW654:   + P(c_2 c_2)  - P(c_3 c_3)  + =(f_2(c_3 c_3) c_2)  - =(c_2 f_3(c_1))
+   
+   RW654,4 & D598       ==> * RW655:   + P(c_2 c_2)  - P(c_3 c_3)  + =(f_2(c_3 c_3) c_2)  - =(c_2 f_3(c_3))
+   
+   R123,2 & D598        ==> * RW660:   + P(c_2 c_2)  - P(c_3 c_2)  + =(c_2 c_3)
+   
+   D598,2 & A2,1        ==> * P665:    - =(c_2 c_3)  + P(c_2 c_2)
+   
+   R67,3 & P665,2       ==> * R668:    - P(c_1 c_2)  - =(c_2 c_3)  - =(c_2 c_3)
+   
+   R668 2=3             ==> * D669:    - P(c_1 c_2)  - =(c_2 c_3)
+   
+   RW660,3 & P665,1     ==> * R670:    + P(c_2 c_2)  - P(c_3 c_2)  + P(c_2 c_2)
+   
+   R670 1=3             ==> * D671:    + P(c_2 c_2)  - P(c_3 c_2)
+   
+   RW647,3 & P665,1     ==> * R672:    - P(c_2 c_3)  + P(c_2 c_2)  + P(c_2 c_2)
+   
+   R672 2=3             ==> * D673:    - P(c_2 c_3)  + P(c_2 c_2)
+   
+   D598,2 & D604,1      ==> * P678:    + P(c_3 c_1)  + P(c_2 c_2)  + P(c_2 c_1)
+   
+   P678,1 & D598        ==> * RW679:   + P(c_3 c_3)  + P(c_2 c_2)  + P(c_2 c_1)
+   
+   RW679,3 & D598       ==> * RW680:   + P(c_3 c_3)  + P(c_2 c_2)  + P(c_2 c_3)
+   
+   RW680,3 & D673,1     ==> * R681:    + P(c_3 c_3)  + P(c_2 c_2)  + P(c_2 c_2)
+   
+   R681 2=3             ==> * D682:    + P(c_3 c_3)  + P(c_2 c_2)
+   
+   RW655,2 & D682,1     ==> * R683:    + P(c_2 c_2)  + =(f_2(c_3 c_3) c_2)  - =(c_2 f_3(c_3))  + P(c_2 c_2)
+   
+   R683 1=4             ==> * D684:    + P(c_2 c_2)  + =(f_2(c_3 c_3) c_2)  - =(c_2 f_3(c_3))
+   
+   D598,2 & D612,2      ==> * P755:    + =(f_2(c_3 c_1) c_2)  + P(c_2 c_2)  + P(c_2 c_1)  - =(c_1 f_3(c_1))
+   
+   P755,1 & D598        ==> * RW756:   + =(f_2(c_3 c_3) c_2)  + P(c_2 c_2)  + P(c_2 c_1)  - =(c_1 f_3(c_1))
+   
+   RW756,3 & D598       ==> * RW757:   + =(f_2(c_3 c_3) c_2)  + P(c_2 c_2)  + P(c_2 c_3)  - =(c_1 f_3(c_1))
+   
+   RW757,4 & D598       ==> * RW758:   + =(f_2(c_3 c_3) c_2)  + P(c_2 c_2)  + P(c_2 c_3)  - =(c_3 f_3(c_1))
+   
+   RW758,4 & D598       ==> * RW759:   + =(f_2(c_3 c_3) c_2)  + P(c_2 c_2)  + P(c_2 c_3)  - =(c_3 f_3(c_3))
+   
+   RW759,3 & D673,1     ==> * R760:    + =(f_2(c_3 c_3) c_2)  + P(c_2 c_2)  - =(c_3 f_3(c_3))  + P(c_2 c_2)
+   
+   R760 2=4             ==> * D761:    + =(f_2(c_3 c_3) c_2)  + P(c_2 c_2)  - =(c_3 f_3(c_3))
+   
+   D598,2 & I11,1       ==> * P777:    + P(f_1(c_3) c_2)  + P(c_2 c_2)  - =(c_2 f_3(c_1))  + =(f_1(c_1) c_1)
+   
+   P777,3 & D598        ==> * RW778:   + P(f_1(c_3) c_2)  + P(c_2 c_2)  - =(c_2 f_3(c_3))  + =(f_1(c_1) c_1)
+   
+   RW778,4 & D598       ==> * RW779:   + P(f_1(c_3) c_2)  + P(c_2 c_2)  - =(c_2 f_3(c_3))  + =(f_1(c_3) c_1)
+   
+   RW779,4 & D598       ==> * RW780:   + P(f_1(c_3) c_2)  + P(c_2 c_2)  - =(c_2 f_3(c_3))  + =(f_1(c_3) c_3)
+   
+   D598,2 & I12,1       ==> * P781:    + P(f_1(c_3) c_1)  + P(c_2 c_2)  - =(c_1 f_3(c_1))  + =(f_1(c_1) c_1)
+   
+   P781,1 & D598        ==> * RW782:   + P(f_1(c_3) c_3)  + P(c_2 c_2)  - =(c_1 f_3(c_1))  + =(f_1(c_1) c_1)
+   
+   RW782,3 & D598       ==> * RW783:   + P(f_1(c_3) c_3)  + P(c_2 c_2)  - =(c_3 f_3(c_1))  + =(f_1(c_1) c_1)
+   
+   RW783,3 & D598       ==> * RW784:   + P(f_1(c_3) c_3)  + P(c_2 c_2)  - =(c_3 f_3(c_3))  + =(f_1(c_1) c_1)
+   
+   RW784,4 & D598       ==> * RW785:   + P(f_1(c_3) c_3)  + P(c_2 c_2)  - =(c_3 f_3(c_3))  + =(f_1(c_3) c_1)
+   
+   RW785,4 & D598       ==> * RW786:   + P(f_1(c_3) c_3)  + P(c_2 c_2)  - =(c_3 f_3(c_3))  + =(f_1(c_3) c_3)
+   
+   D598,2 & I8,1        ==> * P954:    + P(f_1(c_3) f_2(c_1 c_1))  + P(c_2 c_2)  + =(f_2(c_1 c_1) c_1)
+                                       - =(f_1(c_1) c_1)
+   
+   P954,1 & D598        ==> * RW955:   + P(f_1(c_3) f_2(c_3 c_1))  + P(c_2 c_2)  + =(f_2(c_1 c_1) c_1)
+                                       - =(f_1(c_1) c_1)
+   
+   RW955,1 & D598       ==> * RW956:   + P(f_1(c_3) f_2(c_3 c_3))  + P(c_2 c_2)  + =(f_2(c_1 c_1) c_1)
+                                       - =(f_1(c_1) c_1)
+   
+   RW956,3 & D598       ==> * RW957:   + P(f_1(c_3) f_2(c_3 c_3))  + P(c_2 c_2)  + =(f_2(c_3 c_1) c_1)
+                                       - =(f_1(c_1) c_1)
+   
+   RW957,3 & D598       ==> * RW958:   + P(f_1(c_3) f_2(c_3 c_3))  + P(c_2 c_2)  + =(f_2(c_3 c_3) c_1)
+                                       - =(f_1(c_1) c_1)
+   
+   RW958,3 & D598       ==> * RW959:   + P(f_1(c_3) f_2(c_3 c_3))  + P(c_2 c_2)  + =(f_2(c_3 c_3) c_3)
+                                       - =(f_1(c_1) c_1)
+   
+   RW959,4 & D598       ==> * RW960:   + P(f_1(c_3) f_2(c_3 c_3))  + P(c_2 c_2)  + =(f_2(c_3 c_3) c_3)
+                                       - =(f_1(c_3) c_1)
+   
+   RW960,4 & D598       ==> * RW961:   + P(f_1(c_3) f_2(c_3 c_3))  + P(c_2 c_2)  + =(f_2(c_3 c_3) c_3)
+                                       - =(f_1(c_3) c_3)
+   
+   A3,1 & RW780,1       ==> * P1023:   + P(c_1 c_2)  + =(f_1(c_3) c_2)  + P(c_2 c_2)  - =(c_2 f_3(c_3))
+                                       + =(f_1(c_3) c_3)
+   
+   P1023,1 & D598       ==> * RW1024:  + P(c_3 c_2)  + =(f_1(c_3) c_2)  + P(c_2 c_2)  - =(c_2 f_3(c_3))
+                                       + =(f_1(c_3) c_3)
+   
+   RW1024,1 & D671,2    ==> * R1025:   + =(f_1(c_3) c_2)  + P(c_2 c_2)  - =(c_2 f_3(c_3))  + =(f_1(c_3) c_3)
+                                       + P(c_2 c_2)
+   
+   R1025 2=5            ==> * D1026:   + =(f_1(c_3) c_2)  + P(c_2 c_2)  - =(c_2 f_3(c_3))  + =(f_1(c_3) c_3)
+   
+   RW780,1 & D1026      ==> * RW1027:  + P(c_2 c_2)  + P(c_2 c_2)  - =(c_2 f_3(c_3))  + =(f_1(c_3) c_3)
+   
+   RW1027 (instance)    ==> * I1028:   + P(c_2 c_2)  + P(c_2 c_2)  - =(c_2 f_3(c_3))  + =(f_1(c_3) c_3)
+   
+   I1028 2=1            ==> * D1029:   + P(c_2 c_2)  - =(c_2 f_3(c_3))  + =(f_1(c_3) c_3)
+   
+   D761,1 & RW961,1     ==> * P1210:   + P(f_1(c_3) c_2)  + P(c_2 c_2)  - =(c_3 f_3(c_3))  + P(c_2 c_2)
+                                       + =(f_2(c_3 c_3) c_3)  - =(f_1(c_3) c_3)
+   
+   P1210 4=2            ==> * D1211:   + P(f_1(c_3) c_2)  - =(c_3 f_3(c_3))  + P(c_2 c_2)  + =(f_2(c_3 c_3) c_3)
+                                       - =(f_1(c_3) c_3)
+   
+   D1211,4 & D761       ==> * RW1212:  + P(f_1(c_3) c_2)  - =(c_3 f_3(c_3))  + P(c_2 c_2)  + =(c_2 c_3)
+                                       - =(f_1(c_3) c_3)
+   
+   RW1212,4 & P665,1    ==> * R1213:   + P(f_1(c_3) c_2)  - =(c_3 f_3(c_3))  + P(c_2 c_2)  - =(f_1(c_3) c_3)
+                                       + P(c_2 c_2)
+   
+   R1213 3=5            ==> * D1214:   + P(f_1(c_3) c_2)  - =(c_3 f_3(c_3))  + P(c_2 c_2)  - =(f_1(c_3) c_3)
+   
+   A3,1 & D1214,1       ==> * P1222:   + P(c_1 c_2)  + =(f_1(c_3) c_2)  - =(c_3 f_3(c_3))  + P(c_2 c_2)
+                                       - =(f_1(c_3) c_3)
+   
+   P1222,1 & D598       ==> * RW1223:  + P(c_3 c_2)  + =(f_1(c_3) c_2)  - =(c_3 f_3(c_3))  + P(c_2 c_2)
+                                       - =(f_1(c_3) c_3)
+   
+   RW1223,1 & D671,2    ==> * R1224:   + =(f_1(c_3) c_2)  - =(c_3 f_3(c_3))  + P(c_2 c_2)  - =(f_1(c_3) c_3)
+                                       + P(c_2 c_2)
+   
+   R1224 3=5            ==> * D1225:   + =(f_1(c_3) c_2)  - =(c_3 f_3(c_3))  + P(c_2 c_2)  - =(f_1(c_3) c_3)
+   
+   D1214,1 & D1225      ==> * RW1226:  + P(c_2 c_2)  - =(c_3 f_3(c_3))  + P(c_2 c_2)  - =(f_1(c_3) c_3)
+   
+   RW1226 (instance)    ==> * I1227:   + P(c_2 c_2)  - =(c_3 f_3(c_3))  + P(c_2 c_2)  - =(f_1(c_3) c_3)
+   
+   I1227 3=1            ==> * D1228:   - =(c_3 f_3(c_3))  + P(c_2 c_2)  - =(f_1(c_3) c_3)
+   
+   RW786,4 & D1228,3    ==> * R1229:   + P(f_1(c_3) c_3)  + P(c_2 c_2)  - =(c_3 f_3(c_3))  - =(c_3 f_3(c_3))
+                                       + P(c_2 c_2)
+   
+   R1229 3=4            ==> * D1230:   + P(f_1(c_3) c_3)  + P(c_2 c_2)  - =(c_3 f_3(c_3))  + P(c_2 c_2)
+   
+   D1230 2=4            ==> * D1231:   + P(f_1(c_3) c_3)  + P(c_2 c_2)  - =(c_3 f_3(c_3))
+   
+   A3,1 & D1228,3       ==> * P1232:   - =(c_1 c_3)  + =(f_1(c_3) c_2)  - =(c_3 f_3(c_3))  + P(c_2 c_2)
+   
+   P1232,1 & D598,2     ==> * R1233:   + =(f_1(c_3) c_2)  - =(c_3 f_3(c_3))  + P(c_2 c_2)  + P(c_2 c_2)
+   
+   R1233 3=4            ==> * D1234:   + =(f_1(c_3) c_2)  - =(c_3 f_3(c_3))  + P(c_2 c_2)
+   
+   D1231,1 & D1234      ==> * RW1239:  + P(c_2 c_3)  + P(c_2 c_2)  - =(c_3 f_3(c_3))
+   
+   RW1239,1 & D673,1    ==> * R1240:   + P(c_2 c_2)  - =(c_3 f_3(c_3))  + P(c_2 c_2)
+   
+   R1240 1=3            ==> * D1241:   + P(c_2 c_2)  - =(c_3 f_3(c_3))
+   
+   A3,1 & D1241,2       ==> * P1242:   - =(c_3 c_1)  + =(f_3(c_3) c_2)  + P(c_2 c_2)
+   
+   P1242,1 & D598,2     ==> * R1243:   + =(f_3(c_3) c_2)  + P(c_2 c_2)  + P(c_2 c_2)
+   
+   R1243 2=3            ==> * D1244:   + =(f_3(c_3) c_2)  + P(c_2 c_2)
+   
+   D684,3 & D1244,1     ==> * R1245:   + P(c_2 c_2)  + =(f_2(c_3 c_3) c_2)  + P(c_2 c_2)
+   
+   R1245 1=3            ==> * D1246:   + P(c_2 c_2)  + =(f_2(c_3 c_3) c_2)
+   
+   D1029,2 & D1244,1    ==> * R1249:   + P(c_2 c_2)  + =(f_1(c_3) c_3)  + P(c_2 c_2)
+   
+   R1249 1=3            ==> * D1250:   + P(c_2 c_2)  + =(f_1(c_3) c_3)
+   
+   RW961,4 & D1250,2    ==> * R1251:   + P(f_1(c_3) f_2(c_3 c_3))  + P(c_2 c_2)  + =(f_2(c_3 c_3) c_3)  + P(c_2 c_2)
+   
+   R1251 2=4            ==> * D1252:   + P(f_1(c_3) f_2(c_3 c_3))  + P(c_2 c_2)  + =(f_2(c_3 c_3) c_3)
+   
+   D1252,1 & D1246      ==> * RW1263:  + P(f_1(c_3) c_2)  + P(c_2 c_2)  + =(f_2(c_3 c_3) c_3)
+   
+   RW1263,1 & D1250     ==> * RW1264:  + P(c_3 c_2)  + P(c_2 c_2)  + =(f_2(c_3 c_3) c_3)
+   
+   RW1264,3 & D1246     ==> * RW1265:  + P(c_3 c_2)  + P(c_2 c_2)  + =(c_2 c_3)
+   
+   RW1265,3 & P665,1    ==> * R1266:   + P(c_3 c_2)  + P(c_2 c_2)  + P(c_2 c_2)
+   
+   R1266 2=3            ==> * D1267:   + P(c_3 c_2)  + P(c_2 c_2)
+   
+   D1267,1 & D671,2     ==> * R1268:   + P(c_2 c_2)  + P(c_2 c_2)
+   
+   R1268 1=2            ==> * D1269:   + P(c_2 c_2)
+   
+   D103,1 & D1269,1     ==> * R1270:   + P(c_1 c_2)  + =(c_2 c_3)
+   
+   R271,1 & D1269,1     ==> * R1271:   + P(c_1 c_1)  + =(f_2(c_2 c_1) c_2)  + =(c_2 f_3(c_1))
+   
+   R299,1 & D1269,1     ==> * R1272:   - P(c_1 c_1)  + =(f_2(c_1 c_1) c_2)  + =(c_2 f_3(c_1))
+   
+   D497,2 & D1269,1     ==> * R1278:   - P(c_1 c_2)  + P(c_2 c_1)
+   
+   D181,2 & I15,1       ==> * P1317:   - P(c_2 c_2)  - P(c_1 f_2(c_2 c_1))  - =(f_2(c_2 c_1) c_2)  + =(c_2 f_3(c_1))
+                                       + =(f_1(c_1) c_1)
+   
+   P1317,1 & D1269,1    ==> * R1318:   - P(c_1 f_2(c_2 c_1))  - =(f_2(c_2 c_1) c_2)  + =(c_2 f_3(c_1))
+                                       + =(f_1(c_1) c_1)
+   
+   R1318,4 & D181       ==> * RW1319:  - P(c_1 f_2(c_2 c_1))  - =(f_2(c_2 c_1) c_2)  + =(c_2 f_3(c_1))  + =(c_2 c_1)
+   
+   RW1319,4 & A2,1      ==> * R1320:   - P(c_1 f_2(c_2 c_1))  - =(f_2(c_2 c_1) c_2)  + =(c_2 f_3(c_1))
+   
+   R1271,2 & R1320,1    ==> * P1321:   - P(c_1 c_2)  + P(c_1 c_1)  + =(c_2 f_3(c_1))  - =(f_2(c_2 c_1) c_2)
+                                       + =(c_2 f_3(c_1))
+   
+   P1321 3=5            ==> * D1322:   - P(c_1 c_2)  + P(c_1 c_1)  + =(c_2 f_3(c_1))  - =(f_2(c_2 c_1) c_2)
+   
+   D1322,4 & R1271,2    ==> * R1323:   - P(c_1 c_2)  + P(c_1 c_1)  + =(c_2 f_3(c_1))  + P(c_1 c_1)
+                                       + =(c_2 f_3(c_1))
+   
+   R1323 2=4            ==> * D1324:   - P(c_1 c_2)  + P(c_1 c_1)  + =(c_2 f_3(c_1))  + =(c_2 f_3(c_1))
+   
+   D1324 3=4            ==> * D1325:   - P(c_1 c_2)  + P(c_1 c_1)  + =(c_2 f_3(c_1))
+   
+   D181,2 & I16,1       ==> * P1326:   - P(c_2 c_1)  - P(c_1 f_2(c_2 c_1))  - =(f_2(c_2 c_1) c_2)  + =(c_1 f_3(c_1))
+                                       + =(f_1(c_1) c_1)
+   
+   P1326,5 & D181       ==> * RW1327:  - P(c_2 c_1)  - P(c_1 f_2(c_2 c_1))  - =(f_2(c_2 c_1) c_2)  + =(c_1 f_3(c_1))
+                                       + =(c_2 c_1)
+   
+   RW1327,5 & A2,1      ==> * R1328:   - P(c_2 c_1)  - P(c_1 f_2(c_2 c_1))  - =(f_2(c_2 c_1) c_2)  + =(c_1 f_3(c_1))
+   
+   D610,2 & R1328,2     ==> * P1329:   - P(c_1 c_2)  + P(c_1 c_1)  + =(c_1 f_3(c_1))  - P(c_2 c_1)
+                                       - =(f_2(c_2 c_1) c_2)  + =(c_1 f_3(c_1))
+   
+   P1329 3=6            ==> * D1330:   - P(c_1 c_2)  + P(c_1 c_1)  + =(c_1 f_3(c_1))  - P(c_2 c_1)
+                                       - =(f_2(c_2 c_1) c_2)
+   
+   D1330,5 & D610,2     ==> * R1331:   - P(c_1 c_2)  + P(c_1 c_1)  + =(c_1 f_3(c_1))  - P(c_2 c_1)  + P(c_1 c_1)
+                                       + =(c_1 f_3(c_1))
+   
+   R1331 2=5            ==> * D1332:   - P(c_1 c_2)  + P(c_1 c_1)  + =(c_1 f_3(c_1))  - P(c_2 c_1)
+                                       + =(c_1 f_3(c_1))
+   
+   D1332 3=5            ==> * D1333:   - P(c_1 c_2)  + P(c_1 c_1)  + =(c_1 f_3(c_1))  - P(c_2 c_1)
+   
+   D1333,4 & D604,2     ==> * R1334:   - P(c_1 c_2)  + P(c_1 c_1)  + =(c_1 f_3(c_1))  + P(c_1 c_1)
+   
+   R1334 2=4            ==> * D1335:   - P(c_1 c_2)  + P(c_1 c_1)  + =(c_1 f_3(c_1))
+   
+   D1335,3 & D1325      ==> * RW1336:  - P(c_1 c_2)  + P(c_1 c_1)  + =(c_1 c_2)
+   
+   RW1336,3 & A2,1      ==> * R1337:   - P(c_1 c_2)  + P(c_1 c_1)
+   
+   R1337,2 & R70,1      ==> * R1338:   - P(c_1 c_2)  - =(c_1 c_3)  - P(c_2 c_1)
+   
+   R1338,3 & R1278,2    ==> * R1339:   - P(c_1 c_2)  - =(c_1 c_3)  - P(c_1 c_2)
+   
+   R1339 1=3            ==> * D1340:   - P(c_1 c_2)  - =(c_1 c_3)
+   
+   R1270,1 & D1340,1    ==> * R1341:   + =(c_2 c_3)  - =(c_1 c_3)
+   
+   R1341,2 & A3,1       ==> * R1342:   + =(c_2 c_3)  + =(c_3 c_2)
+   
+   R1342 1=2            ==> * D1343:   + =(c_2 c_3)
+   
+   D669,2 & D1343,1     ==> * R1345:   - P(c_1 c_2)
+   
+   R1345,1 & D1343      ==> * RW1390:  - P(c_1 c_3)
+   
+   A2,1 & D1343         ==> * RW1391:  - =(c_3 c_1)
+   
+   A3,2 & D1343         ==> * RW1392:  All x:Any + =(x c_1)  + =(x c_3)
+   
+   I11,2 & D1343        ==> * RW1429:  + P(f_1(c_1) c_2)  - =(c_3 f_3(c_1))  + =(f_1(c_1) c_1)
+   
+   RW1429,1 & D1343     ==> * RW1430:  + P(f_1(c_1) c_3)  - =(c_3 f_3(c_1))  + =(f_1(c_1) c_1)
+   
+   I15,2 & D1343        ==> * RW1435:  - P(f_1(c_1) c_2)  + =(c_3 f_3(c_1))  + =(f_1(c_1) c_1)
+   
+   RW1435,1 & D1343     ==> * RW1436:  - P(f_1(c_1) c_3)  + =(c_3 f_3(c_1))  + =(f_1(c_1) c_1)
+   
+   R1272,3 & D1343      ==> * RW1512:  - P(c_1 c_1)  + =(f_2(c_1 c_1) c_2)  + =(c_3 f_3(c_1))
+   
+   RW1512,2 & D1343     ==> * RW1513:  - P(c_1 c_1)  + =(f_2(c_1 c_1) c_3)  + =(c_3 f_3(c_1))
+   
+   R302,3 & D1343       ==> * RW1514:  - P(c_2 c_1)  - P(c_1 c_1)  + =(f_2(c_1 c_1) c_3)  + =(c_1 f_3(c_1))
+   
+   RW1514,1 & D1343     ==> * RW1515:  - P(c_3 c_1)  - P(c_1 c_1)  + =(f_2(c_1 c_1) c_3)  + =(c_1 f_3(c_1))
+   
+   D600,1 & D1343       ==> * RW1527:  + P(c_3 c_1)  + =(c_1 c_3)
+   
+   D1269,1 & D1343      ==> * RW1568:  + P(c_3 c_2)
+   
+   RW1568,1 & D1343     ==> * RW1569:  + P(c_3 c_3)
+   
+   RW1515,2 & D606,1    ==> * R1578:   - P(c_3 c_1)  + =(f_2(c_1 c_1) c_3)  + =(c_1 f_3(c_1))  + =(c_1 c_3)
+   
+   R1578,4 & RW1391,1   ==> * R1579:   - P(c_3 c_1)  + =(f_2(c_1 c_1) c_3)  + =(c_1 f_3(c_1))
+   
+   RW1513,1 & D606,1    ==> * R1590:   + =(f_2(c_1 c_1) c_3)  + =(c_3 f_3(c_1))  + =(c_1 c_3)
+   
+   R1590,3 & RW1391,1   ==> * R1591:   + =(f_2(c_1 c_1) c_3)  + =(c_3 f_3(c_1))
+   
+   R1591,1 & I8,1       ==> * P1821:   + P(f_1(c_1) c_3)  + =(c_3 f_3(c_1))  + =(f_2(c_1 c_1) c_1)
+                                       - =(f_1(c_1) c_1)
+   
+   P1821,3 & R1591      ==> * RW1822:  + P(f_1(c_1) c_3)  + =(c_3 f_3(c_1))  + =(c_3 c_1)  - =(f_1(c_1) c_1)
+   
+   RW1822,3 & RW1391,1  ==> * R1823:   + P(f_1(c_1) c_3)  + =(c_3 f_3(c_1))  - =(f_1(c_1) c_1)
+   
+   RW1392,1 & R1823,1   ==> * P1824:   + P(c_1 c_3)  + =(f_1(c_1) c_3)  + =(c_3 f_3(c_1))  - =(f_1(c_1) c_1)
+   
+   P1824,4 & RW1392,1   ==> * R1825:   + P(c_1 c_3)  + =(f_1(c_1) c_3)  + =(c_3 f_3(c_1))  + =(f_1(c_1) c_3)
+   
+   R1825 2=4            ==> * D1826:   + P(c_1 c_3)  + =(f_1(c_1) c_3)  + =(c_3 f_3(c_1))
+   
+   D1826,1 & RW1390,1   ==> * R1827:   + =(f_1(c_1) c_3)  + =(c_3 f_3(c_1))
+   
+   RW1436,1 & R1827     ==> * RW1830:  - P(c_3 c_3)  + =(c_3 f_3(c_1))  + =(f_1(c_1) c_1)
+   
+   RW1830,3 & R1827     ==> * RW1831:  - P(c_3 c_3)  + =(c_3 f_3(c_1))  + =(c_3 c_1)
+   
+   RW1831,3 & RW1391,1  ==> * R1832:   - P(c_3 c_3)  + =(c_3 f_3(c_1))
+   
+   R1832,1 & RW1569,1   ==> * R1833:   + =(c_3 f_3(c_1))
+   
+   RW1430,2 & R1833     ==> * RW1834:  + P(f_1(c_1) c_3)  - =(c_3 c_3)  + =(f_1(c_1) c_1)
+   
+   I16,2 & R1833        ==> * RW1836:  - P(f_1(c_1) c_1)  + =(c_1 c_3)  + =(f_1(c_1) c_1)
+   
+   R1579,3 & R1833      ==> * RW1838:  - P(c_3 c_1)  + =(f_2(c_1 c_1) c_3)  + =(c_1 c_3)
+   
+   RW1834,2 & A1,1      ==> * R1842:   + P(f_1(c_1) c_3)  + =(f_1(c_1) c_1)
+   
+   RW1836,2 & RW1391,1  ==> * R1843:   - P(f_1(c_1) c_1)  + =(f_1(c_1) c_1)
+   
+   RW1838,3 & RW1391,1  ==> * R1844:   - P(c_3 c_1)  + =(f_2(c_1 c_1) c_3)
+   
+   R1844,2 & I8,1       ==> * P1863:   + P(f_1(c_1) c_3)  - P(c_3 c_1)  + =(f_2(c_1 c_1) c_1)  - =(f_1(c_1) c_1)
+   
+   P1863,4 & R1842,2    ==> * R1864:   + P(f_1(c_1) c_3)  - P(c_3 c_1)  + =(f_2(c_1 c_1) c_1)  + P(f_1(c_1) c_3)
+   
+   R1864 1=4            ==> * D1865:   + P(f_1(c_1) c_3)  - P(c_3 c_1)  + =(f_2(c_1 c_1) c_1)
+   
+   D1865,3 & R1844      ==> * RW1866:  + P(f_1(c_1) c_3)  - P(c_3 c_1)  + =(c_3 c_1)
+   
+   RW1866,3 & RW1391,1  ==> * R1867:   + P(f_1(c_1) c_3)  - P(c_3 c_1)
+   
+   RW1392,1 & R1867,1   ==> * P1868:   + P(c_1 c_3)  + =(f_1(c_1) c_3)  - P(c_3 c_1)
+   
+   P1868,1 & RW1390,1   ==> * R1869:   + =(f_1(c_1) c_3)  - P(c_3 c_1)
+   
+   R1869,1 & R1843,1    ==> * P1871:   - P(c_3 c_1)  - P(c_3 c_1)  + =(f_1(c_1) c_1)
+   
+   P1871 2=1            ==> * D1872:   - P(c_3 c_1)  + =(f_1(c_1) c_1)
+   
+   D1872,2 & R1869      ==> * RW1873:  - P(c_3 c_1)  + =(c_3 c_1)
+   
+   RW1873,2 & RW1391,1  ==> * R1874:   - P(c_3 c_1)
+   
+   RW1527,1 & R1874,1   ==> * R1876:   + =(c_1 c_3)
+   
+   R1876,1 & RW1391,1   ==> * R1878:   []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation of Splitpart 2:
+   ==========================
+   
+   Initial Clauses:         * A1:      All x:Any + =(x x)
+                            * A2:      - =(c_2 c_1)
+                            * A3:      All x:Any + =(x c_1)  + =(x c_2)
+                            * I33:     + P(c_2 c_2)  - =(c_2 f_6(c_2))  - =(c_2 c_4)
+                            * I34:     + P(c_2 c_1)  - =(c_1 f_6(c_2))  - =(c_2 c_4)
+                            * I35:     + P(c_1 c_2)  - =(c_2 f_6(c_1))  - =(c_1 c_4)
+                            * I36:     + P(c_1 c_1)  - =(c_1 f_6(c_1))  - =(c_1 c_4)
+                            * I37:     - P(c_2 c_2)  + =(c_2 f_6(c_2))  - =(c_2 c_4)
+                            * I38:     - P(c_2 c_1)  + =(c_1 f_6(c_2))  - =(c_2 c_4)
+                            * I39:     - P(c_1 c_2)  + =(c_2 f_6(c_1))  - =(c_1 c_4)
+                            * I40:     - P(c_1 c_1)  + =(c_1 f_6(c_1))  - =(c_1 c_4)
+                            * I41:     - P(c_2 f_7(c_2 c_2))  - =(f_7(c_2 c_2) c_2)  + =(c_2 c_4)
+                            * I42:     - P(c_2 f_7(c_1 c_2))  - =(f_7(c_1 c_2) c_1)  + =(c_2 c_4)
+                            * I43:     - P(c_1 f_7(c_2 c_1))  - =(f_7(c_2 c_1) c_2)  + =(c_1 c_4)
+                            * I44:     - P(c_1 f_7(c_1 c_1))  - =(f_7(c_1 c_1) c_1)  + =(c_1 c_4)
+                            * I45:     + P(c_2 f_7(c_2 c_2))  + =(f_7(c_2 c_2) c_2)  + =(c_2 c_4)
+                            * I46:     + P(c_2 f_7(c_1 c_2))  + =(f_7(c_1 c_2) c_1)  + =(c_2 c_4)
+                            * I47:     + P(c_1 f_7(c_2 c_1))  + =(f_7(c_2 c_1) c_2)  + =(c_1 c_4)
+                            * I48:     + P(c_1 f_7(c_1 c_1))  + =(f_7(c_1 c_1) c_1)  + =(c_1 c_4)
+                            * I49:     - P(f_9(c_2 c_2) f_8(c_2))  - =(f_9(c_2 c_2) c_2)  - =(f_8(c_2) c_2)
+                            * I50:     - P(f_9(c_2 c_1) f_8(c_1))  - =(f_9(c_2 c_1) c_2)  - =(f_8(c_1) c_1)
+                            * I51:     - P(f_9(c_1 c_2) f_8(c_2))  - =(f_9(c_1 c_2) c_1)  - =(f_8(c_2) c_2)
+                            * I52:     - P(f_9(c_1 c_1) f_8(c_1))  - =(f_9(c_1 c_1) c_1)  - =(f_8(c_1) c_1)
+                            * I53:     + P(f_9(c_2 c_2) f_8(c_2))  + =(f_9(c_2 c_2) c_2)  - =(f_8(c_2) c_2)
+                            * I54:     + P(f_9(c_2 c_1) f_8(c_1))  + =(f_9(c_2 c_1) c_2)  - =(f_8(c_1) c_1)
+                            * I55:     + P(f_9(c_1 c_2) f_8(c_2))  + =(f_9(c_1 c_2) c_1)  - =(f_8(c_2) c_2)
+                            * I56:     + P(f_9(c_1 c_1) f_8(c_1))  + =(f_9(c_1 c_1) c_1)  - =(f_8(c_1) c_1)
+                            * I57:     + P(c_2 f_8(c_2))  - =(c_2 f_10(c_2))  + =(f_8(c_2) c_2)
+                            * I58:     + P(c_2 f_8(c_1))  - =(c_2 f_10(c_1))  + =(f_8(c_1) c_1)
+                            * I59:     + P(c_1 f_8(c_2))  - =(c_1 f_10(c_2))  + =(f_8(c_2) c_2)
+                            * I60:     + P(c_1 f_8(c_1))  - =(c_1 f_10(c_1))  + =(f_8(c_1) c_1)
+                            * I61:     - P(c_2 f_8(c_2))  + =(c_2 f_10(c_2))  + =(f_8(c_2) c_2)
+                            * I62:     - P(c_2 f_8(c_1))  + =(c_2 f_10(c_1))  + =(f_8(c_1) c_1)
+                            * I63:     - P(c_1 f_8(c_2))  + =(c_1 f_10(c_2))  + =(f_8(c_2) c_2)
+                            * I64:     - P(c_1 f_8(c_1))  + =(c_1 f_10(c_1))  + =(f_8(c_1) c_1)
+                            
+
+   
+   I38,2 & I37,2        ==> * P1879:   + =(c_2 c_1)  - P(c_2 c_1)  - =(c_2 c_4)  - P(c_2 c_2)  - =(c_2 c_4)
+   
+   P1879 3=5            ==> * D1880:   + =(c_2 c_1)  - P(c_2 c_1)  - =(c_2 c_4)  - P(c_2 c_2)
+   
+   D1880,1 & A2,1       ==> * R1881:   - P(c_2 c_1)  - =(c_2 c_4)  - P(c_2 c_2)
+   
+   I40,2 & I39,2        ==> * P1882:   + =(c_2 c_1)  - P(c_1 c_1)  - =(c_1 c_4)  - P(c_1 c_2)  - =(c_1 c_4)
+   
+   P1882 3=5            ==> * D1883:   + =(c_2 c_1)  - P(c_1 c_1)  - =(c_1 c_4)  - P(c_1 c_2)
+   
+   D1883,1 & A2,1       ==> * R1884:   - P(c_1 c_1)  - =(c_1 c_4)  - P(c_1 c_2)
+   
+   A3,1 & I34,2         ==> * P1885:   - =(c_1 c_1)  + =(f_6(c_2) c_2)  + P(c_2 c_1)  - =(c_2 c_4)
+   
+   P1885,1 & A1,1       ==> * R1886:   + =(f_6(c_2) c_2)  + P(c_2 c_1)  - =(c_2 c_4)
+   
+   R1886,1 & I33,2      ==> * P1888:   - =(c_2 c_2)  + P(c_2 c_1)  - =(c_2 c_4)  + P(c_2 c_2)  - =(c_2 c_4)
+   
+   P1888 3=5            ==> * D1889:   - =(c_2 c_2)  + P(c_2 c_1)  - =(c_2 c_4)  + P(c_2 c_2)
+   
+   D1889,1 & A1,1       ==> * R1890:   + P(c_2 c_1)  - =(c_2 c_4)  + P(c_2 c_2)
+   
+   A3,1 & I36,2         ==> * P1891:   - =(c_1 c_1)  + =(f_6(c_1) c_2)  + P(c_1 c_1)  - =(c_1 c_4)
+   
+   P1891,1 & A1,1       ==> * R1892:   + =(f_6(c_1) c_2)  + P(c_1 c_1)  - =(c_1 c_4)
+   
+   R1892,1 & I35,2      ==> * P1894:   - =(c_2 c_2)  + P(c_1 c_1)  - =(c_1 c_4)  + P(c_1 c_2)  - =(c_1 c_4)
+   
+   P1894 3=5            ==> * D1895:   - =(c_2 c_2)  + P(c_1 c_1)  - =(c_1 c_4)  + P(c_1 c_2)
+   
+   D1895,1 & A1,1       ==> * R1896:   + P(c_1 c_1)  - =(c_1 c_4)  + P(c_1 c_2)
+   
+   A3,1 & I45,1         ==> * P1897:   + P(c_2 c_1)  + =(f_7(c_2 c_2) c_2)  + =(f_7(c_2 c_2) c_2)  + =(c_2 c_4)
+   
+   P1897 2=3            ==> * D1898:   + P(c_2 c_1)  + =(f_7(c_2 c_2) c_2)  + =(c_2 c_4)
+   
+   A3,1 & I47,1         ==> * P1899:   + P(c_1 c_1)  + =(f_7(c_2 c_1) c_2)  + =(f_7(c_2 c_1) c_2)  + =(c_1 c_4)
+   
+   P1899 2=3            ==> * D1900:   + P(c_1 c_1)  + =(f_7(c_2 c_1) c_2)  + =(c_1 c_4)
+   
+   A3,1 & I57,1         ==> * P1901:   + P(c_2 c_1)  + =(f_8(c_2) c_2)  - =(c_2 f_10(c_2))  + =(f_8(c_2) c_2)
+   
+   P1901 2=4            ==> * D1902:   + P(c_2 c_1)  + =(f_8(c_2) c_2)  - =(c_2 f_10(c_2))
+   
+   A3,1 & I59,1         ==> * P1903:   + P(c_1 c_1)  + =(f_8(c_2) c_2)  - =(c_1 f_10(c_2))  + =(f_8(c_2) c_2)
+   
+   P1903 2=4            ==> * D1904:   + P(c_1 c_1)  + =(f_8(c_2) c_2)  - =(c_1 f_10(c_2))
+   
+   A3,1 & I61,1         ==> * P1905:   - P(c_2 c_1)  + =(f_8(c_2) c_2)  + =(c_2 f_10(c_2))  + =(f_8(c_2) c_2)
+   
+   P1905 2=4            ==> * D1906:   - P(c_2 c_1)  + =(f_8(c_2) c_2)  + =(c_2 f_10(c_2))
+   
+   A3,1 & I63,1         ==> * P1907:   - P(c_1 c_1)  + =(f_8(c_2) c_2)  + =(c_1 f_10(c_2))  + =(f_8(c_2) c_2)
+   
+   P1907 2=4            ==> * D1908:   - P(c_1 c_1)  + =(f_8(c_2) c_2)  + =(c_1 f_10(c_2))
+   
+   A3,1 & I53,1         ==> * P1909:   + P(c_1 f_8(c_2))  + =(f_9(c_2 c_2) c_2)  + =(f_9(c_2 c_2) c_2)
+                                       - =(f_8(c_2) c_2)
+   
+   P1909 2=3            ==> * D1910:   + P(c_1 f_8(c_2))  + =(f_9(c_2 c_2) c_2)  - =(f_8(c_2) c_2)
+   
+   A3,1 & I54,1         ==> * P1911:   + P(c_1 f_8(c_1))  + =(f_9(c_2 c_1) c_2)  + =(f_9(c_2 c_1) c_2)
+                                       - =(f_8(c_1) c_1)
+   
+   P1911 2=3            ==> * D1912:   + P(c_1 f_8(c_1))  + =(f_9(c_2 c_1) c_2)  - =(f_8(c_1) c_1)
+   
+   D1898,2 & I41,1      ==> * P1913:   - P(c_2 c_2)  + P(c_2 c_1)  + =(c_2 c_4)  - =(f_7(c_2 c_2) c_2)  + =(c_2 c_4)
+   
+   P1913 3=5            ==> * D1914:   - P(c_2 c_2)  + P(c_2 c_1)  + =(c_2 c_4)  - =(f_7(c_2 c_2) c_2)
+   
+   D1914,4 & D1898,2    ==> * R1915:   - P(c_2 c_2)  + P(c_2 c_1)  + =(c_2 c_4)  + P(c_2 c_1)  + =(c_2 c_4)
+   
+   R1915 2=4            ==> * D1916:   - P(c_2 c_2)  + P(c_2 c_1)  + =(c_2 c_4)  + =(c_2 c_4)
+   
+   D1916 3=4            ==> * D1917:   - P(c_2 c_2)  + P(c_2 c_1)  + =(c_2 c_4)
+   
+   D1900,2 & I43,1      ==> * P1918:   - P(c_1 c_2)  + P(c_1 c_1)  + =(c_1 c_4)  - =(f_7(c_2 c_1) c_2)  + =(c_1 c_4)
+   
+   P1918 3=5            ==> * D1919:   - P(c_1 c_2)  + P(c_1 c_1)  + =(c_1 c_4)  - =(f_7(c_2 c_1) c_2)
+   
+   D1919,4 & D1900,2    ==> * R1920:   - P(c_1 c_2)  + P(c_1 c_1)  + =(c_1 c_4)  + P(c_1 c_1)  + =(c_1 c_4)
+   
+   R1920 2=4            ==> * D1921:   - P(c_1 c_2)  + P(c_1 c_1)  + =(c_1 c_4)  + =(c_1 c_4)
+   
+   D1921 3=4            ==> * D1922:   - P(c_1 c_2)  + P(c_1 c_1)  + =(c_1 c_4)
+   
+   A3,1 & I42,1         ==> * P1923:   - P(c_2 c_1)  + =(f_7(c_1 c_2) c_2)  - =(f_7(c_1 c_2) c_1)  + =(c_2 c_4)
+   
+   P1923,3 & A3,1       ==> * R1924:   - P(c_2 c_1)  + =(f_7(c_1 c_2) c_2)  + =(c_2 c_4)  + =(f_7(c_1 c_2) c_2)
+   
+   R1924 2=4            ==> * D1925:   - P(c_2 c_1)  + =(f_7(c_1 c_2) c_2)  + =(c_2 c_4)
+   
+   D1925,2 & I46,1      ==> * P1934:   + P(c_2 c_2)  - P(c_2 c_1)  + =(c_2 c_4)  + =(f_7(c_1 c_2) c_1)  + =(c_2 c_4)
+   
+   P1934 3=5            ==> * D1935:   + P(c_2 c_2)  - P(c_2 c_1)  + =(c_2 c_4)  + =(f_7(c_1 c_2) c_1)
+   
+   D1935,4 & D1925      ==> * RW1936:  + P(c_2 c_2)  - P(c_2 c_1)  + =(c_2 c_4)  + =(c_2 c_1)
+   
+   RW1936,4 & A2,1      ==> * R1937:   + P(c_2 c_2)  - P(c_2 c_1)  + =(c_2 c_4)
+   
+   A3,1 & I44,1         ==> * P1944:   - P(c_1 c_1)  + =(f_7(c_1 c_1) c_2)  - =(f_7(c_1 c_1) c_1)  + =(c_1 c_4)
+   
+   P1944,3 & A3,1       ==> * R1945:   - P(c_1 c_1)  + =(f_7(c_1 c_1) c_2)  + =(c_1 c_4)  + =(f_7(c_1 c_1) c_2)
+   
+   R1945 2=4            ==> * D1946:   - P(c_1 c_1)  + =(f_7(c_1 c_1) c_2)  + =(c_1 c_4)
+   
+   D1946,2 & I48,1      ==> * P1955:   + P(c_1 c_2)  - P(c_1 c_1)  + =(c_1 c_4)  + =(f_7(c_1 c_1) c_1)  + =(c_1 c_4)
+   
+   P1955 3=5            ==> * D1956:   + P(c_1 c_2)  - P(c_1 c_1)  + =(c_1 c_4)  + =(f_7(c_1 c_1) c_1)
+   
+   D1956,4 & D1946      ==> * RW1957:  + P(c_1 c_2)  - P(c_1 c_1)  + =(c_1 c_4)  + =(c_2 c_1)
+   
+   RW1957,4 & A2,1      ==> * R1958:   + P(c_1 c_2)  - P(c_1 c_1)  + =(c_1 c_4)
+   
+   A3,1 & D1912,1       ==> * P1965:   + P(c_1 c_1)  + =(f_8(c_1) c_2)  + =(f_9(c_2 c_1) c_2)  - =(f_8(c_1) c_1)
+   
+   P1965,4 & A3,1       ==> * R1966:   + P(c_1 c_1)  + =(f_8(c_1) c_2)  + =(f_9(c_2 c_1) c_2)  + =(f_8(c_1) c_2)
+   
+   R1966 2=4            ==> * D1967:   + P(c_1 c_1)  + =(f_8(c_1) c_2)  + =(f_9(c_2 c_1) c_2)
+   
+   A3,1 & I50,1         ==> * P1980:   - P(f_9(c_2 c_1) c_1)  + =(f_8(c_1) c_2)  - =(f_9(c_2 c_1) c_2)
+                                       - =(f_8(c_1) c_1)
+   
+   P1980,4 & A3,1       ==> * R1981:   - P(f_9(c_2 c_1) c_1)  + =(f_8(c_1) c_2)  - =(f_9(c_2 c_1) c_2)
+                                       + =(f_8(c_1) c_2)
+   
+   R1981 2=4            ==> * D1982:   - P(f_9(c_2 c_1) c_1)  + =(f_8(c_1) c_2)  - =(f_9(c_2 c_1) c_2)
+   
+   A3,1 & I51,1         ==> * P1983:   - P(c_1 f_8(c_2))  + =(f_9(c_1 c_2) c_2)  - =(f_9(c_1 c_2) c_1)
+                                       - =(f_8(c_2) c_2)
+   
+   P1983,3 & A3,1       ==> * R1984:   - P(c_1 f_8(c_2))  + =(f_9(c_1 c_2) c_2)  - =(f_8(c_2) c_2)
+                                       + =(f_9(c_1 c_2) c_2)
+   
+   R1984 2=4            ==> * D1985:   - P(c_1 f_8(c_2))  + =(f_9(c_1 c_2) c_2)  - =(f_8(c_2) c_2)
+   
+   A3,1 & I52,1         ==> * P1996:   - P(c_1 f_8(c_1))  + =(f_9(c_1 c_1) c_2)  - =(f_9(c_1 c_1) c_1)
+                                       - =(f_8(c_1) c_1)
+   
+   P1996,3 & A3,1       ==> * R1997:   - P(c_1 f_8(c_1))  + =(f_9(c_1 c_1) c_2)  - =(f_8(c_1) c_1)
+                                       + =(f_9(c_1 c_1) c_2)
+   
+   R1997 2=4            ==> * D1998:   - P(c_1 f_8(c_1))  + =(f_9(c_1 c_1) c_2)  - =(f_8(c_1) c_1)
+   
+   A3,1 & D1998,1       ==> * P2004:   - P(c_1 c_1)  + =(f_8(c_1) c_2)  + =(f_9(c_1 c_1) c_2)  - =(f_8(c_1) c_1)
+   
+   P2004,4 & A3,1       ==> * R2005:   - P(c_1 c_1)  + =(f_8(c_1) c_2)  + =(f_9(c_1 c_1) c_2)  + =(f_8(c_1) c_2)
+   
+   R2005 2=4            ==> * D2006:   - P(c_1 c_1)  + =(f_8(c_1) c_2)  + =(f_9(c_1 c_1) c_2)
+   
+   A3,1 & I56,1         ==> * P2031:   + P(f_9(c_1 c_1) c_1)  + =(f_8(c_1) c_2)  + =(f_9(c_1 c_1) c_1)
+                                       - =(f_8(c_1) c_1)
+   
+   P2031,4 & A3,1       ==> * R2032:   + P(f_9(c_1 c_1) c_1)  + =(f_8(c_1) c_2)  + =(f_9(c_1 c_1) c_1)
+                                       + =(f_8(c_1) c_2)
+   
+   R2032 2=4            ==> * D2033:   + P(f_9(c_1 c_1) c_1)  + =(f_8(c_1) c_2)  + =(f_9(c_1 c_1) c_1)
+   
+   D1908,2 & D1910,1    ==> * P2061:   + P(c_1 c_2)  - P(c_1 c_1)  + =(c_1 f_10(c_2))  + =(f_9(c_2 c_2) c_2)
+                                       - =(f_8(c_2) c_2)
+   
+   P2061,5 & D1908,2    ==> * R2062:   + P(c_1 c_2)  - P(c_1 c_1)  + =(c_1 f_10(c_2))  + =(f_9(c_2 c_2) c_2)
+                                       - P(c_1 c_1)  + =(c_1 f_10(c_2))
+   
+   R2062 2=5            ==> * D2063:   + P(c_1 c_2)  - P(c_1 c_1)  + =(c_1 f_10(c_2))  + =(f_9(c_2 c_2) c_2)
+                                       + =(c_1 f_10(c_2))
+   
+   D2063 3=5            ==> * D2064:   + P(c_1 c_2)  - P(c_1 c_1)  + =(c_1 f_10(c_2))  + =(f_9(c_2 c_2) c_2)
+   
+   D1906,2 & D1910,1    ==> * P2065:   + P(c_1 c_2)  - P(c_2 c_1)  + =(c_2 f_10(c_2))  + =(f_9(c_2 c_2) c_2)
+                                       - =(f_8(c_2) c_2)
+   
+   P2065,5 & D1906,2    ==> * R2066:   + P(c_1 c_2)  - P(c_2 c_1)  + =(c_2 f_10(c_2))  + =(f_9(c_2 c_2) c_2)
+                                       - P(c_2 c_1)  + =(c_2 f_10(c_2))
+   
+   R2066 2=5            ==> * D2067:   + P(c_1 c_2)  - P(c_2 c_1)  + =(c_2 f_10(c_2))  + =(f_9(c_2 c_2) c_2)
+                                       + =(c_2 f_10(c_2))
+   
+   D2067 3=5            ==> * D2068:   + P(c_1 c_2)  - P(c_2 c_1)  + =(c_2 f_10(c_2))  + =(f_9(c_2 c_2) c_2)
+   
+   D1904,2 & D1910,1    ==> * P2069:   + P(c_1 c_2)  + P(c_1 c_1)  - =(c_1 f_10(c_2))  + =(f_9(c_2 c_2) c_2)
+                                       - =(f_8(c_2) c_2)
+   
+   P2069,5 & D1904,2    ==> * R2070:   + P(c_1 c_2)  + P(c_1 c_1)  - =(c_1 f_10(c_2))  + =(f_9(c_2 c_2) c_2)
+                                       + P(c_1 c_1)  - =(c_1 f_10(c_2))
+   
+   R2070 2=5            ==> * D2071:   + P(c_1 c_2)  + P(c_1 c_1)  - =(c_1 f_10(c_2))  + =(f_9(c_2 c_2) c_2)
+                                       - =(c_1 f_10(c_2))
+   
+   D2071 3=5            ==> * D2072:   + P(c_1 c_2)  + P(c_1 c_1)  - =(c_1 f_10(c_2))  + =(f_9(c_2 c_2) c_2)
+   
+   D1902,2 & D1910,1    ==> * P2073:   + P(c_1 c_2)  + P(c_2 c_1)  - =(c_2 f_10(c_2))  + =(f_9(c_2 c_2) c_2)
+                                       - =(f_8(c_2) c_2)
+   
+   P2073,5 & D1902,2    ==> * R2074:   + P(c_1 c_2)  + P(c_2 c_1)  - =(c_2 f_10(c_2))  + =(f_9(c_2 c_2) c_2)
+                                       + P(c_2 c_1)  - =(c_2 f_10(c_2))
+   
+   R2074 2=5            ==> * D2075:   + P(c_1 c_2)  + P(c_2 c_1)  - =(c_2 f_10(c_2))  + =(f_9(c_2 c_2) c_2)
+                                       - =(c_2 f_10(c_2))
+   
+   D2075 3=5            ==> * D2076:   + P(c_1 c_2)  + P(c_2 c_1)  - =(c_2 f_10(c_2))  + =(f_9(c_2 c_2) c_2)
+   
+   D1967,2 & I58,1      ==> * P2077:   + P(c_2 c_2)  + P(c_1 c_1)  + =(f_9(c_2 c_1) c_2)  - =(c_2 f_10(c_1))
+                                       + =(f_8(c_1) c_1)
+   
+   P2077,5 & D1967      ==> * RW2078:  + P(c_2 c_2)  + P(c_1 c_1)  + =(f_9(c_2 c_1) c_2)  - =(c_2 f_10(c_1))
+                                       + =(c_2 c_1)
+   
+   RW2078,5 & A2,1      ==> * R2079:   + P(c_2 c_2)  + P(c_1 c_1)  + =(f_9(c_2 c_1) c_2)  - =(c_2 f_10(c_1))
+   
+   D1967,2 & I60,1      ==> * P2080:   + P(c_1 c_2)  + P(c_1 c_1)  + =(f_9(c_2 c_1) c_2)  - =(c_1 f_10(c_1))
+                                       + =(f_8(c_1) c_1)
+   
+   P2080,5 & D1967      ==> * RW2081:  + P(c_1 c_2)  + P(c_1 c_1)  + =(f_9(c_2 c_1) c_2)  - =(c_1 f_10(c_1))
+                                       + =(c_2 c_1)
+   
+   RW2081,5 & A2,1      ==> * R2082:   + P(c_1 c_2)  + P(c_1 c_1)  + =(f_9(c_2 c_1) c_2)  - =(c_1 f_10(c_1))
+   
+   D1967,2 & I62,1      ==> * P2083:   - P(c_2 c_2)  + P(c_1 c_1)  + =(f_9(c_2 c_1) c_2)  + =(c_2 f_10(c_1))
+                                       + =(f_8(c_1) c_1)
+   
+   P2083,5 & D1967      ==> * RW2084:  - P(c_2 c_2)  + P(c_1 c_1)  + =(f_9(c_2 c_1) c_2)  + =(c_2 f_10(c_1))
+                                       + =(c_2 c_1)
+   
+   RW2084,5 & A2,1      ==> * R2085:   - P(c_2 c_2)  + P(c_1 c_1)  + =(f_9(c_2 c_1) c_2)  + =(c_2 f_10(c_1))
+   
+   D1967,2 & I64,1      ==> * P2086:   - P(c_1 c_2)  + P(c_1 c_1)  + =(f_9(c_2 c_1) c_2)  + =(c_1 f_10(c_1))
+                                       + =(f_8(c_1) c_1)
+   
+   P2086,5 & D1967      ==> * RW2087:  - P(c_1 c_2)  + P(c_1 c_1)  + =(f_9(c_2 c_1) c_2)  + =(c_1 f_10(c_1))
+                                       + =(c_2 c_1)
+   
+   RW2087,5 & A2,1      ==> * R2088:   - P(c_1 c_2)  + P(c_1 c_1)  + =(f_9(c_2 c_1) c_2)  + =(c_1 f_10(c_1))
+   
+   D1908,2 & D1985,1    ==> * P2089:   - P(c_1 c_2)  - P(c_1 c_1)  + =(c_1 f_10(c_2))  + =(f_9(c_1 c_2) c_2)
+                                       - =(f_8(c_2) c_2)
+   
+   P2089,5 & D1908,2    ==> * R2090:   - P(c_1 c_2)  - P(c_1 c_1)  + =(c_1 f_10(c_2))  + =(f_9(c_1 c_2) c_2)
+                                       - P(c_1 c_1)  + =(c_1 f_10(c_2))
+   
+   R2090 2=5            ==> * D2091:   - P(c_1 c_2)  - P(c_1 c_1)  + =(c_1 f_10(c_2))  + =(f_9(c_1 c_2) c_2)
+                                       + =(c_1 f_10(c_2))
+   
+   D2091 3=5            ==> * D2092:   - P(c_1 c_2)  - P(c_1 c_1)  + =(c_1 f_10(c_2))  + =(f_9(c_1 c_2) c_2)
+   
+   D1906,2 & D1985,1    ==> * P2093:   - P(c_1 c_2)  - P(c_2 c_1)  + =(c_2 f_10(c_2))  + =(f_9(c_1 c_2) c_2)
+                                       - =(f_8(c_2) c_2)
+   
+   P2093,5 & D1906,2    ==> * R2094:   - P(c_1 c_2)  - P(c_2 c_1)  + =(c_2 f_10(c_2))  + =(f_9(c_1 c_2) c_2)
+                                       - P(c_2 c_1)  + =(c_2 f_10(c_2))
+   
+   R2094 2=5            ==> * D2095:   - P(c_1 c_2)  - P(c_2 c_1)  + =(c_2 f_10(c_2))  + =(f_9(c_1 c_2) c_2)
+                                       + =(c_2 f_10(c_2))
+   
+   D2095 3=5            ==> * D2096:   - P(c_1 c_2)  - P(c_2 c_1)  + =(c_2 f_10(c_2))  + =(f_9(c_1 c_2) c_2)
+   
+   D1904,2 & D1985,1    ==> * P2097:   - P(c_1 c_2)  + P(c_1 c_1)  - =(c_1 f_10(c_2))  + =(f_9(c_1 c_2) c_2)
+                                       - =(f_8(c_2) c_2)
+   
+   P2097,5 & D1904,2    ==> * R2098:   - P(c_1 c_2)  + P(c_1 c_1)  - =(c_1 f_10(c_2))  + =(f_9(c_1 c_2) c_2)
+                                       + P(c_1 c_1)  - =(c_1 f_10(c_2))
+   
+   R2098 2=5            ==> * D2099:   - P(c_1 c_2)  + P(c_1 c_1)  - =(c_1 f_10(c_2))  + =(f_9(c_1 c_2) c_2)
+                                       - =(c_1 f_10(c_2))
+   
+   D2099 3=5            ==> * D2100:   - P(c_1 c_2)  + P(c_1 c_1)  - =(c_1 f_10(c_2))  + =(f_9(c_1 c_2) c_2)
+   
+   D1902,2 & D1985,1    ==> * P2101:   - P(c_1 c_2)  + P(c_2 c_1)  - =(c_2 f_10(c_2))  + =(f_9(c_1 c_2) c_2)
+                                       - =(f_8(c_2) c_2)
+   
+   P2101,5 & D1902,2    ==> * R2102:   - P(c_1 c_2)  + P(c_2 c_1)  - =(c_2 f_10(c_2))  + =(f_9(c_1 c_2) c_2)
+                                       + P(c_2 c_1)  - =(c_2 f_10(c_2))
+   
+   R2102 2=5            ==> * D2103:   - P(c_1 c_2)  + P(c_2 c_1)  - =(c_2 f_10(c_2))  + =(f_9(c_1 c_2) c_2)
+                                       - =(c_2 f_10(c_2))
+   
+   D2103 3=5            ==> * D2104:   - P(c_1 c_2)  + P(c_2 c_1)  - =(c_2 f_10(c_2))  + =(f_9(c_1 c_2) c_2)
+   
+   D2006,2 & I58,1      ==> * P2105:   + P(c_2 c_2)  - P(c_1 c_1)  + =(f_9(c_1 c_1) c_2)  - =(c_2 f_10(c_1))
+                                       + =(f_8(c_1) c_1)
+   
+   P2105,5 & D2006      ==> * RW2106:  + P(c_2 c_2)  - P(c_1 c_1)  + =(f_9(c_1 c_1) c_2)  - =(c_2 f_10(c_1))
+                                       + =(c_2 c_1)
+   
+   RW2106,5 & A2,1      ==> * R2107:   + P(c_2 c_2)  - P(c_1 c_1)  + =(f_9(c_1 c_1) c_2)  - =(c_2 f_10(c_1))
+   
+   D2006,2 & I60,1      ==> * P2108:   + P(c_1 c_2)  - P(c_1 c_1)  + =(f_9(c_1 c_1) c_2)  - =(c_1 f_10(c_1))
+                                       + =(f_8(c_1) c_1)
+   
+   P2108,5 & D2006      ==> * RW2109:  + P(c_1 c_2)  - P(c_1 c_1)  + =(f_9(c_1 c_1) c_2)  - =(c_1 f_10(c_1))
+                                       + =(c_2 c_1)
+   
+   RW2109,5 & A2,1      ==> * R2110:   + P(c_1 c_2)  - P(c_1 c_1)  + =(f_9(c_1 c_1) c_2)  - =(c_1 f_10(c_1))
+   
+   D2006,2 & I62,1      ==> * P2111:   - P(c_2 c_2)  - P(c_1 c_1)  + =(f_9(c_1 c_1) c_2)  + =(c_2 f_10(c_1))
+                                       + =(f_8(c_1) c_1)
+   
+   P2111,5 & D2006      ==> * RW2112:  - P(c_2 c_2)  - P(c_1 c_1)  + =(f_9(c_1 c_1) c_2)  + =(c_2 f_10(c_1))
+                                       + =(c_2 c_1)
+   
+   RW2112,5 & A2,1      ==> * R2113:   - P(c_2 c_2)  - P(c_1 c_1)  + =(f_9(c_1 c_1) c_2)  + =(c_2 f_10(c_1))
+   
+   D2006,2 & I64,1      ==> * P2114:   - P(c_1 c_2)  - P(c_1 c_1)  + =(f_9(c_1 c_1) c_2)  + =(c_1 f_10(c_1))
+                                       + =(f_8(c_1) c_1)
+   
+   P2114,5 & D2006      ==> * RW2115:  - P(c_1 c_2)  - P(c_1 c_1)  + =(f_9(c_1 c_1) c_2)  + =(c_1 f_10(c_1))
+                                       + =(c_2 c_1)
+   
+   RW2115,5 & A2,1      ==> * R2116:   - P(c_1 c_2)  - P(c_1 c_1)  + =(f_9(c_1 c_1) c_2)  + =(c_1 f_10(c_1))
+   
+   D1902,2 & I49,1      ==> * P2121:   - P(f_9(c_2 c_2) c_2)  + P(c_2 c_1)  - =(c_2 f_10(c_2))
+                                       - =(f_9(c_2 c_2) c_2)  - =(f_8(c_2) c_2)
+   
+   P2121,5 & D1902,2    ==> * R2122:   - P(f_9(c_2 c_2) c_2)  + P(c_2 c_1)  - =(c_2 f_10(c_2))
+                                       - =(f_9(c_2 c_2) c_2)  + P(c_2 c_1)  - =(c_2 f_10(c_2))
+   
+   R2122 2=5            ==> * D2123:   - P(f_9(c_2 c_2) c_2)  + P(c_2 c_1)  - =(c_2 f_10(c_2))
+                                       - =(f_9(c_2 c_2) c_2)  - =(c_2 f_10(c_2))
+   
+   D2123 3=5            ==> * D2124:   - P(f_9(c_2 c_2) c_2)  + P(c_2 c_1)  - =(c_2 f_10(c_2))
+                                       - =(f_9(c_2 c_2) c_2)
+   
+   D2076,4 & D2124,1    ==> * P2125:   - P(c_2 c_2)  + P(c_1 c_2)  + P(c_2 c_1)  - =(c_2 f_10(c_2))  + P(c_2 c_1)
+                                       - =(c_2 f_10(c_2))  - =(f_9(c_2 c_2) c_2)
+   
+   P2125 4=6            ==> * D2126:   - P(c_2 c_2)  + P(c_1 c_2)  + P(c_2 c_1)  - =(c_2 f_10(c_2))  + P(c_2 c_1)
+                                       - =(f_9(c_2 c_2) c_2)
+   
+   D2126 5=3            ==> * D2127:   - P(c_2 c_2)  + P(c_1 c_2)  - =(c_2 f_10(c_2))  + P(c_2 c_1)
+                                       - =(f_9(c_2 c_2) c_2)
+   
+   D2127,5 & D2076,4    ==> * R2128:   - P(c_2 c_2)  + P(c_1 c_2)  - =(c_2 f_10(c_2))  + P(c_2 c_1)  + P(c_1 c_2)
+                                       + P(c_2 c_1)  - =(c_2 f_10(c_2))
+   
+   R2128 2=5            ==> * D2129:   - P(c_2 c_2)  + P(c_1 c_2)  - =(c_2 f_10(c_2))  + P(c_2 c_1)  + P(c_2 c_1)
+                                       - =(c_2 f_10(c_2))
+   
+   D2129 4=5            ==> * D2130:   - P(c_2 c_2)  + P(c_1 c_2)  - =(c_2 f_10(c_2))  + P(c_2 c_1)
+                                       - =(c_2 f_10(c_2))
+   
+   D2130 3=5            ==> * D2131:   - P(c_2 c_2)  + P(c_1 c_2)  - =(c_2 f_10(c_2))  + P(c_2 c_1)
+   
+   D1902,2 & I55,1      ==> * P2155:   + P(f_9(c_1 c_2) c_2)  + P(c_2 c_1)  - =(c_2 f_10(c_2))
+                                       + =(f_9(c_1 c_2) c_1)  - =(f_8(c_2) c_2)
+   
+   P2155,5 & D1902,2    ==> * R2156:   + P(f_9(c_1 c_2) c_2)  + P(c_2 c_1)  - =(c_2 f_10(c_2))
+                                       + =(f_9(c_1 c_2) c_1)  + P(c_2 c_1)  - =(c_2 f_10(c_2))
+   
+   R2156 2=5            ==> * D2157:   + P(f_9(c_1 c_2) c_2)  + P(c_2 c_1)  - =(c_2 f_10(c_2))
+                                       + =(f_9(c_1 c_2) c_1)  - =(c_2 f_10(c_2))
+   
+   D2157 3=5            ==> * D2158:   + P(f_9(c_1 c_2) c_2)  + P(c_2 c_1)  - =(c_2 f_10(c_2))
+                                       + =(f_9(c_1 c_2) c_1)
+   
+   D2104,4 & D2158,1    ==> * P2159:   + P(c_2 c_2)  - P(c_1 c_2)  + P(c_2 c_1)  - =(c_2 f_10(c_2))  + P(c_2 c_1)
+                                       - =(c_2 f_10(c_2))  + =(f_9(c_1 c_2) c_1)
+   
+   P2159 4=6            ==> * D2160:   + P(c_2 c_2)  - P(c_1 c_2)  + P(c_2 c_1)  - =(c_2 f_10(c_2))  + P(c_2 c_1)
+                                       + =(f_9(c_1 c_2) c_1)
+   
+   D2160 5=3            ==> * D2161:   + P(c_2 c_2)  - P(c_1 c_2)  - =(c_2 f_10(c_2))  + P(c_2 c_1)
+                                       + =(f_9(c_1 c_2) c_1)
+   
+   D2161,5 & D2104      ==> * RW2162:  + P(c_2 c_2)  - P(c_1 c_2)  - =(c_2 f_10(c_2))  + P(c_2 c_1)  + =(c_2 c_1)
+   
+   RW2162,5 & A2,1      ==> * R2163:   + P(c_2 c_2)  - P(c_1 c_2)  - =(c_2 f_10(c_2))  + P(c_2 c_1)
+   
+   D1904,2 & I49,1      ==> * P2169:   - P(f_9(c_2 c_2) c_2)  + P(c_1 c_1)  - =(c_1 f_10(c_2))
+                                       - =(f_9(c_2 c_2) c_2)  - =(f_8(c_2) c_2)
+   
+   P2169,5 & D1904,2    ==> * R2170:   - P(f_9(c_2 c_2) c_2)  + P(c_1 c_1)  - =(c_1 f_10(c_2))
+                                       - =(f_9(c_2 c_2) c_2)  + P(c_1 c_1)  - =(c_1 f_10(c_2))
+   
+   R2170 2=5            ==> * D2171:   - P(f_9(c_2 c_2) c_2)  + P(c_1 c_1)  - =(c_1 f_10(c_2))
+                                       - =(f_9(c_2 c_2) c_2)  - =(c_1 f_10(c_2))
+   
+   D2171 3=5            ==> * D2172:   - P(f_9(c_2 c_2) c_2)  + P(c_1 c_1)  - =(c_1 f_10(c_2))
+                                       - =(f_9(c_2 c_2) c_2)
+   
+   D2072,4 & D2172,1    ==> * P2173:   - P(c_2 c_2)  + P(c_1 c_2)  + P(c_1 c_1)  - =(c_1 f_10(c_2))  + P(c_1 c_1)
+                                       - =(c_1 f_10(c_2))  - =(f_9(c_2 c_2) c_2)
+   
+   P2173 4=6            ==> * D2174:   - P(c_2 c_2)  + P(c_1 c_2)  + P(c_1 c_1)  - =(c_1 f_10(c_2))  + P(c_1 c_1)
+                                       - =(f_9(c_2 c_2) c_2)
+   
+   D2174 5=3            ==> * D2175:   - P(c_2 c_2)  + P(c_1 c_2)  - =(c_1 f_10(c_2))  + P(c_1 c_1)
+                                       - =(f_9(c_2 c_2) c_2)
+   
+   D2175,5 & D2072,4    ==> * R2176:   - P(c_2 c_2)  + P(c_1 c_2)  - =(c_1 f_10(c_2))  + P(c_1 c_1)  + P(c_1 c_2)
+                                       + P(c_1 c_1)  - =(c_1 f_10(c_2))
+   
+   R2176 2=5            ==> * D2177:   - P(c_2 c_2)  + P(c_1 c_2)  - =(c_1 f_10(c_2))  + P(c_1 c_1)  + P(c_1 c_1)
+                                       - =(c_1 f_10(c_2))
+   
+   D2177 4=5            ==> * D2178:   - P(c_2 c_2)  + P(c_1 c_2)  - =(c_1 f_10(c_2))  + P(c_1 c_1)
+                                       - =(c_1 f_10(c_2))
+   
+   D2178 3=5            ==> * D2179:   - P(c_2 c_2)  + P(c_1 c_2)  - =(c_1 f_10(c_2))  + P(c_1 c_1)
+   
+   A3,1 & D2179,3       ==> * P2180:   - =(c_1 c_1)  + =(f_10(c_2) c_2)  - P(c_2 c_2)  + P(c_1 c_2)  + P(c_1 c_1)
+   
+   P2180,1 & A1,1       ==> * R2181:   + =(f_10(c_2) c_2)  - P(c_2 c_2)  + P(c_1 c_2)  + P(c_1 c_1)
+   
+   R2181,1 & D2131,3    ==> * P2183:   - =(c_2 c_2)  - P(c_2 c_2)  + P(c_1 c_2)  + P(c_1 c_1)  - P(c_2 c_2)
+                                       + P(c_1 c_2)  + P(c_2 c_1)
+   
+   P2183 6=3            ==> * D2184:   - =(c_2 c_2)  - P(c_2 c_2)  + P(c_1 c_1)  - P(c_2 c_2)  + P(c_1 c_2)
+                                       + P(c_2 c_1)
+   
+   D2184 4=2            ==> * D2185:   - =(c_2 c_2)  + P(c_1 c_1)  - P(c_2 c_2)  + P(c_1 c_2)  + P(c_2 c_1)
+   
+   D2185,1 & A1,1       ==> * R2186:   + P(c_1 c_1)  - P(c_2 c_2)  + P(c_1 c_2)  + P(c_2 c_1)
+   
+   R2186,1 & R1958,2    ==> * R2187:   - P(c_2 c_2)  + P(c_1 c_2)  + P(c_2 c_1)  + P(c_1 c_2)  + =(c_1 c_4)
+   
+   R2187 4=2            ==> * D2188:   - P(c_2 c_2)  + P(c_2 c_1)  + P(c_1 c_2)  + =(c_1 c_4)
+   
+   D1904,2 & I55,1      ==> * P2213:   + P(f_9(c_1 c_2) c_2)  + P(c_1 c_1)  - =(c_1 f_10(c_2))
+                                       + =(f_9(c_1 c_2) c_1)  - =(f_8(c_2) c_2)
+   
+   P2213,5 & D1904,2    ==> * R2214:   + P(f_9(c_1 c_2) c_2)  + P(c_1 c_1)  - =(c_1 f_10(c_2))
+                                       + =(f_9(c_1 c_2) c_1)  + P(c_1 c_1)  - =(c_1 f_10(c_2))
+   
+   R2214 2=5            ==> * D2215:   + P(f_9(c_1 c_2) c_2)  + P(c_1 c_1)  - =(c_1 f_10(c_2))
+                                       + =(f_9(c_1 c_2) c_1)  - =(c_1 f_10(c_2))
+   
+   D2215 3=5            ==> * D2216:   + P(f_9(c_1 c_2) c_2)  + P(c_1 c_1)  - =(c_1 f_10(c_2))
+                                       + =(f_9(c_1 c_2) c_1)
+   
+   D2100,4 & D2216,1    ==> * P2217:   + P(c_2 c_2)  - P(c_1 c_2)  + P(c_1 c_1)  - =(c_1 f_10(c_2))  + P(c_1 c_1)
+                                       - =(c_1 f_10(c_2))  + =(f_9(c_1 c_2) c_1)
+   
+   P2217 4=6            ==> * D2218:   + P(c_2 c_2)  - P(c_1 c_2)  + P(c_1 c_1)  - =(c_1 f_10(c_2))  + P(c_1 c_1)
+                                       + =(f_9(c_1 c_2) c_1)
+   
+   D2218 5=3            ==> * D2219:   + P(c_2 c_2)  - P(c_1 c_2)  - =(c_1 f_10(c_2))  + P(c_1 c_1)
+                                       + =(f_9(c_1 c_2) c_1)
+   
+   D2219,5 & D2100      ==> * RW2220:  + P(c_2 c_2)  - P(c_1 c_2)  - =(c_1 f_10(c_2))  + P(c_1 c_1)  + =(c_2 c_1)
+   
+   RW2220,5 & A2,1      ==> * R2221:   + P(c_2 c_2)  - P(c_1 c_2)  - =(c_1 f_10(c_2))  + P(c_1 c_1)
+   
+   A3,1 & R2221,3       ==> * P2222:   - =(c_1 c_1)  + =(f_10(c_2) c_2)  + P(c_2 c_2)  - P(c_1 c_2)  + P(c_1 c_1)
+   
+   P2222,1 & A1,1       ==> * R2223:   + =(f_10(c_2) c_2)  + P(c_2 c_2)  - P(c_1 c_2)  + P(c_1 c_1)
+   
+   R2223,1 & R2163,3    ==> * P2225:   - =(c_2 c_2)  + P(c_2 c_2)  - P(c_1 c_2)  + P(c_1 c_1)  + P(c_2 c_2)
+                                       - P(c_1 c_2)  + P(c_2 c_1)
+   
+   P2225 6=3            ==> * D2226:   - =(c_2 c_2)  + P(c_2 c_2)  + P(c_1 c_1)  + P(c_2 c_2)  - P(c_1 c_2)
+                                       + P(c_2 c_1)
+   
+   D2226 4=2            ==> * D2227:   - =(c_2 c_2)  + P(c_1 c_1)  + P(c_2 c_2)  - P(c_1 c_2)  + P(c_2 c_1)
+   
+   D2227,1 & A1,1       ==> * R2228:   + P(c_1 c_1)  + P(c_2 c_2)  - P(c_1 c_2)  + P(c_2 c_1)
+   
+   R2228,1 & R1884,1    ==> * R2229:   + P(c_2 c_2)  - P(c_1 c_2)  + P(c_2 c_1)  - =(c_1 c_4)  - P(c_1 c_2)
+   
+   R2229 5=2            ==> * D2230:   + P(c_2 c_2)  + P(c_2 c_1)  - =(c_1 c_4)  - P(c_1 c_2)
+   
+   D1906,2 & I49,1      ==> * P2236:   - P(f_9(c_2 c_2) c_2)  - P(c_2 c_1)  + =(c_2 f_10(c_2))
+                                       - =(f_9(c_2 c_2) c_2)  - =(f_8(c_2) c_2)
+   
+   P2236,5 & D1906,2    ==> * R2237:   - P(f_9(c_2 c_2) c_2)  - P(c_2 c_1)  + =(c_2 f_10(c_2))
+                                       - =(f_9(c_2 c_2) c_2)  - P(c_2 c_1)  + =(c_2 f_10(c_2))
+   
+   R2237 2=5            ==> * D2238:   - P(f_9(c_2 c_2) c_2)  - P(c_2 c_1)  + =(c_2 f_10(c_2))
+                                       - =(f_9(c_2 c_2) c_2)  + =(c_2 f_10(c_2))
+   
+   D2238 3=5            ==> * D2239:   - P(f_9(c_2 c_2) c_2)  - P(c_2 c_1)  + =(c_2 f_10(c_2))
+                                       - =(f_9(c_2 c_2) c_2)
+   
+   D2068,4 & D2239,1    ==> * P2240:   - P(c_2 c_2)  + P(c_1 c_2)  - P(c_2 c_1)  + =(c_2 f_10(c_2))  - P(c_2 c_1)
+                                       + =(c_2 f_10(c_2))  - =(f_9(c_2 c_2) c_2)
+   
+   P2240 4=6            ==> * D2241:   - P(c_2 c_2)  + P(c_1 c_2)  - P(c_2 c_1)  + =(c_2 f_10(c_2))  - P(c_2 c_1)
+                                       - =(f_9(c_2 c_2) c_2)
+   
+   D2241 5=3            ==> * D2242:   - P(c_2 c_2)  + P(c_1 c_2)  + =(c_2 f_10(c_2))  - P(c_2 c_1)
+                                       - =(f_9(c_2 c_2) c_2)
+   
+   D2242,5 & D2068,4    ==> * R2243:   - P(c_2 c_2)  + P(c_1 c_2)  + =(c_2 f_10(c_2))  - P(c_2 c_1)  + P(c_1 c_2)
+                                       - P(c_2 c_1)  + =(c_2 f_10(c_2))
+   
+   R2243 2=5            ==> * D2244:   - P(c_2 c_2)  + P(c_1 c_2)  + =(c_2 f_10(c_2))  - P(c_2 c_1)  - P(c_2 c_1)
+                                       + =(c_2 f_10(c_2))
+   
+   D2244 4=5            ==> * D2245:   - P(c_2 c_2)  + P(c_1 c_2)  + =(c_2 f_10(c_2))  - P(c_2 c_1)
+                                       + =(c_2 f_10(c_2))
+   
+   D2245 3=5            ==> * D2246:   - P(c_2 c_2)  + P(c_1 c_2)  + =(c_2 f_10(c_2))  - P(c_2 c_1)
+   
+   D1906,2 & I55,1      ==> * P2270:   + P(f_9(c_1 c_2) c_2)  - P(c_2 c_1)  + =(c_2 f_10(c_2))
+                                       + =(f_9(c_1 c_2) c_1)  - =(f_8(c_2) c_2)
+   
+   P2270,5 & D1906,2    ==> * R2271:   + P(f_9(c_1 c_2) c_2)  - P(c_2 c_1)  + =(c_2 f_10(c_2))
+                                       + =(f_9(c_1 c_2) c_1)  - P(c_2 c_1)  + =(c_2 f_10(c_2))
+   
+   R2271 2=5            ==> * D2272:   + P(f_9(c_1 c_2) c_2)  - P(c_2 c_1)  + =(c_2 f_10(c_2))
+                                       + =(f_9(c_1 c_2) c_1)  + =(c_2 f_10(c_2))
+   
+   D2272 3=5            ==> * D2273:   + P(f_9(c_1 c_2) c_2)  - P(c_2 c_1)  + =(c_2 f_10(c_2))
+                                       + =(f_9(c_1 c_2) c_1)
+   
+   D2096,4 & D2273,1    ==> * P2274:   + P(c_2 c_2)  - P(c_1 c_2)  - P(c_2 c_1)  + =(c_2 f_10(c_2))  - P(c_2 c_1)
+                                       + =(c_2 f_10(c_2))  + =(f_9(c_1 c_2) c_1)
+   
+   P2274 4=6            ==> * D2275:   + P(c_2 c_2)  - P(c_1 c_2)  - P(c_2 c_1)  + =(c_2 f_10(c_2))  - P(c_2 c_1)
+                                       + =(f_9(c_1 c_2) c_1)
+   
+   D2275 5=3            ==> * D2276:   + P(c_2 c_2)  - P(c_1 c_2)  + =(c_2 f_10(c_2))  - P(c_2 c_1)
+                                       + =(f_9(c_1 c_2) c_1)
+   
+   D2276,5 & D2096      ==> * RW2277:  + P(c_2 c_2)  - P(c_1 c_2)  + =(c_2 f_10(c_2))  - P(c_2 c_1)  + =(c_2 c_1)
+   
+   RW2277,5 & A2,1      ==> * R2278:   + P(c_2 c_2)  - P(c_1 c_2)  + =(c_2 f_10(c_2))  - P(c_2 c_1)
+   
+   D1908,2 & I49,1      ==> * P2284:   - P(f_9(c_2 c_2) c_2)  - P(c_1 c_1)  + =(c_1 f_10(c_2))
+                                       - =(f_9(c_2 c_2) c_2)  - =(f_8(c_2) c_2)
+   
+   P2284,5 & D1908,2    ==> * R2285:   - P(f_9(c_2 c_2) c_2)  - P(c_1 c_1)  + =(c_1 f_10(c_2))
+                                       - =(f_9(c_2 c_2) c_2)  - P(c_1 c_1)  + =(c_1 f_10(c_2))
+   
+   R2285 2=5            ==> * D2286:   - P(f_9(c_2 c_2) c_2)  - P(c_1 c_1)  + =(c_1 f_10(c_2))
+                                       - =(f_9(c_2 c_2) c_2)  + =(c_1 f_10(c_2))
+   
+   D2286 3=5            ==> * D2287:   - P(f_9(c_2 c_2) c_2)  - P(c_1 c_1)  + =(c_1 f_10(c_2))
+                                       - =(f_9(c_2 c_2) c_2)
+   
+   D2064,4 & D2287,1    ==> * P2288:   - P(c_2 c_2)  + P(c_1 c_2)  - P(c_1 c_1)  + =(c_1 f_10(c_2))  - P(c_1 c_1)
+                                       + =(c_1 f_10(c_2))  - =(f_9(c_2 c_2) c_2)
+   
+   P2288 4=6            ==> * D2289:   - P(c_2 c_2)  + P(c_1 c_2)  - P(c_1 c_1)  + =(c_1 f_10(c_2))  - P(c_1 c_1)
+                                       - =(f_9(c_2 c_2) c_2)
+   
+   D2289 5=3            ==> * D2290:   - P(c_2 c_2)  + P(c_1 c_2)  + =(c_1 f_10(c_2))  - P(c_1 c_1)
+                                       - =(f_9(c_2 c_2) c_2)
+   
+   D2290,5 & D2064,4    ==> * R2291:   - P(c_2 c_2)  + P(c_1 c_2)  + =(c_1 f_10(c_2))  - P(c_1 c_1)  + P(c_1 c_2)
+                                       - P(c_1 c_1)  + =(c_1 f_10(c_2))
+   
+   R2291 2=5            ==> * D2292:   - P(c_2 c_2)  + P(c_1 c_2)  + =(c_1 f_10(c_2))  - P(c_1 c_1)  - P(c_1 c_1)
+                                       + =(c_1 f_10(c_2))
+   
+   D2292 4=5            ==> * D2293:   - P(c_2 c_2)  + P(c_1 c_2)  + =(c_1 f_10(c_2))  - P(c_1 c_1)
+                                       + =(c_1 f_10(c_2))
+   
+   D2293 3=5            ==> * D2294:   - P(c_2 c_2)  + P(c_1 c_2)  + =(c_1 f_10(c_2))  - P(c_1 c_1)
+   
+   D2246,3 & D2294,3    ==> * P2295:   + =(c_1 c_2)  - P(c_2 c_2)  + P(c_1 c_2)  - P(c_2 c_1)  - P(c_2 c_2)
+                                       + P(c_1 c_2)  - P(c_1 c_1)
+   
+   P2295 6=3            ==> * D2296:   + =(c_1 c_2)  - P(c_2 c_2)  - P(c_2 c_1)  - P(c_2 c_2)  + P(c_1 c_2)
+                                       - P(c_1 c_1)
+   
+   D2296 4=2            ==> * D2297:   + =(c_1 c_2)  - P(c_2 c_1)  - P(c_2 c_2)  + P(c_1 c_2)  - P(c_1 c_1)
+   
+   D2297,1 & A2,1       ==> * R2298:   - P(c_2 c_1)  - P(c_2 c_2)  + P(c_1 c_2)  - P(c_1 c_1)
+   
+   R1896,1 & R2298,4    ==> * R2299:   - =(c_1 c_4)  + P(c_1 c_2)  - P(c_2 c_1)  - P(c_2 c_2)  + P(c_1 c_2)
+   
+   R2299 5=2            ==> * D2300:   - =(c_1 c_4)  - P(c_2 c_1)  - P(c_2 c_2)  + P(c_1 c_2)
+   
+   D1908,2 & I55,1      ==> * P2324:   + P(f_9(c_1 c_2) c_2)  - P(c_1 c_1)  + =(c_1 f_10(c_2))
+                                       + =(f_9(c_1 c_2) c_1)  - =(f_8(c_2) c_2)
+   
+   P2324,5 & D1908,2    ==> * R2325:   + P(f_9(c_1 c_2) c_2)  - P(c_1 c_1)  + =(c_1 f_10(c_2))
+                                       + =(f_9(c_1 c_2) c_1)  - P(c_1 c_1)  + =(c_1 f_10(c_2))
+   
+   R2325 2=5            ==> * D2326:   + P(f_9(c_1 c_2) c_2)  - P(c_1 c_1)  + =(c_1 f_10(c_2))
+                                       + =(f_9(c_1 c_2) c_1)  + =(c_1 f_10(c_2))
+   
+   D2326 3=5            ==> * D2327:   + P(f_9(c_1 c_2) c_2)  - P(c_1 c_1)  + =(c_1 f_10(c_2))
+                                       + =(f_9(c_1 c_2) c_1)
+   
+   D2092,4 & D2327,1    ==> * P2328:   + P(c_2 c_2)  - P(c_1 c_2)  - P(c_1 c_1)  + =(c_1 f_10(c_2))  - P(c_1 c_1)
+                                       + =(c_1 f_10(c_2))  + =(f_9(c_1 c_2) c_1)
+   
+   P2328 4=6            ==> * D2329:   + P(c_2 c_2)  - P(c_1 c_2)  - P(c_1 c_1)  + =(c_1 f_10(c_2))  - P(c_1 c_1)
+                                       + =(f_9(c_1 c_2) c_1)
+   
+   D2329 5=3            ==> * D2330:   + P(c_2 c_2)  - P(c_1 c_2)  + =(c_1 f_10(c_2))  - P(c_1 c_1)
+                                       + =(f_9(c_1 c_2) c_1)
+   
+   D2330,5 & D2092      ==> * RW2331:  + P(c_2 c_2)  - P(c_1 c_2)  + =(c_1 f_10(c_2))  - P(c_1 c_1)  + =(c_2 c_1)
+   
+   RW2331,5 & A2,1      ==> * R2332:   + P(c_2 c_2)  - P(c_1 c_2)  + =(c_1 f_10(c_2))  - P(c_1 c_1)
+   
+   R2278,3 & R2332,3    ==> * P2333:   + =(c_1 c_2)  + P(c_2 c_2)  - P(c_1 c_2)  - P(c_2 c_1)  + P(c_2 c_2)
+                                       - P(c_1 c_2)  - P(c_1 c_1)
+   
+   P2333 6=3            ==> * D2334:   + =(c_1 c_2)  + P(c_2 c_2)  - P(c_2 c_1)  + P(c_2 c_2)  - P(c_1 c_2)
+                                       - P(c_1 c_1)
+   
+   D2334 4=2            ==> * D2335:   + =(c_1 c_2)  - P(c_2 c_1)  + P(c_2 c_2)  - P(c_1 c_2)  - P(c_1 c_1)
+   
+   D2335,1 & A2,1       ==> * R2336:   - P(c_2 c_1)  + P(c_2 c_2)  - P(c_1 c_2)  - P(c_1 c_1)
+   
+   D1922,2 & R2336,4    ==> * R2337:   - P(c_1 c_2)  + =(c_1 c_4)  - P(c_2 c_1)  + P(c_2 c_2)  - P(c_1 c_2)
+   
+   R2337 5=1            ==> * D2338:   + =(c_1 c_4)  - P(c_2 c_1)  + P(c_2 c_2)  - P(c_1 c_2)
+   
+   D1982,2 & I58,1      ==> * P2344:   + P(c_2 c_2)  - P(f_9(c_2 c_1) c_1)  - =(f_9(c_2 c_1) c_2)
+                                       - =(c_2 f_10(c_1))  + =(f_8(c_1) c_1)
+   
+   P2344,5 & D1982      ==> * RW2345:  + P(c_2 c_2)  - P(f_9(c_2 c_1) c_1)  - =(f_9(c_2 c_1) c_2)
+                                       - =(c_2 f_10(c_1))  + =(c_2 c_1)
+   
+   RW2345,5 & A2,1      ==> * R2346:   + P(c_2 c_2)  - P(f_9(c_2 c_1) c_1)  - =(f_9(c_2 c_1) c_2)
+                                       - =(c_2 f_10(c_1))
+   
+   R2079,3 & R2346,2    ==> * P2347:   - P(c_2 c_1)  + P(c_2 c_2)  + P(c_1 c_1)  - =(c_2 f_10(c_1))  + P(c_2 c_2)
+                                       - =(f_9(c_2 c_1) c_2)  - =(c_2 f_10(c_1))
+   
+   P2347 4=7            ==> * D2348:   - P(c_2 c_1)  + P(c_2 c_2)  + P(c_1 c_1)  - =(c_2 f_10(c_1))  + P(c_2 c_2)
+                                       - =(f_9(c_2 c_1) c_2)
+   
+   D2348 5=2            ==> * D2349:   - P(c_2 c_1)  + P(c_1 c_1)  - =(c_2 f_10(c_1))  + P(c_2 c_2)
+                                       - =(f_9(c_2 c_1) c_2)
+   
+   D2349,5 & R2079,3    ==> * R2350:   - P(c_2 c_1)  + P(c_1 c_1)  - =(c_2 f_10(c_1))  + P(c_2 c_2)  + P(c_2 c_2)
+                                       + P(c_1 c_1)  - =(c_2 f_10(c_1))
+   
+   R2350 4=5            ==> * D2351:   - P(c_2 c_1)  + P(c_1 c_1)  - =(c_2 f_10(c_1))  + P(c_2 c_2)  + P(c_1 c_1)
+                                       - =(c_2 f_10(c_1))
+   
+   D2351 2=5            ==> * D2352:   - P(c_2 c_1)  + P(c_1 c_1)  - =(c_2 f_10(c_1))  + P(c_2 c_2)
+                                       - =(c_2 f_10(c_1))
+   
+   D2352 3=5            ==> * D2353:   - P(c_2 c_1)  + P(c_1 c_1)  - =(c_2 f_10(c_1))  + P(c_2 c_2)
+   
+   D1982,2 & I60,1      ==> * P2354:   + P(c_1 c_2)  - P(f_9(c_2 c_1) c_1)  - =(f_9(c_2 c_1) c_2)
+                                       - =(c_1 f_10(c_1))  + =(f_8(c_1) c_1)
+   
+   P2354,5 & D1982      ==> * RW2355:  + P(c_1 c_2)  - P(f_9(c_2 c_1) c_1)  - =(f_9(c_2 c_1) c_2)
+                                       - =(c_1 f_10(c_1))  + =(c_2 c_1)
+   
+   RW2355,5 & A2,1      ==> * R2356:   + P(c_1 c_2)  - P(f_9(c_2 c_1) c_1)  - =(f_9(c_2 c_1) c_2)
+                                       - =(c_1 f_10(c_1))
+   
+   R2082,3 & R2356,2    ==> * P2357:   - P(c_2 c_1)  + P(c_1 c_2)  + P(c_1 c_1)  - =(c_1 f_10(c_1))  + P(c_1 c_2)
+                                       - =(f_9(c_2 c_1) c_2)  - =(c_1 f_10(c_1))
+   
+   P2357 4=7            ==> * D2358:   - P(c_2 c_1)  + P(c_1 c_2)  + P(c_1 c_1)  - =(c_1 f_10(c_1))  + P(c_1 c_2)
+                                       - =(f_9(c_2 c_1) c_2)
+   
+   D2358 5=2            ==> * D2359:   - P(c_2 c_1)  + P(c_1 c_1)  - =(c_1 f_10(c_1))  + P(c_1 c_2)
+                                       - =(f_9(c_2 c_1) c_2)
+   
+   D2359,5 & R2082,3    ==> * R2360:   - P(c_2 c_1)  + P(c_1 c_1)  - =(c_1 f_10(c_1))  + P(c_1 c_2)  + P(c_1 c_2)
+                                       + P(c_1 c_1)  - =(c_1 f_10(c_1))
+   
+   R2360 4=5            ==> * D2361:   - P(c_2 c_1)  + P(c_1 c_1)  - =(c_1 f_10(c_1))  + P(c_1 c_2)  + P(c_1 c_1)
+                                       - =(c_1 f_10(c_1))
+   
+   D2361 2=5            ==> * D2362:   - P(c_2 c_1)  + P(c_1 c_1)  - =(c_1 f_10(c_1))  + P(c_1 c_2)
+                                       - =(c_1 f_10(c_1))
+   
+   D2362 3=5            ==> * D2363:   - P(c_2 c_1)  + P(c_1 c_1)  - =(c_1 f_10(c_1))  + P(c_1 c_2)
+   
+   A3,1 & D2363,3       ==> * P2364:   - =(c_1 c_1)  + =(f_10(c_1) c_2)  - P(c_2 c_1)  + P(c_1 c_1)  + P(c_1 c_2)
+   
+   P2364,1 & A1,1       ==> * R2365:   + =(f_10(c_1) c_2)  - P(c_2 c_1)  + P(c_1 c_1)  + P(c_1 c_2)
+   
+   R2365,1 & D2353,3    ==> * P2367:   - =(c_2 c_2)  - P(c_2 c_1)  + P(c_1 c_1)  + P(c_1 c_2)  - P(c_2 c_1)
+                                       + P(c_1 c_1)  + P(c_2 c_2)
+   
+   P2367 6=3            ==> * D2368:   - =(c_2 c_2)  - P(c_2 c_1)  + P(c_1 c_2)  - P(c_2 c_1)  + P(c_1 c_1)
+                                       + P(c_2 c_2)
+   
+   D2368 4=2            ==> * D2369:   - =(c_2 c_2)  + P(c_1 c_2)  - P(c_2 c_1)  + P(c_1 c_1)  + P(c_2 c_2)
+   
+   D2369,1 & A1,1       ==> * R2370:   + P(c_1 c_2)  - P(c_2 c_1)  + P(c_1 c_1)  + P(c_2 c_2)
+   
+   R2370,3 & R1958,2    ==> * R2371:   + P(c_1 c_2)  - P(c_2 c_1)  + P(c_2 c_2)  + P(c_1 c_2)  + =(c_1 c_4)
+   
+   R2371 4=1            ==> * D2372:   - P(c_2 c_1)  + P(c_2 c_2)  + P(c_1 c_2)  + =(c_1 c_4)
+   
+   D2372,3 & D2338,4    ==> * R2373:   - P(c_2 c_1)  + P(c_2 c_2)  + =(c_1 c_4)  + =(c_1 c_4)  - P(c_2 c_1)
+                                       + P(c_2 c_2)
+   
+   R2373 3=4            ==> * D2374:   - P(c_2 c_1)  + P(c_2 c_2)  + =(c_1 c_4)  - P(c_2 c_1)  + P(c_2 c_2)
+   
+   D2374 1=4            ==> * D2375:   - P(c_2 c_1)  + P(c_2 c_2)  + =(c_1 c_4)  + P(c_2 c_2)
+   
+   D2375 2=4            ==> * D2376:   - P(c_2 c_1)  + P(c_2 c_2)  + =(c_1 c_4)
+   
+   R1890,1 & D2376,1    ==> * R2377:   - =(c_2 c_4)  + P(c_2 c_2)  + P(c_2 c_2)  + =(c_1 c_4)
+   
+   R2377 3=2            ==> * D2378:   - =(c_2 c_4)  + P(c_2 c_2)  + =(c_1 c_4)
+   
+   D2378,1 & A3,2       ==> * R2379:   + P(c_2 c_2)  + =(c_1 c_4)  + =(c_4 c_1)
+   
+   R2379 2=3            ==> * D2380:   + P(c_2 c_2)  + =(c_1 c_4)
+   
+   D2230,3 & D2380,2    ==> * R2381:   + P(c_2 c_2)  + P(c_2 c_1)  - P(c_1 c_2)  + P(c_2 c_2)
+   
+   R2381 1=4            ==> * D2382:   + P(c_2 c_2)  + P(c_2 c_1)  - P(c_1 c_2)
+   
+   D2188,1 & D2380,1    ==> * R2383:   + P(c_2 c_1)  + P(c_1 c_2)  + =(c_1 c_4)  + =(c_1 c_4)
+   
+   R2383 3=4            ==> * D2384:   + P(c_2 c_1)  + P(c_1 c_2)  + =(c_1 c_4)
+   
+   D2382,2 & D2380      ==> * RW2389:  + P(c_2 c_2)  + P(c_2 c_4)  - P(c_1 c_2)
+   
+   RW2389,3 & D2380     ==> * RW2390:  + P(c_2 c_2)  + P(c_2 c_4)  - P(c_4 c_2)
+   
+   R2107,2 & D2380      ==> * RW2418:  + P(c_2 c_2)  - P(c_4 c_1)  + =(f_9(c_1 c_1) c_2)  - =(c_2 f_10(c_1))
+   
+   RW2418,2 & D2380     ==> * RW2419:  + P(c_2 c_2)  - P(c_4 c_4)  + =(f_9(c_1 c_1) c_2)  - =(c_2 f_10(c_1))
+   
+   RW2419,3 & D2380     ==> * RW2420:  + P(c_2 c_2)  - P(c_4 c_4)  + =(f_9(c_4 c_1) c_2)  - =(c_2 f_10(c_1))
+   
+   RW2420,3 & D2380     ==> * RW2421:  + P(c_2 c_2)  - P(c_4 c_4)  + =(f_9(c_4 c_4) c_2)  - =(c_2 f_10(c_1))
+   
+   RW2421,4 & D2380     ==> * RW2422:  + P(c_2 c_2)  - P(c_4 c_4)  + =(f_9(c_4 c_4) c_2)  - =(c_2 f_10(c_4))
+   
+   R1937,2 & D2380      ==> * RW2427:  + P(c_2 c_2)  - P(c_2 c_4)  + =(c_2 c_4)
+   
+   D2380,2 & A2,1       ==> * P2432:   - =(c_2 c_4)  + P(c_2 c_2)
+   
+   R1881,3 & P2432,2    ==> * R2435:   - P(c_2 c_1)  - =(c_2 c_4)  - =(c_2 c_4)
+   
+   R2435 2=3            ==> * D2436:   - P(c_2 c_1)  - =(c_2 c_4)
+   
+   RW2427,3 & P2432,1   ==> * R2437:   + P(c_2 c_2)  - P(c_2 c_4)  + P(c_2 c_2)
+   
+   R2437 1=3            ==> * D2438:   + P(c_2 c_2)  - P(c_2 c_4)
+   
+   RW2390,2 & D2438,2   ==> * R2443:   + P(c_2 c_2)  - P(c_4 c_2)  + P(c_2 c_2)
+   
+   R2443 1=3            ==> * D2444:   + P(c_2 c_2)  - P(c_4 c_2)
+   
+   D2380,2 & R1896,1    ==> * P2457:   + P(c_4 c_1)  + P(c_2 c_2)  - =(c_1 c_4)  + P(c_1 c_2)
+   
+   P2457,3 & D2380,2    ==> * R2458:   + P(c_4 c_1)  + P(c_2 c_2)  + P(c_1 c_2)  + P(c_2 c_2)
+   
+   R2458 2=4            ==> * D2459:   + P(c_4 c_1)  + P(c_2 c_2)  + P(c_1 c_2)
+   
+   D2459,1 & D2380      ==> * RW2460:  + P(c_4 c_4)  + P(c_2 c_2)  + P(c_1 c_2)
+   
+   RW2460,3 & D2380     ==> * RW2461:  + P(c_4 c_4)  + P(c_2 c_2)  + P(c_4 c_2)
+   
+   RW2461,3 & D2444,2   ==> * R2462:   + P(c_4 c_4)  + P(c_2 c_2)  + P(c_2 c_2)
+   
+   R2462 2=3            ==> * D2463:   + P(c_4 c_4)  + P(c_2 c_2)
+   
+   RW2422,2 & D2463,1   ==> * R2464:   + P(c_2 c_2)  + =(f_9(c_4 c_4) c_2)  - =(c_2 f_10(c_4))  + P(c_2 c_2)
+   
+   R2464 1=4            ==> * D2465:   + P(c_2 c_2)  + =(f_9(c_4 c_4) c_2)  - =(c_2 f_10(c_4))
+   
+   D2380,2 & I58,1      ==> * P2531:   + P(c_2 f_8(c_4))  + P(c_2 c_2)  - =(c_2 f_10(c_1))  + =(f_8(c_1) c_1)
+   
+   P2531,3 & D2380      ==> * RW2532:  + P(c_2 f_8(c_4))  + P(c_2 c_2)  - =(c_2 f_10(c_4))  + =(f_8(c_1) c_1)
+   
+   RW2532,4 & D2380     ==> * RW2533:  + P(c_2 f_8(c_4))  + P(c_2 c_2)  - =(c_2 f_10(c_4))  + =(f_8(c_4) c_1)
+   
+   RW2533,4 & D2380     ==> * RW2534:  + P(c_2 f_8(c_4))  + P(c_2 c_2)  - =(c_2 f_10(c_4))  + =(f_8(c_4) c_4)
+   
+   D2380,2 & I60,1      ==> * P2540:   + P(c_4 f_8(c_1))  + P(c_2 c_2)  - =(c_1 f_10(c_1))  + =(f_8(c_1) c_1)
+   
+   P2540,1 & D2380      ==> * RW2541:  + P(c_4 f_8(c_4))  + P(c_2 c_2)  - =(c_1 f_10(c_1))  + =(f_8(c_1) c_1)
+   
+   RW2541,3 & D2380     ==> * RW2542:  + P(c_4 f_8(c_4))  + P(c_2 c_2)  - =(c_4 f_10(c_1))  + =(f_8(c_1) c_1)
+   
+   RW2542,3 & D2380     ==> * RW2543:  + P(c_4 f_8(c_4))  + P(c_2 c_2)  - =(c_4 f_10(c_4))  + =(f_8(c_1) c_1)
+   
+   RW2543,4 & D2380     ==> * RW2544:  + P(c_4 f_8(c_4))  + P(c_2 c_2)  - =(c_4 f_10(c_4))  + =(f_8(c_4) c_1)
+   
+   RW2544,4 & D2380     ==> * RW2545:  + P(c_4 f_8(c_4))  + P(c_2 c_2)  - =(c_4 f_10(c_4))  + =(f_8(c_4) c_4)
+   
+   D2380,2 & I56,1      ==> * P2708:   + P(f_9(c_4 c_1) f_8(c_1))  + P(c_2 c_2)  + =(f_9(c_1 c_1) c_1)
+                                       - =(f_8(c_1) c_1)
+   
+   P2708,1 & D2380      ==> * RW2709:  + P(f_9(c_4 c_4) f_8(c_1))  + P(c_2 c_2)  + =(f_9(c_1 c_1) c_1)
+                                       - =(f_8(c_1) c_1)
+   
+   RW2709,1 & D2380     ==> * RW2710:  + P(f_9(c_4 c_4) f_8(c_4))  + P(c_2 c_2)  + =(f_9(c_1 c_1) c_1)
+                                       - =(f_8(c_1) c_1)
+   
+   RW2710,3 & D2380     ==> * RW2711:  + P(f_9(c_4 c_4) f_8(c_4))  + P(c_2 c_2)  + =(f_9(c_4 c_1) c_1)
+                                       - =(f_8(c_1) c_1)
+   
+   RW2711,3 & D2380     ==> * RW2712:  + P(f_9(c_4 c_4) f_8(c_4))  + P(c_2 c_2)  + =(f_9(c_4 c_4) c_1)
+                                       - =(f_8(c_1) c_1)
+   
+   RW2712,3 & D2380     ==> * RW2713:  + P(f_9(c_4 c_4) f_8(c_4))  + P(c_2 c_2)  + =(f_9(c_4 c_4) c_4)
+                                       - =(f_8(c_1) c_1)
+   
+   RW2713,4 & D2380     ==> * RW2714:  + P(f_9(c_4 c_4) f_8(c_4))  + P(c_2 c_2)  + =(f_9(c_4 c_4) c_4)
+                                       - =(f_8(c_4) c_1)
+   
+   RW2714,4 & D2380     ==> * RW2715:  + P(f_9(c_4 c_4) f_8(c_4))  + P(c_2 c_2)  + =(f_9(c_4 c_4) c_4)
+                                       - =(f_8(c_4) c_4)
+   
+   D2380,2 & R2110,3    ==> * P2760:   + =(f_9(c_4 c_1) c_2)  + P(c_2 c_2)  + P(c_1 c_2)  - P(c_1 c_1)
+                                       - =(c_1 f_10(c_1))
+   
+   P2760,1 & D2380      ==> * RW2761:  + =(f_9(c_4 c_4) c_2)  + P(c_2 c_2)  + P(c_1 c_2)  - P(c_1 c_1)
+                                       - =(c_1 f_10(c_1))
+   
+   RW2761,3 & D2380     ==> * RW2762:  + =(f_9(c_4 c_4) c_2)  + P(c_2 c_2)  + P(c_4 c_2)  - P(c_1 c_1)
+                                       - =(c_1 f_10(c_1))
+   
+   RW2762,4 & D2380     ==> * RW2763:  + =(f_9(c_4 c_4) c_2)  + P(c_2 c_2)  + P(c_4 c_2)  - P(c_4 c_1)
+                                       - =(c_1 f_10(c_1))
+   
+   RW2763,4 & D2380     ==> * RW2764:  + =(f_9(c_4 c_4) c_2)  + P(c_2 c_2)  + P(c_4 c_2)  - P(c_4 c_4)
+                                       - =(c_1 f_10(c_1))
+   
+   RW2764,5 & D2380     ==> * RW2765:  + =(f_9(c_4 c_4) c_2)  + P(c_2 c_2)  + P(c_4 c_2)  - P(c_4 c_4)
+                                       - =(c_4 f_10(c_1))
+   
+   RW2765,5 & D2380     ==> * RW2766:  + =(f_9(c_4 c_4) c_2)  + P(c_2 c_2)  + P(c_4 c_2)  - P(c_4 c_4)
+                                       - =(c_4 f_10(c_4))
+   
+   RW2766,4 & D2463,1   ==> * R2767:   + =(f_9(c_4 c_4) c_2)  + P(c_2 c_2)  + P(c_4 c_2)  - =(c_4 f_10(c_4))
+                                       + P(c_2 c_2)
+   
+   R2767 2=5            ==> * D2768:   + =(f_9(c_4 c_4) c_2)  + P(c_2 c_2)  + P(c_4 c_2)  - =(c_4 f_10(c_4))
+   
+   D2768,3 & D2444,2    ==> * R2769:   + =(f_9(c_4 c_4) c_2)  + P(c_2 c_2)  - =(c_4 f_10(c_4))  + P(c_2 c_2)
+   
+   R2769 2=4            ==> * D2770:   + =(f_9(c_4 c_4) c_2)  + P(c_2 c_2)  - =(c_4 f_10(c_4))
+   
+   A3,1 & RW2534,1      ==> * P2813:   + P(c_2 c_1)  + =(f_8(c_4) c_2)  + P(c_2 c_2)  - =(c_2 f_10(c_4))
+                                       + =(f_8(c_4) c_4)
+   
+   P2813,1 & D2380      ==> * RW2814:  + P(c_2 c_4)  + =(f_8(c_4) c_2)  + P(c_2 c_2)  - =(c_2 f_10(c_4))
+                                       + =(f_8(c_4) c_4)
+   
+   RW2814,1 & D2438,2   ==> * R2815:   + =(f_8(c_4) c_2)  + P(c_2 c_2)  - =(c_2 f_10(c_4))  + =(f_8(c_4) c_4)
+                                       + P(c_2 c_2)
+   
+   R2815 2=5            ==> * D2816:   + =(f_8(c_4) c_2)  + P(c_2 c_2)  - =(c_2 f_10(c_4))  + =(f_8(c_4) c_4)
+   
+   RW2534,1 & D2816     ==> * RW2817:  + P(c_2 c_2)  + P(c_2 c_2)  - =(c_2 f_10(c_4))  + =(f_8(c_4) c_4)
+   
+   RW2817 (instance)    ==> * I2818:   + P(c_2 c_2)  + P(c_2 c_2)  - =(c_2 f_10(c_4))  + =(f_8(c_4) c_4)
+   
+   I2818 2=1            ==> * D2819:   + P(c_2 c_2)  - =(c_2 f_10(c_4))  + =(f_8(c_4) c_4)
+   
+   D2465,2 & RW2715,1   ==> * P2990:   + P(c_2 f_8(c_4))  + P(c_2 c_2)  - =(c_2 f_10(c_4))  + P(c_2 c_2)
+                                       + =(f_9(c_4 c_4) c_4)  - =(f_8(c_4) c_4)
+   
+   P2990 4=2            ==> * D2991:   + P(c_2 f_8(c_4))  - =(c_2 f_10(c_4))  + P(c_2 c_2)  + =(f_9(c_4 c_4) c_4)
+                                       - =(f_8(c_4) c_4)
+   
+   D2991,5 & D2819,3    ==> * R2992:   + P(c_2 f_8(c_4))  - =(c_2 f_10(c_4))  + P(c_2 c_2)  + =(f_9(c_4 c_4) c_4)
+                                       + P(c_2 c_2)  - =(c_2 f_10(c_4))
+   
+   R2992 3=5            ==> * D2993:   + P(c_2 f_8(c_4))  - =(c_2 f_10(c_4))  + P(c_2 c_2)  + =(f_9(c_4 c_4) c_4)
+                                       - =(c_2 f_10(c_4))
+   
+   D2993 2=5            ==> * D2994:   + P(c_2 f_8(c_4))  - =(c_2 f_10(c_4))  + P(c_2 c_2)  + =(f_9(c_4 c_4) c_4)
+   
+   D2994,1 & D2819      ==> * RW2995:  + P(c_2 c_4)  - =(c_2 f_10(c_4))  + P(c_2 c_2)  + =(f_9(c_4 c_4) c_4)
+   
+   RW2995,4 & D2465     ==> * RW2996:  + P(c_2 c_4)  - =(c_2 f_10(c_4))  + P(c_2 c_2)  + =(c_2 c_4)
+   
+   RW2996,4 & P2432,1   ==> * R2997:   + P(c_2 c_4)  - =(c_2 f_10(c_4))  + P(c_2 c_2)  + P(c_2 c_2)
+   
+   R2997 3=4            ==> * D2998:   + P(c_2 c_4)  - =(c_2 f_10(c_4))  + P(c_2 c_2)
+   
+   D2998,1 & D2438,2    ==> * R2999:   - =(c_2 f_10(c_4))  + P(c_2 c_2)  + P(c_2 c_2)
+   
+   R2999 2=3            ==> * D3000:   - =(c_2 f_10(c_4))  + P(c_2 c_2)
+   
+   D2770,1 & RW2715,1   ==> * P3009:   + P(c_2 f_8(c_4))  + P(c_2 c_2)  - =(c_4 f_10(c_4))  + P(c_2 c_2)
+                                       + =(f_9(c_4 c_4) c_4)  - =(f_8(c_4) c_4)
+   
+   P3009 4=2            ==> * D3010:   + P(c_2 f_8(c_4))  - =(c_4 f_10(c_4))  + P(c_2 c_2)  + =(f_9(c_4 c_4) c_4)
+                                       - =(f_8(c_4) c_4)
+   
+   D3010,4 & D2770      ==> * RW3011:  + P(c_2 f_8(c_4))  - =(c_4 f_10(c_4))  + P(c_2 c_2)  + =(c_2 c_4)
+                                       - =(f_8(c_4) c_4)
+   
+   RW3011,4 & P2432,1   ==> * R3012:   + P(c_2 f_8(c_4))  - =(c_4 f_10(c_4))  + P(c_2 c_2)  - =(f_8(c_4) c_4)
+                                       + P(c_2 c_2)
+   
+   R3012 3=5            ==> * D3013:   + P(c_2 f_8(c_4))  - =(c_4 f_10(c_4))  + P(c_2 c_2)  - =(f_8(c_4) c_4)
+   
+   A3,1 & D3013,1       ==> * P3014:   + P(c_2 c_1)  + =(f_8(c_4) c_2)  - =(c_4 f_10(c_4))  + P(c_2 c_2)
+                                       - =(f_8(c_4) c_4)
+   
+   P3014,1 & D2380      ==> * RW3015:  + P(c_2 c_4)  + =(f_8(c_4) c_2)  - =(c_4 f_10(c_4))  + P(c_2 c_2)
+                                       - =(f_8(c_4) c_4)
+   
+   RW3015,1 & D2438,2   ==> * R3016:   + =(f_8(c_4) c_2)  - =(c_4 f_10(c_4))  + P(c_2 c_2)  - =(f_8(c_4) c_4)
+                                       + P(c_2 c_2)
+   
+   R3016 3=5            ==> * D3017:   + =(f_8(c_4) c_2)  - =(c_4 f_10(c_4))  + P(c_2 c_2)  - =(f_8(c_4) c_4)
+   
+   D3013,1 & D3017      ==> * RW3018:  + P(c_2 c_2)  - =(c_4 f_10(c_4))  + P(c_2 c_2)  - =(f_8(c_4) c_4)
+   
+   RW3018 (instance)    ==> * I3019:   + P(c_2 c_2)  - =(c_4 f_10(c_4))  + P(c_2 c_2)  - =(f_8(c_4) c_4)
+   
+   I3019 3=1            ==> * D3020:   - =(c_4 f_10(c_4))  + P(c_2 c_2)  - =(f_8(c_4) c_4)
+   
+   RW2545,4 & D3020,3   ==> * R3021:   + P(c_4 f_8(c_4))  + P(c_2 c_2)  - =(c_4 f_10(c_4))  - =(c_4 f_10(c_4))
+                                       + P(c_2 c_2)
+   
+   R3021 3=4            ==> * D3022:   + P(c_4 f_8(c_4))  + P(c_2 c_2)  - =(c_4 f_10(c_4))  + P(c_2 c_2)
+   
+   D3022 2=4            ==> * D3023:   + P(c_4 f_8(c_4))  + P(c_2 c_2)  - =(c_4 f_10(c_4))
+   
+   A3,1 & D3020,3       ==> * P3024:   - =(c_1 c_4)  + =(f_8(c_4) c_2)  - =(c_4 f_10(c_4))  + P(c_2 c_2)
+   
+   P3024,1 & D2380,2    ==> * R3025:   + =(f_8(c_4) c_2)  - =(c_4 f_10(c_4))  + P(c_2 c_2)  + P(c_2 c_2)
+   
+   R3025 3=4            ==> * D3026:   + =(f_8(c_4) c_2)  - =(c_4 f_10(c_4))  + P(c_2 c_2)
+   
+   D3023,1 & D3026      ==> * RW3031:  + P(c_4 c_2)  + P(c_2 c_2)  - =(c_4 f_10(c_4))
+   
+   RW3031,1 & D2444,2   ==> * R3032:   + P(c_2 c_2)  - =(c_4 f_10(c_4))  + P(c_2 c_2)
+   
+   R3032 1=3            ==> * D3033:   + P(c_2 c_2)  - =(c_4 f_10(c_4))
+   
+   A3,1 & D3033,2       ==> * P3034:   - =(c_4 c_1)  + =(f_10(c_4) c_2)  + P(c_2 c_2)
+   
+   P3034,2 & D3000,1    ==> * R3035:   - =(c_4 c_1)  + P(c_2 c_2)  + P(c_2 c_2)
+   
+   R3035 2=3            ==> * D3036:   - =(c_4 c_1)  + P(c_2 c_2)
+   
+   D3036,1 & D2380,2    ==> * R3037:   + P(c_2 c_2)  + P(c_2 c_2)
+   
+   R3037 1=2            ==> * D3038:   + P(c_2 c_2)
+   
+   D1917,1 & D3038,1    ==> * R3039:   + P(c_2 c_1)  + =(c_2 c_4)
+   
+   R2085,1 & D3038,1    ==> * R3040:   + P(c_1 c_1)  + =(f_9(c_2 c_1) c_2)  + =(c_2 f_10(c_1))
+   
+   R2113,1 & D3038,1    ==> * R3041:   - P(c_1 c_1)  + =(f_9(c_1 c_1) c_2)  + =(c_2 f_10(c_1))
+   
+   D2131,1 & D3038,1    ==> * R3042:   + P(c_1 c_2)  - =(c_2 f_10(c_2))  + P(c_2 c_1)
+   
+   R2186,2 & D3038,1    ==> * R3045:   + P(c_1 c_1)  + P(c_1 c_2)  + P(c_2 c_1)
+   
+   D2294,1 & D3038,1    ==> * R3048:   + P(c_1 c_2)  + =(c_1 f_10(c_2))  - P(c_1 c_1)
+   
+   D2300,3 & D3038,1    ==> * R3050:   - =(c_1 c_4)  - P(c_2 c_1)  + P(c_1 c_2)
+   
+   D1982,2 & I62,1      ==> * P3091:   - P(c_2 c_2)  - P(f_9(c_2 c_1) c_1)  - =(f_9(c_2 c_1) c_2)
+                                       + =(c_2 f_10(c_1))  + =(f_8(c_1) c_1)
+   
+   P3091,1 & D3038,1    ==> * R3092:   - P(f_9(c_2 c_1) c_1)  - =(f_9(c_2 c_1) c_2)  + =(c_2 f_10(c_1))
+                                       + =(f_8(c_1) c_1)
+   
+   R3092,4 & D1982      ==> * RW3093:  - P(f_9(c_2 c_1) c_1)  - =(f_9(c_2 c_1) c_2)  + =(c_2 f_10(c_1))
+                                       + =(c_2 c_1)
+   
+   RW3093,4 & A2,1      ==> * R3094:   - P(f_9(c_2 c_1) c_1)  - =(f_9(c_2 c_1) c_2)  + =(c_2 f_10(c_1))
+   
+   R3040,2 & R3094,1    ==> * P3095:   - P(c_2 c_1)  + P(c_1 c_1)  + =(c_2 f_10(c_1))  - =(f_9(c_2 c_1) c_2)
+                                       + =(c_2 f_10(c_1))
+   
+   P3095 3=5            ==> * D3096:   - P(c_2 c_1)  + P(c_1 c_1)  + =(c_2 f_10(c_1))  - =(f_9(c_2 c_1) c_2)
+   
+   D3096,4 & R3040,2    ==> * R3097:   - P(c_2 c_1)  + P(c_1 c_1)  + =(c_2 f_10(c_1))  + P(c_1 c_1)
+                                       + =(c_2 f_10(c_1))
+   
+   R3097 2=4            ==> * D3098:   - P(c_2 c_1)  + P(c_1 c_1)  + =(c_2 f_10(c_1))  + =(c_2 f_10(c_1))
+   
+   D3098 3=4            ==> * D3099:   - P(c_2 c_1)  + P(c_1 c_1)  + =(c_2 f_10(c_1))
+   
+   D1982,2 & I64,1      ==> * P3100:   - P(c_1 c_2)  - P(f_9(c_2 c_1) c_1)  - =(f_9(c_2 c_1) c_2)
+                                       + =(c_1 f_10(c_1))  + =(f_8(c_1) c_1)
+   
+   P3100,5 & D1982      ==> * RW3101:  - P(c_1 c_2)  - P(f_9(c_2 c_1) c_1)  - =(f_9(c_2 c_1) c_2)
+                                       + =(c_1 f_10(c_1))  + =(c_2 c_1)
+   
+   RW3101,5 & A2,1      ==> * R3102:   - P(c_1 c_2)  - P(f_9(c_2 c_1) c_1)  - =(f_9(c_2 c_1) c_2)
+                                       + =(c_1 f_10(c_1))
+   
+   R2088,3 & R3102,2    ==> * P3103:   - P(c_2 c_1)  - P(c_1 c_2)  + P(c_1 c_1)  + =(c_1 f_10(c_1))  - P(c_1 c_2)
+                                       - =(f_9(c_2 c_1) c_2)  + =(c_1 f_10(c_1))
+   
+   P3103 4=7            ==> * D3104:   - P(c_2 c_1)  - P(c_1 c_2)  + P(c_1 c_1)  + =(c_1 f_10(c_1))  - P(c_1 c_2)
+                                       - =(f_9(c_2 c_1) c_2)
+   
+   D3104 5=2            ==> * D3105:   - P(c_2 c_1)  + P(c_1 c_1)  + =(c_1 f_10(c_1))  - P(c_1 c_2)
+                                       - =(f_9(c_2 c_1) c_2)
+   
+   D3105,5 & R2088,3    ==> * R3106:   - P(c_2 c_1)  + P(c_1 c_1)  + =(c_1 f_10(c_1))  - P(c_1 c_2)  - P(c_1 c_2)
+                                       + P(c_1 c_1)  + =(c_1 f_10(c_1))
+   
+   R3106 4=5            ==> * D3107:   - P(c_2 c_1)  + P(c_1 c_1)  + =(c_1 f_10(c_1))  - P(c_1 c_2)  + P(c_1 c_1)
+                                       + =(c_1 f_10(c_1))
+   
+   D3107 2=5            ==> * D3108:   - P(c_2 c_1)  + P(c_1 c_1)  + =(c_1 f_10(c_1))  - P(c_1 c_2)
+                                       + =(c_1 f_10(c_1))
+   
+   D3108 3=5            ==> * D3109:   - P(c_2 c_1)  + P(c_1 c_1)  + =(c_1 f_10(c_1))  - P(c_1 c_2)
+   
+   D3109,3 & D3099      ==> * RW3110:  - P(c_2 c_1)  + P(c_1 c_1)  + =(c_1 c_2)  - P(c_1 c_2)
+   
+   RW3110,3 & A2,1      ==> * R3111:   - P(c_2 c_1)  + P(c_1 c_1)  - P(c_1 c_2)
+   
+   R3111,2 & R1884,1    ==> * R3112:   - P(c_2 c_1)  - P(c_1 c_2)  - =(c_1 c_4)  - P(c_1 c_2)
+   
+   R3112 4=2            ==> * D3113:   - P(c_2 c_1)  - =(c_1 c_4)  - P(c_1 c_2)
+   
+   D3113,3 & R3050,3    ==> * R3114:   - P(c_2 c_1)  - =(c_1 c_4)  - =(c_1 c_4)  - P(c_2 c_1)
+   
+   R3114 2=3            ==> * D3115:   - P(c_2 c_1)  - =(c_1 c_4)  - P(c_2 c_1)
+   
+   D3115 1=3            ==> * D3116:   - P(c_2 c_1)  - =(c_1 c_4)
+   
+   R3039,1 & D3116,1    ==> * R3117:   + =(c_2 c_4)  - =(c_1 c_4)
+   
+   R3117,2 & A3,1       ==> * R3118:   + =(c_2 c_4)  + =(c_4 c_2)
+   
+   R3118 1=2            ==> * D3119:   + =(c_2 c_4)
+   
+   D2436,2 & D3119,1    ==> * R3121:   - P(c_2 c_1)
+   
+   D2384,1 & R3121,1    ==> * R3122:   + P(c_1 c_2)  + =(c_1 c_4)
+   
+   R3045,3 & R3121,1    ==> * R3123:   + P(c_1 c_1)  + P(c_1 c_2)
+   
+   R3042,3 & R3121,1    ==> * R3128:   + P(c_1 c_2)  - =(c_2 f_10(c_2))
+   
+   D1922,1 & R3122,1    ==> * R3133:   + P(c_1 c_1)  + =(c_1 c_4)  + =(c_1 c_4)
+   
+   R3133 2=3            ==> * D3134:   + P(c_1 c_1)  + =(c_1 c_4)
+   
+   R3048,3 & R3123,1    ==> * R3139:   + P(c_1 c_2)  + =(c_1 f_10(c_2))  + P(c_1 c_2)
+   
+   R3139 1=3            ==> * D3140:   + P(c_1 c_2)  + =(c_1 f_10(c_2))
+   
+   D3140,1 & D3119      ==> * RW3156:  + P(c_1 c_4)  + =(c_1 f_10(c_2))
+   
+   RW3156,2 & D3119     ==> * RW3157:  + P(c_1 c_4)  + =(c_1 f_10(c_4))
+   
+   R3128,1 & D3119      ==> * RW3174:  + P(c_1 c_4)  - =(c_2 f_10(c_2))
+   
+   RW3174,2 & D3119     ==> * RW3175:  + P(c_1 c_4)  - =(c_4 f_10(c_2))
+   
+   RW3175,2 & D3119     ==> * RW3176:  + P(c_1 c_4)  - =(c_4 f_10(c_4))
+   
+   RW3176,2 & RW3157    ==> * RW3177:  + P(c_1 c_4)  - =(c_4 c_1)
+   
+   R3122,1 & D3119      ==> * RW3200:  + P(c_1 c_4)  + =(c_1 c_4)
+   
+   RW3200,2 & RW3177,2  ==> * R3201:   + P(c_1 c_4)  + P(c_1 c_4)
+   
+   R3201 1=2            ==> * D3202:   + P(c_1 c_4)
+   
+   R3121,1 & D3119      ==> * RW3203:  - P(c_4 c_1)
+   
+   A2,1 & D3119         ==> * RW3204:  - =(c_4 c_1)
+   
+   A3,2 & D3119         ==> * RW3205:  All x:Any + =(x c_1)  + =(x c_4)
+   
+   I62,2 & D3119        ==> * RW3254:  - P(c_2 f_8(c_1))  + =(c_4 f_10(c_1))  + =(f_8(c_1) c_1)
+   
+   RW3254,1 & D3119     ==> * RW3255:  - P(c_4 f_8(c_1))  + =(c_4 f_10(c_1))  + =(f_8(c_1) c_1)
+   
+   D2033,2 & D3119      ==> * RW3311:  + P(f_9(c_1 c_1) c_1)  + =(f_8(c_1) c_4)  + =(f_9(c_1 c_1) c_1)
+   
+   R3041,3 & D3119      ==> * RW3317:  - P(c_1 c_1)  + =(f_9(c_1 c_1) c_2)  + =(c_4 f_10(c_1))
+   
+   RW3317,2 & D3119     ==> * RW3318:  - P(c_1 c_1)  + =(f_9(c_1 c_1) c_4)  + =(c_4 f_10(c_1))
+   
+   R2116,3 & D3119      ==> * RW3319:  - P(c_1 c_2)  - P(c_1 c_1)  + =(f_9(c_1 c_1) c_4)  + =(c_1 f_10(c_1))
+   
+   RW3319,1 & D3119     ==> * RW3320:  - P(c_1 c_4)  - P(c_1 c_1)  + =(f_9(c_1 c_1) c_4)  + =(c_1 f_10(c_1))
+   
+   D3038,1 & D3119      ==> * RW3370:  + P(c_4 c_2)
+   
+   RW3370,1 & D3119     ==> * RW3371:  + P(c_4 c_4)
+   
+   RW3320,2 & D3134,1   ==> * R3380:   - P(c_1 c_4)  + =(f_9(c_1 c_1) c_4)  + =(c_1 f_10(c_1))  + =(c_1 c_4)
+   
+   R3380,4 & RW3204,1   ==> * R3381:   - P(c_1 c_4)  + =(f_9(c_1 c_1) c_4)  + =(c_1 f_10(c_1))
+   
+   RW3318,1 & D3134,1   ==> * R3395:   + =(f_9(c_1 c_1) c_4)  + =(c_4 f_10(c_1))  + =(c_1 c_4)
+   
+   R3395,3 & RW3204,1   ==> * R3396:   + =(f_9(c_1 c_1) c_4)  + =(c_4 f_10(c_1))
+   
+   R3381,1 & D3202,1    ==> * R3403:   + =(f_9(c_1 c_1) c_4)  + =(c_1 f_10(c_1))
+   
+   R3396,1 & I56,1      ==> * P3596:   + P(c_4 f_8(c_1))  + =(c_4 f_10(c_1))  + =(f_9(c_1 c_1) c_1)
+                                       - =(f_8(c_1) c_1)
+   
+   P3596,3 & R3396      ==> * RW3597:  + P(c_4 f_8(c_1))  + =(c_4 f_10(c_1))  + =(c_4 c_1)  - =(f_8(c_1) c_1)
+   
+   RW3597,3 & RW3204,1  ==> * R3598:   + P(c_4 f_8(c_1))  + =(c_4 f_10(c_1))  - =(f_8(c_1) c_1)
+   
+   RW3205,1 & R3598,1   ==> * P3599:   + P(c_4 c_1)  + =(f_8(c_1) c_4)  + =(c_4 f_10(c_1))  - =(f_8(c_1) c_1)
+   
+   P3599,4 & RW3205,1   ==> * R3600:   + P(c_4 c_1)  + =(f_8(c_1) c_4)  + =(c_4 f_10(c_1))  + =(f_8(c_1) c_4)
+   
+   R3600 2=4            ==> * D3601:   + P(c_4 c_1)  + =(f_8(c_1) c_4)  + =(c_4 f_10(c_1))
+   
+   D3601,1 & RW3203,1   ==> * R3602:   + =(f_8(c_1) c_4)  + =(c_4 f_10(c_1))
+   
+   RW3255,1 & R3602     ==> * RW3605:  - P(c_4 c_4)  + =(c_4 f_10(c_1))  + =(f_8(c_1) c_1)
+   
+   RW3605,3 & R3602     ==> * RW3606:  - P(c_4 c_4)  + =(c_4 f_10(c_1))  + =(c_4 c_1)
+   
+   RW3606,3 & RW3204,1  ==> * R3607:   - P(c_4 c_4)  + =(c_4 f_10(c_1))
+   
+   R3607,1 & RW3371,1   ==> * R3608:   + =(c_4 f_10(c_1))
+   
+   I64,2 & R3608        ==> * RW3611:  - P(c_1 f_8(c_1))  + =(c_1 c_4)  + =(f_8(c_1) c_1)
+   
+   R3403,2 & R3608      ==> * RW3612:  + =(f_9(c_1 c_1) c_4)  + =(c_1 c_4)
+   
+   RW3611,2 & RW3204,1  ==> * R3615:   - P(c_1 f_8(c_1))  + =(f_8(c_1) c_1)
+   
+   RW3612,2 & RW3204,1  ==> * R3617:   + =(f_9(c_1 c_1) c_4)
+   
+   RW3311,3 & R3617     ==> * RW3624:  + P(f_9(c_1 c_1) c_1)  + =(f_8(c_1) c_4)  + =(c_4 c_1)
+   
+   RW3624,1 & R3617     ==> * RW3625:  + P(c_4 c_1)  + =(f_8(c_1) c_4)  + =(c_4 c_1)
+   
+   RW3625,3 & RW3204,1  ==> * R3628:   + P(c_4 c_1)  + =(f_8(c_1) c_4)
+   
+   R3628,1 & RW3203,1   ==> * R3630:   + =(f_8(c_1) c_4)
+   
+   R3615,2 & R3630      ==> * RW3636:  - P(c_1 f_8(c_1))  + =(c_4 c_1)
+   
+   RW3636,1 & R3630     ==> * RW3637:  - P(c_1 c_4)  + =(c_4 c_1)
+   
+   RW3637,2 & RW3204,1  ==> * R3640:   - P(c_1 c_4)
+   
+   R3640,1 & D3202,1    ==> * R3641:   []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation of Splitpart 1: 5031 seconds
+   Time Used for Refutation of Splitpart 2: 5456 seconds

@@ -1,0 +1,113 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 40.2 EQUALITY 16.1                                  *
+                     *           DATE: 25-FEB,1990  14:06                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 25-FEB,1990 12:22 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * AXIOMS *
+             ALL X,Y,Z PLUS (PLUS (X Y) Z) = PLUS (X PLUS (Y Z))
+             ALL X PLUS (0 X) = X
+             ALL X PLUS (MINUS (X) X) = 0
+             
+   Theorems: * THEOREM *
+             (ALL X,Y,Z X = Y OR Z = Y OR X = Z) IMPL (ALL U MINUS (U) = U)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+           * A2:   All x,y,z:Any + =(plus(plus(z y) x) plus(z plus(y x)))
+           * A3:   All x:Any + =(plus(0 x) x)
+           * A4:   All x:Any + =(plus(minus(x) x) 0)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T5: - =(minus(c_1) c_1)
+             T6: All x,y,z:Any + =(z y)  + =(x y)  + =(z x)
+             T7: All x,y,z:Any + =(z y)  + =(x y)  + =(z x)
+           * T8: All x,y,z:Any + =(z y)  + =(x y)  + =(z x)
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:      A1:   All x:Any + =(x x)
+                       * A2:   All x,y,z:Any + =(plus(plus(z y) x) plus(z plus(y x)))
+                       * A3:   All x:Any + =(plus(0 x) x)
+                       * A4:   All x:Any + =(plus(minus(x) x) 0)
+                       * T5:   - =(minus(c_1) c_1)
+                       * T8:   All x,y,z:Any + =(z y)  + =(x y)  + =(z x)
+                       
+
+   
+   A4,1 & A2,1    -->  * P2:   All x,y:Any + =(plus(0 y) plus(minus(x) plus(x y)))
+   
+   A3,1 & P2,1    -->  * P3:   All x,y:Any + =(y plus(minus(x) plus(x y)))
+   
+   A3,1 & P3,1    -->  * P4:   All x:Any + =(x plus(minus(0) x))
+   
+   P4,1 & P3,1    -->  * P6:   All x:Any + =(x plus(minus(minus(0)) x))
+   
+   P6,1 & A4,1    -->  * P7:   + =(minus(0) 0)
+   
+   T8,3 & T5,1    -->  * R18:  All x:Any + =(minus(c_1) x)  + =(c_1 x)
+   
+   R18,1 & A4,1   -->  * P19:  All x:Any + =(plus(x c_1) 0)  + =(c_1 x)
+   
+   A3,1 & P19,1   -->  * P21:  + =(c_1 0)  + =(c_1 0)
+   
+   P21 1=2        -->  * D22:  + =(c_1 0)
+   
+   D22,1 & P7,1   -->  * P26:  + =(minus(c_1) 0)
+   
+   P26,1 & T5,1   -->  * P30:  - =(0 c_1)
+   
+   D22,1 & P30,1  -->  * R31:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 499 seconds

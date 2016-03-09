@@ -1,0 +1,64 @@
+ 
+ 
+ 
+             ****************************************************
+             *                                                  *
+             *   ATP-SYSTEM :  M K R P , UNI KARLSRUHE          *
+             *                                                  *
+             *      VERSION : 3-FEB-84                          *
+             *         DATE : 17-JUL-84  12:49:28               *
+             *                                                  *
+             ****************************************************
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : SORT ELEM,MENGE,VERKN:ANY
+           TYPE APPLY (VERKN ELEM ELEM) :ELEM
+           TYPE INVERS (VERKN ELEM) :ELEM
+           ALL U,V:MENGE ALL X:ELEM ME (U V) AND EL (X U) IMPL EL (X V)
+           ALL F:MENGE  ALL PHI:VERKN  ALL X,E:ELEM  
+             G (F PHI E) AND EL (X F) IMPL INVERS (PHI INVERS (PHI X)) = X
+ 
+THEOREMS : ALL PHI:VERKN  ALL U,F:MENGE  ALL X,Y,E:ELEM  
+               G (F PHI E) AND ME (U F)
+               IMPL  
+                     ALL S,T:ELEM  
+                         EL (S U) AND EL (T U)
+                         IMPL  
+                         EL (APPLY (PHI INVERS (PHI T) S) U)
+                    AND  
+                    (ALL Z:ELEM EL (Z U) IMPL EL (INVERS (PHI Z) U))
+                    AND  
+                    EL (X U)
+                    AND  
+                    EL (Y U)
+                  IMPL  
+                  EL (APPLY (PHI X Y) U)
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+  A1   : ALL X,Y:MENGE  Z:ELEM  -ME(X Y) -EL(Z X) +EL(Z Y)
+  R.=  : ALL X:ANY  +=(X X)
+  A2   : ALL X:MENGE  Y:VERKN  Z,U:ELEM  
+              -G(X Y Z) -EL(U X) +=(INVERS(Y INVERS(Y U)) U) 
+ 
+ 
+--------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+  Q. E. D. 
+ 

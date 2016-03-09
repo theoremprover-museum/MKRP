@@ -1,0 +1,171 @@
+;;; -*- Mode: LISP; Package: KK-LISP; Syntax: Common-lisp -*-
+(setq m (menu-create :single
+		     '(("eval " :eval 'x :info ("first line" "second \""))
+		       ("weiter eval " :eval 'was :info ("third line" "noch mal second \"" "hopp hopp hopp"))
+		       ("second " :value "y")
+		       ("THIRD"))
+		     :help t
+		     :top-line '(:string "Obere Zeile" :font< "cptfontbi")))
+(setq x (br:mouse-cursor-create fonts:narrow #\#))
+(menu-choose m :near-mode '(:point 30 30) :mouse-cursor x)
+(choose-variable-values '(:string "dasdfsa" :font "9x15bold")
+			'((x "yturyutruytr" nil nil nil :font "9x15bold"))
+			'(("abort" :font "9x15bold"))
+			'(:point 200 200))
+(progn (setq m (menu-create :single
+			    '(("Obere Zeile" :no-select nil :font "9x15bold")
+			      ("eval " :eval 'x :info ("first line" "second \""))
+			      ("weiter eval " :eval 'was :info ("third line" "noch mal second \"" "hopp hopp hopp"))
+			      ("second " :value y))
+			    :momentary nil
+			    :help t
+			    :default-item 2
+			    :top-line `(:string "Obere Zeile" :font "9x15bold")))
+       (menu-choose m))
+(progn (setq mm (menu-create :single
+			     '(("eval " :eval 'x :info ("first line" "second \""))
+			       ("weiter eval " :eval 'was :info ("third line" "noch mal second \"" "hopp hopp hopp"))
+			       ("second " :value y))
+			     :momentary t
+			     :default-item 2
+			     :help t
+			     :top-line "Obere Zeile"))
+       (menu-choose mm))
+(setq n (menu-create :single			
+		     '(("eval " :eval 'x :info ("first line" "second \""))
+		       ("weiter eval " :eval 'was :info ("third line" "noch mal second \"" "hopp hopp hopp"))
+		       ("second " :value y)
+		       ("menu menu" :menu mm :info ("fghjsdsdfghjsdfghj"
+						   "tyutyutyuyuttyuyuttyutyu"
+						   "rtycxxcxc")))
+		     :momentary nil
+		     :help t
+		     :top-line "Obere Zeile"))
+(setq m (menu-create :single
+		     '(("buttons " :buttons (("b1 " :eval 'x :info ("first line" "second "))
+					     ("b2 eval " :eval 'was :info ("third line" "noch mal second " "hopp hopp hopp"))
+					     ("b3 " :value y))
+			:info ("gfhjdgfdgfd"))
+		       ("weiter eval " :eval 'was :info ("third line" "noch mal second" "hopp hopp hopp"))
+		       ("second " :value y))
+		     :help t
+		     :top-line "Obere Zeile"))
+(setq m (menu-create :multiple
+		     '(("eval " :eval 'x :info ("first  line" "second  \"  "))
+		       ("weiter eval " :eval 'was :info ("third line" "noch mal second \"" "hopp hopp hopp"))
+		       ("second " :value y))
+		     :help t))
+(setq m (menu-create :choice
+		     '(("eval " :choice (:a :b))
+		       ("weiter eval " :choice (:a (:b t) :c))
+		       ("second " :choice (:a :c)))
+		     :special-choices '((:a "This is a" :info ("first line" "second "))
+					(:b "This b" :info ("third line" "noch mal second " "hopp hopp hopp"))
+					(:c "This c"))
+		     :help t))
+(progn (setq x '(("eval " :choice (:a :b))
+		 ("weiter eval " :choice (:a (:b t) :c))
+		 ("second " :choice (:a :c))))
+       (setq mm (menu-create :choice
+			     x
+			     :special-choices '((:a "This is a" :info ("first line" "second \""))
+						(:b "This b" :info ("third line" "noch mal second \"" "hopp hopp hopp"))
+						(:c "This c"))
+			     :help t))
+       (menu-set-item-list mm '(("eval "        :choice (:a    :b   ))
+				("weiter eval " :choice (:a    :b :c))
+				("second "      :choice (:a       :c))
+				("third "       :choice ((:a t)     ))))
+       (menu-choose mm))
+
+(progn (setq x '(("eval " :choice (:a :b))
+		 ("weiter eval " :choice (:a (:b t) :c))
+		 ("second " :choice (:a :c))))
+       (setq mm (menu-create :choice
+			     x
+			     :special-choices '((:a "This is a" :info ("first line" "second \""))
+						(:b "This b" :info ("third line" "noch mal second \"" "hopp hopp hopp"))
+						(:c "This c"))
+			     :help nil))
+       (menu-choose mm)
+       (menu-set-item-list mm '(("eval "        :choice (:a    :b   ))
+				("weiter eval " :choice (:a    :b :c))
+				("second "      :choice (:a       :c))
+				("third "       :choice ((:a t)     ))))
+       (menu-choose mm))
+
+(progn (setq m (menu-create :multiple 
+			    '(("menu 1" :eval 'x)
+			      ("menu 2" :eval 2 :info ("this is an info string"
+						       "this is a second info string"))
+			      ("menu 3" :eval 3)
+			      ("menu mouse" :buttons (("This is left" :Value 'left)
+						      ("Middle" :value middle)
+						      ("Right" :value right)))
+			      ("menu menu" :menu mm :info ("fghjsdsdfghjsdfghj"
+							   "tyutyutyuyuttyuyuttyutyu"
+							   "rtycxxcxc"))
+			      ("value" :value x)
+			      ("funcall " :funcall (lambda ()
+						     (princ "not function"))))
+			    :top-line "This is a title"
+			    :default-item  '(1 5)
+			    :help t))
+       (print (menu-choose m)))
+
+(progn (setq m (menu-create :multiple 
+			    '(("menu 1" :eval 'x :info ("This is for item1"))
+			      ("menu 2" :eval 2 :info ("This is for item2"
+						       "this is an info string"
+						       "this is a second info string"))
+			      ("menu 3" :eval 3 :info ("This is for item3"))
+			      ("menu mouse" :buttons (("This is left" :Value 'left)
+						      ("Middle" :value middle)
+						      ("Right" :value right)))
+			      ("menu menu" :menu mm :info ("fghjsdsdfghjsdfghj"
+							   "tyutyutyuyuttyuyuttyutyu"
+							   "rtycxxcxc"))
+			      ("value" :value x)
+			      ("funcall " :funcall (lambda ()
+						     (princ "not function"))))
+			    :top-line "This is a title"
+			    :default-item  '(1 5)
+			    :help t))
+       (print (menu-choose m)))
+
+
+(setq mm (menu-create :single
+		     '(("eval " :eval 'x :info ("first line" "second \""))
+		       ("weiter eval " :eval 'was :info ("third line" "noch mal second \"" "hopp hopp hopp"))
+		       ("second " :value y))
+		     :help t
+		     :top-line "Obere Zeile"))
+
+(setq m (menu-create :multiple
+		     '(("eval " :eval 'x :info ("first line" "second \""))
+		       ("weiter eval " :eval 'was :info ("third line" "noch mal second \"" "hopp hopp hopp"))
+		       ("second " :value y))
+		     :help t))
+(setq m (menu-create :choice
+		     (copy-tree '(("eval " :choice (:a :b) :info ("first line" "second \""))
+				  ("weiter eval " :choice (:a (:b t) :c) :info ("third line" "noch mal second \""
+											 "hopp hopp hopp"))
+				  ("second " :choice (:a :c))))
+		     :special-choices (copy-tree '( (:a "This is a" :info ("i11" "i12"))
+						   (:b "This b" :info ("i21" "122" "i23" "i2 4"))
+						   (:c "This c")))
+		     :help t
+                     :top-line "A top"))
+
+(setq m (menu-create :multiple
+		     '(("eval " :eval (setq a1 1) :info ("Setzt a1 auf 1")))
+		     :help t))
+
+(menu-choose m :near-mode '(:point 30 30))(menu-choose n)
+(deactivate m)(deactivate n)
+
+
+
+
+
+

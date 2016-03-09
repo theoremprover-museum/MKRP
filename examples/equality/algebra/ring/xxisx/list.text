@@ -1,0 +1,258 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+          **********************************************
+          *                                            *
+          *     ATP-SYSTEM: M K R P , UNI KAISERSLAUTERN*
+          *                                            *
+          *        VERSION: MKRP 46.2                  *
+          *           DATE: 21-NOV,1990  02:51         *
+          *                                            *
+          **********************************************
+
+
+----------------------------------------------------------------------
+
+Edit:     Axioms and Theorems edited: 12-JUL,1990 01:27 
+
+----------------------------------------------------------------------
+
+
+
+
+
+
+          Formulae given to the editor
+          ============================
+
+
+Axioms:   * AXIOMS *
+          * GROUP *
+          ALL X,Y,Z + (+ (X Y) Z) = + (X + (Y Z))
+          ALL X + (0 X) = X
+          ALL X + (- (X) X) = 0
+          ALL X,Y + (X Y) = + (Y X)
+          * * *
+          ALL X,Y,Z * (* (X Y) Z) = * (X * (Y Z))
+          * * GROUP CONNECTION *
+          ALL X,Y,Z * (+ (X Y) Z) = + (* (X Z) * (Y Z))
+          ALL X,Y,Z * (Z + (X Y)) = + (* (Z X) * (Z Y))
+          * ADDITIONAL AXIOM AND THEOREM *
+          ALL X * (X X) = X
+          
+Theorems: ALL X,Y * (X Y) = * (Y X)
+          
+
+
+
+          Set of Axiom Clauses Resulting from Normalization
+          =================================================
+
+          A1:   All x:Any + =(x x)
+        * A2:   All x,y,z:Any + =(+(+(z y) x) +(z +(y x)))
+        * A3:   All x:Any + =(+(0 x) x)
+        * A4:   All x:Any + =(+(-(x) x) 0)
+          A5:   All x,y:Any + =(+(y x) +(x y))
+          A6:   All x,y,z:Any + =(*(*(z y) x) *(z *(y x)))
+        * A7:   All x,y,z:Any + =(*(+(z y) x) +(*(z x) *(y x)))
+        * A8:   All x,y,z:Any + =(*(z +(y x)) +(*(z y) *(z x)))
+        * A9:   All x:Any + =(*(x x) x)
+        
+
+
+
+
+          Set of Theorem Clauses Resulting from Normalization
+          ===================================================
+
+        * T10: - =(*(c_1 c_2) *(c_2 c_1))
+
+
+
+
+----------------------------------------------------------------------
+
+
+
+Refutation:
+===========
+
+Initial Clauses:         A1:     All x:Any + =(x x)
+                       * A2:     All x,y,z:Any 
+                                      + =(+(+(z y) x) +(z +(y x)))
+                       * A3:     All x:Any + =(+(0 x) x)
+                       * A4:     All x:Any + =(+(-(x) x) 0)
+                         A5:     All x,y:Any + =(+(y x) +(x y))
+                         A6:     All x,y,z:Any 
+                                      + =(*(*(z y) x) *(z *(y x)))
+                       * A7:     All x,y,z:Any 
+                                      + =(*(+(z y) x)
+                                          +(*(z x) *(y x)))
+                       * A8:     All x,y,z:Any 
+                                      + =(*(z +(y x))
+                                          +(*(z y) *(z x)))
+                       * A9:     All x:Any + =(*(x x) x)
+                       * T10:    - =(*(c_1 c_2) *(c_2 c_1))
+                       
+
+
+A4,1 & A2,1        --> * P1:     All x,y:Any + =(+(0 y)
+                                                 +(-(x) +(x y)))
+
+P1,1 & A3          --> * RW2:    All x,y:Any + =(y +(-(x) +(x y)))
+
+A3,1 & RW2,1       --> * P3:     All x:Any + =(x +(-(0) x))
+
+A4,1 & RW2,1       --> * P4:     All x:Any + =(x +(-(-(x)) 0))
+
+P3,1 & RW2,1       --> * P5:     All x:Any + =(x +(-(-(0)) x))
+
+P5,1 & A4,1        --> * P6:     + =(-(0) 0)
+
+P4,1 & RW2,1       --> * P13:    All x:Any + =(0 +(-(-(-(x))) x))
+
+P13,1 & RW2,1      --> * P14:    All x:Any + =(x +(-(-(-(-(x)))) 0))
+
+P14,1 & P4         --> * RW15:   All x:Any + =(x -(-(x)))
+
+P4,1 & RW15        --> * RW16:   All x:Any + =(x +(x 0))
+
+RW15,1 & A4,1      --> * P19:    All x:Any + =(+(x -(x)) 0)
+
+P19,1 & A2,1       --> * P21:    All x,y:Any + =(0
+                                                 +(y +(x -(+(y x)))))
+
+P21,1 & RW2,1      --> * P22:    All x,y:Any + =(+(y -(+(x y)))
+                                                 +(-(x) 0))
+
+P22,1 & RW16       --> * RW23:   All x,y:Any + =(+(y -(+(x y))) -(x))
+
+RW23,1 & RW23,1    --> * P26:    All x,y:Any + =(+(-(+(y x)) -(-(y)))
+                                                 -(x))
+
+P26,1 & RW15       --> * RW27:   All x,y:Any + =(+(-(+(y x)) y) -(x))
+
+A3,1 & A7,1        --> * P28:    All x,y:Any + =(*(y x)
+                                                 +(*(0 x) *(y x)))
+
+P28,1 & RW23,1     --> * P29:    All x,y:Any + =(+(*(y x) -(*(y x)))
+                                                 -(*(0 x)))
+
+P29,1 & P19        --> * RW30:   All x:Any + =(0 -(*(0 x)))
+
+RW30,1 & A4,1      --> * P31:    All x:Any + =(+(0 *(0 x)) 0)
+
+P31,1 & A3         --> * RW32:   All x:Any + =(*(0 x) 0)
+
+A4,1 & A7,1        --> * P37:    All x,y:Any + =(*(0 y)
+                                                 +(*(-(x) y) *(x y)))
+
+P37,1 & RW32       --> * RW38:   All x,y:Any + =(0
+                                                 +(*(-(y) x) *(y x)))
+
+A9,1 & RW38,1      --> * P39:    All x:Any + =(0 +(*(-(x) x) x))
+
+P39,1 & RW27,1     --> * P42:    All x:Any + =(+(-(0) *(-(x) x)) -(x))
+
+P42,1 & P6         --> * RW43:   All x:Any + =(+(0 *(-(x) x)) -(x))
+
+RW43,1 & A3        --> * RW44:   All x:Any + =(*(-(x) x) -(x))
+
+RW15,1 & RW44,1    --> * P49:    All x:Any + =(*(x -(x)) -(-(x)))
+
+P49,1 & RW15       --> * RW50:   All x:Any + =(*(x -(x)) x)
+
+A3,1 & A8,1        --> * P64:    All x,y:Any + =(*(y x)
+                                                 +(*(y 0) *(y x)))
+
+P64,1 & RW23,1     --> * P65:    All x,y:Any + =(+(*(y x) -(*(y x)))
+                                                 -(*(y 0)))
+
+P65,1 & P19        --> * RW66:   All x:Any + =(0 -(*(x 0)))
+
+RW66,1 & A4,1      --> * P67:    All x:Any + =(+(0 *(x 0)) 0)
+
+P67,1 & A3         --> * RW68:   All x:Any + =(*(x 0) 0)
+
+A4,1 & A8,1        --> * P73:    All x,y:Any + =(*(y 0)
+                                                 +(*(y -(x)) *(y x)))
+
+P73,1 & RW68       --> * RW74:   All x,y:Any + =(0
+                                                 +(*(y -(x)) *(y x)))
+
+RW50,1 & RW74,1    --> * P75:    All x:Any + =(0 +(x *(x x)))
+
+P75,1 & A9         --> * RW76:   All x:Any + =(0 +(x x))
+
+RW76,1 & RW2,1     --> * P77:    All x:Any + =(x +(-(x) 0))
+
+P77,1 & RW16       --> * RW78:   All x:Any + =(x -(x))
+
+RW27,1 & RW78      --> * RW89:   All x,y:Any + =(+(+(y x) y) -(x))
+
+RW89,1 & RW78      --> * RW90:   All x,y:Any + =(+(+(y x) y) x)
+
+RW90,1 & A2        --> * RW91:   All x,y:Any + =(+(y +(x y)) x)
+
+RW91,1 & A2,1      --> * P109:   All x,y,z:Any 
+                                      + =(z +(y +(x +(z +(y x)))))
+
+RW91,1 & P109,1    --> * P114:   All x,y,z:Any 
+                                      + =(z +(y +(+(x y) +(z x))))
+
+P114,1 & A2        --> * RW115:  All x,y,z:Any 
+                                      + =(z +(y +(x +(y +(z x)))))
+
+A9,1 & A7,1        --> * P125:   All x,y:Any + =(+(y x)
+                                                 +(*(y +(y x))
+                                                   *(x +(y x))))
+
+P125,1 & A8        --> * RW126:  All x,y:Any + =(+(y x)
+                                                 +(+(*(y y) *(y x))
+                                                   *(x +(y x))))
+
+RW126,1 & A9       --> * RW127:  All x,y:Any + =(+(y x)
+                                                 +(+(y *(y x))
+                                                   *(x +(y x))))
+
+RW127,1 & A8       --> * RW128:  All x,y:Any + =(+(y x)
+                                                 +(+(y *(y x))
+                                                   +(*(x y) *(x x))))
+
+RW128,1 & A9       --> * RW129:  All x,y:Any + =(+(y x)
+                                                 +(+(y *(y x))
+                                                   +(*(x y) x)))
+
+RW129,1 & A2       --> * RW130:  All x,y:Any + =(+(y x)
+                                                 +(y
+                                                   +(*(y x)
+                                                     +(*(x y) x))))
+
+RW130,1 & RW115,1  --> * P131:   All x,y:Any + =(*(y x)
+                                                 +(y
+                                                   +(+(*(x y) x)
+                                                     +(y x))))
+
+P131,1 & A2        --> * RW132:  All x,y:Any + =(*(y x)
+                                                 +(y
+                                                   +(*(x y)
+                                                     +(x +(y x)))))
+
+RW132,1 & RW91     --> * RW133:  All x,y:Any + =(*(y x)
+                                                 +(y +(*(x y) y)))
+
+RW133,1 & RW91     --> * RW134:  All x,y:Any + =(*(y x) *(x y))
+
+RW134,1 & T10,1    --> * R135:   []
+
+
+
+----------------------------------------------------------------------
+
+
+
+  q.e.d. 
+
+
+Time Used for Refutation: 379 seconds

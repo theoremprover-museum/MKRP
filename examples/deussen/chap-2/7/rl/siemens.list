@@ -1,0 +1,283 @@
+;;; -*- Package: MKRP; Base: 10. -*- 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 5-NOV-84                                                      *
+                    *         DATE : 27-NOV-84  09:11:04                                           *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+                                                                         
+*************************************************************************
+ EDIT:     AXIOME UND THEOREME EDITIERT AM:  27-NOV-84 08:56:28
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:    2.7.RL 
+                                                                        
+************************************************************************
+                                                                        
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : SORT MENGE,ELEMENT,VERKN,ABB :ANY
+           TYPE W(MENGE) :MENGE
+           TYPE BILD(ABB MENGE) :MENGE
+           TYPE EHG(MENGE VERKN) :MENGE
+           TYPE RESTRICTION(ABB MENGE) :MENGE
+           TYPE F:MENGE
+           TYPE INVERS(ABB) :ABB
+           * DEF. FREIES ERZEUGENDES SYSTEM *
+           ALL MAL1:VERKN  ALL E:MENGE  (
+                       GLEICH(EHG(E MAL1) F)
+                   AND( ALL H:MENGE  ALL PHINULL:ABB  ALL MAL2:VERKN  
+                               HG(H MAL2) AND ABBILDUNG(PHINULL E H)
+                          IMPL (EX PHI:ABB HOMOMORPH(PHI F H) AND GLEICH(RESTRICTION(PHI E) PHINULL))))
+             IMPL FREI(F MAL1)
+           ALL X:MENGE  ALL PSI:ABB  ALL MAL2:VERKN  
+                  HG(F MAL2) AND ISOMORPH(PSI F W(X))
+             IMPL ME(BILD(INVERS(PSI) X) F) AND GLEICH(EHG(BILD(INVERS(PSI) X) MAL2) F)
+           ALL H,X:MENGE  ALL PHINULL,PSI:ABB  ALL MAL,MALSTR:VERKN  
+                  HG(F MALSTR) AND ISOMORPH(PSI F W(X)) AND HG(H MAL) AND ABBILDUNG(PHINULL BILD(INVERS(PSI) X) H)
+             IMPL (EX PHI:ABB HOMOMORPH(PHI F H) AND GLEICH(RESTRICTION(PHI BILD(INVERS(PSI) X)) PHINULL))
+           ALL A,B:MENGE ALL PHI:ABB ISOMORPH(PHI A B) IMPL HOMOMORPH(PHI A B)
+           ALL A,B:MENGE ALL PHI:ABB HOMOMORPH(PHI A B) IMPL ABBILDUNG(PHI A B)
+ 
+THEOREMS : ALL MALSTR:VERKN ALL PSI:ABB ALL X:MENGE HG(F MALSTR) AND ISOMORPH(PSI F W(X)) IMPL FREI(F MALSTR)
+ 
+ 
+ 
+ 
+CONSTANTS : 
+=========== 
+ 
+| NAME        | SORT                  |            | ATTRIBUTES |
+-----------------------------------------------------------------
+| F           | MENGE                 |            |            |
+| C_1         | MENGE                 |            |            |
+| C_2         | ABB                   |            |            |
+| C_3         | VERKN                 |            |            |
+-----------------------------------------------------------------
+ 
+ 
+ 
+FUNCTIONS : 
+=========== 
+ 
+| NAME        | DOMAIN                | RANGE      | ATTRIBUTES |
+-----------------------------------------------------------------
+| W           | MENGE                 | MENGE      |            |
+| BILD        | ABB MENGE             | MENGE      |            |
+| EHG         | MENGE VERKN           | MENGE      |            |
+| RESTRICTION | ABB MENGE             | MENGE      |            |
+| INVERS      | ABB                   | ABB        |            |
+| F_1         | MENGE VERKN           | VERKN      |            |
+| F_2         | MENGE VERKN           | ABB        |            |
+| F_3         | MENGE VERKN           | MENGE      |            |
+| F_4         | MENGE ABB MENGE ABB   | ABB        |            |
+-----------------------------------------------------------------
+ 
+ 
+ 
+PREDICATES : 
+============ 
+ 
+| NAME        | DOMAIN                |            | ATTRIBUTES |
+-----------------------------------------------------------------
+| TRUE        |                       |            | DEFINED    |
+| FALSE       |                       |            | DEFINED    |
+| GLEICH      | ANY ANY               |            |            |
+| HG          | ANY ANY               |            |            |
+| ABBILDUNG   | ANY ANY ANY           |            |            |
+| HOMOMORPH   | ANY ANY ANY           |            |            |
+| FREI        | ANY ANY               |            |            |
+| ISOMORPH    | ANY ANY ANY           |            |            |
+| ME          | ANY ANY               |            |            |
+-----------------------------------------------------------------
+ 
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+  A1   : ALL X,Y:MENGE  Z:ABB  - ISOMORPH(Z Y X)  + HOMOMORPH(Z Y X)
+  A2   : ALL X,Y:MENGE  Z:ABB  - HOMOMORPH(Z Y X)  + ABBILDUNG(Z Y X)
+* A3   : ALL X:VERKN  Y:MENGE  - GLEICH(EHG(Y X) F)  + HG(F_3(Y X) F_1(Y X))  + FREI(F X)
+* A4   : ALL X:VERKN  Y:MENGE  - GLEICH(EHG(Y X) F)  + ABBILDUNG(F_2(Y X) Y F_3(Y X))  + FREI(F X)
+  A5   : ALL X:MENGE  Y:ABB  Z:VERKN  - HG(F Z)  - ISOMORPH(Y F W(X))  + ME(BILD(INVERS(Y) X) F)
+* A6   : ALL X:MENGE  Y:ABB  Z:VERKN  - HG(F Z)  - ISOMORPH(Y F W(X))  + GLEICH(EHG(BILD(INVERS(Y) X) Z) F)
+* A7   : ALL X:ABB  Y:VERKN  Z:MENGE  
+              - GLEICH(EHG(Z Y) F)  - HOMOMORPH(X F F_3(Z Y))  - GLEICH(RESTRICTION(X Z) F_2(Z Y))  + FREI(F Y)
+* A8   : ALL X,Y:ABB  Z,U:VERKN  V,W:MENGE  
+              - HG(F U)  - ISOMORPH(Y F W(W))  - HG(V Z)  - ABBILDUNG(X BILD(INVERS(Y) W) V)
+                + HOMOMORPH(F_4(W Y V X) F V)
+* A9   : ALL X,Y:ABB  Z,U:VERKN  V,W:MENGE  
+              - HG(F U)  - ISOMORPH(Y F W(W))  - HG(V Z)  - ABBILDUNG(X BILD(INVERS(Y) W) V)
+                + GLEICH(RESTRICTION(F_4(W Y V X) BILD(INVERS(Y) W)) X)
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+* T10  : + HG(F C_3)
+* T11  : + ISOMORPH(C_2 F W(C_1))
+* T12  : - FREI(F C_3)
+ 
+ 
+ 
+ 
+ 
+ 
+INITIAL OPERATIONS ON THEOREMS
+==============================
+ 
+ 
+A5,1 & T10,1   -->    R1 : ALL X:MENGE  Y:ABB  - ISOMORPH(Y F W(X))  + ME(BILD(INVERS(Y) X) F)
+ 
+A8,1 & T10,1   -->  * R2 : ALL X,Y:ABB  Z:VERKN  U,V:MENGE  
+                                - ISOMORPH(Y F W(V))  - HG(U Z)  - ABBILDUNG(X BILD(INVERS(Y) V) U)
+                                  + HOMOMORPH(F_4(V Y U X) F U)
+ 
+A9,1 & T10,1   -->  * R3 : ALL X,Y:ABB  Z:VERKN  U,V:MENGE  
+                                - ISOMORPH(Y F W(V))  - HG(U Z)  - ABBILDUNG(X BILD(INVERS(Y) V) U)
+                                  + GLEICH(RESTRICTION(F_4(V Y U X) BILD(INVERS(Y) V)) X)
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION
+ 
+INITIAL CLAUSES :      A1  : ALL X,Y:MENGE  Z:ABB  - ISOMORPH(Z Y X)  + HOMOMORPH(Z Y X)
+                       A2  : ALL X,Y:MENGE  Z:ABB  - HOMOMORPH(Z Y X)  + ABBILDUNG(Z Y X)
+                     * A3  : ALL X:VERKN  Y:MENGE  - GLEICH(EHG(Y X) F)  + HG(F_3(Y X) F_1(Y X))  + FREI(F X)
+                     * A4  : ALL X:VERKN  Y:MENGE  - GLEICH(EHG(Y X) F)  + ABBILDUNG(F_2(Y X) Y F_3(Y X))  + FREI(F X)
+                     * A6  : ALL X:MENGE  Y:ABB  Z:VERKN  
+                                  - HG(F Z)  - ISOMORPH(Y F W(X))  + GLEICH(EHG(BILD(INVERS(Y) X) Z) F)
+                     * A7  : ALL X:ABB  Y:VERKN  Z:MENGE  
+                                  - GLEICH(EHG(Z Y) F)  - HOMOMORPH(X F F_3(Z Y))  - GLEICH(RESTRICTION(X Z) F_2(Z Y))
+                                    + FREI(F Y)
+                     * R2  : ALL X,Y:ABB  Z:VERKN  U,V:MENGE  
+                                  - ISOMORPH(Y F W(V))  - HG(U Z)  - ABBILDUNG(X BILD(INVERS(Y) V) U)
+                                    + HOMOMORPH(F_4(V Y U X) F U)
+                     * R3  : ALL X,Y:ABB  Z:VERKN  U,V:MENGE  
+                                  - ISOMORPH(Y F W(V))  - HG(U Z)  - ABBILDUNG(X BILD(INVERS(Y) V) U)
+                                    + GLEICH(RESTRICTION(F_4(V Y U X) BILD(INVERS(Y) V)) X)
+                     * T10 : + HG(F C_3)
+                     * T11 : + ISOMORPH(C_2 F W(C_1))
+                     * T12 : - FREI(F C_3)
+ 
+A3,3 & T12,1    -->  * R4  : ALL X:MENGE  - GLEICH(EHG(X C_3) F)  + HG(F_3(X C_3) F_1(X C_3))
+ 
+A4,3 & T12,1    -->  * R5  : ALL X:MENGE  - GLEICH(EHG(X C_3) F)  + ABBILDUNG(F_2(X C_3) X F_3(X C_3))
+ 
+A7,4 & T12,1    -->  * R6  : ALL X:ABB  Y:MENGE  
+                                  - GLEICH(EHG(Y C_3) F)  - HOMOMORPH(X F F_3(Y C_3))
+                                    - GLEICH(RESTRICTION(X Y) F_2(Y C_3))
+ 
+R2,4 & R6,2     -->  * R7  : ALL X,Y:ABB  Z:VERKN  U,V:MENGE  
+                                  - ISOMORPH(Y F W(V))  - HG(F_3(U C_3) Z)  - ABBILDUNG(X BILD(INVERS(Y) V) F_3(U C_3))
+                                    - GLEICH(EHG(U C_3) F)  - GLEICH(RESTRICTION(F_4(V Y F_3(U C_3) X) U) F_2(U C_3))
+ 
+R7,2 & R4,2     -->  * R8  : ALL X,Y:ABB  Z,U:MENGE  
+                                  - ISOMORPH(Y F W(Z))  - ABBILDUNG(X BILD(INVERS(Y) Z) F_3(U C_3))
+                                    - GLEICH(EHG(U C_3) F)  - GLEICH(RESTRICTION(F_4(Z Y F_3(U C_3) X) U) F_2(U C_3))
+                                    - GLEICH(EHG(U C_3) F)
+ 
+R8 3=5          -->  * D9  : ALL X,Y:ABB  Z,U:MENGE  
+                                  - ISOMORPH(Y F W(Z))  - ABBILDUNG(X BILD(INVERS(Y) Z) F_3(U C_3))
+                                    - GLEICH(EHG(U C_3) F)  - GLEICH(RESTRICTION(F_4(Z Y F_3(U C_3) X) U) F_2(U C_3))
+ 
+T11,1 & D9,1    -->  * R10 : ALL X:MENGE  Y:ABB  
+                                  - ABBILDUNG(Y BILD(INVERS(C_2) C_1) F_3(X C_3))  - GLEICH(EHG(X C_3) F)
+                                    - GLEICH(RESTRICTION(F_4(C_1 C_2 F_3(X C_3) Y) X) F_2(X C_3))
+ 
+R3,4 & R10,3    -->  * R11 : ALL X:VERKN  - ISOMORPH(C_2 F W(C_1))  - HG(F_3(BILD(INVERS(C_2) C_1) C_3) X)
+                                          - ABBILDUNG(F_2(BILD(INVERS(C_2) C_1) C_3)
+                                                      BILD(INVERS(C_2) C_1)
+                                                      F_3(BILD(INVERS(C_2) C_1) C_3))
+                                          - ABBILDUNG(F_2(BILD(INVERS(C_2) C_1) C_3)
+                                                      BILD(INVERS(C_2) C_1)
+                                                      F_3(BILD(INVERS(C_2) C_1) C_3))
+                                            - GLEICH(EHG(BILD(INVERS(C_2) C_1) C_3) F)
+ 
+R11 4=3         -->  * D12 : ALL X:VERKN  - ISOMORPH(C_2 F W(C_1))  - HG(F_3(BILD(INVERS(C_2) C_1) C_3) X)
+                                          - ABBILDUNG(F_2(BILD(INVERS(C_2) C_1) C_3)
+                                                      BILD(INVERS(C_2) C_1)
+                                                      F_3(BILD(INVERS(C_2) C_1) C_3))
+                                            - GLEICH(EHG(BILD(INVERS(C_2) C_1) C_3) F)
+ 
+D12,4 & A6,3    -->  * R13 : ALL X:VERKN  - ISOMORPH(C_2 F W(C_1))  - HG(F_3(BILD(INVERS(C_2) C_1) C_3) X)
+                                          - ABBILDUNG(F_2(BILD(INVERS(C_2) C_1) C_3)
+                                                      BILD(INVERS(C_2) C_1)
+                                                      F_3(BILD(INVERS(C_2) C_1) C_3))
+                                            - HG(F C_3)  - ISOMORPH(C_2 F W(C_1))
+ 
+R13 1=5         -->  * D14 : ALL X:VERKN  - ISOMORPH(C_2 F W(C_1))  - HG(F_3(BILD(INVERS(C_2) C_1) C_3) X)
+                                          - ABBILDUNG(F_2(BILD(INVERS(C_2) C_1) C_3)
+                                                      BILD(INVERS(C_2) C_1)
+                                                      F_3(BILD(INVERS(C_2) C_1) C_3))
+                                            - HG(F C_3)
+ 
+D14,4 & T10,1   -->  * R15 : ALL X:VERKN  - ISOMORPH(C_2 F W(C_1))  - HG(F_3(BILD(INVERS(C_2) C_1) C_3) X)
+                                          - ABBILDUNG(F_2(BILD(INVERS(C_2) C_1) C_3)
+                                                      BILD(INVERS(C_2) C_1)
+                                                      F_3(BILD(INVERS(C_2) C_1) C_3))
+ 
+ 
+R15,1 & T11,1   -->  * R16 : ALL X:VERKN  - HG(F_3(BILD(INVERS(C_2) C_1) C_3) X)
+                                          - ABBILDUNG(F_2(BILD(INVERS(C_2) C_1) C_3)
+                                                      BILD(INVERS(C_2) C_1)
+                                                      F_3(BILD(INVERS(C_2) C_1) C_3))
+ 
+ 
+R4,2 & R16,1    -->  * R17 : - GLEICH(EHG(BILD(INVERS(C_2) C_1) C_3) F)
+                             - ABBILDUNG(F_2(BILD(INVERS(C_2) C_1) C_3)
+                                         BILD(INVERS(C_2) C_1)
+                                         F_3(BILD(INVERS(C_2) C_1) C_3))
+ 
+ 
+R17,2 & R5,2    -->  * R18 : - GLEICH(EHG(BILD(INVERS(C_2) C_1) C_3) F)  - GLEICH(EHG(BILD(INVERS(C_2) C_1) C_3) F)
+ 
+R18 1=2         -->  * D19 : - GLEICH(EHG(BILD(INVERS(C_2) C_1) C_3) F)
+ 
+D19,1 & A6,3    -->  * R20 : - HG(F C_3)  - ISOMORPH(C_2 F W(C_1))
+ 
+R20,1 & T10,1   -->  * R21 : - ISOMORPH(C_2 F W(C_1))
+ 
+R21,1 & T11,1   -->  * R22 :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+STOP
+ 

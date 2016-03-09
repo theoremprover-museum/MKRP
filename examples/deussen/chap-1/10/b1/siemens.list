@@ -1,0 +1,114 @@
+ 
+ 
+ 
+             ****************************************************
+             *                                                  *
+             *   ATP-SYSTEM :  M K R P , UNI KARLSRUHE          *
+             *                                                  *
+             *      VERSION : 3-FEB-84                          *
+             *         DATE : 13-JUL-84  10:05:44               *
+             *                                                  *
+             ****************************************************
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : SORT ELEM,MENGE,VERKN:ANY
+           TYPE APPLY (VERKN ELEM ELEM) :ELEM
+           TYPE INVERS (VERKN ELEM) :ELEM
+           ALL PHI:VERKN  ALL U,F:MENGE  ALL E:ELEM  
+             G (F PHI E) AND ME (U F) AND EL (E U) IMPL EINS (E PHI U)
+           ALL U,V:MENGE ALL X:ELEM ME (U V) AND EL (X U) IMPL EL (X V)
+           ALL PHI:VERKN  ALL F:MENGE  ALL X,E:ELEM  
+             G (F PHI E) AND EL (X F) IMPL APPLY (PHI INVERS (PHI X) X) = E
+ 
+THEOREMS : ALL PHI:VERKN  ALL U,F:MENGE  ALL Z,E:ELEM  
+               G (F PHI E) AND ME (U F)
+               IMPL  
+                      ALL X,Y:ELEM  
+                          EL (X U) AND EL (Y U)
+                          IMPL  
+                          EL (APPLY (PHI INVERS (PHI Y) X) U)
+                     AND  
+                     EL (Z U)
+                  IMPL  
+                  EINS (E PHI U)
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+  A1   : ALL X,Y:MENGE  Z:VERKN  U:ELEM  
+              -G(X Z U) -ME(Y X) -EL(U Y) +EINS(U Z Y) 
+  R.:=:: ALL X:ANY  +:=:(X X)
+  A2   : ALL X,Y:MENGE  Z:ELEM  -ME(X Y) -EL(Z X) +EL(Z Y)
+  A3   : ALL X:MENGE  Y:VERKN  Z,U:ELEM  
+              -G(X Y Z) -EL(U X) +=(APPLY(Y INVERS(Y U) U) Z) 
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+  T4   : +G(C_4 C_1 C_3)
+  T5   : +ME(C_2 C_4)
+  T6   : ALL X,Y:ELEM  -EL(X C_2) -EL(Y C_2) 
+                       +EL(APPLY(C_1 INVERS(C_1 Y) X) C_2) 
+  T7   : +EL(C_5 C_2)
+  T8   : -EINS(C_3 C_1 C_2)
+ 
+ 
+ 
+ 
+--------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION ( FAILURE : COLLAPSED )
+ 
+INITIAL CLAUSES :      R.:=: : ALL X:ANY  +:=:(X X)
+                       A1    : ALL X,Y:MENGE  Z:VERKN  U:ELEM  
+                                    -G(X Z U) -ME(Y X) -EL(U Y) +EINS(U Z Y) 
+                       A2    : ALL X,Y:MENGE  Z:ELEM  
+                                    -ME(X Y) -EL(Z X) +EL(Z Y) 
+                       A3    : ALL X:MENGE  Y:VERKN  Z,U:ELEM  
+                                    -G(X Y Z) -EL(U X) 
+                                    +=(APPLY(Y INVERS(Y U) U) Z) 
+                       T4    : +G(C_4 C_1 C_3)
+                       T5    : +ME(C_2 C_4)
+                       T6    : ALL X,Y:ELEM  
+                                    -EL(X C_2) -EL(Y C_2) 
+                                    +EL(APPLY(C_1 INVERS(C_1 Y) X) C_2) 
+                       T7    : +EL(C_5 C_2)
+                       T8    : -EINS(C_3 C_1 C_2)
+ 
+A1,4  +  T8,1   -->    R1    : ALL X:MENGE  
+                                    -G(X C_1 C_3) -ME(C_2 X) -EL(C_3 C_2) 
+T4,1  +  R1,1   -->    R2    : -ME(C_2 C_4) -EL(C_3 C_2)
+T5,1  +  R2,1   -->    R3    : -EL(C_3 C_2)
+T5,1  +  A2,1   -->    R4    : ALL X:ELEM  -EL(X C_2) +EL(X C_4)
+ 
+ 
+ 
+--------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+THE THEOREM(S) COULD NOT BE PROVED.
+ 

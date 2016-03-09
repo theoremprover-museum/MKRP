@@ -1,0 +1,311 @@
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{WOLB84}
+
+\bibitem[AO83]{AnOh83}
+Grigorios Antoniou and Hans~J\"urgen Ohlbach.
+\newblock Terminator.
+\newblock In Alan Bundy, editor, {\em Proceedings \ijcai{8}}, pages 916--919,
+  Karlsruhe, Germany, August 1983. William Kaufmann, Inc., 95 First Street, Los
+  Altos, California 94022, USA.
+
+\bibitem[BBB{\etalchar{+}}84]{Raph84}
+Susanne Biundo, Karl~Hans Bl\"asius, Hans-J\"urgen B\"urckert, Norbert
+  Eisinger, Alexander Herold, Thomas K\"aufl, Christoph Lingenfelder,
+  Hans~J\"urgen Ohlbach, Manfred S{chmidt-Schau\ss}, J\"org~H. Siekmann, and
+  Christoph Walther.
+\newblock The {M}arkgraf {K}arl {R}efutation {P}rocedure.
+\newblock SEKI-MEMO MK-84-01, Fachbereich Informatik, Universit\"at
+  Kai\-sers\-lau\-tern, \unikla, Institut f\"ur Informatik I, Universit\"at
+  Karlsruhe, Postfach 6380, 7500 Karlsruhe 1, Germany, 1984.
+
+\bibitem[BFKL88]{BeFrKlLi88}
+Michael Beetz, Hartmut Freitag, J\"urgen Klug, and Christoph Lingenfelde{r
+  (Ed.)}.
+\newblock The {MKRP} {U}ser {M}anual.
+\newblock SEKI-Working Paper SWP-88-01, \sekii, \sekia, 1988.
+
+\bibitem[BG90]{BaGa90}
+Leo Bachmair and Harald Ganzinger.
+\newblock On restrictions of ordered paramodulation with simplification.
+\newblock In Mark~E. Stickel, editor, {\em Proceedings \cade{10}, \lnai{449}},
+  pages 427--441, Kai\-sers\-lau\-tern, Germany, July 1990. \sv.
+
+\bibitem[Bib81]{Bibel81a}
+Wolfgang Bibel.
+\newblock On the completeness of connection graph resolution.
+\newblock In J\"org~H. Siekmann, editor, {\em Proceedings \gwai{5}, ifb{47}},
+  pages 246--247. \sv, 1981.
+
+\bibitem[Bl{\"a}86]{Blaesius86}
+Karl~Hans Bl{\"a}sius.
+\newblock {\em Equality Reasoning Based on Graphs}.
+\newblock PhD thesis, \unikli, \unikla, 1986.
+\newblock Also published as SEKI-Report SR-87-01, \sekii, \sekia.
+
+\bibitem[Bru75]{Bruynooghe75}
+M.~Bruynooghe.
+\newblock The inheritance of links in a connection graph.
+\newblock Report CW2, Applied Mathematics and Programming Division, Katholieke
+  Universiteit Leuven, 1975.
+
+\bibitem[Buc85]{Buchberger85}
+Bruno Buchberger.
+\newblock History and basic features of the critical-pair/completion approach.
+\newblock {\em Dijon, France}, 1985.
+
+\bibitem[Der87]{Dershowitz87}
+Nachum Dershowitz.
+\newblock Rewriting systems.
+\newblock Draft, \uii, \uia, 1987.
+
+\bibitem[Der91]{Dershowitz91}
+Nachum Dershowitz.
+\newblock Ordering-based strategies for {H}orn clauses.
+\newblock In John Mylopoulos and Ray Reiter, editors, {\em Proceedings
+  \ijcai{12}}, pages 118--124, Sydney, Australia, 1991. Morgan Kaufmann
+  Publishers, Inc., 2929 Campus Drive San Mateo, California 94403, USA.
+
+\bibitem[Deu71]{Deussen71}
+Peter Deussen.
+\newblock {\em Halbgruppen und Automaten}, volume~99 of {\em Heidelberger
+  Taschenb\"ucher, Sammlung Informatik}.
+\newblock \sv, 1971.
+
+\bibitem[Eis88]{Eisinger89}
+Norbert Eisinger.
+\newblock {\em Completeness, Confluence, and Related Properties of Clause Graph
+  Resolution}.
+\newblock PhD thesis, Universit\"at Kai\-sers\-lau\-tern, \unikla, 1988.
+\newblock Also published as SEKI-Report SR-88-07, \sekii, \sekia, 1988.
+
+\bibitem[EOP89]{EiOhPr89}
+Norbert Eisinger, Hans~J\"urgen Ohlbach, and Axel Pr\"acklein.
+\newblock Elimination of redundancies in clause sets and clause graphs.
+\newblock SEKI-Report SR-89-10, \sekii, \sekia, October 1989.
+\newblock Also published as: Reduction Rules for Resolution-Based Systems, in
+  Artificial Intelligence 50 (1991), pages 141--181, Elsevier Science
+  Publishers B.V.
+
+\bibitem[Fag83]{Fages83}
+F.~Fages.
+\newblock Formes canoniques dans les alg\`ebres bool\'eennes et application \`a
+  la d\'emonstration automatique en logique de premier ordre.
+\newblock {\em Th\`ese de 3\`eme Cycle, Paris}, 1983.
+
+\bibitem[Fay79]{Fay79}
+Michael~J. Fay.
+\newblock First order unification in an equational theory.
+\newblock In William~H. Joyner, editor, {\em Proceedings 4$^{th}$ Workshop on
+  Automated Deduction}, pages 161--167, Austin, USA, February 1979.
+
+\bibitem[Fri84]{Fribourg84}
+Laurent Fribourg.
+\newblock A narrowing procedure for theories with constructors.
+\newblock In Robert~E. Shostak, editor, {\em Proceedings \cade{7}, \lncs{170}},
+  pages 259--301, Napa, California, USA, May 1984. \sv.
+
+\bibitem[Fri85a]{Fribourg85b}
+Laurent Fribourg.
+\newblock Handling function definitions through innermost superposition and
+  rewriting.
+\newblock In Jean-Pierre Jouannaud, editor, {\em Proceedings \rtalit{1$^{st}$},
+  \lncs{202}}, pages 325--344, Dijon, France, May 1985. Centre de Recherche en
+  Informatique de Nancy, \sv.
+
+\bibitem[Fri85b]{Fribourg85a}
+Laurent Fribourg.
+\newblock {SLOG}: A logic programming language interpreter based on clausal
+  superposition and rewriting.
+\newblock In {\em \symlp{1985}}, pages 172--184, Boston, Massachusetts, USA,
+  1985. IEEE Computation Society Press, 1730 Massachusetts Avenue, Washington,
+  D.C. 20036-1903, USA.
+
+\bibitem[HO80]{HuOp80}
+G{\'e}rard Huet and Derek~C. Oppen.
+\newblock Equations and rewrite rules: a survey.
+\newblock Technical Report CSL-III, SRI International, \sria, 1980.
+
+\bibitem[HR86]{HsRu86}
+Jieh Hsiang and Micha\"el Rusinowitch.
+\newblock A new method for establishing refutational completeness in theorem
+  proving.
+\newblock In J\"org~H. Siekmann, editor, {\em Proceedings \cade{8},
+  \lncs{230}}, pages 141--152, Oxford, England, 1986. \sv.
+
+\bibitem[Hul80]{Hullot80}
+Jean-Marie Hullot.
+\newblock Canonical forms and unification.
+\newblock In Wolfgang Bibel and Robert Kowalski, editors, {\em Proceedings
+  \cade{5}, \lncs{87}}, pages 318--334, Les Arcs, France, July 1980. \sv.
+
+\bibitem[JKK83]{JoKiKi83}
+Jean-Pierre Jouannaud, Claude Kirchner, and H{\'e}l{\`e}ne Kirchner.
+\newblock Incremental construction of unification algorithms in equational
+  theories.
+\newblock In Josep D\'{\i}az, editor, {\em Proceedings \icalp{10}, \lncs{154}},
+  pages 361--373, Barcelona, Spain, July 1983. \sv.
+
+\bibitem[JL87]{JoLe87}
+Jean-Pierre Jouannaud and Pierre Lescanne.
+\newblock Rewriting systems.
+\newblock {\em Technology and Science of Informatics}, 6(3):181--199, 1987.
+
+\bibitem[KB70]{KnBe70}
+Donald~E. Knuth and Peter~B. Bendix.
+\newblock Simple word problems in universal algebras.
+\newblock In J.~Leech, editor, {\em Computational Problems in Abstract
+  Algebra}, pages 263--297. Pergamon Press, 1970.
+
+\bibitem[Kir85]{Kirchner85}
+Claude Kirchner.
+\newblock M\'ethodes et outils de conception systematique d'al\-go\-rith\-mes
+  d'unification dans les th\'eories equationelles.
+\newblock Th\`ese de Doctorat d'\'Etat en Math\'ematique, Nancy, France, 1985.
+
+\bibitem[Kow75]{Kowalski75}
+Robert Kowalski.
+\newblock A proof procedure using connection graphs.
+\newblock {\em {\jacm}}, 22(4):572--595, 1975.
+
+\bibitem[KP92]{KePr92}
+Manfred Kerber and Axel Pr\"acklein.
+\newblock Tactics for the improvement of problem formulation in
+  resolution-based theorem proving.
+\newblock SEKI-Report SR-92-09 (SFB), \sekiia, \sekiaa, 1992.
+\newblock Talk held at the Second International Symposium on Artificial
+  Intelligence and Mathematics in Fort Lauderdale, Florida, USA, 1992.
+
+\bibitem[Kri90]{Krischer90}
+Stefan Krischer.
+\newblock {V}ergleich und {O}ptimierung von {N}arrowing-{S}trategien.
+\newblock Diplomarbeit, Universit\"at Karlsruhe, 7500 Karlsruhe, Germany,
+  M\"arz 1990.
+
+\bibitem[Lin90]{Lingenfelder90}
+Christoph Lingenfelder.
+\newblock Transformation and structuring of computer generated proofs.
+\newblock SEKI-Report SR-90-26 (SFB), \sekii, \sekia, 1990.
+
+\bibitem[Lov78]{Loveland78}
+Donald~W. Loveland.
+\newblock {\em Automated Theorem Proving: A Logical Basis}, volume~6 of {\em
+  Fundamental Studies in Computer Science}.
+\newblock North Holland, Amsterdam, The Netherlands, 1978.
+
+\bibitem[MMR86]{MaMoRo86}
+Alberto Martelli, Corrado Moiso, and G.~F. Rossi.
+\newblock Lazy unification algorithms for canonical rewrite systems.
+\newblock Report, Dipartimento di Informatica -- CSELT, C. so Svizera 185,
+  10149 Torino, Italia -- Via Reiss Romoli 274, 10148 Torino, Italia, 1986.
+
+\bibitem[Ohl87]{Ohlbach87}
+Hans~J\"urgen Ohlbach.
+\newblock Link inheritance in abstract clause graphs.
+\newblock {\em \jar}, 3(1):1--34, 1987.
+
+\bibitem[OS89]{OhSi89}
+Hans~J\"urgen Ohlbach and J\"org~H. Siekmann.
+\newblock The {M}arkgraf {K}arl {R}efutation {P}rocedure.
+\newblock SEKI-Report SR-89-19, \sekii, \sekia, 1989.
+
+\bibitem[Pet83]{Peterson83}
+Gerald~E. Peterson.
+\newblock A technique for establishing completeness results in theorem proving
+  with equality.
+\newblock {\em SIAM (Society for Industrial and Applied Mathematics) Journal of
+  Computing}, 12(1):82--100, February 1983.
+
+\bibitem[Pr{\"a}85]{Praecklein85}
+Axel Pr{\"a}cklein.
+\newblock Ein {R}eduktionsmodul f\"ur einen automa\-ti\-schen {B}eweiser.
+\newblock Diplomarbeit, Institut f\"ur Informatik I, Universit\"at Karlsruhe,
+  Postfach 6380, 7500 Karlsruhe 1, Germany, M\"arz 1985.
+
+\bibitem[Pr{\"a}92]{Praecklein92}
+Axel Pr{\"a}cklein.
+\newblock Rewriting, narrowing, compilation, and difference reduction
+  heuristics for equality reasoning in resolution theorem proving.
+\newblock SEKI-Report to appear, \sekii, \sekia, 1992.
+
+\bibitem[Ric91]{Richts91}
+J\"orn Richts.
+\newblock Implementierung verschiedener {N}ar\-row-{S}tra\-te\-gien f\"ur einen
+  automatischen {B}eweiser.
+\newblock Projektarbeit, \unikll, July 1991.
+
+\bibitem[Rus87]{Rusinowitch87}
+Micha\"el Rusinowitch.
+\newblock D\'emonstration automatique par des t{\'e}ch\-niques de
+  r\'e\-\'ecri\-ture.
+\newblock Th\`ese de Doctorat d'\'Etat en Math\'ematique, Nancy, France, 1987.
+
+\bibitem[SL91]{SnLy91}
+Wayne Snyder and Christopher Lynch.
+\newblock Basic paramodulation.
+\newblock Report, \bui, \bua, 1991.
+
+\bibitem[Smo82]{Smolka82}
+Gert Smolka.
+\newblock Completeness and confluence properties of {K}owalski's clause graph
+  calculus.
+\newblock Report 31/82, Universit\"at Karlsruhe, Institut f\"ur Informatik I,
+  Universit\"at Karlsruhe, Postfach 6380, 7500 Karlsruhe, Germany, 1982.
+
+\bibitem[Sti85]{Stickel85}
+Mark~E. Stickel.
+\newblock Automated deduction by theory resolution.
+\newblock {\em \jar}, 1(4):333--357, 1985.
+
+\bibitem[SW80]{SiWr80}
+J\"org~H. Siekmann and Graham Wrightson.
+\newblock Paramodulated connection graphs.
+\newblock {\em \acta}, 13:67--86, 1980.
+
+\bibitem[Wal82]{Walther82}
+Christoph Walther.
+\newblock {The} {Markgraf} {Karl} {Refutation} {Procedure} \quad {PLL} -- {A}
+  first-order language for an automated theorem prover.
+\newblock Interner Bericht 35/82, Institut f\"ur Informatik I, Universit\"at
+  Karlsruhe, Postfach 6380, 7500 Karlsruhe, Germany, 1982.
+
+\bibitem[Wal84]{Walther84}
+Christoph Walther.
+\newblock {E}in mehrsortiger {R}esolutionskalk{\"u}l mit {P}aramodulation.
+\newblock Interner Bericht 23/84, Institut f\"ur Informatik I, Universit\"at
+  Karlsruhe, Postfach 6380, 7500 Karlsruhe, Germany, 1984.
+
+\bibitem[Wei91]{Weidenbach91}
+Christoph Weidenbach.
+\newblock A sorted logic using dynamic sorts.
+\newblock MPI-Report MPI-I-91-218, \mpiii, \mpiia, December 1991.
+
+\bibitem[Wei93]{Weidenbach93}
+Christoph Weidenbach.
+\newblock A superposition calculus with dynamic sort structures and partial
+  functions.
+\newblock MPI-Report to appear, \mpiii, \mpiia, 1993.
+
+\bibitem[WOLB84]{WoOvLuBo84}
+Larry Wos, Ross~A. Overbeek, Ewing~L. Lusk, and Jim Boyle.
+\newblock {\em Automated Reasoning Introduction and Applications}.
+\newblock Prentice Hall, Englewood Cliffs, New Jersey, USA, 1984.
+
+\bibitem[WRCS67]{WoRoCaSh67}
+Larry Wos, George~A. Robinson, Daniel~F. Carson, and Leon Shalla.
+\newblock The concept of demodulation in theorem prooving.
+\newblock {\em {\jacmo}}, 14(4):698--709, October 1967.
+
+\bibitem[YS86]{YoSu86}
+Jia-Huai You and P.~A. Subramanyou.
+\newblock {E}-unification algorithms for a class of confluent term rewriting
+  systems.
+\newblock In Laurent Kott, editor, {\em Proceedings \icalp{13}, \lncs{226}},
+  pages 454--463, Rennes, France, July 1986. \sv.
+
+\bibitem[ZK88]{ZhKa88}
+Hantao Zhang and Deepak Kapur.
+\newblock First order theorem proving using conditional rewrite rules.
+\newblock In Ewing~L. Lusk and Ross~A. Overbeek, editors, {\em Proceedings
+  \cade{9}, \lncs{310}}, pages 1--20, Argonne, Illinois, USA, 1988. \sv.
+
+\end{thebibliography}

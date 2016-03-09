@@ -1,0 +1,247 @@
+ 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 4-APR-85                                                      *
+                    *         DATE : 16-MAY-85  17:07:22                                           *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   16-MAY-85 16:57:45
+*************************************************************************
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : * ***************************************************************************
+           * DEFINITIONEN DER MENGENLEHRE **********************************************
+           SORT SET:ANY
+           SORT ELEMENT:SET
+           TYPE EL(ELEMENT SET)
+           * DEFINITION 1.1: TEILMENGE
+           TYPE SUBSET(SET SET)
+           ALL X,Y:SET SUBSET(X Y) EQV(ALL A:ELEMENT EL(A X) IMPL EL(A Y))
+           * DEFINITION 1.3: KARTESISCHES PRODUKT
+           TYPE CARTES(SET SET) :SET
+           TYPE PAIR(ELEMENT ELEMENT) :ELEMENT
+           ALL X,Y:SET ALL A:ELEMENT EL(A CARTES(X Y)) EQV(EX B,C:ELEMENT A = PAIR(B C) AND EL(B X) AND EL(C Y))
+           ALL A,B,C,D:ELEMENT PAIR(A B) = PAIR(C D) EQV A = C AND B = D
+           * SOWEIT DIE DEFINITIONEN DER MENGENLEHRE ***********************************
+           * ***************************************************************************
+           * DEFINTIONEN VON RELATIONEN AUF EINER FESTEN MENGE S ***********************
+           SORT REL:SET
+           TYPE S:SET
+           SORT EL.OF.S:ELEMENT
+           ALL A:EL.OF.S EL(A S)
+           * DEFINITION 2.1: RELATION *************************************************
+           ALL RHO:REL SUBSET(RHO CARTES(S S))
+           * DEFINITION 2.2: KOMPOSITION ZWEIER RELATIONEN ****************************
+           TYPE COMP(REL REL) :SET
+           ALL RHO,SIGMA:REL  ALL A:ELEMENT  
+             EL(A COMP(RHO SIGMA)) EQV(EX B,C,D:EL.OF.S A = PAIR(B D) AND EL(PAIR(B C) RHO) AND EL(PAIR(C D) SIGMA))
+           * NACHDEM DAS FOLGENDE LEMMA GEZEIGT IST: *
+           * ALL RHO,SIGMA:REL SUBSET(COMP(RHO SIGMA) CARTES(S S)) *
+           * WIRD ZEILE 1 ERSETZT DURCH:
+           * TYPE COMP(REL REL) :REL
+           * DEFINITION 2.3: IDENTISCHE RELATION
+           TYPE IDENTITY:SET
+           ALL A:ELEMENT(EL(A IDENTITY)) EQV(EX B:EL.OF.S A = PAIR(B B))
+           * NACHDEM GEZEIGT, DASS IDENTITY RELATION IST ERSETZE ERSTE ZEILE DURCH:
+           * TYPE IDENTITY:REL
+           * DEFINITION 2.4: KONVERSE RELATION
+           TYPE CONVERSE(REL) :SET
+           ALL RHO:REL ALL A:ELEMENT EL(A CONVERSE(RHO)) EQV(EX B,C:EL.OF.S A = PAIR(B C) AND EL(PAIR(C B) RHO))
+           * NACHDEM GEZEIGT, DASS CONVERSE WIEDER RELATION LIEFERT ERSETZE ERSTE ZEILE DURCH:
+           * TYPE CONVERSE(REL) :REL
+ 
+THEOREMS : * ZU DEFINITION 2.400000
+           ALL RHO:REL SUBSET(CONVERSE(RHO) CARTES(S S))
+ 
+ 
+ 
+ 
+CONSTANTS : 
+=========== 
+ 
+| NAME     | SORT              |            | ATTRIBUTES                                                           |
+--------------------------------------------------------------------------------------------------------------------
+| S        | SET               |            |                                                                      |
+| IDENTITY | SET               |            |                                                                      |
+| C_1      | REL               |            |                                                                      |
+| C_2      | ELEMENT           |            |                                                                      |
+--------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+FUNCTIONS : 
+=========== 
+ 
+| NAME     | DOMAIN            | RANGE      | ATTRIBUTES                                                           |
+--------------------------------------------------------------------------------------------------------------------
+| CARTES   | SET SET           | SET        |                                                                      |
+| PAIR     | ELEMENT ELEMENT   | ELEMENT    |                                                                      |
+| COMP     | REL REL           | SET        |                                                                      |
+| CONVERSE | REL               | SET        |                                                                      |
+| F_1      | SET ELEMENT SET   | ELEMENT    |                                                                      |
+| F_2      | SET ELEMENT SET   | ELEMENT    |                                                                      |
+| F_3      | REL ELEMENT REL   | EL.OF.S    |                                                                      |
+| F_4      | REL ELEMENT REL   | EL.OF.S    |                                                                      |
+| F_5      | REL ELEMENT REL   | EL.OF.S    |                                                                      |
+| F_6      | ELEMENT           | EL.OF.S    |                                                                      |
+| F_7      | REL ELEMENT       | EL.OF.S    |                                                                      |
+| F_8      | REL ELEMENT       | EL.OF.S    |                                                                      |
+--------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+PREDICATES : 
+============ 
+ 
+| NAME     | DOMAIN            |            | ATTRIBUTES                                                           |
+--------------------------------------------------------------------------------------------------------------------
+| TRUE     |                   |            | DEFINED                                                              |
+| FALSE    |                   |            | DEFINED                                                              |
+| EL       | ELEMENT SET       |            |                                                                      |
+| SUBSET   | SET SET           |            |                                                                      |
+| =        | ANY ANY           |            | DEFINED SYMMETRIC REFLEXIVE SYMMETRIC REFLEXIVE SYMMETRIC REFLEXIVE  |
+--------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+  A1   : ALL X:ANY  + =(X X)
+* A2   : ALL X:EL.OF.S  + EL(X S)
+  A3   : ALL X,Y:SET  Z:ELEMENT  - EL(Z CARTES(Y X))  + =(Z PAIR(F_1(X Z Y) F_2(X Z Y)))
+  A4   : ALL X,Y:SET  Z:ELEMENT  - EL(Z CARTES(Y X))  + EL(F_1(X Z Y) Y)
+  A5   : ALL X,Y:SET  Z:ELEMENT  - EL(Z CARTES(Y X))  + EL(F_2(X Z Y) X)
+  A6   : ALL X,Y,Z,U:ELEMENT  - =(PAIR(U Z) PAIR(Y X))  + =(U Y)
+  A7   : ALL X,Y,Z,U:ELEMENT  - =(PAIR(U Z) PAIR(Y X))  + =(Z X)
+  A8   : ALL X:REL  Y:ELEMENT  - EL(Y X)  + EL(Y CARTES(S S))
+  A9   : ALL X,Y:REL  Z:ELEMENT  - EL(Z COMP(Y X))  + =(Z PAIR(F_4(X Z Y) F_5(X Z Y)))
+  A10  : ALL X,Y:REL  Z:ELEMENT  - EL(Z COMP(Y X))  + EL(PAIR(F_4(X Z Y) F_3(X Z Y)) Y)
+  A11  : ALL X,Y:REL  Z:ELEMENT  - EL(Z COMP(Y X))  + EL(PAIR(F_3(X Z Y) F_5(X Z Y)) X)
+  A12  : ALL X:EL.OF.S  Y:ELEMENT  + EL(Y IDENTITY)  - =(Y PAIR(X X))
+  A13  : ALL X:ELEMENT  - EL(X IDENTITY)  + =(X PAIR(F_6(X) F_6(X)))
+* A14  : ALL X:REL  Y:ELEMENT  - EL(Y CONVERSE(X))  + =(Y PAIR(F_7(X Y) F_8(X Y)))
+  A15  : ALL X:REL  Y:ELEMENT  - EL(Y CONVERSE(X))  + EL(PAIR(F_8(X Y) F_7(X Y)) X)
+  A16  : ALL X,Y,Z,U:ELEMENT  + =(PAIR(U Z) PAIR(Y X))  - =(U Y)  - =(Z X)
+  A17  : ALL X,Y:EL.OF.S  Z:REL  U:ELEMENT  + EL(U CONVERSE(Z))  - =(U PAIR(Y X))  - EL(PAIR(X Y) Z)
+* A18  : ALL X,Y,Z:ELEMENT  U,V:SET  + EL(Z CARTES(V U))  - =(Z PAIR(Y X))  - EL(Y V)  - EL(X U)
+  A19  : ALL X,Y,Z:EL.OF.S  U,V:REL  W:ELEMENT  
+              + EL(W COMP(V U))  - =(W PAIR(Z Y))  - EL(PAIR(Z X) V)  - EL(PAIR(X Y) U)
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+* T20  : + EL(C_2 CONVERSE(C_1))
+* T21  : - EL(C_2 CARTES(S S))
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION
+ 
+INITIAL CLAUSES :      A1  : ALL X:ANY  + =(X X)
+                     * A2  : ALL X:EL.OF.S  + EL(X S)
+                       A3  : ALL X,Y:SET  Z:ELEMENT  - EL(Z CARTES(Y X))  + =(Z PAIR(F_1(X Z Y) F_2(X Z Y)))
+                       A4  : ALL X,Y:SET  Z:ELEMENT  - EL(Z CARTES(Y X))  + EL(F_1(X Z Y) Y)
+                       A5  : ALL X,Y:SET  Z:ELEMENT  - EL(Z CARTES(Y X))  + EL(F_2(X Z Y) X)
+                       A6  : ALL X,Y,Z,U:ELEMENT  - =(PAIR(U Z) PAIR(Y X))  + =(U Y)
+                       A7  : ALL X,Y,Z,U:ELEMENT  - =(PAIR(U Z) PAIR(Y X))  + =(Z X)
+                       A8  : ALL X:REL  Y:ELEMENT  - EL(Y X)  + EL(Y CARTES(S S))
+                       A9  : ALL X,Y:REL  Z:ELEMENT  - EL(Z COMP(Y X))  + =(Z PAIR(F_4(X Z Y) F_5(X Z Y)))
+                       A10 : ALL X,Y:REL  Z:ELEMENT  - EL(Z COMP(Y X))  + EL(PAIR(F_4(X Z Y) F_3(X Z Y)) Y)
+                       A11 : ALL X,Y:REL  Z:ELEMENT  - EL(Z COMP(Y X))  + EL(PAIR(F_3(X Z Y) F_5(X Z Y)) X)
+                       A12 : ALL X:EL.OF.S  Y:ELEMENT  + EL(Y IDENTITY)  - =(Y PAIR(X X))
+                       A13 : ALL X:ELEMENT  - EL(X IDENTITY)  + =(X PAIR(F_6(X) F_6(X)))
+                     * A14 : ALL X:REL  Y:ELEMENT  - EL(Y CONVERSE(X))  + =(Y PAIR(F_7(X Y) F_8(X Y)))
+                       A15 : ALL X:REL  Y:ELEMENT  - EL(Y CONVERSE(X))  + EL(PAIR(F_8(X Y) F_7(X Y)) X)
+                       A16 : ALL X,Y,Z,U:ELEMENT  + =(PAIR(U Z) PAIR(Y X))  - =(U Y)  - =(Z X)
+                       A17 : ALL X,Y:EL.OF.S  Z:REL  U:ELEMENT  + EL(U CONVERSE(Z))  - =(U PAIR(Y X))  - EL(PAIR(X Y) Z)
+                     * A18 : ALL X,Y,Z:ELEMENT  U,V:SET  + EL(Z CARTES(V U))  - =(Z PAIR(Y X))  - EL(Y V)  - EL(X U)
+                       A19 : ALL X,Y,Z:EL.OF.S  U,V:REL  W:ELEMENT  
+                                  + EL(W COMP(V U))  - =(W PAIR(Z Y))  - EL(PAIR(Z X) V)  - EL(PAIR(X Y) U)
+                     * T20 : + EL(C_2 CONVERSE(C_1))
+                     * T21 : - EL(C_2 CARTES(S S))
+ 
+A1,1 & A12,2    -->    R1  : ALL X:EL.OF.S  + EL(PAIR(X X) IDENTITY)
+ 
+T20,1 & A15,1   -->    R2  : + EL(PAIR(F_8(C_1 C_2) F_7(C_1 C_2)) C_1)
+ 
+A2,1 & A18,4    -->    R3  : ALL X:EL.OF.S  + EL(PAIR(C_2 X) CARTES(CONVERSE(C_1) S))  - =(PAIR(C_2 X) PAIR(C_2 X))
+                                              - EL(C_2 CONVERSE(C_1))
+ 
+R3,3 & T20,1    -->    R4  : ALL X:EL.OF.S  + EL(PAIR(C_2 X) CARTES(CONVERSE(C_1) S))  - =(PAIR(C_2 X) PAIR(C_2 X))
+ 
+R4,2 & A1,1     -->    R5  : ALL X:EL.OF.S  + EL(PAIR(C_2 X) CARTES(CONVERSE(C_1) S))
+ 
+A2,1 & A18,4    -->    R6  : ALL X,Y:EL.OF.S  + EL(PAIR(Y X) CARTES(S S))  - =(PAIR(Y X) PAIR(Y X))  - EL(Y S)
+ 
+R6,3 & A2,1     -->    R7  : ALL X,Y:EL.OF.S  + EL(PAIR(Y X) CARTES(S S))  - =(PAIR(Y X) PAIR(Y X))
+ 
+R7,2 & A1,1     -->    R8  : ALL X,Y:EL.OF.S  + EL(PAIR(Y X) CARTES(S S))
+ 
+T20,1 & A18,4   -->    R9  : + EL(PAIR(C_2 C_2) CARTES(CONVERSE(C_1) CONVERSE(C_1)))  - =(PAIR(C_2 C_2) PAIR(C_2 C_2))
+                               - EL(C_2 CONVERSE(C_1))
+ 
+R9,3 & T20,1    -->    R10 : + EL(PAIR(C_2 C_2) CARTES(CONVERSE(C_1) CONVERSE(C_1)))  - =(PAIR(C_2 C_2) PAIR(C_2 C_2))
+ 
+R10,2 & A1,1    -->    R11 : + EL(PAIR(C_2 C_2) CARTES(CONVERSE(C_1) CONVERSE(C_1)))
+ 
+T20,1 & A18,4   -->    R12 : ALL X:EL.OF.S  + EL(PAIR(X C_2) CARTES(S CONVERSE(C_1)))  - =(PAIR(X C_2) PAIR(X C_2))
+                                              - EL(X S)
+ 
+R12,3 & A2,1    -->    R13 : ALL X:EL.OF.S  + EL(PAIR(X C_2) CARTES(S CONVERSE(C_1)))  - =(PAIR(X C_2) PAIR(X C_2))
+ 
+R13,2 & A1,1    -->    R14 : ALL X:EL.OF.S  + EL(PAIR(X C_2) CARTES(S CONVERSE(C_1)))
+ 
+A8,2 & T21,1    -->    R15 : ALL X:REL  - EL(C_2 X)
+ 
+T20,1 & A14,1   -->  * R16 : + =(C_2 PAIR(F_7(C_1 C_2) F_8(C_1 C_2)))
+ 
+A2,1 & A18,4    -->  * R17 : ALL X,Y:EL.OF.S  + EL(C_2 CARTES(S S))  - =(C_2 PAIR(Y X))  - EL(Y S)
+ 
+R17,3 & A2,1    -->  * R18 : ALL X,Y:EL.OF.S  + EL(C_2 CARTES(S S))  - =(C_2 PAIR(Y X))
+ 
+R18,1 & T21,1   -->  * R19 : ALL X,Y:EL.OF.S  - =(C_2 PAIR(Y X))
+ 
+R16,1 & R19,1   -->  * R20 :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+STOP
+ 

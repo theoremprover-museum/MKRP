@@ -1,0 +1,180 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 48.5                                                *
+                     *           DATE: 15-JUL,1991  16:50                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 16-MAY,1990 20:18 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * AXIOMS *
+             * CONSTRUCTORS PRED AND SUCC *
+             ALL X S (P (X)) = X
+             ALL X P (S (X)) = X
+             * DEF + *
+             ALL X + (0 X) = X
+             ALL X,Y + (S (X) Y) = S (+ (X Y))
+             ALL X,Y + (P (X) Y) = P (+ (X Y))
+             * PROPS + *
+             ALL X + (X 0) = X
+             ALL X,Y + (Y S (X)) = S (+ (Y X))
+             ALL X,Y + (Y P (X)) = P (+ (Y X))
+             ALL X,Y,Z + (+ (X Y) Z) = + (X + (Y Z))
+             * DEF - *
+             - (0) = 0
+             ALL X - (S (X)) = P (- (X))
+             ALL X - (P (X)) = S (- (X))
+             * PROPS - *
+             ALL X - (- (X)) = X
+             ALL X + (- (X) X) = 0
+             ALL X + (X - (X)) = 0
+             ALL X,Y + (X + (- (X) Y)) = Y
+             ALL X,Y + (- (X) + (X Y)) = Y
+             ALL X,Y - (+ (X Y)) = + (- (Y) - (X))
+             * DEF * *
+             ALL X * (0 X) = 0
+             ALL X,Y * (S (X) Y) = + (Y * (X Y))
+             ALL X,Y * (P (X) Y) = + (- (Y) * (X Y))
+             * PROPS * *
+             ALL X * (X 0) = 0
+             ALL X,Y * (Y S (X)) = + (* (Y X) Y)
+             ALL X,Y * (Y P (X)) = + (* (Y X) - (Y))
+             
+   Theorems: * THEOREM *
+             EX X + (X + (X P (0))) = S (0)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+           * A1:   All x:Any + =(x x)
+             A2:   All x:Any + =(s(p(x)) x)
+           * A3:   All x:Any + =(p(s(x)) x)
+           * A4:   All x:Any + =(+(0 x) x)
+           * A5:   All x,y:Any + =(+(s(y) x) s(+(y x)))
+             A6:   All x,y:Any + =(+(p(y) x) p(+(y x)))
+           * A7:   All x:Any + =(+(x 0) x)
+           * A8:   All x,y:Any + =(+(y s(x)) s(+(y x)))
+           * A9:   All x,y:Any + =(+(y p(x)) p(+(y x)))
+             A10:  All x,y,z:Any + =(+(+(z y) x) +(z +(y x)))
+             A11:  + =(-(0) 0)
+             A12:  All x:Any + =(-(s(x)) p(-(x)))
+             A13:  All x:Any + =(-(p(x)) s(-(x)))
+             A14:  All x:Any + =(-(-(x)) x)
+             A15:  All x:Any + =(+(-(x) x) 0)
+             A16:  All x:Any + =(+(x -(x)) 0)
+             A17:  All x,y:Any + =(+(y +(-(y) x)) x)
+             A18:  All x,y:Any + =(+(-(y) +(y x)) x)
+             A19:  All x,y:Any + =(-(+(y x)) +(-(x) -(y)))
+             A20:  All x:Any + =(*(0 x) 0)
+             A21:  All x,y:Any + =(*(s(y) x) +(x *(y x)))
+             A22:  All x,y:Any + =(*(p(y) x) +(-(x) *(y x)))
+             A23:  All x:Any + =(*(x 0) 0)
+             A24:  All x,y:Any + =(*(y s(x)) +(*(y x) y))
+             A25:  All x,y:Any + =(*(y p(x)) +(*(y x) -(y)))
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T26: All x:Any - =(+(x +(x p(0))) s(0))
+
+
+
+
+
+
+             Initial Operations on Theorems
+             ==============================
+
+
+          
+   T26,1 & A9 -->* RW1: All x:Any - =(+(x p(+(x 0))) s(0))
+   
+   RW1,1 & A9 -->* RW2: All x:Any - =(p(+(x +(x 0))) s(0))
+   
+   RW2,1 & A7 -->* RW3: All x:Any - =(p(+(x x)) s(0))
+   
+
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:   * A1:   All x:Any + =(x x)
+                        A2:   All x:Any + =(s(p(x)) x)
+                      * A3:   All x:Any + =(p(s(x)) x)
+                      * A4:   All x:Any + =(+(0 x) x)
+                      * A5:   All x,y:Any + =(+(s(y) x) s(+(y x)))
+                        A6:   All x,y:Any + =(+(p(y) x) p(+(y x)))
+                      * A7:   All x:Any + =(+(x 0) x)
+                      * A8:   All x,y:Any + =(+(y s(x)) s(+(y x)))
+                      * A9:   All x,y:Any + =(+(y p(x)) p(+(y x)))
+                        A10:  All x,y,z:Any + =(+(+(z y) x) +(z +(y x)))
+                        A11:  + =(-(0) 0)
+                        A12:  All x:Any + =(-(s(x)) p(-(x)))
+                        A13:  All x:Any + =(-(p(x)) s(-(x)))
+                        A14:  All x:Any + =(-(-(x)) x)
+                        A15:  All x:Any + =(+(-(x) x) 0)
+                        A16:  All x:Any + =(+(x -(x)) 0)
+                        A17:  All x,y:Any + =(+(y +(-(y) x)) x)
+                        A18:  All x,y:Any + =(+(-(y) +(y x)) x)
+                        A19:  All x,y:Any + =(-(+(y x)) +(-(x) -(y)))
+                        A20:  All x:Any + =(*(0 x) 0)
+                        A21:  All x,y:Any + =(*(s(y) x) +(x *(y x)))
+                        A22:  All x,y:Any + =(*(p(y) x) +(-(x) *(y x)))
+                        A23:  All x:Any + =(*(x 0) 0)
+                        A24:  All x,y:Any + =(*(y s(x)) +(*(y x) y))
+                        A25:  All x,y:Any + =(*(y p(x)) +(*(y x) -(y)))
+                      * RW3:  All x:Any - =(p(+(x x)) s(0))
+                      
+
+   
+   RW3,1 & A5,1   --> * P4:   All x:Any - =(p(s(+(x s(x)))) s(0))
+   
+   P4,1 & (A3 A8) --> * RW5:  All x:Any - =(s(+(x x)) s(0))
+   
+   RW5,1 & A4,1   --> * P6:   - =(s(0) s(0))
+   
+   P6,1 & A1,1    --> * R7:   []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 12 seconds

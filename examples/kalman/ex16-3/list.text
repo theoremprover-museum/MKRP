@@ -1,0 +1,96 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 42.3 EQUALITY 16.1                                  *
+                     *           DATE: 15-MAY,1990  11:01                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 15-MAY,1990 11:00 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * ABAB = 1 IMPL BA = ABB
+             ALL X,Y (X = Y) IMPL (A (X) = A (Y))
+             ALL X,Y (X = Y) IMPL (B (X) = B (Y))
+             ALL X (A (A (X)) = X)
+             ALL X (B (B (B (X))) = X)
+             ALL X (A (B (A (B (X)))) = X)
+             
+   Theorems: ALL X B (A (X)) = A (B (B (X)))
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+           * A2:   All x:Any + =(a(a(x)) x)
+           * A3:   All x:Any + =(b(b(b(x))) x)
+           * A4:   All x:Any + =(a(b(a(b(x)))) x)
+             A5:   All x,y:Any - =(y x)  + =(a(y) a(x))
+             A6:   All x,y:Any - =(y x)  + =(b(y) b(x))
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T7: - =(b(a(c_1)) a(b(b(c_1))))
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:    A1:   All x:Any + =(x x)
+                     * A2:   All x:Any + =(a(a(x)) x)
+                     * A3:   All x:Any + =(b(b(b(x))) x)
+                     * A4:   All x:Any + =(a(b(a(b(x)))) x)
+                       A5:   All x,y:Any - =(y x)  + =(a(y) a(x))
+                       A6:   All x,y:Any - =(y x)  + =(b(y) b(x))
+                     * T7:   - =(b(a(c_1)) a(b(b(c_1))))
+                     
+
+   
+   A4,1 & A2,1  -->  * P1:   All x:Any + =(a(x) b(a(b(x))))
+   
+   A3,1 & P1,1  -->  * P4:   All x:Any + =(a(b(b(x))) b(a(x)))
+   
+   P4,1 & T7,1  -->  * R5:   []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 14 seconds

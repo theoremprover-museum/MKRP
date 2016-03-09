@@ -1,0 +1,118 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 39.26 EQUALITY 16.1                                 *
+                     *           DATE: 19-FEB,1990  17:27                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 19-FEB,1990 17:26 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   TYPE SUBSET (SET SET)
+             TYPE MEMBER (ELEMENT SET)
+             TYPE GROUP (SET)
+             TYPE ID (SET) : ELEMENT
+             ALL X,Y : SET SUBSET (X Y) IMPL (ALL Z : ELEMENT (MEMBER (Z X) IMPL MEMBER (Z Y)))
+             TYPE * (ELEMENT ELEMENT) : ELEMENT
+             ASSOCIATIVE (*)
+             TYPE - (ELEMENT) : ELEMENT
+             ALL G : SET ALL X : ELEMENT GROUP (G) AND MEMBER (X G) IMPL * (- (X) X) = ID (G)
+             ALL G : SET GROUP (G) IMPL MEMBER (ID (G) G)
+             TYPE A : SET
+             TYPE B : SET
+             
+   Theorems: GROUP (A) AND GROUP (B) AND SUBSET (A B) IMPL ID (A) = ID (B)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+           * A2:   All x:Set - GROUP(x)  + MEMBER(id(x) x)
+           * A3:   All x:Element y,z:Set - SUBSET(z y)  - MEMBER(x z)  + MEMBER(x y)
+           * A4:   All x:Element y:Set - GROUP(y)  - MEMBER(x y)  + =(*(-(x) x) id(y))
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T5: + GROUP(a)
+           * T6: + GROUP(b)
+           * T7: + SUBSET(a b)
+           * T8: - =(id(a) id(b))
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:     A1:   All x:Any + =(x x)
+                      * A2:   All x:Set - GROUP(x)  + MEMBER(id(x) x)
+                      * A3:   All x:Element y,z:Set - SUBSET(z y)  - MEMBER(x z)  + MEMBER(x y)
+                      * A4:   All x:Element y:Set - GROUP(y)  - MEMBER(x y)  + =(*(-(x) x) id(y))
+                      * T5:   + GROUP(a)
+                      * T6:   + GROUP(b)
+                      * T7:   + SUBSET(a b)
+                      * T8:   - =(id(a) id(b))
+                      
+
+   
+   T7,1 & A3,1   -->  * R1:   All x:Element - MEMBER(x a)  + MEMBER(x b)
+   
+   A2,2 & R1,1   -->  * R2:   - GROUP(a)  + MEMBER(id(a) b)
+   
+   R2,1 & T5,1   -->  * R3:   + MEMBER(id(a) b)
+   
+   R3,1 & A4,2   -->  * R4:   - GROUP(b)  + =(*(-(id(a)) id(a)) id(b))
+   
+   R4,1 & T6,1   -->  * R5:   + =(*(-(id(a)) id(a)) id(b))
+   
+   T5,1 & A2,1   -->  * R6:   + MEMBER(id(a) a)
+   
+   R6,1 & A4,2   -->  * R7:   - GROUP(a)  + =(*(-(id(a)) id(a)) id(a))
+   
+   R5,1 & R7,2   -->  * P9:   + =(id(b) id(a))  - GROUP(a)
+   
+   P9,2 & T5,1   -->  * R10:  + =(id(b) id(a))
+   
+   R10,1 & T8,1  -->  * R11:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 15 seconds

@@ -1,0 +1,431 @@
+ 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 23-JAN-85                                                     *
+                    *         DATE : 11-FEB-85  22:59:07                                           *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   29-JAN-85 08:59:42
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   3.6.CA
+                                                                        
+************************************************************************
+                                                                        
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : SORT MENGE,VERKN,ELEMENT,INDEX,INDEXMENGE:ANY
+           TYPE LIDEAL(MENGE MENGE VERKN)
+           TYPE RIDEAL(MENGE MENGE VERKN)
+           TYPE UHG(MENGE MENGE VERKN)
+           TYPE ME(MENGE MENGE)
+           TYPE NICHTLEER(MENGE)
+           TYPE HG(MENGE VERKN)
+           TYPE NICHTLEER-IND(INDEXMENGE)
+           TYPE EL-IND(INDEX INDEXMENGE)
+           TYPE EL(ELEMENT MENGE)
+           TYPE MINIMAL(MENGE MENGE VERKN)
+           TYPE MPROD(MENGE MENGE VERKN) :MENGE
+           TYPE U(INDEX) :MENGE
+           TYPE VER-IND(INDEXMENGE) :MENGE
+           TYPE SM-IND(INDEXMENGE) :MENGE
+           TYPE APPLYV(VERKN ELEMENT ELEMENT) :ELEMENT
+           TYPE F*X(MENGE ELEMENT VERKN) :MENGE
+           TYPE SM(MENGE MENGE) :MENGE
+           * DEF VON MINIMAL *
+           ALL T,F:MENGE  ALL MAL:VERKN  
+             LIDEAL(T F MAL) AND(ALL M:MENGE ME(M T) AND LIDEAL(M F MAL) IMPL ME(T M)) IMPL MINIMAL(T F MAL)
+           * DEF. LIDEAL *
+           ALL T,H:MENGE ALL MAL:VERKN LIDEAL(T H MAL) IMPL(NICHTLEER(T) AND ME(MPROD(H T MAL) T))
+           * TEILMENGENAXIOM *
+           ALL A,B:MENGE ME(A B) IMPL(ALL Y:ELEMENT EL(Y A) IMPL EL(Y B))
+           ALL A,B:MENGE(ALL Y:ELEMENT EL(Y A) IMPL EL(Y B)) IMPL ME(A B)
+           * WIRKUNG VON MPROD AUF ELEMENTE *
+           ALL T,H:MENGE  ALL MAL:VERKN  
+             ME(MPROD(H T MAL) T) IMPL(ALL X,Y:ELEMENT EL(X T) AND EL(Y H) IMPL EL(APPLYV(MAL Y X) T))
+           * EIGENSCHAFT NICHTLEERER MENGEN *
+           ALL M:MENGE EX E:ELEMENT NICHTLEER(M) IMPL EL(E M)
+ 
+THEOREMS : ALL F,T:MENGE  ALL MAL:VERKN  
+                      LIDEAL(T F MAL)
+                  AND (ALL U,V:ELEMENT EL(U T) AND EL(V T) IMPL(EX Y:ELEMENT EL(Y F) AND APPLYV(MAL Y U) = V))
+             IMPL MINIMAL(T F MAL)
+ 
+ 
+ 
+ 
+CONSTANTS : 
+=========== 
+ 
+| NAME          | SORT                    |            | ATTRIBUTES                                                     
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+| C_1           | VERKN                   |            |                                                                
+|
+| C_2           | MENGE                   |            |                                                                
+|
+| C_3           | MENGE                   |            |                                                                
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+ 
+ 
+ 
+FUNCTIONS : 
+=========== 
+ 
+| NAME          | DOMAIN                  | RANGE      | ATTRIBUTES                                                     
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+| MPROD         | MENGE MENGE VERKN       | MENGE      |                                                                
+|
+| U             | INDEX                   | MENGE      |                                                                
+|
+| VER-IND       | INDEXMENGE              | MENGE      |                                                                
+|
+| SM-IND        | INDEXMENGE              | MENGE      |                                                                
+|
+| APPLYV        | VERKN ELEMENT ELEMENT   | ELEMENT    |                                                                
+|
+| F*X           | MENGE ELEMENT VERKN     | MENGE      |                                                                
+|
+| SM            | MENGE MENGE             | MENGE      |                                                                
+|
+| F_1           | MENGE MENGE VERKN       | MENGE      |                                                                
+|
+| F_2           | MENGE MENGE             | ELEMENT    |                                                                
+|
+| F_3           | MENGE                   | ELEMENT    |                                                                
+|
+| F_4           | ELEMENT ELEMENT         | ELEMENT    |                                                                
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+ 
+ 
+ 
+PREDICATES : 
+============ 
+ 
+| NAME          | DOMAIN                  |            | ATTRIBUTES                                                     
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+| TRUE          |                         |            | DEFINED                                                        
+|
+| FALSE         |                         |            | DEFINED                                                        
+|
+| LIDEAL        | MENGE MENGE VERKN       |            |                                                                
+|
+| RIDEAL        | MENGE MENGE VERKN       |            |                                                                
+|
+| UHG           | MENGE MENGE VERKN       |            |                                                                
+|
+| ME            | MENGE MENGE             |            |                                                                
+|
+| NICHTLEER     | MENGE                   |            |                                                                
+|
+| HG            | MENGE VERKN             |            |                                                                
+|
+| NICHTLEER-IND | INDEXMENGE              |            |                                                                
+|
+| EL-IND        | INDEX INDEXMENGE        |            |                                                                
+|
+| EL            | ELEMENT MENGE           |            |                                                                
+|
+| MINIMAL       | MENGE MENGE VERKN       |            |                                                                
+|
+| =             | ANY ANY                 |            | DEFINED SYMMETRIC REFLEXIVE SYMMETRIC REFLEXIVE SYMMETRIC      
+|
+|               |                         |            | REFLEXIVE                                                      
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+ 
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+  A1   : ALL X:ANY  + =(X X)
+  A2   : ALL X:VERKN  Y,Z:MENGE  - LIDEAL(Z Y X)  + NICHTLEER(Z)
+  A3   : ALL X:VERKN  Y,Z:MENGE  - LIDEAL(Z Y X)  + ME(MPROD(Y Z X) Z)
+  A4   : ALL X,Y:MENGE  + EL(F_2(Y X) X)  + ME(X Y)
+  A5   : ALL X,Y:MENGE  - EL(F_2(Y X) Y)  + ME(X Y)
+  A6   : ALL X:MENGE  - NICHTLEER(X)  + EL(F_3(X) X)
+  A7   : ALL X:VERKN  Y,Z:MENGE  - LIDEAL(Z Y X)  + ME(F_1(Y Z X) Z)  + MINIMAL(Z Y X)
+  A8   : ALL X:VERKN  Y,Z:MENGE  - LIDEAL(Z Y X)  + LIDEAL(F_1(Y Z X) Y X)  + MINIMAL(Z Y X)
+  A9   : ALL X:VERKN  Y,Z:MENGE  - LIDEAL(Z Y X)  - ME(Z F_1(Y Z X))  + MINIMAL(Z Y X)
+  A10  : ALL X:ELEMENT  Y,Z:MENGE  - ME(Z Y)  - EL(X Z)  + EL(X Y)
+  A11  : ALL X,Y:ELEMENT  Z:VERKN  U,V:MENGE  - ME(MPROD(V U Z) U)  - EL(Y U)  - EL(X V)  + EL(APPLYV(Z X Y) U)
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+  T12  : + LIDEAL(C_3 C_2 C_1)
+  T13  : ALL X,Y:ELEMENT  - EL(Y C_3)  - EL(X C_3)  + EL(F_4(Y X) C_2)
+  T14  : ALL X,Y:ELEMENT  - EL(Y C_3)  - EL(X C_3)  + =(APPLYV(C_1 F_4(Y X) Y) X)
+  T15  : - MINIMAL(C_3 C_2 C_1)
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION ( FAILURE : ABORTED.MAXSTEPS )
+ 
+INITIAL CLAUSES :      A1  : ALL X:ANY  + =(X X)
+                       A2  : ALL X:VERKN  Y,Z:MENGE  - LIDEAL(Z Y X)  + NICHTLEER(Z)
+                       A3  : ALL X:VERKN  Y,Z:MENGE  - LIDEAL(Z Y X)  + ME(MPROD(Y Z X) Z)
+                       A4  : ALL X,Y:MENGE  + EL(F_2(Y X) X)  + ME(X Y)
+                       A5  : ALL X,Y:MENGE  - EL(F_2(Y X) Y)  + ME(X Y)
+                       A6  : ALL X:MENGE  - NICHTLEER(X)  + EL(F_3(X) X)
+                       A7  : ALL X:VERKN  Y,Z:MENGE  - LIDEAL(Z Y X)  + ME(F_1(Y Z X) Z)  + MINIMAL(Z Y X)
+                       A8  : ALL X:VERKN  Y,Z:MENGE  - LIDEAL(Z Y X)  + LIDEAL(F_1(Y Z X) Y X)  + MINIMAL(Z Y X)
+                       A9  : ALL X:VERKN  Y,Z:MENGE  - LIDEAL(Z Y X)  - ME(Z F_1(Y Z X))  + MINIMAL(Z Y X)
+                       A10 : ALL X:ELEMENT  Y,Z:MENGE  - ME(Z Y)  - EL(X Z)  + EL(X Y)
+                       A11 : ALL X,Y:ELEMENT  Z:VERKN  U,V:MENGE  
+                                  - ME(MPROD(V U Z) U)  - EL(Y U)  - EL(X V)  + EL(APPLYV(Z X Y) U)
+                       T12 : + LIDEAL(C_3 C_2 C_1)
+                       T13 : ALL X,Y:ELEMENT  - EL(Y C_3)  - EL(X C_3)  + EL(F_4(Y X) C_2)
+                       T14 : ALL X,Y:ELEMENT  - EL(Y C_3)  - EL(X C_3)  + =(APPLYV(C_1 F_4(Y X) Y) X)
+                       T15 : - MINIMAL(C_3 C_2 C_1)
+ 
+A7,3 & T15,1    -->    R1  : - LIDEAL(C_3 C_2 C_1)  + ME(F_1(C_2 C_3 C_1) C_3)
+ 
+R1,1 & T12,1    -->    R2  : + ME(F_1(C_2 C_3 C_1) C_3)
+ 
+A8,3 & T15,1    -->    R3  : - LIDEAL(C_3 C_2 C_1)  + LIDEAL(F_1(C_2 C_3 C_1) C_2 C_1)
+ 
+R3,1 & T12,1    -->    R4  : + LIDEAL(F_1(C_2 C_3 C_1) C_2 C_1)
+ 
+A9,3 & T15,1    -->    R5  : - LIDEAL(C_3 C_2 C_1)  - ME(C_3 F_1(C_2 C_3 C_1))
+ 
+R5,1 & T12,1    -->    R6  : - ME(C_3 F_1(C_2 C_3 C_1))
+ 
+A2,2 & A6,1     -->    R7  : ALL X:VERKN  Y,Z:MENGE  - LIDEAL(Z Y X)  + EL(F_3(Z) Z)
+ 
+A4,1 & A5,1     -->    R8  : ALL X:MENGE  + ME(X X)  + ME(X X)
+ 
+R8 1=2          -->    D9  : ALL X:MENGE  + ME(X X)
+ 
+A4,2 & R6,1     -->    R10 : + EL(F_2(F_1(C_2 C_3 C_1) C_3) C_3)
+ 
+T13             -->    F11 : - EL(F_2(F_1(C_2 C_3 C_1) C_3) C_3)
+                               + EL(F_4(F_2(F_1(C_2 C_3 C_1) C_3) F_2(F_1(C_2 C_3 C_1) C_3)) C_2)
+ 
+F11,1 & R10,1   -->    R12 : + EL(F_4(F_2(F_1(C_2 C_3 C_1) C_3) F_2(F_1(C_2 C_3 C_1) C_3)) C_2)
+ 
+R4,1 & R7,1     -->    R13 : + EL(F_3(F_1(C_2 C_3 C_1)) F_1(C_2 C_3 C_1))
+ 
+T12,1 & R7,1    -->    R14 : + EL(F_3(C_3) C_3)
+ 
+R14,1 & T13,2   -->    R15 : - EL(F_2(F_1(C_2 C_3 C_1) C_3) C_3)  + EL(F_4(F_2(F_1(C_2 C_3 C_1) C_3) F_3(C_3)) C_2)
+ 
+R15,1 & R10,1   -->    R16 : + EL(F_4(F_2(F_1(C_2 C_3 C_1) C_3) F_3(C_3)) C_2)
+ 
+T13             -->    F17 : - EL(F_3(C_3) C_3)  + EL(F_4(F_3(C_3) F_3(C_3)) C_2)
+ 
+F17,1 & R14,1   -->    R18 : + EL(F_4(F_3(C_3) F_3(C_3)) C_2)
+ 
+R10,1 & T13,2   -->    R19 : - EL(F_3(C_3) C_3)  + EL(F_4(F_3(C_3) F_2(F_1(C_2 C_3 C_1) C_3)) C_2)
+ 
+R19,1 & R14,1   -->    R20 : + EL(F_4(F_3(C_3) F_2(F_1(C_2 C_3 C_1) C_3)) C_2)
+ 
+R13,1 & A10,2   -->    R21 : - ME(F_1(C_2 C_3 C_1) C_3)  + EL(F_3(F_1(C_2 C_3 C_1)) C_3)
+ 
+R21,1 & R2,1    -->    R22 : + EL(F_3(F_1(C_2 C_3 C_1)) C_3)
+ 
+R4,1 & A3,1     -->    R23 : + ME(MPROD(C_2 F_1(C_2 C_3 C_1) C_1) F_1(C_2 C_3 C_1))
+ 
+R18,1 & A11,3   -->    R24 : - ME(MPROD(C_2 F_1(C_2 C_3 C_1) C_1) F_1(C_2 C_3 C_1))
+                               - EL(F_3(F_1(C_2 C_3 C_1)) F_1(C_2 C_3 C_1))
+                               + EL(APPLYV(C_1 F_4(F_3(C_3) F_3(C_3)) F_3(F_1(C_2 C_3 C_1))) F_1(C_2 C_3 C_1))
+ 
+R24,2 & R13,1   -->    R25 : - ME(MPROD(C_2 F_1(C_2 C_3 C_1) C_1) F_1(C_2 C_3 C_1))
+                               + EL(APPLYV(C_1 F_4(F_3(C_3) F_3(C_3)) F_3(F_1(C_2 C_3 C_1))) F_1(C_2 C_3 C_1))
+ 
+R25,1 & R23,1   -->    R26 : + EL(APPLYV(C_1 F_4(F_3(C_3) F_3(C_3)) F_3(F_1(C_2 C_3 C_1))) F_1(C_2 C_3 C_1))
+ 
+T12,1 & A3,1    -->    R27 : + ME(MPROD(C_2 C_3 C_1) C_3)
+ 
+R18,1 & A11,3   -->    R28 : - ME(MPROD(C_2 C_3 C_1) C_3)  - EL(F_2(F_1(C_2 C_3 C_1) C_3) C_3)
+                               + EL(APPLYV(C_1 F_4(F_3(C_3) F_3(C_3)) F_2(F_1(C_2 C_3 C_1) C_3)) C_3)
+ 
+R28,2 & R10,1   -->    R29 : - ME(MPROD(C_2 C_3 C_1) C_3)
+                               + EL(APPLYV(C_1 F_4(F_3(C_3) F_3(C_3)) F_2(F_1(C_2 C_3 C_1) C_3)) C_3)
+ 
+R29,1 & R27,1   -->    R30 : + EL(APPLYV(C_1 F_4(F_3(C_3) F_3(C_3)) F_2(F_1(C_2 C_3 C_1) C_3)) C_3)
+ 
+R18,1 & A11,3   -->    R31 : - ME(MPROD(C_2 C_3 C_1) C_3)  - EL(F_3(C_3) C_3)
+                               + EL(APPLYV(C_1 F_4(F_3(C_3) F_3(C_3)) F_3(C_3)) C_3)
+ 
+R31,2 & R14,1   -->    R32 : - ME(MPROD(C_2 C_3 C_1) C_3)  + EL(APPLYV(C_1 F_4(F_3(C_3) F_3(C_3)) F_3(C_3)) C_3)
+ 
+R32,1 & R27,1   -->    R33 : + EL(APPLYV(C_1 F_4(F_3(C_3) F_3(C_3)) F_3(C_3)) C_3)
+ 
+R18,1 & A11,3   -->    R34 : - ME(MPROD(C_2 C_3 C_1) C_3)  - EL(F_3(F_1(C_2 C_3 C_1)) C_3)
+                               + EL(APPLYV(C_1 F_4(F_3(C_3) F_3(C_3)) F_3(F_1(C_2 C_3 C_1))) C_3)
+ 
+R34,2 & R22,1   -->    R35 : - ME(MPROD(C_2 C_3 C_1) C_3)
+                               + EL(APPLYV(C_1 F_4(F_3(C_3) F_3(C_3)) F_3(F_1(C_2 C_3 C_1))) C_3)
+ 
+R35,1 & R27,1   -->    R36 : + EL(APPLYV(C_1 F_4(F_3(C_3) F_3(C_3)) F_3(F_1(C_2 C_3 C_1))) C_3)
+ 
+A5,2 & R6,1     -->    R37 : - EL(F_2(F_1(C_2 C_3 C_1) C_3) F_1(C_2 C_3 C_1))
+ 
+R23,1 & A10,1   -->    R38 : - EL(F_2(F_1(C_2 C_3 C_1) C_3) MPROD(C_2 F_1(C_2 C_3 C_1) C_1))
+                               + EL(F_2(F_1(C_2 C_3 C_1) C_3) F_1(C_2 C_3 C_1))
+ 
+R38,2 & R37,1   -->    R39 : - EL(F_2(F_1(C_2 C_3 C_1) C_3) MPROD(C_2 F_1(C_2 C_3 C_1) C_1))
+ 
+T14             -->    F40 : - EL(F_3(C_3) C_3)  + =(APPLYV(C_1 F_4(F_3(C_3) F_3(C_3)) F_3(C_3)) F_3(C_3))
+ 
+F40,1 & R14,1   -->    R41 : + =(APPLYV(C_1 F_4(F_3(C_3) F_3(C_3)) F_3(C_3)) F_3(C_3))
+ 
+R41,1 & R14,1   -->    P42 : + EL(APPLYV(C_1 F_4(F_3(C_3) F_3(C_3)) F_3(C_3)) C_3)
+ 
+R41,1 & R33,1   -->    P43 : + EL(F_3(C_3) C_3)
+ 
+R2,1 & A10,1    -->    R44 : ALL X:ELEMENT  - EL(X F_1(C_2 C_3 C_1))  + EL(X C_3)
+ 
+R13,1 & R44,1   -->    R45 : + EL(F_3(F_1(C_2 C_3 C_1)) C_3)
+ 
+R27,1 & A10,1   -->    R46 : ALL X:ELEMENT  - EL(X MPROD(C_2 C_3 C_1))  + EL(X C_3)
+ 
+A4,1 & T13,2    -->    R47 : ALL X:ELEMENT  Y:MENGE  + ME(C_3 Y)  - EL(X C_3)  + EL(F_4(X F_2(Y C_3)) C_2)
+ 
+A4,1 & T13,1    -->    R48 : ALL X:ELEMENT  Y:MENGE  + ME(C_3 Y)  - EL(X C_3)  + EL(F_4(F_2(Y C_3) X) C_2)
+ 
+A4,1 & T14,2    -->    R49 : ALL X:ELEMENT  Y:MENGE  
+                                  + ME(C_3 Y)  - EL(X C_3)  + =(APPLYV(C_1 F_4(X F_2(Y C_3)) X) F_2(Y C_3))
+ 
+A4,1 & T14,1    -->    R50 : ALL X:ELEMENT  Y:MENGE  
+                                  + ME(C_3 Y)  - EL(X C_3)  + =(APPLYV(C_1 F_4(F_2(Y C_3) X) F_2(Y C_3)) X)
+ 
+R10,1 & T13,1   -->    R51 : ALL X:ELEMENT  - EL(X C_3)  + EL(F_4(F_2(F_1(C_2 C_3 C_1) C_3) X) C_2)
+ 
+R22,1 & R51,1   -->    R52 : + EL(F_4(F_2(F_1(C_2 C_3 C_1) C_3) F_3(F_1(C_2 C_3 C_1))) C_2)
+ 
+R14,1 & R51,1   -->    R53 : + EL(F_4(F_2(F_1(C_2 C_3 C_1) C_3) F_3(C_3)) C_2)
+ 
+R10,1 & R51,1   -->    R54 : + EL(F_4(F_2(F_1(C_2 C_3 C_1) C_3) F_2(F_1(C_2 C_3 C_1) C_3)) C_2)
+ 
+R10,1 & T13,2   -->    R55 : ALL X:ELEMENT  - EL(X C_3)  + EL(F_4(X F_2(F_1(C_2 C_3 C_1) C_3)) C_2)
+ 
+R22,1 & R55,1   -->    R56 : + EL(F_4(F_3(F_1(C_2 C_3 C_1)) F_2(F_1(C_2 C_3 C_1) C_3)) C_2)
+ 
+R14,1 & R55,1   -->    R57 : + EL(F_4(F_3(C_3) F_2(F_1(C_2 C_3 C_1) C_3)) C_2)
+ 
+R10,1 & A10,2   -->    R58 : ALL X:MENGE  - ME(C_3 X)  + EL(F_2(F_1(C_2 C_3 C_1) C_3) X)
+ 
+R58,2 & R51,1   -->    R59 : - ME(C_3 C_3)  + EL(F_4(F_2(F_1(C_2 C_3 C_1) C_3) F_2(F_1(C_2 C_3 C_1) C_3)) C_2)
+ 
+R58,2 & R55,1   -->    R60 : - ME(C_3 C_3)  + EL(F_4(F_2(F_1(C_2 C_3 C_1) C_3) F_2(F_1(C_2 C_3 C_1) C_3)) C_2)
+ 
+R58,2 & R37,1   -->    R61 : - ME(C_3 F_1(C_2 C_3 C_1))
+ 
+R58,2 & R39,1   -->    R62 : - ME(C_3 MPROD(C_2 F_1(C_2 C_3 C_1) C_1))
+ 
+D9,1 & R58,1    -->    R63 : + EL(F_2(F_1(C_2 C_3 C_1) C_3) C_3)
+ 
+R13,1 & A10,2   -->    R64 : ALL X:MENGE  - ME(F_1(C_2 C_3 C_1) X)  + EL(F_3(F_1(C_2 C_3 C_1)) X)
+ 
+R64,2 & R44,1   -->    R65 : - ME(F_1(C_2 C_3 C_1) F_1(C_2 C_3 C_1))  + EL(F_3(F_1(C_2 C_3 C_1)) C_3)
+ 
+D9,1 & R64,1    -->    R66 : + EL(F_3(F_1(C_2 C_3 C_1)) F_1(C_2 C_3 C_1))
+ 
+R14,1 & A10,2   -->    R67 : ALL X:MENGE  - ME(C_3 X)  + EL(F_3(C_3) X)
+ 
+R67,2 & R51,1   -->    R68 : - ME(C_3 C_3)  + EL(F_4(F_2(F_1(C_2 C_3 C_1) C_3) F_3(C_3)) C_2)
+ 
+R67,2 & R55,1   -->    R69 : - ME(C_3 C_3)  + EL(F_4(F_3(C_3) F_2(F_1(C_2 C_3 C_1) C_3)) C_2)
+ 
+D9,1 & R67,1    -->    R70 : + EL(F_3(C_3) C_3)
+ 
+R14,1 & T13,2   -->    R71 : ALL X:ELEMENT  - EL(X C_3)  + EL(F_4(X F_3(C_3)) C_2)
+ 
+R58,2 & R71,1   -->    R72 : - ME(C_3 C_3)  + EL(F_4(F_2(F_1(C_2 C_3 C_1) C_3) F_3(C_3)) C_2)
+ 
+R67,2 & R71,1   -->    R73 : - ME(C_3 C_3)  + EL(F_4(F_3(C_3) F_3(C_3)) C_2)
+ 
+R22,1 & R71,1   -->    R74 : + EL(F_4(F_3(F_1(C_2 C_3 C_1)) F_3(C_3)) C_2)
+ 
+R14,1 & R71,1   -->    R75 : + EL(F_4(F_3(C_3) F_3(C_3)) C_2)
+ 
+R14,1 & T13,1   -->    R76 : ALL X:ELEMENT  - EL(X C_3)  + EL(F_4(F_3(C_3) X) C_2)
+ 
+R58,2 & R76,1   -->    R77 : - ME(C_3 C_3)  + EL(F_4(F_3(C_3) F_2(F_1(C_2 C_3 C_1) C_3)) C_2)
+ 
+R67,2 & R76,1   -->    R78 : - ME(C_3 C_3)  + EL(F_4(F_3(C_3) F_3(C_3)) C_2)
+ 
+R22,1 & R76,1   -->    R79 : + EL(F_4(F_3(C_3) F_3(F_1(C_2 C_3 C_1))) C_2)
+ 
+R14,1 & T14,2   -->    R80 : ALL X:ELEMENT  - EL(X C_3)  + =(APPLYV(C_1 F_4(X F_3(C_3)) X) F_3(C_3))
+ 
+R67,2 & R80,1   -->    R81 : - ME(C_3 C_3)  + =(APPLYV(C_1 F_4(F_3(C_3) F_3(C_3)) F_3(C_3)) F_3(C_3))
+ 
+R14,1 & R80,1   -->    R82 : + =(APPLYV(C_1 F_4(F_3(C_3) F_3(C_3)) F_3(C_3)) F_3(C_3))
+ 
+R14,1 & T14,1   -->    R83 : ALL X:ELEMENT  - EL(X C_3)  + =(APPLYV(C_1 F_4(F_3(C_3) X) F_3(C_3)) X)
+ 
+R67,2 & R83,1   -->    R84 : - ME(C_3 C_3)  + =(APPLYV(C_1 F_4(F_3(C_3) F_3(C_3)) F_3(C_3)) F_3(C_3))
+ 
+R23,1 & A10,1   -->    R85 : ALL X:ELEMENT  - EL(X MPROD(C_2 F_1(C_2 C_3 C_1) C_1))  + EL(X F_1(C_2 C_3 C_1))
+ 
+R58,2 & R85,1   -->    R86 : - ME(C_3 MPROD(C_2 F_1(C_2 C_3 C_1) C_1))  + EL(F_2(F_1(C_2 C_3 C_1) C_3) F_1(C_2 C_3 C_1))
+ 
+R85,2 & R37,1   -->    R87 : - EL(F_2(F_1(C_2 C_3 C_1) C_3) MPROD(C_2 F_1(C_2 C_3 C_1) C_1))
+ 
+A10,3 & R37,1   -->    R88 : ALL X:MENGE  - ME(X F_1(C_2 C_3 C_1))  - EL(F_2(F_1(C_2 C_3 C_1) C_3) X)
+ 
+A4,1 & R88,2    -->    R89 : + ME(C_3 F_1(C_2 C_3 C_1))  - ME(C_3 F_1(C_2 C_3 C_1))
+ 
+R85,2 & R88,2   -->    R90 : - EL(F_2(F_1(C_2 C_3 C_1) C_3) MPROD(C_2 F_1(C_2 C_3 C_1) C_1))
+                               - ME(F_1(C_2 C_3 C_1) F_1(C_2 C_3 C_1))
+ 
+D9,1 & R88,1    -->    R91 : - EL(F_2(F_1(C_2 C_3 C_1) C_3) F_1(C_2 C_3 C_1))
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+THE THEOREM(S) COULD NOT BE PROVED.
+ 
+STOP
+ 

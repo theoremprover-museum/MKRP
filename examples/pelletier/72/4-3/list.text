@@ -1,0 +1,391 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 34.4 EQUALITY 16.1                                  *
+                     *           DATE: 02-NOV,1989  20:47                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 02-NOV,1989 20:24 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Adjustment of the Options:
+   ==========================
+
+   TWO_RULES                             NIL
+   TWO_RULES.MAXLEVEL                    1
+   TWO_SUPPRESS.NORULES                  NIL
+
+   RED.I_CLAUSE.MULTIPLE.LITERALS        T
+   RED.I_CLAUSE.PURITY                   T
+   RED.I_CLAUSE.TAUTOLOGY                T
+   RED.I_CLAUSE.TAUTOLOGY.RECHECK        PARTIAL
+   RED.I_CLAUSE.SUBSUMPTION              T
+   RED.I_CLAUSE.SUBSUMPTION.RECHECK      PARTIAL
+   RED.I_CLAUSE.REPL.FACTORING           T
+   RED.I_CLAUSE.REPL.FACTORING.RECHECK   T
+   RED.I_CLAUSE.REPL.RESOLUTION          SIMPLE
+   RED.I_CLAUSE.REPL.RESOLUTION.RECHECK  T
+   RED.I_CLAUSE.REWRITING                T
+   RED.I_LINK.INCOMPATIBILITY            T
+   RED.I_LINK.TAUTOLOGY                  REMOVE-INHIBIT
+   RED.I_LINK.TAUTOLOGY.RECHECK          NIL
+   RED.I_LINK.SUBSUMPTION                REMOVE-INHIBIT
+   RED.I_LINK.SUBSUMPTION.RECHECK        NIL
+
+   RED.D_CLAUSE.MULTIPLE.LITERALS        T
+   RED.D_CLAUSE.PURITY                   T
+   RED.D_CLAUSE.TAUTOLOGY                REMOVE-INHIBIT
+   RED.D_CLAUSE.TAUTOLOGY.RECHECK        NIL
+   RED.D_CLAUSE.SUBSUMPTION.FORWARD      REMOVE-INHIBIT
+   RED.D_CLAUSE.SUBSUMPTION.BACKWARD     REMOVE
+   RED.D_CLAUSE.SUBSUMPTION.RECHECK      NIL
+   RED.D_CLAUSE.REPL.FACTORING           T
+   RED.D_CLAUSE.REPL.FACTORING.RECHECK   T
+   RED.D_CLAUSE.REPL.RESOLUTION          SIMPLE
+   RED.D_CLAUSE.REPL.RESOLUTION.RECHECK  T
+   RED.D_LINK.INCOMPATIBILITY            T
+   RED.D_LINK.TAUTOLOGY                  REMOVE-INHIBIT
+   RED.D_LINK.TAUTOLOGY.RECHECK          NIL
+   RED.D_LINK.SUBSUMPTION                REMOVE-INHIBIT
+   RED.D_LINK.SUBSUMPTION.RECHECK        NIL
+
+   FAC_INITIAL                           NIL
+   FAC_EACH.STEP                         NIL
+
+   STR_RESOLUTION                        SET-OF-SUPPORT
+   STR_E-RESOLUTION                      NIL
+   STR_LINK.DEPTH                        NIL
+   STR_TERM.DEPTH                        NIL
+   STR_R.DEMODULATION                    T
+   STR_P.DEMODULATION                    T
+   STR_INDUCTION                         NIL
+
+   TERM_UNITS                            T
+   TERM_ITERATIONS                       10
+   TERM_SET.OF.SUPPORT                   NIL
+   TERM_BREADTH.FIRST                    NIL
+
+   ER_PARAMODULATION                     HEURISTIC-COMPLETION
+   ER_COMPLETION                         UNFAILING
+   ER_ORDERING                           KNUTH-BENDIX
+   ER_LINK.DEPTH.WEIGHT                  0
+   ER_KNUTH.BENDIX.WEIGHT                ((PLUS 5) (MULT 5) (MINUS 2) (0 2) (1 2))
+   ER_POLYNOMIAL.VARIABLES               (X Y Z U V W)
+   ER_POLYNOMIAL.WEIGHT                  ((PLUS (+ 5 (* 2 X) Y)) (MULT (+ X (* X Y))) (MINUS (* 2 X)) (0 2) (1 2))
+
+   GEN_SPLITTING                         0
+   GEN_PRESIMPLIFICATION                 NIL
+   GEN_MIN.EXPRESSION.LENGTH.FOR.FILE    NIL
+   GEN_MIN.EXPRESSION.SIZE.FOR.FILE      NIL
+   GEN_MANUAL.CONTROL                    NIL
+   GEN_MAXIMUM.STEPS                     NIL
+   GEN_GRAPH.SAVING                      NIL
+   GEN_SAVE.FILE                         SAVEDEFAULT
+   GEN_LISP.GARBAGE.COLLECTION           NIL
+   GEN_COMMON.LISP                       NIL
+
+   TR_PREPROCESSING                      NIL
+   TR_STEP.MODE                          LR
+   TR_DUMP                               NIL
+   TR_CLAUSE.MODE                        I
+   TR_LINK.MODE                          I
+   TR_TRACE.FILE                         NIL
+   TR_TERMINAL                           T
+
+   PR_INFIX.FORM                         T
+   PR_PREFIX.FORM                        NIL
+   PR_OPTIONS                            T
+   PR_AXIOM.CLAUSES                      T
+   PR_SYMBOLS                            NIL
+   PR_DIRECT.PROOF                       T
+   PR_VARIABLE.PRINT.NAMES               (X Y Z U V W XX YY ZZ UU VV WW XXX YYY ZZZ UUU VVV WWW)
+   PR_STATISTICS                         NIL
+   PR_PROTOCOL                           T
+   PR_LEFT.MARGIN                        3
+   PR_RIGHT.MARGIN                       117
+   PR_LINELENGTH                         114
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * AXIOMS *
+             P1A OR P1B OR P1C
+             P2A OR P2B OR P2C
+             P3A OR P3B OR P3C
+             P4A OR P4B OR P4C
+             NOT P1A OR NOT P2A
+             NOT P1A OR NOT P3A
+             NOT P1A OR NOT P4A
+             NOT P2A OR NOT P3A
+             NOT P2A OR NOT P4A
+             NOT P3A OR NOT P4A
+             NOT P1B OR NOT P2B
+             NOT P1B OR NOT P3B
+             NOT P1B OR NOT P4B
+             NOT P2B OR NOT P3B
+             NOT P2B OR NOT P4B
+             NOT P3B OR NOT P4B
+             NOT P1C OR NOT P2C
+             NOT P1C OR NOT P3C
+             NOT P1C OR NOT P4C
+             NOT P2C OR NOT P3C
+             NOT P2C OR NOT P4C
+             NOT P3C OR NOT P4C
+             
+   Theorems: NIL  
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+           * A1:   - P1A  - P2A
+           * A2:   - P1A  - P3A
+           * A3:   - P1A  - P4A
+           * A4:   - P2A  - P3A
+           * A5:   - P2A  - P4A
+           * A6:   - P3A  - P4A
+           * A7:   - P1B  - P2B
+           * A8:   - P1B  - P3B
+           * A9:   - P1B  - P4B
+           * A10:  - P2B  - P3B
+           * A11:  - P2B  - P4B
+           * A12:  - P3B  - P4B
+           * A13:  - P1C  - P2C
+           * A14:  - P1C  - P3C
+           * A15:  - P1C  - P4C
+           * A16:  - P2C  - P3C
+           * A17:  - P2C  - P4C
+           * A18:  - P3C  - P4C
+           * A19:  + P1A  + P1B  + P1C
+           * A20:  + P2A  + P2B  + P2C
+           * A21:  + P3A  + P3B  + P3C
+           * A22:  + P4A  + P4B  + P4C
+           
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:      * A1:    - P1A  - P2A
+                         * A2:    - P1A  - P3A
+                         * A3:    - P1A  - P4A
+                         * A4:    - P2A  - P3A
+                         * A5:    - P2A  - P4A
+                         * A6:    - P3A  - P4A
+                         * A7:    - P1B  - P2B
+                         * A8:    - P1B  - P3B
+                         * A9:    - P1B  - P4B
+                         * A10:   - P2B  - P3B
+                         * A11:   - P2B  - P4B
+                         * A12:   - P3B  - P4B
+                         * A13:   - P1C  - P2C
+                         * A14:   - P1C  - P3C
+                         * A15:   - P1C  - P4C
+                         * A16:   - P2C  - P3C
+                         * A17:   - P2C  - P4C
+                         * A18:   - P3C  - P4C
+                         * A19:   + P1A  + P1B  + P1C
+                         * A20:   + P2A  + P2B  + P2C
+                         * A21:   + P3A  + P3B  + P3C
+                         * A22:   + P4A  + P4B  + P4C
+                         
+
+   
+   A19,3 & A15,1    -->  * R1:    + P1A  + P1B  - P4C
+   
+   A19,3 & A14,1    -->  * R2:    + P1A  + P1B  - P3C
+   
+   A19,3 & A13,1    -->  * R3:    + P1A  + P1B  - P2C
+   
+   A20,3 & A17,1    -->  * R10:   + P2A  + P2B  - P4C
+   
+   A20,1 & A4,1     -->  * R17:   + P2B  + P2C  - P3A
+   
+   A20,1 & A1,2     -->  * R18:   + P2B  + P2C  - P1A
+   
+   A21,3 & A18,1    -->  * R19:   + P3A  + P3B  - P4C
+   
+   A21,3 & A16,2    -->  * R20:   + P3A  + P3B  - P2C
+   
+   A21,2 & A12,1    -->  * R22:   + P3A  + P3C  - P4B
+   
+   A21,2 & A10,2    -->  * R23:   + P3A  + P3C  - P2B
+   
+   A22,2 & A12,2    -->  * R31:   + P4A  + P4C  - P3B
+   
+   A22,2 & A11,2    -->  * R32:   + P4A  + P4C  - P2B
+   
+   A22,2 & A9,2     -->  * R33:   + P4A  + P4C  - P1B
+   
+   A22,1 & A5,2     -->  * R35:   + P4B  + P4C  - P2A
+   
+   R1,2 & A7,1      -->  * R37:   + P1A  - P4C  - P2B
+   
+   R1,2 & A8,1      -->  * R38:   + P1A  - P4C  - P3B
+   
+   R2,2 & A7,1      -->  * R43:   + P1A  - P3C  - P2B
+   
+   R2,2 & A9,1      -->  * R45:   + P1A  - P3C  - P4B
+   
+   R3,1 & A2,1      -->  * R53:   + P1B  - P2C  - P3A
+   
+   R10,1 & A1,2     -->  * R67:   + P2B  - P4C  - P1A
+   
+   R10,1 & A4,1     -->  * R68:   + P2B  - P4C  - P3A
+   
+   R19,2 & A10,2    -->  * R92:   + P3A  - P4C  - P2B
+   
+   R20,2 & A8,2     -->  * R97:   + P3A  - P2C  - P1B
+   
+   R20,1 & A2,2     -->  * R100:  + P3B  - P2C  - P1A
+   
+   R31,1 & A3,2     -->  * R136:  + P4C  - P3B  - P1A
+   
+   R32,1 & A3,2     -->  * R139:  + P4C  - P2B  - P1A
+   
+   R32,1 & A6,2     -->  * R141:  + P4C  - P2B  - P3A
+   
+   R33,1 & A6,2     -->  * R144:  + P4C  - P1B  - P3A
+   
+   R37,1 & A2,1     -->  * R153:  - P4C  - P2B  - P3A
+   
+   R153,3 & R92,1   -->  * R154:  - P4C  - P2B  - P4C  - P2B
+   
+   R154 1=3         -->  * D155:  - P4C  - P2B  - P2B
+   
+   D155 2=3         -->  * D156:  - P4C  - P2B
+   
+   R67,1 & D156,2   -->  * R157:  - P4C  - P1A  - P4C
+   
+   R157 1=3         -->  * D158:  - P4C  - P1A
+   
+   R68,1 & D156,2   -->  * R159:  - P4C  - P3A  - P4C
+   
+   R159 1=3         -->  * D160:  - P4C  - P3A
+   
+   R139,1 & D156,1  -->  * R165:  - P2B  - P1A  - P2B
+   
+   R165 1=3         -->  * D166:  - P2B  - P1A
+   
+   R141,1 & D156,1  -->  * R169:  - P2B  - P3A  - P2B
+   
+   R169 1=3         -->  * D170:  - P2B  - P3A
+   
+   R38,1 & D158,2   -->  * R173:  - P4C  - P3B  - P4C
+   
+   R173 1=3         -->  * D174:  - P4C  - P3B
+   
+   R136,1 & D158,1  -->  * R181:  - P3B  - P1A  - P1A
+   
+   R181 2=3         -->  * D182:  - P3B  - P1A
+   
+   R19,1 & D160,2   -->  * R189:  + P3B  - P4C  - P4C
+   
+   R189 2=3         -->  * D190:  + P3B  - P4C
+   
+   R144,1 & D160,1  -->  * R193:  - P1B  - P3A  - P3A
+   
+   R193 2=3         -->  * D194:  - P1B  - P3A
+   
+   D190,1 & D174,2  -->  * R201:  - P4C  - P4C
+   
+   R201 1=2         -->  * D202:  - P4C
+   
+   R43,1 & D166,2   -->  * R203:  - P3C  - P2B  - P2B
+   
+   R203 2=3         -->  * D204:  - P3C  - P2B
+   
+   R18,1 & D166,1   -->  * R213:  + P2C  - P1A  - P1A
+   
+   R213 2=3         -->  * D214:  + P2C  - P1A
+   
+   R23,1 & D170,2   -->  * R217:  + P3C  - P2B  - P2B
+   
+   R217 2=3         -->  * D218:  + P3C  - P2B
+   
+   R17,1 & D170,1   -->  * R223:  + P2C  - P3A  - P3A
+   
+   R223 2=3         -->  * D224:  + P2C  - P3A
+   
+   D218,1 & D204,1  -->  * R227:  - P2B  - P2B
+   
+   R227 1=2         -->  * D228:  - P2B
+   
+   R100,1 & D182,1  -->  * R235:  - P2C  - P1A  - P1A
+   
+   R235 2=3         -->  * D236:  - P2C  - P1A
+   
+   D236,1 & D214,1  -->  * R239:  - P1A  - P1A
+   
+   R239 1=2         -->  * D240:  - P1A
+   
+   R35,2 & D202,1   -->  * R243:  + P4B  - P2A
+   
+   R97,1 & D194,2   -->  * R247:  - P2C  - P1B  - P1B
+   
+   R247 2=3         -->  * D248:  - P2C  - P1B
+   
+   R53,1 & D194,1   -->  * R253:  - P2C  - P3A  - P3A
+   
+   R253 2=3         -->  * D254:  - P2C  - P3A
+   
+   D248,2 & R3,2    -->  * R257:  - P2C  + P1A  - P2C
+   
+   R257 1=3         -->  * D258:  - P2C  + P1A
+   
+   D258,2 & D240,1  -->  * R259:  - P2C
+   
+   D254,1 & D224,1  -->  * R260:  - P3A  - P3A
+   
+   R260 1=2         -->  * D261:  - P3A
+   
+   R45,1 & D214,2   -->  * R266:  - P3C  - P4B  + P2C
+   
+   R266,3 & R259,1  -->  * R267:  - P3C  - P4B
+   
+   R267,1 & R22,2   -->  * R278:  - P4B  + P3A  - P4B
+   
+   R278 1=3         -->  * D279:  - P4B  + P3A
+   
+   D279,2 & D261,1  -->  * R280:  - P4B
+   
+   A20,2 & D228,1   -->  * R283:  + P2A  + P2C
+   
+   R283,2 & R259,1  -->  * R288:  + P2A
+   
+   R288,1 & R243,2  -->  * R291:  + P4B
+   
+   R291,1 & R280,1  -->  * R292:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 738 seconds

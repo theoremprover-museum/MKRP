@@ -1,0 +1,227 @@
+ 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 4-APR-85                                                      *
+                    *         DATE : 11-JUN-85  09:36:12                                           *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   10-JUN-85 17:24:18
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   K.S.4.8.1.2.COMMENT
+                                                                        
+************************************************************************
+                                                                        
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : * ***************************************************************************
+           * DEFINITIONEN DER MENGENLEHRE **********************************************
+           SORT SET:ANY
+           SORT ELEMENT:SET
+           TYPE EL(ELEMENT SET)
+           * DEFINITION 1.1: TEILMENGE
+           TYPE SUBSET(SET SET)
+           ALL X,Y:SET SUBSET(X Y) EQV(ALL A:ELEMENT EL(A X) IMPL EL(A Y))
+           * DEFINITION 1.3: KARTESISCHES PRODUKT
+           TYPE CARTES(SET SET) :SET
+           TYPE PAIR(ELEMENT ELEMENT) :ELEMENT
+           * ***************************************************************************
+           * DEFINTIONEN VON RELATIONEN AUF EINER FESTEN MENGE S ***********************
+           SORT REL:SET
+           TYPE S:SET
+           SORT EL.OF.S:ELEMENT
+           ALL A:EL.OF.S EL(A S)
+           * DEFINITION 2.1: RELATION *************************************************
+           ALL RHO:REL SUBSET(RHO CARTES(S S))
+           * DEFINITION 2.2: KOMPOSITION ZWEIER RELATIONEN ****************************
+           TYPE COMP(REL REL) :REL
+           ALL RHO,SIGMA:REL  ALL A:ELEMENT  
+             EL(A COMP(RHO SIGMA)) EQV(EX B,C,D:EL.OF.S A = PAIR(B D) AND EL(PAIR(B C) RHO) AND EL(PAIR(C D) SIGMA))
+           * DEFINITION 2.3: IDENTISCHE RELATION
+           TYPE IDENTITY:REL
+           ALL A:ELEMENT(EL(A IDENTITY)) EQV(EX B:EL.OF.S A = PAIR(B B))
+           * DEFINITION 2.4: KONVERSE RELATION
+           TYPE CONVERSE(REL) :REL
+           ALL RHO:REL ALL A:ELEMENT EL(A CONVERSE(RHO)) EQV(EX B,C:EL.OF.S A = PAIR(B C) AND EL(PAIR(C B) RHO))
+           * DEFINITION 2.5: REFLEXIV
+           TYPE REFLEXIV(REL)
+           * ALL RHO:REL REFLEXIV(RHO) EQV SUBSET(IDENTITY RHO)
+           * LEMMA 2,5
+           ALL RHO:REL REFLEXIV(RHO) EQV(ALL A:EL.OF.S EL(PAIR(A A) RHO))
+           * DEFINITION 2.6: SYMMETRISCH
+           TYPE SYMMETRISCH(REL)
+           * ALL RHO:REL SYMMETRISCH(RHO) EQV SUBSET(RHO CONVERSE(RHO))
+           * LEMMA 2,6
+           * ALL RHO:REL SYMMETRISCH(RHO) EQV(ALL A,B:EL.OF.S EL(PAIR(A B) RHO) IMPL EL(PAIR(B A) RHO))
+           * DEFINITION 2.7: TRANSITIV
+           TYPE TRANSITIV(REL)
+           * ALL RHO:REL TRANSITIV(RHO) EQV SUBSET(COMP(RHO RHO) RHO)
+           * LEMMA 2,7
+           *  ALL RHO:REL TRANSITIV (RHO) EQV                                                                           
+           *  (ALL A,B,C:EL.OF.S EL (PAIR (A B) RHO) AND EL (PAIR (B C) RHO) IMPL EL (PAIR (A B) RHO))                  
+           * DEFINITION 2.8: AEQUIVALENZRELATION
+           TYPE EQU.REL(REL)
+           ALL RHO:REL EQU.REL(RHO) EQV REFLEXIV(RHO) AND SYMMETRISCH(RHO) AND TRANSITIV(RHO)
+           * DEFINITION 1.5:DURCHSCHNITT UND SATZ 4.8.1.1
+           TYPE INTERSECTION(REL REL) : REL
+           ALL X,Y:REL ALL A:ELEMENT EL(A INTERSECTION(X Y)) EQV EL(A X) AND EL(A Y)
+ 
+THEOREMS : ALL RHO,SIGMA:REL EQU.REL(RHO) AND EQU.REL(SIGMA) IMPL REFLEXIV(INTERSECTION(RHO SIGMA))
+ 
+ 
+ 
+ 
+CONSTANTS : 
+=========== 
+ 
+| NAME         | SORT              |            | ATTRIBUTES                                                           |
+------------------------------------------------------------------------------------------------------------------------
+| S            | SET               |            |                                                                      |
+| IDENTITY     | REL               |            |                                                                      |
+| C_1          | EL.OF.S           |            |                                                                      |
+| C_2          | REL               |            |                                                                      |
+| C_3          | REL               |            |                                                                      |
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+FUNCTIONS : 
+=========== 
+ 
+| NAME         | DOMAIN            | RANGE      | ATTRIBUTES                                                           |
+------------------------------------------------------------------------------------------------------------------------
+| CARTES       | SET SET           | SET        |                                                                      |
+| PAIR         | ELEMENT ELEMENT   | ELEMENT    |                                                                      |
+| COMP         | REL REL           | REL        |                                                                      |
+| CONVERSE     | REL               | REL        |                                                                      |
+| INTERSECTION | REL REL           | REL        |                                                                      |
+| F_1          | REL ELEMENT REL   | EL.OF.S    |                                                                      |
+| F_2          | REL ELEMENT REL   | EL.OF.S    |                                                                      |
+| F_3          | REL ELEMENT REL   | EL.OF.S    |                                                                      |
+| F_4          | ELEMENT           | EL.OF.S    |                                                                      |
+| F_5          | REL ELEMENT       | EL.OF.S    |                                                                      |
+| F_6          | REL ELEMENT       | EL.OF.S    |                                                                      |
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+PREDICATES : 
+============ 
+ 
+| NAME         | DOMAIN            |            | ATTRIBUTES                                                           |
+------------------------------------------------------------------------------------------------------------------------
+| TRUE         |                   |            | DEFINED                                                              |
+| FALSE        |                   |            | DEFINED                                                              |
+| EL           | ELEMENT SET       |            |                                                                      |
+| SUBSET       | SET SET           |            |                                                                      |
+| =            | ANY ANY           |            | DEFINED SYMMETRIC REFLEXIVE SYMMETRIC REFLEXIVE SYMMETRIC REFLEXIVE  |
+| REFLEXIV     | REL               |            |                                                                      |
+| SYMMETRISCH  | REL               |            |                                                                      |
+| TRANSITIV    | REL               |            |                                                                      |
+| EQU.REL      | REL               |            |                                                                      |
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+  A1   : ALL X:ANY  + =(X X)
+  A2   : ALL X:EL.OF.S  + EL(X S)
+  A3   : ALL X:REL  Y:ELEMENT  - EL(Y X)  + EL(Y CARTES(S S))
+  A4   : ALL X,Y:REL  Z:ELEMENT  - EL(Z COMP(Y X))  + =(Z PAIR(F_2(X Z Y) F_3(X Z Y)))
+  A5   : ALL X,Y:REL  Z:ELEMENT  - EL(Z COMP(Y X))  + EL(PAIR(F_2(X Z Y) F_1(X Z Y)) Y)
+  A6   : ALL X,Y:REL  Z:ELEMENT  - EL(Z COMP(Y X))  + EL(PAIR(F_1(X Z Y) F_3(X Z Y)) X)
+  A7   : ALL X:EL.OF.S  Y:ELEMENT  + EL(Y IDENTITY)  - =(Y PAIR(X X))
+  A8   : ALL X:ELEMENT  - EL(X IDENTITY)  + =(X PAIR(F_4(X) F_4(X)))
+  A9   : ALL X:REL  Y:ELEMENT  - EL(Y CONVERSE(X))  + =(Y PAIR(F_5(X Y) F_6(X Y)))
+  A10  : ALL X:REL  Y:ELEMENT  - EL(Y CONVERSE(X))  + EL(PAIR(F_6(X Y) F_5(X Y)) X)
+  A11  : ALL X,Y:REL  Z:ELEMENT  - EL(Z INTERSECTION(Y X))  + EL(Z Y)
+  A12  : ALL X,Y:REL  Z:ELEMENT  - EL(Z INTERSECTION(Y X))  + EL(Z X)
+  A13  : ALL X,Y:EL.OF.S  Z:REL  U:ELEMENT  + EL(U CONVERSE(Z))  - =(U PAIR(Y X))  - EL(PAIR(X Y) Z)
+* A14  : ALL X,Y:REL  Z:ELEMENT  + EL(Z INTERSECTION(Y X))  - EL(Z Y)  - EL(Z X)
+  A15  : ALL X,Y,Z:EL.OF.S  U,V:REL  W:ELEMENT  
+              + EL(W COMP(V U))  - =(W PAIR(Z Y))  - EL(PAIR(Z X) V)  - EL(PAIR(X Y) U)
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+* T16  : ALL X:EL.OF.S  + EL(PAIR(X X) C_2)
+  T17  : + SYMMETRISCH(C_2)
+  T18  : + TRANSITIV(C_2)
+* T19  : ALL X:EL.OF.S  + EL(PAIR(X X) C_3)
+  T20  : + SYMMETRISCH(C_3)
+  T21  : + TRANSITIV(C_3)
+* T22  : - EL(PAIR(C_1 C_1) INTERSECTION(C_2 C_3))
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION
+ 
+INITIAL CLAUSES :      A1  : ALL X:ANY  + =(X X)
+                       A4  : ALL X,Y:REL  Z:ELEMENT  - EL(Z COMP(Y X))  + =(Z PAIR(F_2(X Z Y) F_3(X Z Y)))
+                       A5  : ALL X,Y:REL  Z:ELEMENT  - EL(Z COMP(Y X))  + EL(PAIR(F_2(X Z Y) F_1(X Z Y)) Y)
+                       A6  : ALL X,Y:REL  Z:ELEMENT  - EL(Z COMP(Y X))  + EL(PAIR(F_1(X Z Y) F_3(X Z Y)) X)
+                       A7  : ALL X:EL.OF.S  Y:ELEMENT  + EL(Y IDENTITY)  - =(Y PAIR(X X))
+                       A8  : ALL X:ELEMENT  - EL(X IDENTITY)  + =(X PAIR(F_4(X) F_4(X)))
+                       A9  : ALL X:REL  Y:ELEMENT  - EL(Y CONVERSE(X))  + =(Y PAIR(F_5(X Y) F_6(X Y)))
+                       A10 : ALL X:REL  Y:ELEMENT  - EL(Y CONVERSE(X))  + EL(PAIR(F_6(X Y) F_5(X Y)) X)
+                       A11 : ALL X,Y:REL  Z:ELEMENT  - EL(Z INTERSECTION(Y X))  + EL(Z Y)
+                       A12 : ALL X,Y:REL  Z:ELEMENT  - EL(Z INTERSECTION(Y X))  + EL(Z X)
+                       A13 : ALL X,Y:EL.OF.S  Z:REL  U:ELEMENT  + EL(U CONVERSE(Z))  - =(U PAIR(Y X))  - EL(PAIR(X Y) Z)
+                     * A14 : ALL X,Y:REL  Z:ELEMENT  + EL(Z INTERSECTION(Y X))  - EL(Z Y)  - EL(Z X)
+                       A15 : ALL X,Y,Z:EL.OF.S  U,V:REL  W:ELEMENT  
+                                  + EL(W COMP(V U))  - =(W PAIR(Z Y))  - EL(PAIR(Z X) V)  - EL(PAIR(X Y) U)
+                     * T16 : ALL X:EL.OF.S  + EL(PAIR(X X) C_2)
+                     * T19 : ALL X:EL.OF.S  + EL(PAIR(X X) C_3)
+                     * T22 : - EL(PAIR(C_1 C_1) INTERSECTION(C_2 C_3))
+ 
+T19,1 & A14,3   -->  * R1  : + EL(PAIR(C_1 C_1) INTERSECTION(C_2 C_3))  - EL(PAIR(C_1 C_1) C_2)
+ 
+R1,2 & T16,1    -->  * R2  : + EL(PAIR(C_1 C_1) INTERSECTION(C_2 C_3))
+ 
+R2,1 & T22,1    -->  * R3  :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+STOP
+ 

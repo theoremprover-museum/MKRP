@@ -1,0 +1,217 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 35.2 EQUALITY 16.1                                  *
+                     *           DATE: 15-DEC,1989  15:06                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 15-DEC,1989 15:05 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * E67B
+             *
+             * PORTIA^S SUITOR CHOSE CORRECTLY, SO THEY MARRIED AND LIVED QUITE HAPPILY -
+             * AT LEAST FOR A WHILE. THEN ONE DAY, PORTIA HAD THE FOLLOWING THOUGHTS :
+             * THOUGH MY HUSBAND SHOWED SOME INTELLIGENCE IN CHOOSING THE RIGHT CASKET,
+             * THE PROBLEM WASN^T REALLY THAT DIFFICULT. SURELY I COULD HAVE MADE THE
+             * PROBLEM HARDER AND GOTTEN A REALLY CLEVER HUSBAND.
+             * SO SHE FORTHWITH DIVORCED HER HUSBAND AND DECIDED TO GET A CLEVERER ONE.
+             * THIS TIME SHE HAD THE FOLLOWING INSCRIPTIONS PUT ON THE CASKETS :
+             *
+             * GOLD : THE PORTRAIT IS NOT IN THE SILVER CASKET
+             * SILVER : THE PORTRAIT IS NOT IN THIS CASKET
+             * LEAD : THE PORTRAIT IS IN THIS CASKET
+             *
+             * PORTIA EXPLAINED TO THE SUITOR THAT AT LEAST ONE OF THE THREE STATEMENTS
+             * WAS TRUE AND AT LEAST ONE OF THEM WAS FALSE.
+             * WHICH CASKET CONTAINS THE PORTRAIT?
+             *
+             * AXIOMS FOR THE 2ND PROBLEM OF PORTIA I. (E67B)
+             *
+             * THE SAME FUNCTION, PREDICATES AND SORTS AS IN E67A
+             * DECLARATIONS :
+             *
+             TYPE GOLD,SILVER,LEAD : CASKET
+             TYPE INSCRIPTION (CASKET) : INSCRIPT
+             TYPE PORTRAIT (CASKET)
+             TYPE TRUTH (INSCRIPT)
+             TYPE INSCR.PORTRAIT (INSCRIPT CASKET)
+             TYPE NEG.INSCR.PORTRAIT (INSCRIPT CASKET)
+             *
+             * THE SAME GENERAL KNOWLEDGE IS USED AS IN E67A
+             *
+             PORTRAIT (GOLD) OR PORTRAIT (SILVER) OR PORTRAIT (LEAD)
+             NOT (PORTRAIT (GOLD) AND PORTRAIT (SILVER)
+                  OR PORTRAIT (SILVER) AND PORTRAIT (LEAD)
+                  OR PORTRAIT (LEAD) AND PORTRAIT (GOLD))
+             ALL X : INSCRIPT ALL Y : CASKET INSCR.PORTRAIT (X Y) AND TRUTH (X) IMPL PORTRAIT (Y)
+             ALL X : INSCRIPT ALL Y : CASKET INSCR.PORTRAIT (X Y) AND NOT TRUTH (X) IMPL NOT PORTRAIT (Y)
+             ALL X : INSCRIPT ALL Y : CASKET NEG.INSCR.PORTRAIT (X Y) AND TRUTH (X) IMPL NOT PORTRAIT (Y)
+             ALL X : INSCRIPT ALL Y : CASKET NEG.INSCR.PORTRAIT (X Y) AND NOT TRUTH (X) IMPL PORTRAIT (Y)
+             *
+             * IN ADDITION TO THIS KNOWLEDGE THERE IS INFORMATION SPECIAL TO
+             * THIS PROBLEM :
+             * ACTUAL INSCRIPTIONS ON THE CASKETS :
+             NEG.INSCR.PORTRAIT (INSCRIPTION (GOLD) SILVER)
+             NEG.INSCR.PORTRAIT (INSCRIPTION (SILVER) SILVER)
+             INSCR.PORTRAIT (INSCRIPTION (LEAD) LEAD)
+             *
+             * AT LEAST ONE OF THE STATEMENTS IS TRUE, AND AT LEAST ONE IS FALSE :
+             TRUTH (INSCRIPTION (GOLD)) OR TRUTH (INSCRIPTION (SILVER)) OR TRUTH (INSCRIPTION (LEAD))
+             NOT TRUTH (INSCRIPTION (GOLD)) OR NOT TRUTH (INSCRIPTION (SILVER)) OR NOT TRUTH (INSCRIPTION (LEAD))
+             *
+             * WHICH CASKET CONTAINS THE PORTRAIT ?
+             
+   Theorems: * THEOREMS FOR THE 2ND PORTIA PROBLEM (SM.E67B)
+             *
+             PORTRAIT (GOLD)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+           * A1:   + NEG.INSCR.PORTRAIT(inscription(gold) silver)
+           * A2:   + NEG.INSCR.PORTRAIT(inscription(silver) silver)
+           * A3:   + INSCR.PORTRAIT(inscription(lead) lead)
+             A4:   - PORTRAIT(gold)  - PORTRAIT(silver)
+           * A5:   - PORTRAIT(silver)  - PORTRAIT(lead)
+             A6:   - PORTRAIT(lead)  - PORTRAIT(gold)
+           * A7:   + PORTRAIT(gold)  + PORTRAIT(silver)  + PORTRAIT(lead)
+           * A8:   All x:Casket y:Inscript - INSCR.PORTRAIT(y x)  - TRUTH(y)  + PORTRAIT(x)
+           * A9:   All x:Casket y:Inscript - INSCR.PORTRAIT(y x)  + TRUTH(y)  - PORTRAIT(x)
+           * A10:  All x:Casket y:Inscript - NEG.INSCR.PORTRAIT(y x)  - TRUTH(y)  - PORTRAIT(x)
+           * A11:  All x:Casket y:Inscript - NEG.INSCR.PORTRAIT(y x)  + TRUTH(y)  + PORTRAIT(x)
+           * A12:  + TRUTH(inscription(gold))  + TRUTH(inscription(silver))  + TRUTH(inscription(lead))
+           * A13:  - TRUTH(inscription(gold))  - TRUTH(inscription(silver))  - TRUTH(inscription(lead))
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T14: - PORTRAIT(gold)
+
+
+
+
+
+
+             Initial Operations on Theorems
+             ==============================
+
+
+          
+   A7,1 & T14,1  --> * R1: + PORTRAIT(silver)  + PORTRAIT(lead)
+   
+
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:    * A1:   + NEG.INSCR.PORTRAIT(inscription(gold) silver)
+                       * A2:   + NEG.INSCR.PORTRAIT(inscription(silver) silver)
+                       * A3:   + INSCR.PORTRAIT(inscription(lead) lead)
+                       * A5:   - PORTRAIT(silver)  - PORTRAIT(lead)
+                       * R1:   + PORTRAIT(silver)  + PORTRAIT(lead)
+                       * A8:   All x:Casket y:Inscript - INSCR.PORTRAIT(y x)  - TRUTH(y)  + PORTRAIT(x)
+                       * A9:   All x:Casket y:Inscript - INSCR.PORTRAIT(y x)  + TRUTH(y)  - PORTRAIT(x)
+                       * A10:  All x:Casket y:Inscript - NEG.INSCR.PORTRAIT(y x)  - TRUTH(y)  - PORTRAIT(x)
+                       * A11:  All x:Casket y:Inscript - NEG.INSCR.PORTRAIT(y x)  + TRUTH(y)  + PORTRAIT(x)
+                       * A12:  + TRUTH(inscription(gold))  + TRUTH(inscription(silver))  + TRUTH(inscription(lead))
+                       * A13:  - TRUTH(inscription(gold))  - TRUTH(inscription(silver))  - TRUTH(inscription(lead))
+                       * T14:  - PORTRAIT(gold)
+                       
+
+   
+   A3,1 & A9,1    -->  * R2:   + TRUTH(inscription(lead))  - PORTRAIT(lead)
+   
+   A3,1 & A8,1    -->  * R3:   - TRUTH(inscription(lead))  + PORTRAIT(lead)
+   
+   R1,2 & A9,3    -->  * R13:  All x:Inscript + PORTRAIT(silver)  - INSCR.PORTRAIT(x lead)  + TRUTH(x)
+   
+   R1,1 & A10,3   -->  * R14:  All x:Inscript + PORTRAIT(lead)  - NEG.INSCR.PORTRAIT(x silver)  - TRUTH(x)
+   
+   A2,1 & R14,2   -->  * R16:  + PORTRAIT(lead)  - TRUTH(inscription(silver))
+   
+   R13,3 & A13,3  -->  * R34:  + PORTRAIT(silver)  - INSCR.PORTRAIT(inscription(lead) lead)
+                               - TRUTH(inscription(gold))  - TRUTH(inscription(silver))
+   
+   R34,2 & A3,1   -->  * R35:  + PORTRAIT(silver)  - TRUTH(inscription(gold))  - TRUTH(inscription(silver))
+   
+   R35,1 & A10,3  -->  * R36:  All x:Inscript - TRUTH(inscription(gold))  - TRUTH(inscription(silver))
+                                              - NEG.INSCR.PORTRAIT(x silver)  - TRUTH(x)
+   
+   R36,3 & A2,1   -->  * R37:  - TRUTH(inscription(gold))  - TRUTH(inscription(silver))
+                               - TRUTH(inscription(silver))
+   
+   R37 2=3        -->  * D38:  - TRUTH(inscription(gold))  - TRUTH(inscription(silver))
+   
+   A12,1 & R14,3  -->  * R39:  + TRUTH(inscription(silver))  + TRUTH(inscription(lead))  + PORTRAIT(lead)
+                               - NEG.INSCR.PORTRAIT(inscription(gold) silver)
+   
+   R39,4 & A1,1   -->  * R40:  + TRUTH(inscription(silver))  + TRUTH(inscription(lead))  + PORTRAIT(lead)
+   
+   R40,3 & R2,2   -->  * R41:  + TRUTH(inscription(silver))  + TRUTH(inscription(lead))  + TRUTH(inscription(lead))
+   
+   R41 2=3        -->  * D42:  + TRUTH(inscription(silver))  + TRUTH(inscription(lead))
+   
+   D42,2 & R3,1   -->  * R43:  + TRUTH(inscription(silver))  + PORTRAIT(lead)
+   
+   R43,1 & R16,2  -->  * R44:  + PORTRAIT(lead)  + PORTRAIT(lead)
+   
+   R44 1=2        -->  * D45:  + PORTRAIT(lead)
+   
+   A5,2 & D45,1   -->  * R47:  - PORTRAIT(silver)
+   
+   A11,2 & D38,2  -->  * R91:  All x:Casket - NEG.INSCR.PORTRAIT(inscription(silver) x)  + PORTRAIT(x)
+                                            - TRUTH(inscription(gold))
+   
+   R91,2 & R47,1  -->  * R92:  - NEG.INSCR.PORTRAIT(inscription(silver) silver)  - TRUTH(inscription(gold))
+   
+   R92,1 & A2,1   -->  * R93:  - TRUTH(inscription(gold))
+   
+   A11,3 & R47,1  -->  * R94:  - NEG.INSCR.PORTRAIT(inscription(gold) silver)  + TRUTH(inscription(gold))
+   
+   R94,1 & A1,1   -->  * R95:  + TRUTH(inscription(gold))
+   
+   R95,1 & R93,1  -->  * R96:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 213 seconds

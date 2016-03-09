@@ -1,0 +1,90 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: Genera 7.1 PS 3.10 IP-TCP 52.16 MKRP 20.1                *
+                     *           DATE: 04-AUG-1988  01:28                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+                                                                            
+   
+   *************************************************************************
+   
+    EDIT:     Axioms and Theorems edited: 04-AUG-1988 01:27 
+   
+   *************************************************************************
+   
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   SORT MENGE,NAT:ANY
+             TYPE CARD (MENGE) :NAT
+             TYPE W (MENGE) :MENGE
+             * DEFINITION VON CARD *
+             ALL X,Y,PHI:MENGE ISOMORPH (PHI X Y) IMPL CARD (X) = CARD (Y)
+             * LEMMA 2.6.LR.1 *
+             ALL X,Y,PHI:MENGE ISOMORPH (PHI W (X) W (Y)) IMPL (EX PSI:MENGE ISOMORPH (PSI X Y))
+             
+   Theorems: ALL X,Y,PHI:MENGE ISOMORPH (PHI W (X) W (Y)) IMPL CARD (X) = CARD (Y)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any +=(x x)
+           * A2:   All x,y,z:Menge -ISOMORPH(z y x)  +=(card(y) card(x))
+           * A3:   All x,y,z:Menge -ISOMORPH(z w(y) w(x))  +ISOMORPH(f_1(x y) y x)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T4: +ISOMORPH(c_1 w(c_2) w(c_3))
+           * T5: -=(card(c_2) card(c_3))
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+
+   
+   Initial Clauses:    A1:  All x:Any +=(x x)
+                     * A2:  All x,y,z:Menge -ISOMORPH(z y x)  +=(card(y) card(x))
+                     * A3:  All x,y,z:Menge -ISOMORPH(z w(y) w(x))  +ISOMORPH(f_1(x y) y x)
+                     * T4:  +ISOMORPH(c_1 w(c_2) w(c_3))
+                     * T5:  -=(card(c_2) card(c_3))
+                     
+
+   
+   T4,1 & A3,1  -->  * R1:  +ISOMORPH(f_1(c_3 c_2) c_2 c_3)
+   
+   R1,1 & A2,1  -->  * R2:  +=(card(c_2) card(c_3))
+   
+   R2,1 & T5,1  -->  * R3:  []
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 

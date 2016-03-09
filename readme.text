@@ -1,0 +1,12 @@
+POPLOG
+
+(require "storeutils")
+
+(setq lisp:*max-store-size* 2000000)
+
+(defun ignore (&rest x) x nil)
+
+(lisp:savelisp "mkrp")
+
+clisp +mkrp
+

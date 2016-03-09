@@ -1,0 +1,352 @@
+;;; -*- Package: MKRP; Base: 10. -*- 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 5-NOV-84                                                      *
+                    *         DATE : 26-NOV-84  20:40:53                                           *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+                                                                         
+*************************************************************************
+ EDIT:     AXIOME UND THEOREME EDITIERT AM:  26-NOV-84 14:37:35
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:    2.7.LR.INJ 
+                                                                        
+************************************************************************
+                                                                        
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : SORT MENGE,ELEMENT,VERKN,ABB:ANY
+           TYPE W(MENGE) :MENGE
+           TYPE RESTRICTION(ABB MENGE) :ABB
+           TYPE MAPC(ABB ELEMENT) :ELEMENT
+           TYPE MAL,CONC:ABB
+           TYPE ELEM(MENGE) :ABB
+           TYPE CHI,CHINULL:ABB
+           TYPE F,X:MENGE
+           TYPE EHG(MENGE ABB) :MENGE
+           TYPE T:ELEMENT
+           * INJEKTIV *
+           ALL A,B:MENGE  ALL PHI:ABB  
+             (ALL U,V:ELEMENT EL(U A) AND EL(V A) AND MAPC(PHI U) = MAPC(PHI V) IMPL U = V) IMPL INJEKTIV(PHI A B)
+           * DEF. FREIES ERZEUGENDESSYSTEM 1.TEIL *
+           ALL H:MENGE ALL MAL2:ABB HG(H MAL2) AND FREI(H MAL2) IMPL(EX E:MENGE EHG(E MAL2) = H)
+           * WIRKUNG VON MAPC AUF ELEMENTE EINER HALBGRUPPE *
+           ALL U,V:ELEMENT  ALL MAL2:ABB  ALL H:MENGE  
+             HG(H MAL2) AND EL(U H) AND EL(V H) AND U=V IMPL MAPC(MAL2 U) = MAPC(MAL2 V)
+           * DEF. VON HOMOMORPHISMUS UNTER VERWENDUNG VON MAPC *
+           ALL H,G:MENGE  ALL MAL1,MAL2,PHI:ABB  
+                  HG(H MAL1) AND HG(G MAL2) AND HOMOMORPH(PHI H G)
+             IMPL (ALL U:ELEMENT MAPC(ELEM(H) U) = T IMPL MAPC(PHI MAPC(MAL1 U)) = MAPC(MAL2 MAPC(PHI U)))
+           ALL A:MENGE EX PHINULL:ABB ABBILDUNG(PHINULL A W(A)) AND(ALL Y:ELEMENT EL(Y A) IMPL MAPC(PHINULL Y) = Y)
+           ALL A,B,C:MENGE  ALL PHI,PHINULL:ABB  
+                  ABBILDUNG(PHI A B) AND RESTRICTION(PHI C) = PHINULL
+             IMPL (ALL Y:ELEMENT EL(Y C) IMPL MAPC(PHINULL Y) = MAPC(PHI Y)) AND ABBILDUNG(PHINULL C B) AND ME(C A)
+           ALL H:MENGE  ALL MAL2:ABB  ALL Y:ELEMENT  EX E:MENGE  
+             HG(H MAL2) AND EL(Y H) AND EHG(E MAL2) = H IMPL(EX U:ELEMENT MAPC(ELEM(E) U) = T AND MAPC(MAL2 U) = Y)
+ 
+THEOREMS :      HG(F MAL) AND FREI(F MAL) AND HOMOMORPH(CHI F W(X)) AND RESTRICTION(CHI X) = CHINULL
+           IMPL INJEKTIV(CHI F W(X))
+ 
+ 
+ 
+ 
+CONSTANTS : 
+=========== 
+ 
+| NAME        | SORT                |            | ATTRIBUTES                                                           
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+| MAL         | ABB                 |            |                                                                      
+|
+| CONC        | ABB                 |            |                                                                      
+|
+| CHI         | ABB                 |            |                                                                      
+|
+| CHINULL     | ABB                 |            |                                                                      
+|
+| F           | MENGE               |            |                                                                      
+|
+| X           | MENGE               |            |                                                                      
+|
+| T           | ELEMENT             |            |                                                                      
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+ 
+ 
+ 
+FUNCTIONS : 
+=========== 
+ 
+| NAME        | DOMAIN              | RANGE      | ATTRIBUTES                                                           
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+| W           | MENGE               | MENGE      |                                                                      
+|
+| RESTRICTION | ABB MENGE           | ABB        |                                                                      
+|
+| MAPC        | ABB ELEMENT         | ELEMENT    |                                                                      
+|
+| ELEM        | MENGE               | ABB        |                                                                      
+|
+| EHG         | MENGE ABB           | MENGE      |                                                                      
+|
+| F_1         | MENGE ABB           | ELEMENT    |                                                                      
+|
+| F_2         | MENGE ABB           | ELEMENT    |                                                                      
+|
+| F_3         | MENGE ABB           | MENGE      |                                                                      
+|
+| F_4         | MENGE               | ABB        |                                                                      
+|
+| F_5         | MENGE ABB ELEMENT   | MENGE      |                                                                      
+|
+| F_6         | ABB ELEMENT         | MENGE      |                                                                      
+|
+| F_7         | ABB ELEMENT         | ELEMENT    |                                                                      
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+ 
+ 
+ 
+PREDICATES : 
+============ 
+ 
+| NAME        | DOMAIN              |            | ATTRIBUTES                                                           
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+| TRUE        |                     |            | DEFINED                                                              
+|
+| FALSE       |                     |            | DEFINED                                                              
+|
+| EL          | ANY ANY             |            |                                                                      
+|
+| =           | ANY ANY             |            | DEFINED SYMMETRIC REFLEXIVE SYMMETRIC REFLEXIVE SYMMETRIC REFLEXIVE  
+|
+| INJEKTIV    | ANY ANY ANY         |            |                                                                      
+|
+| HG          | ANY ANY             |            |                                                                      
+|
+| FREI        | ANY ANY             |            |                                                                      
+|
+| U=V         |                     |            |                                                                      
+|
+| HOMOMORPH   | ANY ANY ANY         |            |                                                                      
+|
+| ABBILDUNG   | ANY ANY ANY         |            |                                                                      
+|
+| ME          | ANY ANY             |            |                                                                      
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+ 
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+  A1   : ALL X:ANY  + =(X X)
+  A2   : ALL X:MENGE  + ABBILDUNG(F_4(X) X W(X))
+  A3   : ALL X,Y:MENGE  Z:ABB  + EL(F_1(Y Z) Y)  + INJEKTIV(Z Y X)
+  A4   : ALL X,Y:MENGE  Z:ABB  + EL(F_2(Y Z) Y)  + INJEKTIV(Z Y X)
+  A5   : ALL X,Y:MENGE  Z:ABB  + =(MAPC(Z F_1(Y Z)) MAPC(Z F_2(Y Z)))  + INJEKTIV(Z Y X)
+  A6   : ALL X,Y:MENGE  Z:ABB  - =(F_1(Y Z) F_2(Y Z))  + INJEKTIV(Z Y X)
+  A7   : ALL X:MENGE  Y:ELEMENT  - EL(Y X)  + =(MAPC(F_4(X) Y) Y)
+  A8   : ALL X:ABB  Y:MENGE  - HG(Y X)  - FREI(Y X)  + =(EHG(F_3(Y X) X) Y)
+  A9   : ALL X,Y:ABB  Z,U,V:MENGE  - ABBILDUNG(Y V U)  - =(RESTRICTION(Y Z) X)  + ABBILDUNG(X Z U)
+  A10  : ALL X,Y:ABB  Z,U,V:MENGE  - ABBILDUNG(Y V U)  - =(RESTRICTION(Y Z) X)  + ME(Z V)
+  A11  : ALL X:ELEMENT  Y,Z:ABB  U,V,W:MENGE  
+              - ABBILDUNG(Z W V)  - =(RESTRICTION(Z U) Y)  - EL(X U)  + =(MAPC(Y X) MAPC(Z X))
+  A12  : ALL X:ELEMENT  Y:ABB  Z:MENGE  
+              - HG(Z Y)  - EL(X Z)  - =(EHG(F_5(Z Y X) Y) Z)  + =(MAPC(ELEM(F_6(Y X)) F_7(Y X)) T)
+  A13  : ALL X:ELEMENT  Y:ABB  Z:MENGE  - HG(Z Y)  - EL(X Z)  - =(EHG(F_5(Z Y X) Y) Z)  + =(MAPC(Y F_7(Y X)) X)
+  A14  : ALL X,Y:ELEMENT  Z:ABB  U:MENGE  - HG(U Z)  - EL(Y U)  - EL(X U)  - U=V  + =(MAPC(Z Y) MAPC(Z X))
+  A15  : ALL X:ELEMENT  Y,Z,U:ABB  V,W:MENGE  
+              - HG(W U)  - HG(V Z)  - HOMOMORPH(Y W V)  - =(MAPC(ELEM(W) X) T)
+                + =(MAPC(Y MAPC(U X)) MAPC(Z MAPC(Y X)))
+ 
+ 
+ 
+ 
+OPERATIONS ON AXIOMS
+====================
+ 
+ 
+A10,2 & A1,1   -->    R1 : ALL X:ABB  Y,Z,U:MENGE  - ABBILDUNG(X U Z)  + ME(Y U)
+ 
+R1,1 & A2,1    -->    R2 : ALL X,Y:MENGE  + ME(X Y)
+ 
+ 
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+  T16  : + HG(F MAL)
+  T17  : + FREI(F MAL)
+  T18  : + HOMOMORPH(CHI F W(X))
+  T19  : + =(RESTRICTION(CHI X) CHINULL)
+  T20  : - INJEKTIV(CHI F W(X))
+ 
+ 
+ 
+ 
+ 
+ 
+INITIAL OPERATIONS ON THEOREMS
+==============================
+ 
+ 
+T19   -->    RS3 : + =(CHINULL RESTRICTION(CHI X))
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION ( FAILURE : GRAPH.COLLAPSED )
+ 
+INITIAL CLAUSES :      A1  : ALL X:ANY  + =(X X)
+                       A2  : ALL X:MENGE  + ABBILDUNG(F_4(X) X W(X))
+                       A3  : ALL X,Y:MENGE  Z:ABB  + EL(F_1(Y Z) Y)  + INJEKTIV(Z Y X)
+                       A4  : ALL X,Y:MENGE  Z:ABB  + EL(F_2(Y Z) Y)  + INJEKTIV(Z Y X)
+                       A5  : ALL X,Y:MENGE  Z:ABB  + =(MAPC(Z F_1(Y Z)) MAPC(Z F_2(Y Z)))  + INJEKTIV(Z Y X)
+                       A6  : ALL X,Y:MENGE  Z:ABB  - =(F_1(Y Z) F_2(Y Z))  + INJEKTIV(Z Y X)
+                       A7  : ALL X:MENGE  Y:ELEMENT  - EL(Y X)  + =(MAPC(F_4(X) Y) Y)
+                       A8  : ALL X:ABB  Y:MENGE  - HG(Y X)  - FREI(Y X)  + =(EHG(F_3(Y X) X) Y)
+                       A9  : ALL X,Y:ABB  Z,U,V:MENGE  - ABBILDUNG(Y V U)  - =(RESTRICTION(Y Z) X)  + ABBILDUNG(X Z U)
+                       A11 : ALL X:ELEMENT  Y,Z:ABB  U,V,W:MENGE  
+                                  - ABBILDUNG(Z W V)  - =(RESTRICTION(Z U) Y)  - EL(X U)  + =(MAPC(Y X) MAPC(Z X))
+                       T16 : + HG(F MAL)
+                       T17 : + FREI(F MAL)
+                       T18 : + HOMOMORPH(CHI F W(X))
+                       T20 : - INJEKTIV(CHI F W(X))
+ 
+A3,2 & T20,1    -->    R4  : + EL(F_1(F CHI) F)
+ 
+A4,2 & T20,1    -->    R5  : + EL(F_2(F CHI) F)
+ 
+A5,2 & T20,1    -->    R6  : + =(MAPC(CHI F_1(F CHI)) MAPC(CHI F_2(F CHI)))
+ 
+A6,2 & T20,1    -->    R7  : - =(F_1(F CHI) F_2(F CHI))
+ 
+T17,1 & A8,2    -->    R8  : - HG(F MAL)  + =(EHG(F_3(F MAL) MAL) F)
+ 
+R8,1 & T16,1    -->    R9  : + =(EHG(F_3(F MAL) MAL) F)
+ 
+A1,1 & A11,2    -->    R10 : ALL X,Y,Z:MENGE  U:ELEMENT  V:ABB  
+                                  - ABBILDUNG(V Z Y)  - EL(U X)  + =(MAPC(RESTRICTION(V X) U) MAPC(V U))
+ 
+A1,1 & A9,2     -->    R11 : ALL X,Y,Z:MENGE  U:ABB  - ABBILDUNG(U Z Y)  + ABBILDUNG(RESTRICTION(U X) X Y)
+ 
+R9,1 & T16,1    -->    P12 : + HG(EHG(F_3(F MAL) MAL) MAL)
+ 
+R9,1 & T17,1    -->    P13 : + FREI(EHG(F_3(F MAL) MAL) MAL)
+ 
+R9,1 & T18,1    -->    P14 : + HOMOMORPH(CHI EHG(F_3(F MAL) MAL) W(X))
+ 
+R9,1 & T20,1    -->    P15 : - INJEKTIV(CHI EHG(F_3(F MAL) MAL) W(X))
+ 
+R4,1 & A7,1     -->    R16 : + =(MAPC(F_4(F) F_1(F CHI)) F_1(F CHI))
+ 
+R16,1 & R4,1    -->    P17 : + EL(MAPC(F_4(F) F_1(F CHI)) F)
+ 
+R16,1 & R6,1    -->    P18 : + =(MAPC(CHI MAPC(F_4(F) F_1(F CHI))) MAPC(CHI F_2(F CHI)))
+ 
+R16,1 & R7,1    -->    P19 : - =(MAPC(F_4(F) F_1(F CHI)) F_2(F CHI))
+ 
+R5,1 & A7,1     -->    R20 : + =(MAPC(F_4(F) F_2(F CHI)) F_2(F CHI))
+ 
+R20,1 & R5,1    -->    P21 : + EL(MAPC(F_4(F) F_2(F CHI)) F)
+ 
+R20,1 & R6,1    -->    P22 : + =(MAPC(CHI F_1(F CHI)) MAPC(CHI MAPC(F_4(F) F_2(F CHI))))
+ 
+R20,1 & R7,1    -->    P23 : - =(F_1(F CHI) MAPC(F_4(F) F_2(F CHI)))
+ 
+R20,1 & P18,1   -->    P24 : + =(MAPC(CHI MAPC(F_4(F) F_1(F CHI))) MAPC(CHI MAPC(F_4(F) F_2(F CHI))))
+ 
+R20,1 & P19,1   -->    P25 : - =(MAPC(F_4(F) F_1(F CHI)) MAPC(F_4(F) F_2(F CHI)))
+ 
+R5,1 & R10,2    -->    R26 : ALL X,Y:MENGE  Z:ABB  
+                                  - ABBILDUNG(Z Y X)  + =(MAPC(RESTRICTION(Z F) F_2(F CHI)) MAPC(Z F_2(F CHI)))
+ 
+A2,1 & R26,1    -->    R27 : ALL X:MENGE  + =(MAPC(RESTRICTION(F_4(X) F) F_2(F CHI)) MAPC(F_4(X) F_2(F CHI)))
+ 
+R27,1 & R20,1   -->    P28 : + =(MAPC(RESTRICTION(F_4(F) F) F_2(F CHI)) F_2(F CHI))
+ 
+R27,1 & P21,1   -->    P29 : + EL(MAPC(RESTRICTION(F_4(F) F) F_2(F CHI)) F)
+ 
+R27,1 & P22,1   -->    P30 : + =(MAPC(CHI F_1(F CHI)) MAPC(CHI MAPC(RESTRICTION(F_4(F) F) F_2(F CHI))))
+ 
+R27,1 & P23,1   -->    P31 : - =(F_1(F CHI) MAPC(RESTRICTION(F_4(F) F) F_2(F CHI)))
+ 
+R27,1 & P24,1   -->    P32 : + =(MAPC(CHI MAPC(F_4(F) F_1(F CHI))) MAPC(CHI MAPC(RESTRICTION(F_4(F) F) F_2(F CHI))))
+ 
+R27,1 & P25,1   -->    P33 : - =(MAPC(F_4(F) F_1(F CHI)) MAPC(RESTRICTION(F_4(F) F) F_2(F CHI)))
+ 
+R4,1 & R10,2    -->    R34 : ALL X,Y:MENGE  Z:ABB  
+                                  - ABBILDUNG(Z Y X)  + =(MAPC(RESTRICTION(Z F) F_1(F CHI)) MAPC(Z F_1(F CHI)))
+ 
+A2,1 & R34,1    -->    R35 : ALL X:MENGE  + =(MAPC(RESTRICTION(F_4(X) F) F_1(F CHI)) MAPC(F_4(X) F_1(F CHI)))
+ 
+R35,1 & R16,1   -->    P36 : + =(MAPC(RESTRICTION(F_4(F) F) F_1(F CHI)) F_1(F CHI))
+ 
+R35,1 & P17,1   -->    P37 : + EL(MAPC(RESTRICTION(F_4(F) F) F_1(F CHI)) F)
+ 
+R35,1 & P18,1   -->    P38 : + =(MAPC(CHI MAPC(RESTRICTION(F_4(F) F) F_1(F CHI))) MAPC(CHI F_2(F CHI)))
+ 
+R35,1 & P19,1   -->    P39 : - =(MAPC(RESTRICTION(F_4(F) F) F_1(F CHI)) F_2(F CHI))
+ 
+R35,1 & P24,1   -->    P40 : + =(MAPC(CHI MAPC(RESTRICTION(F_4(F) F) F_1(F CHI))) MAPC(CHI MAPC(F_4(F) F_2(F CHI))))
+ 
+R35,1 & P25,1   -->    P41 : - =(MAPC(RESTRICTION(F_4(F) F) F_1(F CHI)) MAPC(F_4(F) F_2(F CHI)))
+ 
+R35,1 & P32,1   -->    P42 : + =(MAPC(CHI MAPC(RESTRICTION(F_4(F) F) F_1(F CHI)))
+                                 MAPC(CHI MAPC(RESTRICTION(F_4(F) F) F_2(F CHI))))
+ 
+ 
+R35,1 & P33,1   -->    P43 : - =(MAPC(RESTRICTION(F_4(F) F) F_1(F CHI)) MAPC(RESTRICTION(F_4(F) F) F_2(F CHI)))
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+THE THEOREM(S) COULD NOT BE PROVED.
+ 
+STOP
+ 

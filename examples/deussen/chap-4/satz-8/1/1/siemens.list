@@ -1,0 +1,227 @@
+ 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 4-APR-85                                                      *
+                    *         DATE : 6-JUN-85  02:16:44                                            *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:    5-JUN-85 18:32:38
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   K.S.4.8.1.1.COMMENT
+                                                                        
+************************************************************************
+                                                                        
+ 
+ 
+ADJUSTMENT OF THE OPTIONS : 
+============================
+ 
+ 
+ 
+TWO:RULES                             NIL                   TWO:RULES.MAXLEVEL                    1
+TWO:SUPPRESS.NORULES                  NIL
+ 
+ 
+RED.I:CLAUSE.MULTIPLE.LITERALS        T                     RED.I:CLAUSE.PURITY                   T
+RED.I:CLAUSE.TAUTOLOGY                T                     RED.I:CLAUSE.TAUTOLOGY.RECHECK        NIL
+RED.I:CLAUSE.SUBSUMPTION              T                     RED.I:CLAUSE.SUBSUMPTION.RECHECK      NIL
+RED.I:CLAUSE.REPL.FACTORING           T                     RED.I:CLAUSE.REPL.FACTORING.RECHECK   NIL
+RED.I:CLAUSE.REPL.RESOLUTION          SIMPLE                RED.I:CLAUSE.REPL.RESOLUTION.RECHECK  NIL
+RED.I:CLAUSE.REWRITING                T                     RED.I:LINK.INCOMPATIBILITY            NIL
+RED.I:LINK.TAUTOLOGY                  NIL                   RED.I:LINK.TAUTOLOGY.RECHECK          NIL
+RED.I:LINK.SUBSUMPTION                NIL                   RED.I:LINK.SUBSUMPTION.RECHECK        NIL
+ 
+RED.D:CLAUSE.MULTIPLE.LITERALS        T                     RED.D:CLAUSE.PURITY                   T
+RED.D:CLAUSE.TAUTOLOGY                REMOVE-INHIBIT        RED.D:CLAUSE.TAUTOLOGY.RECHECK        NIL
+RED.D:CLAUSE.SUBSUMPTION.FORWARD      REMOVE-INHIBIT        RED.D:CLAUSE.SUBSUMPTION.BACKWARD     REMOVE
+RED.D:CLAUSE.SUBSUMPTION.RECHECK      NIL                   RED.D:CLAUSE.REPL.FACTORING           T
+RED.D:CLAUSE.REPL.FACTORING.RECHECK   T                     RED.D:CLAUSE.REPL.RESOLUTION          SIMPLE
+RED.D:CLAUSE.REPL.RESOLUTION.RECHECK  T                     RED.D:LINK.INCOMPATIBILITY            NIL
+RED.D:LINK.TAUTOLOGY                  REMOVE-INHIBIT        RED.D:LINK.TAUTOLOGY.RECHECK          NIL
+RED.D:LINK.SUBSUMPTION                REMOVE-INHIBIT        RED.D:LINK.SUBSUMPTION.RECHECK        NIL
+ 
+FAC:INITIAL                           NIL                   FAC:EACH.STEP                         NIL
+ 
+STR:RESOLUTION                        SET-OF-SUPPORT        STR:E-RESOLUTION                      NIL
+STR:PARAMODULATION                    UNIT-ANCESTRY         STR:LINK.DEPTH                        NIL
+STR:TERM.DEPTH                        4                     STR:R.DEMODULATION                    T
+STR:P.DEMODULATION                    T                     STR:INDUCTION                         NIL
+ 
+TERM:UNITS                            T                     TERM:ITERATIONS                       1
+TERM:SET.OF.SUPPORT                   NIL                   TERM:BREADTH.FIRST                    T
+ 
+GEN:SPLITTING                         0                     GEN:MANUAL.CONTROL                    NIL
+GEN:MAXIMUM.STEPS                     99                    GEN:GRAPH.SAVING                      NIL
+GEN:SAVE.FILE                         SAVE.DEFAULT
+ 
+ 
+TR:PREPROCESSING                      NIL                   TR:STEP.MODE                          LR
+TR:DUMP                               NIL                   TR:CLAUSE.MODE                        I
+TR:LINK.MODE                          I                     TR:TRACE.FILE                         NIL
+TR:TERMINAL                           T
+ 
+ 
+PR:INFIX.FORM                         T                     PR:PREFIX.FORM                        NIL
+PR:OPTIONS                            T                     PR:SYMBOLS                            T
+PR:PROTOCOL                           T                     PR:NEW.PNAMES                         T
+PR:DIFFERENT.VARIABLES                NIL                   PR:DIRECT.PROOF                       NIL
+PR:LEFT.MARGIN                        0                     PR:LINELENGTH                         120
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : * ***************************************************************************
+           * DEFINITIONEN DER MENGENLEHRE **********************************************
+           SORT SET:ANY
+           SORT ELEMENT:SET
+           TYPE EL(ELEMENT SET)
+           * DEFINITION 1.1: TEILMENGE
+           TYPE SUBSET(SET SET)
+           ALL X,Y:SET SUBSET(X Y) EQV(ALL A:ELEMENT EL(A X) IMPL EL(A Y))
+           * DEFINITION 1.3: KARTESISCHES PRODUKT
+           TYPE CARTES(SET SET) :SET
+           TYPE PAIR(ELEMENT ELEMENT) :ELEMENT
+           * DEFINITION 1.5: DURCHSCHNITT
+           TYPE INTERSECTION(SET SET) :SET
+           ALL X,Y:SET ALL A:ELEMENT EL(A INTERSECTION(X Y)) EQV EL(A X) AND EL(A Y)
+           * ***************************************************************************
+           * DEFINTIONEN VON RELATIONEN AUF EINER FESTEN MENGE S ***********************
+           SORT REL:SET
+           TYPE S:SET
+           SORT EL.OF.S:ELEMENT
+           ALL A:EL.OF.S EL(A S)
+           * DEFINITION 2.1: RELATION *************************************************
+           ALL RHO:REL SUBSET(RHO CARTES(S S))
+ 
+THEOREMS : ALL RHO,SIGMA:REL SUBSET(INTERSECTION(RHO SIGMA) CARTES(S S))
+ 
+ 
+ 
+ 
+CONSTANTS : 
+=========== 
+ 
+| NAME         | SORT              |            | ATTRIBUTES |
+--------------------------------------------------------------
+| S            | SET               |            |            |
+| C_1          | REL               |            |            |
+| C_2          | REL               |            |            |
+| C_3          | ELEMENT           |            |            |
+--------------------------------------------------------------
+ 
+ 
+ 
+FUNCTIONS : 
+=========== 
+ 
+| NAME         | DOMAIN            | RANGE      | ATTRIBUTES |
+--------------------------------------------------------------
+| CARTES       | SET SET           | SET        |            |
+| PAIR         | ELEMENT ELEMENT   | ELEMENT    |            |
+| INTERSECTION | SET SET           | SET        |            |
+--------------------------------------------------------------
+ 
+ 
+ 
+PREDICATES : 
+============ 
+ 
+| NAME         | DOMAIN            |            | ATTRIBUTES |
+--------------------------------------------------------------
+| TRUE         |                   |            | DEFINED    |
+| FALSE        |                   |            | DEFINED    |
+| EL           | ELEMENT SET       |            |            |
+| SUBSET       | SET SET           |            |            |
+--------------------------------------------------------------
+ 
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+  A1   : ALL X:EL.OF.S  + EL(X S)
+* A2   : ALL X,Y:SET  Z:ELEMENT  - EL(Z INTERSECTION(Y X))  + EL(Z Y)
+  A3   : ALL X,Y:SET  Z:ELEMENT  - EL(Z INTERSECTION(Y X))  + EL(Z X)
+* A4   : ALL X:REL  Y:ELEMENT  - EL(Y X)  + EL(Y CARTES(S S))
+  A5   : ALL X,Y:SET  Z:ELEMENT  + EL(Z INTERSECTION(Y X))  - EL(Z Y)  - EL(Z X)
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+* T6   : + EL(C_3 INTERSECTION(C_1 C_2))
+* T7   : - EL(C_3 CARTES(S S))
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION
+ 
+INITIAL CLAUSES :    A1  : ALL X:EL.OF.S  + EL(X S)
+                   * A2  : ALL X,Y:SET  Z:ELEMENT  - EL(Z INTERSECTION(Y X))  + EL(Z Y)
+                     A3  : ALL X,Y:SET  Z:ELEMENT  - EL(Z INTERSECTION(Y X))  + EL(Z X)
+                   * A4  : ALL X:REL  Y:ELEMENT  - EL(Y X)  + EL(Y CARTES(S S))
+                     A5  : ALL X,Y:SET  Z:ELEMENT  + EL(Z INTERSECTION(Y X))  - EL(Z Y)  - EL(Z X)
+                   * T6  : + EL(C_3 INTERSECTION(C_1 C_2))
+                   * T7  : - EL(C_3 CARTES(S S))
+ 
+T6,1 & A2,1   -->  * R1  : + EL(C_3 C_1)
+ 
+T6,1 & A3,1   -->    R2  : + EL(C_3 C_2)
+ 
+A5            -->    F3  : ALL X:EL.OF.S  + EL(X INTERSECTION(S S))  - EL(X S)
+ 
+F3,2 & A1,1   -->    R4  : ALL X:EL.OF.S  + EL(X INTERSECTION(S S))
+ 
+A5            -->    F5  : + EL(C_3 INTERSECTION(INTERSECTION(C_1 C_2) INTERSECTION(C_1 C_2)))
+                             - EL(C_3 INTERSECTION(C_1 C_2))
+ 
+F5,2 & T6,1   -->    R6  : + EL(C_3 INTERSECTION(INTERSECTION(C_1 C_2) INTERSECTION(C_1 C_2)))
+ 
+A4,2 & T7,1   -->  * R7  : ALL X:REL  - EL(C_3 X)
+ 
+A2,2 & T7,1   -->    R8  : ALL X:SET  - EL(C_3 INTERSECTION(CARTES(S S) X))
+ 
+A3,2 & T7,1   -->    R9  : ALL X:SET  - EL(C_3 INTERSECTION(X CARTES(S S)))
+ 
+R1,1 & R7,1   -->  * R10 :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+STOP
+ 

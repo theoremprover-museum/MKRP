@@ -1,0 +1,92 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 45.36 EQUALITY 16.1                                 *
+                     *           DATE: 17-AUG,1990  22:09                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 17-AUG,1990 22:08 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * AXIOMS *
+             ALL X,Y,Z A (A (A (S X) Y) Z) = A (A (X Z) A (Y Z))
+             ALL X,Y A (A (K X) Y) = X
+             
+   Theorems: * THEOREM *
+             ALL F EX Y Y = A (F Y)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+           * A2:   All x,y,z:Any + =(a(a(a(s z) y) x) a(a(z x) a(y x)))
+           * A3:   All x,y:Any + =(a(a(k y) x) y)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T4: All x:Any - =(x a(c_1 x))
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:      A1:    All x:Any + =(x x)
+                       * A2:    All x,y,z:Any + =(a(a(a(s z) y) x) a(a(z x) a(y x)))
+                       * A3:    All x,y:Any + =(a(a(k y) x) y)
+                       * T4:    All x:Any - =(x a(c_1 x))
+                       
+
+   
+   A3,1 & A2,1    -->  * P3:    All x,y,z:Any + =(a(a(a(s a(k z)) y) x) a(z a(y x)))
+   
+   P3,1 & A2,1    -->  * P31:   All x,y,z:Any + =(a(a(a(s a(s a(k z))) y) x) a(z a(x a(y x))))
+   
+   P31,1 & T4,1   -->  * P33:   All x,y:Any - =(a(y a(x y)) a(a(a(s a(s a(k c_1))) x) y))
+   
+   A3,1 & P31,1   -->  * P36:   All x,y,z:Any + =(a(a(a(s a(s a(k z))) y) a(k x)) a(z x))
+   
+   P36,1 & P33,1  -->  * R37:   []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 3371 seconds

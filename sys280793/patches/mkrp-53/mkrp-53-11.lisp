@@ -1,0 +1,165 @@
+;;; -*- Mode: LISP; Syntax: Common-lisp; Package: USER; Base: 10; Patch-File: T -*-
+;;; Patch file for MKRP version 53.11
+;;; Reason: Function MKRP::CTL-REFUTE.GRAPHS.ON.FILE1:  eps lits nur only once
+;;; Function MKRP::MKRP-TIME:  argument
+;;; Written by LISPM, 6/03/92 19:12:25
+;;; while running on Magic File Server from FEP0:>GENERA-8-0-INC-KKL-BEWEISER.LOAD.1
+;;; with Genera 8.0.1, Logical Pathnames Translation Files NEWEST, IP-TCP 422.2,
+;;; RPC 415.0, Embedding Support 407.0, UX Support 416.0,
+;;; Experimental Network RPC 415.0, Experimental NFS Client 415.0, CLX 419.0,
+;;; C Runtime 416.0, Compiler Tools Package 411.0, Compiler Tools Runtime 411.0,
+;;; C Packages 413.0, Minimal Lexer Runtime 416.0, Lexer Package 415.0,
+;;; Syntax Editor Runtime 411.0, Experimental X Server 409.0, X Remote Screen 418.1,
+;;; Karlsruher Kaiserslauterner Lisp 24.0, HADES 19.0,
+;;; Experimental MARKGRAF KARL REFUTATION PROCEDURE 53.10, microcode 3640-MIC 430,
+;;; FEP 127, Fep0:>v127-lisp.flod(64), Fep0:>v127-loaders.flod(64),
+;;; Fep0:>v127-info.flod(64), Fep0:>v127-debug.flod(38),
+;;; 1037x760 1-bit STATIC-GRAY X Screen JS-SFBSLC12:0.0 with 0 Genera fonts (MIT X Consortium R5000),
+;;; 1067x748 B&W Screen, Machine serial number 5603.
+
+;;; Patch file for MKRP version 53.11
+;;; Written by CW, 6/16/92 10:43:17
+;;; while running on Magic File Server from FEP0:>GENERA-8-0-INC-KKL-BEWEISER.LOAD.1
+;;; with Genera 8.0.1, Logical Pathnames Translation Files NEWEST, IP-TCP 422.2,
+;;; RPC 415.0, Embedding Support 407.0, UX Support 416.0,
+;;; Experimental Network RPC 415.0, Experimental NFS Client 415.0, CLX 419.0,
+;;; C Runtime 416.0, Compiler Tools Package 411.0, Compiler Tools Runtime 411.0,
+;;; C Packages 413.0, Minimal Lexer Runtime 416.0, Lexer Package 415.0,
+;;; Syntax Editor Runtime 411.0, Experimental X Server 409.0, X Remote Screen 418.1,
+;;; Karlsruher Kaiserslauterner Lisp 24.0, HADES 19.0,
+;;; Experimental MARKGRAF KARL REFUTATION PROCEDURE 53.11, microcode 3640-MIC 430,
+;;; FEP 127, Fep0:>v127-lisp.flod(64), Fep0:>v127-loaders.flod(64),
+;;; Fep0:>v127-info.flod(64), Fep0:>v127-debug.flod(38),
+;;; 1037x761 1-bit STATIC-GRAY X Screen WINOWS-6:0.0 with 0 Genera fonts (MIT X Consortium R4),
+;;; 1067x748 B&W Screen, Machine serial number 5603.
+
+
+
+
+(SYSTEM-INTERNALS:FILES-PATCHED-IN-THIS-PATCH-FILE 
+  "MKRP:PROG;SERV;SERVICE.LISP.NEWEST"
+  "MKRP:PROG;CTL;CONTROL.LISP.NEWEST")
+
+
+;=====================================
+(SYSTEM-INTERNALS:BEGIN-PATCH-SECTION)
+(SYSTEM-INTERNALS:PATCH-SECTION-SOURCE-FILE "MKRP:PROG;CTL;CONTROL.LISP.NEWEST")
+(SYSTEM-INTERNALS:PATCH-SECTION-ATTRIBUTES
+  "-*- Mode: LISP; Syntax: Common-lisp; Package: MARKGRAF-KARL; Base: 10 -*-")
+
+(DEFUN CTL-REFUTE.GRAPHS.ON.FILE1 (FILE CODEFILENAME)
+  ;; EDITED: 25-FEB-84 12:31:44        NE AP
+  ;; INPUT:  NAME OF A FILE CONTAINING AS MANY CALLS OF
+  ;;        CTL-INITIAL.GRAPH AS THERE ARE SPLIT PARTS
+  ;;        TO BE REFUTED FOLLOWED BY THE ATOM STOP
+  ;;        AND SECOND A FILE NAME WHERE THE RAW DATAS
+  ;;        FOR THE PROTOCOL ARE WRITTEN ON.
+  ;; EFFECT: THE SPLIT PARTS ARE SUCCESSIVELY REFUTED AND
+  ;;        SO ARE ANY ADDITIONAL DYNAMICALLY CREATED
+  ;;        ONES.
+  ;; VALUE:  'SUCCESS OR 'FAILURE INDICATING
+  ;;        THE TOTAL RESULT OF ALL REFUTATIONS.
+  ;; REMARK: THE SECOND FILE IS EXPECTED TO BE OPEN.
+  (RED-RESET 'DEDUCED :options)
+  (UNI-RESET)
+  ;(when (opt-get.option sort_literals)   Jetzt in UNI-RESET
+  ;  (upp-epsilon.literals.insert (DT-PREDICATE.POSITIVE.OCCURRENCES (dt-predicate.element))))
+  (CTL=PR_OPEN CODEFILENAME)
+  (CTL=PR_OPTIONS)
+  (PROGN (SETQ CTL*SPLITPARTS.REMAINING.FILES (LIST FILE))
+	 (SETQ CTL*SPLITPARTS.INPUTSTREAM NIL)
+	 (setq CTL*CURRENT.SPLITPART.IDENTIFIER '(1))
+	 (setq CTL*CURRENT.SPLITPART.INITIAL.SELECTION.FLAG nil)
+	 (SETQ CTL*SPLITPARTS.RESULTS NIL)
+	 (setq ctl*splitpart.flag nil)
+	 (setq CTL*CURRENT.SPLITPART.RESULT nil)
+	 ;; INVARIANT.SPLITPARTS HOLDS 
+	 (CTL=REFUTE.SPLITPARTS1 t))
+  (CTL=END))
+
+
+;=====================================
+(SYSTEM-INTERNALS:BEGIN-PATCH-SECTION)
+(SYSTEM-INTERNALS:PATCH-SECTION-SOURCE-FILE "MKRP:PROG;SERV;SERVICE.LISP.NEWEST")
+(SYSTEM-INTERNALS:PATCH-SECTION-ATTRIBUTES
+  "-*- Package: MKRP; Syntax: Common-lisp; Mode: LISP -*-")
+
+(defun mkrp-time (time)
+  (* 1000 (/ (- (get-internal-run-time) time) internal-time-units-per-second)))
+
+;=====================================
+(SYSTEM-INTERNALS:BEGIN-PATCH-SECTION)
+; From buffer repair.lisp /home/mkrp/ JS-SFBSUN:
+(SYSTEM-INTERNALS:PATCH-SECTION-ATTRIBUTES
+  "")
+(SYSTEM-INTERNALS:PATCH-SECTION-ATTRIBUTES
+  "-*- Package: MKRP; Syntax: Common-lisp; Mode: LISP -*-")
+
+(DEFUN CTL=REFUTE NIL
+  ;; INPUT:  NONE.
+  ;; EFFECT: A REFUTATION OF THE CURRENT GRAPH IS
+  ;;        EXECUTED SUCH THAT THE INPUT SPECIFICATION
+  ;;        REMAINS INVARIANT. UPON TERMINATION
+  ;;        CTL*CURRENT.SPLITPART.RESULT IS EQ TO THE
+  ;;        FUNCTION VALUE.
+  ;; VALUE:  A LEGAL REFUTATION RESULT. (CF. FILECOMS)
+  (CTL=PR_REFUTATION.START CTL*CURRENT.SPLITPART.IDENTIFIER CTL*SPLITPART.FLAG
+			   CTL*CURRENT.SPLITPART.INITIAL.SELECTION.FLAG CTL*STEPCOUNTER)
+  (UNLESS CTL*CURRENT.SPLITPART.RESULT
+    (CTL=PR_CURRENT.GRAPH T)
+    (UNLESS CTL*CURRENT.SPLITPART.INITIAL.REDUCTION.FLAG
+      (SETQ CTL*CURRENT.SPLITPART.RESULT (CTL=REDUCE.INITIAL))
+      (SETQ CTL*CURRENT.SPLITPART.INITIAL.REDUCTION.FLAG T)))
+  (UNLESS CTL*CURRENT.SPLITPART.RESULT
+    (SETQ CTL*STEPCOUNTER 0 CTL*ABORT.FLAG NIL ctl*prooftime (GET-INTERNAL-RUN-TIME))
+    (unless CTL*CURRENT.SPLITPART.INITIAL.SELECTION.FLAG
+      (LET ((TIME (GET-INTERNAL-RUN-TIME)))
+	(SEL-INITIALIZE CTL*CURRENT.SPLITPART.IDENTIFIER)
+	(CTL=PR_STATISTICS "Marked" (mkrp-TIME TIME))
+	(SETQ CTL*CURRENT.SPLITPART.INITIAL.SELECTION.FLAG T)))
+						; invariant.inference holds
+    (SETQ BREAKMACROS (ADJOIN CTL*ABORT.MACRO BREAKMACROS :TEST #'EQUAL))
+    (SETQ CTL*CURRENT.SPLITPART.RESULT (CTL=INFERENCE.LOOP))
+    (SETQ BREAKMACROS (REMOVE CTL*ABORT.MACRO BREAKMACROS)) (SEL-END))
+  (CTL=PR_REFUTATION.END CTL*CURRENT.SPLITPART.IDENTIFIER CTL*SPLITPART.FLAG CTL*CURRENT.SPLITPART.RESULT)
+  CTL*CURRENT.SPLITPART.RESULT)
+
+
+;=====================================
+(SYSTEM-INTERNALS:BEGIN-PATCH-SECTION)
+; From buffer repair.lisp /home/mkrp/ JS-SFBSUN:
+(SYSTEM-INTERNALS:PATCH-SECTION-ATTRIBUTES
+  "")
+(SYSTEM-INTERNALS:PATCH-SECTION-ATTRIBUTES
+  "-*- Package: MKRP; Syntax: Common-lisp; Mode: LISP -*-")
+
+(DEFUN CTL=INFERENCE.LOOP NIL
+  (let (RESULT)
+    (WHILE (NULL RESULT)		 
+      (COND ((SETQ RESULT (SEL-REFUTATION.RESULT)) NIL)
+	    ((AND (OPT-GET.OPTION GEN_MAXIMUM.STEPS)
+		  (NOT (< CTL*STEPCOUNTER (OPT-GET.OPTION GEN_MAXIMUM.STEPS))))
+	     (SETQ RESULT '(FAILURE ABORTED.MAXSTEPS)))
+	    ((AND (OPT-GET.OPTION GEN_MAXIMUM.time)
+		  (NOT (< (/ (mkrp-time CTL*prooftime) 1000) (OPT-GET.OPTION GEN_MAXIMUM.time))))
+	     (SETQ RESULT '(FAILURE ABORTED.MAXtime)))
+	    (CTL*ABORT.FLAG (SETQ RESULT '(FAILURE ABORTED.MANUALLY)))
+	    (T (incf CTL*STEPCOUNTER)
+	       (SETQ RESULT (CTL=INFERENCE.STEP CTL*STEPCOUNTER))
+	       (CTL=PR_GRAPH.DUMP CTL*STEPCOUNTER)
+	       (COND
+		 ((AND (NULL RESULT) (OPT-GET.OPTION GEN_GRAPH.SAVING)
+		       (ZEROP (REM CTL*STEPCOUNTER (OPT-GET.OPTION GEN_GRAPH.SAVING))))
+		  (CTL=SAVE))))))
+    RESULT))
+
+
+;=====================================
+(SYSTEM-INTERNALS:BEGIN-PATCH-SECTION)
+; From buffer repair.lisp /home/mkrp/ JS-SFBSUN:
+(SYSTEM-INTERNALS:PATCH-SECTION-ATTRIBUTES
+  "")
+(SYSTEM-INTERNALS:PATCH-SECTION-ATTRIBUTES
+  "-*- Package: MKRP; Syntax: Common-lisp; Mode: LISP -*-")
+
+(setq opt*gen_maximum.time 100000000)

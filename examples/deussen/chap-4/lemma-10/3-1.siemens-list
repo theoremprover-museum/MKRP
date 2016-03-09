@@ -1,0 +1,196 @@
+ 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 4-APR-85                                                      *
+                    *         DATE : 4-JUL-85  12:18:38                                            *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:    4-JUL-85 11:56:36
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   K.2.10.3.1.COMMENT
+                                                                        
+************************************************************************
+                                                                        
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : * ***************************************************************************
+           * DEFINITIONEN DER MENGENLEHRE **********************************************
+           SORT SET:ANY
+           SORT ELEMENT:SET
+           TYPE EL(ELEMENT SET)
+           * DEFINITION 1.3: KARTESISCHES PRODUKT
+           TYPE CARTES(SET SET) :SET
+           TYPE PAIR(ELEMENT ELEMENT) :ELEMENT
+           ALL A,B,C,D:ELEMENT PAIR(A B) = PAIR(C D) IMPL A = C AND B = D
+           * ***************************************************************************
+           * DEFINTIONEN VON RELATIONEN AUF EINER FESTEN MENGE S ***********************
+           SORT REL:SET
+           TYPE S:SET
+           SORT EL.OF.S:ELEMENT
+           * DEFINITION 2.3: IDENTISCHE RELATION
+           TYPE IDENTITY:REL
+           ALL A:ELEMENT(EL(A IDENTITY)) EQV(EX B:EL.OF.S A = PAIR(B B))
+           * DEFINITION 2.6: SYMMETRISCH
+           TYPE SYMMETRISCH(REL)
+           * LEMMA 2,6
+           ALL RHO:REL(ALL A,B:EL.OF.S EL(PAIR(A B) RHO) IMPL EL(PAIR(B A) RHO)) IMPL SYMMETRISCH(RHO)
+ 
+THEOREMS : SYMMETRISCH(IDENTITY)
+ 
+ 
+ 
+ 
+CONSTANTS : 
+=========== 
+ 
+| NAME        | SORT              |            | ATTRIBUTES                                                           |
+-----------------------------------------------------------------------------------------------------------------------
+| S           | SET               |            |                                                                      |
+| IDENTITY    | REL               |            |                                                                      |
+-----------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+FUNCTIONS : 
+=========== 
+ 
+| NAME        | DOMAIN            | RANGE      | ATTRIBUTES                                                           |
+-----------------------------------------------------------------------------------------------------------------------
+| CARTES      | SET SET           | SET        |                                                                      |
+| PAIR        | ELEMENT ELEMENT   | ELEMENT    |                                                                      |
+| F_1         | ELEMENT           | EL.OF.S    |                                                                      |
+| F_2         | REL               | EL.OF.S    |                                                                      |
+| F_3         | REL               | EL.OF.S    |                                                                      |
+-----------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+PREDICATES : 
+============ 
+ 
+| NAME        | DOMAIN            |            | ATTRIBUTES                                                           |
+-----------------------------------------------------------------------------------------------------------------------
+| TRUE        |                   |            | DEFINED                                                              |
+| FALSE       |                   |            | DEFINED                                                              |
+| EL          | ELEMENT SET       |            |                                                                      |
+| =           | ANY ANY           |            | DEFINED SYMMETRIC REFLEXIVE SYMMETRIC REFLEXIVE SYMMETRIC REFLEXIVE  |
+| SYMMETRISCH | REL               |            |                                                                      |
+-----------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+  A1   : ALL X:ANY  + =(X X)
+* A2   : ALL X,Y,Z,U:ELEMENT  - =(PAIR(U Z) PAIR(Y X))  + =(U Y)
+* A3   : ALL X,Y,Z,U:ELEMENT  - =(PAIR(U Z) PAIR(Y X))  + =(Z X)
+  A4   : ALL X:EL.OF.S  Y:ELEMENT  + EL(Y IDENTITY)  - =(Y PAIR(X X))
+* A5   : ALL X:ELEMENT  - EL(X IDENTITY)  + =(X PAIR(F_1(X) F_1(X)))
+* A6   : ALL X:REL  + EL(PAIR(F_3(X) F_2(X)) X)  + SYMMETRISCH(X)
+* A7   : ALL X:REL  - EL(PAIR(F_2(X) F_3(X)) X)  + SYMMETRISCH(X)
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+* T8   : - SYMMETRISCH(IDENTITY)
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION
+ 
+INITIAL CLAUSES :      A1  : ALL X:ANY  + =(X X)
+                     * A2  : ALL X,Y,Z,U:ELEMENT  - =(PAIR(U Z) PAIR(Y X))  + =(U Y)
+                     * A3  : ALL X,Y,Z,U:ELEMENT  - =(PAIR(U Z) PAIR(Y X))  + =(Z X)
+                       A4  : ALL X:EL.OF.S  Y:ELEMENT  + EL(Y IDENTITY)  - =(Y PAIR(X X))
+                     * A5  : ALL X:ELEMENT  - EL(X IDENTITY)  + =(X PAIR(F_1(X) F_1(X)))
+                     * A6  : ALL X:REL  + EL(PAIR(F_3(X) F_2(X)) X)  + SYMMETRISCH(X)
+                     * A7  : ALL X:REL  - EL(PAIR(F_2(X) F_3(X)) X)  + SYMMETRISCH(X)
+                     * T8  : - SYMMETRISCH(IDENTITY)
+ 
+A6,2 & T8,1     -->  * R1  : + EL(PAIR(F_3(IDENTITY) F_2(IDENTITY)) IDENTITY)
+ 
+A7,2 & T8,1     -->  * R2  : - EL(PAIR(F_2(IDENTITY) F_3(IDENTITY)) IDENTITY)
+ 
+R1,1 & A5,1     -->  * R3  : + =(PAIR(F_3(IDENTITY) F_2(IDENTITY))
+                                 PAIR(F_1(PAIR(F_3(IDENTITY) F_2(IDENTITY))) F_1(PAIR(F_3(IDENTITY) F_2(IDENTITY)))))
+ 
+ 
+R3,1 & R1,1     -->  * P4  : + EL(PAIR(F_1(PAIR(F_3(IDENTITY) F_2(IDENTITY))) F_1(PAIR(F_3(IDENTITY) F_2(IDENTITY))))
+                                  IDENTITY)
+ 
+ 
+A4,1 & R2,1     -->    R5  : ALL X:EL.OF.S  - =(PAIR(F_2(IDENTITY) F_3(IDENTITY)) PAIR(X X))
+ 
+R3,1 & R5,1     -->    P6  : - =(PAIR(F_2(IDENTITY) F_3(IDENTITY)) PAIR(F_3(IDENTITY) F_2(IDENTITY)))
+ 
+R3,1 & A2,1     -->  * R7  : + =(F_3(IDENTITY) F_1(PAIR(F_3(IDENTITY) F_2(IDENTITY))))
+ 
+R7,1 & R1,1     -->    P8  : + EL(PAIR(F_1(PAIR(F_3(IDENTITY) F_2(IDENTITY))) F_2(IDENTITY)) IDENTITY)
+ 
+R7,1 & R2,1     -->    P9  : - EL(PAIR(F_2(IDENTITY) F_1(PAIR(F_3(IDENTITY) F_2(IDENTITY)))) IDENTITY)
+ 
+R7,1 & R3,1     -->    P10 : + =(PAIR(F_3(IDENTITY) F_2(IDENTITY))
+                                 PAIR(F_3(IDENTITY) F_1(PAIR(F_3(IDENTITY) F_2(IDENTITY)))))
+ 
+ 
+R7,1 & R3,1     -->    P11 : + =(PAIR(F_3(IDENTITY) F_2(IDENTITY))
+                                 PAIR(F_1(PAIR(F_3(IDENTITY) F_2(IDENTITY))) F_3(IDENTITY)))
+ 
+ 
+R7,1 & P4,1     -->    P12 : + EL(PAIR(F_3(IDENTITY) F_1(PAIR(F_3(IDENTITY) F_2(IDENTITY)))) IDENTITY)
+ 
+R7,1 & P4,1     -->  * P13 : + EL(PAIR(F_1(PAIR(F_3(IDENTITY) F_2(IDENTITY))) F_3(IDENTITY)) IDENTITY)
+ 
+R3,1 & A2,1     -->    R14 : + =(F_1(PAIR(F_3(IDENTITY) F_2(IDENTITY))) F_3(IDENTITY))
+ 
+R3,1 & A3,1     -->  * R15 : + =(F_2(IDENTITY) F_1(PAIR(F_3(IDENTITY) F_2(IDENTITY))))
+ 
+R15,1 & R2,1    -->  * P16 : - EL(PAIR(F_1(PAIR(F_3(IDENTITY) F_2(IDENTITY))) F_3(IDENTITY)) IDENTITY)
+ 
+P16,1 & P13,1   -->  * R17 :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+STOP
+ 

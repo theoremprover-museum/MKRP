@@ -1,0 +1,175 @@
+;;; -*- Package: MKRP; Base: 10. -*- 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 18-OCT-84                                                     *
+                    *         DATE : 5-NOV-84  21:56:10                                            *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+                                                                         
+*************************************************************************
+ EDIT:     AXIOME UND THEOREME EDITIERT AM:   5-NOV-84 15:14:00
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:    2.7.LR.HOM 
+                                                                        
+************************************************************************
+                                                                        
+ 
+ 
+ADJUSTMENT OF THE OPTIONS : 
+============================
+ 
+ 
+ 
+TWO:RULES                             NIL                   TWO:RULES.MAXLEVEL                    1
+TWO:SUPPRESS.NORULES                  NIL
+ 
+ 
+RED.I:CLAUSE.MULTIPLE.LITERALS        T                     RED.I:CLAUSE.PURITY                   T
+RED.I:CLAUSE.TAUTOLOGY                T                     RED.I:CLAUSE.TAUTOLOGY.RECHECK        PARTIAL
+RED.I:CLAUSE.SUBSUMPTION              T                     RED.I:CLAUSE.SUBSUMPTION.RECHECK      PARTIAL
+RED.I:CLAUSE.REPL.FACTORING           T                     RED.I:CLAUSE.REPL.FACTORING.RECHECK   T
+RED.I:CLAUSE.REPL.RESOLUTION          SIMPLE                RED.I:CLAUSE.REPL.RESOLUTION.RECHECK  T
+RED.I:CLAUSE.REWRITING                T                     RED.I:LINK.INCOMPATIBILITY            T
+RED.I:LINK.TAUTOLOGY                  REMOVE-INHIBIT        RED.I:LINK.TAUTOLOGY.RECHECK          NIL
+RED.I:LINK.SUBSUMPTION                REMOVE-INHIBIT        RED.I:LINK.SUBSUMPTION.RECHECK        NIL
+ 
+RED.D:CLAUSE.MULTIPLE.LITERALS        T                     RED.D:CLAUSE.PURITY                   T
+RED.D:CLAUSE.TAUTOLOGY                REMOVE-INHIBIT        RED.D:CLAUSE.TAUTOLOGY.RECHECK        NIL
+RED.D:CLAUSE.SUBSUMPTION.FORWARD      REMOVE-INHIBIT        RED.D:CLAUSE.SUBSUMPTION.BACKWARD     REMOVE
+RED.D:CLAUSE.SUBSUMPTION.RECHECK      NIL                   RED.D:CLAUSE.REPL.FACTORING           T
+RED.D:CLAUSE.REPL.FACTORING.RECHECK   T                     RED.D:CLAUSE.REPL.RESOLUTION          SIMPLE
+RED.D:CLAUSE.REPL.RESOLUTION.RECHECK  T                     RED.D:LINK.INCOMPATIBILITY            T
+RED.D:LINK.TAUTOLOGY                  REMOVE-INHIBIT        RED.D:LINK.TAUTOLOGY.RECHECK          NIL
+RED.D:LINK.SUBSUMPTION                REMOVE-INHIBIT        RED.D:LINK.SUBSUMPTION.RECHECK        NIL
+ 
+FAC:INITIAL                           NIL                   FAC:EACH.STEP                         NIL
+ 
+STR:RESOLUTION                        SET-OF-SUPPORT        STR:E-RESOLUTION                      NIL
+STR:PARAMODULATION                    UNIT-ANCESTRY         STR:LINK.DEPTH                        NIL
+STR:TERM.DEPTH                        NIL                   STR:R.DEMODULATION                    T
+STR:P.DEMODULATION                    T                     STR:INDUCTION                         NIL
+ 
+TERM:UNITS                            T                     TERM:ITERATIONS                       0
+TERM:SET.OF.SUPPORT                   NIL                   TERM:BREADTH.FIRST                    NIL
+ 
+GEN:SPLITTING                         0                     GEN:MANUAL.CONTROL                    NIL
+GEN:MAXIMUM.STEPS                     NIL                   GEN:GRAPH.SAVING                      NIL
+GEN:SAVE.FILE                         SAVE.DEFAULT
+ 
+ 
+TR:PREPROCESSING                      NIL                   TR:STEP.MODE                          LR
+TR:DUMP                               NIL                   TR:CLAUSE.MODE                        I
+TR:LINK.MODE                          I                     TR:TRACE.FILE                         NIL
+TR:TERMINAL                           NIL
+ 
+ 
+PR:INFIX.FORM                         T                     PR:PREFIX.FORM                        NIL
+PR:OPTIONS                            T                     PR:AXIOM.CLAUSES                      NIL
+PR:SYMBOLS                            NIL                   PR:STATISTICS                         NIL
+PR:PROTOCOL                           T                     PR:LEFT.MARGIN                        0
+PR:LINELENGTH                         120
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : SORT MENGE ,ELEMENT,VERKN,ABB:ANY
+           TYPE W(MENGE) :MENGE
+           TYPE EHG(MENGE VERKN) :MENGE
+           TYPE CONC:VERKN
+           TYPE RESTRICTION(ABB MENGE) :ABB
+           ALL F:MENGE  ALL MAL1:VERKN  
+                  FREI(F MAL1)
+             IMPL( EX E:MENGE        EHG(E MAL1) = F
+                                 AND( ALL H:MENGE  ALL PHINULL:ABB  ALL MAL2:VERKN  
+                                             HG(H MAL2) AND ABBILDUNG(PHINULL E H)
+                                        IMPL (EX PHI:ABB HOMOMORPH(PHI F H) AND RESTRICTION(PHI E) = PHINULL)))
+           * WORTHALBGRUPPE DEF. 2.400000 *
+           ALL E:MENGE HG(W(E) CONC)
+           * INKLUSIONSABBILDUNG E BZGL. W(E) *
+           ALL A,B:MENGE EX PHINULL:ABB ABBILDUNG(PHINULL A B)
+ 
+THEOREMS : ALL F:MENGE ALL MAL:VERKN HG(F MAL) AND FREI(F MAL) IMPL(EX CHI:ABB EX X:MENGE HOMOMORPH(CHI F W(X)))
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+  A1   : ALL X:ANY  + =(X X)
+* A2   : ALL X:MENGE  + HG(W(X) CONC)
+* A3   : ALL X,Y:MENGE  + ABBILDUNG(F_3(Y X) X Y)
+  A4   : ALL X:VERKN  Y:MENGE  - FREI(Y X)  + =(EHG(F_2(Y X) X) Y)
+* A5   : ALL X:ABB  Y,Z:VERKN  U,V:MENGE  
+              - FREI(V Z)  - HG(U Y)  - ABBILDUNG(X F_2(V Z) U)  + HOMOMORPH(F_1(X U V Z) V U)
+  A6   : ALL X:ABB  Y,Z:VERKN  U,V:MENGE  
+              - FREI(V Z)  - HG(U Y)  - ABBILDUNG(X F_2(V Z) U)  + =(RESTRICTION(F_1(X U V Z) F_2(V Z)) X)
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+  T7   : + HG(C_2 C_1)
+* T8   : + FREI(C_2 C_1)
+* T9   : ALL X:MENGE  Y:ABB  - HOMOMORPH(Y C_2 W(X))
+ 
+ 
+ 
+ 
+ 
+ 
+INITIAL OPERATIONS ON THEOREMS
+==============================
+ 
+ 
+T9,1 & A5,4   -->  * R1 : ALL X:MENGE  - FREI(C_2 C_1)  - HG(W(X) CONC)
+                                         - ABBILDUNG(F_3(W(X) F_2(C_2 C_1)) F_2(C_2 C_1) W(X))
+ 
+R1,1 & T8,1   -->  * R2 : ALL X:MENGE  - HG(W(X) CONC)  - ABBILDUNG(F_3(W(X) F_2(C_2 C_1)) F_2(C_2 C_1) W(X))
+ 
+R2,1 & A2,1   -->  * R3 : ALL X:MENGE  - ABBILDUNG(F_3(W(X) F_2(C_2 C_1)) F_2(C_2 C_1) W(X))
+ 
+R3,1 & A3,1   -->  * R4 :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION
+ 
+INITIAL CLAUSES : 
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+STOP
+ 

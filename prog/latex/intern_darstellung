@@ -1,0 +1,23 @@
+
+	top_term = ("quant" quantifier sort_quantification_list term) | term
+
+        quantifier = "all"
+
+	sort_quantification_list = (sort_quantification rest_sort_quantification_list)
+
+	sort_quantification = (sort varlist) | (sort var rest_varlist)
+
+	sort = lispsym
+
+	varlist = (var rest_varlist)
+
+	var = lispsym
+
+	rest_varlist = | var rest_varlist
+
+	rest_sort_quantification_list = | sort_quantification 
+					  rest_sort_quantification_list
+
+	term = (fnsymbol term*) | symbol | number | ("rop" term rop)
+	       | ("lop" op term) | ("bins" term [ op-symbol term ]*)
+               | ("kl" term)

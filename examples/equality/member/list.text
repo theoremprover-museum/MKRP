@@ -1,0 +1,120 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 45.34 EQUALITY 16.1                                 *
+                     *           DATE: 16-AUG,1990  18:56                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 16-AUG,1990 17:12 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * AXIOMS *
+             * GROUP *
+             ALL X,Y,Z + (+ (X Y) Z) = + (X + (Y Z))
+             ALL X + (0 X) = X
+             ALL X + (- (X) X) = 0
+             * MEMBER *
+             ALL X,Y S (X) AND S (Y) IMPL S (+ (X - (Y)))
+             
+   Theorems: * THEOREM *
+             ALL X S (X) IMPL S (- (X))
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+           * A2:   All x,y,z:Any + =(+(+(z y) x) +(z +(y x)))
+           * A3:   All x:Any + =(+(0 x) x)
+           * A4:   All x:Any + =(+(-(x) x) 0)
+           * A5:   All x,y:Any - S(y)  - S(x)  + S(+(y -(x)))
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T6: + S(c_1)
+           * T7: - S(-(c_1))
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:      A1:    All x:Any + =(x x)
+                       * A2:    All x,y,z:Any + =(+(+(z y) x) +(z +(y x)))
+                       * A3:    All x:Any + =(+(0 x) x)
+                       * A4:    All x:Any + =(+(-(x) x) 0)
+                       * A5:    All x,y:Any - S(y)  - S(x)  + S(+(y -(x)))
+                       * T6:    + S(c_1)
+                       * T7:    - S(-(c_1))
+                       
+
+   
+   A4,1 & A2,1    -->  * P1:    All x,y:Any + =(+(0 y) +(-(x) +(x y)))
+   
+   P1,1 & A3      -->  * RW2:   All x,y:Any + =(y +(-(x) +(x y)))
+   
+   A4,1 & RW2,1   -->  * P4:    All x:Any + =(x +(-(-(x)) 0))
+   
+   P4,1 & RW2,1   -->  * P13:   All x:Any + =(0 +(-(-(-(x))) x))
+   
+   P13,1 & RW2,1  -->  * P14:   All x:Any + =(x +(-(-(-(-(x)))) 0))
+   
+   P14,1 & P4     -->  * RW15:  All x:Any + =(x -(-(x)))
+   
+   A4,1 & A5,3    -->  * P20:   All x:Any + S(0)  - S(-(-(x)))  - S(x)
+   
+   P20,2 & RW15   -->  * RW21:  All x:Any + S(0)  - S(x)  - S(x)
+   
+   RW21 2=3       -->  * D22:   All x:Any + S(0)  - S(x)
+   
+   D22,2 & T6,1   -->  * R23:   + S(0)
+   
+   A3,1 & A5,3    -->  * P28:   All x:Any + S(-(x))  - S(0)  - S(x)
+   
+   P28,3 & T6,1   -->  * R29:   + S(-(c_1))  - S(0)
+   
+   R29,1 & T7,1   -->  * R30:   - S(0)
+   
+   R30,1 & R23,1  -->  * R31:   []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 41 seconds

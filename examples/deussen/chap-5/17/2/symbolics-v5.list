@@ -1,0 +1,539 @@
+;;; -*- Package: MKRP; Base: 10. -*-
+
+
+
+                    ********************************************************************************
+                    *                                                                              *
+                    *     MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN                   *
+                    *                                                                              *
+                    *       17-MAR-86                                                              *
+                    *          17-MAR-86  10:38:03                                                 *
+                    *                                                                              *
+                    ********************************************************************************
+
+
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   19-FEB-86 11:53:33
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   D517>2
+                                                                        
+************************************************************************
+                                                                        
+
+
+ADJUSTMENT OF THE OPTIONS : 
+============================
+
+
+
+TWO:RULES                             NIL                   TWO:RULES.MAXLEVEL                    1.
+TWO:SUPPRESS.NORULES                  NIL
+
+
+RED.I:CLAUSE.MULTIPLE.LITERALS        T                     RED.I:CLAUSE.PURITY                   T
+RED.I:CLAUSE.TAUTOLOGY                T                     RED.I:CLAUSE.TAUTOLOGY.RECHECK        PARTIAL
+RED.I:CLAUSE.SUBSUMPTION              T                     RED.I:CLAUSE.SUBSUMPTION.RECHECK      PARTIAL
+RED.I:CLAUSE.REPL.FACTORING           T                     RED.I:CLAUSE.REPL.FACTORING.RECHECK   T
+RED.I:CLAUSE.REPL.RESOLUTION          SIMPLE                RED.I:CLAUSE.REPL.RESOLUTION.RECHECK  T
+RED.I:CLAUSE.REWRITING                T                     RED.I:LINK.INCOMPATIBILITY            NIL
+RED.I:LINK.TAUTOLOGY                  REMOVE-INHIBIT        RED.I:LINK.TAUTOLOGY.RECHECK          NIL
+RED.I:LINK.SUBSUMPTION                REMOVE-INHIBIT        RED.I:LINK.SUBSUMPTION.RECHECK        NIL
+
+RED.D:CLAUSE.MULTIPLE.LITERALS        T                     RED.D:CLAUSE.PURITY                   T
+RED.D:CLAUSE.TAUTOLOGY                REMOVE-INHIBIT        RED.D:CLAUSE.TAUTOLOGY.RECHECK        NIL
+RED.D:CLAUSE.SUBSUMPTION.FORWARD      REMOVE-INHIBIT        RED.D:CLAUSE.SUBSUMPTION.BACKWARD     REMOVE
+RED.D:CLAUSE.SUBSUMPTION.RECHECK      NIL                   RED.D:CLAUSE.REPL.FACTORING           T
+RED.D:CLAUSE.REPL.FACTORING.RECHECK   T                     RED.D:CLAUSE.REPL.RESOLUTION          SIMPLE
+RED.D:CLAUSE.REPL.RESOLUTION.RECHECK  T                     RED.D:LINK.INCOMPATIBILITY            NIL
+RED.D:LINK.TAUTOLOGY                  REMOVE-INHIBIT        RED.D:LINK.TAUTOLOGY.RECHECK          NIL
+RED.D:LINK.SUBSUMPTION                NIL                   RED.D:LINK.SUBSUMPTION.RECHECK        NIL
+
+FAC:INITIAL                           NIL                   FAC:EACH.STEP                         NIL
+
+STR:RESOLUTION                        SET-OF-SUPPORT        STR:E-RESOLUTION                      NIL
+STR:PARAMODULATION                    UNIT-ANCESTRY         STR:LINK.DEPTH                        NIL
+STR:TERM.DEPTH                        4.                    STR:R.DEMODULATION                    T
+STR:P.DEMODULATION                    T                     STR:INDUCTION                         NIL
+
+TERM:UNITS                            T                     TERM:ITERATIONS                       1.
+TERM:SET.OF.SUPPORT                   NIL                   TERM:BREADTH.FIRST                    NIL
+
+GEN:SPLITTING                         0.                    GEN:MANUAL.CONTROL                    NIL
+GEN:MAXIMUM.STEPS                     94.                   GEN:GRAPH.SAVING                      NIL
+GEN:SAVE.FILE                         SAVE.DEFAULT
+
+
+TR:PREPROCESSING                      NIL                   TR:STEP.MODE                          LR
+TR:DUMP                               NIL                   TR:CLAUSE.MODE                        I
+TR:LINK.MODE                          I                     TR:TRACE.FILE                         NIL
+TR:TERMINAL                           NIL
+
+
+PR:INFIX.FORM                         T                     PR:PREFIX.FORM                        NIL
+PR:OPTIONS                            T                     PR:AXIOM.CLAUSES                      NIL
+PR:SYMBOLS                            NIL                   PR:STATISTICS                         NIL
+PR:PROTOCOL                           T                     PR:LEFT.MARGIN                        0.
+PR:LINELENGTH                         120.
+
+
+
+
+FORMULAE GIVEN TO THE EDITOR
+============================
+
+
+AXIOMS   : SORT SET:ANY
+           SORT FUNCTION:ANY
+           SORT ELEMENT:SET
+           SORT ELEMENT.F:ELEMENT
+           SORT NAT:SET
+           SORT REL:SET
+           SORT UNARY.FUNC:FUNCTION
+           SORT BINARY.FUNC:FUNCTION
+           SORT EQU.REL-S:REL
+           SORT L.CONGRUENCE-S:EQU.REL-S
+           SORT R.CONGRUENCE-S:EQU.REL-S
+           SORT CONGRUENCE-S:L.CONGRUENCE-S
+           SORT CONGRUENCE-S:R.CONGRUENCE-S
+           * CONSTANTS *
+           TYPE F:SET
+           TYPE CONN.F:BINARY.FUNC
+           TYPE 1:NAT
+           TYPE CONN.F.RHO:BINARY.FUNC
+           * PREDICATES *
+           TYPE SEMIGROUP (SET BINARY.FUNC)
+           TYPE L.CONGRUENCE (REL)
+           TYPE R.CONGRUENCE (REL)
+           TYPE CONGRUENCE (EQU.REL-S)
+           TYPE IN.RELATION (REL ELEMENT.F ELEMENT.F)
+           TYPE INJECTIVE (UNARY.FUNC SET SET)
+           TYPE SURJECTIVE (UNARY.FUNC SET SET)
+           TYPE BIJECTIVE (UNARY.FUNC SET SET)
+           TYPE HOMOMORPH (UNARY.FUNC SET SET)
+           TYPE ISOMORPH (UNARY.FUNC SET SET)
+           TYPE EPIMORPH (UNARY.FUNC SET SET)
+           TYPE MAPPING (UNARY.FUNC SET SET)
+           TYPE MEMBER (SET SET)
+           TYPE SUBSET (SET SET)
+           * FUNCTIONS *
+           TYPE INVERSE.EL (SET BINARY.FUNC ELEMENT) :ELEMENT
+           TYPE APPLY1 (UNARY.FUNC SET) :SET
+           TYPE APPLY1-EL (UNARY.FUNC ELEMENT) :ELEMENT
+           TYPE APPLY2 (BINARY.FUNC SET SET) :SET
+           TYPE APPLY2-EL (BINARY.FUNC ELEMENT ELEMENT) :ELEMENT
+           TYPE APPLY2-EL.F (BINARY.FUNC ELEMENT.F ELEMENT.F) :ELEMENT.F
+           TYPE PREIMAGE (REL ELEMENT) :SET
+           TYPE POWER (REL NAT) :REL
+           TYPE PLUS (NAT NAT) :NAT
+           TYPE MODULO (EQU.REL-S) :SET
+           TYPE COMP (REL REL) :REL
+           TYPE TRANS.CLOS (REL) :REL
+           TYPE UNION-REL (REL REL) :REL
+           TYPE TRANS.UNION (EQU.REL-S EQU.REL-S) :EQU.REL-S
+           TYPE CAN.PROJ (EQU.REL-S) :UNARY.FUNC
+           TYPE IND.EQU.REL (UNARY.FUNC SET) :EQU.REL-S
+           TYPE MOD.PHI (UNARY.FUNC SET) :UNARY.FUNC
+           TYPE NORMALISATOR (SET) : SET
+           *
+           * THEOREM 5.15 *
+           ALL RHO:L.CONGRUENCE-S  ALL E:ELEMENT.F  
+               GROUP (F CONN.F E)
+               IMPL  
+                ALL X:ELEMENT.F  
+                    MEMBER (X NORMALISATOR (RHO))
+                    EQV  
+                     SUBSET  
+                     APPLY2 (CONN.F INVERSE.EL (X CONN.F E) APPLY2 (CONN.F PREIMAGE (RHO E) X)) PREIMAGE (RHO E)
+           * LEMMA 5.17.2 *
+           ALL RHO:L.CONGRUENCE-S  ALL E:ELEMENT.F  
+               GROUP (F CONN.F E)
+               IMPL  
+                ALL X:ELEMENT.F  
+                    NOT.EMPTY (INTERSECTION (APPLY2 (CONN.F X PREIMAGE (RHO E)) NORMALISATOR (RHO)))
+                    IMPL  
+                    MEMBER (X NORMALISATOR (RHO))
+           * PROPERTY OF SUBSET AND MULTIPLICATION *
+           ALL A,B:SET  ALL X:ELEMENT.F  
+               SEMIGROUP (F CONN.F)
+               IMPL  
+                  SUBSET (A B)
+                  IMPL  
+                  SUBSET (APPLY2 (CONN.F X A) APPLY2 (CONN.F X B)) AND SUBSET (APPLY2 (CONN.F A X) APPLY2 (CONN.F B X))
+           * ASSOCIATIVITY *
+           ALL X,Y,Z:SET APPLY2 (CONN.F X APPLY2 (CONN.F Y Z)) = APPLY2 (CONN.F APPLY2 (CONN.F X Y) Z)
+           * PROPERTY OF THE INVERSE-MAPPING *
+           ALL E:ELEMENT.F  
+               GROUP (F CONN.F E)
+               IMPL  
+                ALL X,Y:ELEMENT.F  
+                   INVERSE.EL  
+                   APPLY2 (CONN.F X Y) CONN.F E
+                   =  
+                   APPLY2  
+                   CONN.F INVERSE.EL (Y CONN.F E) INVERSE.EL (X CONN.F E)
+           * A SEMIGROUP IS CLOSED W.R.T. ITS CONNECTIVE *
+           ALL A:SET  ALL X:ELEMENT.F  
+             SEMIGROUP (F CONN.F) AND SUBSET (A F) IMPL (APPLY2 (CONN.F X A) = A AND APPLY2 (CONN.F A X) = A)
+           * EXISTENCE OF INVERSE ELEMENTS *
+           ALL E:ELEMENT.F GROUP (F CONN.F E) IMPL (ALL X:ELEMENT.F EX Y:ELEMENT.F Y = INVERSE.EL (X CONN.F E))
+           * PART OF DEFINITION GROUP *
+           ALL E:ELEMENT.F GROUP (F CONN.F E) IMPL SEMIGROUP (F CONN.F)
+           * THEOREM 5.14 *
+           ALL RHO:L.CONGRUENCE-S ALL E:ELEMENT.F GROUP (F CONN.F E) IMPL SUBGROUP (PREIMAGE (RHO E) F CONN.F E)
+           * PART DEFINITION SUBGROUP *
+           ALL U:SET ALL E:ELEMENT.F SUBGROUP (U F CONN.F E) IMPL SUBSET (U F)
+           * PROPERTY SUBSET *
+           ALL A,B:SET  ALL X:ELEMENT.F  
+             (ALL Y:ELEMENT.F MEMBER (Y A) IMPL MEMBER (APPLY2 (CONN.F X Y) B)) IMPL SUBSET (APPLY2 (CONN.F X A) B)
+
+THEOREMS : * THEOREM 5.17.2 *
+           ALL RHO:L.CONGRUENCE-S  ALL E:ELEMENT.F  
+               GROUP (F CONN.F E)
+               IMPL  
+                ALL X:ELEMENT.F  
+                    NOT.EMPTY (INTERSECTION (APPLY2 (CONN.F X PREIMAGE (RHO E)) NORMALISATOR (RHO)))
+                    IMPL  
+                    SUBSET (APPLY2 (CONN.F X PREIMAGE (RHO E)) NORMALISATOR (RHO))
+
+
+
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+  A1   : ALL X:ANY  + =(X X)
+  A2   : ALL X,Y,Z:SET  + =(APPLY2(CONN.F Z APPLY2(CONN.F Y X)) APPLY2(CONN.F APPLY2(CONN.F Z Y) X))
+  A3   : ALL X,Y:SET  Z:ELEMENT.F  - MEMBER(APPLY2(CONN.F Z F_2(Y X Z)) Y)  + SUBSET(APPLY2(CONN.F Z X) Y)
+  A4   : ALL X:ELEMENT.F  Y,Z:SET  + MEMBER(F_2(Z Y X) Y)  + SUBSET(APPLY2(CONN.F X Y) Z)
+  A5   : ALL X:ELEMENT.F  Y:SET  - SUBGROUP(Y F CONN.F X)  + SUBSET(Y F)
+  A6   : ALL X:L.CONGRUENCE-S  Y:ELEMENT.F  - GROUP(F CONN.F Y)  + SUBGROUP(PREIMAGE(X Y) F CONN.F Y)
+  A7   : ALL X:ELEMENT.F  - GROUP(F CONN.F X)  + SEMIGROUP(F CONN.F)
+  A8   : ALL X,Y:ELEMENT.F  - GROUP(F CONN.F Y)  + =(F_1(X Y) INVERSE.EL(X CONN.F Y))
+  A9   : ALL X,Y,Z:ELEMENT.F  - GROUP(F CONN.F Z)
+                              + =(INVERSE.EL(APPLY2(CONN.F Y X) CONN.F Z)
+                                  APPLY2(CONN.F INVERSE.EL(X CONN.F Z) INVERSE.EL(Y CONN.F Z)))
+  A10  : ALL X:ELEMENT.F  Y:SET  - SEMIGROUP(F CONN.F)  - SUBSET(Y F)  + =(APPLY2(CONN.F Y X) Y)
+  A11  : ALL X:L.CONGRUENCE-S  Y,Z:ELEMENT.F  
+              - GROUP(F CONN.F Z)  - MEMBER(Y NORMALISATOR(X))
+                + SUBSET(APPLY2(CONN.F INVERSE.EL(Y CONN.F Z) APPLY2(CONN.F PREIMAGE(X Z) Y)) PREIMAGE(X Z))
+  A12  : ALL X:L.CONGRUENCE-S  Y,Z:ELEMENT.F  
+              - GROUP(F CONN.F Z)  - NOT.EMPTY(INTERSECTION(APPLY2(CONN.F Y PREIMAGE(X Z)) NORMALISATOR(X)))
+                + MEMBER(Y NORMALISATOR(X))
+  A13  : ALL X:ELEMENT.F  Y:SET  - SEMIGROUP(F CONN.F)  - SUBSET(Y F)  + =(APPLY2(CONN.F X Y) Y)
+  A14  : ALL X:L.CONGRUENCE-S  Y,Z:ELEMENT.F  
+              - GROUP(F CONN.F Z)  + MEMBER(Y NORMALISATOR(X))
+                - SUBSET(APPLY2(CONN.F INVERSE.EL(Y CONN.F Z) APPLY2(CONN.F PREIMAGE(X Z) Y)) PREIMAGE(X Z))
+  A15  : ALL X:ELEMENT.F  Y,Z:SET  - SEMIGROUP(F CONN.F)  - SUBSET(Z Y)  + SUBSET(APPLY2(CONN.F Z X) APPLY2(CONN.F Y X))
+  A16  : ALL X:ELEMENT.F  Y,Z:SET  - SEMIGROUP(F CONN.F)  - SUBSET(Z Y)  + SUBSET(APPLY2(CONN.F X Z) APPLY2(CONN.F X Y))
+
+
+
+
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+  T17  : + GROUP(F CONN.F C_3)
+  T18  : + NOT.EMPTY(INTERSECTION(APPLY2(CONN.F C_1 PREIMAGE(C_2 C_3)) NORMALISATOR(C_2)))
+  T19  : - SUBSET(APPLY2(CONN.F C_1 PREIMAGE(C_2 C_3)) NORMALISATOR(C_2))
+
+
+
+
+
+
+INITIAL OPERATIONS ON THEOREMS
+==============================
+
+
+A7,1 & T17,1   -->    R1 : + SEMIGROUP(F CONN.F)
+
+A16,1 & R1,1   -->    R2 : ALL X:ELEMENT.F  Y,Z:SET  - SUBSET(Z Y)  + SUBSET(APPLY2(CONN.F X Z) APPLY2(CONN.F X Y))
+
+A15,1 & R1,1   -->    R3 : ALL X:ELEMENT.F  Y,Z:SET  - SUBSET(Z Y)  + SUBSET(APPLY2(CONN.F Z X) APPLY2(CONN.F Y X))
+
+A13,1 & R1,1   -->    R4 : ALL X:ELEMENT.F  Y:SET  - SUBSET(Y F)  + =(APPLY2(CONN.F X Y) Y)
+
+A10,1 & R1,1   -->    R5 : ALL X:ELEMENT.F  Y:SET  - SUBSET(Y F)  + =(APPLY2(CONN.F Y X) Y)
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+REFUTATION ( FAILURE : ABORTED.MAXSTEPS )
+
+INITIAL CLAUSES :      A1  : ALL X:ANY  + =(X X)
+                       A2  : ALL X,Y,Z:SET  + =(APPLY2(CONN.F Z APPLY2(CONN.F Y X)) APPLY2(CONN.F APPLY2(CONN.F Z Y) X))
+                       A3  : ALL X,Y:SET  Z:ELEMENT.F  
+                                  - MEMBER(APPLY2(CONN.F Z F_2(Y X Z)) Y)  + SUBSET(APPLY2(CONN.F Z X) Y)
+                       A4  : ALL X:ELEMENT.F  Y,Z:SET  + MEMBER(F_2(Z Y X) Y)  + SUBSET(APPLY2(CONN.F X Y) Z)
+                       A5  : ALL X:ELEMENT.F  Y:SET  - SUBGROUP(Y F CONN.F X)  + SUBSET(Y F)
+                       A6  : ALL X:L.CONGRUENCE-S  Y:ELEMENT.F  
+                                  - GROUP(F CONN.F Y)  + SUBGROUP(PREIMAGE(X Y) F CONN.F Y)
+                       R1  : + SEMIGROUP(F CONN.F)
+                       A8  : ALL X,Y:ELEMENT.F  - GROUP(F CONN.F Y)  + =(F_1(X Y) INVERSE.EL(X CONN.F Y))
+                       A9  : ALL X,Y,Z:ELEMENT.F  
+                                  - GROUP(F CONN.F Z)
+                                  + =(INVERSE.EL(APPLY2(CONN.F Y X) CONN.F Z)
+                                      APPLY2(CONN.F INVERSE.EL(X CONN.F Z) INVERSE.EL(Y CONN.F Z)))
+                       R5  : ALL X:ELEMENT.F  Y:SET  - SUBSET(Y F)  + =(APPLY2(CONN.F Y X) Y)
+                       A11 : ALL X:L.CONGRUENCE-S  Y,Z:ELEMENT.F  
+                                  - GROUP(F CONN.F Z)  - MEMBER(Y NORMALISATOR(X))
+                                  + SUBSET(APPLY2(CONN.F INVERSE.EL(Y CONN.F Z) APPLY2(CONN.F PREIMAGE(X Z) Y))
+                                           PREIMAGE(X Z))
+                       A12 : ALL X:L.CONGRUENCE-S  Y,Z:ELEMENT.F  
+                                  - GROUP(F CONN.F Z)
+                                    - NOT.EMPTY(INTERSECTION(APPLY2(CONN.F Y PREIMAGE(X Z)) NORMALISATOR(X)))
+                                    + MEMBER(Y NORMALISATOR(X))
+                       R4  : ALL X:ELEMENT.F  Y:SET  - SUBSET(Y F)  + =(APPLY2(CONN.F X Y) Y)
+                       A14 : ALL X:L.CONGRUENCE-S  Y,Z:ELEMENT.F  
+                                  - GROUP(F CONN.F Z)  + MEMBER(Y NORMALISATOR(X))
+                                  - SUBSET(APPLY2(CONN.F INVERSE.EL(Y CONN.F Z) APPLY2(CONN.F PREIMAGE(X Z) Y))
+                                           PREIMAGE(X Z))
+                       R3  : ALL X:ELEMENT.F  Y,Z:SET  - SUBSET(Z Y)  + SUBSET(APPLY2(CONN.F Z X) APPLY2(CONN.F Y X))
+                       R2  : ALL X:ELEMENT.F  Y,Z:SET  - SUBSET(Z Y)  + SUBSET(APPLY2(CONN.F X Z) APPLY2(CONN.F X Y))
+                       T17 : + GROUP(F CONN.F C_3)
+                       T18 : + NOT.EMPTY(INTERSECTION(APPLY2(CONN.F C_1 PREIMAGE(C_2 C_3)) NORMALISATOR(C_2)))
+                       T19 : - SUBSET(APPLY2(CONN.F C_1 PREIMAGE(C_2 C_3)) NORMALISATOR(C_2))
+
+T18,1 & A12,2   -->    R6  : - GROUP(F CONN.F C_3)  + MEMBER(C_1 NORMALISATOR(C_2))
+
+R6,1 & T17,1    -->    R7  : + MEMBER(C_1 NORMALISATOR(C_2))
+
+T17,1 & A6,1    -->    R8  : ALL X:L.CONGRUENCE-S  + SUBGROUP(PREIMAGE(X C_3) F CONN.F C_3)
+
+A4,2 & T19,1    -->    R9  : + MEMBER(F_2(NORMALISATOR(C_2) PREIMAGE(C_2 C_3) C_1) PREIMAGE(C_2 C_3))
+
+A3,2 & T19,1    -->    R10 : - MEMBER(APPLY2(CONN.F C_1 F_2(NORMALISATOR(C_2) PREIMAGE(C_2 C_3) C_1)) NORMALISATOR(C_2))
+
+R8,1 & A5,1     -->    R11 : ALL X:L.CONGRUENCE-S  + SUBSET(PREIMAGE(X C_3) F)
+
+R11,1 & R2,1    -->    R12 : ALL X:L.CONGRUENCE-S  Y:ELEMENT.F  
+                                  + SUBSET(APPLY2(CONN.F Y PREIMAGE(X C_3)) APPLY2(CONN.F Y F))
+
+R12,1 & R3,1    -->    R13 : ALL X,Y:ELEMENT.F  Z:L.CONGRUENCE-S  
+                                  + SUBSET(APPLY2(CONN.F APPLY2(CONN.F Y PREIMAGE(Z C_3)) X)
+                                           APPLY2(CONN.F APPLY2(CONN.F Y F) X))
+
+
+R11,1 & R3,1    -->    R14 : ALL X:ELEMENT.F  Y:L.CONGRUENCE-S  
+                                  + SUBSET(APPLY2(CONN.F PREIMAGE(Y C_3) X) APPLY2(CONN.F F X))
+
+T17,1 & A11,1   -->    R15 : - MEMBER(C_1 NORMALISATOR(C_2))
+                             + SUBSET(APPLY2(CONN.F INVERSE.EL(C_1 CONN.F C_3) APPLY2(CONN.F PREIMAGE(C_2 C_3) C_1))
+                                      PREIMAGE(C_2 C_3))
+
+
+R15,1 & R7,1    -->    R16 : + SUBSET(APPLY2(CONN.F INVERSE.EL(C_1 CONN.F C_3) APPLY2(CONN.F PREIMAGE(C_2 C_3) C_1))
+                                      PREIMAGE(C_2 C_3))
+
+
+T17,1 & A8,1    -->    R17 : ALL X:ELEMENT.F  + =(F_1(X C_3) INVERSE.EL(X CONN.F C_3))
+
+T17,1 & A9,1    -->    R18 : ALL X,Y:ELEMENT.F  
+                                  + =(INVERSE.EL(APPLY2(CONN.F Y X) CONN.F C_3)
+                                      APPLY2(CONN.F INVERSE.EL(X CONN.F C_3) INVERSE.EL(Y CONN.F C_3)))
+
+
+A2,1 & R13,1    -->    P19 : ALL X,Y:ELEMENT.F  Z:L.CONGRUENCE-S  
+                                  + SUBSET(APPLY2(CONN.F Y APPLY2(CONN.F PREIMAGE(Z C_3) X))
+                                           APPLY2(CONN.F APPLY2(CONN.F Y F) X))
+
+
+P19,1 & R2,1    -->    R20 : ALL X,Y,Z:ELEMENT.F  U:L.CONGRUENCE-S  
+                                  + SUBSET(APPLY2(CONN.F Z APPLY2(CONN.F Y APPLY2(CONN.F PREIMAGE(U C_3) X)))
+                                           APPLY2(CONN.F Z APPLY2(CONN.F APPLY2(CONN.F Y F) X)))
+
+
+P19,1 & R3,1    -->    R21 : ALL X,Y,Z:ELEMENT.F  U:L.CONGRUENCE-S  
+                                  + SUBSET(APPLY2(CONN.F APPLY2(CONN.F Z APPLY2(CONN.F PREIMAGE(U C_3) Y)) X)
+                                           APPLY2(CONN.F APPLY2(CONN.F APPLY2(CONN.F Z F) Y) X))
+
+
+A2,1 & R13,1    -->    P22 : ALL X,Y:ELEMENT.F  Z:L.CONGRUENCE-S  
+                                  + SUBSET(APPLY2(CONN.F APPLY2(CONN.F Y PREIMAGE(Z C_3)) X)
+                                           APPLY2(CONN.F Y APPLY2(CONN.F F X)))
+
+
+P22,1 & R2,1    -->    R23 : ALL X,Y,Z:ELEMENT.F  U:L.CONGRUENCE-S  
+                                  + SUBSET(APPLY2(CONN.F Z APPLY2(CONN.F APPLY2(CONN.F Y PREIMAGE(U C_3)) X))
+                                           APPLY2(CONN.F Z APPLY2(CONN.F Y APPLY2(CONN.F F X))))
+
+
+P22,1 & R3,1    -->    R24 : ALL X,Y,Z:ELEMENT.F  U:L.CONGRUENCE-S  
+                                  + SUBSET(APPLY2(CONN.F APPLY2(CONN.F APPLY2(CONN.F Z PREIMAGE(U C_3)) Y) X)
+                                           APPLY2(CONN.F APPLY2(CONN.F Z APPLY2(CONN.F F Y)) X))
+
+
+A2,1 & R16,1    -->    P25 : + SUBSET(APPLY2(CONN.F APPLY2(CONN.F INVERSE.EL(C_1 CONN.F C_3) PREIMAGE(C_2 C_3)) C_1)
+                                      PREIMAGE(C_2 C_3))
+
+
+R17,1 & R16,1   -->    P26 : + SUBSET(APPLY2(CONN.F F_1(C_1 C_3) APPLY2(CONN.F PREIMAGE(C_2 C_3) C_1))
+                                      PREIMAGE(C_2 C_3))
+
+
+R18,1 & A2,1    -->    P27 : ALL X,Y:ELEMENT.F  Z:SET  
+                                  + =(APPLY2(CONN.F Z INVERSE.EL(APPLY2(CONN.F Y X) CONN.F C_3))
+                                      APPLY2(CONN.F APPLY2(CONN.F Z INVERSE.EL(X CONN.F C_3)) INVERSE.EL(Y CONN.F C_3)))
+
+
+R18,1 & A2,1    -->    P28 : ALL X:SET  Y,Z:ELEMENT.F  
+                                  + =(APPLY2(CONN.F INVERSE.EL(Z CONN.F C_3) APPLY2(CONN.F INVERSE.EL(Y CONN.F C_3) X))
+                                      APPLY2(CONN.F INVERSE.EL(APPLY2(CONN.F Y Z) CONN.F C_3) X))
+
+
+R17,1 & R18,1   -->    P29 : ALL X,Y:ELEMENT.F  
+                                  + =(INVERSE.EL(APPLY2(CONN.F Y X) CONN.F C_3)
+                                      APPLY2(CONN.F F_1(X C_3) INVERSE.EL(Y CONN.F C_3)))
+
+
+R17,1 & R18,1   -->    P30 : ALL X,Y:ELEMENT.F  
+                                  + =(INVERSE.EL(APPLY2(CONN.F Y X) CONN.F C_3)
+                                      APPLY2(CONN.F INVERSE.EL(X CONN.F C_3) F_1(Y C_3)))
+
+
+R17,1 & P25,1   -->    P31 : + SUBSET(APPLY2(CONN.F APPLY2(CONN.F F_1(C_1 C_3) PREIMAGE(C_2 C_3)) C_1)
+                                      PREIMAGE(C_2 C_3))
+
+
+A2,1 & P26,1    -->    P32 : + SUBSET(APPLY2(CONN.F APPLY2(CONN.F F_1(C_1 C_3) PREIMAGE(C_2 C_3)) C_1)
+                                      PREIMAGE(C_2 C_3))
+
+
+R17,1 & P27,1   -->    P33 : ALL X,Y:ELEMENT.F  Z:SET  
+                                  + =(APPLY2(CONN.F Z INVERSE.EL(APPLY2(CONN.F Y X) CONN.F C_3))
+                                      APPLY2(CONN.F APPLY2(CONN.F Z F_1(X C_3)) INVERSE.EL(Y CONN.F C_3)))
+
+
+R17,1 & P27,1   -->    P34 : ALL X,Y:ELEMENT.F  Z:SET  
+                                  + =(APPLY2(CONN.F Z INVERSE.EL(APPLY2(CONN.F Y X) CONN.F C_3))
+                                      APPLY2(CONN.F APPLY2(CONN.F Z INVERSE.EL(X CONN.F C_3)) F_1(Y C_3)))
+
+
+R17,1 & P28,1   -->    P35 : ALL X:SET  Y,Z:ELEMENT.F  
+                                  + =(APPLY2(CONN.F F_1(Z C_3) APPLY2(CONN.F INVERSE.EL(Y CONN.F C_3) X))
+                                      APPLY2(CONN.F INVERSE.EL(APPLY2(CONN.F Y Z) CONN.F C_3) X))
+
+
+R17,1 & P28,1   -->    P36 : ALL X:SET  Y,Z:ELEMENT.F  
+                                  + =(APPLY2(CONN.F INVERSE.EL(Z CONN.F C_3) APPLY2(CONN.F F_1(Y C_3) X))
+                                      APPLY2(CONN.F INVERSE.EL(APPLY2(CONN.F Y Z) CONN.F C_3) X))
+
+
+P29,1 & P27,1   -->    P37 : ALL X,Y,Z:ELEMENT.F  
+                                  + =(APPLY2(CONN.F F_1(Z C_3) INVERSE.EL(APPLY2(CONN.F Y X) CONN.F C_3))
+                                      APPLY2(CONN.F INVERSE.EL(APPLY2(CONN.F X Z) CONN.F C_3) INVERSE.EL(Y CONN.F C_3)))
+
+
+P29,1 & A2,1    -->    P38 : ALL X,Y:ELEMENT.F  Z:SET  
+                                  + =(APPLY2(CONN.F Z INVERSE.EL(APPLY2(CONN.F Y X) CONN.F C_3))
+                                      APPLY2(CONN.F APPLY2(CONN.F Z F_1(X C_3)) INVERSE.EL(Y CONN.F C_3)))
+
+
+P29,1 & A2,1    -->    P39 : ALL X,Y:ELEMENT.F  Z:SET  
+                                  + =(APPLY2(CONN.F Z INVERSE.EL(APPLY2(CONN.F Y X) CONN.F C_3))
+                                      APPLY2(CONN.F APPLY2(CONN.F Z F_1(X C_3)) INVERSE.EL(Y CONN.F C_3)))
+
+
+P29,1 & A2,1    -->    P40 : ALL X:SET  Y,Z:ELEMENT.F  
+                                  + =(APPLY2(CONN.F F_1(Z C_3) APPLY2(CONN.F INVERSE.EL(Y CONN.F C_3) X))
+                                      APPLY2(CONN.F INVERSE.EL(APPLY2(CONN.F Y Z) CONN.F C_3) X))
+
+
+P29,1 & A2,1    -->    P41 : ALL X:SET  Y,Z:ELEMENT.F  
+                                  + =(APPLY2(CONN.F F_1(Z C_3) APPLY2(CONN.F INVERSE.EL(Y CONN.F C_3) X))
+                                      APPLY2(CONN.F INVERSE.EL(APPLY2(CONN.F Y Z) CONN.F C_3) X))
+
+
+P29,1 & P27,1   -->    P42 : ALL X,Y,Z:ELEMENT.F  
+                                  + =(APPLY2(CONN.F F_1(Z C_3) INVERSE.EL(APPLY2(CONN.F Y X) CONN.F C_3))
+                                      APPLY2(CONN.F INVERSE.EL(APPLY2(CONN.F X Z) CONN.F C_3) INVERSE.EL(Y CONN.F C_3)))
+
+
+P30,1 & A2,1    -->    P43 : ALL X,Y:ELEMENT.F  Z:SET  
+                                  + =(APPLY2(CONN.F Z INVERSE.EL(APPLY2(CONN.F Y X) CONN.F C_3))
+                                      APPLY2(CONN.F APPLY2(CONN.F Z INVERSE.EL(X CONN.F C_3)) F_1(Y C_3)))
+
+
+P30,1 & A2,1    -->    P44 : ALL X,Y:ELEMENT.F  Z:SET  
+                                  + =(APPLY2(CONN.F Z INVERSE.EL(APPLY2(CONN.F Y X) CONN.F C_3))
+                                      APPLY2(CONN.F APPLY2(CONN.F Z INVERSE.EL(X CONN.F C_3)) F_1(Y C_3)))
+
+
+P30,1 & A2,1    -->    P45 : ALL X:SET  Y,Z:ELEMENT.F  
+                                  + =(APPLY2(CONN.F INVERSE.EL(Z CONN.F C_3) APPLY2(CONN.F F_1(Y C_3) X))
+                                      APPLY2(CONN.F INVERSE.EL(APPLY2(CONN.F Y Z) CONN.F C_3) X))
+
+
+P30,1 & A2,1    -->    P46 : ALL X:SET  Y,Z:ELEMENT.F  
+                                  + =(APPLY2(CONN.F INVERSE.EL(Z CONN.F C_3) APPLY2(CONN.F F_1(Y C_3) X))
+                                      APPLY2(CONN.F INVERSE.EL(APPLY2(CONN.F Y Z) CONN.F C_3) X))
+
+
+P30,1 & P28,1   -->    P47 : ALL X,Y,Z:ELEMENT.F  
+                                  + =(APPLY2(CONN.F INVERSE.EL(Z CONN.F C_3) INVERSE.EL(APPLY2(CONN.F Y X) CONN.F C_3))
+                                      APPLY2(CONN.F INVERSE.EL(APPLY2(CONN.F X Z) CONN.F C_3) F_1(Y C_3)))
+
+
+P30,1 & P33,1   -->    P48 : ALL X,Y,Z:ELEMENT.F  
+                                  + =(APPLY2(CONN.F INVERSE.EL(Z CONN.F C_3) INVERSE.EL(APPLY2(CONN.F Y X) CONN.F C_3))
+                                      APPLY2(CONN.F INVERSE.EL(APPLY2(CONN.F X Z) CONN.F C_3) INVERSE.EL(Y CONN.F C_3)))
+
+
+P29,1 & P34,1   -->    P49 : ALL X,Y,Z:ELEMENT.F  
+                                  + =(APPLY2(CONN.F F_1(Z C_3) INVERSE.EL(APPLY2(CONN.F Y X) CONN.F C_3))
+                                      APPLY2(CONN.F INVERSE.EL(APPLY2(CONN.F X Z) CONN.F C_3) F_1(Y C_3)))
+
+
+P34,1 & P33,1   -->    P50 : ALL X,Y:ELEMENT.F  Z:SET  
+                                  + =(APPLY2(CONN.F APPLY2(CONN.F Z INVERSE.EL(Y CONN.F C_3)) F_1(X C_3))
+                                      APPLY2(CONN.F APPLY2(CONN.F Z F_1(Y C_3)) INVERSE.EL(X CONN.F C_3)))
+
+
+P30,1 & P35,1   -->    P51 : ALL X,Y,Z:ELEMENT.F  
+                                  + =(APPLY2(CONN.F F_1(Z C_3) INVERSE.EL(APPLY2(CONN.F Y X) CONN.F C_3))
+                                      APPLY2(CONN.F INVERSE.EL(APPLY2(CONN.F X Z) CONN.F C_3) F_1(Y C_3)))
+
+
+P36,1 & P35,1   -->    P52 : ALL X:SET  Y,Z:ELEMENT.F  
+                                  + =(APPLY2(CONN.F F_1(Z C_3) APPLY2(CONN.F INVERSE.EL(Y CONN.F C_3) X))
+                                      APPLY2(CONN.F INVERSE.EL(Z CONN.F C_3) APPLY2(CONN.F F_1(Y C_3) X)))
+
+
+P29,1 & P36,1   -->    P53 : ALL X,Y,Z:ELEMENT.F  
+                                  + =(APPLY2(CONN.F INVERSE.EL(Z CONN.F C_3) INVERSE.EL(APPLY2(CONN.F Y X) CONN.F C_3))
+                                      APPLY2(CONN.F INVERSE.EL(APPLY2(CONN.F X Z) CONN.F C_3) INVERSE.EL(Y CONN.F C_3)))
+
+
+P37,1 & P33,1   -->    P54 : ALL X,Y,Z:ELEMENT.F  
+                                  + =(APPLY2(CONN.F INVERSE.EL(APPLY2(CONN.F Z Y) CONN.F C_3) INVERSE.EL(X CONN.F C_3))
+                                      APPLY2(CONN.F APPLY2(CONN.F F_1(Y C_3) F_1(Z C_3)) INVERSE.EL(X CONN.F C_3)))
+
+
+P37,1 & P34,1   -->    P55 : ALL X,Y,Z:ELEMENT.F  
+                                  + =(APPLY2(CONN.F INVERSE.EL(APPLY2(CONN.F Z Y) CONN.F C_3) INVERSE.EL(X CONN.F C_3))
+                                      APPLY2(CONN.F APPLY2(CONN.F F_1(Y C_3) INVERSE.EL(Z CONN.F C_3)) F_1(X C_3)))
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+THE THEOREM(S) COULD NOT BE PROVED.
+

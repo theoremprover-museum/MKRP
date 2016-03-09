@@ -1,0 +1,92 @@
+\newlength{\premisewidth}
+\newlength{\namelength}
+\newlength{\usedsignlength}
+\newlength{\implsignlength}
+\newlength{\remainlength}
+\def\implication#1#2#3#4{% 1: String max length for 2, 2: premise, 3: clause 4. impl sign
+\settowidth{\premisewidth}{#1}
+\setlength{\remainlength}{\textwidth}
+\settowidth{\usedsignlength}{* }
+\settowidth{\implsignlength}{#4}
+\settowidth{\namelength}{mmmm}
+\addtolength{\remainlength}{-0.5cm}
+\addtolength{\remainlength}{-1\premisewidth}
+\addtolength{\remainlength}{-1\namelength}
+\addtolength{\remainlength}{-1\usedsignlength}
+\addtolength{\remainlength}{-1\implsignlength}
+\hbox to \hsize{\parbox[t]{\premisewidth}{#2} \hfil \parbox[t]{\implsignlength}{#4} \hfil #3}}
+
+
+
+
+          {\bf Formulae given to the editor}
+
+
+\parbox[t]{2cm}{Axioms:}\hfill 
+\setlength{\remainlength}{\textwidth}
+\addtolength{\remainlength}{-2.5cm}
+\parbox[t]{\remainlength}{* AXIOMS *
+
+          A = B OR C = D
+
+          A = C OR B = D
+
+          
+}
+\parbox[t]{2cm}{Theorems:}\hfill 
+\setlength{\remainlength}{\textwidth}
+\addtolength{\remainlength}{-2.5cm}
+\parbox[t]{\remainlength}{* THEOREMS *
+
+          A = D OR B = C
+
+          
+}
+
+
+          {\bf Set of Axiom Clauses Resulting from Normalization}
+
+        \implication{M}{}{\parbox[t]{\usedsignlength}{$  $} \hfil \parbox[t]{\namelength}{$A1$:} \hfil \parbox[t]{\remainlength}{$\forall x\in Any  (x=x)$}}{}
+        \implication{M}{}{\parbox[t]{\usedsignlength}{$* $} \hfil \parbox[t]{\namelength}{$A2$:} \hfil \parbox[t]{\remainlength}{$ (a=b)\lor  (c=d)$}}{}
+        \implication{M}{}{\parbox[t]{\usedsignlength}{$* $} \hfil \parbox[t]{\namelength}{$A3$:} \hfil \parbox[t]{\remainlength}{$ (a=c)\lor  (b=d)$}}{}
+        
+
+
+
+
+          {\bf Set of Theorem Clauses Resulting from Normalization}
+
+\implication{M}{}{\parbox[t]{\usedsignlength}{$* $} \hfil \parbox[t]{\namelength}{$T4$:} \hfil \parbox[t]{\remainlength}{$\neg (a=d)$}}{}
+        \implication{M}{}{\parbox[t]{\usedsignlength}{$* $} \hfil \parbox[t]{\namelength}{$T5$:} \hfil \parbox[t]{\remainlength}{$\neg (b=c)$}}{}
+        
+
+\hrule
+
+{\bf Refutation:}
+
+Initial Clauses: 
+
+      \implication{M}{}{\parbox[t]{\usedsignlength}{$  $} \hfil \parbox[t]{\namelength}{$A1$:} \hfil \parbox[t]{\remainlength}{$\forall x\in Any  (x=x)$}}{}
+     \implication{M}{}{\parbox[t]{\usedsignlength}{$  $} \hfil \parbox[t]{\namelength}{$A2$:} \hfil \parbox[t]{\remainlength}{$ (a=b)\lor  (c=d)$}}{}
+     \implication{M}{}{\parbox[t]{\usedsignlength}{$  $} \hfil \parbox[t]{\namelength}{$A3$:} \hfil \parbox[t]{\remainlength}{$ (a=c)\lor  (b=d)$}}{}
+     \implication{M}{}{\parbox[t]{\usedsignlength}{$  $} \hfil \parbox[t]{\namelength}{$T4$:} \hfil \parbox[t]{\remainlength}{$\neg (a=d)$}}{}
+     \implication{M}{}{\parbox[t]{\usedsignlength}{$  $} \hfil \parbox[t]{\namelength}{$T5$:} \hfil \parbox[t]{\remainlength}{$\neg (b=c)$}}{}
+     
+
+\implication{000000000000000000}{$A3,2 \land  A2,1 $}{\parbox[t]{\usedsignlength}{$* $} \hfil \parbox[t]{\namelength}{$P1$:} \hfil \parbox[t]{\remainlength}{$ (a=d)\lor  (a=c)\lor  (c=d)$}}{$\Rightarrow$ }
+\implication{000000000000000000}{$P1,1 \land  T4,1 $}{\parbox[t]{\usedsignlength}{$* $} \hfil \parbox[t]{\namelength}{$R2$:} \hfil \parbox[t]{\remainlength}{$ (a=c)\lor  (c=d)$}}{$\Rightarrow$ }
+\implication{000000000000000000}{$A3,2 \land  T5,1 $}{\parbox[t]{\usedsignlength}{$* $} \hfil \parbox[t]{\namelength}{$P3$:} \hfil \parbox[t]{\remainlength}{$\neg (d=c)\lor  (a=c)$}}{$\Rightarrow$ }
+\implication{000000000000000000}{$P3,1 \land  R2,2 $}{\parbox[t]{\usedsignlength}{$* $} \hfil \parbox[t]{\namelength}{$R4$:} \hfil \parbox[t]{\remainlength}{$ (a=c)\lor  (a=c)$}}{$\Rightarrow$ }
+\implication{000000000000000000}{$R4 1=2 $}{\parbox[t]{\usedsignlength}{$* $} \hfil \parbox[t]{\namelength}{$D5$:} \hfil \parbox[t]{\remainlength}{$ (a=c)$}}{$\Rightarrow$ }
+\implication{000000000000000000}{$A2,1 \land  D5$}{\parbox[t]{\usedsignlength}{$* $} \hfil \parbox[t]{\namelength}{$RW6$:} \hfil \parbox[t]{\remainlength}{$ (c=b)\lor  (c=d)$}}{$\Rightarrow$ }
+\implication{000000000000000000}{$T4,1 \land  D5$}{\parbox[t]{\usedsignlength}{$* $} \hfil \parbox[t]{\namelength}{$RW7$:} \hfil \parbox[t]{\remainlength}{$\neg (c=d)$}}{$\Rightarrow$ }
+\implication{000000000000000000}{$RW6,2 \land  RW7,1 $}{\parbox[t]{\usedsignlength}{$* $} \hfil \parbox[t]{\namelength}{$R8$:} \hfil \parbox[t]{\remainlength}{$ (c=b)$}}{$\Rightarrow$ }
+\implication{000000000000000000}{$R8,1 \land  T5,1 $}{\parbox[t]{\usedsignlength}{$* $} \hfil \parbox[t]{\namelength}{$R9$:} \hfil \parbox[t]{\remainlength}{$\Box $}}{$\Rightarrow$ }
+
+
+\hrule
+
+  q.e.d. 
+
+
+Time Used for Refutation: 3 seconds

@@ -1,0 +1,107 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+          **********************************************
+          *                                            *
+          *     ATP-SYSTEM: M K R P , UNI KAISERSLAUTERN*
+          *                                            *
+          *        VERSION: MKRP 46.2                  *
+          *           DATE: 21-NOV,1990  02:46         *
+          *                                            *
+          **********************************************
+
+
+----------------------------------------------------------------------
+
+Edit:     Axioms and Theorems edited: 21-NOV,1990 02:46 
+
+----------------------------------------------------------------------
+
+
+
+
+
+
+          Formulae given to the editor
+          ============================
+
+
+Axioms:   * AXIOMS *
+          * GROUP *
+          ALL X,Y,Z + (+ (X Y) Z) = + (X + (Y Z))
+          ALL X + (0 X) = X
+          ALL X + (- (X) X) = 0
+          * NIL POTENT *
+          ALL X + (X X) = 0
+          
+Theorems: * THEOREM *
+          ALL X,Y + (X Y) = + (Y X)
+          
+
+
+
+          Set of Axiom Clauses Resulting from Normalization
+          =================================================
+
+          A1:   All x:Any + =(x x)
+        * A2:   All x,y,z:Any + =(+(+(z y) x) +(z +(y x)))
+        * A3:   All x:Any + =(+(0 x) x)
+          A4:   All x:Any + =(+(-(x) x) 0)
+        * A5:   All x:Any + =(+(x x) 0)
+        
+
+
+
+
+          Set of Theorem Clauses Resulting from Normalization
+          ===================================================
+
+        * T6: - =(+(c_1 c_2) +(c_2 c_1))
+
+
+
+
+----------------------------------------------------------------------
+
+
+
+Refutation:
+===========
+
+Initial Clauses:      A1:    All x:Any + =(x x)
+                    * A2:    All x,y,z:Any 
+                                  + =(+(+(z y) x) +(z +(y x)))
+                    * A3:    All x:Any + =(+(0 x) x)
+                      A4:    All x:Any + =(+(-(x) x) 0)
+                    * A5:    All x:Any + =(+(x x) 0)
+                    * T6:    - =(+(c_1 c_2) +(c_2 c_1))
+                    
+
+
+A5,1 & A2,1     --> * P1:    All x,y:Any + =(+(0 y) +(x +(x y)))
+
+P1,1 & A3       --> * RW2:   All x,y:Any + =(y +(x +(x y)))
+
+A5,1 & RW2,1    --> * P3:    All x:Any + =(x +(x 0))
+
+A5,1 & A2,1     --> * P8:    All x,y:Any + =(0 +(y +(x +(y x))))
+
+P8,1 & RW2,1    --> * P9:    All x,y:Any + =(+(y +(x y)) +(x 0))
+
+P9,1 & P3       --> * RW10:  All x,y:Any + =(+(y +(x y)) x)
+
+RW10,1 & RW2,1  --> * P13:   All x,y:Any + =(+(y x) +(x y))
+
+P13,1 & T6,1    --> * R14:   []
+
+
+
+----------------------------------------------------------------------
+
+
+
+  q.e.d. 
+
+
+Time Used for Refutation: 20 seconds

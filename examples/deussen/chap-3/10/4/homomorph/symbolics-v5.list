@@ -1,0 +1,682 @@
+;;; -*- Package: MKRP; Base: 10. -*-
+
+
+
+                    ********************************************************************************
+                    *                                                                              *
+                    *     MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN                   *
+                    *                                                                              *
+                    *       09-SEP-85                                                              *
+                    *          09-SEP-85  18:19:00                                                 *
+                    *                                                                              *
+                    ********************************************************************************
+
+
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   09-SEP-85 17:47:20
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   D3104>HOMOMORPH
+                                                                        
+************************************************************************
+                                                                        
+
+
+ADJUSTMENT OF THE OPTIONS : 
+============================
+
+
+
+TWO:RULES                             NIL                   TWO:RULES.MAXLEVEL                    1.
+TWO:SUPPRESS.NORULES                  NIL
+
+
+RED.I:CLAUSE.MULTIPLE.LITERALS        T                     RED.I:CLAUSE.PURITY                   T
+RED.I:CLAUSE.TAUTOLOGY                T                     RED.I:CLAUSE.TAUTOLOGY.RECHECK        PARTIAL
+RED.I:CLAUSE.SUBSUMPTION              T                     RED.I:CLAUSE.SUBSUMPTION.RECHECK      PARTIAL
+RED.I:CLAUSE.REPL.FACTORING           T                     RED.I:CLAUSE.REPL.FACTORING.RECHECK   T
+RED.I:CLAUSE.REPL.RESOLUTION          SIMPLE                RED.I:CLAUSE.REPL.RESOLUTION.RECHECK  T
+RED.I:CLAUSE.REWRITING                T                     RED.I:LINK.INCOMPATIBILITY            NIL
+RED.I:LINK.TAUTOLOGY                  REMOVE-INHIBIT        RED.I:LINK.TAUTOLOGY.RECHECK          NIL
+RED.I:LINK.SUBSUMPTION                REMOVE-INHIBIT        RED.I:LINK.SUBSUMPTION.RECHECK        NIL
+
+RED.D:CLAUSE.MULTIPLE.LITERALS        T                     RED.D:CLAUSE.PURITY                   T
+RED.D:CLAUSE.TAUTOLOGY                REMOVE-INHIBIT        RED.D:CLAUSE.TAUTOLOGY.RECHECK        NIL
+RED.D:CLAUSE.SUBSUMPTION.FORWARD      NIL                   RED.D:CLAUSE.SUBSUMPTION.BACKWARD     NIL
+RED.D:CLAUSE.SUBSUMPTION.RECHECK      NIL                   RED.D:CLAUSE.REPL.FACTORING           NIL
+RED.D:CLAUSE.REPL.FACTORING.RECHECK   NIL                   RED.D:CLAUSE.REPL.RESOLUTION          NIL
+RED.D:CLAUSE.REPL.RESOLUTION.RECHECK  NIL                   RED.D:LINK.INCOMPATIBILITY            NIL
+RED.D:LINK.TAUTOLOGY                  NIL                   RED.D:LINK.TAUTOLOGY.RECHECK          NIL
+RED.D:LINK.SUBSUMPTION                NIL                   RED.D:LINK.SUBSUMPTION.RECHECK        NIL
+
+FAC:INITIAL                           NIL                   FAC:EACH.STEP                         NIL
+
+STR:RESOLUTION                        SET-OF-SUPPORT        STR:E-RESOLUTION                      NIL
+STR:PARAMODULATION                    UNIT-ANCESTRY         STR:LINK.DEPTH                        NIL
+STR:TERM.DEPTH                        7.                    STR:R.DEMODULATION                    T
+STR:P.DEMODULATION                    T                     STR:INDUCTION                         NIL
+
+TERM:UNITS                            T                     TERM:ITERATIONS                       0.
+TERM:SET.OF.SUPPORT                   T                     TERM:BREADTH.FIRST                    T
+
+GEN:SPLITTING                         0.                    GEN:MANUAL.CONTROL                    NIL
+GEN:MAXIMUM.STEPS                     40.                   GEN:GRAPH.SAVING                      NIL
+GEN:SAVE.FILE                         SAVE.DEFAULT
+
+
+TR:PREPROCESSING                      NIL                   TR:STEP.MODE                          LR
+TR:DUMP                               NIL                   TR:CLAUSE.MODE                        I
+TR:LINK.MODE                          I                     TR:TRACE.FILE                         NIL
+TR:TERMINAL                           T
+
+
+PR:INFIX.FORM                         T                     PR:PREFIX.FORM                        NIL
+PR:OPTIONS                            T                     PR:AXIOM.CLAUSES                      NIL
+PR:SYMBOLS                            NIL                   PR:STATISTICS                         NIL
+PR:PROTOCOL                           T                     PR:LEFT.MARGIN                        0.
+PR:LINELENGTH                         120.
+
+
+
+
+FORMULAE GIVEN TO THE EDITOR
+============================
+
+
+AXIOMS   : SORT MENGE,VERKN,ELEMENT,INDEX,INDEXMENGE:ANY
+           TYPE LIDEAL (MENGE MENGE VERKN)
+           TYPE RIDEAL (MENGE MENGE VERKN)
+           TYPE UHG (MENGE MENGE VERKN)
+           TYPE ME (MENGE MENGE)
+           TYPE NICHTLEER (MENGE)
+           TYPE HG (MENGE VERKN)
+           TYPE EL (ELEMENT MENGE)
+           TYPE MINIMAL (MENGE MENGE VERKN)
+           TYPE MPROD (MENGE MENGE VERKN) :MENGE
+           TYPE APPLYV (VERKN ELEMENT ELEMENT) :ELEMENT
+           TYPE F*X (MENGE ELEMENT VERKN) :MENGE
+           TYPE SM (MENGE MENGE) :MENGE
+           TYPE SET (ELEMENT) :MENGE
+           TYPE VER (MENGE MENGE) :MENGE
+           TYPE GR (MENGE VERKN ELEMENT)
+           TYPE INVERS (VERKN ELEMENT) :ELEMENT
+           TYPE MINIMAL-BED-L (MENGE VERKN)
+           TYPE MINIMAL-BED-R (MENGE VERKN)
+           TYPE EL-IND (INDEX INDEXMENGE)
+           TYPE U (INDEX) : MENGE
+           TYPE E (INDEX INDEX) : ELEMENT
+           TYPE NICHTLEER-IND (INDEXMENGE)
+           TYPE GLEICH (MENGE MENGE)
+           TYPE VER-IND (INDEXMENGE) : MENGE
+           TYPE SM-IND (INDEXMENGE) : MENGE
+           TYPE IDEAL (MENGE MENGE VERKN)
+           TYPE G (INDEX INDEX) :MENGE
+           TYPE GLEICH-E (ELEMENT ELEMENT)
+           * DEFINITION VON HOMOMORPH *
+           TYPE APPLYA (ABB ELEMENT) :ELEMENT
+           ALL PHI:ABB  ALL MAL:VERKN  ALL A,B:MENGE  
+                 ABBILDUNG (PHI A B)
+                 AND  
+                  ALL X,Y:ELEMENT  
+                      EL (X A) AND EL (Y A)
+                      IMPL  
+                      APPLYV (MAL APPLYA (PHI X) APPLYA (PHI Y)) = APPLYA (PHI APPLYV (MAL X Y))
+               IMPL  
+               HOMOMORPH (PHI A B)
+           * WIRKUNG DES EINSELEMENTES *
+           ALL GRUPPE:MENGE ALL X,E:ELEMENT ALL MAL:VERKN GR (GRUPPE MAL E) AND EL (X GRUPPE) IMPL APPLYV (MAL E X) := X
+           * ASSOZIATIVITAET IN HALBGRUPPEN *
+           ALL X,Y,Z:ELEMENT ALL MAL:VERKN APPLYV (MAL APPLYV (MAL X Y) Z) = APPLYV (MAL X APPLYV (MAL Y Z))
+           * FOLGERUNG AUS SATZ 3.11 *
+           ALL X,Y  
+             :ELEMENT ALL  
+               H:MENGE ALL  
+                 I1,I2:INDEXMENGE ALL  
+                   MAL:VERKN ALL  
+                         J1,J2,J3,J4:INDEX VORAUSSETZUNG-TH (H MAL I1 I2 J1 J2)
+                         AND  
+                         EL-IND (J3 I1)
+                         AND  
+                         EL-IND (J4 I2)
+                         AND  
+                         EL (X G (J1 J2))
+                         AND  
+                         EL (Y G (J3 J4))
+                       IMPL  
+                       EL (APPLYV (MAL X Y) G (J1 J4))
+           ALL A:MENGE ALL MAL:VERKN ALL E:ELEMENT GR (A MAL E) IMPL EL (E A)
+
+THEOREMS : ALL F,E1,E2:ELEMENT  ALL PHI:ABB  ALL H:MENGE  ALL MAL:VERKN  ALL I1,I2:INDEXMENGE  ALL J1,J2,J3:INDEX  
+                 VORAUSSETZUNG-TH (H MAL I1 I2 J1 J2)
+                 AND  
+                 HG (H MAL)
+                 AND  
+                 MINIMAL-BED-R (H MAL)
+                 AND  
+                 MINIMAL-BED-L (H MAL)
+                 AND  
+                 (ALL J1:INDEX EL-IND (J1 I1) IMPL RIDEAL (U (J1) H MAL) AND MINIMAL (U (J1) H MAL))
+                 AND  
+                 (ALL J2:INDEX EL-IND (J2 I2) IMPL LIDEAL (U (J2) H MAL) AND MINIMAL (U (J2) H MAL))
+                 AND  
+                 EL-IND (J1 I1)
+                 AND  
+                 EL-IND (J2 I2)
+                 AND  
+                 (ALL J1,J2:INDEX EL-IND (J1 I1) AND EL-IND (J2 I2) IMPL MPROD (U (J1) U (J2) MAL) = SM (U (J1) U (J2)))
+                 AND  
+                 EL (F G (J1 J2))
+                 AND  
+                 EL-IND (J3 I2)
+                 AND  
+                 GR (G (J1 J2) MAL E1)
+                 AND  
+                 GR (G (J1 J3) MAL E2)
+                 AND  
+                 ABBILDUNG (PHI G (J1 J2) G (J1 J3))
+                 AND  
+                 (ALL X:ELEMENT EL (X G (J1 J2)) IMPL APPLYA (PHI X) = APPLYV (MAL X E2))
+               IMPL  
+               HOMOMORPH (PHI G (J1 J2) G (J1 J3))
+
+
+
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+  A1   : ALL X:ANY  + =(X X)
+  A2   : ALL X,Y,Z:ELEMENT  U:VERKN  + =(APPLYV(U APPLYV(U Z Y) X) APPLYV(U Z APPLYV(U Y X)))
+  A3   : ALL X:ELEMENT  Y:VERKN  Z:MENGE  - GR(Z Y X)  + EL(X Z)
+  A4   : ALL X:VERKN  Y,Z:MENGE  U:ABB  - ABBILDUNG(U Z Y)  + EL(F_1(X U Y Z) Z)  + HOMOMORPH(U Z Y)
+  A5   : ALL X,Y:ELEMENT  Z:VERKN  U:MENGE  - GR(U Z Y)  - EL(X U)  + =(APPLYV(Z Y X) X)
+  A6   : ALL X:VERKN  Y,Z:MENGE  U:ABB  
+              - ABBILDUNG(U Z Y)
+              - =(APPLYV(X APPLYA(U F_1(X U Y Z)) APPLYA(U F_2(X U Y Z))) APPLYA(U APPLYV(X F_1(X U Y Z) F_2(X U Y Z))))
+                + HOMOMORPH(U Z Y)
+  A7   : ALL X:VERKN  Y,Z:MENGE  U:ABB  - ABBILDUNG(U Z Y)  + EL(F_2(X U Y Z) Z)  + HOMOMORPH(U Z Y)
+  A8   : ALL X,Y:ELEMENT  Z,U,V,W:INDEX  XX,YY:INDEXMENGE  ZZ:VERKN  UU:MENGE  
+              - VORAUSSETZUNG-TH(UU ZZ YY XX W V)  - EL-IND(U YY)  - EL-IND(Z XX)  - EL(Y G(W V))  - EL(X G(U Z))
+                + EL(APPLYV(ZZ Y X) G(W Z))
+
+
+
+
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+  T9   : + VORAUSSETZUNG-TH(C_5 C_4 C_6 C_7 C_8 C_9)
+  T10  : + HG(C_5 C_4)
+  T11  : + MINIMAL-BED-R(C_5 C_4)
+  T12  : + MINIMAL-BED-L(C_5 C_4)
+  T13  : ALL X:INDEX  - EL-IND(X C_6)  + RIDEAL(U(X) C_5 C_4)
+  T14  : ALL X:INDEX  - EL-IND(X C_6)  + MINIMAL(U(X) C_5 C_4)
+  T15  : ALL X:INDEX  - EL-IND(X C_7)  + LIDEAL(U(X) C_5 C_4)
+  T16  : ALL X:INDEX  - EL-IND(X C_7)  + MINIMAL(U(X) C_5 C_4)
+  T17  : + EL-IND(C_8 C_6)
+  T18  : + EL-IND(C_9 C_7)
+  T19  : ALL X,Y:INDEX  - EL-IND(Y C_6)  - EL-IND(X C_7)  + =(MPROD(U(Y) U(X) C_4) SM(U(Y) U(X)))
+  T20  : + EL(C_1 G(C_8 C_9))
+  T21  : + EL-IND(C_10 C_7)
+  T22  : + GR(G(C_8 C_9) C_4 C_2)
+  T23  : + GR(G(C_8 C_10) C_4 C_3)
+  T24  : + ABBILDUNG(C_11 G(C_8 C_9) G(C_8 C_10))
+  T25  : ALL X:ELEMENT  - EL(X G(C_8 C_9))  + =(APPLYA(C_11 X) APPLYV(C_4 X C_3))
+  T26  : - HOMOMORPH(C_11 G(C_8 C_9) G(C_8 C_10))
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+REFUTATION ( FAILURE : ABORTED.MAXSTEPS )
+
+INITIAL CLAUSES :      A1  : ALL X:ANY  + =(X X)
+                       A2  : ALL X,Y,Z:ELEMENT  U:VERKN  + =(APPLYV(U APPLYV(U Z Y) X) APPLYV(U Z APPLYV(U Y X)))
+                       A3  : ALL X:ELEMENT  Y:VERKN  Z:MENGE  - GR(Z Y X)  + EL(X Z)
+                       A4  : ALL X:VERKN  Y,Z:MENGE  U:ABB  - ABBILDUNG(U Z Y)  + EL(F_1(X U Y Z) Z)  + HOMOMORPH(U Z Y)
+                       A5  : ALL X,Y:ELEMENT  Z:VERKN  U:MENGE  - GR(U Z Y)  - EL(X U)  + =(APPLYV(Z Y X) X)
+                       A6  : ALL X:VERKN  Y,Z:MENGE  U:ABB  
+                                  - ABBILDUNG(U Z Y)
+                                  - =(APPLYV(X APPLYA(U F_1(X U Y Z)) APPLYA(U F_2(X U Y Z)))
+                                      APPLYA(U APPLYV(X F_1(X U Y Z) F_2(X U Y Z))))
+                                    + HOMOMORPH(U Z Y)
+                       A7  : ALL X:VERKN  Y,Z:MENGE  U:ABB  - ABBILDUNG(U Z Y)  + EL(F_2(X U Y Z) Z)  + HOMOMORPH(U Z Y)
+                       A8  : ALL X,Y:ELEMENT  Z,U,V,W:INDEX  XX,YY:INDEXMENGE  ZZ:VERKN  UU:MENGE  
+                                  - VORAUSSETZUNG-TH(UU ZZ YY XX W V)  - EL-IND(U YY)  - EL-IND(Z XX)  - EL(Y G(W V))
+                                    - EL(X G(U Z))  + EL(APPLYV(ZZ Y X) G(W Z))
+                       T9  : + VORAUSSETZUNG-TH(C_5 C_4 C_6 C_7 C_8 C_9)
+                       T17 : + EL-IND(C_8 C_6)
+                       T18 : + EL-IND(C_9 C_7)
+                       T20 : + EL(C_1 G(C_8 C_9))
+                       T21 : + EL-IND(C_10 C_7)
+                       T22 : + GR(G(C_8 C_9) C_4 C_2)
+                       T23 : + GR(G(C_8 C_10) C_4 C_3)
+                       T24 : + ABBILDUNG(C_11 G(C_8 C_9) G(C_8 C_10))
+                       T25 : ALL X:ELEMENT  - EL(X G(C_8 C_9))  + =(APPLYA(C_11 X) APPLYV(C_4 X C_3))
+                       T26 : - HOMOMORPH(C_11 G(C_8 C_9) G(C_8 C_10))
+
+A4,3 & T26,1    -->    R1  : ALL X:VERKN  - ABBILDUNG(C_11 G(C_8 C_9) G(C_8 C_10))
+                                            + EL(F_1(X C_11 G(C_8 C_10) G(C_8 C_9)) G(C_8 C_9))
+
+T24,1 & R1,1    -->    R2  : ALL X:VERKN  + EL(F_1(X C_11 G(C_8 C_10) G(C_8 C_9)) G(C_8 C_9))
+
+A6,3 & T26,1    -->    R3  : ALL X:VERKN  - ABBILDUNG(C_11 G(C_8 C_9) G(C_8 C_10))
+                                          - =(APPLYV(X
+                                                     APPLYA(C_11 F_1(X C_11 G(C_8 C_10) G(C_8 C_9)))
+                                                     APPLYA(C_11 F_2(X C_11 G(C_8 C_10) G(C_8 C_9))))
+                                              APPLYA(C_11
+                                                     APPLYV(X
+                                                            F_1(X C_11 G(C_8 C_10) G(C_8 C_9))
+                                                            F_2(X C_11 G(C_8 C_10) G(C_8 C_9)))))
+
+
+T24,1 & R3,1    -->    R4  : ALL X:VERKN  - =(APPLYV(X
+                                                     APPLYA(C_11 F_1(X C_11 G(C_8 C_10) G(C_8 C_9)))
+                                                     APPLYA(C_11 F_2(X C_11 G(C_8 C_10) G(C_8 C_9))))
+                                              APPLYA(C_11
+                                                     APPLYV(X
+                                                            F_1(X C_11 G(C_8 C_10) G(C_8 C_9))
+                                                            F_2(X C_11 G(C_8 C_10) G(C_8 C_9)))))
+
+
+A7,3 & T26,1    -->    R5  : ALL X:VERKN  - ABBILDUNG(C_11 G(C_8 C_9) G(C_8 C_10))
+                                            + EL(F_2(X C_11 G(C_8 C_10) G(C_8 C_9)) G(C_8 C_9))
+
+T24,1 & R5,1    -->    R6  : ALL X:VERKN  + EL(F_2(X C_11 G(C_8 C_10) G(C_8 C_9)) G(C_8 C_9))
+
+T9,1 & A8,1     -->    R7  : ALL X,Y:ELEMENT  Z,U:INDEX  
+                                  - EL-IND(U C_6)  - EL-IND(Z C_7)  - EL(Y G(C_8 C_9))  - EL(X G(U Z))
+                                    + EL(APPLYV(C_4 Y X) G(C_8 Z))
+
+T17,1 & R7,1    -->    R8  : ALL X,Y:ELEMENT  Z:INDEX  
+                                  - EL-IND(Z C_7)  - EL(Y G(C_8 C_9))  - EL(X G(C_8 Z))  + EL(APPLYV(C_4 Y X) G(C_8 Z))
+
+T22,1 & A3,1    -->    R9  : + EL(C_2 G(C_8 C_9))
+
+T23,1 & A3,1    -->    R10 : + EL(C_3 G(C_8 C_10))
+
+T20,1 & T25,1   -->    R11 : + =(APPLYA(C_11 C_1) APPLYV(C_4 C_1 C_3))
+
+R11,1 & A2,1    -->    P12 : ALL X:ELEMENT  + =(APPLYV(C_4 APPLYA(C_11 C_1) X) APPLYV(C_4 C_1 APPLYV(C_4 C_3 X)))
+
+R11,1 & A2,1    -->    P13 : ALL X:ELEMENT  + =(APPLYV(C_4 APPLYV(C_4 X C_1) C_3) APPLYV(C_4 X APPLYA(C_11 C_1)))
+
+R9,1 & T25,1    -->    R14 : + =(APPLYA(C_11 C_2) APPLYV(C_4 C_2 C_3))
+
+R14,1 & A2,1    -->    P15 : ALL X:ELEMENT  + =(APPLYV(C_4 APPLYA(C_11 C_2) X) APPLYV(C_4 C_2 APPLYV(C_4 C_3 X)))
+
+R14,1 & A2,1    -->    P16 : ALL X:ELEMENT  + =(APPLYV(C_4 APPLYV(C_4 X C_2) C_3) APPLYV(C_4 X APPLYA(C_11 C_2)))
+
+T20,1 & A5,2    -->    R17 : ALL X:ELEMENT  Y:VERKN  - GR(G(C_8 C_9) Y X)  + =(APPLYV(Y X C_1) C_1)
+
+T22,1 & R17,1   -->    R18 : + =(APPLYV(C_4 C_2 C_1) C_1)
+
+R18,1 & A2,1    -->    P19 : ALL X:ELEMENT  + =(APPLYV(C_4 C_1 X) APPLYV(C_4 C_2 APPLYV(C_4 C_1 X)))
+
+R18,1 & A2,1    -->    P20 : ALL X:ELEMENT  + =(APPLYV(C_4 APPLYV(C_4 X C_2) C_1) APPLYV(C_4 X C_1))
+
+R18,1 & T20,1   -->    P21 : + EL(APPLYV(C_4 C_2 C_1) G(C_8 C_9))
+
+R18,1 & P13,1   -->    P22 : + =(APPLYV(C_4 C_1 C_3) APPLYV(C_4 C_2 APPLYA(C_11 C_1)))
+
+T22,1 & A5,1    -->    R23 : ALL X:ELEMENT  - EL(X G(C_8 C_9))  + =(APPLYV(C_4 C_2 X) X)
+
+R9,1 & R23,1    -->    R24 : + =(APPLYV(C_4 C_2 C_2) C_2)
+
+R24,1 & A2,1    -->    P25 : ALL X:ELEMENT  + =(APPLYV(C_4 C_2 X) APPLYV(C_4 C_2 APPLYV(C_4 C_2 X)))
+
+R24,1 & A2,1    -->    P26 : ALL X:ELEMENT  + =(APPLYV(C_4 APPLYV(C_4 X C_2) C_2) APPLYV(C_4 X C_2))
+
+R24,1 & T22,1   -->    P27 : + GR(G(C_8 C_9) C_4 APPLYV(C_4 C_2 C_2))
+
+R24,1 & P16,1   -->    P28 : + =(APPLYV(C_4 C_2 C_3) APPLYV(C_4 C_2 APPLYA(C_11 C_2)))
+
+R24,1 & P20,1   -->    P29 : + =(APPLYV(C_4 C_2 C_1) APPLYV(C_4 C_2 C_1))
+
+T23,1 & A5,1    -->    R30 : ALL X:ELEMENT  - EL(X G(C_8 C_10))  + =(APPLYV(C_4 C_3 X) X)
+
+R10,1 & R30,1   -->    R31 : + =(APPLYV(C_4 C_3 C_3) C_3)
+
+R31,1 & A2,1    -->    P32 : ALL X:ELEMENT  + =(APPLYV(C_4 C_3 X) APPLYV(C_4 C_3 APPLYV(C_4 C_3 X)))
+
+R31,1 & A2,1    -->    P33 : ALL X:ELEMENT  + =(APPLYV(C_4 APPLYV(C_4 X C_3) C_3) APPLYV(C_4 X C_3))
+
+R31,1 & T23,1   -->    P34 : + GR(G(C_8 C_10) C_4 APPLYV(C_4 C_3 C_3))
+
+R31,1 & R11,1   -->    P35 : + =(APPLYA(C_11 C_1) APPLYV(C_4 C_1 APPLYV(C_4 C_3 C_3)))
+
+R31,1 & P12,1   -->    P36 : + =(APPLYV(C_4 APPLYA(C_11 C_1) C_3) APPLYV(C_4 C_1 C_3))
+
+R31,1 & R14,1   -->    P37 : + =(APPLYA(C_11 C_2) APPLYV(C_4 C_2 APPLYV(C_4 C_3 C_3)))
+
+R31,1 & P15,1   -->    P38 : + =(APPLYV(C_4 APPLYA(C_11 C_2) C_3) APPLYV(C_4 C_2 C_3))
+
+R11,1 & P33,1   -->    P39 : + =(APPLYV(C_4 APPLYV(C_4 C_1 C_3) C_3) APPLYA(C_11 C_1))
+
+R14,1 & P33,1   -->    P40 : + =(APPLYV(C_4 APPLYV(C_4 C_2 C_3) C_3) APPLYA(C_11 C_2))
+
+P12,1 & P35,1   -->    P41 : + =(APPLYA(C_11 C_1) APPLYV(C_4 APPLYA(C_11 C_1) C_3))
+
+P15,1 & P37,1   -->    P42 : + =(APPLYA(C_11 C_2) APPLYV(C_4 APPLYA(C_11 C_2) C_3))
+
+R2,1 & T25,1    -->    R43 : ALL X:VERKN  + =(APPLYA(C_11 F_1(X C_11 G(C_8 C_10) G(C_8 C_9)))
+                                              APPLYV(C_4 F_1(X C_11 G(C_8 C_10) G(C_8 C_9)) C_3))
+
+
+R43,1 & A2,1    -->    P44 : ALL X:ELEMENT  Y:VERKN  
+                                  + =(APPLYV(C_4 APPLYA(C_11 F_1(Y C_11 G(C_8 C_10) G(C_8 C_9))) X)
+                                      APPLYV(C_4 F_1(Y C_11 G(C_8 C_10) G(C_8 C_9)) APPLYV(C_4 C_3 X)))
+
+
+R43,1 & A2,1    -->    P45 : ALL X:VERKN  Y:ELEMENT  
+                                  + =(APPLYV(C_4 APPLYV(C_4 Y F_1(X C_11 G(C_8 C_10) G(C_8 C_9))) C_3)
+                                      APPLYV(C_4 Y APPLYA(C_11 F_1(X C_11 G(C_8 C_10) G(C_8 C_9)))))
+
+
+R43,1 & R4,1    -->    P46 : ALL X:VERKN  - =(APPLYV(X
+                                                     APPLYV(C_4 F_1(X C_11 G(C_8 C_10) G(C_8 C_9)) C_3)
+                                                     APPLYA(C_11 F_2(X C_11 G(C_8 C_10) G(C_8 C_9))))
+                                              APPLYA(C_11
+                                                     APPLYV(X
+                                                            F_1(X C_11 G(C_8 C_10) G(C_8 C_9))
+                                                            F_2(X C_11 G(C_8 C_10) G(C_8 C_9)))))
+
+
+R31,1 & R43,1   -->    P47 : ALL X:VERKN  + =(APPLYA(C_11 F_1(X C_11 G(C_8 C_10) G(C_8 C_9)))
+                                              APPLYV(C_4 F_1(X C_11 G(C_8 C_10) G(C_8 C_9)) APPLYV(C_4 C_3 C_3)))
+
+
+R43,1 & P33,1   -->    P48 : ALL X:VERKN  + =(APPLYV(C_4 APPLYA(C_11 F_1(X C_11 G(C_8 C_10) G(C_8 C_9))) C_3)
+                                              APPLYV(C_4 F_1(X C_11 G(C_8 C_10) G(C_8 C_9)) C_3))
+
+
+R43,1 & P33,1   -->    P49 : ALL X:VERKN  + =(APPLYV(C_4 APPLYV(C_4 F_1(X C_11 G(C_8 C_10) G(C_8 C_9)) C_3) C_3)
+                                              APPLYA(C_11 F_1(X C_11 G(C_8 C_10) G(C_8 C_9))))
+
+
+P44,1 & R4,1    -->    P50 : - =(APPLYV(C_4
+                                        F_1(C_4 C_11 G(C_8 C_10) G(C_8 C_9))
+                                        APPLYV(C_4 C_3 APPLYA(C_11 F_2(C_4 C_11 G(C_8 C_10) G(C_8 C_9)))))
+                                 APPLYA(C_11
+                                        APPLYV(C_4
+                                               F_1(C_4 C_11 G(C_8 C_10) G(C_8 C_9))
+                                               F_2(C_4 C_11 G(C_8 C_10) G(C_8 C_9)))))
+
+
+R31,1 & P46,1   -->    P51 : ALL X:VERKN  - =(APPLYV(X
+                                                     APPLYV(C_4 F_1(X C_11 G(C_8 C_10) G(C_8 C_9)) APPLYV(C_4 C_3 C_3))
+                                                     APPLYA(C_11 F_2(X C_11 G(C_8 C_10) G(C_8 C_9))))
+                                              APPLYA(C_11
+                                                     APPLYV(X
+                                                            F_1(X C_11 G(C_8 C_10) G(C_8 C_9))
+                                                            F_2(X C_11 G(C_8 C_10) G(C_8 C_9)))))
+
+
+P33,1 & P46,1   -->    P52 : ALL X:VERKN  - =(APPLYV(X
+                                                     APPLYV(C_4 APPLYV(C_4 F_1(X C_11 G(C_8 C_10) G(C_8 C_9)) C_3) C_3)
+                                                     APPLYA(C_11 F_2(X C_11 G(C_8 C_10) G(C_8 C_9))))
+                                              APPLYA(C_11
+                                                     APPLYV(X
+                                                            F_1(X C_11 G(C_8 C_10) G(C_8 C_9))
+                                                            F_2(X C_11 G(C_8 C_10) G(C_8 C_9)))))
+
+
+A2,1 & P46,1    -->    P53 : - =(APPLYV(C_4
+                                        F_1(C_4 C_11 G(C_8 C_10) G(C_8 C_9))
+                                        APPLYV(C_4 C_3 APPLYA(C_11 F_2(C_4 C_11 G(C_8 C_10) G(C_8 C_9)))))
+                                 APPLYA(C_11
+                                        APPLYV(C_4
+                                               F_1(C_4 C_11 G(C_8 C_10) G(C_8 C_9))
+                                               F_2(C_4 C_11 G(C_8 C_10) G(C_8 C_9)))))
+
+
+P48,1 & P46,1   -->    P54 : ALL X:VERKN  - =(APPLYV(X
+                                                     APPLYV(C_4 APPLYA(C_11 F_1(X C_11 G(C_8 C_10) G(C_8 C_9))) C_3)
+                                                     APPLYA(C_11 F_2(X C_11 G(C_8 C_10) G(C_8 C_9))))
+                                              APPLYA(C_11
+                                                     APPLYV(X
+                                                            F_1(X C_11 G(C_8 C_10) G(C_8 C_9))
+                                                            F_2(X C_11 G(C_8 C_10) G(C_8 C_9)))))
+
+
+P49,1 & R4,1    -->    P55 : ALL X:VERKN  - =(APPLYV(X
+                                                     APPLYV(C_4 APPLYV(C_4 F_1(X C_11 G(C_8 C_10) G(C_8 C_9)) C_3) C_3)
+                                                     APPLYA(C_11 F_2(X C_11 G(C_8 C_10) G(C_8 C_9))))
+                                              APPLYA(C_11
+                                                     APPLYV(X
+                                                            F_1(X C_11 G(C_8 C_10) G(C_8 C_9))
+                                                            F_2(X C_11 G(C_8 C_10) G(C_8 C_9)))))
+
+
+A2,1 & P51,1    -->    P56 : - =(APPLYV(C_4
+                                        F_1(C_4 C_11 G(C_8 C_10) G(C_8 C_9))
+                                        APPLYV(C_4
+                                               APPLYV(C_4 C_3 C_3)
+                                               APPLYA(C_11 F_2(C_4 C_11 G(C_8 C_10) G(C_8 C_9)))))
+                                 APPLYA(C_11
+                                        APPLYV(C_4
+                                               F_1(C_4 C_11 G(C_8 C_10) G(C_8 C_9))
+                                               F_2(C_4 C_11 G(C_8 C_10) G(C_8 C_9)))))
+
+
+R6,1 & T25,1    -->    R57 : ALL X:VERKN  + =(APPLYA(C_11 F_2(X C_11 G(C_8 C_10) G(C_8 C_9)))
+                                              APPLYV(C_4 F_2(X C_11 G(C_8 C_10) G(C_8 C_9)) C_3))
+
+
+R57,1 & A2,1    -->    P58 : ALL X:ELEMENT  Y:VERKN  
+                                  + =(APPLYV(C_4 APPLYA(C_11 F_2(Y C_11 G(C_8 C_10) G(C_8 C_9))) X)
+                                      APPLYV(C_4 F_2(Y C_11 G(C_8 C_10) G(C_8 C_9)) APPLYV(C_4 C_3 X)))
+
+
+R57,1 & A2,1    -->    P59 : ALL X:VERKN  Y:ELEMENT  
+                                  + =(APPLYV(C_4 APPLYV(C_4 Y F_2(X C_11 G(C_8 C_10) G(C_8 C_9))) C_3)
+                                      APPLYV(C_4 Y APPLYA(C_11 F_2(X C_11 G(C_8 C_10) G(C_8 C_9)))))
+
+
+R57,1 & R4,1    -->    P60 : ALL X:VERKN  - =(APPLYV(X
+                                                     APPLYA(C_11 F_1(X C_11 G(C_8 C_10) G(C_8 C_9)))
+                                                     APPLYV(C_4 F_2(X C_11 G(C_8 C_10) G(C_8 C_9)) C_3))
+                                              APPLYA(C_11
+                                                     APPLYV(X
+                                                            F_1(X C_11 G(C_8 C_10) G(C_8 C_9))
+                                                            F_2(X C_11 G(C_8 C_10) G(C_8 C_9)))))
+
+
+R31,1 & R57,1   -->    P61 : ALL X:VERKN  + =(APPLYA(C_11 F_2(X C_11 G(C_8 C_10) G(C_8 C_9)))
+                                              APPLYV(C_4 F_2(X C_11 G(C_8 C_10) G(C_8 C_9)) APPLYV(C_4 C_3 C_3)))
+
+
+R57,1 & P33,1   -->    P62 : ALL X:VERKN  + =(APPLYV(C_4 APPLYA(C_11 F_2(X C_11 G(C_8 C_10) G(C_8 C_9))) C_3)
+                                              APPLYV(C_4 F_2(X C_11 G(C_8 C_10) G(C_8 C_9)) C_3))
+
+
+R57,1 & P33,1   -->    P63 : ALL X:VERKN  + =(APPLYV(C_4 APPLYV(C_4 F_2(X C_11 G(C_8 C_10) G(C_8 C_9)) C_3) C_3)
+                                              APPLYA(C_11 F_2(X C_11 G(C_8 C_10) G(C_8 C_9))))
+
+
+R57,1 & P46,1   -->    P64 : ALL X:VERKN  - =(APPLYV(X
+                                                     APPLYV(C_4 F_1(X C_11 G(C_8 C_10) G(C_8 C_9)) C_3)
+                                                     APPLYV(C_4 F_2(X C_11 G(C_8 C_10) G(C_8 C_9)) C_3))
+                                              APPLYA(C_11
+                                                     APPLYV(X
+                                                            F_1(X C_11 G(C_8 C_10) G(C_8 C_9))
+                                                            F_2(X C_11 G(C_8 C_10) G(C_8 C_9)))))
+
+
+R57,1 & P51,1   -->    P65 : ALL X:VERKN  - =(APPLYV(X
+                                                     APPLYV(C_4 F_1(X C_11 G(C_8 C_10) G(C_8 C_9)) APPLYV(C_4 C_3 C_3))
+                                                     APPLYV(C_4 F_2(X C_11 G(C_8 C_10) G(C_8 C_9)) C_3))
+                                              APPLYA(C_11
+                                                     APPLYV(X
+                                                            F_1(X C_11 G(C_8 C_10) G(C_8 C_9))
+                                                            F_2(X C_11 G(C_8 C_10) G(C_8 C_9)))))
+
+
+R57,1 & P52,1   -->    P66 : ALL X:VERKN  - =(APPLYV(X
+                                                     APPLYV(C_4 APPLYV(C_4 F_1(X C_11 G(C_8 C_10) G(C_8 C_9)) C_3) C_3)
+                                                     APPLYV(C_4 F_2(X C_11 G(C_8 C_10) G(C_8 C_9)) C_3))
+                                              APPLYA(C_11
+                                                     APPLYV(X
+                                                            F_1(X C_11 G(C_8 C_10) G(C_8 C_9))
+                                                            F_2(X C_11 G(C_8 C_10) G(C_8 C_9)))))
+
+
+R57,1 & P54,1   -->    P67 : ALL X:VERKN  - =(APPLYV(X
+                                                     APPLYV(C_4 APPLYA(C_11 F_1(X C_11 G(C_8 C_10) G(C_8 C_9))) C_3)
+                                                     APPLYV(C_4 F_2(X C_11 G(C_8 C_10) G(C_8 C_9)) C_3))
+                                              APPLYA(C_11
+                                                     APPLYV(X
+                                                            F_1(X C_11 G(C_8 C_10) G(C_8 C_9))
+                                                            F_2(X C_11 G(C_8 C_10) G(C_8 C_9)))))
+
+
+R57,1 & P55,1   -->    P68 : ALL X:VERKN  - =(APPLYV(X
+                                                     APPLYV(C_4 APPLYV(C_4 F_1(X C_11 G(C_8 C_10) G(C_8 C_9)) C_3) C_3)
+                                                     APPLYV(C_4 F_2(X C_11 G(C_8 C_10) G(C_8 C_9)) C_3))
+                                              APPLYA(C_11
+                                                     APPLYV(X
+                                                            F_1(X C_11 G(C_8 C_10) G(C_8 C_9))
+                                                            F_2(X C_11 G(C_8 C_10) G(C_8 C_9)))))
+
+
+P59,1 & R4,1    -->    P69 : - =(APPLYV(C_4
+                                        APPLYV(C_4
+                                               APPLYA(C_11 F_1(C_4 C_11 G(C_8 C_10) G(C_8 C_9)))
+                                               F_2(C_4 C_11 G(C_8 C_10) G(C_8 C_9)))
+                                        C_3)
+                                 APPLYA(C_11
+                                        APPLYV(C_4
+                                               F_1(C_4 C_11 G(C_8 C_10) G(C_8 C_9))
+                                               F_2(C_4 C_11 G(C_8 C_10) G(C_8 C_9)))))
+
+
+P59,1 & P46,1   -->    P70 : - =(APPLYV(C_4
+                                        APPLYV(C_4
+                                               APPLYV(C_4 F_1(C_4 C_11 G(C_8 C_10) G(C_8 C_9)) C_3)
+                                               F_2(C_4 C_11 G(C_8 C_10) G(C_8 C_9)))
+                                        C_3)
+                                 APPLYA(C_11
+                                        APPLYV(C_4
+                                               F_1(C_4 C_11 G(C_8 C_10) G(C_8 C_9))
+                                               F_2(C_4 C_11 G(C_8 C_10) G(C_8 C_9)))))
+
+
+P59,1 & P51,1   -->    P71 : - =(APPLYV(C_4
+                                        APPLYV(C_4
+                                               APPLYV(C_4 F_1(C_4 C_11 G(C_8 C_10) G(C_8 C_9)) APPLYV(C_4 C_3 C_3))
+                                               F_2(C_4 C_11 G(C_8 C_10) G(C_8 C_9)))
+                                        C_3)
+                                 APPLYA(C_11
+                                        APPLYV(C_4
+                                               F_1(C_4 C_11 G(C_8 C_10) G(C_8 C_9))
+                                               F_2(C_4 C_11 G(C_8 C_10) G(C_8 C_9)))))
+
+
+P59,1 & P52,1   -->    P72 : - =(APPLYV(C_4
+                                        APPLYV(C_4
+                                               APPLYV(C_4 APPLYV(C_4 F_1(C_4 C_11 G(C_8 C_10) G(C_8 C_9)) C_3) C_3)
+                                               F_2(C_4 C_11 G(C_8 C_10) G(C_8 C_9)))
+                                        C_3)
+                                 APPLYA(C_11
+                                        APPLYV(C_4
+                                               F_1(C_4 C_11 G(C_8 C_10) G(C_8 C_9))
+                                               F_2(C_4 C_11 G(C_8 C_10) G(C_8 C_9)))))
+
+
+P59,1 & P54,1   -->    P73 : - =(APPLYV(C_4
+                                        APPLYV(C_4
+                                               APPLYV(C_4 APPLYA(C_11 F_1(C_4 C_11 G(C_8 C_10) G(C_8 C_9))) C_3)
+                                               F_2(C_4 C_11 G(C_8 C_10) G(C_8 C_9)))
+                                        C_3)
+                                 APPLYA(C_11
+                                        APPLYV(C_4
+                                               F_1(C_4 C_11 G(C_8 C_10) G(C_8 C_9))
+                                               F_2(C_4 C_11 G(C_8 C_10) G(C_8 C_9)))))
+
+
+P59,1 & P55,1   -->    P74 : - =(APPLYV(C_4
+                                        APPLYV(C_4
+                                               APPLYV(C_4 APPLYV(C_4 F_1(C_4 C_11 G(C_8 C_10) G(C_8 C_9)) C_3) C_3)
+                                               F_2(C_4 C_11 G(C_8 C_10) G(C_8 C_9)))
+                                        C_3)
+                                 APPLYA(C_11
+                                        APPLYV(C_4
+                                               F_1(C_4 C_11 G(C_8 C_10) G(C_8 C_9))
+                                               F_2(C_4 C_11 G(C_8 C_10) G(C_8 C_9)))))
+
+
+R31,1 & P60,1   -->    P75 : ALL X:VERKN  - =(APPLYV(X
+                                                     APPLYA(C_11 F_1(X C_11 G(C_8 C_10) G(C_8 C_9)))
+                                                     APPLYV(C_4 F_2(X C_11 G(C_8 C_10) G(C_8 C_9)) APPLYV(C_4 C_3 C_3)))
+                                              APPLYA(C_11
+                                                     APPLYV(X
+                                                            F_1(X C_11 G(C_8 C_10) G(C_8 C_9))
+                                                            F_2(X C_11 G(C_8 C_10) G(C_8 C_9)))))
+
+
+P33,1 & P60,1   -->    P76 : ALL X:VERKN  - =(APPLYV(X
+                                                     APPLYA(C_11 F_1(X C_11 G(C_8 C_10) G(C_8 C_9)))
+                                                     APPLYV(C_4 APPLYV(C_4 F_2(X C_11 G(C_8 C_10) G(C_8 C_9)) C_3) C_3))
+                                              APPLYA(C_11
+                                                     APPLYV(X
+                                                            F_1(X C_11 G(C_8 C_10) G(C_8 C_9))
+                                                            F_2(X C_11 G(C_8 C_10) G(C_8 C_9)))))
+
+
+P61,1 & P46,1   -->    P77 : ALL X:VERKN  - =(APPLYV(X
+                                                     APPLYV(C_4 F_1(X C_11 G(C_8 C_10) G(C_8 C_9)) C_3)
+                                                     APPLYV(C_4 F_2(X C_11 G(C_8 C_10) G(C_8 C_9)) APPLYV(C_4 C_3 C_3)))
+                                              APPLYA(C_11
+                                                     APPLYV(X
+                                                            F_1(X C_11 G(C_8 C_10) G(C_8 C_9))
+                                                            F_2(X C_11 G(C_8 C_10) G(C_8 C_9)))))
+
+
+P61,1 & P51,1   -->    P78 : ALL X:VERKN  - =(APPLYV(X
+                                                     APPLYV(C_4 F_1(X C_11 G(C_8 C_10) G(C_8 C_9)) APPLYV(C_4 C_3 C_3))
+                                                     APPLYV(C_4 F_2(X C_11 G(C_8 C_10) G(C_8 C_9)) APPLYV(C_4 C_3 C_3)))
+                                              APPLYA(C_11
+                                                     APPLYV(X
+                                                            F_1(X C_11 G(C_8 C_10) G(C_8 C_9))
+                                                            F_2(X C_11 G(C_8 C_10) G(C_8 C_9)))))
+
+
+P61,1 & P52,1   -->    P79 : ALL X:VERKN  - =(APPLYV(X
+                                                     APPLYV(C_4 APPLYV(C_4 F_1(X C_11 G(C_8 C_10) G(C_8 C_9)) C_3) C_3)
+                                                     APPLYV(C_4 F_2(X C_11 G(C_8 C_10) G(C_8 C_9)) APPLYV(C_4 C_3 C_3)))
+                                              APPLYA(C_11
+                                                     APPLYV(X
+                                                            F_1(X C_11 G(C_8 C_10) G(C_8 C_9))
+                                                            F_2(X C_11 G(C_8 C_10) G(C_8 C_9)))))
+
+
+P61,1 & P54,1   -->    P80 : ALL X:VERKN  - =(APPLYV(X
+                                                     APPLYV(C_4 APPLYA(C_11 F_1(X C_11 G(C_8 C_10) G(C_8 C_9))) C_3)
+                                                     APPLYV(C_4 F_2(X C_11 G(C_8 C_10) G(C_8 C_9)) APPLYV(C_4 C_3 C_3)))
+                                              APPLYA(C_11
+                                                     APPLYV(X
+                                                            F_1(X C_11 G(C_8 C_10) G(C_8 C_9))
+                                                            F_2(X C_11 G(C_8 C_10) G(C_8 C_9)))))
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+THE THEOREM(S) COULD NOT BE PROVED.
+

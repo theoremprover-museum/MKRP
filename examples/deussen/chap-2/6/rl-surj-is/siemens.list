@@ -1,0 +1,248 @@
+;;; -*- Package: MKRP; Base: 10. -*- 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 5-NOV-84                                                      *
+                    *         DATE : 5-DEC-84  12:17:53                                            *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+ 
+  
+  
+  
+  
+ FORMULAE GIVEN TO THE EDITOR
+ ============================
+  
+  
+ AXIOMS   : SORT ELEMENT,MENGE,VERKN,ABB,NAT : ANY
+            TYPE APPLYV(VERKN ELEMENT ELEMENT) : ELEMENT
+            TYPE CONC : VERKN
+            TYPE W(MENGE) :MENGE
+            TYPE LENGTH(ELEMENT) : NAT
+            TYPE APPLYA(ABB ELEMENT) : ELEMENT
+            TYPE M: NAT
+            ALL X:         ELEMENT ALL A,B:MENGE ALL PHI:ABB EL(X W(B)) AND KLEINER(LENGTH(X) M)
+                      IMPL (EX Y:ELEMENT EL(Y W(A)) AND GLEICH(APPLYA(PHI Y) X))
+            ALL X:ELEMENT  ALL B:MENGE  
+                   EL(X W(B)) AND GLEICH(LENGTH(X) M)
+              IMPL( EX U,V:ELEMENT        EL(U W(B))
+                                      AND EL(V W(B))
+                                      AND KLEINER(LENGTH(U) M)
+                                      AND KLEINER(LENGTH(V) M)
+                                      AND GLEICH(APPLYV(CONC U V) X))
+            ALL A,B:MENGE  ALL PHI:ABB  ALL X:ELEMENT  ALL U,V,T,S:ELEMENT  
+                       GLEICH(APPLYV(CONC U V) X)
+                   AND EL(X W(B))
+                   AND EL(T W(A))
+                   AND EL(S W(A))
+                   AND GLEICH(APPLYA(PHI T) U)
+                   AND GLEICH(APPLYA(PHI S) V)
+                   AND HOMOMORPH(PHI W(A) W(B))
+              IMPL GLEICH(APPLYA(PHI APPLYV(CONC T S)) X) AND EL(APPLYV(CONC T S) W(A))
+  
+ THEOREMS : ALL X:ELEMENT  ALL A,B:MENGE  ALL PHI:ABB  
+                   EL(X W(B)) AND GLEICH(LENGTH(X) M) AND HOMOMORPH(PHI W(A) W(B))
+              IMPL (EX Y:ELEMENT EL(Y W(A)) AND GLEICH(APPLYA(PHI Y) X))
+  
+ 
+ 
+ 
+CONSTANTS : 
+=========== 
+ 
+| NAME      | SORT                    |            | ATTRIBUTES |
+-----------------------------------------------------------------
+| CONC      | VERKN                   |            |            |
+| M         | NAT                     |            |            |
+| C_1       | MENGE                   |            |            |
+| C_2       | ABB                     |            |            |
+| C_3       | MENGE                   |            |            |
+| C_4       | ELEMENT                 |            |            |
+-----------------------------------------------------------------
+ 
+ 
+ 
+FUNCTIONS : 
+=========== 
+ 
+| NAME      | DOMAIN                  | RANGE      | ATTRIBUTES |
+-----------------------------------------------------------------
+| APPLYV    | VERKN ELEMENT ELEMENT   | ELEMENT    |            |
+| W         | MENGE                   | MENGE      |            |
+| LENGTH    | ELEMENT                 | NAT        |            |
+| APPLYA    | ABB ELEMENT             | ELEMENT    |            |
+| F_1       | MENGE ABB ELEMENT       | ELEMENT    |            |
+| F_2       | ELEMENT MENGE           | ELEMENT    |            |
+| F_3       | ELEMENT MENGE           | ELEMENT    |            |
+-----------------------------------------------------------------
+ 
+ 
+ 
+PREDICATES : 
+============ 
+ 
+| NAME      | DOMAIN                  |            | ATTRIBUTES |
+-----------------------------------------------------------------
+| TRUE      |                         |            | DEFINED    |
+| FALSE     |                         |            | DEFINED    |
+| EL        | ANY ANY                 |            |            |
+| KLEINER   | ANY ANY                 |            |            |
+| GLEICH    | ANY ANY                 |            |            |
+| HOMOMORPH | ANY ANY ANY             |            |            |
+-----------------------------------------------------------------
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION
+ 
+INITIAL CLAUSES :     * IC1 : ALL X:ABB  Y,Z:MENGE  U:ELEMENT  
+                                   - EL(U W(Z))  - KLEINER(LENGTH(U) M)  + EL(F_1(Y X U) W(Y))
+                      * IC2 : ALL X,Y:MENGE  Z:ABB  U:ELEMENT  
+                                   - EL(U W(Y))  - KLEINER(LENGTH(U) M)  + GLEICH(APPLYA(Z F_1(X Z U)) U)
+                      * IC3 : ALL X:MENGE  Y:ELEMENT  - EL(Y W(X))  - GLEICH(LENGTH(Y) M)  + EL(F_3(Y X) W(X))
+                      * IC4 : ALL X:MENGE  Y:ELEMENT  - EL(Y W(X))  - GLEICH(LENGTH(Y) M)  + EL(F_2(Y X) W(X))
+                      * IC5 : ALL X:MENGE  Y:ELEMENT  - EL(Y W(X))  - GLEICH(LENGTH(Y) M)  + KLEINER(LENGTH(F_3(Y X)) M)
+                      * IC6 : ALL X:MENGE  Y:ELEMENT  - EL(Y W(X))  - GLEICH(LENGTH(Y) M)  + KLEINER(LENGTH(F_2(Y X)) M)
+                      * IC7 : ALL X:MENGE  Y:ELEMENT  
+                                   - EL(Y W(X))  - GLEICH(LENGTH(Y) M)  + GLEICH(APPLYV(CONC F_3(Y X) F_2(Y X)) Y)
+                      * IC8 : ALL X:ABB  Y,Z,U,V,W:ELEMENT  XX,YY:MENGE  
+                                   - GLEICH(APPLYV(CONC W V) U)  - EL(U W(YY))  - EL(Z W(XX))  - EL(Y W(XX))
+                                     - GLEICH(APPLYA(X Z) W)  - GLEICH(APPLYA(X Y) V)  - HOMOMORPH(X W(XX) W(YY))
+                                     + GLEICH(APPLYA(X APPLYV(CONC Z Y)) U)
+                      * IC9 : ALL X:ABB  Y,Z,U,V,W:ELEMENT  XX,YY:MENGE  
+                                   - GLEICH(APPLYV(CONC W V) U)  - EL(U W(YY))  - EL(Z W(XX))  - EL(Y W(XX))
+                                     - GLEICH(APPLYA(X Z) W)  - GLEICH(APPLYA(X Y) V)  - HOMOMORPH(X W(XX) W(YY))
+                                     + EL(APPLYV(CONC Z Y) W(XX))
+                      * IC10: + EL(C_4 W(C_1))
+                      * IC11: + GLEICH(LENGTH(C_4) M)
+                      * IC12: + HOMOMORPH(C_2 W(C_3) W(C_1))
+                      * IC13: ALL X:ELEMENT  - EL(X W(C_3))  - GLEICH(APPLYA(C_2 X) C_4)
+ 
+IC12,1 & IC8,7   -->  * R14 : ALL X,Y,Z,U,V:ELEMENT  
+                                   - GLEICH(APPLYV(CONC V U) Z)  - EL(Z W(C_1))  - EL(Y W(C_3))  - EL(X W(C_3))
+                                     - GLEICH(APPLYA(C_2 Y) V)  - GLEICH(APPLYA(C_2 X) U)
+                                     + GLEICH(APPLYA(C_2 APPLYV(CONC Y X)) Z)
+ 
+IC12,1 & IC9,7   -->  * R15 : ALL X,Y,Z,U,V:ELEMENT  
+                                   - GLEICH(APPLYV(CONC V U) Z)  - EL(Z W(C_1))  - EL(Y W(C_3))  - EL(X W(C_3))
+                                     - GLEICH(APPLYA(C_2 Y) V)  - GLEICH(APPLYA(C_2 X) U)
+                                     + EL(APPLYV(CONC Y X) W(C_3))
+ 
+IC11,1 & IC3,2   -->  * R16 : ALL X:MENGE  - EL(C_4 W(X))  + EL(F_3(C_4 X) W(X))
+ 
+IC10,1 & R16,1   -->  * R17 : + EL(F_3(C_4 C_1) W(C_1))
+ 
+IC11,1 & IC4,2   -->  * R18 : ALL X:MENGE  - EL(C_4 W(X))  + EL(F_2(C_4 X) W(X))
+ 
+IC10,1 & R18,1   -->  * R19 : + EL(F_2(C_4 C_1) W(C_1))
+ 
+IC11,1 & IC5,2   -->  * R20 : ALL X:MENGE  - EL(C_4 W(X))  + KLEINER(LENGTH(F_3(C_4 X)) M)
+ 
+IC10,1 & R20,1   -->  * R21 : + KLEINER(LENGTH(F_3(C_4 C_1)) M)
+ 
+IC11,1 & IC6,2   -->  * R22 : ALL X:MENGE  - EL(C_4 W(X))  + KLEINER(LENGTH(F_2(C_4 X)) M)
+ 
+IC10,1 & R22,1   -->  * R23 : + KLEINER(LENGTH(F_2(C_4 C_1)) M)
+ 
+IC11,1 & IC7,2   -->  * R24 : ALL X:MENGE  - EL(C_4 W(X))  + GLEICH(APPLYV(CONC F_3(C_4 X) F_2(C_4 X)) C_4)
+ 
+IC10,1 & R24,1   -->  * R25 : + GLEICH(APPLYV(CONC F_3(C_4 C_1) F_2(C_4 C_1)) C_4)
+ 
+R25,1 & R15,1    -->  * R26 : ALL X,Y:ELEMENT  - EL(C_4 W(C_1))  - EL(Y W(C_3))  - EL(X W(C_3))
+                                                 - GLEICH(APPLYA(C_2 Y) F_3(C_4 C_1))
+                                                 - GLEICH(APPLYA(C_2 X) F_2(C_4 C_1))  + EL(APPLYV(CONC Y X) W(C_3))
+ 
+R26,1 & IC10,1   -->  * R27 : ALL X,Y:ELEMENT  - EL(Y W(C_3))  - EL(X W(C_3))  - GLEICH(APPLYA(C_2 Y) F_3(C_4 C_1))
+                                                 - GLEICH(APPLYA(C_2 X) F_2(C_4 C_1))  + EL(APPLYV(CONC Y X) W(C_3))
+ 
+R25,1 & R14,1    -->  * R28 : ALL X,Y:ELEMENT  - EL(C_4 W(C_1))  - EL(Y W(C_3))  - EL(X W(C_3))
+                                                 - GLEICH(APPLYA(C_2 Y) F_3(C_4 C_1))
+                                                 - GLEICH(APPLYA(C_2 X) F_2(C_4 C_1))
+                                                 + GLEICH(APPLYA(C_2 APPLYV(CONC Y X)) C_4)
+ 
+R28,1 & IC10,1   -->  * R29 : ALL X,Y:ELEMENT  - EL(Y W(C_3))  - EL(X W(C_3))  - GLEICH(APPLYA(C_2 Y) F_3(C_4 C_1))
+                                                 - GLEICH(APPLYA(C_2 X) F_2(C_4 C_1))
+                                                 + GLEICH(APPLYA(C_2 APPLYV(CONC Y X)) C_4)
+ 
+R29,5 & IC13,2   -->  * R30 : ALL X,Y:ELEMENT  - EL(Y W(C_3))  - EL(X W(C_3))  - GLEICH(APPLYA(C_2 Y) F_3(C_4 C_1))
+                                                 - GLEICH(APPLYA(C_2 X) F_2(C_4 C_1))  - EL(APPLYV(CONC Y X) W(C_3))
+ 
+R30,5 & R27,5    -->  * R31 : ALL X,Y:ELEMENT  - EL(Y W(C_3))  - EL(X W(C_3))  - GLEICH(APPLYA(C_2 Y) F_3(C_4 C_1))
+                                                 - GLEICH(APPLYA(C_2 X) F_2(C_4 C_1))  - EL(Y W(C_3))  - EL(X W(C_3))
+                                                 - GLEICH(APPLYA(C_2 Y) F_3(C_4 C_1))
+                                                 - GLEICH(APPLYA(C_2 X) F_2(C_4 C_1))
+ 
+R31 1=5          -->  * D32 : ALL X,Y:ELEMENT  - EL(Y W(C_3))  - EL(X W(C_3))  - GLEICH(APPLYA(C_2 Y) F_3(C_4 C_1))
+                                                 - GLEICH(APPLYA(C_2 X) F_2(C_4 C_1))  - EL(X W(C_3))
+                                                 - GLEICH(APPLYA(C_2 Y) F_3(C_4 C_1))
+                                                 - GLEICH(APPLYA(C_2 X) F_2(C_4 C_1))
+ 
+D32 2=5          -->  * D33 : ALL X,Y:ELEMENT  - EL(Y W(C_3))  - EL(X W(C_3))  - GLEICH(APPLYA(C_2 Y) F_3(C_4 C_1))
+                                                 - GLEICH(APPLYA(C_2 X) F_2(C_4 C_1))
+                                                 - GLEICH(APPLYA(C_2 Y) F_3(C_4 C_1))
+                                                 - GLEICH(APPLYA(C_2 X) F_2(C_4 C_1))
+ 
+D33 3=5          -->  * D34 : ALL X,Y:ELEMENT  - EL(Y W(C_3))  - EL(X W(C_3))  - GLEICH(APPLYA(C_2 Y) F_3(C_4 C_1))
+                                                 - GLEICH(APPLYA(C_2 X) F_2(C_4 C_1))
+                                                 - GLEICH(APPLYA(C_2 X) F_2(C_4 C_1))
+ 
+D34 4=5          -->  * D35 : ALL X,Y:ELEMENT  - EL(Y W(C_3))  - EL(X W(C_3))  - GLEICH(APPLYA(C_2 Y) F_3(C_4 C_1))
+                                                 - GLEICH(APPLYA(C_2 X) F_2(C_4 C_1))
+ 
+R19,1 & IC1,1    -->  * R36 : ALL X:ABB  Y:MENGE  - KLEINER(LENGTH(F_2(C_4 C_1)) M)  + EL(F_1(Y X F_2(C_4 C_1)) W(Y))
+ 
+R36,1 & R23,1    -->  * R37 : ALL X:ABB  Y:MENGE  + EL(F_1(Y X F_2(C_4 C_1)) W(Y))
+ 
+R19,1 & IC2,1    -->  * R38 : ALL X:MENGE  Y:ABB  
+                                   - KLEINER(LENGTH(F_2(C_4 C_1)) M)
+                                     + GLEICH(APPLYA(Y F_1(X Y F_2(C_4 C_1))) F_2(C_4 C_1))
+ 
+R38,1 & R23,1    -->  * R39 : ALL X:MENGE  Y:ABB  + GLEICH(APPLYA(Y F_1(X Y F_2(C_4 C_1))) F_2(C_4 C_1))
+ 
+R39,1 & D35,4    -->  * R40 : ALL X:MENGE  Y:ELEMENT  
+                                   - EL(Y W(C_3))  - EL(F_1(X C_2 F_2(C_4 C_1)) W(C_3))
+                                     - GLEICH(APPLYA(C_2 Y) F_3(C_4 C_1))
+ 
+R40,2 & R37,1    -->  * R41 : ALL X:ELEMENT  - EL(X W(C_3))  - GLEICH(APPLYA(C_2 X) F_3(C_4 C_1))
+ 
+IC2,3 & R41,2    -->  * R42 : ALL X,Y:MENGE  - EL(F_3(C_4 C_1) W(Y))  - KLEINER(LENGTH(F_3(C_4 C_1)) M)
+                                               - EL(F_1(X C_2 F_3(C_4 C_1)) W(C_3))
+ 
+R42,3 & IC1,3    -->  * R43 : ALL X:MENGE  - EL(F_3(C_4 C_1) W(X))  - KLEINER(LENGTH(F_3(C_4 C_1)) M)
+                                             - EL(F_3(C_4 C_1) W(C_1))  - KLEINER(LENGTH(F_3(C_4 C_1)) M)
+ 
+R43 2=4          -->  * D44 : ALL X:MENGE  - EL(F_3(C_4 C_1) W(X))  - KLEINER(LENGTH(F_3(C_4 C_1)) M)
+                                             - EL(F_3(C_4 C_1) W(C_1))
+ 
+D44,3 & R17,1    -->  * R45 : ALL X:MENGE  - EL(F_3(C_4 C_1) W(X))  - KLEINER(LENGTH(F_3(C_4 C_1)) M)
+ 
+R45,2 & R21,1    -->  * R46 : ALL X:MENGE  - EL(F_3(C_4 C_1) W(X))
+ 
+R46,1 & R17,1    -->  * R47 :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+STOP
+ 

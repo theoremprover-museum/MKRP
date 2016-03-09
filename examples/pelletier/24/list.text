@@ -1,0 +1,117 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 34.1 EQUALITY 16.1                                  *
+                     *           DATE: 31-OCT,1989  22:43                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 31-OCT,1989 22:42 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * AXIOMS *
+             NOT (EX X S (X) AND Q (X))
+             ALL X P (X) IMPL (Q (X) OR R (X))
+             NOT (EX X P (X)) IMPL (EX X Q (X))
+             ALL X Q (X) OR R (X) IMPL S (X)
+             
+   Theorems: * THEOREMS *
+             EX X P (X) AND R (X)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+           * A1:   All x:Any - S(x)  - Q(x)
+           * A2:   + P(c_1)  + Q(c_2)
+           * A3:   All x:Any - Q(x)  + S(x)
+             A4:   All x:Any - R(x)  + S(x)
+           * A5:   All x:Any - P(x)  + Q(x)  + R(x)
+           
+
+
+
+
+             Initial Operations on Axioms
+             ============================
+
+
+          
+   A3,2 & A1,1  --> * R1: All x:Any - Q(x)  - Q(x)
+   
+   R1 1=2       --> * D2: All x:Any - Q(x)
+   
+   A2,2 & D2,1  --> * R3: + P(c_1)
+   
+   A5,2 & D2,1  --> * R4: All x:Any - P(x)  + R(x)
+   
+
+   
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T6: All x:Any - P(x)  - R(x)
+
+
+
+
+
+
+             Initial Operations on Theorems
+             ==============================
+
+
+          
+   T6,2 & R4,2  --> * R5: All x,y:Any - P(y)  - P(x)
+   
+   R5 1=2       --> * D6: All x,y:Any - P(y)
+   
+   D6,1 & R3,1  --> * R7: []
+   
+
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   See operations on theorems of splitpart 1
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 1 seconds

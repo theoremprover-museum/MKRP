@@ -1,0 +1,73 @@
+\newlength{\premisewidth}
+\newlength{\namelength}
+\newlength{\usedsignlength}
+\newlength{\implsignlength}
+\newlength{\remainlength}
+\def\implication#1#2#3#4{% 1: String max length for 2, 2: premise, 3: clause 4. impl sign
+\settowidth{\premisewidth}{#1}
+\setlength{\remainlength}{\textwidth}
+\settowidth{\usedsignlength}{* }
+\settowidth{\implsignlength}{#4}
+\settowidth{\namelength}{mmmm}
+\addtolength{\remainlength}{-0.5cm}
+\addtolength{\remainlength}{-1\premisewidth}
+\addtolength{\remainlength}{-1\namelength}
+\addtolength{\remainlength}{-1\usedsignlength}
+\addtolength{\remainlength}{-1\implsignlength}
+\hbox to \hsize{\parbox[t]{\premisewidth}{#2} \hfil \parbox[t]{\implsignlength}{#4} \hfil #3}}
+
+
+
+
+             {\bf Formulae given to the editor}
+
+   
+\parbox[t]{2cm}{Axioms:}\hfill 
+\setlength{\remainlength}{\textwidth}
+\addtolength{\remainlength}{-2.5cm}
+\parbox[t]{\remainlength}{* AXIOMS *
+
+             * GROUP *
+
+             ALL X,Y,Z + (+ (X Y) Z) = + (X + (Y Z))
+
+             ALL X + (0 X) = X
+
+             ALL X + (- (X) X) = 0
+
+             
+}
+\parbox[t]{2cm}{Theorems:}\hfill 
+\setlength{\remainlength}{\textwidth}
+\addtolength{\remainlength}{-2.5cm}
+\parbox[t]{\remainlength}{* THEOREM *
+
+             ((ALL X,Y + (X Y) = + (Y X)) IMPL (ALL X,Y + (+ (X Y) + (X Y)) = + (+ (X X) + (Y Y))))
+             AND ((ALL X,Y + (+ (X Y) + (X Y)) = + (+ (X X) + (Y Y))) IMPL (ALL X,Y - (+ (X Y)) = + (- (X) - (Y))))
+             AND ((ALL X,Y - (+ (X Y)) = + (- (X) - (Y))) IMPL (ALL X,Y + (X Y) = + (Y X)))
+
+             
+}
+
+
+             {\bf Set of Axiom Clauses Resulting from Normalization}
+
+           \implication{M}{}{\parbox[t]{\usedsignlength}{$* $} \hfil \parbox[t]{\namelength}{$A1$:} \hfil \parbox[t]{\remainlength}{$\forall x\in Any  (x=x)$}}{}
+           \implication{M}{}{\parbox[t]{\usedsignlength}{$* $} \hfil \parbox[t]{\namelength}{$A2$:} \hfil \parbox[t]{\remainlength}{$\forall x,y,z\in Any  (((z+y)+x)=(z+(y+x)))$}}{}
+           \implication{M}{}{\parbox[t]{\usedsignlength}{$* $} \hfil \parbox[t]{\namelength}{$A3$:} \hfil \parbox[t]{\remainlength}{$\forall x\in Any  ((0+x)=x)$}}{}
+           \implication{M}{}{\parbox[t]{\usedsignlength}{$* $} \hfil \parbox[t]{\namelength}{$A4$:} \hfil \parbox[t]{\remainlength}{$\forall x\in Any  ((-(x)+x)=0)$}}{}
+           
+
+
+
+
+             {\bf Set of Theorem Clauses Resulting from Normalization and Splitting}
+
+   Splitpart 1
+\implication{M}{ }{\parbox[t]{\usedsignlength}{$* $} \hfil \parbox[t]{\namelength}{$T5$:} \hfil \parbox[t]{\remainlength}{$\forall x,y\in Any  ((y+x)=(x+y))$}}{}
+           \implication{M}{ }{\parbox[t]{\usedsignlength}{$* $} \hfil \parbox[t]{\namelength}{$T6$:} \hfil \parbox[t]{\remainlength}{$\neg (((c_2+c_1)+(c_2+c_1))=((c_2+c_2)+(c_1+c_1)))$}}{}
+           
+
+   Splitpart 2
+\implication{M}{ }{\parbox[t]{\usedsignlength}{$* $} \hfil \parbox[t]{\namelength}{$T7$:} \hfil \parbox[t]{\remainlength}{$\forall x,y\in Any  (((y+x)+(y+x))=((y+y)+(x+x)))$}}{}
+           \implication{M}{ }{\parbox[t]{\usedsignlength}{$* $} \hfil \parbox[t]{\namelength}{$T8$:} \hfil \parbox[t]{\remainlength}{$\neg (-((c_4+c_3))

@@ -1,0 +1,152 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 48.7                                                *
+                     *           DATE: 28-AUG,1991  14:40                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 28-AUG,1991 14:39 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   ALL X KNAZI (X) IMPL (BREISE (X) IMPL PLANDIEREN (X))
+             ALL X KNAZI (X) AND PLITZE (X) IMPL DEFFISKNASE (X)
+             ALL X KNAZI (X) AND JERPEN (X) IMPL FRALIEREN (X)
+             ALL X KNAZI (X) AND DEFFISKNASE (X) IMPL BEDRAUST (X)
+             ALL X KNAZI (X) AND QUISTELN (X) IMPL JERPEN (X)
+             ALL X KNAZI (X) AND NOT BREISE (X) IMPL NOT BEDRAUST (X)
+             ALL X PNUNK (X) IMPL KNAZI (X) AND QUISTELN (X)
+             NOT (EX X KNAZI (X) AND PLANDIEREN (X) AND FRALIEREN (X))
+             
+   Theorems: NOT (EX X PNUNK (X) AND PLITZE (X))
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+           * A2:   All x:Any - PNUNK(x)  + KNAZI(x)
+           * A3:   All x:Any - PNUNK(x)  + QUISTELN(x)
+           * A4:   All x:Any - KNAZI(x)  - BREISE(x)  + PLANDIEREN(x)
+           * A5:   All x:Any - KNAZI(x)  - PLITZE(x)  + DEFFISKNASE(x)
+           * A6:   All x:Any - KNAZI(x)  - JERPEN(x)  + FRALIEREN(x)
+           * A7:   All x:Any - KNAZI(x)  - DEFFISKNASE(x)  + BEDRAUST(x)
+           * A8:   All x:Any - KNAZI(x)  - QUISTELN(x)  + JERPEN(x)
+           * A9:   All x:Any - KNAZI(x)  + BREISE(x)  - BEDRAUST(x)
+           * A10:  All x:Any - KNAZI(x)  - PLANDIEREN(x)  - FRALIEREN(x)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T11: + PNUNK(c_1)
+           * T12: + PLITZE(c_1)
+
+
+
+    Literals: ((T12 26) (T11 25) (A10 22 23 24) (A9 16 17 18) (A8 13 14 15) (A7 10 11 12) (A6 7 8 9) (A5 4 5 6) (A4 1 2 3) (A3 19 21) (A2 19 20) (A1 NIL))
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:     A1:   All x:Any + =(x x)
+                      * A2:   All x:Any - PNUNK(x)  + KNAZI(x)
+                      * A3:   All x:Any - PNUNK(x)  + QUISTELN(x)
+                      * A4:   All x:Any - KNAZI(x)  - BREISE(x)  + PLANDIEREN(x)
+                      * A5:   All x:Any - KNAZI(x)  - PLITZE(x)  + DEFFISKNASE(x)
+                      * A6:   All x:Any - KNAZI(x)  - JERPEN(x)  + FRALIEREN(x)
+                      * A7:   All x:Any - KNAZI(x)  - DEFFISKNASE(x)  + BEDRAUST(x)
+                      * A8:   All x:Any - KNAZI(x)  - QUISTELN(x)  + JERPEN(x)
+                      * A9:   All x:Any - KNAZI(x)  + BREISE(x)  - BEDRAUST(x)
+                      * A10:  All x:Any - KNAZI(x)  - PLANDIEREN(x)  - FRALIEREN(x)
+                      * T11:  + PNUNK(c_1)
+                      * T12:  + PLITZE(c_1)
+                      
+
+   
+   T12,1 & A5,2   --> * R1:   - KNAZI(c_1)  + DEFFISKNASE(c_1)
+   
+   R1,1 & A2,2    --> * R2:   + DEFFISKNASE(c_1)  - PNUNK(c_1)
+   
+   R2,2 & T11,1   --> * R3:   + DEFFISKNASE(c_1)
+   
+   R3,1 & A7,2    --> * R4:   - KNAZI(c_1)  + BEDRAUST(c_1)
+   
+   R4,1 & A2,2    --> * R5:   + BEDRAUST(c_1)  - PNUNK(c_1)
+   
+   R5,2 & T11,1   --> * R6:   + BEDRAUST(c_1)
+   
+   R6,1 & A9,3    --> * R7:   - KNAZI(c_1)  + BREISE(c_1)
+   
+   R7,1 & A2,2    --> * R8:   + BREISE(c_1)  - PNUNK(c_1)
+   
+   R8,2 & T11,1   --> * R9:   + BREISE(c_1)
+   
+   R9,1 & A4,2    --> * R10:  - KNAZI(c_1)  + PLANDIEREN(c_1)
+   
+   R10,1 & A2,2   --> * R11:  + PLANDIEREN(c_1)  - PNUNK(c_1)
+   
+   R11,2 & T11,1  --> * R12:  + PLANDIEREN(c_1)
+   
+   R12,1 & A10,2  --> * R13:  - KNAZI(c_1)  - FRALIEREN(c_1)
+   
+   R13,1 & A2,2   --> * R14:  - FRALIEREN(c_1)  - PNUNK(c_1)
+   
+   R14,2 & T11,1  --> * R15:  - FRALIEREN(c_1)
+   
+   A6,3 & R15,1   --> * R16:  - KNAZI(c_1)  - JERPEN(c_1)
+   
+   R16,1 & A2,2   --> * R17:  - JERPEN(c_1)  - PNUNK(c_1)
+   
+   R17,2 & T11,1  --> * R18:  - JERPEN(c_1)
+   
+   A8,3 & R18,1   --> * R19:  - KNAZI(c_1)  - QUISTELN(c_1)
+   
+   R19,2 & A3,2   --> * R20:  - KNAZI(c_1)  - PNUNK(c_1)
+   
+   R20,2 & T11,1  --> * R21:  - KNAZI(c_1)
+   
+   R21,1 & A2,2   --> * R22:  - PNUNK(c_1)
+   
+   R22,1 & T11,1  --> * R23:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 22 seconds

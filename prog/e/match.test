@@ -1,0 +1,90 @@
+;;; -*- package: MKRP; syntax: common-lisp; mode: lisp -*-
+
+(IN-PACKAGE "MKRP" :USE '("CL"))
+
+(setq f (eds-fct_create "F" 1 1))
+(setq g (eds-fct_create "g" 1 2))
+(setq x (eds-var_create "X"))
+
+(setq term1 (eds-term_create
+	      F (list (eds-term_create
+			F (list (eds-term_create
+				  F (list (eds-term_create
+					    F (list (eds-term_create
+						      F (list (eds-term_create
+								F (list (eds-term_create
+									  F (list (eds-term_create
+										    F (list (eds-term_create
+											      F (list x)))))))))))))))))))
+
+(setq head (eds-term_create
+	     ectl*equality
+	     (list (eds-term_create f (list x))
+		   (eds-term_create g (list (eds-term_create
+					      g (list (eds-term_create
+							g (list (eds-term_create
+								  g (list (eds-term_create
+									    g (list x)))))))))))))
+
+(setq xx (ectl=rule.create head
+			   nil))
+
+(ectl=push xx)
+(eds-term_set.rule.p head t)
+(ectl=rule_insert xx)
+
+(time (ema=apply (list term1)))
+
+
+
+
+(eq (let* ((b (dt-function.create "B" 'any '(any)))
+	   (a (dt-function.create "A" 'any '(any)))
+	   (a1 (dt-function.create "A1" 'any '(any)))
+	   (x (dt-variable.create 'any))
+
+	   (term1 (list b (list a1 (list b (list b (list a1 (list b x)))))))
+	   (term2 (list a (list b (list b (list a1 (list a1 (list a1 (list b (list b x))))))))))
+
+      (ord-greater term1 term2))
+    t)
+
+
+
+(eq (let* ((b (eds-fct_create "B" 1 3))
+	   (a (eds-fct_create "A" 1 2))
+	   (a1 (eds-fct_create "A1" 1 1))
+	   (x (eds-var_create "X"))
+
+	   (term1 (eds-term_create
+		    b (list (eds-term_create
+			      a1 (list (eds-term_create
+					 b (list (eds-term_create
+						   b (list (eds-term_create
+							     a1 (list (eds-term_create  b (list x)))))))))))))
+	   (term2  (eds-term_create
+		     a (list (eds-term_create
+			       b (list (eds-term_create
+					 b (list (eds-term_create
+						   a1 (list (eds-term_create
+							      a1 (list (eds-term_create
+									 a1 (list (eds-term_create
+										    b (list (eds-term_create
+											      b (list x))))))))))))))))))
+
+      (eord-greater term1 term2))
+    t)
+
+(let* ((b (eds-fct_create "B" 1 3))
+       (a (eds-fct_create "A" 1 2))
+       (a1 (eds-fct_create "A1" 1 1))
+       (x (eds-var_create "X")))
+
+  (eord=term_in (eds-term_create
+		  b (list x))
+		(eds-term_create
+		  b (list (eds-term_create
+			    a1 (list (eds-term_create
+				       b (list (eds-term_create
+						 b (list (eds-term_create
+							   a1 (list (eds-term_create  b (list x))))))))))))))

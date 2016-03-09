@@ -1,0 +1,112 @@
+;;; -*- Package: MKRP; Base: 10; Mode: LISP; Syntax: Common-lisp -*-
+(PREP-PROBLEM.SPECIFICATION '((ALL G,H PARALLEL (G H) EQV (ALL S SENKRECHT (S G) IMPL SENKRECHT (S H)))
+  (SYMMETRIC (SENKRECHT))
+  (TRANSITIVVP EQV (ALL G,H,I PARALLEL (G H) AND PARALLEL (H I) IMPL PARALLEL (G I)))) '((ALL 3
+   (ALL 2
+    (EQV (+ 4 (2 3) (KIND (EQV T 20)))
+     (ALL 5 (IMPL (+ 6 (5 2) (KIND (EQV NIL 20))) (+ 6 (5 3) (KIND (EQV NIL 20))))))))
+  (+ 0 NIL)
+  (EQV (+ 7 NIL (KIND (EQV T 40)))
+   (ALL 10
+    (ALL 9
+     (ALL 8
+      (IMPL
+       (AND (+ 4 (8 9) (KIND (EQV NIL 40)))
+            (+ 4 (9 10) (KIND (EQV NIL 40))))
+       (+ 4 (8 10) (KIND (EQV NIL 40))))))))) '((TRANSITIVVP)) '((+ 7 NIL NIL)) '("                                                                                                                     "
+  "*********************************************************************************************************************"
+  " EDIT:     Axioms and Theorems edited: 11-AUG,1989 11:46 "
+  "*********************************************************************************************************************"
+  ) (PROGN(PROGN (DT-RESET))
+
+(PROG ((ADDRLIST '(29899 29904 29909 29924 29939 29944 29959 29964 29969 29984 29999))
+       (DATALIST
+        '(15 "TRUE" NIL NIL NIL (DEFINED) NIL ((- 0 (POSITIVE))) ((+ 0 (NEGATIVE)))
+          ((+ 0 (NIL))) ((- 0 (NIL))) NIL NIL (DT*ST-KIND NIL) PREDICATE 15 "FALSE" NIL NIL
+          NIL (DEFINED) NIL ((- 1 (POSITIVE))) ((+ 1 (NEGATIVE))) ((+ 1 (NIL))) ((- 1 (NIL)))
+          NIL NIL (DT*ST-KIND NIL) PREDICATE 5 ANY NIL (ST*DATA NIL DT*ST-KIND SYS-VAR)
+          VARIABLE 5 ANY NIL (ST*DATA NIL DT*ST-KIND SYS-VAR) VARIABLE 15 "PARALLEL" NIL NIL
+          (ANY ANY) NIL NIL ((- 4 (POSITIVE))) ((+ 4 (NEGATIVE))) ((+ 4 (NIL))) ((- 4 (NIL)))
+          NIL NIL (DT*ST-KIND NIL) PREDICATE 5 ANY NIL (ST*DATA NIL DT*ST-KIND SYS-VAR)
+          VARIABLE 15 "SENKRECHT" NIL NIL (ANY ANY) (SYMMETRIC) NIL
+          ((- 6 (POSITIVE . SYMMETRIC))) ((+ 6 (NEGATIVE . SYMMETRIC)))
+          ((+ 6 (NIL . SYMMETRIC))) ((- 6 (NIL . SYMMETRIC))) NIL NIL (DT*ST-KIND NIL)
+          PREDICATE 15 "TRANSITIVVP" NIL NIL NIL NIL NIL ((- 7 (POSITIVE))) ((+ 7 (NEGATIVE)))
+          ((+ 7 (NIL))) ((- 7 (NIL))) NIL NIL (DT*ST-KIND NIL) PREDICATE 5 ANY NIL
+          (ST*DATA NIL DT*ST-KIND SYS-VAR) VARIABLE 5 ANY NIL (ST*DATA NIL DT*ST-KIND SYS-VAR)
+          VARIABLE 5 ANY NIL (ST*DATA NIL DT*ST-KIND SYS-VAR) VARIABLE))
+       (INCREMENT (- MEM*SIZE 30000))
+       COUNTER1)
+      (MEM-RESET)
+      (COND ((> MEM*SIZE 30000)
+             (SETQ COUNTER1 11)
+             (MAPC #'(LAMBDA (RADDR)
+                       (SETF (AREF MEM*MEMORY (DECF COUNTER1))
+                              (COND ((EQL RADDR 'ATP.MEMORY.NIL) RADDR)
+                                    ((EQL 'END RADDR) RADDR)
+                                    ((OR (EQL RADDR 0)
+                                         (MINUSP RADDR))
+                                     RADDR)
+                                    (T (+ RADDR INCREMENT)))))
+                   ADDRLIST)
+             (SETQ COUNTER1 MEM*SIZE)
+             (MAPC #'(LAMBDA (DATA) (SETF (AREF MEM*MEMORY (DECF COUNTER1)) DATA)) DATALIST))
+            (T (UNLESS (= MEM*SIZE 30000)
+                 (MEM-INITIALIZE 30000))
+               (SETQ COUNTER1 11)
+               (MAPC #'(LAMBDA (RADDR) (SETF (AREF MEM*MEMORY (DECF COUNTER1)) RADDR))
+                     ADDRLIST)
+               (SETQ COUNTER1 MEM*SIZE)
+               (MAPC #'(LAMBDA (DATA) (SETF (AREF MEM*MEMORY (DECF COUNTER1)) DATA)) DATALIST))
+            )
+      (SETQ MEM*NEXT.RADR (IF (> MEM*SIZE 30000) (+ 29894 INCREMENT) 29894))
+      (SETQ MEM*NEXT.VADR 11
+            MEM*REST (- MEM*NEXT.RADR MEM*NEXT.VADR -1)
+            MEM*FIRST.REUSABLE.VADR NIL
+            MEM*LAST.REUSABLE.VADR NIL))
+
+(PROGN (SETQ DT*SORT.ALL '(ANY))
+       (SETQ DT*SORT.NR '2)
+       (SETQ DT*SORT.PROPERTIES
+              '(DT*MAX.SUBSORTS DT*LEAST.SUPERSORTS DT*TRANSITIVE.CLOSURE
+                DT*INVERSE.TRANSITIVE.CLOSURE DT*MINIMAL.SUBSORTS DT*DIRECT.SUBSORTS
+                DT*DIRECT.SUPERSORTS DT*DISJOINT.SORTS DT*COMPLETION.SORT))
+       (SETQ DT*SORT.COMMON.COMPUTE.FLAG 'NIL)
+       (SETQ DT*VARIABLE.COUNTER '0)
+       (SETQ DT*CONSTANT.COUNTER '0)
+       (SETQ DT*CONSTANT.ALL 'NIL)
+       (SETQ DT*ABBREVIATIONS 'NIL)
+       (SETQ DT*FUNCTION.COUNTER '0)
+       (SETQ DT*FUNCTION.ALL 'NIL)
+       (SETQ DT*FUNCTION.ADMISSIBLE.THEORIES '(ASSOCIATIVE))
+       (SETQ DT*FUNCTION.ACTUAL.THEORIES 'NIL)
+       (SETQ DT*FUNCTION.WITH.ARGUMENT.SYMMETRIES 'NIL)
+       (SETQ DT*FUNCTION.COMPONENTS
+              '(PNAME ATTRIBUTES MAX.RANGE.SORT MAX.DOMAIN.SORTS MIN.RANGE.SORTS SORT.LIST
+                SORT.LIST.INVERSE SORT.TREE.CALC ARGUMENT.SYMMETRIES ARITY G.L.B.OF.RANGES))
+       (SETQ DT*PREDICATE.ADMISSABLE.ATTRIBUTES '(SYMMETRIC DEFINED REFLEXIVE))
+       (SETQ DT*PREDICATE.COUNTER '0)
+       (SETQ DT*EQUALITY.SYMBOLS '("=" ":=" "=:" ":=:"))
+       (SETQ DT*EQUALITY.PREDICATES 'NIL)
+       (SETQ DT*NONEQUALITY.PREDICATES '(7 6 4 1 0))
+       (SETQ DT*PREDICATE.ALL '(7 6 4 1 0))
+       (SETQ DT*PREDICATE.WITH.ATTRIBUTES 'NIL)
+       (SETQ DT*PREDICATE.COMPONENTS
+              '(PNAME POSITIVE.OCCURRENCES NEGATIVE.OCCURRENCES DOMAINSORTS ATTRIBUTES
+                REFL.CLAUSE +ROTHERSIDES -ROTHERSIDES +SOTHERSIDES -SOTHERSIDES +TOTHERSIDES
+                -TOTHERSIDES))
+       (SETQ DT*TRUE.PREDICATE '0)
+       (SETQ DT*FALSE.PREDICATE '1)
+       (SETQ DT*UNI.CREATES.VARIABLES 'NIL)
+       (SETQ DT*SIGN.MINUS.SYMBOLS '(- --))
+       (SETQ DT*SIGN.PLUS.SYMBOLS '(+ ++))
+       (SETQ DT*SYMBOL.KINDS '(CONSTANT.ALL FUNCTION.ALL PREDICATE.ALL))) 
+(PROGN) 
+(PROGN (PROGN)) 
+(PROGN (PROGN (SETF (GET 'ANY 'DT*SORT.NUMBER) '1)
+              (SETF (GET 'ANY 'DT*DIRECT.SUBSORTS) 'NIL)
+              (SETF (GET 'ANY 'DT*TRANSITIVE.CLOSURE) '(ANY))
+              (SETF (GET 'ANY 'DT*MAX.SUBSORTS) '((ANY ANY)))
+              (SETF (GET 'ANY 'DT*MINIMAL.SUBSORTS) '(ANY))
+              (SETF (GET 'ANY 'DT*DIRECT.SUPERSORTS) 'NIL)
+              (SETF (GET 'ANY 'DT*INVERSE.TRANSITIVE.CLOSURE) '(ANY)))) ))

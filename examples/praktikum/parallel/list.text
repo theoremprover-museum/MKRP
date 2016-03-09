@@ -1,0 +1,88 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 30.0 EQUALITY 15.3                                  *
+                     *           DATE: 11-AUG,1989  11:12                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+                                                                                                                    
+      
+   
+   ******************************************************************************************************************
+   ***
+   
+    EDIT:     Axioms and Theorems edited: 11-AUG,1989 11:08 
+   
+   ******************************************************************************************************************
+   ***
+   
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   ALL G,H PARALLEL (G H) EQV (ALL S SENKRECHT (S G) IMPL SENKRECHT (S H))
+             SYMMETRIC (SENKRECHT)
+             TRANSITIVVP EQV (ALL G,H,I PARALLEL (G H) AND PARALLEL (H I) IMPL PARALLEL (G I))
+             
+   Theorems: TRANSITIVVP
+             
+   
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T1: + SENKRECHT(c_2 c_3)
+           * T2: - SENKRECHT(c_2 c_4)
+           * T3: All x:Any - SENKRECHT(x c_3)  + SENKRECHT(x c_1)
+           * T4: All x:Any - SENKRECHT(x c_1)  + SENKRECHT(x c_4)
+
+
+
+
+
+
+             Initial Operations on Theorems
+             ==============================
+
+
+          
+   T4,1 & T3,2  --> * R1: + SENKRECHT(c_2 c_4)  - SENKRECHT(c_2 c_3)
+   
+   R1,1 & T2,1  --> * R2: - SENKRECHT(c_2 c_3)
+   
+   R2,1 & T1,1  --> * R3: []
+   
+
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   See operations on theorems of splitpart 1
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 

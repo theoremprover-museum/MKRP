@@ -1,0 +1,213 @@
+ 
+ 
+ 
+             ****************************************************
+             *                                                  *
+             *   ATP-SYSTEM :  M K R P , UNI KARLSRUHE          *
+             *                                                  *
+             *      VERSION : 3-FEB-84                          *
+             *         DATE : 29-JUN-84  08:51:39               *
+             *                                                  *
+             ****************************************************
+ 
+ 
+***********************************************************************
+                                                                       
+     DATUM: 29-JUN-84 08:51:37
+AXIOME UND THEOREME FUER DIESEN BEWEIS WURDEN VON FOLGENDEN DATEIEN    
+GELESEN:   1) AXIOM-DATEI:   F.AX.DEU.1.12.UHG
+           2) THEOREM-DATEI: F.TH.DEU.1.12.UHG
+                                                                       
+***********************************************************************
+ 
+ 
+ADJUSTMENT OF THE OPTIONS : 
+============================
+ 
+ 
+ 
+RED.I:CLAUSE.PURITY                   T
+RED.I:CLAUSE.TAUTOLOGY                T
+RED.I:CLAUSE.SUBSUMPTION              T
+RED.I:CLAUSE.REPL.FACTORING           T
+RED.I:CLAUSE.REPL.RESOLUTION          SIMPLE
+RED.I:CLAUSE.REWRITING                T
+RED.I:LINK.INCOMPATIBILITY            T
+RED.I:LINK.TAUTOLOGY                  REMOVE-INHIBIT
+RED.I:LINK.SUBSUMPTION                REMOVE-INHIBIT
+ 
+ 
+RED.D:CLAUSE.PURITY                   REMOVE
+RED.D:CLAUSE.TAUTOLOGY                REMOVE
+RED.D:CLAUSE.TAUTOLOGY.RECHECK        T
+RED.D:CLAUSE.SUBSUMPTION.FORWARD      REMOVE-INHIBIT
+RED.D:CLAUSE.SUBSUMPTION.BACKWARD     REMOVE
+RED.D:CLAUSE.SUBSUMPTION.RECHECK      T
+RED.D:CLAUSE.REPL.FACTORING           T
+RED.D:CLAUSE.REPL.FACTORING.RECHECK   T
+RED.D:CLAUSE.REPL.RESOLUTION          SIMPLE
+RED.D:CLAUSE.REPL.RESOLUTION.RECHECK  T
+RED.D:LINK.INCOMPATIBILITY            REMOVE
+RED.D:LINK.TAUTOLOGY                  REMOVE-INHIBIT
+RED.D:LINK.TAUTOLOGY.RECHECK          T
+RED.D:LINK.SUBSUMPTION                REMOVE-INHIBIT
+RED.D:LINK.SUBSUMPTION.RECHECK        T
+ 
+ 
+RED:SUB.CLAUSES.INITIAL               T
+RED:SUB.CLAUSES.EACH.STEP             T
+RED:SUB.INITIAL                       T
+RED:SUB.EACH.STEP                     T
+RED:PUR.CLAUSES.INITIAL               T
+RED:PUR.CLAUSES.EACH.STEP             T
+RED:PUR.INITIAL                       T
+RED:PUR.EACH.STEP                     T
+RED:TAU.CLAUSES.INITIAL               T
+RED:TAU.CLAUSES.EACH.STEP             T
+RED:TAU.INITIAL                       T
+RED:TAU.EACH.STEP                     T
+ 
+FAC:INITIAL                           NIL
+FAC:EACH.STEP                         NIL
+ 
+STR:RESOLUTION                        SET-OF-SUPPORT
+STR:E-RESOLUTION                      NIL
+STR:PARAMODULATION                    UNIT-ANCESTRY
+STR:LINK.DEPTH                        NIL
+STR:TERM.DEPTH                        NIL
+STR:R.DEMODULATION                    T
+STR:P.DEMODULATION                    T
+ 
+ 
+TERM:UNITS                            T
+TERM:ITERATIONS                       0
+TERM:SET.OF.SUPPORT                   NIL
+TERM:BREADTH.FIRST                    NIL
+ 
+GEN:SPLITTING                         0
+GEN:MANUAL.CONTROL                    NIL
+GEN:SYSTEM.STRIP                      NIL
+GEN:MAXIMUM.STEPS                     NIL
+GEN:GRAPH.SAVING                      NIL
+GEN:SAVE.FILE                         SAVE.DEFAULT
+GEN:BATCH.ANSWER                      SC
+ 
+ 
+TR:PREPROCESSING                      NIL
+TR:STEP.MODE                          LR
+TR:DUMP                               NIL
+TR:CLAUSE.MODE                        I
+TR:LINK.MODE                          I
+TR:TRACE.FILE                         NIL
+TR:TERMINAL                           NIL
+ 
+ 
+PR:INFIX.FORM                         T
+PR:PREFIX.FORM                        NIL
+PR:OPTIONS                            T
+PR:AXIOM.CLAUSES                      T
+PR:SYMBOLS                            NIL
+PR:STATISTICS                         NIL
+PR:PROOF.FILE                         PR.DEU.1.12.UHG
+PR:LEFT.MARGIN                        0
+PR:LINELENGTH                         80
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : SORT INDEX,INDEXMENGE,VERKN,ELEMENT,MENGE:ANY
+           TYPE S (INDEXMENGE) :MENGE
+           TYPE U (INDEX) :MENGE
+           ALL F:MENGE  ALL PHI:VERKN  ALL I:INDEX  ALL IM:INDEXMENGE  
+             UHG (U (I) F PHI) AND EL (I IM) IMPL UHG (S (IM) F PHI)
+           ALL E:ELEMENT ALL M:MENGE ALL PHI:VERKN G (M PHI E) IMPL HG (M
+PHI)
+           ALL E:ELEMENT  ALL PHI:VERKN  ALL M:MENGE  ALL F:MENGE  
+             UG (M F PHI E) IMPL G (M PHI E) AND ME (M F) AND G (F PHI E)
+           ALL PHI:VERKN  ALL M,F:MENGE  
+             HG (M PHI) AND HG (F PHI) AND ME (M F) IMPL UHG (M F PHI)
+ 
+THEOREMS : ALL E:ELEMENT  ALL I:INDEX  ALL F:MENGE  ALL IM:INDEXMENGE  
+           ALL PHI:VERKN  
+             UG (U (I) F PHI E) AND EL (I IM) IMPL UHG (S (IM) F PHI)
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+* A1   : ALL X:INDEX  Y:MENGE  Z:VERKN  U:INDEXMENGE  
+              -UHG(U(X) Y Z) -EL(X U) +UHG(S(U) Y Z) 
+* A2   : ALL X:MENGE  Y:VERKN  Z:ELEMENT  -G(X Y Z) +HG(X Y)
+* A3   : ALL X,Y:MENGE  Z:VERKN  U:ELEMENT  -UG(X Y Z U) +G(X Z U)
+* A4   : ALL X,Y:MENGE  Z:VERKN  U:ELEMENT  -UG(X Y Z U) +ME(X Y)
+* A5   : ALL X,Y:MENGE  Z:VERKN  U:ELEMENT  -UG(X Y Z U) +G(Y Z U)
+* A6   : ALL X,Y:MENGE  Z:VERKN  -HG(X Z) -HG(Y Z) -ME(X Y) +UHG(X Y Z)
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+* T7   : +UG(U(C_4) C_1 C_3 C_5)
+* T8   : +EL(C_4 C_2)
+* T9   : -UHG(S(C_2) C_1 C_3)
+ 
+ 
+ 
+ 
+--------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION
+ 
+INITIAL CLAUSES :     * A1  : ALL X:INDEX  Y:MENGE  Z:VERKN  U:INDEXMENGE  
+                                   -UHG(U(X) Y Z) -EL(X U) +UHG(S(U) Y Z) 
+                      * A2  : ALL X:MENGE  Y:VERKN  Z:ELEMENT  
+                                   -G(X Y Z) +HG(X Y) 
+                      * A3  : ALL X,Y:MENGE  Z:VERKN  U:ELEMENT  
+                                   -UG(X Y Z U) +G(X Z U) 
+                      * A4  : ALL X,Y:MENGE  Z:VERKN  U:ELEMENT  
+                                   -UG(X Y Z U) +ME(X Y) 
+                      * A5  : ALL X,Y:MENGE  Z:VERKN  U:ELEMENT  
+                                   -UG(X Y Z U) +G(Y Z U) 
+                      * A6  : ALL X,Y:MENGE  Z:VERKN  
+                                   -HG(X Z) -HG(Y Z) -ME(X Y) +UHG(X Y Z) 
+                      * T7  : +UG(U(C_4) C_1 C_3 C_5)
+                      * T8  : +EL(C_4 C_2)
+                      * T9  : -UHG(S(C_2) C_1 C_3)
+ 
+A1,3  +  T9,1    -->  * R1  : ALL X:INDEX  -UHG(U(X) C_1 C_3) -EL(X C_2)
+T8,1  +  R1,2    -->  * R2  : -UHG(U(C_4) C_1 C_3)
+T7,1  +  A3,1    -->  * R3  : +G(U(C_4) C_3 C_5)
+T7,1  +  A4,1    -->  * R4  : +ME(U(C_4) C_1)
+R4,1  +  A6,3    -->  * R5  : ALL X:VERKN  
+                                   -HG(U(C_4) X) -HG(C_1 X) +UHG(U(C_4) C_1 X) 
+R5,3  +  R2,1    -->  * R6  : -HG(U(C_4) C_3) -HG(C_1 C_3)
+T7,1  +  A5,1    -->  * R7  : +G(C_1 C_3 C_5)
+R3,1  +  A2,1    -->  * R8  : +HG(U(C_4) C_3)
+R8,1  +  R6,1    -->  * R9  : -HG(C_1 C_3)
+R7,1  +  A2,1    -->  * R10 : +HG(C_1 C_3)
+R10,1  +  R9,1   -->  * R11 : 
+ 
+ 
+ 
+--------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+ 

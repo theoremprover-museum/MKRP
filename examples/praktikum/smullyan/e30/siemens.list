@@ -1,0 +1,15 @@
+***********************************************************************************ATP-SYSTEM:MARKGRAFKARLREFUTATION
+PROCEDURE,UNIKAISERSLAUTERN****VERSION:5-NOV-84**DATE:9-DEC-8421:50:41***
+********************************************************************************
+*************************************************************************EDIT:AXIOMSANDTHEOREMSEDITED:9-DEC-8421:48:24
+*************************************************************************FORMULAEGIVENTOTHEEDITOR
+============================AXIOMS:*AXIOMSOFPROBLEM30**THEREISJUSTONEPERSON,A.*ASAYS:EITHERIAMAKNAVEORELSETWOPLUSTWO
+EQUALSFIVE.**EITHER2(X)MEANSXSAYS:EITHERIAMAKNAVEORFALSE.ALLXKNIGHT(X)ANDEITHER2(X)IMPL(KNAVE (X) OR FALSE)ALLXKNAVE(X)
+ANDEITHER2(X)IMPLNOT(KNAVE (X) OR FALSE)ALLXKNIGHT(X)EQVNOTKNAVE(X)EITHER2(A)THEOREMS:*NOCOMMENTSETOFAXIOMCLAUSES
+RESULTINGFROMNORMALIZATION=================================================A1:+EITHER2(A)A2:ALLX:ANY+KNAVE(X)-EITHER2(X)
++KNAVE(X)A3:ALLX:ANY-KNAVE(X)-EITHER2(X)-KNAVE(X)OPERATIONSONAXIOMS====================A21=3--NILD1:ALLX:ANY+KNAVE(X)-
+EITHER2(X)A31=3--NILD2:ALLX:ANY-KNAVE(X)-EITHER2(X)D2,1&D1,1--NILR3:ALLX:ANY-EITHER2(X)-EITHER2(X)R31=2--NILD4:ALLX:ANY-
+EITHER2(X)D4,1&A1,1--NILR5:[]
+------------------------------------------------------------------------------------------------------------------------
+Q.E.D.STOP
+ 

@@ -1,0 +1,769 @@
+;;; -*- Package: MKRP; Base: 10. -*-
+
+
+
+                    ********************************************************************************
+                    *                                                                              *
+                    *     MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN                   *
+                    *                                                                              *
+                    *       21-NOV-85                                                              *
+                    *          21-NOV-85  13:33:33                                                 *
+                    *                                                                              *
+                    ********************************************************************************
+
+
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   21-NOV-85 13:29:31
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   D54>2
+                                                                        
+************************************************************************
+                                                                        
+
+
+ADJUSTMENT OF THE OPTIONS : 
+============================
+
+
+
+TWO:RULES                                                   TWO:RULES.MAXLEVEL                                        
+TWO:SUPPRESS.NORULES                                  
+
+
+RED.I:CLAUSE.MULTIPLE.LITERALS                              RED.I:CLAUSE.PURITY                                        
+RED.I:CLAUSE.TAUTOLOGY                                      RED.I:CLAUSE.TAUTOLOGY.RECHECK                       
+RED.I:CLAUSE.SUBSUMPTION                                    RED.I:CLAUSE.SUBSUMPTION.RECHECK                     
+RED.I:CLAUSE.REPL.FACTORING                                 RED.I:CLAUSE.REPL.FACTORING.RECHECK                        
+RED.I:CLAUSE.REPL.RESOLUTION                                RED.I:CLAUSE.REPL.RESOLUTION.RECHECK                     
+RED.I:CLAUSE.REWRITING                                      RED.I:LINK.INCOMPATIBILITY                               
+RED.I:LINK.TAUTOLOGY                                        RED.I:LINK.TAUTOLOGY.RECHECK                             
+RED.I:LINK.SUBSUMPTION                                      RED.I:LINK.SUBSUMPTION.RECHECK                           
+
+RED.D:CLAUSE.MULTIPLE.LITERALS                              RED.D:CLAUSE.PURITY                                        
+RED.D:CLAUSE.TAUTOLOGY                                      RED.D:CLAUSE.TAUTOLOGY.RECHECK                           
+RED.D:CLAUSE.SUBSUMPTION.FORWARD                            RED.D:CLAUSE.SUBSUMPTION.BACKWARD                     
+RED.D:CLAUSE.SUBSUMPTION.RECHECK                            RED.D:CLAUSE.REPL.FACTORING                                
+RED.D:CLAUSE.REPL.FACTORING.RECHECK                         RED.D:CLAUSE.REPL.RESOLUTION                          
+RED.D:CLAUSE.REPL.RESOLUTION.RECHECK                        RED.D:LINK.INCOMPATIBILITY                               
+RED.D:LINK.TAUTOLOGY                                        RED.D:LINK.TAUTOLOGY.RECHECK                             
+RED.D:LINK.SUBSUMPTION                                      RED.D:LINK.SUBSUMPTION.RECHECK                           
+
+FAC:INITIAL                                                 FAC:EACH.STEP                                            
+
+STR:RESOLUTION                                              STR:E-RESOLUTION                                         
+STR:PARAMODULATION                                          STR:LINK.DEPTH                                           
+STR:TERM.DEPTH                                              STR:R.DEMODULATION                                         
+STR:P.DEMODULATION                                          STR:INDUCTION                                            
+
+TERM:UNITS                                                  TERM:ITERATIONS                                           
+TERM:SET.OF.SUPPORT                                         TERM:BREADTH.FIRST                                       
+
+GEN:SPLITTING                                               GEN:MANUAL.CONTROL                                       
+GEN:MAXIMUM.STEPS                                           GEN:GRAPH.SAVING                                         
+GEN:SAVE.FILE                                
+
+
+TR:PREPROCESSING                                            TR:STEP.MODE                                              
+TR:DUMP                                                     TR:CLAUSE.MODE                                             
+TR:LINK.MODE                                                TR:TRACE.FILE                                            
+TR:TERMINAL                                             
+
+
+PR:INFIX.FORM                                               PR:PREFIX.FORM                                           
+PR:OPTIONS                                                  PR:AXIOM.CLAUSES                                         
+PR:SYMBOLS                                                  PR:STATISTICS                                            
+PR:PROTOCOL                                                 PR:LEFT.MARGIN                                            
+PR:LINELENGTH                                        
+
+
+
+
+FORMULAE GIVEN TO THE EDITOR
+============================
+
+
+AXIOMS   : SORT SET:ANY
+           SORT FUNCTION:ANY
+           SORT ELEMENT:SET
+           SORT ELEMENT.F:ELEMENT
+           SORT NAT:SET
+           SORT REL:SET
+           SORT UNARY.FUNC:FUNCTION
+           SORT BINARY.FUNC:FUNCTION
+           SORT EQU.REL-S:REL
+           SORT L.CONGRUENCE-S:EQU.REL-S
+           SORT R.CONGRUENCE-S:EQU.REL-S
+           SORT CONGRUENCE-S:L.CONGRUENCE-S
+           SORT CONGRUENCE-S:R.CONGRUENCE-S
+           * CONSTANTS *
+           TYPE F:SET
+           TYPE CONN.F:BINARY.FUNC
+           TYPE CONN.F.RHO:BINARY.FUNC
+           TYPE 1:NAT
+           * PREDICATS *
+           TYPE SEMIGROUP (SET BINARY.FUNC)
+           TYPE L.CONGRUENCE (REL)
+           TYPE R.CONGRUENCE (REL)
+           TYPE CONGRUENCE (EQU.REL-S)
+           TYPE IN.RELATION (REL ELEMENT.F ELEMENT.F)
+           * FUNCTIONS *
+           TYPE APPLY2 (BINARY.FUNC SET SET) :SET
+           TYPE APPLY2-EL (BINARY.FUNC ELEMENT ELEMENT) :ELEMENT
+           TYPE APPLY2-EL.F (BINARY.FUNC ELEMENT.F ELEMENT.F) :ELEMENT.F
+           TYPE PREIMAGE (REL ELEMENT.F) :SET
+           TYPE POWER (REL NAT) :REL
+           TYPE PLUS (NAT NAT) :NAT
+           TYPE COMP (REL REL) :REL
+           TYPE TRANS.CLOS (REL) :REL
+           TYPE UNION-REL (REL REL) :REL
+           TYPE TRANS.UNION (EQU.REL-S EQU.REL-S) :EQU.REL-S
+           * DEFINITION OF CONN.F.RHO
+           ALL RHO:EQU.REL-S  ALL A,B:ELEMENT.F  
+             APPLY2 (CONN.F.RHO PREIMAGE (RHO A) PREIMAGE (RHO B)) = PREIMAGE (RHO APPLY2-EL.F (CONN.F A B))
+           * ASSOCIATIVITY OF CONN.F
+           ALL A,B,C:ELEMENT.F  
+             APPLY2-EL.F (CONN.F A APPLY2-EL.F (CONN.F B C)) = APPLY2-EL.F (CONN.F APPLY2-EL.F (CONN.F A B) C)
+
+THEOREMS : * THEOREM 5.4.2
+           ALL RHO:EQU.REL-S  ALL A,B,C:ELEMENT.F  
+              APPLY2  
+              CONN.F.RHO APPLY2 (CONN.F.RHO PREIMAGE (RHO A) PREIMAGE (RHO B)) PREIMAGE (RHO C)
+              =  
+              APPLY2  
+              CONN.F.RHO PREIMAGE (RHO A) APPLY2 (CONN.F.RHO PREIMAGE (RHO B) PREIMAGE (RHO C))
+
+
+
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+  A1   : ALL X:ANY  + =(X X)
+* A2   : ALL X,Y,Z:ELEMENT.F  + =(APPLY2-EL.F(CONN.F Z APPLY2-EL.F(CONN.F Y X))
+                                  APPLY2-EL.F(CONN.F APPLY2-EL.F(CONN.F Z Y) X))
+* A3   : ALL X,Y:ELEMENT.F  Z:EQU.REL-S  
+              + =(APPLY2(CONN.F.RHO PREIMAGE(Z Y) PREIMAGE(Z X)) PREIMAGE(Z APPLY2-EL.F(CONN.F Y X)))
+
+
+
+
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+* T4   : - =(APPLY2(CONN.F.RHO APPLY2(CONN.F.RHO PREIMAGE(C_4 C_1) PREIMAGE(C_4 C_2)) PREIMAGE(C_4 C_3))
+             APPLY2(CONN.F.RHO PREIMAGE(C_4 C_1) APPLY2(CONN.F.RHO PREIMAGE(C_4 C_2) PREIMAGE(C_4 C_3))))
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+REFUTATION
+
+INITIAL CLAUSES :      A1  : ALL X:ANY  + =(X X)
+                     * A2  : ALL X,Y,Z:ELEMENT.F  
+                                  + =(APPLY2-EL.F(CONN.F Z APPLY2-EL.F(CONN.F Y X))
+                                      APPLY2-EL.F(CONN.F APPLY2-EL.F(CONN.F Z Y) X))
+                     * A3  : ALL X,Y:ELEMENT.F  Z:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO PREIMAGE(Z Y) PREIMAGE(Z X))
+                                      PREIMAGE(Z APPLY2-EL.F(CONN.F Y X)))
+                     * T4  : - =(APPLY2(CONN.F.RHO
+                                        APPLY2(CONN.F.RHO PREIMAGE(C_4 C_1) PREIMAGE(C_4 C_2))
+                                        PREIMAGE(C_4 C_3))
+                                 APPLY2(CONN.F.RHO
+                                        PREIMAGE(C_4 C_1)
+                                        APPLY2(CONN.F.RHO PREIMAGE(C_4 C_2) PREIMAGE(C_4 C_3))))
+
+
+A2,1 & A3,1     -->  * P1  : ALL X,Y,Z:ELEMENT.F  U:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO PREIMAGE(U Z) PREIMAGE(U APPLY2-EL.F(CONN.F Y X)))
+                                      PREIMAGE(U APPLY2-EL.F(CONN.F APPLY2-EL.F(CONN.F Z Y) X)))
+
+
+A2,1 & A3,1     -->    P2  : ALL X,Y,Z:ELEMENT.F  U:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO PREIMAGE(U APPLY2-EL.F(CONN.F Z Y)) PREIMAGE(U X))
+                                      PREIMAGE(U APPLY2-EL.F(CONN.F Z APPLY2-EL.F(CONN.F Y X))))
+
+
+A3,1 & T4,1     -->  * P3  : - =(APPLY2(CONN.F.RHO PREIMAGE(C_4 APPLY2-EL.F(CONN.F C_1 C_2)) PREIMAGE(C_4 C_3))
+                                 APPLY2(CONN.F.RHO
+                                        PREIMAGE(C_4 C_1)
+                                        APPLY2(CONN.F.RHO PREIMAGE(C_4 C_2) PREIMAGE(C_4 C_3))))
+
+
+A3,1 & T4,1     -->    P4  : - =(APPLY2(CONN.F.RHO
+                                        APPLY2(CONN.F.RHO PREIMAGE(C_4 C_1) PREIMAGE(C_4 C_2))
+                                        PREIMAGE(C_4 C_3))
+                                 APPLY2(CONN.F.RHO PREIMAGE(C_4 C_1) PREIMAGE(C_4 APPLY2-EL.F(CONN.F C_2 C_3))))
+
+
+P1,1 & A3,1     -->    P5  : ALL X,Y,Z,U:ELEMENT.F  V:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             APPLY2(CONN.F.RHO PREIMAGE(V U) PREIMAGE(V APPLY2-EL.F(CONN.F Z Y)))
+                                             PREIMAGE(V X))
+                                      PREIMAGE(V APPLY2-EL.F(CONN.F APPLY2-EL.F(CONN.F APPLY2-EL.F(CONN.F U Z) Y) X)))
+
+
+P1,1 & A3,1     -->    P6  : ALL X,Y,Z,U:ELEMENT.F  V:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             PREIMAGE(V U)
+                                             APPLY2(CONN.F.RHO PREIMAGE(V Z) PREIMAGE(V APPLY2-EL.F(CONN.F Y X))))
+                                      PREIMAGE(V APPLY2-EL.F(CONN.F U APPLY2-EL.F(CONN.F APPLY2-EL.F(CONN.F Z Y) X))))
+
+
+P1,1 & P2,1     -->    P7  : ALL X,Y,Z,U:ELEMENT.F  V:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             APPLY2(CONN.F.RHO PREIMAGE(V U) PREIMAGE(V APPLY2-EL.F(CONN.F Z Y)))
+                                             PREIMAGE(V X))
+                                      PREIMAGE(V APPLY2-EL.F(CONN.F APPLY2-EL.F(CONN.F U Z) APPLY2-EL.F(CONN.F Y X))))
+
+
+P1,1 & P2,1     -->    P8  : ALL X,Y,Z,U,V:ELEMENT.F  W:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             PREIMAGE(W APPLY2-EL.F(CONN.F V U))
+                                             APPLY2(CONN.F.RHO PREIMAGE(W Z) PREIMAGE(W APPLY2-EL.F(CONN.F Y X))))
+                                      PREIMAGE(W
+                                               APPLY2-EL.F(CONN.F
+                                                           V
+                                                           APPLY2-EL.F(CONN.F
+                                                                       U
+                                                                       APPLY2-EL.F(CONN.F APPLY2-EL.F(CONN.F Z Y) X)))))
+
+
+P2,1 & P1,1     -->    P9  : ALL X,Y,Z,U:ELEMENT.F  V:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             PREIMAGE(V U)
+                                             PREIMAGE(V APPLY2-EL.F(CONN.F Z APPLY2-EL.F(CONN.F Y X))))
+                                      APPLY2(CONN.F.RHO
+                                             PREIMAGE(V APPLY2-EL.F(CONN.F APPLY2-EL.F(CONN.F U Z) Y))
+                                             PREIMAGE(V X)))
+
+
+P2,1 & A3,1     -->    P10 : ALL X,Y,Z,U:ELEMENT.F  V:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             APPLY2(CONN.F.RHO PREIMAGE(V APPLY2-EL.F(CONN.F U Z)) PREIMAGE(V Y))
+                                             PREIMAGE(V X))
+                                      PREIMAGE(V APPLY2-EL.F(CONN.F APPLY2-EL.F(CONN.F U APPLY2-EL.F(CONN.F Z Y)) X)))
+
+
+P2,1 & A3,1     -->    P11 : ALL X,Y,Z,U:ELEMENT.F  V:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             PREIMAGE(V U)
+                                             APPLY2(CONN.F.RHO PREIMAGE(V APPLY2-EL.F(CONN.F Z Y)) PREIMAGE(V X)))
+                                      PREIMAGE(V APPLY2-EL.F(CONN.F U APPLY2-EL.F(CONN.F Z APPLY2-EL.F(CONN.F Y X)))))
+
+
+P2,1 & P1,1     -->    P12 : ALL X,Y,Z,U,V:ELEMENT.F  W:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             APPLY2(CONN.F.RHO PREIMAGE(W APPLY2-EL.F(CONN.F V U)) PREIMAGE(W Z))
+                                             PREIMAGE(W APPLY2-EL.F(CONN.F Y X)))
+                                      PREIMAGE(W
+                                               APPLY2-EL.F(CONN.F
+                                                           APPLY2-EL.F(CONN.F
+                                                                       APPLY2-EL.F(CONN.F V APPLY2-EL.F(CONN.F U Z))
+                                                                       Y)
+                                                           X)))
+
+
+P2,1 & P1,1     -->    P13 : ALL X,Y,Z,U:ELEMENT.F  V:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             PREIMAGE(V U)
+                                             APPLY2(CONN.F.RHO PREIMAGE(V APPLY2-EL.F(CONN.F Z Y)) PREIMAGE(V X)))
+                                      PREIMAGE(V APPLY2-EL.F(CONN.F APPLY2-EL.F(CONN.F U Z) APPLY2-EL.F(CONN.F Y X))))
+
+
+P1,1 & P2,1     -->    P14 : ALL X,Y,Z,U:ELEMENT.F  V:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             PREIMAGE(V APPLY2-EL.F(CONN.F APPLY2-EL.F(CONN.F U Z) Y))
+                                             PREIMAGE(V X))
+                                      APPLY2(CONN.F.RHO
+                                             PREIMAGE(V U)
+                                             PREIMAGE(V APPLY2-EL.F(CONN.F Z APPLY2-EL.F(CONN.F Y X)))))
+
+
+P5,1 & P1,1     -->    P15 : ALL X,Y,Z,U:ELEMENT.F  V:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             PREIMAGE(V APPLY2-EL.F(CONN.F U Z))
+                                             PREIMAGE(V APPLY2-EL.F(CONN.F Y X)))
+                                      APPLY2(CONN.F.RHO
+                                             APPLY2(CONN.F.RHO PREIMAGE(V U) PREIMAGE(V APPLY2-EL.F(CONN.F Z Y)))
+                                             PREIMAGE(V X)))
+
+
+P2,1 & P5,1     -->    P16 : ALL X,Y,Z,U,V,W:ELEMENT.F  XX:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             APPLY2(CONN.F.RHO PREIMAGE(XX W) PREIMAGE(XX APPLY2-EL.F(CONN.F V U)))
+                                             APPLY2(CONN.F.RHO PREIMAGE(XX APPLY2-EL.F(CONN.F Z Y)) PREIMAGE(XX X)))
+                                      PREIMAGE(XX
+                                               APPLY2-EL.F(CONN.F
+                                                           APPLY2-EL.F(CONN.F APPLY2-EL.F(CONN.F W V) U)
+                                                           APPLY2-EL.F(CONN.F Z APPLY2-EL.F(CONN.F Y X)))))
+
+
+P5,1 & P2,1     -->    P17 : ALL X,Y,Z,U,V:ELEMENT.F  W:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             PREIMAGE(W
+                                                      APPLY2-EL.F(CONN.F
+                                                                  APPLY2-EL.F(CONN.F APPLY2-EL.F(CONN.F V U) Z)
+                                                                  Y))
+                                             PREIMAGE(W X))
+                                      APPLY2(CONN.F.RHO
+                                             APPLY2(CONN.F.RHO PREIMAGE(W V) PREIMAGE(W APPLY2-EL.F(CONN.F U Z)))
+                                             PREIMAGE(W APPLY2-EL.F(CONN.F Y X))))
+
+
+P6,1 & P1,1     -->    P18 : ALL X,Y,Z,U,V:ELEMENT.F  W:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             PREIMAGE(W V)
+                                             PREIMAGE(W
+                                                      APPLY2-EL.F(CONN.F
+                                                                  U
+                                                                  APPLY2-EL.F(CONN.F APPLY2-EL.F(CONN.F Z Y) X))))
+                                      APPLY2(CONN.F.RHO
+                                             PREIMAGE(W APPLY2-EL.F(CONN.F V U))
+                                             APPLY2(CONN.F.RHO PREIMAGE(W Z) PREIMAGE(W APPLY2-EL.F(CONN.F Y X)))))
+
+
+P2,1 & P6,1     -->    P19 : ALL X,Y,Z,U,V,W:ELEMENT.F  XX:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             APPLY2(CONN.F.RHO PREIMAGE(XX APPLY2-EL.F(CONN.F W V)) PREIMAGE(XX U))
+                                             APPLY2(CONN.F.RHO PREIMAGE(XX Z) PREIMAGE(XX APPLY2-EL.F(CONN.F Y X))))
+                                      PREIMAGE(XX
+                                               APPLY2-EL.F(CONN.F
+                                                           APPLY2-EL.F(CONN.F W APPLY2-EL.F(CONN.F V U))
+                                                           APPLY2-EL.F(CONN.F APPLY2-EL.F(CONN.F Z Y) X))))
+
+
+P6,1 & P2,1     -->    P20 : ALL X,Y,Z,U:ELEMENT.F  V:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             PREIMAGE(V APPLY2-EL.F(CONN.F U APPLY2-EL.F(CONN.F Z Y)))
+                                             PREIMAGE(V X))
+                                      APPLY2(CONN.F.RHO
+                                             PREIMAGE(V U)
+                                             APPLY2(CONN.F.RHO PREIMAGE(V Z) PREIMAGE(V APPLY2-EL.F(CONN.F Y X)))))
+
+
+P5,1 & P7,1     -->    P21 : ALL X,Y,Z,U,V:ELEMENT.F  W:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             APPLY2(CONN.F.RHO
+                                                    PREIMAGE(W APPLY2-EL.F(CONN.F V U))
+                                                    PREIMAGE(W APPLY2-EL.F(CONN.F Z Y)))
+                                             PREIMAGE(W X))
+                                      APPLY2(CONN.F.RHO
+                                             APPLY2(CONN.F.RHO PREIMAGE(W V) PREIMAGE(W APPLY2-EL.F(CONN.F U Z)))
+                                             PREIMAGE(W APPLY2-EL.F(CONN.F Y X))))
+
+
+P6,1 & P7,1     -->    P22 : ALL X,Y,Z,U,V:ELEMENT.F  W:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             APPLY2(CONN.F.RHO
+                                                    PREIMAGE(W V)
+                                                    PREIMAGE(W APPLY2-EL.F(CONN.F U APPLY2-EL.F(CONN.F Z Y))))
+                                             PREIMAGE(W X))
+                                      APPLY2(CONN.F.RHO
+                                             PREIMAGE(W APPLY2-EL.F(CONN.F V U))
+                                             APPLY2(CONN.F.RHO PREIMAGE(W Z) PREIMAGE(W APPLY2-EL.F(CONN.F Y X)))))
+
+
+P10,1 & P1,1    -->    P23 : ALL X,Y,Z,U:ELEMENT.F  V:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             PREIMAGE(V U)
+                                             PREIMAGE(V APPLY2-EL.F(CONN.F APPLY2-EL.F(CONN.F Z Y) X)))
+                                      APPLY2(CONN.F.RHO
+                                             APPLY2(CONN.F.RHO PREIMAGE(V APPLY2-EL.F(CONN.F U Z)) PREIMAGE(V Y))
+                                             PREIMAGE(V X)))
+
+
+P10,1 & P2,1    -->    P24 : ALL X,Y,Z,U,V:ELEMENT.F  W:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             PREIMAGE(W
+                                                      APPLY2-EL.F(CONN.F
+                                                                  APPLY2-EL.F(CONN.F V APPLY2-EL.F(CONN.F U Z))
+                                                                  Y))
+                                             PREIMAGE(W X))
+                                      APPLY2(CONN.F.RHO
+                                             APPLY2(CONN.F.RHO PREIMAGE(W APPLY2-EL.F(CONN.F V U)) PREIMAGE(W Z))
+                                             PREIMAGE(W APPLY2-EL.F(CONN.F Y X))))
+
+
+P10,1 & P7,1    -->    P25 : ALL X,Y,Z,U,V:ELEMENT.F  W:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             APPLY2(CONN.F.RHO
+                                                    PREIMAGE(W V)
+                                                    PREIMAGE(W APPLY2-EL.F(CONN.F APPLY2-EL.F(CONN.F U Z) Y)))
+                                             PREIMAGE(W X))
+                                      APPLY2(CONN.F.RHO
+                                             APPLY2(CONN.F.RHO PREIMAGE(W APPLY2-EL.F(CONN.F V U)) PREIMAGE(W Z))
+                                             PREIMAGE(W APPLY2-EL.F(CONN.F Y X))))
+
+
+P11,1 & P1,1    -->    P26 : ALL X,Y,Z,U,V:ELEMENT.F  W:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             PREIMAGE(W V)
+                                             PREIMAGE(W
+                                                      APPLY2-EL.F(CONN.F
+                                                                  U
+                                                                  APPLY2-EL.F(CONN.F Z APPLY2-EL.F(CONN.F Y X)))))
+                                      APPLY2(CONN.F.RHO
+                                             PREIMAGE(W APPLY2-EL.F(CONN.F V U))
+                                             APPLY2(CONN.F.RHO PREIMAGE(W APPLY2-EL.F(CONN.F Z Y)) PREIMAGE(W X))))
+
+
+P11,1 & P2,1    -->    P27 : ALL X,Y,Z,U:ELEMENT.F  V:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             PREIMAGE(V APPLY2-EL.F(CONN.F U Z))
+                                             PREIMAGE(V APPLY2-EL.F(CONN.F Y X)))
+                                      APPLY2(CONN.F.RHO
+                                             PREIMAGE(V U)
+                                             APPLY2(CONN.F.RHO PREIMAGE(V APPLY2-EL.F(CONN.F Z Y)) PREIMAGE(V X))))
+
+
+P11,1 & P7,1    -->    P28 : ALL X,Y,Z,U,V:ELEMENT.F  W:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             APPLY2(CONN.F.RHO PREIMAGE(W V) PREIMAGE(W APPLY2-EL.F(CONN.F U Z)))
+                                             PREIMAGE(W APPLY2-EL.F(CONN.F Y X)))
+                                      APPLY2(CONN.F.RHO
+                                             PREIMAGE(W APPLY2-EL.F(CONN.F V U))
+                                             APPLY2(CONN.F.RHO PREIMAGE(W APPLY2-EL.F(CONN.F Z Y)) PREIMAGE(W X))))
+
+
+P12,1 & P2,1    -->    P29 : ALL X,Y,Z,U,V,W:ELEMENT.F  XX:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             PREIMAGE(XX
+                                                      APPLY2-EL.F(CONN.F
+                                                                  APPLY2-EL.F(CONN.F
+                                                                              APPLY2-EL.F(CONN.F
+                                                                                          W
+                                                                                          APPLY2-EL.F(CONN.F V U))
+                                                                              Z)
+                                                                  Y))
+                                             PREIMAGE(XX X))
+                                      APPLY2(CONN.F.RHO
+                                             APPLY2(CONN.F.RHO PREIMAGE(XX APPLY2-EL.F(CONN.F W V)) PREIMAGE(XX U))
+                                             PREIMAGE(XX APPLY2-EL.F(CONN.F Z APPLY2-EL.F(CONN.F Y X)))))
+
+
+P12,1 & P7,1    -->    P30 : ALL X,Y,Z,U,V,W:ELEMENT.F  XX:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             APPLY2(CONN.F.RHO
+                                                    PREIMAGE(XX APPLY2-EL.F(CONN.F W APPLY2-EL.F(CONN.F V U)))
+                                                    PREIMAGE(XX APPLY2-EL.F(CONN.F Z Y)))
+                                             PREIMAGE(XX X))
+                                      APPLY2(CONN.F.RHO
+                                             APPLY2(CONN.F.RHO PREIMAGE(XX APPLY2-EL.F(CONN.F W V)) PREIMAGE(XX U))
+                                             PREIMAGE(XX APPLY2-EL.F(CONN.F Z APPLY2-EL.F(CONN.F Y X)))))
+
+
+P13,1 & P2,1    -->    P31 : ALL X,Y,Z,U:ELEMENT.F  V:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             PREIMAGE(V APPLY2-EL.F(CONN.F APPLY2-EL.F(CONN.F U Z) Y))
+                                             PREIMAGE(V X))
+                                      APPLY2(CONN.F.RHO
+                                             PREIMAGE(V U)
+                                             APPLY2(CONN.F.RHO PREIMAGE(V APPLY2-EL.F(CONN.F Z Y)) PREIMAGE(V X))))
+
+
+P5,1 & P13,1    -->    P32 : ALL X,Y,Z,U,V:ELEMENT.F  W:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             PREIMAGE(W APPLY2-EL.F(CONN.F V U))
+                                             APPLY2(CONN.F.RHO PREIMAGE(W APPLY2-EL.F(CONN.F Z Y)) PREIMAGE(W X)))
+                                      APPLY2(CONN.F.RHO
+                                             APPLY2(CONN.F.RHO PREIMAGE(W V) PREIMAGE(W APPLY2-EL.F(CONN.F U Z)))
+                                             PREIMAGE(W APPLY2-EL.F(CONN.F Y X))))
+
+
+P6,1 & P13,1    -->    P33 : ALL X,Y,Z,U,V:ELEMENT.F  W:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             PREIMAGE(W V)
+                                             APPLY2(CONN.F.RHO
+                                                    PREIMAGE(W APPLY2-EL.F(CONN.F U APPLY2-EL.F(CONN.F Z Y)))
+                                                    PREIMAGE(W X)))
+                                      APPLY2(CONN.F.RHO
+                                             PREIMAGE(W APPLY2-EL.F(CONN.F V U))
+                                             APPLY2(CONN.F.RHO PREIMAGE(W Z) PREIMAGE(W APPLY2-EL.F(CONN.F Y X)))))
+
+
+P13,1 & P7,1    -->    P34 : ALL X,Y,Z,U:ELEMENT.F  V:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             APPLY2(CONN.F.RHO PREIMAGE(V U) PREIMAGE(V APPLY2-EL.F(CONN.F Z Y)))
+                                             PREIMAGE(V X))
+                                      APPLY2(CONN.F.RHO
+                                             PREIMAGE(V U)
+                                             APPLY2(CONN.F.RHO PREIMAGE(V APPLY2-EL.F(CONN.F Z Y)) PREIMAGE(V X))))
+
+
+P10,1 & P13,1   -->    P35 : ALL X,Y,Z,U,V:ELEMENT.F  W:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             PREIMAGE(W V)
+                                             APPLY2(CONN.F.RHO
+                                                    PREIMAGE(W APPLY2-EL.F(CONN.F APPLY2-EL.F(CONN.F U Z) Y))
+                                                    PREIMAGE(W X)))
+                                      APPLY2(CONN.F.RHO
+                                             APPLY2(CONN.F.RHO PREIMAGE(W APPLY2-EL.F(CONN.F V U)) PREIMAGE(W Z))
+                                             PREIMAGE(W APPLY2-EL.F(CONN.F Y X))))
+
+
+P11,1 & P13,1   -->    P36 : ALL X,Y,Z,U,V:ELEMENT.F  W:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             PREIMAGE(W V)
+                                             APPLY2(CONN.F.RHO
+                                                    PREIMAGE(W APPLY2-EL.F(CONN.F U Z))
+                                                    PREIMAGE(W APPLY2-EL.F(CONN.F Y X))))
+                                      APPLY2(CONN.F.RHO
+                                             PREIMAGE(W APPLY2-EL.F(CONN.F V U))
+                                             APPLY2(CONN.F.RHO PREIMAGE(W APPLY2-EL.F(CONN.F Z Y)) PREIMAGE(W X))))
+
+
+P2,1 & P15,1    -->    P37 : ALL X,Y,Z,U,V,W:ELEMENT.F  XX:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             PREIMAGE(XX APPLY2-EL.F(CONN.F W V))
+                                             PREIMAGE(XX
+                                                      APPLY2-EL.F(CONN.F
+                                                                  U
+                                                                  APPLY2-EL.F(CONN.F Z APPLY2-EL.F(CONN.F Y X)))))
+                                      APPLY2(CONN.F.RHO
+                                             APPLY2(CONN.F.RHO PREIMAGE(XX W) PREIMAGE(XX APPLY2-EL.F(CONN.F V U)))
+                                             APPLY2(CONN.F.RHO PREIMAGE(XX APPLY2-EL.F(CONN.F Z Y)) PREIMAGE(XX X))))
+
+
+P16,1 & P2,1    -->    P38 : ALL X,Y,Z,U,V,W:ELEMENT.F  XX:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             PREIMAGE(XX
+                                                      APPLY2-EL.F(CONN.F
+                                                                  APPLY2-EL.F(CONN.F APPLY2-EL.F(CONN.F W V) U)
+                                                                  Z))
+                                             PREIMAGE(XX APPLY2-EL.F(CONN.F Y X)))
+                                      APPLY2(CONN.F.RHO
+                                             APPLY2(CONN.F.RHO PREIMAGE(XX W) PREIMAGE(XX APPLY2-EL.F(CONN.F V U)))
+                                             APPLY2(CONN.F.RHO PREIMAGE(XX APPLY2-EL.F(CONN.F Z Y)) PREIMAGE(XX X))))
+
+
+P16,1 & P7,1    -->    P39 : ALL X,Y,Z,U,V,W:ELEMENT.F  XX:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             APPLY2(CONN.F.RHO
+                                                    PREIMAGE(XX APPLY2-EL.F(CONN.F W V))
+                                                    PREIMAGE(XX APPLY2-EL.F(CONN.F U Z)))
+                                             PREIMAGE(XX APPLY2-EL.F(CONN.F Y X)))
+                                      APPLY2(CONN.F.RHO
+                                             APPLY2(CONN.F.RHO PREIMAGE(XX W) PREIMAGE(XX APPLY2-EL.F(CONN.F V U)))
+                                             APPLY2(CONN.F.RHO PREIMAGE(XX APPLY2-EL.F(CONN.F Z Y)) PREIMAGE(XX X))))
+
+
+P16,1 & P13,1   -->    P40 : ALL X,Y,Z,U,V,W:ELEMENT.F  XX:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             PREIMAGE(XX APPLY2-EL.F(CONN.F W V))
+                                             APPLY2(CONN.F.RHO
+                                                    PREIMAGE(XX APPLY2-EL.F(CONN.F U Z))
+                                                    PREIMAGE(XX APPLY2-EL.F(CONN.F Y X))))
+                                      APPLY2(CONN.F.RHO
+                                             APPLY2(CONN.F.RHO PREIMAGE(XX W) PREIMAGE(XX APPLY2-EL.F(CONN.F V U)))
+                                             APPLY2(CONN.F.RHO PREIMAGE(XX APPLY2-EL.F(CONN.F Z Y)) PREIMAGE(XX X))))
+
+
+P19,1 & P2,1    -->    P41 : ALL X,Y,Z,U,V,W:ELEMENT.F  XX:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             PREIMAGE(XX
+                                                      APPLY2-EL.F(CONN.F
+                                                                  APPLY2-EL.F(CONN.F W APPLY2-EL.F(CONN.F V U))
+                                                                  APPLY2-EL.F(CONN.F Z Y)))
+                                             PREIMAGE(XX X))
+                                      APPLY2(CONN.F.RHO
+                                             APPLY2(CONN.F.RHO PREIMAGE(XX APPLY2-EL.F(CONN.F W V)) PREIMAGE(XX U))
+                                             APPLY2(CONN.F.RHO PREIMAGE(XX Z) PREIMAGE(XX APPLY2-EL.F(CONN.F Y X)))))
+
+
+P19,1 & P7,1    -->    P42 : ALL X,Y,Z,U,V,W:ELEMENT.F  XX:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             APPLY2(CONN.F.RHO
+                                                    PREIMAGE(XX W)
+                                                    PREIMAGE(XX
+                                                             APPLY2-EL.F(CONN.F
+                                                                         APPLY2-EL.F(CONN.F V U)
+                                                                         APPLY2-EL.F(CONN.F Z Y))))
+                                             PREIMAGE(XX X))
+                                      APPLY2(CONN.F.RHO
+                                             APPLY2(CONN.F.RHO PREIMAGE(XX APPLY2-EL.F(CONN.F W V)) PREIMAGE(XX U))
+                                             APPLY2(CONN.F.RHO PREIMAGE(XX Z) PREIMAGE(XX APPLY2-EL.F(CONN.F Y X)))))
+
+
+P19,1 & P13,1   -->    P43 : ALL X,Y,Z,U,V,W:ELEMENT.F  XX:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             PREIMAGE(XX W)
+                                             APPLY2(CONN.F.RHO
+                                                    PREIMAGE(XX
+                                                             APPLY2-EL.F(CONN.F
+                                                                         APPLY2-EL.F(CONN.F V U)
+                                                                         APPLY2-EL.F(CONN.F Z Y)))
+                                                    PREIMAGE(XX X)))
+                                      APPLY2(CONN.F.RHO
+                                             APPLY2(CONN.F.RHO PREIMAGE(XX APPLY2-EL.F(CONN.F W V)) PREIMAGE(XX U))
+                                             APPLY2(CONN.F.RHO PREIMAGE(XX Z) PREIMAGE(XX APPLY2-EL.F(CONN.F Y X)))))
+
+
+P1,1 & P27,1    -->    P44 : ALL X,Y,Z,U,V,W:ELEMENT.F  XX:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             PREIMAGE(XX
+                                                      APPLY2-EL.F(CONN.F
+                                                                  APPLY2-EL.F(CONN.F APPLY2-EL.F(CONN.F W V) U)
+                                                                  Z))
+                                             PREIMAGE(XX APPLY2-EL.F(CONN.F Y X)))
+                                      APPLY2(CONN.F.RHO
+                                             APPLY2(CONN.F.RHO PREIMAGE(XX W) PREIMAGE(XX APPLY2-EL.F(CONN.F V U)))
+                                             APPLY2(CONN.F.RHO PREIMAGE(XX APPLY2-EL.F(CONN.F Z Y)) PREIMAGE(XX X))))
+
+
+A2,1 & P1,1     -->    P45 : ALL X,Y,Z,U:ELEMENT.F  V:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             PREIMAGE(V U)
+                                             PREIMAGE(V APPLY2-EL.F(CONN.F APPLY2-EL.F(CONN.F Z Y) X)))
+                                      PREIMAGE(V APPLY2-EL.F(CONN.F APPLY2-EL.F(CONN.F U Z) APPLY2-EL.F(CONN.F Y X))))
+
+
+P45,1 & P7,1    -->    P46 : ALL X,Y,Z,U:ELEMENT.F  V:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             APPLY2(CONN.F.RHO PREIMAGE(V U) PREIMAGE(V APPLY2-EL.F(CONN.F Z Y)))
+                                             PREIMAGE(V X))
+                                      APPLY2(CONN.F.RHO
+                                             PREIMAGE(V U)
+                                             PREIMAGE(V APPLY2-EL.F(CONN.F APPLY2-EL.F(CONN.F Z Y) X))))
+
+
+A2,1 & P1,1     -->    P47 : ALL X,Y,Z,U:ELEMENT.F  V:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             PREIMAGE(V U)
+                                             PREIMAGE(V APPLY2-EL.F(CONN.F Z APPLY2-EL.F(CONN.F Y X))))
+                                      PREIMAGE(V APPLY2-EL.F(CONN.F APPLY2-EL.F(CONN.F U APPLY2-EL.F(CONN.F Z Y)) X)))
+
+
+A2,1 & P1,1     -->    P48 : ALL X,Y,Z,U:ELEMENT.F  V:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             PREIMAGE(V U)
+                                             PREIMAGE(V APPLY2-EL.F(CONN.F Z APPLY2-EL.F(CONN.F Y X))))
+                                      PREIMAGE(V APPLY2-EL.F(CONN.F APPLY2-EL.F(CONN.F APPLY2-EL.F(CONN.F U Z) Y) X)))
+
+
+P7,1 & P48,1    -->    P49 : ALL X,Y,Z,U,V:ELEMENT.F  W:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             PREIMAGE(W V)
+                                             PREIMAGE(W
+                                                      APPLY2-EL.F(CONN.F
+                                                                  U
+                                                                  APPLY2-EL.F(CONN.F Z APPLY2-EL.F(CONN.F Y X)))))
+                                      APPLY2(CONN.F.RHO
+                                             APPLY2(CONN.F.RHO
+                                                    PREIMAGE(W APPLY2-EL.F(CONN.F V U))
+                                                    PREIMAGE(W APPLY2-EL.F(CONN.F Z Y)))
+                                             PREIMAGE(W X)))
+
+
+A3,1 & P1,1     -->  * P50 : ALL X,Y,Z:ELEMENT.F  U:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO PREIMAGE(U Z) PREIMAGE(U APPLY2-EL.F(CONN.F Y X)))
+                                      APPLY2(CONN.F.RHO PREIMAGE(U APPLY2-EL.F(CONN.F Z Y)) PREIMAGE(U X)))
+
+
+P2,1 & P50,1    -->    P51 : ALL X,Y,Z,U:ELEMENT.F  V:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             PREIMAGE(V U)
+                                             PREIMAGE(V APPLY2-EL.F(CONN.F APPLY2-EL.F(CONN.F Z Y) X)))
+                                      APPLY2(CONN.F.RHO
+                                             APPLY2(CONN.F.RHO PREIMAGE(V APPLY2-EL.F(CONN.F U Z)) PREIMAGE(V Y))
+                                             PREIMAGE(V X)))
+
+
+A2,1 & P2,1     -->    P52 : ALL X,Y,Z,U:ELEMENT.F  V:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             PREIMAGE(V APPLY2-EL.F(CONN.F APPLY2-EL.F(CONN.F U Z) Y))
+                                             PREIMAGE(V X))
+                                      PREIMAGE(V APPLY2-EL.F(CONN.F U APPLY2-EL.F(CONN.F APPLY2-EL.F(CONN.F Z Y) X))))
+
+
+A2,1 & P2,1     -->    P53 : ALL X,Y,Z,U:ELEMENT.F  V:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             PREIMAGE(V APPLY2-EL.F(CONN.F U APPLY2-EL.F(CONN.F Z Y)))
+                                             PREIMAGE(V X))
+                                      PREIMAGE(V APPLY2-EL.F(CONN.F APPLY2-EL.F(CONN.F U Z) APPLY2-EL.F(CONN.F Y X))))
+
+
+P53,1 & P48,1   -->    P54 : ALL X,Y,Z,U,V:ELEMENT.F  W:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             PREIMAGE(W V)
+                                             PREIMAGE(W
+                                                      APPLY2-EL.F(CONN.F
+                                                                  U
+                                                                  APPLY2-EL.F(CONN.F Z APPLY2-EL.F(CONN.F Y X)))))
+                                      APPLY2(CONN.F.RHO
+                                             PREIMAGE(W
+                                                      APPLY2-EL.F(CONN.F
+                                                                  APPLY2-EL.F(CONN.F V U)
+                                                                  APPLY2-EL.F(CONN.F Z Y)))
+                                             PREIMAGE(W X)))
+
+
+A2,1 & P2,1     -->    P55 : ALL X,Y,Z,U:ELEMENT.F  V:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             PREIMAGE(V APPLY2-EL.F(CONN.F APPLY2-EL.F(CONN.F U Z) Y))
+                                             PREIMAGE(V X))
+                                      PREIMAGE(V APPLY2-EL.F(CONN.F U APPLY2-EL.F(CONN.F Z APPLY2-EL.F(CONN.F Y X)))))
+
+
+P13,1 & P55,1   -->    P56 : ALL X,Y,Z,U,V:ELEMENT.F  W:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             PREIMAGE(W
+                                                      APPLY2-EL.F(CONN.F
+                                                                  APPLY2-EL.F(CONN.F APPLY2-EL.F(CONN.F V U) Z)
+                                                                  Y))
+                                             PREIMAGE(W X))
+                                      APPLY2(CONN.F.RHO
+                                             PREIMAGE(W V)
+                                             APPLY2(CONN.F.RHO
+                                                    PREIMAGE(W APPLY2-EL.F(CONN.F U Z))
+                                                    PREIMAGE(W APPLY2-EL.F(CONN.F Y X)))))
+
+
+P45,1 & P55,1   -->    P57 : ALL X,Y,Z,U,V:ELEMENT.F  W:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO
+                                             PREIMAGE(W
+                                                      APPLY2-EL.F(CONN.F
+                                                                  APPLY2-EL.F(CONN.F APPLY2-EL.F(CONN.F V U) Z)
+                                                                  Y))
+                                             PREIMAGE(W X))
+                                      APPLY2(CONN.F.RHO
+                                             PREIMAGE(W V)
+                                             PREIMAGE(W
+                                                      APPLY2-EL.F(CONN.F
+                                                                  APPLY2-EL.F(CONN.F U Z)
+                                                                  APPLY2-EL.F(CONN.F Y X)))))
+
+
+A3,1 & P2,1     -->    P58 : ALL X,Y,Z:ELEMENT.F  U:EQU.REL-S  
+                                  + =(APPLY2(CONN.F.RHO PREIMAGE(U APPLY2-EL.F(CONN.F Z Y)) PREIMAGE(U X))
+                                      APPLY2(CONN.F.RHO PREIMAGE(U Z) PREIMAGE(U APPLY2-EL.F(CONN.F Y X))))
+
+
+A3,1 & P3,1     -->  * P59 : - =(APPLY2(CONN.F.RHO PREIMAGE(C_4 APPLY2-EL.F(CONN.F C_1 C_2)) PREIMAGE(C_4 C_3))
+                                 APPLY2(CONN.F.RHO PREIMAGE(C_4 C_1) PREIMAGE(C_4 APPLY2-EL.F(CONN.F C_2 C_3))))
+
+
+P59,1 & P50,1   -->  * R60 :  ce
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+  Q. E. D. 

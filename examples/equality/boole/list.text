@@ -1,0 +1,60 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 40.8 EQUALITY 16.1                                  *
+                     *           DATE: 15-MAR,1990  20:06                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:        IC1:   All x:Any + =(x x)
+                         * IC2:   All x,y:Any + =(o(y x) o(x y))
+                           IC3:   All x,y:Any + =(a(y x) a(x y))
+                         * IC4:   All x,y,z:Any + =(a(z o(y x)) o(a(z y) a(z x)))
+                           IC5:   All x,y,z:Any + =(o(z a(y x)) o(o(a(z z) a(z y)) a(o(z y) x)))
+                         * IC6:   All x:Any + =(o(x 0) x)
+                         * IC7:   All x:Any + =(a(x 1) x)
+                         * IC8:   All x:Any + =(a(x n(x)) 0)
+                         * IC9:   All x:Any + =(o(x n(x)) 1)
+                         * IC10:  - =(a(c_7 c_7) c_7)
+                         
+
+   
+   IC6,1 & IC2,1    -->  * P11:   All x:Any + =(x o(0 x))
+   
+   IC9,1 & IC4,1    -->  * P15:   All x,y:Any + =(a(y 1) o(a(y x) a(y n(x))))
+   
+   P15,1 & IC7      -->  * RW16:  All x,y:Any + =(y o(a(y x) a(y n(x))))
+   
+   IC8,1 & RW16,1   -->  * P17:   All x:Any + =(x o(a(x x) 0))
+   
+   P17,1 & IC2      -->  * RW18:  All x:Any + =(x o(0 a(x x)))
+   
+   RW18,1 & P11     -->  * RW19:  All x:Any + =(x a(x x))
+   
+   RW19,1 & IC10,1  -->  * R20:   []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 32 seconds

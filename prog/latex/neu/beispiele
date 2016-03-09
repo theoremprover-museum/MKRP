@@ -1,0 +1,89 @@
+(top-latex-out-int-term (silent-optimize-iterm (parse-term '(fdsagdhsa (gsgsg (hddhsahds (g1 (h a x) (f y)))))) 10))
+                                                                                        
+\\begin{tabbing}
+FDSAGDHSA(\\
+GSGSG(\\
+HDDHSAHDS\\
+\ (\=G1\\
+\> \ (\=H\\
+\> \> \ (\=A,\\
+\> \> \> X\\
+\> \> \ ),\\
+\> \> F(Y)\\
+\> \ )\\
+\ )\\
+)\\
+)
+\\end{tabbing}
+
+
+
+;================
+> (top-latex-out-int-term (silent-optimize-iterm (parse-term 
+   '(quant ALL ((ANY X Y))
+     (lop not 
+       (kl (bins (bins Y + (kl (bins X + (kl (bins Y + X)))))
+          =  (bins (kl (bins Y + Y)) + (kl (bins X + X)))))))
+) 20))
+
+all X, Y in ANY:
+NOT
+(Y + (X + (Y + X))
+  = 
+ (Y + Y) + (X + X))
+
+\begin{tabbing}
+$\forall\,$X,Y$\,\in\,$ANY: \\
+$\neg$\\
+(\=Y$\,+\,$(\=X$\,+\,$(\=Y$\,+\,$X))\\
+\> $\,=\,$\\
+\> (\=Y$\,+\,$Y)$\,+\,$(\=X$\,+\,$X))
+\end{tabbing}
+
+;================================
+> (top-latex-out-int-term (silent-optimize-iterm (parse-term '(quant all ((any x y z) (s1 v w)) 
+    (bins (f (bins (g (bins x + y + z)) * (h (rop v !) (lop - w)))) = (bins (rop (f (g x)) !) + (h y z))))
+) 20)
+)
+
+all X, Y, Z in ANY
+ V, W in S1:
+F(G(X + Y + Z)
+   * 
+  H(V!,-W))
+ = 
+F(G(X))! + H(Y,Z)
+
+\begin{tabbing}
+$\forall\,$\=X,Y,Z$\,\in\,$ANY\\
+\> V, W$\,\in\,$S1: \\
+F(G(X$\,+\,$Y$\,+\,$Z)\\
+$\,\cdot\,$\\
+H(V!,-\=W))\\
+$\,=\,$\\
+F(G(X))!$\,+\,$H(Y,Z)
+\end{tabbing}
+;====================
+> (top-latex-out-int-term (silent-optimize-iterm (parse-term '(QUANT ALL ((ANY ("X" "Y")))
+           (((BINS (BINS "Y" "+"
+                         (KL (BINS "X" "+" (KL (BINS "Y" "+" "X")))))
+                   "="
+                   (BINS (KL (BINS "Y" "+" "Y")) "+"
+                         (KL (BINS "X" "+" "X")))))))) 20)
+)
+;;; Warning: Incorrect term-form! Trying to correct.
+;;; Warning: Incorrect term-form! Trying to correct.
+
+all X, Y in ANY:
+Y + (X + (Y + X))
+ = 
+(Y + Y) + (X + X)
+
+
+\begin{tabbing}
+$\forall\,$X,Y$\,\in\,$ANY: \\
+Y$\,+\,$(\=X$\,+\,$(\=Y$\,+\,$X))\\
+$\,=\,$\\
+(\=Y$\,+\,$Y)$\,+\,$(\=X$\,+\,$X)
+\end{tabbing}
+

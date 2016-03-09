@@ -1,0 +1,18 @@
+;;; -*- package: mkrp; syntax: common-lisp; mode: lisp -*-
+
+(in-package "MKRP")
+
+(setq xxx (mapcar-not-nil #'(lambda (xx)
+			      (if (eql 9 (first (red=rw_rule.left (ds-clause.lit.getprop (first xx) (rest xx) 'red*rule))))
+				  (ds-clause.lit.getprop (first xx) (rest xx) 'red*rule)
+				  nil))
+			  red*rw_rules.completion))
+
+(setq ppp (nar=find.pairs xxx))
+
+
+(nar=insert ppp)
+
+(setq sss (nar=sort.in.sets ppp))
+
+(setq mmm (nar=get.max.list ppp))  

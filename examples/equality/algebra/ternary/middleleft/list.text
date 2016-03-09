@@ -1,0 +1,110 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 30.10 EQUALITY 15.3                                 *
+                     *           DATE: 21-AUG,1989  21:21                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+   Edit:     Axioms and Theorems edited: 21-AUG,1989 18:54 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * AXIOMS *
+             ALL X,Y,Z,V,W COMPOSE (COMPOSE (V W X) Y COMPOSE (V W Z)) = COMPOSE (V W COMPOSE (X Y Z))
+             ALL X,Y COMPOSE (Y X X) = X
+             ALL X,Y COMPOSE (X Y X) = X
+             ALL X,Y COMPOSE (X X Y) = X
+             ALL X,Y COMPOSE (X Y MINUS (Y)) = X
+             ALL X,Y COMPOSE (MINUS (Y) Y X) = X
+             
+   Theorems: * THEOREM *
+             ALL X,Y COMPOSE (X MINUS (X) Y) = Y
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+           * A2:   All x,y,z,u,v:Any + =(compose(compose(v u z) y compose(v u x)) compose(v u compose(z y x)))
+           * A3:   All x,y:Any + =(compose(y x x) x)
+             A4:   All x,y:Any + =(compose(y x y) y)
+           * A5:   All x,y:Any + =(compose(y y x) y)
+           * A6:   All x,y:Any + =(compose(y x minus(x)) y)
+           * A7:   All x,y:Any + =(compose(minus(y) y x) x)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T8: - =(compose(c_1 minus(c_1) c_2) c_2)
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:     A1:   All x:Any + =(x x)
+                      * A2:   All x,y,z,u,v:Any + =(compose(compose(v u z) y compose(v u x))
+                                                    compose(v u compose(z y x)))
+                      * A3:   All x,y:Any + =(compose(y x x) x)
+                        A4:   All x,y:Any + =(compose(y x y) y)
+                      * A5:   All x,y:Any + =(compose(y y x) y)
+                      * A6:   All x,y:Any + =(compose(y x minus(x)) y)
+                      * A7:   All x,y:Any + =(compose(minus(y) y x) x)
+                      * T8:   - =(compose(c_1 minus(c_1) c_2) c_2)
+                      
+
+   
+   A3,1 & A2,1   -->  * P36:  All x,y,z,u:Any + =(compose(compose(u z y) x z) compose(u z compose(y x z)))
+   
+   A6,1 & P36,1  -->  * P60:  All x,y,z:Any + =(compose(z y x) compose(z x compose(minus(x) y x)))
+   
+   A5,1 & P60,1  -->  * P63:  All x,y:Any + =(compose(y minus(x) x) compose(y x minus(x)))
+   
+   A6,1 & P63,1  -->  * P64:  All x,y:Any + =(compose(y minus(x) x) y)
+   
+   A7,1 & P64,1  -->  * P65:  All x:Any + =(x minus(minus(x)))
+   
+   P65,1 & A7,1  -->  * P66:  All x,y:Any + =(compose(y minus(y) x) x)
+   
+   P66,1 & T8,1  -->  * R67:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 252 seconds

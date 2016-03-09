@@ -1,0 +1,233 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 35.2 EQUALITY 16.1                                  *
+                     *           DATE: 15-DEC,1989  14:32                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 15-DEC,1989 14:32 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * AXIOMS FOR PROBLEM 41 :
+             * THERE ARE TWO PEOPLE A AND B.
+             * EACH OF WHOM IS EITHER A KNIGHT,OR A KNAVE,OR A NORMAL.
+             * A SAYS : B IS A KNIGHT.
+             * B SAYS : A IS A KNAVE %.
+             * PROVE : EITHER ONE OF THEM IS TELLING THE TRUTH BUT IS NOT A KNIGHT
+             OR ONE OF THEM IS LYING BUT IS NOT A KNAVE.
+             *
+             * KNIGHT2 (X Y) MEANS X SAYS Y IS A KNIGHT.
+             * KNAVE2 (X Y) MEANS X SAYS Y IS A KNAVE.
+             * TRUTH (X) MEANS X SAYS THE TRUTH.
+             * LIE (X) MEANS X IS TELLING A LIE.
+             *
+             ALL X NORMAL (X) EQV NOT KNIGHT (X) AND NOT KNAVE (X)
+             ALL X KNAVE (X) EQV NOT NORMAL (X) AND NOT KNIGHT (X)
+             ALL X KNIGHT (X) EQV NOT NORMAL (X) AND NOT KNAVE (X)
+             ALL X,Y KNIGHT2 (X Y) AND KNAVE (X) IMPL NOT KNIGHT (Y)
+             ALL X,Y KNIGHT2 (X Y) AND KNIGHT (X) IMPL KNIGHT (Y)
+             ALL X,Y KNAVE2 (X Y) AND KNIGHT (X) IMPL KNAVE (Y)
+             ALL X,Y KNAVE2 (X Y) AND KNAVE (X) IMPL NOT KNAVE (Y)
+             ALL X,Y KNIGHT2 (X Y) AND TRUTH (X) IMPL KNIGHT (Y)
+             ALL X,Y KNIGHT2 (X Y) AND LIE (X) IMPL NOT KNIGHT (Y)
+             ALL X,Y KNAVE2 (X Y) AND TRUTH (X) IMPL KNAVE (Y)
+             ALL X,Y KNAVE2 (X Y) AND LIE (X) IMPL NOT KNAVE (Y)
+             ALL X,Y KNIGHT2 (X Y) AND KNIGHT (Y) IMPL TRUTH (X)
+             ALL X,Y KNIGHT2 (X Y) AND NOT KNIGHT (Y) IMPL LIE (X)
+             ALL X,Y KNAVE2 (X Y) AND KNAVE (Y) IMPL TRUTH (X)
+             ALL X,Y KNAVE2 (X Y) AND NOT KNAVE (Y) IMPL LIE (X)
+             ALL X TRUTH (X) EQV NOT LIE (X)
+             ALL X TRUTH (X) IMPL NORMAL (X) OR KNIGHT (X)
+             ALL X LIE (X) IMPL KNAVE (X) OR NORMAL (X)
+             KNIGHT2 (A B)
+             KNAVE2 (B A)
+             
+   Theorems: (TRUTH (B) IMPL NOT KNIGHT (B)) AND (NOT TRUTH (B) IMPL (LIE (A) AND NOT KNIGHT (A)))
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+           * A1:   + KNIGHT2(a b)
+           * A2:   + KNAVE2(b a)
+           * A3:   All x:Any - KNAVE(x)  - KNIGHT(x)
+             A4:   All x:Any - KNIGHT(x)  - KNAVE(x)
+             A5:   All x:Any + KNAVE(x)  - KNIGHT(x)  + KNIGHT(x)
+             A6:   All x:Any + KNAVE(x)  - KNAVE(x)  + KNIGHT(x)
+             A7:   All x:Any - KNAVE(x)  + KNIGHT(x)  + KNAVE(x)
+             A8:   All x:Any + KNIGHT(x)  - KNIGHT(x)  + KNAVE(x)
+             A9:   All x:Any + KNIGHT(x)  - KNAVE(x)  + KNAVE(x)
+             A10:  All x:Any - KNIGHT(x)  + KNIGHT(x)  + KNAVE(x)
+           * A11:  All x,y:Any - KNIGHT2(y x)  - KNAVE(y)  - KNIGHT(x)
+             A12:  All x,y:Any - KNIGHT2(y x)  - KNIGHT(y)  + KNIGHT(x)
+             A13:  All x,y:Any - KNAVE2(y x)  - KNIGHT(y)  + KNAVE(x)
+             A14:  All x,y:Any - KNAVE2(y x)  - KNAVE(y)  - KNAVE(x)
+           * A15:  All x,y:Any - KNIGHT2(y x)  + LIE(y)  + KNIGHT(x)
+             A16:  All x,y:Any - KNIGHT2(y x)  - LIE(y)  - KNIGHT(x)
+           * A17:  All x,y:Any - KNAVE2(y x)  + LIE(y)  + KNAVE(x)
+             A18:  All x,y:Any - KNAVE2(y x)  - LIE(y)  - KNAVE(x)
+             A19:  All x,y:Any - KNIGHT2(y x)  - KNIGHT(x)  - LIE(y)
+             A20:  All x,y:Any - KNIGHT2(y x)  + KNIGHT(x)  + LIE(y)
+             A21:  All x,y:Any - KNAVE2(y x)  - KNAVE(x)  - LIE(y)
+             A22:  All x,y:Any - KNAVE2(y x)  + KNAVE(x)  + LIE(y)
+             A23:  All x:Any + LIE(x)  - KNIGHT(x)  + KNIGHT(x)
+             A24:  All x:Any + LIE(x)  - KNAVE(x)  + KNIGHT(x)
+           * A25:  All x:Any - LIE(x)  + KNAVE(x)  - KNIGHT(x)
+             A26:  All x:Any - LIE(x)  + KNAVE(x)  - KNAVE(x)
+           
+
+
+
+
+             Initial Operations on Axioms
+             ============================
+
+
+          
+   A25,2 & A3,1  --> * R3: All x:Any - LIE(x)  - KNIGHT(x)  - KNIGHT(x)
+   
+   R3 2=3        --> * D4: All x:Any - LIE(x)  - KNIGHT(x)
+   
+
+   
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization and Splitting
+             =================================================================
+
+   Splitpart 1
+
+           * T27: - LIE(b)
+           * T28: + KNIGHT(b)
+
+   Splitpart 2
+
+           * T29: + LIE(b)
+           * T30: - LIE(a)  + KNIGHT(a)
+
+
+   End of Splitparts
+
+
+
+
+
+             Initial Operations on Theorems
+             ==============================
+
+
+          
+   Splitpart 2:
+   
+   T30,2 & D4,2  --> * R5: - LIE(a)  - LIE(a)
+   
+   R5 1=2        --> * D6: - LIE(a)
+   
+
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation of Splitpart 1:
+   ==========================
+   
+   Initial Clauses:    * A1:   + KNIGHT2(a b)
+                       * A2:   + KNAVE2(b a)
+                         A3:   All x:Any - KNAVE(x)  - KNIGHT(x)
+                       * A11:  All x,y:Any - KNIGHT2(y x)  - KNAVE(y)  - KNIGHT(x)
+                         A12:  All x,y:Any - KNIGHT2(y x)  - KNIGHT(y)  + KNIGHT(x)
+                         A13:  All x,y:Any - KNAVE2(y x)  - KNIGHT(y)  + KNAVE(x)
+                         A14:  All x,y:Any - KNAVE2(y x)  - KNAVE(y)  - KNAVE(x)
+                         A15:  All x,y:Any - KNIGHT2(y x)  + LIE(y)  + KNIGHT(x)
+                         A16:  All x,y:Any - KNIGHT2(y x)  - LIE(y)  - KNIGHT(x)
+                       * A17:  All x,y:Any - KNAVE2(y x)  + LIE(y)  + KNAVE(x)
+                         A18:  All x,y:Any - KNAVE2(y x)  - LIE(y)  - KNAVE(x)
+                         D2:   All x:Any + LIE(x)  - KNAVE(x)
+                         D4:   All x:Any - LIE(x)  - KNIGHT(x)
+                       * T27:  - LIE(b)
+                       * T28:  + KNIGHT(b)
+                       
+
+   
+   A2,1 & A17,1   -->  * R8:   + LIE(b)  + KNAVE(a)
+   
+   R8,2 & A11,2   -->  * R9:   + LIE(b)  - KNIGHT2(a b)  - KNIGHT(b)
+   
+   R9,2 & A1,1    -->  * R10:  + LIE(b)  - KNIGHT(b)
+   
+   R10,2 & T28,1  -->  * R11:  + LIE(b)
+   
+   R11,1 & T27,1  -->  * R12:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation of Splitpart 2:
+   ==========================
+   
+   Initial Clauses:    * A1:   + KNIGHT2(a b)
+                         A2:   + KNAVE2(b a)
+                       * A3:   All x:Any - KNAVE(x)  - KNIGHT(x)
+                         A11:  All x,y:Any - KNIGHT2(y x)  - KNAVE(y)  - KNIGHT(x)
+                         A12:  All x,y:Any - KNIGHT2(y x)  - KNIGHT(y)  + KNIGHT(x)
+                         A13:  All x,y:Any - KNAVE2(y x)  - KNIGHT(y)  + KNAVE(x)
+                         A14:  All x,y:Any - KNAVE2(y x)  - KNAVE(y)  - KNAVE(x)
+                       * A15:  All x,y:Any - KNIGHT2(y x)  + LIE(y)  + KNIGHT(x)
+                         A16:  All x,y:Any - KNIGHT2(y x)  - LIE(y)  - KNIGHT(x)
+                         A17:  All x,y:Any - KNAVE2(y x)  + LIE(y)  + KNAVE(x)
+                         A18:  All x,y:Any - KNAVE2(y x)  - LIE(y)  - KNAVE(x)
+                         D2:   All x:Any + LIE(x)  - KNAVE(x)
+                       * D4:   All x:Any - LIE(x)  - KNIGHT(x)
+                       * T29:  + LIE(b)
+                       * D6:   - LIE(a)
+                       
+
+   
+   T29,1 & D4,1   -->  * R14:  - KNIGHT(b)
+   
+   R14,1 & A15,3  -->  * R15:  - KNIGHT2(a b)  + LIE(a)
+   
+   R15,1 & A1,1   -->  * R16:  + LIE(a)
+   
+   R16,1 & D6,1   -->  * R17:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation of Splitpart 1: 8 seconds
+   Time Used for Refutation of Splitpart 2: 11 seconds

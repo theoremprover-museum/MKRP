@@ -1,0 +1,136 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 20.5                                                *
+                     *           DATE: 11-AUG-1988  18:53                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:     * IC1:  All x:Any + =(x x)
+                        * IC2:  All x:Menge + HG(ehg(x conc) conc)
+                        * IC3:  All x:Menge + ME(x ehg(x conc))
+                        * IC4:  All x,y,z:Menge u:Verkn - HG(z u)  - ABB(x y z)
+                                                        + HOMOMORPH(f_5(y z x) ehg(y conc) z)
+                        * IC5:  All x,y,z:Menge u:Verkn - HG(z u)  - ABB(y x z)  + =(restriction(f_5(x z y) x) y)
+                        * IC6:  All x,y:Menge z:Verkn - HG(y z)  - ME(x y)  + FERZSYS(x y z)  - =(ehg(x z) y)
+                                                      + HG(f_3(x y z) f_1(x y z))
+                        * IC7:  All x,y:Menge z:Verkn - HG(y z)  - ME(x y)  + FERZSYS(x y z)  - =(ehg(x z) y)
+                                                      + ABB(f_2(x y z) x f_3(x y z))
+                        * IC8:  All x,y,z:Menge u:Verkn - HG(z u)  - ME(y z)  + FERZSYS(y z u)  - =(ehg(y u) z)
+                                                        - HOMOMORPH(x z f_3(y z u))
+                                                        - =(restriction(x y) f_2(y z u))
+                          IC9:  All x,y,z,u:Menge v,w:Verkn - HG(u w)  - ME(z u)  - FERZSYS(z u w)  - HG(y v)
+                                                            - ABB(x z y)  + HOMOMORPH(f_4(x y z u w) u y)
+                          IC10: All x,y,z,u:Menge v,w:Verkn - HG(u w)  - ME(z u)  - FERZSYS(z u w)  - HG(y v)
+                                                            - ABB(x z y)  + =(restriction(f_4(x y z u w) z) x)
+                        * IC11: - FERZSYS(c_1 ehg(c_1 conc) conc)
+                        
+
+   
+   IC2,1 & IC8,1   -->  * R16:  All x,y,z:Menge - ME(z ehg(y conc))  + FERZSYS(z ehg(y conc) conc)
+                                                - =(ehg(z conc) ehg(y conc))
+                                                - HOMOMORPH(x ehg(y conc) f_3(z ehg(y conc) conc))
+                                                - =(restriction(x z) f_2(z ehg(y conc) conc))
+   
+   IC3,1 & R16,1   -->  * R17:  All x,y:Menge + FERZSYS(y ehg(y conc) conc)  - =(ehg(y conc) ehg(y conc))
+                                              - HOMOMORPH(x ehg(y conc) f_3(y ehg(y conc) conc))
+                                              - =(restriction(x y) f_2(y ehg(y conc) conc))
+   
+   R17,2 & IC1,1   -->  * R18:  All x,y:Menge + FERZSYS(y ehg(y conc) conc)
+                                              - HOMOMORPH(x ehg(y conc) f_3(y ehg(y conc) conc))
+                                              - =(restriction(x y) f_2(y ehg(y conc) conc))
+   
+   IC4,3 & R18,2   -->  * R19:  All x,y:Menge z:Verkn - HG(f_3(y ehg(y conc) conc) z)
+                                                      - ABB(x y f_3(y ehg(y conc) conc))
+                                                      + FERZSYS(y ehg(y conc) conc)
+                                                      - =(restriction(f_5(y f_3(y ehg(y conc) conc) x) y)
+                                                          f_2(y ehg(y conc) conc))
+   
+   R19,1 & IC6,5   -->  * R20:  All x,y:Menge - ABB(x y f_3(y ehg(y conc) conc))  + FERZSYS(y ehg(y conc) conc)
+                                              - =(restriction(f_5(y f_3(y ehg(y conc) conc) x) y)
+                                                  f_2(y ehg(y conc) conc))
+                                              - HG(ehg(y conc) conc)  - ME(y ehg(y conc))
+                                              + FERZSYS(y ehg(y conc) conc)  - =(ehg(y conc) ehg(y conc))
+   
+   R20 2=6         -->  * D21:  All x,y:Menge - ABB(x y f_3(y ehg(y conc) conc))  + FERZSYS(y ehg(y conc) conc)
+                                              - =(restriction(f_5(y f_3(y ehg(y conc) conc) x) y)
+                                                  f_2(y ehg(y conc) conc))
+                                              - HG(ehg(y conc) conc)  - ME(y ehg(y conc))
+                                              - =(ehg(y conc) ehg(y conc))
+   
+   D21,4 & IC2,1   -->  * R22:  All x,y:Menge - ABB(x y f_3(y ehg(y conc) conc))  + FERZSYS(y ehg(y conc) conc)
+                                              - =(restriction(f_5(y f_3(y ehg(y conc) conc) x) y)
+                                                  f_2(y ehg(y conc) conc))
+                                              - ME(y ehg(y conc))  - =(ehg(y conc) ehg(y conc))
+   
+   R22,4 & IC3,1   -->  * R23:  All x,y:Menge - ABB(x y f_3(y ehg(y conc) conc))  + FERZSYS(y ehg(y conc) conc)
+                                              - =(restriction(f_5(y f_3(y ehg(y conc) conc) x) y)
+                                                  f_2(y ehg(y conc) conc))
+                                              - =(ehg(y conc) ehg(y conc))
+   
+   R23,4 & IC1,1   -->  * R24:  All x,y:Menge - ABB(x y f_3(y ehg(y conc) conc))  + FERZSYS(y ehg(y conc) conc)
+                                              - =(restriction(f_5(y f_3(y ehg(y conc) conc) x) y)
+                                                  f_2(y ehg(y conc) conc))
+   
+   IC2,1 & IC7,1   -->  * R25:  All x,y:Menge - ME(y ehg(x conc))  + FERZSYS(y ehg(x conc) conc)
+                                              - =(ehg(y conc) ehg(x conc))
+                                              + ABB(f_2(y ehg(x conc) conc) y f_3(y ehg(x conc) conc))
+   
+   IC3,1 & R25,1   -->  * R26:  All x:Menge + FERZSYS(x ehg(x conc) conc)  - =(ehg(x conc) ehg(x conc))
+                                            + ABB(f_2(x ehg(x conc) conc) x f_3(x ehg(x conc) conc))
+   
+   R26,2 & IC1,1   -->  * R27:  All x:Menge + FERZSYS(x ehg(x conc) conc)
+                                            + ABB(f_2(x ehg(x conc) conc) x f_3(x ehg(x conc) conc))
+   
+   R24,2 & IC11,1  -->  * R28:  All x:Menge - ABB(x c_1 f_3(c_1 ehg(c_1 conc) conc))
+                                            - =(restriction(f_5(c_1 f_3(c_1 ehg(c_1 conc) conc) x) c_1)
+                                                f_2(c_1 ehg(c_1 conc) conc))
+   
+   R27,1 & IC11,1  -->  * R29:  + ABB(f_2(c_1 ehg(c_1 conc) conc) c_1 f_3(c_1 ehg(c_1 conc) conc))
+   
+   R29,1 & IC5,2   -->  * R30:  All x:Verkn - HG(f_3(c_1 ehg(c_1 conc) conc) x)
+                                            + =(restriction(f_5(c_1
+                                                                f_3(c_1 ehg(c_1 conc) conc)
+                                                                f_2(c_1 ehg(c_1 conc) conc))
+                                                            c_1)
+                                                f_2(c_1 ehg(c_1 conc) conc))
+   
+   R30,2 & R28,2   -->  * R31:  All x:Verkn - HG(f_3(c_1 ehg(c_1 conc) conc) x)
+                                            - ABB(f_2(c_1 ehg(c_1 conc) conc) c_1 f_3(c_1 ehg(c_1 conc) conc))
+   
+   R31,2 & R29,1   -->  * R32:  All x:Verkn - HG(f_3(c_1 ehg(c_1 conc) conc) x)
+   
+   R32,1 & IC6,5   -->  * R33:  - HG(ehg(c_1 conc) conc)  - ME(c_1 ehg(c_1 conc))  + FERZSYS(c_1 ehg(c_1 conc) conc)
+                                - =(ehg(c_1 conc) ehg(c_1 conc))
+   
+   R33,1 & IC2,1   -->  * R34:  - ME(c_1 ehg(c_1 conc))  + FERZSYS(c_1 ehg(c_1 conc) conc)
+                                - =(ehg(c_1 conc) ehg(c_1 conc))
+   
+   R34,1 & IC3,1   -->  * R35:  + FERZSYS(c_1 ehg(c_1 conc) conc)  - =(ehg(c_1 conc) ehg(c_1 conc))
+   
+   R35,1 & IC11,1  -->  * R36:  - =(ehg(c_1 conc) ehg(c_1 conc))
+   
+   R36,1 & IC1,1   -->  * R37:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 

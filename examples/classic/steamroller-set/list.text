@@ -1,0 +1,127 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 49.3 GENTRAFO 1.0                                   *
+                     *           DATE: 20-NOV,1991  16:12                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+                                                                                                                    
+      
+   
+   ******************************************************************************************************************
+   ***
+   
+                                                                                                                    
+      
+   
+    FORMULA:  Date: 20-NOV,1991 15:18
+   
+              Axioms und Theorems for this proof have been read from
+   
+                 Axiom-File: NIL
+   
+               Theorem-File: NIL
+   
+                                                                                                                    
+      
+   
+   ******************************************************************************************************************
+   ***
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   E (LUPO WOLF)
+             AND E (FOXY FOX)
+             AND E (TWEETY BIRD)
+             AND E (SCHNECKI SNAIL)
+             AND E (MEGGY CATERPILLAR)
+             AND E (STALKY GRAIN)
+             ALL X : WOLF E (X ANIMAL)
+             ALL X : FOX E (X ANIMAL)
+             ALL X : BIRD E (X ANIMAL)
+             ALL X : CATERPILLAR E (X ANIMAL)
+             ALL X : SNAIL E (X ANIMAL)
+             ALL X : GRAIN E (X PLANT)
+             ALL X: ANIMAL (ALL Y : PLANT EATS (X Y))
+                    OR (ALL Y : ANIMAL SMALLER (Y X) AND (EX Z : (PLANT) EATS (Y Z)) IMPL EATS (X Y))
+             ALL X : CATERPILLAR ALL Y : BIRD SMALLER (X Y)
+             ALL X : SNAIL ALL Y : BIRD SMALLER (X Y)
+             ALL X : BIRD ALL Y : FOX SMALLER (X Y)
+             ALL X : FOX ALL Y : WOLF SMALLER (X Y)
+             ALL X : FOX ALL Y : WOLF NOT EATS (Y X)
+             ALL X : GRAIN ALL Y : WOLF NOT EATS (Y X)
+             ALL X : BIRD ALL Y : CATERPILLAR EATS (X Y)
+             ALL X : BIRD ALL Y : SNAIL NOT EATS (X Y)
+             ALL X : CATERPILLAR EX Y : PLANT EATS (X Y)
+             ALL X : SNAIL EX Y : PLANT EATS (X Y)
+             
+   Theorems: * THEOREMS
+             EX X,Y : ANIMAL ALL Z : GRAIN EATS (X Y) AND EATS (Y Z)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Omega + =(x x)
+             A2:   + E(lupo wolf)
+             A3:   + E(foxy fox)
+             A4:   + E(tweety bird)
+             A5:   + E(schnecki snail)
+             A6:   + E(meggy caterpillar)
+             A7:   + E(stalky grain)
+             A8:   All x:Wolf + E(x animal)
+             A9:   All x:Fox + E(x animal)
+             A10:  All x:Bird + E(x animal)
+             A11:  All x:Caterpillar + E(x animal)
+             A12:  All x:Snail + E(x animal)
+             A13:  All x:Grain + E(x plant)
+             A14:  All x:Bird y:Caterpillar + SMALLER(y x)
+             A15:  All x:Bird y:Snail + SMALLER(y x)
+             A16:  All x:Fox y:Bird + SMALLER(y x)
+             A17:  All x:Wolf y:Fox + SMALLER(y x)
+           * A18:  All x:Fox y:Wolf - EATS(y x)
+             A19:  All x:Grain y:Wolf - EATS(y x)
+           * A20:  All x:Caterpillar y:Bird + EATS(y x)
+           
+
+
+
+
+             Initial Operations on Axioms
+             ============================
+
+
+          
+   A20,1 & A18,1  --> * R1: []
+   
+
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+

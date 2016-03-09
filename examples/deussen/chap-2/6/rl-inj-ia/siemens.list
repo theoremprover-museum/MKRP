@@ -1,0 +1,205 @@
+;;; -*- Package: MKRP; Base: 10. -*- 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 5-NOV-84                                                      *
+                    *         DATE : 20-NOV-84  18:30:00                                           *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+                                                                         
+*************************************************************************
+ EDIT:     AXIOME UND THEOREME EDITIERT AM:  20-NOV-84 10:36:57
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   2.6.RL.INJ.IA
+                                                                        
+************************************************************************
+                                                                        
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : SORT ELEMENT,MENGE,VERKN,ABB,NAT:ANY
+           TYPE W(MENGE) :MENGE
+           TYPE LENGTH(ELEMENT) : NAT
+           TYPE URBILD(ELEMENT ABB) :ELEMENT
+           TYPE APPLYA(ABB ELEMENT) : ELEMENT
+           TYPE RESTRICTION(ABB MENGE) :ABB
+           TYPE PHINULL,PHI:ABB
+           TYPE 1:NAT
+           ALL X:ELEMENT ALL B : MENGE EL(X W(B)) AND GLEICH(LENGTH(X) 1) IMPL EL(X B)
+           ALL A,B:MENGE ALL F:ABB ALL X:ELEMENT BIJEKTIV(F A B) AND EL(X B) IMPL EINDEUTIG(URBILD(X F))
+           ALL X:ELEMENT  ALL CHI:ABB  ALL A,B:MENGE  
+                  EL(X B) AND BIJEKTIV(RESTRICTION(CHI A) A B) AND EINDEUTIG(URBILD(X RESTRICTION(CHI A)))
+             IMPL EINDEUTIG(URBILD(X CHI))
+ 
+THEOREMS : ALL X:ELEMENT  ALL A,B:MENGE  
+                      EL(X W(B))
+                  AND GLEICH(LENGTH(X) 1)
+                  AND BIJEKTIV(PHINULL A B)
+                  AND HOMOMORPH(PHI W(A) W(B))
+                  AND RESTRICTION(PHI A) = PHINULL
+             IMPL EINDEUTIG(URBILD(X PHI))
+ 
+ 
+ 
+ 
+CONSTANTS : 
+=========== 
+ 
+| NAME        | SORT          |            | ATTRIBUTES                                                           |
+-------------------------------------------------------------------------------------------------------------------
+| PHINULL     | ABB           |            |                                                                      |
+| PHI         | ABB           |            |                                                                      |
+| 1           | NAT           |            |                                                                      |
+| C_1         | MENGE         |            |                                                                      |
+| C_2         | MENGE         |            |                                                                      |
+| C_3         | ELEMENT       |            |                                                                      |
+-------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+FUNCTIONS : 
+=========== 
+ 
+| NAME        | DOMAIN        | RANGE      | ATTRIBUTES                                                           |
+-------------------------------------------------------------------------------------------------------------------
+| W           | MENGE         | MENGE      |                                                                      |
+| LENGTH      | ELEMENT       | NAT        |                                                                      |
+| URBILD      | ELEMENT ABB   | ELEMENT    |                                                                      |
+| APPLYA      | ABB ELEMENT   | ELEMENT    |                                                                      |
+| RESTRICTION | ABB MENGE     | ABB        |                                                                      |
+-------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+PREDICATES : 
+============ 
+ 
+| NAME        | DOMAIN        |            | ATTRIBUTES                                                           |
+-------------------------------------------------------------------------------------------------------------------
+| TRUE        |               |            | DEFINED                                                              |
+| FALSE       |               |            | DEFINED                                                              |
+| EL          | ANY ANY       |            |                                                                      |
+| GLEICH      | ANY ANY       |            |                                                                      |
+| BIJEKTIV    | ANY ANY ANY   |            |                                                                      |
+| EINDEUTIG   | ANY           |            |                                                                      |
+| HOMOMORPH   | ANY ANY ANY   |            |                                                                      |
+| =           | ANY ANY       |            | DEFINED SYMMETRIC REFLEXIVE SYMMETRIC REFLEXIVE SYMMETRIC REFLEXIVE  |
+-------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+  A1   : ALL X:ANY  + =(X X)
+* A2   : ALL X:MENGE  Y:ELEMENT  - EL(Y W(X))  - GLEICH(LENGTH(Y) 1)  + EL(Y X)
+* A3   : ALL X:ELEMENT  Y,Z:MENGE  U:ABB  - BIJEKTIV(U Z Y)  - EL(X Y)  + EINDEUTIG(URBILD(X U))
+* A4   : ALL X,Y:MENGE  Z:ABB  U:ELEMENT  
+              - EL(U Y)  - BIJEKTIV(RESTRICTION(Z X) X Y)  - EINDEUTIG(URBILD(U RESTRICTION(Z X)))
+                + EINDEUTIG(URBILD(U Z))
+ 
+ 
+ 
+ 
+OPERATIONS ON AXIOMS
+====================
+ 
+ 
+A4,3 & A3,3   -->  * R1 : ALL X:ABB  Y:ELEMENT  Z,U:MENGE  
+                               - EL(Y Z)  - BIJEKTIV(RESTRICTION(X U) U Z)  + EINDEUTIG(URBILD(Y X))
+                                 - BIJEKTIV(RESTRICTION(X U) U Z)  - EL(Y Z)
+ 
+R1 2=4        -->  * D2 : ALL X:ABB  Y:ELEMENT  Z,U:MENGE  
+                               - EL(Y Z)  - BIJEKTIV(RESTRICTION(X U) U Z)  + EINDEUTIG(URBILD(Y X))  - EL(Y Z)
+ 
+D2 1=4        -->  * D3 : ALL X:ABB  Y:ELEMENT  Z,U:MENGE  
+                               - EL(Y Z)  - BIJEKTIV(RESTRICTION(X U) U Z)  + EINDEUTIG(URBILD(Y X))
+ 
+ 
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+* T5   : + EL(C_3 W(C_2))
+* T6   : + GLEICH(LENGTH(C_3) 1)
+* T7   : + BIJEKTIV(PHINULL C_1 C_2)
+  T8   : + HOMOMORPH(PHI W(C_1) W(C_2))
+* T9   : + =(RESTRICTION(PHI C_1) PHINULL)
+* T10  : - EINDEUTIG(URBILD(C_3 PHI))
+ 
+ 
+ 
+ 
+ 
+ 
+INITIAL OPERATIONS ON THEOREMS
+==============================
+ 
+ 
+T9          -->  * RS4 : + =(PHINULL RESTRICTION(PHI C_1))
+ 
+T7,1 & RS4  -->  * RW5 : + BIJEKTIV(RESTRICTION(PHI C_1) C_1 C_2)
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION
+ 
+INITIAL CLAUSES :     A1  : ALL X:ANY  + =(X X)
+                    * A2  : ALL X:MENGE  Y:ELEMENT  - EL(Y W(X))  - GLEICH(LENGTH(Y) 1)  + EL(Y X)
+                    * D3  : ALL X:ABB  Y:ELEMENT  Z,U:MENGE  
+                                 - EL(Y Z)  - BIJEKTIV(RESTRICTION(X U) U Z)  + EINDEUTIG(URBILD(Y X))
+                    * T5  : + EL(C_3 W(C_2))
+                    * T6  : + GLEICH(LENGTH(C_3) 1)
+                    * RW5 : + BIJEKTIV(RESTRICTION(PHI C_1) C_1 C_2)
+                    * T10 : - EINDEUTIG(URBILD(C_3 PHI))
+ 
+D3,3 & T10,1   -->  * R6  : ALL X,Y:MENGE  - EL(C_3 Y)  - BIJEKTIV(RESTRICTION(PHI X) X Y)
+ 
+A2,3 & R6,1    -->  * R7  : - EL(C_3 W(C_2))  - GLEICH(LENGTH(C_3) 1)  - BIJEKTIV(RESTRICTION(PHI C_1) C_1 C_2)
+ 
+R7,1 & T5,1    -->  * R8  : - GLEICH(LENGTH(C_3) 1)  - BIJEKTIV(RESTRICTION(PHI C_1) C_1 C_2)
+ 
+R8,1 & T6,1    -->  * R9  : - BIJEKTIV(RESTRICTION(PHI C_1) C_1 C_2)
+ 
+R9,1 & RW5,1   -->  * R10 :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+STOP
+ 

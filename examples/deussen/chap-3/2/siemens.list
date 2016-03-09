@@ -1,0 +1,171 @@
+;;; -*- Package: MKRP; Base: 10. -*- 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 5-NOV-84                                                      *
+                    *         DATE : 19-NOV-84  15:13:05                                           *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+                                                                         
+*************************************************************************
+ EDIT:     AXIOME UND THEOREME EDITIERT AM:  19-NOV-84 15:00:57
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   SATZ 3.2
+                                                                        
+************************************************************************
+                                                                        
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : SORT MENGE,VERKN:ANY
+           TYPE ME(MENGE MENGE)
+           TYPE HG(MENGE VERKN)
+           TYPE UHG(MENGE MENGE VERKN)
+           TYPE LIDEAL(MENGE MENGE VERKN)
+           TYPE NICHTLEER(MENGE)
+           TYPE MPROD(MENGE MENGE VERKN) :MENGE
+           * DEF DER UNTERHALBGRUPPE UHG *
+           ALL T,F:MENGE ALL MAL:VERKN ME(T F) AND ME(MPROD(T T MAL) T) AND HG(F MAL) AND NICHTLEER(T) IMPL UHG(T F MAL)
+           * DEF DES LINKSIDEALS *
+           ALL T,F:MENGE  ALL MAL:VERKN  
+             LIDEAL(T F MAL) IMPL(HG(F MAL) AND ME(T F) AND NICHTLEER(T) AND ME(MPROD(F T MAL) T))
+           * EIGENSCHAFT DES MENGENPRODUKTS MPROD *
+           ALL A,B,C,D:MENGE ALL MAL:VERKN ME(A B) AND ME(MPROD(B C MAL) D) IMPL ME(MPROD(A C MAL) D)
+ 
+THEOREMS : ALL T,F:MENGE ALL MAL:VERKN LIDEAL(T F MAL) IMPL UHG(T F MAL)
+ 
+ 
+ 
+ 
+CONSTANTS : 
+=========== 
+ 
+| NAME      | SORT                |            | ATTRIBUTES |
+-------------------------------------------------------------
+| C_1       | VERKN               |            |            |
+| C_2       | MENGE               |            |            |
+| C_3       | MENGE               |            |            |
+-------------------------------------------------------------
+ 
+ 
+ 
+FUNCTIONS : 
+=========== 
+ 
+| NAME      | DOMAIN              | RANGE      | ATTRIBUTES |
+-------------------------------------------------------------
+| MPROD     | MENGE MENGE VERKN   | MENGE      |            |
+-------------------------------------------------------------
+ 
+ 
+ 
+PREDICATES : 
+============ 
+ 
+| NAME      | DOMAIN              |            | ATTRIBUTES |
+-------------------------------------------------------------
+| TRUE      |                     |            | DEFINED    |
+| FALSE     |                     |            | DEFINED    |
+| ME        | MENGE MENGE         |            |            |
+| HG        | MENGE VERKN         |            |            |
+| UHG       | MENGE MENGE VERKN   |            |            |
+| LIDEAL    | MENGE MENGE VERKN   |            |            |
+| NICHTLEER | MENGE               |            |            |
+-------------------------------------------------------------
+ 
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+* A1   : ALL X:VERKN  Y,Z:MENGE  - LIDEAL(Z Y X)  + HG(Y X)
+* A2   : ALL X:VERKN  Y,Z:MENGE  - LIDEAL(Z Y X)  + ME(Z Y)
+* A3   : ALL X:VERKN  Y,Z:MENGE  - LIDEAL(Z Y X)  + NICHTLEER(Z)
+* A4   : ALL X:VERKN  Y,Z:MENGE  - LIDEAL(Z Y X)  + ME(MPROD(Y Z X) Z)
+* A5   : ALL X,Y,Z,U:MENGE  V:VERKN  - ME(U Z)  - ME(MPROD(Z Y V) X)  + ME(MPROD(U Y V) X)
+* A6   : ALL X:VERKN  Y,Z:MENGE  - ME(Z Y)  - ME(MPROD(Z Z X) Z)  - HG(Y X)  - NICHTLEER(Z)  + UHG(Z Y X)
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+* T7   : + LIDEAL(C_2 C_3 C_1)
+* T8   : - UHG(C_2 C_3 C_1)
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION
+ 
+INITIAL CLAUSES :   * A1  : ALL X:VERKN  Y,Z:MENGE  - LIDEAL(Z Y X)  + HG(Y X)
+                    * A2  : ALL X:VERKN  Y,Z:MENGE  - LIDEAL(Z Y X)  + ME(Z Y)
+                    * A3  : ALL X:VERKN  Y,Z:MENGE  - LIDEAL(Z Y X)  + NICHTLEER(Z)
+                    * A4  : ALL X:VERKN  Y,Z:MENGE  - LIDEAL(Z Y X)  + ME(MPROD(Y Z X) Z)
+                    * A5  : ALL X,Y,Z,U:MENGE  V:VERKN  - ME(U Z)  - ME(MPROD(Z Y V) X)  + ME(MPROD(U Y V) X)
+                    * A6  : ALL X:VERKN  Y,Z:MENGE  
+                                 - ME(Z Y)  - ME(MPROD(Z Z X) Z)  - HG(Y X)  - NICHTLEER(Z)  + UHG(Z Y X)
+                    * T7  : + LIDEAL(C_2 C_3 C_1)
+                    * T8  : - UHG(C_2 C_3 C_1)
+ 
+A6,5 & T8,1    -->  * R1  : - ME(C_2 C_3)  - ME(MPROD(C_2 C_2 C_1) C_2)  - HG(C_3 C_1)  - NICHTLEER(C_2)
+ 
+R1,4 & A3,2    -->  * R2  : - ME(C_2 C_3)  - ME(MPROD(C_2 C_2 C_1) C_2)  - HG(C_3 C_1)  - LIDEAL(C_2 C_3 C_1)
+ 
+R2,4 & T7,1    -->  * R3  : - ME(C_2 C_3)  - ME(MPROD(C_2 C_2 C_1) C_2)  - HG(C_3 C_1)
+ 
+R3,3 & A1,2    -->  * R4  : - ME(C_2 C_3)  - ME(MPROD(C_2 C_2 C_1) C_2)  - LIDEAL(C_2 C_3 C_1)
+ 
+R4,3 & T7,1    -->  * R5  : - ME(C_2 C_3)  - ME(MPROD(C_2 C_2 C_1) C_2)
+ 
+R5,1 & A2,2    -->  * R6  : - ME(MPROD(C_2 C_2 C_1) C_2)  - LIDEAL(C_2 C_3 C_1)
+ 
+R6,2 & T7,1    -->  * R7  : - ME(MPROD(C_2 C_2 C_1) C_2)
+ 
+T7,1 & A2,1    -->  * R8  : + ME(C_2 C_3)
+ 
+T7,1 & A4,1    -->  * R9  : + ME(MPROD(C_3 C_2 C_1) C_2)
+ 
+R9,1 & A5,2    -->  * R10 : - ME(C_2 C_3)  + ME(MPROD(C_2 C_2 C_1) C_2)
+ 
+R10,1 & R8,1   -->  * R11 : + ME(MPROD(C_2 C_2 C_1) C_2)
+ 
+R11,1 & R7,1   -->  * R12 :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+STOP
+ 

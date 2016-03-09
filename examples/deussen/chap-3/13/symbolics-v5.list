@@ -1,0 +1,288 @@
+;;; -*- Package: IL; Base: 10. -*-
+
+
+
+                    ********************************************************************************
+                    *                                                                              *
+                    *     MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN                   *
+                    *                                                                              *
+                    *       12-JUN-85                                                              *
+                    *          12-JUN-85  15:49:12                                                 *
+                    *                                                                              *
+                    ********************************************************************************
+
+
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   12-JUN-85 00:27:09
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   D3133
+                                                                        
+************************************************************************
+                                                                        
+
+
+ADJUSTMENT OF THE OPTIONS : 
+============================
+
+
+
+TWO:RULES                             NIL                   TWO:RULES.MAXLEVEL                    1.
+TWO:SUPPRESS.NORULES                  NIL
+
+
+RED.I:CLAUSE.MULTIPLE.LITERALS        T                     RED.I:CLAUSE.PURITY                   T
+RED.I:CLAUSE.TAUTOLOGY                T                     RED.I:CLAUSE.TAUTOLOGY.RECHECK        PARTIAL
+RED.I:CLAUSE.SUBSUMPTION              T                     RED.I:CLAUSE.SUBSUMPTION.RECHECK      PARTIAL
+RED.I:CLAUSE.REPL.FACTORING           T                     RED.I:CLAUSE.REPL.FACTORING.RECHECK   T
+RED.I:CLAUSE.REPL.RESOLUTION          SIMPLE                RED.I:CLAUSE.REPL.RESOLUTION.RECHECK  T
+RED.I:CLAUSE.REWRITING                T                     RED.I:LINK.INCOMPATIBILITY            T
+RED.I:LINK.TAUTOLOGY                  REMOVE-INHIBIT        RED.I:LINK.TAUTOLOGY.RECHECK          NIL
+RED.I:LINK.SUBSUMPTION                REMOVE-INHIBIT        RED.I:LINK.SUBSUMPTION.RECHECK        NIL
+
+RED.D:CLAUSE.MULTIPLE.LITERALS        T                     RED.D:CLAUSE.PURITY                   T
+RED.D:CLAUSE.TAUTOLOGY                REMOVE-INHIBIT        RED.D:CLAUSE.TAUTOLOGY.RECHECK        NIL
+RED.D:CLAUSE.SUBSUMPTION.FORWARD      REMOVE-INHIBIT        RED.D:CLAUSE.SUBSUMPTION.BACKWARD     REMOVE
+RED.D:CLAUSE.SUBSUMPTION.RECHECK      NIL                   RED.D:CLAUSE.REPL.FACTORING           T
+RED.D:CLAUSE.REPL.FACTORING.RECHECK   T                     RED.D:CLAUSE.REPL.RESOLUTION          SIMPLE
+RED.D:CLAUSE.REPL.RESOLUTION.RECHECK  T                     RED.D:LINK.INCOMPATIBILITY            T
+RED.D:LINK.TAUTOLOGY                  REMOVE-INHIBIT        RED.D:LINK.TAUTOLOGY.RECHECK          NIL
+RED.D:LINK.SUBSUMPTION                REMOVE-INHIBIT        RED.D:LINK.SUBSUMPTION.RECHECK        NIL
+
+FAC:INITIAL                           NIL                   FAC:EACH.STEP                         NIL
+
+STR:RESOLUTION                        SET-OF-SUPPORT        STR:E-RESOLUTION                      NIL
+STR:PARAMODULATION                    UNIT-ANCESTRY         STR:LINK.DEPTH                        NIL
+STR:TERM.DEPTH                        NIL                   STR:R.DEMODULATION                    T
+STR:P.DEMODULATION                    T                     STR:INDUCTION                         NIL
+
+TERM:UNITS                            T                     TERM:ITERATIONS                       0.
+TERM:SET.OF.SUPPORT                   NIL                   TERM:BREADTH.FIRST                    NIL
+
+GEN:SPLITTING                         0.                    GEN:MANUAL.CONTROL                    NIL
+GEN:MAXIMUM.STEPS                     NIL                   GEN:GRAPH.SAVING                      NIL
+GEN:SAVE.FILE                         SAVE.DEFAULT
+
+
+TR:PREPROCESSING                      NIL                   TR:STEP.MODE                          LR
+TR:DUMP                               NIL                   TR:CLAUSE.MODE                        I
+TR:LINK.MODE                          I                     TR:TRACE.FILE                         NIL
+TR:TERMINAL                           T
+
+
+PR:INFIX.FORM                         T                     PR:PREFIX.FORM                        NIL
+PR:OPTIONS                            T                     PR:AXIOM.CLAUSES                      NIL
+PR:SYMBOLS                            NIL                   PR:STATISTICS                         NIL
+PR:PROTOCOL                           T                     PR:LEFT.MARGIN                        0.
+PR:LINELENGTH                         120.
+
+
+
+
+FORMULAE GIVEN TO THE EDITOR
+============================
+
+
+AXIOMS   : SORT MENGE,VERKN,ELEMENT,INDEX,INDEXMENGE:ANY
+           TYPE LIDEAL (MENGE MENGE VERKN)
+           TYPE RIDEAL (MENGE MENGE VERKN)
+           TYPE UHG (MENGE MENGE VERKN)
+           TYPE ME (MENGE MENGE)
+           TYPE NICHTLEER (MENGE)
+           TYPE HG (MENGE VERKN)
+           TYPE EL (ELEMENT MENGE)
+           TYPE MINIMAL (MENGE MENGE VERKN)
+           TYPE MPROD (MENGE MENGE VERKN) :MENGE
+           TYPE APPLYV (VERKN ELEMENT ELEMENT) :ELEMENT
+           TYPE F*X (MENGE ELEMENT VERKN) :MENGE
+           TYPE SM (MENGE MENGE) :MENGE
+           TYPE SET (ELEMENT) :MENGE
+           TYPE VER (MENGE MENGE) :MENGE
+           TYPE GR (MENGE VERKN ELEMENT)
+           TYPE INVERS (VERKN ELEMENT) :ELEMENT
+           TYPE MINIMAL-BED-L (MENGE VERKN)
+           TYPE MINIMAL-BED-R (MENGE VERKN)
+           TYPE EL-IND (INDEX INDEXMENGE)
+           TYPE U (INDEX) : MENGE
+           TYPE E (INDEX INDEX) : ELEMENT
+           TYPE NICHTLEER-IND (INDEXMENGE)
+           TYPE GLEICH (MENGE MENGE)
+           TYPE VER-IND (INDEXMENGE) : MENGE
+           TYPE SM-IND (INDEXMENGE) : MENGE
+           TYPE IDEAL (MENGE MENGE VERKN)
+           * RECHENREGEL FUER SM *
+           ALL L1,L2,R1,R2:MENGE SM (SM (R1 L1) SM (R2 L2)) = SM (SM (L1 L2) SM (R1 R2))
+           * LEER + SCHNITTMENGE *
+           ALL M1,M2:MENGE LEER (M1) IMPL LEER (SM (M1 M2)) AND LEER (SM (M2 M1))
+           * EIGENSCHAFT VON SCHNITTMENGEN *
+           ALL M1,M2:MENGE ME (SM (M1 M2) M1) AND ME (SM (M1 M2) M2)
+           * DEFINITION VON MINIMAL *
+           ALL L1,L,F:MENGE  ALL MAL:VERKN  
+             LIDEAL (L F MAL) AND MINIMAL (L F MAL) AND ME (L1 L) AND LIDEAL (L1 F MAL) IMPL L1 = L
+           ALL A,B:MENGE SM (A B) = A IMPL ME (A B)
+           * SATZ 332. *
+           ALL L1,L2,F:MENGE  ALL MAL:VERKN  
+             LIDEAL (L2 F MAL) AND LIDEAL (L1 F MAL) IMPL (LIDEAL (SM (L1 L2) F MAL) OR LEER (SM (L1 L2)))
+
+THEOREMS : ALL L1,L2,R1,R2,F:MENGE  ALL MAL:VERKN  
+                 NOT (L1 = L2)
+                 AND  
+                 HG (F MAL)
+                 AND  
+                 LIDEAL (L1 F MAL)
+                 AND  
+                 MINIMAL (L1 F MAL)
+                 AND  
+                 LIDEAL (L2 F MAL)
+                 AND  
+                 MINIMAL (L2 F MAL)
+                 AND  
+                 RIDEAL (R1 F MAL)
+                 AND  
+                 MINIMAL (R1 F MAL)
+                 AND  
+                 RIDEAL (R2 F MAL)
+                 AND  
+                 MINIMAL (R2 F MAL)
+               IMPL  
+               LEER (SM (SM (R1 L1) SM (R2 L2)))
+
+
+
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+  A1   : ALL X:ANY  + =(X X)
+  A2   : ALL X,Y:MENGE  + ME(SM(Y X) X)
+* A3   : ALL X,Y:MENGE  + ME(SM(Y X) Y)
+* A4   : ALL X,Y,Z,U:MENGE  + =(SM(SM(U Z) SM(Y X)) SM(SM(Z X) SM(U Y)))
+* A5   : ALL X,Y:MENGE  - =(SM(Y X) Y)  + ME(Y X)
+* A6   : ALL X,Y:MENGE  - LEER(Y)  + LEER(SM(X Y))
+  A7   : ALL X,Y:MENGE  - LEER(Y)  + LEER(SM(Y X))
+* A8   : ALL X,Y,Z:MENGE  U:VERKN  - LIDEAL(Z Y U)  - LIDEAL(X Y U)  + LIDEAL(SM(X Z) Y U)  + LEER(SM(X Z))
+* A9   : ALL X,Y,Z:MENGE  U:VERKN  - LIDEAL(Z Y U)  - MINIMAL(Z Y U)  - ME(X Z)  - LIDEAL(X Y U)  + =(X Z)
+
+
+
+
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+* T10  : - =(C_3 C_6)
+  T11  : + HG(C_1 C_2)
+* T12  : + LIDEAL(C_3 C_1 C_2)
+* T13  : + MINIMAL(C_3 C_1 C_2)
+* T14  : + LIDEAL(C_6 C_1 C_2)
+* T15  : + MINIMAL(C_6 C_1 C_2)
+  T16  : + RIDEAL(C_4 C_1 C_2)
+  T17  : + MINIMAL(C_4 C_1 C_2)
+  T18  : + RIDEAL(C_5 C_1 C_2)
+  T19  : + MINIMAL(C_5 C_1 C_2)
+* T20  : - LEER(SM(SM(C_4 C_3) SM(C_5 C_6)))
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+REFUTATION
+
+INITIAL CLAUSES :      A1  : ALL X:ANY  + =(X X)
+                       A2  : ALL X,Y:MENGE  + ME(SM(Y X) X)
+                     * A3  : ALL X,Y:MENGE  + ME(SM(Y X) Y)
+                     * A4  : ALL X,Y,Z,U:MENGE  + =(SM(SM(U Z) SM(Y X)) SM(SM(Z X) SM(U Y)))
+                     * A5  : ALL X,Y:MENGE  - =(SM(Y X) Y)  + ME(Y X)
+                     * A6  : ALL X,Y:MENGE  - LEER(Y)  + LEER(SM(X Y))
+                       A7  : ALL X,Y:MENGE  - LEER(Y)  + LEER(SM(Y X))
+                     * A8  : ALL X,Y,Z:MENGE  U:VERKN  
+                                  - LIDEAL(Z Y U)  - LIDEAL(X Y U)  + LIDEAL(SM(X Z) Y U)  + LEER(SM(X Z))
+                     * A9  : ALL X,Y,Z:MENGE  U:VERKN  
+                                  - LIDEAL(Z Y U)  - MINIMAL(Z Y U)  - ME(X Z)  - LIDEAL(X Y U)  + =(X Z)
+                     * T10 : - =(C_3 C_6)
+                     * T12 : + LIDEAL(C_3 C_1 C_2)
+                     * T13 : + MINIMAL(C_3 C_1 C_2)
+                     * T14 : + LIDEAL(C_6 C_1 C_2)
+                     * T15 : + MINIMAL(C_6 C_1 C_2)
+                     * T20 : - LEER(SM(SM(C_4 C_3) SM(C_5 C_6)))
+
+A4,1 & A2,1     -->    P1  : ALL X,Y,Z,U:MENGE  + ME(SM(SM(U Z) SM(Y X)) SM(X Z))
+
+A4,1 & A2,1     -->    P2  : ALL X,Y,Z,U:MENGE  + ME(SM(SM(U Z) SM(Y X)) SM(U Y))
+
+A4,1 & A3,1     -->    P3  : ALL X,Y,Z,U:MENGE  + ME(SM(SM(U Z) SM(Y X)) SM(Y U))
+
+A4,1 & A3,1     -->    P4  : ALL X,Y,Z,U:MENGE  + ME(SM(SM(U Z) SM(Y X)) SM(Z X))
+
+A4,1 & T20,1    -->    P5  : - LEER(SM(SM(C_3 C_6) SM(C_4 C_5)))
+
+A4,1 & T20,1    -->  * P6  : - LEER(SM(SM(C_5 C_4) SM(C_6 C_3)))
+
+A7,2 & T20,1    -->    R7  : - LEER(SM(C_4 C_3))
+
+A6,2 & T20,1    -->    R8  : - LEER(SM(C_5 C_6))
+
+A7,2 & P5,1     -->    R9  : - LEER(SM(C_3 C_6))
+
+A6,2 & P5,1     -->    R10 : - LEER(SM(C_4 C_5))
+
+A7,2 & P6,1     -->    R11 : - LEER(SM(C_5 C_4))
+
+A6,2 & P6,1     -->  * R12 : - LEER(SM(C_6 C_3))
+
+A7,2 & R12,1    -->    R13 : - LEER(C_6)
+
+T12,1 & A9,1    -->  * R14 : ALL X:MENGE  - MINIMAL(C_3 C_1 C_2)  - ME(X C_3)  - LIDEAL(X C_1 C_2)  + =(X C_3)
+
+R14,1 & T13,1   -->  * R15 : ALL X:MENGE  - ME(X C_3)  - LIDEAL(X C_1 C_2)  + =(X C_3)
+
+T14,1 & R15,2   -->  * R16 : - ME(C_6 C_3)  + =(C_6 C_3)
+
+R16,2 & T10,1   -->  * R17 : - ME(C_6 C_3)
+
+A5,2 & R17,1    -->  * R18 : - =(SM(C_6 C_3) C_6)
+
+R15,3 & A5,1    -->    R19 : ALL X:MENGE  - ME(SM(C_3 X) C_3)  - LIDEAL(SM(C_3 X) C_1 C_2)  + ME(C_3 X)
+
+R19,1 & A3,1    -->    R20 : ALL X:MENGE  - LIDEAL(SM(C_3 X) C_1 C_2)  + ME(C_3 X)
+
+A2,1 & R15,1    -->    R21 : ALL X:MENGE  - LIDEAL(SM(X C_3) C_1 C_2)  + =(SM(X C_3) C_3)
+
+A3,1 & R15,1    -->    R22 : ALL X:MENGE  - LIDEAL(SM(C_3 X) C_1 C_2)  + =(SM(C_3 X) C_3)
+
+T12,1 & A8,1    -->  * R23 : ALL X:MENGE  - LIDEAL(X C_1 C_2)  + LIDEAL(SM(X C_3) C_1 C_2)  + LEER(SM(X C_3))
+
+T14,1 & R23,1   -->  * R24 : + LIDEAL(SM(C_6 C_3) C_1 C_2)  + LEER(SM(C_6 C_3))
+
+R24,2 & R12,1   -->  * R25 : + LIDEAL(SM(C_6 C_3) C_1 C_2)
+
+A9,5 & R18,1    -->  * R26 : - LIDEAL(C_6 C_1 C_2)  - MINIMAL(C_6 C_1 C_2)  - ME(SM(C_6 C_3) C_6)
+                               - LIDEAL(SM(C_6 C_3) C_1 C_2)
+
+R26,4 & R25,1   -->  * R27 : - LIDEAL(C_6 C_1 C_2)  - MINIMAL(C_6 C_1 C_2)  - ME(SM(C_6 C_3) C_6)
+
+R27,3 & A3,1    -->  * R28 : - LIDEAL(C_6 C_1 C_2)  - MINIMAL(C_6 C_1 C_2)
+
+R28,2 & T15,1   -->  * R29 : - LIDEAL(C_6 C_1 C_2)
+
+R29,1 & T14,1   -->  * R30 :  ce
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+  Q. E. D. 

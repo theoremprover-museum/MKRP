@@ -1,0 +1,224 @@
+ 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 4-APR-85                                                      *
+                    *         DATE : 17-JUN-85  22:10:46                                           *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   17-JUN-85 18:52:11
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   K.COMMENT.2.12.2.1
+                                                                        
+************************************************************************
+                                                                        
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : * ***************************************************************************
+           * DEFINITIONEN DER MENGENLEHRE **********************************************
+           SORT SET:ANY
+           SORT ELEMENT:SET
+           TYPE EL(ELEMENT SET)
+           * DEFINITION 1.3: KARTESISCHES PRODUKT
+           TYPE CARTES(SET SET) :SET
+           TYPE PAIR(ELEMENT ELEMENT) :ELEMENT
+           * ***************************************************************************
+           * DEFINTIONEN VON RELATIONEN AUF EINER FESTEN MENGE S ***********************
+           SORT REL:SET
+           TYPE S:SET
+           SORT EL.OF.S:ELEMENT
+           * DEFINITION 2.1: RELATION *************************************************
+           * DEFINITION 2.2: KOMPOSITION ZWEIER RELATIONEN ****************************
+           TYPE COMP(REL REL) :REL
+           *  ALL RHO,SIGMA:REL ALL A:ELEMENT EL (A COMP (RHO SIGMA)) EQV                                               
+           *  (EX B,C,D:EL.OF.S A = PAIR (B D) AND EL (PAIR (B C) RHO) AND EL (PAIR (C D) SIGMA))                       
+           * LEMMA 2,2
+           ALL RHO,SIGMA:REL  ALL A,B:EL.OF.S  
+             EL(PAIR(A B) COMP(RHO SIGMA)) EQV(EX C:EL.OF.S EL(PAIR(A C) RHO) AND EL(PAIR(C B) SIGMA))
+           * DEFINITION 2.6: SYMMETRISCH
+           TYPE SYMMETRISCH(REL)
+           * LEMMA 2,6
+           ALL RHO:REL SYMMETRISCH(RHO) EQV(ALL A,B:EL.OF.S EL(PAIR(A B) RHO) IMPL EL(PAIR(B A) RHO))
+ 
+THEOREMS : ALL RHO,SIGMA:REL         COMP(RHO SIGMA) = COMP(SIGMA RHO) AND SYMMETRISCH(RHO) AND SYMMETRISCH(SIGMA)
+                                IMPL SYMMETRISCH(COMP(RHO SIGMA))
+ 
+ 
+ 
+ 
+CONSTANTS : 
+=========== 
+ 
+| NAME        | SORT                      |            | ATTRIBUTES                                                     
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+| S           | SET                       |            |                                                                
+|
+| C_1         | EL.OF.S                   |            |                                                                
+|
+| C_2         | EL.OF.S                   |            |                                                                
+|
+| C_3         | REL                       |            |                                                                
+|
+| C_4         | REL                       |            |                                                                
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+ 
+ 
+ 
+FUNCTIONS : 
+=========== 
+ 
+| NAME        | DOMAIN                    | RANGE      | ATTRIBUTES                                                     
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+| CARTES      | SET SET                   | SET        |                                                                
+|
+| PAIR        | ELEMENT ELEMENT           | ELEMENT    |                                                                
+|
+| COMP        | REL REL                   | REL        |                                                                
+|
+| F_1         | REL EL.OF.S EL.OF.S REL   | EL.OF.S    |                                                                
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+ 
+ 
+ 
+PREDICATES : 
+============ 
+ 
+| NAME        | DOMAIN                    |            | ATTRIBUTES                                                     
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+| TRUE        |                           |            | DEFINED                                                        
+|
+| FALSE       |                           |            | DEFINED                                                        
+|
+| EL          | ELEMENT SET               |            |                                                                
+|
+| SYMMETRISCH | REL                       |            |                                                                
+|
+| =           | ANY ANY                   |            | DEFINED SYMMETRIC REFLEXIVE SYMMETRIC REFLEXIVE SYMMETRIC      
+|
+|             |                           |            | REFLEXIVE                                                      
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+ 
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+  A1   : ALL X:ANY  + =(X X)
+* A2   : ALL X,Y:REL  Z,U:EL.OF.S  - EL(PAIR(U Z) COMP(Y X))  + EL(PAIR(U F_1(X U Z Y)) Y)
+* A3   : ALL X,Y:REL  Z,U:EL.OF.S  - EL(PAIR(U Z) COMP(Y X))  + EL(PAIR(F_1(X U Z Y) Z) X)
+* A4   : ALL X,Y,Z:EL.OF.S  U,V:REL  + EL(PAIR(Z Y) COMP(V U))  - EL(PAIR(Z X) V)  - EL(PAIR(X Y) U)
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+* T5   : + =(COMP(C_3 C_4) COMP(C_4 C_3))
+* T6   : ALL X,Y:EL.OF.S  - EL(PAIR(Y X) C_3)  + EL(PAIR(X Y) C_3)
+* T7   : ALL X,Y:EL.OF.S  - EL(PAIR(Y X) C_4)  + EL(PAIR(X Y) C_4)
+* T8   : + EL(PAIR(C_1 C_2) COMP(C_3 C_4))
+* T9   : - EL(PAIR(C_2 C_1) COMP(C_3 C_4))
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION
+ 
+INITIAL CLAUSES :      A1  : ALL X:ANY  + =(X X)
+                     * A2  : ALL X,Y:REL  Z,U:EL.OF.S  - EL(PAIR(U Z) COMP(Y X))  + EL(PAIR(U F_1(X U Z Y)) Y)
+                     * A3  : ALL X,Y:REL  Z,U:EL.OF.S  - EL(PAIR(U Z) COMP(Y X))  + EL(PAIR(F_1(X U Z Y) Z) X)
+                     * A4  : ALL X,Y,Z:EL.OF.S  U,V:REL  + EL(PAIR(Z Y) COMP(V U))  - EL(PAIR(Z X) V)  - EL(PAIR(X Y) U)
+                     * T5  : + =(COMP(C_3 C_4) COMP(C_4 C_3))
+                     * T6  : ALL X,Y:EL.OF.S  - EL(PAIR(Y X) C_3)  + EL(PAIR(X Y) C_3)
+                     * T7  : ALL X,Y:EL.OF.S  - EL(PAIR(Y X) C_4)  + EL(PAIR(X Y) C_4)
+                     * T8  : + EL(PAIR(C_1 C_2) COMP(C_3 C_4))
+                     * T9  : - EL(PAIR(C_2 C_1) COMP(C_3 C_4))
+ 
+T8,1 & A2,1     -->    R1  : + EL(PAIR(C_1 F_1(C_4 C_1 C_2 C_3)) C_3)
+ 
+T8,1 & A3,1     -->    R2  : + EL(PAIR(F_1(C_4 C_1 C_2 C_3) C_2) C_4)
+ 
+R1,1 & T6,1     -->    R3  : + EL(PAIR(F_1(C_4 C_1 C_2 C_3) C_1) C_3)
+ 
+T8,1 & A4,3     -->    R4  : + EL(PAIR(F_1(C_4 C_1 C_2 C_3) C_2) COMP(C_3 COMP(C_3 C_4)))
+                               - EL(PAIR(F_1(C_4 C_1 C_2 C_3) C_1) C_3)
+ 
+R4,2 & R3,1     -->    R5  : + EL(PAIR(F_1(C_4 C_1 C_2 C_3) C_2) COMP(C_3 COMP(C_3 C_4)))
+ 
+R1,1 & A4,3     -->    R6  : + EL(PAIR(F_1(C_4 C_1 C_2 C_3) F_1(C_4 C_1 C_2 C_3)) COMP(C_3 C_3))
+                               - EL(PAIR(F_1(C_4 C_1 C_2 C_3) C_1) C_3)
+ 
+R6,2 & R3,1     -->    R7  : + EL(PAIR(F_1(C_4 C_1 C_2 C_3) F_1(C_4 C_1 C_2 C_3)) COMP(C_3 C_3))
+ 
+R3,1 & A4,3     -->    R8  : + EL(PAIR(C_1 C_1) COMP(C_3 C_3))  - EL(PAIR(C_1 F_1(C_4 C_1 C_2 C_3)) C_3)
+ 
+R8,2 & R1,1     -->    R9  : + EL(PAIR(C_1 C_1) COMP(C_3 C_3))
+ 
+T5,1 & T8,1     -->  * P10 : + EL(PAIR(C_1 C_2) COMP(C_4 C_3))
+ 
+P10,1 & A3,1    -->  * R11 : + EL(PAIR(F_1(C_3 C_1 C_2 C_4) C_2) C_3)
+ 
+R11,1 & T6,1    -->  * R12 : + EL(PAIR(C_2 F_1(C_3 C_1 C_2 C_4)) C_3)
+ 
+P10,1 & A2,1    -->  * R13 : + EL(PAIR(C_1 F_1(C_3 C_1 C_2 C_4)) C_4)
+ 
+R13,1 & T7,1    -->  * R14 : + EL(PAIR(F_1(C_3 C_1 C_2 C_4) C_1) C_4)
+ 
+R14,1 & A4,3    -->  * R15 : + EL(PAIR(C_2 C_1) COMP(C_3 C_4))  - EL(PAIR(C_2 F_1(C_3 C_1 C_2 C_4)) C_3)
+ 
+R15,2 & R12,1   -->  * R16 : + EL(PAIR(C_2 C_1) COMP(C_3 C_4))
+ 
+R16,1 & T9,1    -->  * R17 :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+STOP
+ 

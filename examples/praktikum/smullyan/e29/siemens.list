@@ -1,0 +1,27 @@
+***********************************************************************************ATP-SYSTEM:MARKGRAFKARLREFUTATION
+PROCEDURE,UNIKAISERSLAUTERN****VERSION:5-NOV-84**DATE:9-DEC-8421:34:07***
+********************************************************************************
+*************************************************************************EDIT:AXIOMSANDTHEOREMSEDITED:9-DEC-8421:32:21
+*************************************************************************FORMULAEGIVENTOTHEEDITOR
+============================AXIOMS:*AXIOMSFORPROBLEM29%.**THEREARETWOPERSONS,AANDB*ASAYS:EITHERIAMAKNAVEORBISAKNIGHT**
+WHATAREAANDB**EITHER(X)MEANSXSAYS,EITHERIAMAKNAVEORBISAKNIGHT*ALLXKNIGHT(X)EQVNOTKNAVE(X)ALLXKNIGHT(X)ANDEITHER(X)IMPL
+KNAVE(X)ORKNIGHT(B)ALLXKNAVE(X)ANDEITHER(X)IMPLNOT(KNAVE (X) OR KNIGHT (B))EITHER(A)THEOREMS:*THEOREMSOFPROBLEME29(
+SMULLYAN)**WETRYALLPOSSIBLECASESKNIGHT(A)ANDKNAVE(A)ANDKNIGHT(B)ANDKNAVE(B)SETOFAXIOMCLAUSESRESULTINGFROMNORMALIZATION
+=================================================*A1:+EITHER(A)*A2:ALLX:ANY-KNAVE(X)-EITHER(X)-KNAVE(X)A3:ALLX:ANY-KNAVE(
+X)-EITHER(X)+KNAVE(B)*A4:ALLX:ANY+KNAVE(X)-EITHER(X)+KNAVE(X)-KNAVE(B)OPERATIONSONAXIOMS====================A21=3--NIL*
+D1:ALLX:ANY-KNAVE(X)-EITHER(X)A41=3--NIL*D2:ALLX:ANY+KNAVE(X)-EITHER(X)-KNAVE(B)D2,1&D1,1--NIL*R3:ALLX:ANY-EITHER(X)-
+KNAVE(B)-EITHER(X)R31=3--NIL*D4:ALLX:ANY-EITHER(X)-KNAVE(B)D4,1&A1,1--NIL*R5:-KNAVE(B)SETOFTHEOREMCLAUSESRESULTINGFROM
+NORMALIZATIONANDSPLITTING=================================================================SPLITPART1*T5:+KNAVE(A)
+SPLITPART2T6:-KNAVE(A)SPLITPART3*T7:+KNAVE(B)SPLITPART4T8:-KNAVE(B)INITIALOPERATIONSONTHEOREMS
+==============================SPLITPART1:T5,1&D1,1--NIL*R6:-EITHER(A)R6,1&A1,1--NIL*R7:[]SPLITPART3:T7,1&R5,1--NIL*R8:[]
+------------------------------------------------------------------------------------------------------------------------
+REFUTATIONOFSPLITPART1INITIALCLAUSES:
+------------------------------------------------------------------------------------------------------------------------
+REFUTATIONOFSPLITPART2(FAILURE : GRAPH.COLLAPSED)INITIALCLAUSES:
+------------------------------------------------------------------------------------------------------------------------
+REFUTATIONOFSPLITPART3INITIALCLAUSES:
+------------------------------------------------------------------------------------------------------------------------
+REFUTATIONOFSPLITPART4(FAILURE : GRAPH.COLLAPSED)INITIALCLAUSES:
+------------------------------------------------------------------------------------------------------------------------
+THETHEOREM(S)COULDNOTBEPROVED.REFUTATIONOFPROOF.PART(S)24FAILEDREFUTATIONOFSPLITPART(S)24FAILEDSTOP
+ 

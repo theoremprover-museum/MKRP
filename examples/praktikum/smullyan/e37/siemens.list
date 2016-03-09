@@ -1,0 +1,32 @@
+***********************************************************************************ATP-SYSTEM:MARKGRAFKARLREFUTATION
+PROCEDURE,UNIKAISERSLAUTERN****VERSION:5-NOV-84**DATE:30-NOV-8421:23:31***
+********************************************************************************
+*************************************************************************EDIT:AXIOMSANDTHEOREMSEDITED:28-NOV-8419:23:02
+*************************************************************************FORMULAEGIVENTOTHEEDITOR
+============================AXIOMS:*AXIOMSOFPROBLEM37*THEREARETWOPEOPLEAANDB.*YOUASKA:ISBAKNIGHT?*THENYOUASKB:ISAAKNIGHT
+?*ARETHEANSWERSTHESAME?**YES(X Y)MEANS:XSAYS:YISAKNIGHT.*NO(X Y)MEANS:XSAYS:YISNOTAKNIGHT.ALLX,YYES(X Y)EQVNOTNO(X
+Y)ALLX,YYES(X Y)ANDKNIGHT(X)IMPLKNIGHT(Y)ALLX,YYES(X Y)ANDKNAVE(X)IMPLKNAVE(Y)ALLX,YNO(X Y)ANDKNIGHT(X)IMPLKNAVE(Y)ALL
+X,YNO(X Y)ANDKNAVE(X)IMPLKNIGHT(Y)ALLXKNIGHT(X)EQVNOTKNAVE(X)THEOREMS:YES(A B)IMPLYES(B A)NO(A B)IMPLNO(B A)CONSTANTS:
+===========|NAME|SORT||ATTRIBUTES|------------------------------------------------|A|ANY||||B|ANY|||
+------------------------------------------------PREDICATES:============|NAME|DOMAIN||ATTRIBUTES|
+------------------------------------------------|TRUE|||DEFINED||FALSE|||DEFINED||YES|ANYANY||||NO|ANYANY||||KNIGHT|ANY|
+|||KNAVE|ANY|||------------------------------------------------SETOFAXIOMCLAUSESRESULTINGFROMNORMALIZATION
+=================================================*A1:ALLX,Y:ANY+NO(Y X)+KNAVE(Y)-KNAVE(X)*A2:ALLX,Y:ANY+NO(Y X)-KNAVE(Y)
++KNAVE(X)*A3:ALLX,Y:ANY-NO(Y X)+KNAVE(Y)+KNAVE(X)*A4:ALLX,Y:ANY-NO(Y X)-KNAVE(Y)-KNAVE(X)SETOFTHEOREMCLAUSESRESULTING
+FROMNORMALIZATIONANDSPLITTING=================================================================SPLITPART1*T5:-NO(A
+B)*T6:+NO(B A)SPLITPART2*T7:+NO(A B)*T8:-NO(B A)
+------------------------------------------------------------------------------------------------------------------------
+REFUTATIONOFSPLITPART1INITIALCLAUSES:*A1:ALLX,Y:ANY+NO(Y X)+KNAVE(Y)-KNAVE(X)*A2:ALLX,Y:ANY+NO(Y X)-KNAVE(Y)+KNAVE(X)*A3
+:ALLX,Y:ANY-NO(Y X)+KNAVE(Y)+KNAVE(X)*A4:ALLX,Y:ANY-NO(Y X)-KNAVE(Y)-KNAVE(X)*T5:-NO(A B)*T6:+NO(B A)T6,1&A3,1--NIL*R1:+
+KNAVE(B)+KNAVE(A)R1,2&A2,2--NIL*R2:+KNAVE(B)+NO(A B)+KNAVE(B)R21=3--NIL*D3:+KNAVE(B)+NO(A B)D3,2&T5,1--NIL*R4:+KNAVE(B)
+T6,1&A4,1--NIL*R5:-KNAVE(B)-KNAVE(A)R5,2&A1,2--NIL*R6:-KNAVE(B)+NO(A B)-KNAVE(B)R6,2&T5,1--NIL*R7:-KNAVE(B)-KNAVE(B)R7,2
+&R4,1--NIL*R8:-KNAVE(B)R8,1&R4,1--NIL*R9:[]
+------------------------------------------------------------------------------------------------------------------------
+REFUTATIONOFSPLITPART2INITIALCLAUSES:*A1:ALLX,Y:ANY+NO(Y X)+KNAVE(Y)-KNAVE(X)*A2:ALLX,Y:ANY+NO(Y X)-KNAVE(Y)+KNAVE(X)*A3
+:ALLX,Y:ANY-NO(Y X)+KNAVE(Y)+KNAVE(X)*A4:ALLX,Y:ANY-NO(Y X)-KNAVE(Y)-KNAVE(X)*T7:+NO(A B)*T8:-NO(B A)A1,1&T8,1--NIL*R10:
++KNAVE(B)-KNAVE(A)R10,2&A3,2--NIL*R11:+KNAVE(B)-NO(A B)+KNAVE(B)R111=3--NIL*D12:+KNAVE(B)-NO(A B)D12,2&T7,1--NIL*R13:+
+KNAVE(B)A2,1&T8,1--NIL*R14:-KNAVE(B)+KNAVE(A)R14,2&A4,2--NIL*R15:-KNAVE(B)-NO(A B)-KNAVE(B)R15,2&T7,1--NIL*R16:-KNAVE(B)
+-KNAVE(B)R16,2&R13,1--NIL*R17:-KNAVE(B)R17,1&R13,1--NIL*R18:[]
+------------------------------------------------------------------------------------------------------------------------
+Q.E.D.STOP
+ 

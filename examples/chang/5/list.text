@@ -1,0 +1,106 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 34.8 EQUALITY 16.1                                  *
+                     *           DATE: 13-DEC,1989  01:00                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 13-DEC,1989 00:59 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * IF S IS A NONEMPTY SUBSET OF A GROUP SUCH THAT IF X,Y BELONG TO S,
+             * THEN XY**-1 BELONGS TO S, THEN THE IDENTITY E BELONGS TO S.
+             ALL X P (I (X) X E)
+             ALL X P (X I (X) E)
+             ALL X P (E X X)
+             ALL X P (X E X)
+             S (A)
+             ALL X,Y,Z S (X) AND S (Y) AND P (X I (Y) Z) IMPL S (Z)
+             ALL U,V,W,X,Y,Z P (X Y U) AND P (Y Z V) AND P (U Z W) IMPL P (X V W)
+             ALL U,V,W,X,Y,Z P (X Y U) AND P (Y Z V) AND P (X V W) IMPL P (U Z W)
+             
+   Theorems: S (E)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + P(i(x) x e)
+           * A2:   All x:Any + P(x i(x) e)
+             A3:   All x:Any + P(e x x)
+             A4:   All x:Any + P(x e x)
+           * A5:   + S(a)
+           * A6:   All x,y,z:Any - S(z)  - S(y)  - P(z i(y) x)  + S(x)
+             A7:   All x,y,z,u,v,w:Any - P(w v u)  - P(v z y)  - P(u z x)  + P(w y x)
+             A8:   All x,y,z,u,v,w:Any - P(w v u)  - P(v z y)  - P(w y x)  + P(u z x)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T9: - S(e)
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:    A1:  All x:Any + P(i(x) x e)
+                     * A2:  All x:Any + P(x i(x) e)
+                       A3:  All x:Any + P(e x x)
+                       A4:  All x:Any + P(x e x)
+                     * A5:  + S(a)
+                     * A6:  All x,y,z:Any - S(z)  - S(y)  - P(z i(y) x)  + S(x)
+                       A7:  All x,y,z,u,v,w:Any - P(w v u)  - P(v z y)  - P(u z x)  + P(w y x)
+                       A8:  All x,y,z,u,v,w:Any - P(w v u)  - P(v z y)  - P(w y x)  + P(u z x)
+                     * T9:  - S(e)
+                     
+
+   
+   A2,1 & A6,3  -->  * R1:  - S(a)  - S(a)  + S(e)
+   
+   R1,2 & A5,1  -->  * R2:  - S(a)  + S(e)
+   
+   R2,1 & A5,1  -->  * R3:  + S(e)
+   
+   R3,1 & T9,1  -->  * R4:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 5 seconds

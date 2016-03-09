@@ -1,0 +1,233 @@
+;;; -*- Package: MKRP; Base: 10; Mode: text; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: Unix                                                     *
+                     *           DATE: 08-JUL,1992  21:39                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 08-APR,1992 21:01 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * AXIOMS *
+             (ALL X W (X) IMPL A (X)) AND (EX X W (X))
+             (ALL X F (X) IMPL A (X)) AND (EX X F (X))
+             (ALL X B (X) IMPL A (X)) AND (EX X B (X))
+             (ALL X C (X) IMPL A (X)) AND (EX X C (X))
+             (ALL X S (X) IMPL A (X)) AND (EX X S (X))
+             (EX X G (X)) AND (ALL X G (X) IMPL P (X))
+             ALL X A (X)
+                   IMPL (ALL Y P (Y) IMPL E (X Y)) OR (ALL Y (A (Y) AND SM (Y X) AND (EX Z P (Z) AND E (Y Z))) IMPL E (X Y))
+             ALL X,Y B (Y) AND (S (X) OR C (X)) IMPL SM (X Y)
+             ALL X,Y B (X) AND F (Y) IMPL SM (X Y)
+             ALL X,Y F (X) AND W (Y) IMPL SM (X Y)
+             ALL X,Y W (X) AND (F (Y) OR G (Y)) IMPL NOT E (X Y)
+             ALL X,Y B (X) AND C (Y) IMPL E (X Y)
+             ALL X,Y B (X) AND S (Y) IMPL NOT E (X Y)
+             ALL X C (X) OR S (X) IMPL (EX Y P (Y) AND E (X Y))
+             
+   Theorems: * THEOREMS *
+             EX X,Y A (X) AND A (Y) AND (EX Z G (Z) AND E (Y Z) AND E (X Y))
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+           * A2:   + W(c_1)
+           * A3:   + F(c_2)
+           * A4:   + B(c_3)
+             A5:   + C(c_4)
+           * A6:   + S(c_5)
+           * A7:   + G(c_6)
+           * A8:   All x:Any - W(x)  + A(x)
+           * A9:   All x:Any - F(x)  + A(x)
+           * A10:  All x:Any - B(x)  + A(x)
+             A11:  All x:Any - C(x)  + A(x)
+           * A12:  All x:Any - S(x)  + A(x)
+           * A13:  All x:Any - G(x)  + P(x)
+             A14:  All x:Any - C(x)  + P(f_1(x))
+             A15:  All x:Any - C(x)  + E(x f_1(x))
+           * A16:  All x:Any - S(x)  + P(f_1(x))
+           * A17:  All x:Any - S(x)  + E(x f_1(x))
+           * A18:  All x,y:Any - B(y)  - S(x)  + SM(x y)
+             A19:  All x,y:Any - B(y)  - C(x)  + SM(x y)
+           * A20:  All x,y:Any - B(y)  - F(x)  + SM(y x)
+           * A21:  All x,y:Any - F(y)  - W(x)  + SM(y x)
+           * A22:  All x,y:Any - W(y)  - F(x)  - E(y x)
+           * A23:  All x,y:Any - W(y)  - G(x)  - E(y x)
+             A24:  All x,y:Any - B(y)  - C(x)  + E(y x)
+           * A25:  All x,y:Any - B(y)  - S(x)  - E(y x)
+           * A26:  All x,y,z,u:Any - A(u)  - P(z)  + E(u z)  - A(y)  - SM(y u)  - P(x)  - E(y x)  + E(u y)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T27: All x,y,z:Any - A(z)  - A(y)  - G(x)  - E(y x)  - E(z y)
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:     A1:   All x:Any + =(x x)
+                      * A2:   + W(c_1)
+                      * A3:   + F(c_2)
+                      * A4:   + B(c_3)
+                        A5:   + C(c_4)
+                      * A6:   + S(c_5)
+                      * A7:   + G(c_6)
+                      * A8:   All x:Any - W(x)  + A(x)
+                      * A9:   All x:Any - F(x)  + A(x)
+                      * A10:  All x:Any - B(x)  + A(x)
+                        A11:  All x:Any - C(x)  + A(x)
+                      * A12:  All x:Any - S(x)  + A(x)
+                      * A13:  All x:Any - G(x)  + P(x)
+                        A14:  All x:Any - C(x)  + P(f_1(x))
+                        A15:  All x:Any - C(x)  + E(x f_1(x))
+                      * A16:  All x:Any - S(x)  + P(f_1(x))
+                      * A17:  All x:Any - S(x)  + E(x f_1(x))
+                      * A18:  All x,y:Any - B(y)  - S(x)  + SM(x y)
+                        A19:  All x,y:Any - B(y)  - C(x)  + SM(x y)
+                      * A20:  All x,y:Any - B(y)  - F(x)  + SM(y x)
+                      * A21:  All x,y:Any - F(y)  - W(x)  + SM(y x)
+                      * A22:  All x,y:Any - W(y)  - F(x)  - E(y x)
+                      * A23:  All x,y:Any - W(y)  - G(x)  - E(y x)
+                        A24:  All x,y:Any - B(y)  - C(x)  + E(y x)
+                      * A25:  All x,y:Any - B(y)  - S(x)  - E(y x)
+                      * A26:  All x,y,z,u:Any - A(u)  - P(z)  + E(u z)  - A(y)  - SM(y u)  - P(x)  - E(y x)
+                                              + E(u y)
+                      * T27:  All x,y,z:Any - A(z)  - A(y)  - G(x)  - E(y x)  - E(z y)
+                      
+
+   
+   A4,1 & A18,1   --> * R1:   - S(c_5)  + SM(c_5 c_3)
+   
+   R1,1 & A6,1    --> * R2:   + SM(c_5 c_3)
+   
+   A6,1 & A16,1   --> * R3:   + P(f_1(c_5))
+   
+   A6,1 & A17,1   --> * R4:   + E(c_5 f_1(c_5))
+   
+   A6,1 & A25,2   --> * R5:   - B(c_3)  - E(c_3 c_5)
+   
+   R5,1 & A4,1    --> * R6:   - E(c_3 c_5)
+   
+   A6,1 & A12,1   --> * R7:   + A(c_5)
+   
+   A7,1 & A13,1   --> * R8:   + P(c_6)
+   
+   A4,1 & A10,1   --> * R9:   + A(c_3)
+   
+   R9,1 & A26,1   --> * R10:  - P(c_6)  + E(c_3 c_6)  - A(c_5)  - SM(c_5 c_3)  - P(f_1(c_5))  - E(c_5 f_1(c_5))
+                              + E(c_3 c_5)
+   
+   R10,1 & R8,1   --> * R11:  + E(c_3 c_6)  - A(c_5)  - SM(c_5 c_3)  - P(f_1(c_5))  - E(c_5 f_1(c_5))  + E(c_3 c_5)
+   
+   R11,2 & R7,1   --> * R12:  + E(c_3 c_6)  - SM(c_5 c_3)  - P(f_1(c_5))  - E(c_5 f_1(c_5))  + E(c_3 c_5)
+   
+   R12,5 & R6,1   --> * R13:  + E(c_3 c_6)  - SM(c_5 c_3)  - P(f_1(c_5))  - E(c_5 f_1(c_5))
+   
+   R13,4 & R4,1   --> * R14:  + E(c_3 c_6)  - SM(c_5 c_3)  - P(f_1(c_5))
+   
+   R14,3 & R3,1   --> * R15:  + E(c_3 c_6)  - SM(c_5 c_3)
+   
+   R15,2 & R2,1   --> * R16:  + E(c_3 c_6)
+   
+   A4,1 & A20,1   --> * R17:  - F(c_2)  + SM(c_3 c_2)
+   
+   R17,1 & A3,1   --> * R18:  + SM(c_3 c_2)
+   
+   A3,1 & A21,1   --> * R19:  - W(c_1)  + SM(c_2 c_1)
+   
+   R19,1 & A2,1   --> * R20:  + SM(c_2 c_1)
+   
+   A7,1 & A23,2   --> * R21:  - W(c_1)  - E(c_1 c_6)
+   
+   R21,1 & A2,1   --> * R22:  - E(c_1 c_6)
+   
+   A2,1 & A8,1    --> * R23:  + A(c_1)
+   
+   A3,1 & A9,1    --> * R24:  + A(c_2)
+   
+   A3,1 & A22,2   --> * R25:  - W(c_1)  - E(c_1 c_2)
+   
+   R25,1 & A2,1   --> * R26:  - E(c_1 c_2)
+   
+   A26,8 & R26,1  --> * R27:  - A(c_1)  - P(c_6)  + E(c_1 c_6)  - A(c_2)  - SM(c_2 c_1)  - P(c_6)  - E(c_2 c_6)
+   
+   R27,4 & R24,1  --> * R28:  - A(c_1)  - P(c_6)  + E(c_1 c_6)  - SM(c_2 c_1)  - P(c_6)  - E(c_2 c_6)
+   
+   R28 2=5        --> * D29:  - A(c_1)  - P(c_6)  + E(c_1 c_6)  - SM(c_2 c_1)  - E(c_2 c_6)
+   
+   D29,1 & R23,1  --> * R30:  - P(c_6)  + E(c_1 c_6)  - SM(c_2 c_1)  - E(c_2 c_6)
+   
+   R30,1 & R8,1   --> * R31:  + E(c_1 c_6)  - SM(c_2 c_1)  - E(c_2 c_6)
+   
+   R31,1 & R22,1  --> * R32:  - SM(c_2 c_1)  - E(c_2 c_6)
+   
+   R32,1 & R20,1  --> * R33:  - E(c_2 c_6)
+   
+   R9,1 & T27,2   --> * R34:  - A(c_2)  - G(c_6)  - E(c_3 c_6)  - E(c_2 c_3)
+   
+   R34,1 & R24,1  --> * R35:  - G(c_6)  - E(c_3 c_6)  - E(c_2 c_3)
+   
+   R35,1 & A7,1   --> * R36:  - E(c_3 c_6)  - E(c_2 c_3)
+   
+   R36,1 & R16,1  --> * R37:  - E(c_2 c_3)
+   
+   A26,8 & R37,1  --> * R38:  - A(c_2)  - P(c_6)  + E(c_2 c_6)  - A(c_3)  - SM(c_3 c_2)  - P(c_6)  - E(c_3 c_6)
+   
+   R38,6 & R8,1   --> * R39:  - A(c_2)  - P(c_6)  + E(c_2 c_6)  - A(c_3)  - SM(c_3 c_2)  - E(c_3 c_6)
+   
+   R39,4 & R9,1   --> * R40:  - A(c_2)  - P(c_6)  + E(c_2 c_6)  - SM(c_3 c_2)  - E(c_3 c_6)
+   
+   R40,1 & R24,1  --> * R41:  - P(c_6)  + E(c_2 c_6)  - SM(c_3 c_2)  - E(c_3 c_6)
+   
+   R41,1 & R8,1   --> * R42:  + E(c_2 c_6)  - SM(c_3 c_2)  - E(c_3 c_6)
+   
+   R42,1 & R33,1  --> * R43:  - SM(c_3 c_2)  - E(c_3 c_6)
+   
+   R43,1 & R18,1  --> * R44:  - E(c_3 c_6)
+   
+   R44,1 & R16,1  --> * R45:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 10 seconds

@@ -1,0 +1,649 @@
+;;; -*- Package: MKRP; Base: 10; Mode: text; Syntax: Common-lisp -*-
+
+
+
+                  ******************************************************************************
+                  *                                                                            *
+                  *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN     *
+                  *                                                                            *
+                  *        VERSION: Unix                                                       *
+                  *           DATE: 20-AUG,1993  14:25                                         *
+                  *                                                                            *
+                  ******************************************************************************
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+Edit:     Axioms and Theorems edited: 09-NOV,1990 11:43 
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+          Formulae Given to the Editor
+          ============================
+
+
+Axioms:   NIL  
+          
+Theorems: ((EX X ALL Y P (X) EQV P (Y)) EQV ((EX X Q (X)) EQV (ALL Y P (Y))))
+          EQV ((EX X ALL Y Q (X) EQV Q (Y)) EQV ((EX X P (X)) EQV (ALL Y Q (Y))))
+          
+
+
+
+
+
+          Set of Theorem Clauses Resulting from Normalization
+          ===================================================
+
+          T1: All x:Any + =(x x)
+        * T2: All x,y,z,u:Any - P(u)  - P(f_1(u))  - Q(z)  - P(c_1)  - Q(y)  - Q(f_2(y))  - P(x)  - Q(c_6)
+          T3: All x,y,z,u:Any - P(u)  - P(f_1(u))  - Q(z)  - P(c_1)  - Q(y)  - Q(f_2(y))  + P(c_7)  + Q(x)
+          T4: All x,y,z,u:Any - P(u)  - P(f_1(u))  - Q(z)  - P(c_1)  + Q(y)  + Q(f_2(y))  - P(x)  - Q(c_6)
+          T5: All x,y,z,u:Any - P(u)  - P(f_1(u))  - Q(z)  - P(c_1)  + Q(y)  + Q(f_2(y))  + P(c_7)  + Q(x)
+          T6: All x,y,z:Any - P(z)  - P(f_1(z))  - Q(y)  - P(c_1)  + Q(c_8)  - Q(x)  + P(c_9)  - Q(c_10)
+        * T7: All x,y,z,u,v:Any - P(v)  - P(f_1(v))  - Q(u)  - P(c_1)  + Q(c_8)  - Q(z)  - P(y)  + Q(x)
+          T8: All x,y,z:Any - P(z)  - P(f_1(z))  - Q(y)  - P(c_1)  - Q(c_8)  + Q(x)  + P(c_9)  - Q(c_10)
+        * T9: All x,y,z,u,v:Any - P(v)  - P(f_1(v))  - Q(u)  - P(c_1)  - Q(c_8)  + Q(z)  - P(y)  + Q(x)
+          T10: All x,y,z,u:Any - P(u)  - P(f_1(u))  + Q(c_2)  + P(z)  - Q(y)  - Q(f_2(y))  - P(x)  - Q(c_6)
+          T11: All x,y,z,u:Any - P(u)  - P(f_1(u))  + Q(c_2)  + P(z)  - Q(y)  - Q(f_2(y))  + P(c_7)  + Q(x)
+          T12: All x,y,z,u:Any - P(u)  - P(f_1(u))  + Q(c_2)  + P(z)  + Q(y)  + Q(f_2(y))  - P(x)  - Q(c_6)
+          T13: All x,y,z,u:Any - P(u)  - P(f_1(u))  + Q(c_2)  + P(z)  + Q(y)  + Q(f_2(y))  + P(c_7)  + Q(x)
+          T14: All x,y,z:Any - P(z)  - P(f_1(z))  + Q(c_2)  + P(y)  + Q(c_8)  - Q(x)  + P(c_9)  - Q(c_10)
+          T15: All x,y,z,u,v:Any - P(v)  - P(f_1(v))  + Q(c_2)  + P(u)  + Q(c_8)  - Q(z)  - P(y)  + Q(x)
+          T16: All x,y,z:Any - P(z)  - P(f_1(z))  + Q(c_2)  + P(y)  - Q(c_8)  + Q(x)  + P(c_9)  - Q(c_10)
+          T17: All x,y,z,u,v:Any - P(v)  - P(f_1(v))  + Q(c_2)  + P(u)  - Q(c_8)  + Q(z)  - P(y)  + Q(x)
+          T18: All x,y,z,u:Any + P(u)  + P(f_1(u))  - Q(z)  - P(c_1)  - Q(y)  - Q(f_2(y))  - P(x)  - Q(c_6)
+          T19: All x,y,z,u:Any + P(u)  + P(f_1(u))  - Q(z)  - P(c_1)  - Q(y)  - Q(f_2(y))  + P(c_7)  + Q(x)
+          T20: All x,y,z,u:Any + P(u)  + P(f_1(u))  - Q(z)  - P(c_1)  + Q(y)  + Q(f_2(y))  - P(x)  - Q(c_6)
+          T21: All x,y,z,u:Any + P(u)  + P(f_1(u))  - Q(z)  - P(c_1)  + Q(y)  + Q(f_2(y))  + P(c_7)  + Q(x)
+          T22: All x,y,z:Any + P(z)  + P(f_1(z))  - Q(y)  - P(c_1)  + Q(c_8)  - Q(x)  + P(c_9)  - Q(c_10)
+          T23: All x,y,z,u,v:Any + P(v)  + P(f_1(v))  - Q(u)  - P(c_1)  + Q(c_8)  - Q(z)  - P(y)  + Q(x)
+          T24: All x,y,z:Any + P(z)  + P(f_1(z))  - Q(y)  - P(c_1)  - Q(c_8)  + Q(x)  + P(c_9)  - Q(c_10)
+          T25: All x,y,z,u,v:Any + P(v)  + P(f_1(v))  - Q(u)  - P(c_1)  - Q(c_8)  + Q(z)  - P(y)  + Q(x)
+          T26: All x,y,z,u:Any + P(u)  + P(f_1(u))  + Q(c_2)  + P(z)  - Q(y)  - Q(f_2(y))  - P(x)  - Q(c_6)
+          T27: All x,y,z,u:Any + P(u)  + P(f_1(u))  + Q(c_2)  + P(z)  - Q(y)  - Q(f_2(y))  + P(c_7)  + Q(x)
+          T28: All x,y,z,u:Any + P(u)  + P(f_1(u))  + Q(c_2)  + P(z)  + Q(y)  + Q(f_2(y))  - P(x)  - Q(c_6)
+        * T29: All x,y,z,u:Any + P(u)  + P(f_1(u))  + Q(c_2)  + P(z)  + Q(y)  + Q(f_2(y))  + P(c_7)  + Q(x)
+          T30: All x,y,z:Any + P(z)  + P(f_1(z))  + Q(c_2)  + P(y)  + Q(c_8)  - Q(x)  + P(c_9)  - Q(c_10)
+          T31: All x,y,z,u,v:Any + P(v)  + P(f_1(v))  + Q(c_2)  + P(u)  + Q(c_8)  - Q(z)  - P(y)  + Q(x)
+          T32: All x,y,z:Any + P(z)  + P(f_1(z))  + Q(c_2)  + P(y)  - Q(c_8)  + Q(x)  + P(c_9)  - Q(c_10)
+          T33: All x,y,z,u,v:Any + P(v)  + P(f_1(v))  + Q(c_2)  + P(u)  - Q(c_8)  + Q(z)  - P(y)  + Q(x)
+          T34: All x,y,z:Any + P(c_3)  - P(z)  + Q(c_4)  - P(c_5)  - Q(y)  - Q(f_2(y))  - P(x)  - Q(c_6)
+          T35: All x,y,z:Any + P(c_3)  - P(z)  + Q(c_4)  - P(c_5)  - Q(y)  - Q(f_2(y))  + P(c_7)  + Q(x)
+          T36: All x,y,z:Any + P(c_3)  - P(z)  + Q(c_4)  - P(c_5)  + Q(y)  + Q(f_2(y))  - P(x)  - Q(c_6)
+          T37: All x,y,z:Any + P(c_3)  - P(z)  + Q(c_4)  - P(c_5)  + Q(y)  + Q(f_2(y))  + P(c_7)  + Q(x)
+          T38: All x,y:Any + P(c_3)  - P(y)  + Q(c_4)  - P(c_5)  + Q(c_8)  - Q(x)  + P(c_9)  - Q(c_10)
+          T39: All x,y,z,u:Any + P(c_3)  - P(u)  + Q(c_4)  - P(c_5)  + Q(c_8)  - Q(z)  - P(y)  + Q(x)
+          T40: All x,y:Any + P(c_3)  - P(y)  + Q(c_4)  - P(c_5)  - Q(c_8)  + Q(x)  + P(c_9)  - Q(c_10)
+          T41: All x,y,z,u:Any + P(c_3)  - P(u)  + Q(c_4)  - P(c_5)  - Q(c_8)  + Q(z)  - P(y)  + Q(x)
+        * T42: All x,y,z,u,v:Any + P(c_3)  - P(v)  - Q(u)  + P(z)  - Q(y)  - Q(f_2(y))  - P(x)  - Q(c_6)
+          T43: All x,y,z,u,v:Any + P(c_3)  - P(v)  - Q(u)  + P(z)  - Q(y)  - Q(f_2(y))  + P(c_7)  + Q(x)
+          T44: All x,y,z,u,v:Any + P(c_3)  - P(v)  - Q(u)  + P(z)  + Q(y)  + Q(f_2(y))  - P(x)  - Q(c_6)
+          T45: All x,y,z,u,v:Any + P(c_3)  - P(v)  - Q(u)  + P(z)  + Q(y)  + Q(f_2(y))  + P(c_7)  + Q(x)
+          T46: All x,y,z,u:Any + P(c_3)  - P(u)  - Q(z)  + P(y)  + Q(c_8)  - Q(x)  + P(c_9)  - Q(c_10)
+        * T47: All x,y,z,u,v,w:Any + P(c_3)  - P(w)  - Q(v)  + P(u)  + Q(c_8)  - Q(z)  - P(y)  + Q(x)
+          T48: All x,y,z,u:Any + P(c_3)  - P(u)  - Q(z)  + P(y)  - Q(c_8)  + Q(x)  + P(c_9)  - Q(c_10)
+        * T49: All x,y,z,u,v,w:Any + P(c_3)  - P(w)  - Q(v)  + P(u)  - Q(c_8)  + Q(z)  - P(y)  + Q(x)
+          T50: All x,y,z:Any - P(c_3)  + P(z)  + Q(c_4)  - P(c_5)  - Q(y)  - Q(f_2(y))  - P(x)  - Q(c_6)
+          T51: All x,y,z:Any - P(c_3)  + P(z)  + Q(c_4)  - P(c_5)  - Q(y)  - Q(f_2(y))  + P(c_7)  + Q(x)
+          T52: All x,y,z:Any - P(c_3)  + P(z)  + Q(c_4)  - P(c_5)  + Q(y)  + Q(f_2(y))  - P(x)  - Q(c_6)
+          T53: All x,y,z:Any - P(c_3)  + P(z)  + Q(c_4)  - P(c_5)  + Q(y)  + Q(f_2(y))  + P(c_7)  + Q(x)
+          T54: All x,y:Any - P(c_3)  + P(y)  + Q(c_4)  - P(c_5)  + Q(c_8)  - Q(x)  + P(c_9)  - Q(c_10)
+          T55: All x,y,z,u:Any - P(c_3)  + P(u)  + Q(c_4)  - P(c_5)  + Q(c_8)  - Q(z)  - P(y)  + Q(x)
+          T56: All x,y:Any - P(c_3)  + P(y)  + Q(c_4)  - P(c_5)  - Q(c_8)  + Q(x)  + P(c_9)  - Q(c_10)
+          T57: All x,y,z,u:Any - P(c_3)  + P(u)  + Q(c_4)  - P(c_5)  - Q(c_8)  + Q(z)  - P(y)  + Q(x)
+        * T58: All x,y,z,u,v:Any - P(c_3)  + P(v)  - Q(u)  + P(z)  - Q(y)  - Q(f_2(y))  - P(x)  - Q(c_6)
+          T59: All x,y,z,u,v:Any - P(c_3)  + P(v)  - Q(u)  + P(z)  - Q(y)  - Q(f_2(y))  + P(c_7)  + Q(x)
+          T60: All x,y,z,u,v:Any - P(c_3)  + P(v)  - Q(u)  + P(z)  + Q(y)  + Q(f_2(y))  - P(x)  - Q(c_6)
+          T61: All x,y,z,u,v:Any - P(c_3)  + P(v)  - Q(u)  + P(z)  + Q(y)  + Q(f_2(y))  + P(c_7)  + Q(x)
+          T62: All x,y,z,u:Any - P(c_3)  + P(u)  - Q(z)  + P(y)  + Q(c_8)  - Q(x)  + P(c_9)  - Q(c_10)
+        * T63: All x,y,z,u,v,w:Any - P(c_3)  + P(w)  - Q(v)  + P(u)  + Q(c_8)  - Q(z)  - P(y)  + Q(x)
+          T64: All x,y,z,u:Any - P(c_3)  + P(u)  - Q(z)  + P(y)  - Q(c_8)  + Q(x)  + P(c_9)  - Q(c_10)
+        * T65: All x,y,z,u,v,w:Any - P(c_3)  + P(w)  - Q(v)  + P(u)  - Q(c_8)  + Q(z)  - P(y)  + Q(x)
+          T66: All x,y,z,u:Any + P(c_11)  - P(u)  - Q(z)  - P(c_12)  + Q(c_16)  - Q(y)  - P(x)  - Q(c_17)
+          T67: All x,y,z,u:Any + P(c_11)  - P(u)  - Q(z)  - P(c_12)  + Q(c_16)  - Q(y)  + P(c_18)  + Q(x)
+          T68: All x,y,z,u:Any + P(c_11)  - P(u)  - Q(z)  - P(c_12)  - Q(c_16)  + Q(y)  - P(x)  - Q(c_17)
+          T69: All x,y,z,u:Any + P(c_11)  - P(u)  - Q(z)  - P(c_12)  - Q(c_16)  + Q(y)  + P(c_18)  + Q(x)
+          T70: All x,y,z:Any + P(c_11)  - P(z)  - Q(y)  - P(c_12)  - Q(x)  - Q(f_4(x))  + P(c_19)  - Q(c_20)
+          T71: All x,y,z,u,v:Any + P(c_11)  - P(v)  - Q(u)  - P(c_12)  - Q(z)  - Q(f_4(z))  - P(y)  + Q(x)
+          T72: All x,y,z:Any + P(c_11)  - P(z)  - Q(y)  - P(c_12)  + Q(x)  + Q(f_4(x))  + P(c_19)  - Q(c_20)
+          T73: All x,y,z,u,v:Any + P(c_11)  - P(v)  - Q(u)  - P(c_12)  + Q(z)  + Q(f_4(z))  - P(y)  + Q(x)
+          T74: All x,y,z,u:Any + P(c_11)  - P(u)  + Q(c_13)  + P(z)  + Q(c_16)  - Q(y)  - P(x)  - Q(c_17)
+          T75: All x,y,z,u:Any + P(c_11)  - P(u)  + Q(c_13)  + P(z)  + Q(c_16)  - Q(y)  + P(c_18)  + Q(x)
+          T76: All x,y,z,u:Any + P(c_11)  - P(u)  + Q(c_13)  + P(z)  - Q(c_16)  + Q(y)  - P(x)  - Q(c_17)
+          T77: All x,y,z,u:Any + P(c_11)  - P(u)  + Q(c_13)  + P(z)  - Q(c_16)  + Q(y)  + P(c_18)  + Q(x)
+          T78: All x,y,z:Any + P(c_11)  - P(z)  + Q(c_13)  + P(y)  - Q(x)  - Q(f_4(x))  + P(c_19)  - Q(c_20)
+          T79: All x,y,z,u,v:Any + P(c_11)  - P(v)  + Q(c_13)  + P(u)  - Q(z)  - Q(f_4(z))  - P(y)  + Q(x)
+          T80: All x,y,z:Any + P(c_11)  - P(z)  + Q(c_13)  + P(y)  + Q(x)  + Q(f_4(x))  + P(c_19)  - Q(c_20)
+        * T81: All x,y,z,u,v:Any + P(c_11)  - P(v)  + Q(c_13)  + P(u)  + Q(z)  + Q(f_4(z))  - P(y)  + Q(x)
+          T82: All x,y,z,u:Any - P(c_11)  + P(u)  - Q(z)  - P(c_12)  + Q(c_16)  - Q(y)  - P(x)  - Q(c_17)
+          T83: All x,y,z,u:Any - P(c_11)  + P(u)  - Q(z)  - P(c_12)  + Q(c_16)  - Q(y)  + P(c_18)  + Q(x)
+          T84: All x,y,z,u:Any - P(c_11)  + P(u)  - Q(z)  - P(c_12)  - Q(c_16)  + Q(y)  - P(x)  - Q(c_17)
+          T85: All x,y,z,u:Any - P(c_11)  + P(u)  - Q(z)  - P(c_12)  - Q(c_16)  + Q(y)  + P(c_18)  + Q(x)
+          T86: All x,y,z:Any - P(c_11)  + P(z)  - Q(y)  - P(c_12)  - Q(x)  - Q(f_4(x))  + P(c_19)  - Q(c_20)
+          T87: All x,y,z,u,v:Any - P(c_11)  + P(v)  - Q(u)  - P(c_12)  - Q(z)  - Q(f_4(z))  - P(y)  + Q(x)
+          T88: All x,y,z:Any - P(c_11)  + P(z)  - Q(y)  - P(c_12)  + Q(x)  + Q(f_4(x))  + P(c_19)  - Q(c_20)
+          T89: All x,y,z,u,v:Any - P(c_11)  + P(v)  - Q(u)  - P(c_12)  + Q(z)  + Q(f_4(z))  - P(y)  + Q(x)
+          T90: All x,y,z,u:Any - P(c_11)  + P(u)  + Q(c_13)  + P(z)  + Q(c_16)  - Q(y)  - P(x)  - Q(c_17)
+          T91: All x,y,z,u:Any - P(c_11)  + P(u)  + Q(c_13)  + P(z)  + Q(c_16)  - Q(y)  + P(c_18)  + Q(x)
+          T92: All x,y,z,u:Any - P(c_11)  + P(u)  + Q(c_13)  + P(z)  - Q(c_16)  + Q(y)  - P(x)  - Q(c_17)
+          T93: All x,y,z,u:Any - P(c_11)  + P(u)  + Q(c_13)  + P(z)  - Q(c_16)  + Q(y)  + P(c_18)  + Q(x)
+          T94: All x,y,z:Any - P(c_11)  + P(z)  + Q(c_13)  + P(y)  - Q(x)  - Q(f_4(x))  + P(c_19)  - Q(c_20)
+          T95: All x,y,z,u,v:Any - P(c_11)  + P(v)  + Q(c_13)  + P(u)  - Q(z)  - Q(f_4(z))  - P(y)  + Q(x)
+          T96: All x,y,z:Any - P(c_11)  + P(z)  + Q(c_13)  + P(y)  + Q(x)  + Q(f_4(x))  + P(c_19)  - Q(c_20)
+        * T97: All x,y,z,u,v:Any - P(c_11)  + P(v)  + Q(c_13)  + P(u)  + Q(z)  + Q(f_4(z))  - P(y)  + Q(x)
+          T98: All x,y,z:Any - P(z)  - P(f_3(z))  + Q(c_14)  - P(c_15)  + Q(c_16)  - Q(y)  - P(x)  - Q(c_17)
+          T99: All x,y,z:Any - P(z)  - P(f_3(z))  + Q(c_14)  - P(c_15)  + Q(c_16)  - Q(y)  + P(c_18)  + Q(x)
+          T100: All x,y,z:Any - P(z)  - P(f_3(z))  + Q(c_14)  - P(c_15)  - Q(c_16)  + Q(y)  - P(x)  - Q(c_17)
+          T101: All x,y,z:Any - P(z)  - P(f_3(z))  + Q(c_14)  - P(c_15)  - Q(c_16)  + Q(y)  + P(c_18)  + Q(x)
+          T102: All x,y:Any - P(y)  - P(f_3(y))  + Q(c_14)  - P(c_15)  - Q(x)  - Q(f_4(x))  + P(c_19)  - Q(c_20)
+          T103: All x,y,z,u:Any - P(u)  - P(f_3(u))  + Q(c_14)  - P(c_15)  - Q(z)  - Q(f_4(z))  - P(y)  + Q(x)
+          T104: All x,y:Any - P(y)  - P(f_3(y))  + Q(c_14)  - P(c_15)  + Q(x)  + Q(f_4(x))  + P(c_19)  - Q(c_20)
+        * T105: All x,y,z,u:Any - P(u)  - P(f_3(u))  + Q(c_14)  - P(c_15)  + Q(z)  + Q(f_4(z))  - P(y)  + Q(x)
+          T106: All x,y,z,u,v:Any - P(v)  - P(f_3(v))  - Q(u)  + P(z)  + Q(c_16)  - Q(y)  - P(x)  - Q(c_17)
+          T107: All x,y,z,u,v:Any - P(v)  - P(f_3(v))  - Q(u)  + P(z)  + Q(c_16)  - Q(y)  + P(c_18)  + Q(x)
+          T108: All x,y,z,u,v:Any - P(v)  - P(f_3(v))  - Q(u)  + P(z)  - Q(c_16)  + Q(y)  - P(x)  - Q(c_17)
+          T109: All x,y,z,u,v:Any - P(v)  - P(f_3(v))  - Q(u)  + P(z)  - Q(c_16)  + Q(y)  + P(c_18)  + Q(x)
+          T110: All x,y,z,u:Any - P(u)  - P(f_3(u))  - Q(z)  + P(y)  - Q(x)  - Q(f_4(x))  + P(c_19)  - Q(c_20)
+          T111: All x,y,z,u,v,w:Any - P(w)  - P(f_3(w))  - Q(v)  + P(u)  - Q(z)  - Q(f_4(z))  - P(y)  + Q(x)
+          T112: All x,y,z,u:Any - P(u)  - P(f_3(u))  - Q(z)  + P(y)  + Q(x)  + Q(f_4(x))  + P(c_19)  - Q(c_20)
+          T113: All x,y,z,u,v,w:Any - P(w)  - P(f_3(w))  - Q(v)  + P(u)  + Q(z)  + Q(f_4(z))  - P(y)  + Q(x)
+          T114: All x,y,z:Any + P(z)  + P(f_3(z))  + Q(c_14)  - P(c_15)  + Q(c_16)  - Q(y)  - P(x)  - Q(c_17)
+          T115: All x,y,z:Any + P(z)  + P(f_3(z))  + Q(c_14)  - P(c_15)  + Q(c_16)  - Q(y)  + P(c_18)  + Q(x)
+          T116: All x,y,z:Any + P(z)  + P(f_3(z))  + Q(c_14)  - P(c_15)  - Q(c_16)  + Q(y)  - P(x)  - Q(c_17)
+          T117: All x,y,z:Any + P(z)  + P(f_3(z))  + Q(c_14)  - P(c_15)  - Q(c_16)  + Q(y)  + P(c_18)  + Q(x)
+          T118: All x,y:Any + P(y)  + P(f_3(y))  + Q(c_14)  - P(c_15)  - Q(x)  - Q(f_4(x))  + P(c_19)  - Q(c_20)
+          T119: All x,y,z,u:Any + P(u)  + P(f_3(u))  + Q(c_14)  - P(c_15)  - Q(z)  - Q(f_4(z))  - P(y)  + Q(x)
+          T120: All x,y:Any + P(y)  + P(f_3(y))  + Q(c_14)  - P(c_15)  + Q(x)  + Q(f_4(x))  + P(c_19)  - Q(c_20)
+          T121: All x,y,z,u:Any + P(u)  + P(f_3(u))  + Q(c_14)  - P(c_15)  + Q(z)  + Q(f_4(z))  - P(y)  + Q(x)
+          T122: All x,y,z,u,v:Any + P(v)  + P(f_3(v))  - Q(u)  + P(z)  + Q(c_16)  - Q(y)  - P(x)  - Q(c_17)
+        * T123: All x,y,z,u,v:Any + P(v)  + P(f_3(v))  - Q(u)  + P(z)  + Q(c_16)  - Q(y)  + P(c_18)  + Q(x)
+          T124: All x,y,z,u,v:Any + P(v)  + P(f_3(v))  - Q(u)  + P(z)  - Q(c_16)  + Q(y)  - P(x)  - Q(c_17)
+        * T125: All x,y,z,u,v:Any + P(v)  + P(f_3(v))  - Q(u)  + P(z)  - Q(c_16)  + Q(y)  + P(c_18)  + Q(x)
+        * T126: All x,y,z,u:Any + P(u)  + P(f_3(u))  - Q(z)  + P(y)  - Q(x)  - Q(f_4(x))  + P(c_19)  - Q(c_20)
+
+
+
+
+
+
+          Initial Operations on Theorems
+          ==============================
+
+
+       
+T2 (instance)    --> * I1:   All x,y,z:Any - P(z)  - P(f_1(z))  - Q(y)  - P(c_1)  - Q(x)  - Q(f_2(x))  - P(c_1)
+                                           - Q(c_6)
+
+I1 4=7           --> * D2:   All x,y,z:Any - P(z)  - P(f_1(z))  - Q(y)  - P(c_1)  - Q(x)  - Q(f_2(x))  - Q(c_6)
+
+D2 (instance)    --> * I3:   All x,y:Any - P(x)  - P(f_1(x))  - Q(y)  - P(c_1)  - Q(y)  - Q(f_2(y))  - Q(c_6)
+
+I3 5=3           --> * D4:   All x,y:Any - P(x)  - P(f_1(x))  - P(c_1)  - Q(y)  - Q(f_2(y))  - Q(c_6)
+
+T7 (instance)    --> * I29:  All x,y,z,u:Any - P(u)  - P(f_1(u))  - Q(z)  - P(c_1)  + Q(c_8)  - Q(y)  - P(x)
+                                             + Q(c_8)
+
+I29 5=8          --> * D30:  All x,y,z,u:Any - P(u)  - P(f_1(u))  - Q(z)  - P(c_1)  + Q(c_8)  - Q(y)  - P(x)
+
+D30 (instance)   --> * I31:  All x,y,z:Any - P(z)  - P(f_1(z))  - Q(y)  - P(c_1)  + Q(c_8)  - Q(x)  - P(c_1)
+
+I31 4=7          --> * D32:  All x,y,z:Any - P(z)  - P(f_1(z))  - Q(y)  - P(c_1)  + Q(c_8)  - Q(x)
+
+D32 (instance)   --> * I33:  All x,y:Any - P(x)  - P(f_1(x))  - Q(y)  - P(c_1)  + Q(c_8)  - Q(y)
+
+I33 3=6          --> * D34:  All x,y:Any - P(x)  - P(f_1(x))  - Q(y)  - P(c_1)  + Q(c_8)
+
+T9 (instance)    --> * I60:  All x,y,z,u:Any - P(z)  - P(f_1(z))  - Q(y)  - P(c_1)  - Q(c_8)  + Q(u)  - P(x)  + Q(u)
+
+I60 6=8          --> * D61:  All x,y,z,u:Any - P(z)  - P(f_1(z))  - Q(y)  - P(c_1)  - Q(c_8)  + Q(u)  - P(x)
+
+D61 (instance)   --> * I62:  All x,y,z:Any - P(y)  - P(f_1(y))  - Q(x)  - P(c_1)  - Q(c_8)  + Q(z)  - P(c_1)
+
+I62 4=7          --> * D63:  All x,y,z:Any - P(y)  - P(f_1(y))  - Q(x)  - P(c_1)  - Q(c_8)  + Q(z)
+
+D63 (instance)   --> * I64:  All x,y:Any - P(x)  - P(f_1(x))  - Q(c_8)  - P(c_1)  - Q(c_8)  + Q(y)
+
+I64 5=3          --> * D65:  All x,y:Any - P(x)  - P(f_1(x))  - P(c_1)  - Q(c_8)  + Q(y)
+
+D65,5 & D4,6     --> * R66:  All x,y:Any - P(y)  - P(f_1(y))  - P(c_1)  - Q(c_8)  - P(y)  - P(f_1(y))  - P(c_1)
+                                         - Q(x)  - Q(f_2(x))
+
+R66 1=5          --> * D67:  All x,y:Any - P(y)  - P(f_1(y))  - P(c_1)  - Q(c_8)  - P(f_1(y))  - P(c_1)  - Q(x)
+                                         - Q(f_2(x))
+
+D67 2=5          --> * D68:  All x,y:Any - P(y)  - P(f_1(y))  - P(c_1)  - Q(c_8)  - P(c_1)  - Q(x)  - Q(f_2(x))
+
+D68 3=5          --> * D69:  All x,y:Any - P(y)  - P(f_1(y))  - P(c_1)  - Q(c_8)  - Q(x)  - Q(f_2(x))
+
+D69,5 & D65,5    --> * R70:  All x,y:Any - P(y)  - P(f_1(y))  - P(c_1)  - Q(c_8)  - Q(f_2(x))  - P(y)  - P(f_1(y))
+                                         - P(c_1)  - Q(c_8)
+
+R70 1=6          --> * D71:  All x,y:Any - P(y)  - P(f_1(y))  - P(c_1)  - Q(c_8)  - Q(f_2(x))  - P(f_1(y))  - P(c_1)
+                                         - Q(c_8)
+
+D71 2=6          --> * D72:  All x,y:Any - P(y)  - P(f_1(y))  - P(c_1)  - Q(c_8)  - Q(f_2(x))  - P(c_1)  - Q(c_8)
+
+D72 3=6          --> * D73:  All x,y:Any - P(y)  - P(f_1(y))  - P(c_1)  - Q(c_8)  - Q(f_2(x))  - Q(c_8)
+
+D73 4=6          --> * D74:  All x,y:Any - P(y)  - P(f_1(y))  - P(c_1)  - Q(c_8)  - Q(f_2(x))
+
+D74,5 & D65,5    --> * R75:  All x:Any - P(x)  - P(f_1(x))  - P(c_1)  - Q(c_8)  - P(x)  - P(f_1(x))  - P(c_1)
+                                       - Q(c_8)
+
+R75 1=5          --> * D76:  All x:Any - P(x)  - P(f_1(x))  - P(c_1)  - Q(c_8)  - P(f_1(x))  - P(c_1)  - Q(c_8)
+
+D76 2=5          --> * D77:  All x:Any - P(x)  - P(f_1(x))  - P(c_1)  - Q(c_8)  - P(c_1)  - Q(c_8)
+
+D77 3=5          --> * D78:  All x:Any - P(x)  - P(f_1(x))  - P(c_1)  - Q(c_8)  - Q(c_8)
+
+D78 4=5          --> * D79:  All x:Any - P(x)  - P(f_1(x))  - P(c_1)  - Q(c_8)
+
+D34,5 & D79,4    --> * R80:  All x,y:Any - P(y)  - P(f_1(y))  - Q(x)  - P(c_1)  - P(y)  - P(f_1(y))  - P(c_1)
+
+R80 1=5          --> * D81:  All x,y:Any - P(y)  - P(f_1(y))  - Q(x)  - P(c_1)  - P(f_1(y))  - P(c_1)
+
+D81 2=5          --> * D82:  All x,y:Any - P(y)  - P(f_1(y))  - Q(x)  - P(c_1)  - P(c_1)
+
+D82 4=5          --> * D83:  All x,y:Any - P(y)  - P(f_1(y))  - Q(x)  - P(c_1)
+
+T29 (instance)   --> * I271: All x,y,z:Any + P(y)  + P(f_1(y))  + Q(c_2)  + P(x)  + Q(z)  + Q(f_2(z))  + P(c_7)
+                                           + Q(f_2(z))
+
+I271 6=8         --> * D272: All x,y,z:Any + P(y)  + P(f_1(y))  + Q(c_2)  + P(x)  + Q(z)  + Q(f_2(z))  + P(c_7)
+
+D272 (instance)  --> * I273: All x,y:Any + P(x)  + P(f_1(x))  + Q(c_2)  + P(c_7)  + Q(y)  + Q(f_2(y))  + P(c_7)
+
+I273 7=4         --> * D274: All x,y:Any + P(x)  + P(f_1(x))  + Q(c_2)  + Q(y)  + Q(f_2(y))  + P(c_7)
+
+T42 (instance)   --> * I386: All x,y,z,u:Any + P(c_3)  - P(z)  - Q(u)  + P(y)  - Q(u)  - Q(f_2(u))  - P(x)  - Q(c_6)
+
+I386 5=3         --> * D387: All x,y,z,u:Any + P(c_3)  - P(z)  + P(y)  - Q(u)  - Q(f_2(u))  - P(x)  - Q(c_6)
+
+D387 (instance)  --> * I388: All x,y,z:Any + P(c_3)  - P(z)  + P(x)  - Q(y)  - Q(f_2(y))  - P(z)  - Q(c_6)
+
+I388 2=6         --> * D389: All x,y,z:Any + P(c_3)  - P(z)  + P(x)  - Q(y)  - Q(f_2(y))  - Q(c_6)
+
+D389 (instance)  --> * I390: All x,y:Any + P(c_3)  - P(y)  + P(c_3)  - Q(x)  - Q(f_2(x))  - Q(c_6)
+
+I390 1=3         --> * D391: All x,y:Any + P(c_3)  - P(y)  - Q(x)  - Q(f_2(x))  - Q(c_6)
+
+T47 (instance)   --> * I422: All x,y,z,u,v:Any + P(c_3)  - P(v)  - Q(u)  + P(z)  + Q(c_8)  - Q(y)  - P(x)  + Q(c_8)
+
+I422 5=8         --> * D423: All x,y,z,u,v:Any + P(c_3)  - P(v)  - Q(u)  + P(z)  + Q(c_8)  - Q(y)  - P(x)
+
+D423 (instance)  --> * I424: All x,y,z,u:Any + P(c_3)  - P(z)  - Q(u)  + P(y)  + Q(c_8)  - Q(u)  - P(x)
+
+I424 3=6         --> * D425: All x,y,z,u:Any + P(c_3)  - P(z)  - Q(u)  + P(y)  + Q(c_8)  - P(x)
+
+D425 (instance)  --> * I426: All x,y,z:Any + P(c_3)  - P(z)  - Q(y)  + P(x)  + Q(c_8)  - P(z)
+
+I426 2=6         --> * D427: All x,y,z:Any + P(c_3)  - P(z)  - Q(y)  + P(x)  + Q(c_8)
+
+D427 (instance)  --> * I428: All x,y:Any + P(c_3)  - P(y)  - Q(x)  + P(c_3)  + Q(c_8)
+
+I428 1=4         --> * D429: All x,y:Any + P(c_3)  - P(y)  - Q(x)  + Q(c_8)
+
+T49 (instance)   --> * I453: All x,y,z,u,v:Any + P(c_3)  - P(u)  - Q(z)  + P(y)  - Q(c_8)  + Q(v)  - P(x)  + Q(v)
+
+I453 6=8         --> * D454: All x,y,z,u,v:Any + P(c_3)  - P(u)  - Q(z)  + P(y)  - Q(c_8)  + Q(v)  - P(x)
+
+D454 (instance)  --> * I455: All x,y,z,u:Any + P(c_3)  - P(z)  - Q(c_8)  + P(y)  - Q(c_8)  + Q(u)  - P(x)
+
+I455 5=3         --> * D456: All x,y,z,u:Any + P(c_3)  - P(z)  + P(y)  - Q(c_8)  + Q(u)  - P(x)
+
+D456 (instance)  --> * I457: All x,y,z:Any + P(c_3)  - P(z)  + P(x)  - Q(c_8)  + Q(y)  - P(z)
+
+I457 2=6         --> * D458: All x,y,z:Any + P(c_3)  - P(z)  + P(x)  - Q(c_8)  + Q(y)
+
+D458 (instance)  --> * I459: All x,y:Any + P(c_3)  - P(y)  + P(c_3)  - Q(c_8)  + Q(x)
+
+I459 1=3         --> * D460: All x,y:Any + P(c_3)  - P(y)  - Q(c_8)  + Q(x)
+
+D460,4 & D391,5  --> * R461: All x,y,z:Any + P(c_3)  - P(x)  - Q(c_8)  + P(c_3)  - P(z)  - Q(y)  - Q(f_2(y))
+
+R461 1=4         --> * D462: All x,y,z:Any + P(c_3)  - P(x)  - Q(c_8)  - P(z)  - Q(y)  - Q(f_2(y))
+
+D462 2=4         --> * D463: All x,y,z:Any + P(c_3)  - P(x)  - Q(c_8)  - Q(y)  - Q(f_2(y))
+
+D463,4 & D460,4  --> * R464: All x,y:Any + P(c_3)  - P(y)  - Q(c_8)  - Q(f_2(x))  + P(c_3)  - P(y)  - Q(c_8)
+
+R464 1=5         --> * D465: All x,y:Any + P(c_3)  - P(y)  - Q(c_8)  - Q(f_2(x))  - P(y)  - Q(c_8)
+
+D465 2=5         --> * D466: All x,y:Any + P(c_3)  - P(y)  - Q(c_8)  - Q(f_2(x))  - Q(c_8)
+
+D466 3=5         --> * D467: All x,y:Any + P(c_3)  - P(y)  - Q(c_8)  - Q(f_2(x))
+
+D467,4 & D460,4  --> * R468: All x:Any + P(c_3)  - P(x)  - Q(c_8)  + P(c_3)  - P(x)  - Q(c_8)
+
+R468 1=4         --> * D469: All x:Any + P(c_3)  - P(x)  - Q(c_8)  - P(x)  - Q(c_8)
+
+D469 2=4         --> * D470: All x:Any + P(c_3)  - P(x)  - Q(c_8)  - Q(c_8)
+
+D470 3=4         --> * D471: All x:Any + P(c_3)  - P(x)  - Q(c_8)
+
+D429,4 & D471,3  --> * R472: All x,y,z:Any + P(c_3)  - P(y)  - Q(x)  + P(c_3)  - P(z)
+
+R472 1=4         --> * D473: All x,y,z:Any + P(c_3)  - P(y)  - Q(x)  - P(z)
+
+D473 2=4         --> * D474: All x,y,z:Any + P(c_3)  - P(y)  - Q(x)
+
+T58 (instance)   --> * I581: All x,y,z,u:Any - P(c_3)  + P(z)  - Q(u)  + P(y)  - Q(u)  - Q(f_2(u))  - P(x)  - Q(c_6)
+
+I581 5=3         --> * D582: All x,y,z,u:Any - P(c_3)  + P(z)  + P(y)  - Q(u)  - Q(f_2(u))  - P(x)  - Q(c_6)
+
+D582 (instance)  --> * I583: All x,y,z:Any - P(c_3)  + P(z)  + P(z)  - Q(y)  - Q(f_2(y))  - P(x)  - Q(c_6)
+
+I583 2=3         --> * D584: All x,y,z:Any - P(c_3)  + P(z)  - Q(y)  - Q(f_2(y))  - P(x)  - Q(c_6)
+
+D584 (instance)  --> * I585: All x,y:Any - P(c_3)  + P(y)  - Q(x)  - Q(f_2(x))  - P(c_3)  - Q(c_6)
+
+I585 1=5         --> * D586: All x,y:Any - P(c_3)  + P(y)  - Q(x)  - Q(f_2(x))  - Q(c_6)
+
+D586,2 & D83,4   --> * R587: All x,y:Any - P(c_3)  - Q(x)  - Q(f_2(x))  - Q(c_6)  - P(c_1)  - P(f_1(c_1))  - Q(y)
+
+R587 2=7         --> * D588: All x,y:Any - P(c_3)  - Q(x)  - Q(f_2(x))  - Q(c_6)  - P(c_1)  - P(f_1(c_1))
+
+D588,5 & D586,2  --> * R589: All x:Any - P(c_3)  - Q(x)  - Q(f_2(x))  - Q(c_6)  - P(f_1(c_1))  - P(c_3)  - Q(x)
+                                       - Q(f_2(x))  - Q(c_6)
+
+R589 1=6         --> * D590: All x:Any - P(c_3)  - Q(x)  - Q(f_2(x))  - Q(c_6)  - P(f_1(c_1))  - Q(x)  - Q(f_2(x))
+                                       - Q(c_6)
+
+D590 2=6         --> * D591: All x:Any - P(c_3)  - Q(x)  - Q(f_2(x))  - Q(c_6)  - P(f_1(c_1))  - Q(f_2(x))  - Q(c_6)
+
+D591 3=6         --> * D592: All x:Any - P(c_3)  - Q(x)  - Q(f_2(x))  - Q(c_6)  - P(f_1(c_1))  - Q(c_6)
+
+D592 4=6         --> * D593: All x:Any - P(c_3)  - Q(x)  - Q(f_2(x))  - Q(c_6)  - P(f_1(c_1))
+
+D593,5 & D586,2  --> * R594: All x:Any - P(c_3)  - Q(x)  - Q(f_2(x))  - Q(c_6)  - P(c_3)  - Q(x)  - Q(f_2(x))
+                                       - Q(c_6)
+
+R594 1=5         --> * D595: All x:Any - P(c_3)  - Q(x)  - Q(f_2(x))  - Q(c_6)  - Q(x)  - Q(f_2(x))  - Q(c_6)
+
+D595 2=5         --> * D596: All x:Any - P(c_3)  - Q(x)  - Q(f_2(x))  - Q(c_6)  - Q(f_2(x))  - Q(c_6)
+
+D596 3=5         --> * D597: All x:Any - P(c_3)  - Q(x)  - Q(f_2(x))  - Q(c_6)  - Q(c_6)
+
+D597 4=5         --> * D598: All x:Any - P(c_3)  - Q(x)  - Q(f_2(x))  - Q(c_6)
+
+T63 (instance)   --> * I645: All x,y,z,u,v:Any - P(c_3)  + P(v)  - Q(u)  + P(z)  + Q(c_8)  - Q(y)  - P(x)  + Q(c_8)
+
+I645 5=8         --> * D646: All x,y,z,u,v:Any - P(c_3)  + P(v)  - Q(u)  + P(z)  + Q(c_8)  - Q(y)  - P(x)
+
+D646 (instance)  --> * I647: All x,y,z,u:Any - P(c_3)  + P(z)  - Q(u)  + P(y)  + Q(c_8)  - Q(u)  - P(x)
+
+I647 3=6         --> * D648: All x,y,z,u:Any - P(c_3)  + P(z)  - Q(u)  + P(y)  + Q(c_8)  - P(x)
+
+D648 (instance)  --> * I649: All x,y,z:Any - P(c_3)  + P(z)  - Q(y)  + P(z)  + Q(c_8)  - P(x)
+
+I649 2=4         --> * D650: All x,y,z:Any - P(c_3)  + P(z)  - Q(y)  + Q(c_8)  - P(x)
+
+D650 (instance)  --> * I651: All x,y:Any - P(c_3)  + P(y)  - Q(x)  + Q(c_8)  - P(c_3)
+
+I651 1=5         --> * D652: All x,y:Any - P(c_3)  + P(y)  - Q(x)  + Q(c_8)
+
+D652,2 & D83,4   --> * R653: All x,y:Any - P(c_3)  - Q(x)  + Q(c_8)  - P(c_1)  - P(f_1(c_1))  - Q(y)
+
+R653 2=6         --> * D654: All x,y:Any - P(c_3)  - Q(x)  + Q(c_8)  - P(c_1)  - P(f_1(c_1))
+
+D654,4 & D652,2  --> * R655: All x:Any - P(c_3)  - Q(x)  + Q(c_8)  - P(f_1(c_1))  - P(c_3)  - Q(x)  + Q(c_8)
+
+R655 1=5         --> * D656: All x:Any - P(c_3)  - Q(x)  + Q(c_8)  - P(f_1(c_1))  - Q(x)  + Q(c_8)
+
+D656 2=5         --> * D657: All x:Any - P(c_3)  - Q(x)  + Q(c_8)  - P(f_1(c_1))  + Q(c_8)
+
+D657 3=5         --> * D658: All x:Any - P(c_3)  - Q(x)  + Q(c_8)  - P(f_1(c_1))
+
+D658,4 & D652,2  --> * R659: All x:Any - P(c_3)  - Q(x)  + Q(c_8)  - P(c_3)  - Q(x)  + Q(c_8)
+
+R659 1=4         --> * D660: All x:Any - P(c_3)  - Q(x)  + Q(c_8)  - Q(x)  + Q(c_8)
+
+D660 2=4         --> * D661: All x:Any - P(c_3)  - Q(x)  + Q(c_8)  + Q(c_8)
+
+D661 3=4         --> * D662: All x:Any - P(c_3)  - Q(x)  + Q(c_8)
+
+T65 (instance)   --> * I684: All x,y,z,u,v:Any - P(c_3)  + P(u)  - Q(z)  + P(y)  - Q(c_8)  + Q(v)  - P(x)  + Q(v)
+
+I684 6=8         --> * D685: All x,y,z,u,v:Any - P(c_3)  + P(u)  - Q(z)  + P(y)  - Q(c_8)  + Q(v)  - P(x)
+
+D685 (instance)  --> * I686: All x,y,z,u:Any - P(c_3)  + P(z)  - Q(c_8)  + P(y)  - Q(c_8)  + Q(u)  - P(x)
+
+I686 5=3         --> * D687: All x,y,z,u:Any - P(c_3)  + P(z)  + P(y)  - Q(c_8)  + Q(u)  - P(x)
+
+D687 (instance)  --> * I688: All x,y,z:Any - P(c_3)  + P(z)  + P(z)  - Q(c_8)  + Q(y)  - P(x)
+
+I688 2=3         --> * D689: All x,y,z:Any - P(c_3)  + P(z)  - Q(c_8)  + Q(y)  - P(x)
+
+D689 (instance)  --> * I690: All x,y:Any - P(c_3)  + P(y)  - Q(c_8)  + Q(x)  - P(c_3)
+
+I690 1=5         --> * D691: All x,y:Any - P(c_3)  + P(y)  - Q(c_8)  + Q(x)
+
+D691,4 & D598,4  --> * R692: All x,y:Any - P(c_3)  + P(x)  - Q(c_8)  - P(c_3)  - Q(y)  - Q(f_2(y))
+
+R692 1=4         --> * D693: All x,y:Any - P(c_3)  + P(x)  - Q(c_8)  - Q(y)  - Q(f_2(y))
+
+D693,4 & D691,4  --> * R694: All x,y:Any - P(c_3)  + P(y)  - Q(c_8)  - Q(f_2(x))  - P(c_3)  + P(y)  - Q(c_8)
+
+R694 1=5         --> * D695: All x,y:Any - P(c_3)  + P(y)  - Q(c_8)  - Q(f_2(x))  + P(y)  - Q(c_8)
+
+D695 2=5         --> * D696: All x,y:Any - P(c_3)  + P(y)  - Q(c_8)  - Q(f_2(x))  - Q(c_8)
+
+D696 3=5         --> * D697: All x,y:Any - P(c_3)  + P(y)  - Q(c_8)  - Q(f_2(x))
+
+D697,4 & D691,4  --> * R698: All x:Any - P(c_3)  + P(x)  - Q(c_8)  - P(c_3)  + P(x)  - Q(c_8)
+
+R698 1=4         --> * D699: All x:Any - P(c_3)  + P(x)  - Q(c_8)  + P(x)  - Q(c_8)
+
+D699 2=4         --> * D700: All x:Any - P(c_3)  + P(x)  - Q(c_8)  - Q(c_8)
+
+D700 3=4         --> * D701: All x:Any - P(c_3)  + P(x)  - Q(c_8)
+
+D701,2 & D83,4   --> * R702: All x:Any - P(c_3)  - Q(c_8)  - P(c_1)  - P(f_1(c_1))  - Q(x)
+
+R702 2=5         --> * D703: All x:Any - P(c_3)  - Q(c_8)  - P(c_1)  - P(f_1(c_1))
+
+D703,3 & D701,2  --> * R704: - P(c_3)  - Q(c_8)  - P(f_1(c_1))  - P(c_3)  - Q(c_8)
+
+R704 1=4         --> * D705: - P(c_3)  - Q(c_8)  - P(f_1(c_1))  - Q(c_8)
+
+D705 2=4         --> * D706: - P(c_3)  - Q(c_8)  - P(f_1(c_1))
+
+D706,3 & D701,2  --> * R707: - P(c_3)  - Q(c_8)  - P(c_3)  - Q(c_8)
+
+R707 1=3         --> * D708: - P(c_3)  - Q(c_8)  - Q(c_8)
+
+D708 2=3         --> * D709: - P(c_3)  - Q(c_8)
+
+D662,3 & D709,2  --> * R710: All x:Any - P(c_3)  - Q(x)  - P(c_3)
+
+R710 1=3         --> * D711: All x:Any - P(c_3)  - Q(x)
+
+D474,1 & D711,1  --> * R712: All x,y,z:Any - P(y)  - Q(x)  - Q(z)
+
+R712 2=3         --> * D713: All x,y,z:Any - P(y)  - Q(x)
+
+T81 (instance)   --> * I734: All x,y,z,u:Any + P(c_11)  - P(z)  + Q(c_13)  + P(y)  + Q(u)  + Q(f_4(u))  - P(x)
+                                             + Q(f_4(u))
+
+I734 6=8         --> * D735: All x,y,z,u:Any + P(c_11)  - P(z)  + Q(c_13)  + P(y)  + Q(u)  + Q(f_4(u))  - P(x)
+
+D735 (instance)  --> * I736: All x,y,z:Any + P(c_11)  - P(z)  + Q(c_13)  + P(x)  + Q(y)  + Q(f_4(y))  - P(z)
+
+I736 2=7         --> * D737: All x,y,z:Any + P(c_11)  - P(z)  + Q(c_13)  + P(x)  + Q(y)  + Q(f_4(y))
+
+D737 (instance)  --> * I738: All x,y:Any + P(c_11)  - P(y)  + Q(c_13)  + P(c_11)  + Q(x)  + Q(f_4(x))
+
+I738 1=4         --> * D739: All x,y:Any + P(c_11)  - P(y)  + Q(c_13)  + Q(x)  + Q(f_4(x))
+
+D739,5 & D713,2  --> * R740: All x,y,z:Any + P(c_11)  - P(x)  + Q(c_13)  + Q(z)  - P(y)
+
+R740 2=5         --> * D741: All x,y,z:Any + P(c_11)  - P(x)  + Q(c_13)  + Q(z)
+
+D741,4 & D713,2  --> * R742: All x,y:Any + P(c_11)  - P(x)  + Q(c_13)  - P(y)
+
+R742 2=4         --> * D743: All x,y:Any + P(c_11)  - P(x)  + Q(c_13)
+
+D743,3 & D713,2  --> * R744: All x,y:Any + P(c_11)  - P(x)  - P(y)
+
+R744 2=3         --> * D745: All x,y:Any + P(c_11)  - P(x)
+
+T97 (instance)   --> * I746: All x,y,z,u:Any - P(c_11)  + P(z)  + Q(c_13)  + P(y)  + Q(u)  + Q(f_4(u))  - P(x)
+                                             + Q(f_4(u))
+
+I746 6=8         --> * D747: All x,y,z,u:Any - P(c_11)  + P(z)  + Q(c_13)  + P(y)  + Q(u)  + Q(f_4(u))  - P(x)
+
+D747 (instance)  --> * I748: All x,y,z:Any - P(c_11)  + P(z)  + Q(c_13)  + P(z)  + Q(y)  + Q(f_4(y))  - P(x)
+
+I748 2=4         --> * D749: All x,y,z:Any - P(c_11)  + P(z)  + Q(c_13)  + Q(y)  + Q(f_4(y))  - P(x)
+
+D749 (instance)  --> * I750: All x,y:Any - P(c_11)  + P(y)  + Q(c_13)  + Q(x)  + Q(f_4(x))  - P(c_11)
+
+I750 1=6         --> * D751: All x,y:Any - P(c_11)  + P(y)  + Q(c_13)  + Q(x)  + Q(f_4(x))
+
+D751,5 & D713,2  --> * R752: All x,y,z:Any - P(c_11)  + P(x)  + Q(c_13)  + Q(z)  - P(y)
+
+R752 1=5         --> * D753: All x,y,z:Any - P(c_11)  + P(x)  + Q(c_13)  + Q(z)
+
+D753,4 & D713,2  --> * R754: All x,y:Any - P(c_11)  + P(x)  + Q(c_13)  - P(y)
+
+R754 1=4         --> * D755: All x,y:Any - P(c_11)  + P(x)  + Q(c_13)
+
+D755,3 & D713,2  --> * R756: All x,y:Any - P(c_11)  + P(x)  - P(y)
+
+R756 1=3         --> * D757: All x,y:Any - P(c_11)  + P(x)
+
+T105 (instance)  --> * I758: All x,y,z:Any - P(y)  - P(f_3(y))  + Q(c_14)  - P(c_15)  + Q(z)  + Q(f_4(z))  - P(x)
+                                           + Q(f_4(z))
+
+I758 6=8         --> * D759: All x,y,z:Any - P(y)  - P(f_3(y))  + Q(c_14)  - P(c_15)  + Q(z)  + Q(f_4(z))  - P(x)
+
+D759 (instance)  --> * I760: All x,y:Any - P(x)  - P(f_3(x))  + Q(c_14)  - P(c_15)  + Q(y)  + Q(f_4(y))  - P(c_15)
+
+I760 4=7         --> * D761: All x,y:Any - P(x)  - P(f_3(x))  + Q(c_14)  - P(c_15)  + Q(y)  + Q(f_4(y))
+
+D761,6 & D713,2  --> * R762: All x,y,z:Any - P(y)  - P(f_3(y))  + Q(c_14)  - P(c_15)  + Q(z)  - P(x)
+
+R762 1=6         --> * D763: All x,y,z:Any - P(y)  - P(f_3(y))  + Q(c_14)  - P(c_15)  + Q(z)
+
+D763,5 & D713,2  --> * R764: All x,y:Any - P(y)  - P(f_3(y))  + Q(c_14)  - P(c_15)  - P(x)
+
+R764 1=5         --> * D765: All x,y:Any - P(y)  - P(f_3(y))  + Q(c_14)  - P(c_15)
+
+D765,3 & D713,2  --> * R766: All x,y:Any - P(y)  - P(f_3(y))  - P(c_15)  - P(x)
+
+R766 1=4         --> * D767: All x,y:Any - P(y)  - P(f_3(y))  - P(c_15)
+
+D757,2 & D767,3  --> * R768: - P(c_11)  - P(c_15)  - P(f_3(c_15))
+
+R768,2 & D757,2  --> * R769: - P(c_11)  - P(f_3(c_15))  - P(c_11)
+
+R769 1=3         --> * D770: - P(c_11)  - P(f_3(c_15))
+
+D770,2 & D757,2  --> * R771: - P(c_11)  - P(c_11)
+
+R771 1=2         --> * D772: - P(c_11)
+
+D745,1 & D772,1  --> * R773: All x:Any - P(x)
+
+D274,6 & R773,1  --> * R774: All x,y:Any + P(x)  + P(f_1(x))  + Q(c_2)  + Q(y)  + Q(f_2(y))
+
+R774,2 & R773,1  --> * R775: All x,y:Any + P(y)  + Q(c_2)  + Q(x)  + Q(f_2(x))
+
+R775,1 & R773,1  --> * R776: All x:Any + Q(c_2)  + Q(x)  + Q(f_2(x))
+
+T123 (instance)  --> * I777: All x,y,z,u:Any + P(u)  + P(f_3(u))  - Q(z)  + P(y)  + Q(c_16)  - Q(x)  + P(c_18)
+                                             + Q(c_16)
+
+I777 5=8         --> * D778: All x,y,z,u:Any + P(u)  + P(f_3(u))  - Q(z)  + P(y)  + Q(c_16)  - Q(x)  + P(c_18)
+
+D778 (instance)  --> * I779: All x,y,z:Any + P(z)  + P(f_3(z))  - Q(y)  + P(c_18)  + Q(c_16)  - Q(x)  + P(c_18)
+
+I779 7=4         --> * D780: All x,y,z:Any + P(z)  + P(f_3(z))  - Q(y)  + Q(c_16)  - Q(x)  + P(c_18)
+
+D780 (instance)  --> * I781: All x,y:Any + P(x)  + P(f_3(x))  - Q(y)  + Q(c_16)  - Q(y)  + P(c_18)
+
+I781 3=5         --> * D782: All x,y:Any + P(x)  + P(f_3(x))  - Q(y)  + Q(c_16)  + P(c_18)
+
+D782,5 & R773,1  --> * R783: All x,y:Any + P(x)  + P(f_3(x))  - Q(y)  + Q(c_16)
+
+R783,3 & R776,3  --> * R784: All x:Any + P(x)  + P(f_3(x))  + Q(c_16)  + Q(c_2)  + Q(c_16)
+
+R784,4 & R783,3  --> * R785: All x:Any + P(x)  + P(f_3(x))  + Q(c_16)  + Q(c_16)  + P(x)  + P(f_3(x))  + Q(c_16)
+
+R785 1=5         --> * D786: All x:Any + P(x)  + P(f_3(x))  + Q(c_16)  + Q(c_16)  + P(f_3(x))  + Q(c_16)
+
+D786 2=5         --> * D787: All x:Any + P(x)  + P(f_3(x))  + Q(c_16)  + Q(c_16)  + Q(c_16)
+
+D787 3=5         --> * D788: All x:Any + P(x)  + P(f_3(x))  + Q(c_16)  + Q(c_16)
+
+D788,4 & R783,3  --> * R789: All x:Any + P(x)  + P(f_3(x))  + Q(c_16)  + P(x)  + P(f_3(x))  + Q(c_16)
+
+R789 1=4         --> * D790: All x:Any + P(x)  + P(f_3(x))  + Q(c_16)  + P(f_3(x))  + Q(c_16)
+
+D790 2=4         --> * D791: All x:Any + P(x)  + P(f_3(x))  + Q(c_16)  + Q(c_16)
+
+D791 3=4         --> * D792: All x:Any + P(x)  + P(f_3(x))  + Q(c_16)
+
+D792,2 & R773,1  --> * R793: All x:Any + P(x)  + Q(c_16)
+
+R793,1 & R773,1  --> * R794: + Q(c_16)
+
+T125 (instance)  --> * I795: All x,y,z,u:Any + P(z)  + P(f_3(z))  - Q(y)  + P(x)  - Q(c_16)  + Q(u)  + P(c_18)
+                                             + Q(u)
+
+I795 6=8         --> * D796: All x,y,z,u:Any + P(z)  + P(f_3(z))  - Q(y)  + P(x)  - Q(c_16)  + Q(u)  + P(c_18)
+
+D796 (instance)  --> * I797: All x,y,z:Any + P(y)  + P(f_3(y))  - Q(x)  + P(c_18)  - Q(c_16)  + Q(z)  + P(c_18)
+
+I797 7=4         --> * D798: All x,y,z:Any + P(y)  + P(f_3(y))  - Q(x)  - Q(c_16)  + Q(z)  + P(c_18)
+
+D798 (instance)  --> * I799: All x,y:Any + P(x)  + P(f_3(x))  - Q(c_16)  - Q(c_16)  + Q(y)  + P(c_18)
+
+I799 4=3         --> * D800: All x,y:Any + P(x)  + P(f_3(x))  - Q(c_16)  + Q(y)  + P(c_18)
+
+D800,5 & R773,1  --> * R801: All x,y:Any + P(x)  + P(f_3(x))  - Q(c_16)  + Q(y)
+
+R801,3 & R794,1  --> * R802: All x,y:Any + P(x)  + P(f_3(x))  + Q(y)
+
+R802,2 & R773,1  --> * R803: All x,y:Any + P(y)  + Q(x)
+
+R803,1 & R773,1  --> * R804: All x:Any + Q(x)
+
+T126 (instance)  --> * I805: All x,y,z:Any + P(z)  + P(f_3(z))  - Q(y)  + P(c_19)  - Q(x)  - Q(f_4(x))  + P(c_19)
+                                           - Q(c_20)
+
+I805 7=4         --> * D806: All x,y,z:Any + P(z)  + P(f_3(z))  - Q(y)  - Q(x)  - Q(f_4(x))  + P(c_19)  - Q(c_20)
+
+D806 (instance)  --> * I807: All x,y:Any + P(x)  + P(f_3(x))  - Q(y)  - Q(y)  - Q(f_4(y))  + P(c_19)  - Q(c_20)
+
+I807 4=3         --> * D808: All x,y:Any + P(x)  + P(f_3(x))  - Q(y)  - Q(f_4(y))  + P(c_19)  - Q(c_20)
+
+D808,6 & R804,1  --> * R809: All x,y:Any + P(x)  + P(f_3(x))  - Q(y)  - Q(f_4(y))  + P(c_19)
+
+R809,5 & R773,1  --> * R810: All x,y:Any + P(x)  + P(f_3(x))  - Q(y)  - Q(f_4(y))
+
+R810,4 & R804,1  --> * R811: All x,y:Any + P(x)  + P(f_3(x))  - Q(y)
+
+R811,3 & R804,1  --> * R812: All x:Any + P(x)  + P(f_3(x))
+
+R812,2 & R773,1  --> * R813: All x:Any + P(x)
+
+R813,1 & R773,1  --> * R814: []
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+  q.e.d. 
+
+

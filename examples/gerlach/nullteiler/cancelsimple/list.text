@@ -1,0 +1,77 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 39.23 EQUALITY 16.1                                 *
+                     *           DATE: 15-FEB,1990  03:28                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:       IC1:  All x:Any + =(x x)
+                        * IC2:  All x,y,z:Any + =(plus(plus(z y) x) plus(z plus(y x)))
+                        * IC3:  All x:Any + =(plus(0 x) x)
+                        * IC4:  All x:Any + =(plus(minus(x) x) 0)
+                          IC5:  All x,y,z:Any + =(mult(mult(z y) x) mult(z mult(y x)))
+                        * IC6:  All x,y,z:Any + =(mult(plus(z y) x) plus(mult(z x) mult(y x)))
+                        * IC7:  All x,y:Any + =(minus(mult(y x)) mult(minus(y) x))
+                        * IC8:  All x,y:Any - =(mult(y x) 0)  + =(y 0)  + =(x 0)
+                        * IC9:  + =(mult(c_2 c_1) mult(c_3 c_1))
+                        * IC10: - =(c_1 0)
+                        * IC11: - =(c_2 c_3)
+                        
+
+   
+   IC7,1 & IC4,1   -->  * P12:  All x,y:Any + =(plus(mult(minus(y) x) mult(y x)) 0)
+   
+   IC6,1 & P12,1   -->  * P13:  All x,y:Any + =(mult(plus(minus(y) y) x) 0)
+   
+   IC4,1 & P13,1   -->  * P14:  All x:Any + =(mult(0 x) 0)
+   
+   IC4,1 & IC2,1   -->  * P15:  All x,y:Any + =(plus(0 y) plus(minus(x) plus(x y)))
+   
+   IC3,1 & P15,1   -->  * P16:  All x,y:Any + =(y plus(minus(x) plus(x y)))
+   
+   IC4,1 & P16,1   -->  * P18:  All x:Any + =(x plus(minus(minus(x)) 0))
+   
+   IC9,1 & IC6,1   -->  * P28:  All x:Any + =(mult(plus(x c_3) c_1) plus(mult(x c_1) mult(c_2 c_1)))
+   
+   IC6,1 & P28,1   -->  * P29:  All x:Any + =(mult(plus(x c_3) c_1) mult(plus(x c_2) c_1))
+   
+   IC4,1 & P29,1   -->  * P30:  + =(mult(0 c_1) mult(plus(minus(c_3) c_2) c_1))
+   
+   P14,1 & P30,1   -->  * P31:  + =(0 mult(plus(minus(c_3) c_2) c_1))
+   
+   P31,1 & IC8,1   -->  * R32:  + =(plus(minus(c_3) c_2) 0)  + =(c_1 0)
+   
+   R32,2 & IC10,1  -->  * R33:  + =(plus(minus(c_3) c_2) 0)
+   
+   R33,1 & P16,1   -->  * P34:  + =(c_2 plus(minus(minus(c_3)) 0))
+   
+   P18,1 & P34,1   -->  * P35:  + =(c_2 c_3)
+   
+   P35,1 & IC11,1  -->  * R36:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 96 seconds

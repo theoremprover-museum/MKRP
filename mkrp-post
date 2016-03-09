@@ -1,0 +1,2 @@
+#!/bin/csh -f
+exec acl -e '(load "/home/omega/sys/boot.lisp")' -e "(load-sys 'mkrp-basic)" 

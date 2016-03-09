@@ -1,0 +1,64 @@
+\documentstyle[twoside]{report}
+%\pagestyle{headings}
+
+\tolerance=250
+\hoffset0cm
+\voffset0cm
+\headheight2cm
+\headsep0.1cm
+\topmargin0cm
+\textheight17cm
+%\textwidth11cm
+\oddsidemargin0.5cm
+\evensidemargin-0.4cm
+\parskip1ex
+\parindent0em
+\tabcolsep5mm
+\raggedbottom
+
+
+\begin{document}
+\bibliographystyle{alpha}
+\centerline{--- Example Group ---}
+\medskip\hrule
+{\center 
+\section*{Axioms}
+\begin{tabular}{|l@{\ \ }r@{\ =\ }l|}
+\hline
+\multicolumn{3}{|c|}{* GROUP *}\\
+\hline
+ALL X,Y,Z & + (+ (X Y) Z) & + (X + (Y Z)) \\
+ALL X & + (0 X) & X \\
+ALL X & + (- (X) X) & 0 \\
+\hline
+\end{tabular}
+\\
+\section*{Theorems}
+\begin{tabular}{|r@{\ =\ }l|}
+\hline
+ALL X - (- (X)) & X \\
+\hline
+\end{tabular}
+\\
+\section*{Axioms after Normalization}
+\begin{tabular}{|r@{\ }l@{\ \ }r@{:\ \ }l|}
+\hline
+& $A1$ & $\forall x\!\in\! Any$ & $(x=x)$ \\
+$\ast$ & $A2$ & $\forall x,y,z\!\in\! Any$ & $ (((z+y)+x)=(z+(y+x)))$ \\
+$\ast$ & $A3$ & $\forall x\!\in\! Any$ & $((0+x)=x)$ \\
+$\ast$ & $A4$ & $\forall x\!\in\! Any$ & $((-(x)+x)=0)$ \\
+\hline
+\end{tabular}
+\\
+\bigskip \bigskip
+\hrule height 2pt \vskip 3pt \hrule
+q.e.d
+}
+
+
+
+
+
+
+
+\end{document}

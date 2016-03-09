@@ -1,0 +1,85 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 46.7                                                *
+                     *           DATE: 26-FEB,1991  10:02                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 26-FEB,1991 10:01 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   EX X A (X) OR B (X)
+             ALL X B (X) IMPL C (X)
+             ALL X (A (X) OR D (X)) IMPL C (X)
+             
+   Theorems: EX X C (X)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+           * A2:   + A(c_1)  + B(c_2)
+           * A3:   All x:Any - B(x)  + C(x)
+           * A4:   All x:Any - A(x)  + C(x)
+             A5:   All x:Any - D(x)  + C(x)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T6: All x:Any - C(x)
+
+
+
+
+
+
+             Initial Operations on Theorems
+             ==============================
+
+
+          
+   A3,2 & T6,1  --> * R1: All x:Any - B(x)
+   
+   A4,2 & T6,1  --> * R2: All x:Any - A(x)
+   
+   R1,1 & A2,2  --> * R4: + A(c_1)
+   
+   R4,1 & R2,1  --> * R5: []
+   
+
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+

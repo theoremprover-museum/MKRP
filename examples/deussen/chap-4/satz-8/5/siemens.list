@@ -1,0 +1,198 @@
+ 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 4-APR-85                                                      *
+                    *         DATE : 13-JUN-85  09:42:31                                           *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   13-JUN-85 09:20:35
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   K.A.2.5.COMMENT
+                                                                        
+************************************************************************
+                                                                        
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : * ***************************************************************************
+           * DEFINITIONEN DER MENGENLEHRE **********************************************
+           SORT SET:ANY
+           SORT ELEMENT:SET
+           TYPE EL(ELEMENT SET)
+           * DEFINITION 1.1: TEILMENGE
+           TYPE SUBSET(SET SET)
+           ALL X,Y:SET SUBSET(X Y) EQV(ALL A:ELEMENT EL(A X) IMPL EL(A Y))
+           * DEFINITION 1.3: KARTESISCHES PRODUKT
+           TYPE CARTES(SET SET) :SET
+           TYPE PAIR(ELEMENT ELEMENT) :ELEMENT
+           * DEFINTIONEN VON RELATIONEN AUF EINER FESTEN MENGE S ***********************
+           SORT REL:SET
+           TYPE S:SET
+           SORT EL.OF.S:ELEMENT
+           * DEFINITION 2.1: RELATION *************************************************
+           * DEFINITION 2.3: IDENTISCHE RELATION
+           TYPE IDENTITY:REL
+           ALL A:ELEMENT(EL(A IDENTITY)) EQV(EX B:EL.OF.S A = PAIR(B B))
+           * DEFINITION 2.5: REFLEXIV
+           TYPE REFLEXIV(REL)
+           ALL RHO:REL REFLEXIV(RHO) EQV SUBSET(IDENTITY RHO)
+ 
+THEOREMS : ALL RHO:REL(ALL A:EL.OF.S EL(PAIR(A A) RHO)) EQV REFLEXIV(RHO)
+ 
+ 
+ 
+ 
+CONSTANTS : 
+=========== 
+ 
+| NAME     | SORT              |            | ATTRIBUTES                                                           |
+--------------------------------------------------------------------------------------------------------------------
+| S        | SET               |            |                                                                      |
+| IDENTITY | REL               |            |                                                                      |
+| C_1      | EL.OF.S           |            |                                                                      |
+| C_2      | REL               |            |                                                                      |
+| C_3      | ELEMENT           |            |                                                                      |
+| C_4      | REL               |            |                                                                      |
+--------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+FUNCTIONS : 
+=========== 
+ 
+| NAME     | DOMAIN            | RANGE      | ATTRIBUTES                                                           |
+--------------------------------------------------------------------------------------------------------------------
+| CARTES   | SET SET           | SET        |                                                                      |
+| PAIR     | ELEMENT ELEMENT   | ELEMENT    |                                                                      |
+| F_1      | ELEMENT           | EL.OF.S    |                                                                      |
+--------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+PREDICATES : 
+============ 
+ 
+| NAME     | DOMAIN            |            | ATTRIBUTES                                                           |
+--------------------------------------------------------------------------------------------------------------------
+| TRUE     |                   |            | DEFINED                                                              |
+| FALSE    |                   |            | DEFINED                                                              |
+| EL       | ELEMENT SET       |            |                                                                      |
+| SUBSET   | SET SET           |            |                                                                      |
+| =        | ANY ANY           |            | DEFINED SYMMETRIC REFLEXIVE SYMMETRIC REFLEXIVE SYMMETRIC REFLEXIVE  |
+| REFLEXIV | REL               |            |                                                                      |
+--------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+* A1   : ALL X:ANY  + =(X X)
+* A2   : ALL X:EL.OF.S  Y:ELEMENT  + EL(Y IDENTITY)  - =(Y PAIR(X X))
+* A3   : ALL X:ELEMENT  - EL(X IDENTITY)  + =(X PAIR(F_1(X) F_1(X)))
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION AND SPLITTING
+=================================================================
+ 
+ 
+SPLITPART 1
+ 
+* T4   : - EL(PAIR(C_1 C_1) C_2)
+* T5   : ALL X:ELEMENT  - EL(X IDENTITY)  + EL(X C_2)
+ 
+ 
+ 
+SPLITPART 2
+ 
+* T6   : ALL X:EL.OF.S  + EL(PAIR(X X) C_4)
+* T7   : + EL(C_3 IDENTITY)
+* T8   : - EL(C_3 C_4)
+ 
+ 
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION OF SPLITPART 1
+ 
+INITIAL CLAUSES :  * A1 : ALL X:ANY  + =(X X)
+                   * A2 : ALL X:EL.OF.S  Y:ELEMENT  + EL(Y IDENTITY)  - =(Y PAIR(X X))
+                     A3 : ALL X:ELEMENT  - EL(X IDENTITY)  + =(X PAIR(F_1(X) F_1(X)))
+                   * T4 : - EL(PAIR(C_1 C_1) C_2)
+                   * T5 : ALL X:ELEMENT  - EL(X IDENTITY)  + EL(X C_2)
+ 
+T5,2 & T4,1   -->  * R1 : - EL(PAIR(C_1 C_1) IDENTITY)
+ 
+R1,1 & A2,1   -->  * R2 : - =(PAIR(C_1 C_1) PAIR(C_1 C_1))
+ 
+R2,1 & A1,1   -->  * R3 :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+REFUTATION OF SPLITPART 2
+ 
+INITIAL CLAUSES :    A1 : ALL X:ANY  + =(X X)
+                     A2 : ALL X:EL.OF.S  Y:ELEMENT  + EL(Y IDENTITY)  - =(Y PAIR(X X))
+                   * A3 : ALL X:ELEMENT  - EL(X IDENTITY)  + =(X PAIR(F_1(X) F_1(X)))
+                   * T6 : ALL X:EL.OF.S  + EL(PAIR(X X) C_4)
+                   * T7 : + EL(C_3 IDENTITY)
+                   * T8 : - EL(C_3 C_4)
+ 
+A1,1 & A2,2   -->    R4 : ALL X:EL.OF.S  + EL(PAIR(X X) IDENTITY)
+ 
+T7,1 & A3,1   -->  * R5 : + =(C_3 PAIR(F_1(C_3) F_1(C_3)))
+ 
+R5,1 & T6,1   -->  * P6 : + EL(C_3 C_4)
+ 
+P6,1 & T8,1   -->  * R7 :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+STOP
+ 

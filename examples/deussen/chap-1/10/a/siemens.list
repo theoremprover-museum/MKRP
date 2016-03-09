@@ -1,0 +1,119 @@
+ 
+ 
+ 
+             ****************************************************
+             *                                                  *
+             *   ATP-SYSTEM:  M K R P , UNI KARLSRUHE          *
+             *                                                  *
+             *      VERSION: 3-FEB-84                          *
+             *         DATE: 11-JUL-84  08:43:50               *
+             *                                                  *
+             ****************************************************
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS: SORT ELEM,MENGE,VERKN:ANY
+           TYPE APPLY (VERKN ELEM ELEM) :ELEM
+           TYPE INVERS (VERKN ELEM) :ELEM
+           * ABGESCHLOSSENHEIT VON GR BEZGL PHI *
+           ALL PHI:VERKN  ALL GR:MENGE  ALL X,Y,E:ELEM  
+               G (GR PHI E) AND EL (X GR) AND EL (Y GR)
+               IMPL  
+               EL (APPLY (PHI X Y) GR)
+           * EXISTENZ DES INVERSEN INNERHALB GR *
+           ALL PHI:VERKN  ALL X:ELEM  ALL GR:MENGE  ALL E:ELEM  
+             G (GR PHI E) AND EL (X GR) IMPL EL (INVERS (PHI X) GR)
+           ALL U,F:MENGE  ALL PHI:VERKN  ALL E:ELEM  
+             UG (U F PHI E) IMPL G (U PHI E)
+ 
+THEOREMS: ALL PHI:VERKN  ALL F,U:MENGE  ALL E:ELEM  
+               G (F PHI E) AND ME (U F)
+               IMPL  
+                  UG (U F PHI E)
+                  IMPL  
+                   (ALL X,Y:ELEM  
+                       EL (X U) AND EL (Y U)
+                       IMPL  
+                       EL (APPLY (PHI INVERS (PHI Y) X) U))
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+* A1: ALL X:MENGE  Y:VERKN  Z,U,V:ELEM  - G(X Y Z) - EL(U X) - EL(V X) + EL(APPLY(Y U V) X) 
+* A2: ALL X:MENGE  Y:VERKN  Z,U:ELEM    - G(X Y Z) - EL(U X) + EL(INVERS(Y U) X) 
+* A3: ALL X,Y:MENGE  Z:VERKN  U:ELEM    - UG(X Y Z U) + G(X Z U)
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+  T4: + G(C_3 C_1 C_4)
+  T5: + ME(C_2 C_3)
+* T6: + UG(C_2 C_3 C_1 C_4)
+* T7: + EL(C_6 C_2)
+* T8: + EL(C_5 C_2)
+* T9: - EL(APPLY(C_1 INVERS(C_1 C_5) C_6) C_2)
+ 
+ 
+ 
+ 
+--------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION
+ 
+INITIAL CLAUSES:     * A1: ALL X:MENGE  Y:VERKN  Z,U,V:ELEM  - G(X Y Z) - EL(U X)  - EL(V X)  + EL(APPLY(Y U V) X) 
+                     * A2: ALL X:MENGE  Y:VERKN  Z,U:ELEM   - G(X Y Z) - EL(U X)  + EL(INVERS(Y U) X) 
+                     * A3: ALL X,Y:MENGE  Z:VERKN  U:ELEM   - UG(X Y Z U)  + G(X Z U) 
+                       T4: + G(C_3 C_1 C_4)
+                       T5: + ME(C_2 C_3)
+                     * T6: + UG(C_2 C_3 C_1 C_4)
+                     * T7: + EL(C_6 C_2)
+                     * T8: + EL(C_5 C_2)
+                     * T9: - EL(APPLY(C_1 INVERS(C_1 C_5) C_6) C_2)
+ 
+
+
+   T6,1  &  A3,1   -->  * R1: + G(C_2 C_1 C_4)
+T4,1  &  A2,1   -->    R2: ALL X:ELEM  - EL(X C_3) + EL(INVERS(C_1 X) C_3)
+T7,1  &  A2,2   -->    R3: ALL X:VERKN  Y:ELEM  
+                                  - G(C_2 X Y) + EL(INVERS(X C_6) C_2) 
+R1,1  &  R3,1   -->    R4: + EL(INVERS(C_1 C_6) C_2)
+T8,1  &  A2,2   -->  * R5: ALL X:VERKN  Y:ELEM  
+                                  - G(C_2 X Y) + EL(INVERS(X C_5) C_2) 
+R1,1  &  R5,1   -->  * R6: + EL(INVERS(C_1 C_5) C_2)
+T7,1  &  A1,3   -->  * R7: - G(C_2 C_1 C_4) - EL(INVERS(C_1 C_5) C_2) 
+                             + EL(APPLY(C_1 INVERS(C_1 C_5) C_6) C_2) 
+R6,1  &  R7,2   -->  * R8: - G(C_2 C_1 C_4) 
+                             + EL(APPLY(C_1 INVERS(C_1 C_5) C_6) C_2) 
+R1,1  &  R8,1   -->  * R9: + EL(APPLY(C_1 INVERS(C_1 C_5) C_6) C_2)
+R9,1  &  T9,1   -->  * R10: []
+ 
+ 
+ 
+--------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+ 

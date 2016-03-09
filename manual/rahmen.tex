@@ -1,0 +1,151 @@
+\documentstyle[twoside]{report}
+\pagestyle{headings}
+
+
+\tolerance=250
+\hoffset0cm
+\voffset0cm
+\headheight2cm
+\headsep1cm
+\topmargin0cm
+\textheight19.0cm
+\textwidth16cm
+%\oddsidemargin1.2cm
+\oddsidemargin0.8cm
+%\evensidemargin0.1cm
+\evensidemargin-0.4cm
+\parskip1ex
+\parindent0em
+\tabcolsep5mm
+\raggedbottom
+\unitlength1mm
+% Anordnung von figures
+
+\setcounter{totalnumber}{10}
+\setcounter{topnumber}{10}
+\renewcommand{\textfraction}{0}
+\renewcommand{\topfraction}{1}
+
+\textfloatsep2mm
+\intextsep2mm
+
+% Einbau von List-Umgebungen
+
+\topsep0cm
+\itemsep0cm
+\tabcolsep2mm
+
+
+\makeindex
+
+%\includeonly{%
+%mkrp1,%   % kommentiert Kapitel beim Uebersetzen aus.
+%mkrp2,%  
+%mkrp3,%
+%mkrp4,%
+%mkrp5,%
+%mkrp6,%
+%mkrp7,%
+%literature,%
+%index%
+%}
+
+\input{hyphen}
+\input{bib}
+
+\begin{document}
+\bibliographystyle{alpha}
+
+\newcommand{\comment}[1]{}
+
+\begin{titlepage}
+\vfill\vfill
+
+\centerline{\Huge \bf The MKRP User Manual}
+\vspace{5mm}
+\centerline{\LARGE Second Edition}
+\vspace{3mm}
+\centerline{\Large Completely Revised}
+
+
+\vfill
+
+
+\centerline{\large {\bf Axel Pr\"acklein} (Editor)}
+\vspace{2mm}
+\centerline{\large  Fachbereich Informatik, Universit\"at des Saarlandes}
+\centerline{\large  Im Stadtwald 15, W-6600 Saarbr\"ucken 11}
+\centerline{\large  Germany}
+\centerline{\large prckln@cs.uni-sb.de}
+
+\vfill
+\begin{center}
+\begin{minipage}{11cm}
+
+\hrule
+\vspace{3mm}
+\parskip5pt plus5pt minus4pt
+
+\centerline{\large \bf Acknowledgement}
+\vspace{3mm}
+
+I have to thank the authors of the forerunners of this manual.
+
+Susanne Biundo, Karl-Hans Bl\"asius, Hans-J\"urgen
+B\"urckert, Norbert Eisinger, Alexander Herold, Thomas K\"aufl,
+Chri\-stoph Lingenfelder, Hans J\"urgen Ohlbach, Manfred
+Schmidt-Schau\ss, J\"org H. Siekmann, and Christoph Walther wrote 
+\cite{Raph84} which served as scratch for the theoretical basics
+sketched herein.
+
+Michael Beetz, Hartmut Freitag, and J\"urgen Klug wrote \cite{BeFrKlLi88},
+which was the first
+variant concepted as manual. It was edited by Christoph Lingenfelder.
+
+Chapter \ref{TheInputLanguage} is copied from the description of
+Christoph Walther \cite{Walther82}, which is not further available as
+report.
+
+I also have to thank Detlef Fehrer and Manfred Kerber for reading
+drafts of this completely revised edition.
+
+Axel Pr\"acklein
+
+\vspace{3mm}
+\hrule
+
+\end{minipage}
+\end{center}
+\vfill
+\end{titlepage}
+
+\parskip5pt plus5pt minus4pt
+
+
+\def\Ex{\pagebreak[3]{\em Example:}
+
+}
+\def\PO{\pagebreak[3]{\em Possible Values:}
+
+}
+\newcommand\oline[2]{\mbox{\parbox[t]{3.9cm}{#1\vphantom{/y}}}\hfill
+\mbox{\parbox[t]{12cm}{#2\vphantom{/y}}}\vspace*{1mm}}
+
+\def\olineeins#1{\parbox[t]{15.7cm}{#1}\hfill\parbox[t]{0.2cm}{}}
+
+
+
+\tableofcontents
+\include{mkrp1}
+\include{mkrp2}
+\include{mkrp3}
+\include{mkrp4}
+\include{mkrp5}
+\include{mkrp6}
+\include{mkrp7}
+\include{literature}
+\include{index}
+
+\end{document}
+
+

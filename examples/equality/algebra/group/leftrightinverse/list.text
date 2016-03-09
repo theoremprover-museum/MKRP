@@ -1,0 +1,61 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 30.10 EQUALITY 15.3                                 *
+                     *           DATE: 18-AUG,1989  17:14                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:      IC1:  All x:Any + =(x x)
+                       * IC2:  All x,y,z:Any + =(plus(plus(z y) x) plus(z plus(y x)))
+                       * IC3:  All x:Any + =(plus(0 x) x)
+                       * IC4:  All x:Any + =(plus(minus(x) x) 0)
+                       * IC5:  - =(plus(c_1 minus(c_1)) 0)
+                       
+
+   
+   IC4,1 & IC2,1  -->  * P7:   All x,y:Any + =(plus(0 y) plus(minus(x) plus(x y)))
+   
+   IC3,1 & P7,1   -->  * P8:   All x,y:Any + =(y plus(minus(x) plus(x y)))
+   
+   IC4,1 & P8,1   -->  * P9:   All x:Any + =(x plus(minus(minus(x)) 0))
+   
+   P9,1 & IC2,1   -->  * P13:  All x,y:Any + =(plus(y x) plus(minus(minus(y)) plus(0 x)))
+   
+   IC3,1 & P13,1  -->  * P14:  All x,y:Any + =(plus(y x) plus(minus(minus(y)) x))
+   
+   IC4,1 & P14,1  -->  * P15:  All x:Any + =(plus(x minus(x)) 0)
+   
+   P15,1 & IC5,1  -->  * R16:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 27 seconds

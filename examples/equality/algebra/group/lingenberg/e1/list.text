@@ -1,0 +1,170 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+            ****************************************************
+            *                                                  *
+            *     ATP-SYSTEM: M K R P , UNI KAISERSLAUTERN     *
+            *                                                  *
+            *        VERSION: MKRP 45.31 EQUALITY 16.1         *
+            *           DATE: 09-AUG,1990  18:56               *
+            *                                                  *
+            ****************************************************
+
+
+--------------------------------------------------------------------------------
+
+Edit:     Axioms and Theorems edited: 09-AUG,1990 18:55 
+
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+          Formulae given to the editor
+          ============================
+
+
+Axioms:   * AXIOMS *
+          * GROUP *
+          ALL X,Y,Z + (+ (X Y) Z) = + (X + (Y Z))
+          ALL X + (0 X) = X
+          ALL X + (X 0) = X
+          ALL X + (- (X) X) = 0
+          ALL X + (X - (X)) = 0
+          
+Theorems: * THEOREMS *
+          ALL X + (0 X) = X AND + (1 X) = X IMPL 0 = 1
+          + (A1 A) = 0 AND + (A2 A) = 0 IMPL A1 = A2
+          
+
+
+
+          Set of Axiom Clauses Resulting from Normalization
+          =================================================
+
+          A1:   All x:Any + =(x x)
+        * A2:   All x,y,z:Any + =(+(+(z y) x) +(z +(y x)))
+        * A3:   All x:Any + =(+(0 x) x)
+        * A4:   All x:Any + =(+(x 0) x)
+          A5:   All x:Any + =(+(-(x) x) 0)
+        * A6:   All x:Any + =(+(x -(x)) 0)
+        
+
+
+
+
+          Set of Theorem Clauses Resulting from Normalization and Splitting
+          =================================================================
+
+Splitpart 1
+
+          T7: + =(+(0 c_1) c_1)
+        * T8: + =(+(1 c_1) c_1)
+        * T9: - =(0 1)
+
+Splitpart 2
+
+        * T10: + =(+(a1 a) 0)
+        * T11: + =(+(a2 a) 0)
+        * T12: - =(a1 a2)
+
+
+End of Splitparts
+
+
+
+--------------------------------------------------------------------------------
+
+
+
+Refutation of Splitpart 1:
+==========================
+
+Initial Clauses:      A1:    All x:Any + =(x x)
+                    * A2:    All x,y,z:Any + =(+(+(z y) x) +(z +(y x)))
+                      A3:    All x:Any + =(+(0 x) x)
+                    * A4:    All x:Any + =(+(x 0) x)
+                      A5:    All x:Any + =(+(-(x) x) 0)
+                    * A6:    All x:Any + =(+(x -(x)) 0)
+                    * T8:    + =(+(1 c_1) c_1)
+                    * T9:    - =(0 1)
+                    
+
+
+T8,1 & A2,1    -->  * P10:   All x:Any + =(+(c_1 x) +(1 +(c_1 x)))
+
+A6,1 & P10,1   -->  * P11:   + =(+(c_1 -(c_1)) +(1 0))
+
+P11,1 & A6     -->  * RW12:  + =(0 +(1 0))
+
+RW12,1 & A4    -->  * RW13:  + =(0 1)
+
+RW13,1 & T9,1  -->  * R14:   []
+
+
+
+--------------------------------------------------------------------------------
+
+
+
+Refutation of Splitpart 2:
+==========================
+
+Initial Clauses: 
+
+        A1:    All x:Any + =(x x)
+      * A2:    All x,y,z:Any + =(+(+(z y) x) +(z +(y x)))
+      * A3:    All x:Any + =(+(0 x) x)
+      * A4:    All x:Any + =(+(x 0) x)
+        A5:    All x:Any + =(+(-(x) x) 0)
+      * A6:    All x:Any + =(+(x -(x)) 0)
+      * T10:   + =(+(a1 a) 0)
+      * T11:   + =(+(a2 a) 0)
+      * T12:   - =(a1 a2)
+      
+
+
+T10,1 & A2,1    --> 
+      * P16:   All x:Any + =(+(0 x) +(a1 +(a x)))
+
+P16,1 & A3      --> 
+      * RW17:  All x:Any + =(x +(a1 +(a x)))
+
+A6,1 & RW17,1   --> 
+      * P18:   + =(-(a) +(a1 0))
+
+P18,1 & A4      --> 
+      * RW19:  + =(-(a) a1)
+
+RW19,1 & A6,1   --> 
+      * P20:   + =(+(a a1) 0)
+
+T11,1 & A2,1    --> 
+      * P21:   All x:Any + =(+(0 x) +(a2 +(a x)))
+
+P21,1 & A3      --> 
+      * RW22:  All x:Any + =(x +(a2 +(a x)))
+
+P20,1 & RW22,1  --> 
+      * P23:   + =(a1 +(a2 0))
+
+P23,1 & A4      --> 
+      * RW24:  + =(a1 a2)
+
+RW24,1 & T12,1  --> 
+      * R25:   []
+
+
+
+--------------------------------------------------------------------------------
+
+
+
+  q.e.d. 
+
+
+Time Used for Refutation of Splitpart 1: 23 seconds
+Time Used for Refutation of Splitpart 2: 15 seconds

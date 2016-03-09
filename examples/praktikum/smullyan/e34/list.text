@@ -1,0 +1,137 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 34.6 EQUALITY 16.1                                  *
+                     *           DATE: 07-DEC,1989  21:00                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 07-DEC,1989 20:59 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * AXIOMS OF PROBLEM 34 %.
+             * WE HAVE THREE PERSONS A,B,C.
+             * TWO PEOPLE ARE OF THE SAME TYPE , IF THEY ARE BOTH KNIGHTS
+             * OR BOTH KNAVES.
+             * A SAYS : B IS A KNAVE.
+             * B SAYS : A AND C ARE OF THE SAME TYPE.
+             * WHAT IS C ?
+             *
+             * KNAVE2 (X,Y) MEANS : X SAYS : Y IS A KNAVE.
+             * SAME3 (X,Y,Z) MEANS : X SAYS : Y AND Z ARE OF THE SAME TYPE
+             * SAME2 (X Y) MEANS X AND Y ARE OF THE SAME TYPE
+             *
+             ALL X KNIGHT (X) EQV NOT KNAVE (X)
+             ALL X,Y KNAVE (X) AND KNAVE2 (X Y) IMPL KNIGHT (Y)
+             ALL X,Y KNIGHT (X) AND KNAVE2 (X Y) IMPL KNAVE (Y)
+             ALL X,Y SAME2 (X Y) EQV (KNIGHT (X) AND KNIGHT (Y)) OR (KNAVE (X) AND KNAVE (Y))
+             ALL X,Y,Z KNIGHT (X) AND SAME3 (X Y Z) IMPL SAME2 (Y Z)
+             ALL X,Y,Z KNAVE (X) AND SAME3 (X Y Z) IMPL NOT SAME2 (Y Z)
+             KNAVE2 (A B)
+             SAME3 (B A C)
+             
+   Theorems: * THEOREM
+             KNAVE (C)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+           * A1:   + KNAVE2(a b)
+           * A2:   + SAME3(b a c)
+           * A3:   All x,y:Any - KNAVE(y)  - KNAVE2(y x)  - KNAVE(x)
+           * A4:   All x,y:Any + KNAVE(y)  - KNAVE2(y x)  + KNAVE(x)
+             A5:   All x,y,z:Any + KNAVE(z)  - SAME3(z y x)  - KNAVE(y)  + KNAVE(y)
+           * A6:   All x,y,z:Any + KNAVE(z)  - SAME3(z y x)  - KNAVE(y)  + KNAVE(x)
+             A7:   All x,y,z:Any + KNAVE(z)  - SAME3(z y x)  - KNAVE(x)  + KNAVE(y)
+             A8:   All x,y,z:Any + KNAVE(z)  - SAME3(z y x)  - KNAVE(x)  + KNAVE(x)
+           * A9:   All x,y,z:Any - KNAVE(z)  - SAME3(z y x)  + KNAVE(y)  + KNAVE(x)
+             A10:  All x,y,z:Any - KNAVE(z)  - SAME3(z y x)  - KNAVE(y)  - KNAVE(x)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T11: - KNAVE(c)
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:    * A1:   + KNAVE2(a b)
+                       * A2:   + SAME3(b a c)
+                       * A3:   All x,y:Any - KNAVE(y)  - KNAVE2(y x)  - KNAVE(x)
+                       * A4:   All x,y:Any + KNAVE(y)  - KNAVE2(y x)  + KNAVE(x)
+                       * A6:   All x,y,z:Any + KNAVE(z)  - SAME3(z y x)  - KNAVE(y)  + KNAVE(x)
+                         A7:   All x,y,z:Any + KNAVE(z)  - SAME3(z y x)  - KNAVE(x)  + KNAVE(y)
+                       * A9:   All x,y,z:Any - KNAVE(z)  - SAME3(z y x)  + KNAVE(y)  + KNAVE(x)
+                         A10:  All x,y,z:Any - KNAVE(z)  - SAME3(z y x)  - KNAVE(y)  - KNAVE(x)
+                       * T11:  - KNAVE(c)
+                       
+
+   
+   A2,1 & A9,2    -->  * R1:   - KNAVE(b)  + KNAVE(a)  + KNAVE(c)
+   
+   R1,3 & T11,1   -->  * R2:   - KNAVE(b)  + KNAVE(a)
+   
+   R2,2 & A3,1    -->  * R3:   - KNAVE(b)  - KNAVE2(a b)  - KNAVE(b)
+   
+   R3 1=3         -->  * D4:   - KNAVE(b)  - KNAVE2(a b)
+   
+   D4,2 & A1,1    -->  * R5:   - KNAVE(b)
+   
+   A2,1 & A6,2    -->  * R6:   + KNAVE(b)  - KNAVE(a)  + KNAVE(c)
+   
+   R6,3 & T11,1   -->  * R7:   + KNAVE(b)  - KNAVE(a)
+   
+   R7,1 & A3,3    -->  * R8:   - KNAVE(a)  - KNAVE(a)  - KNAVE2(a b)
+   
+   R8 1=2         -->  * D9:   - KNAVE(a)  - KNAVE2(a b)
+   
+   D9,2 & A1,1    -->  * R10:  - KNAVE(a)
+   
+   A4,3 & R5,1    -->  * R11:  + KNAVE(a)  - KNAVE2(a b)
+   
+   R11,1 & R10,1  -->  * R12:  - KNAVE2(a b)
+   
+   R12,1 & A1,1   -->  * R13:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 10 seconds

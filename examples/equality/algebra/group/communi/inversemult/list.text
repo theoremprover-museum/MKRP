@@ -1,0 +1,98 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 40.2 EQUALITY 16.1                                  *
+                     *           DATE: 26-FEB,1990  19:54                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 26-FEB,1990 19:51 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * GROUP *
+             ALL X,Y,Z PLUS (PLUS (X Y) Z) = PLUS (X PLUS (Y Z))
+             ALL X PLUS (0 X) = X
+             ALL X PLUS (MINUS (X) X) = 0
+             COMMUTATIVE (PLUS)
+             
+   Theorems: * THEOREM *
+             ALL X,Y PLUS (MINUS (X) MINUS (Y)) = MINUS (PLUS (X Y))
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+           * A2:   All x,y,z:Any + =(plus(plus(z y) x) plus(z plus(y x)))
+           * A3:   All x:Any + =(plus(0 x) x)
+             A4:   All x:Any + =(plus(minus(x) x) 0)
+             A5:   + TRUE
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T6: - =(plus(minus(c_1) minus(c_2)) minus(plus(c_1 c_2)))
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:    A1:  All x:Any + =(x x)
+                     * A2:  All x,y,z:Any + =(plus(plus(z y) x) plus(z plus(y x)))
+                     * A3:  All x:Any + =(plus(0 x) x)
+                       A4:  All x:Any + =(plus(minus(x) x) 0)
+                       A5:  + TRUE
+                     * T6:  - =(plus(minus(c_1) minus(c_2)) minus(plus(c_1 c_2)))
+                     
+
+   
+   A3,1 & A2,1  -->  * P1:  All x,y:Any + =(plus(plus(y x) 0) plus(y 0))
+   
+   A3,1 & P1,1  -->  * P2:  All x,y:Any + =(plus(plus(0 y) 0) x)
+   
+   P2,1 & A3,1  -->  * P3:  All x,y:Any + =(plus(plus(0 y) 0) x)
+   
+   P3,1 & T6,1  -->  * P4:  All x:Any - =(plus(plus(0 x) 0) minus(plus(c_1 c_2)))
+   
+   P3,1 & P4,1  -->  * R5:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 12 seconds

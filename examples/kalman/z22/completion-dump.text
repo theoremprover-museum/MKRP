@@ -1,0 +1,20 @@
+   ACTUAL CLAUSES:
+
+      R.=<33>: All X_31:ANY   + =(x_31 x_31)
+      A0<35>: All X_3:ANY   + =(a(a(a(x_3))) d(x_3))
+      A1<40>: All X_8:ANY   + =(a(a(a(a(a(x_8))))) e(x_8))
+      T15<28>: - =(k(c_1) l(c_1))
+      P6<223>: All X_224:ANY   + =(c(x_224) a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x_224))))))))))))))))
+      P9<648>: All X_676:ANY   + =(e1(x_676) a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x_676))))))))))))))))))
+      P11<345>: All X_339:ANY   + =(d1(x_339) a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x_339))))))))))))))))))))
+      P12<387>: All X_381:ANY   + =(c1(x_381) a(a(a(a(a(a(a(x_381))))))))
+      P46<1960>: All X_2006:ANY   + =(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x_2006))))))))))))))))))))))
+                                      x_2006)
+      P49<2036>: All X_2042:ANY   + =(a(a(a(a(a(a(a(a(a(a(a(a(a(x_2042))))))))))))) b1(x_2042))
+      P85<4604>: All X_3367:ANY   + =(a1(x_3367)
+                                      a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(a(x_3367))))))))))))))))))))))
+      P119<2365>: All X_2340:ANY   + =(a(a(a(a(a(a(a(a(a(x_2340))))))))) b(x_2340))
+
+
+
+   Time Used for Refutation: 6621 seconds

@@ -1,0 +1,239 @@
+;;; -*- Package: MKRP; Base: 10; Mode: text; Syntax: Common-lisp -*-
+
+
+
+              ************************************************************
+              *                                                          *
+              *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE,      *
+              *                 UNIVERSITAET KAISERSLAUTERN              *
+              *                                                          *
+              *        VERSION: MKRP 52.4 Experimental GENTRAFO 2.0, :Save World Incremental FEP0:>Genera-8-0-2-inc.ilod.newest*
+              *           DATE: 29-JAN,1992  20:31                       *
+              *                                                          *
+              ************************************************************
+
+
+------------------------------------------------------------------------------------------
+
+Edit:     Axioms and Theorems edited: 21-JUN,1991 13:51 
+
+------------------------------------------------------------------------------------------
+
+
+
+
+
+
+          Formulae given to the editor
+          ============================
+
+
+Axioms:   * SORTS *
+          SORT I,ITO,IXITO : ANY
+          TYPE A[IXITO] (IXITO I I)
+          TYPE A[ITO] (ITO I)
+          * DEFINITION OF COMPOSITION *
+          TYPE COMP (IXITO IXITO) : IXITO
+          ALL RHO:IXITO ALL SIGMA:IXITO 
+            (ALL X:I ALL Y:I 
+               (EX Z : I A[IXITO] (RHO X Z) AND A[IXITO] (SIGMA Z Y))
+               EQV A[IXITO] (COMP (RHO SIGMA) X Y))
+          
+Theorems: * THEOREM *
+          ALL RHO:IXITO ALL SIGMA:IXITO ALL TAU:IXITO ALL X:I ALL Y:I 
+            A[IXITO] (COMP (COMP (RHO SIGMA) TAU) X Y)
+            EQV A[IXITO] (COMP (RHO COMP (SIGMA TAU)) X Y)
+          
+
+
+
+          Set of Axiom Clauses Resulting from Normalization
+          =================================================
+
+          A1:   All x:Any + =(x x)
+        * A2:   All x,y:Ixito z,u:I + A[IXITO](y u f_1(y z u x))
+                                    - A[IXITO](comp(y x) u z)
+        * A3:   All x,y:I z,u:Ixito + A[IXITO](u f_1(z y x u) y)
+                                    - A[IXITO](comp(z u) x y)
+        * A4:   All x,y,z:I u,v:Ixito - A[IXITO](v z y)  - A[IXITO](u y x)
+                                      + A[IXITO](comp(v u) z x)
+        
+
+
+
+
+          Set of Theorem Clauses Resulting from Normalization
+          ===================================================
+
+        * T5: - A[IXITO](comp(comp(c_5 c_2) c_3) c_4 c_1)
+              - A[IXITO](comp(c_5 comp(c_2 c_3)) c_4 c_1)
+        * T6: + A[IXITO](comp(comp(c_5 c_2) c_3) c_4 c_1)
+              + A[IXITO](comp(c_5 comp(c_2 c_3)) c_4 c_1)
+
+
+
+ Literals: ((T6 4 5) (T5 4 5) (A4 1 2 3) (A3 2 3) (A2 1 3) (A1 NIL))
+
+
+
+
+------------------------------------------------------------------------------------------
+
+
+
+Refutation:
+===========
+
+Initial Clauses:     A1:   All x:Any + =(x x)
+                   * A2:   All x,y:Ixito z,u:I + A[IXITO](y u f_1(y z u x))
+                                               - A[IXITO](comp(y x) u z)
+                   * A3:   All x,y:I z,u:Ixito + A[IXITO](u f_1(z y x u) y)
+                                               - A[IXITO](comp(z u) x y)
+                   * A4:   All x,y,z:I u,v:Ixito 
+                                - A[IXITO](v z y)  - A[IXITO](u y x)
+                                + A[IXITO](comp(v u) z x)
+                   * T5:   - A[IXITO](comp(comp(c_5 c_2) c_3) c_4 c_1)
+                           - A[IXITO](comp(c_5 comp(c_2 c_3)) c_4 c_1)
+                   * T6:   + A[IXITO](comp(comp(c_5 c_2) c_3) c_4 c_1)
+                           + A[IXITO](comp(c_5 comp(c_2 c_3)) c_4 c_1)
+                   
+
+
+T6,2 & A3,2    --> * R1:   + A[IXITO](comp(comp(c_5 c_2) c_3) c_4 c_1)
+                           + A[IXITO](comp(c_2 c_3) f_1(c_5 c_1 c_4 comp(c_2 c_3)) c_1)
+
+T6,2 & A2,2    --> * R2:   + A[IXITO](comp(comp(c_5 c_2) c_3) c_4 c_1)
+                           + A[IXITO](c_5 c_4 f_1(c_5 c_1 c_4 comp(c_2 c_3)))
+
+T6,1 & A3,2    --> * R3:   + A[IXITO](comp(c_5 comp(c_2 c_3)) c_4 c_1)
+                           + A[IXITO](c_3 f_1(comp(c_5 c_2) c_1 c_4 c_3) c_1)
+
+T6,1 & A2,2    --> * R4:   + A[IXITO](comp(c_5 comp(c_2 c_3)) c_4 c_1)
+                           + A[IXITO](comp(c_5 c_2) c_4 f_1(comp(c_5 c_2) c_1 c_4 c_3))
+
+R1,2 & A2,2    --> * R5:   + A[IXITO](comp(comp(c_5 c_2) c_3) c_4 c_1)
+                           + A[IXITO](c_2
+                                      f_1(c_5 c_1 c_4 comp(c_2 c_3))
+                                      f_1(c_2 c_1 f_1(c_5 c_1 c_4 comp(c_2 c_3)) c_3))
+
+R1,2 & A3,2    --> * R6:   + A[IXITO](comp(comp(c_5 c_2) c_3) c_4 c_1)
+                           + A[IXITO](c_3
+                                      f_1(c_2 c_1 f_1(c_5 c_1 c_4 comp(c_2 c_3)) c_3)
+                                      c_1)
+
+R4,2 & A3,2    --> * R11:  + A[IXITO](comp(c_5 comp(c_2 c_3)) c_4 c_1)
+                           + A[IXITO](c_2
+                                      f_1(c_5 f_1(comp(c_5 c_2) c_1 c_4 c_3) c_4 c_2)
+                                      f_1(comp(c_5 c_2) c_1 c_4 c_3))
+
+R4,2 & A2,2    --> * R12:  + A[IXITO](comp(c_5 comp(c_2 c_3)) c_4 c_1)
+                           + A[IXITO](c_5
+                                      c_4
+                                      f_1(c_5 f_1(comp(c_5 c_2) c_1 c_4 c_3) c_4 c_2))
+
+A4,3 & T5,2    --> * R13:  All x:I - A[IXITO](c_5 c_4 x)  - A[IXITO](comp(c_2 c_3) x c_1)
+                                   - A[IXITO](comp(comp(c_5 c_2) c_3) c_4 c_1)
+
+R1,2 & A4,2    --> * R33:  All x:I y:Ixito + A[IXITO](comp(comp(c_5 c_2) c_3) c_4 c_1)
+                                           - A[IXITO](y x f_1(c_5 c_1 c_4 comp(c_2 c_3)))
+                                           + A[IXITO](comp(y comp(c_2 c_3)) x c_1)
+
+R2,2 & R33,2   --> * R34:  + A[IXITO](comp(comp(c_5 c_2) c_3) c_4 c_1)
+                           + A[IXITO](comp(comp(c_5 c_2) c_3) c_4 c_1)
+                           + A[IXITO](comp(c_5 comp(c_2 c_3)) c_4 c_1)
+
+R34 1=2        --> * D35:  + A[IXITO](comp(comp(c_5 c_2) c_3) c_4 c_1)
+                           + A[IXITO](comp(c_5 comp(c_2 c_3)) c_4 c_1)
+
+R2,2 & A4,1    --> * R37:  All x:I y:Ixito + A[IXITO](comp(comp(c_5 c_2) c_3) c_4 c_1)
+                                           - A[IXITO](y f_1(c_5 c_1 c_4 comp(c_2 c_3)) x)
+                                           + A[IXITO](comp(c_5 y) c_4 x)
+
+R5,2 & R37,2   --> * R38:  + A[IXITO](comp(comp(c_5 c_2) c_3) c_4 c_1)
+                           + A[IXITO](comp(comp(c_5 c_2) c_3) c_4 c_1)
+                           + A[IXITO](comp(c_5 c_2)
+                                      c_4
+                                      f_1(c_2 c_1 f_1(c_5 c_1 c_4 comp(c_2 c_3)) c_3))
+
+R38 2=1        --> * D39:  + A[IXITO](comp(comp(c_5 c_2) c_3) c_4 c_1)
+                           + A[IXITO](comp(c_5 c_2)
+                                      c_4
+                                      f_1(c_2 c_1 f_1(c_5 c_1 c_4 comp(c_2 c_3)) c_3))
+
+R3,2 & A4,2    --> * R44:  All x:I y:Ixito + A[IXITO](comp(c_5 comp(c_2 c_3)) c_4 c_1)
+                                           - A[IXITO](y x f_1(comp(c_5 c_2) c_1 c_4 c_3))
+                                           + A[IXITO](comp(y c_3) x c_1)
+
+R11,2 & R44,2  --> * R45:  + A[IXITO](comp(c_5 comp(c_2 c_3)) c_4 c_1)
+                           + A[IXITO](comp(c_5 comp(c_2 c_3)) c_4 c_1)
+                           + A[IXITO](comp(c_2 c_3)
+                                      f_1(c_5 f_1(comp(c_5 c_2) c_1 c_4 c_3) c_4 c_2)
+                                      c_1)
+
+R45 1=2        --> * D46:  + A[IXITO](comp(c_5 comp(c_2 c_3)) c_4 c_1)
+                           + A[IXITO](comp(c_2 c_3)
+                                      f_1(c_5 f_1(comp(c_5 c_2) c_1 c_4 c_3) c_4 c_2)
+                                      c_1)
+
+A3,1 & R13,2   --> * R53:  All x:I y:Ixito - A[IXITO](comp(y comp(c_2 c_3)) x c_1)
+                                           - A[IXITO](c_5 c_4 f_1(y c_1 x comp(c_2 c_3)))
+                                           - A[IXITO](comp(comp(c_5 c_2) c_3) c_4 c_1)
+
+A2,1 & R53,2   --> * R54:  - A[IXITO](comp(c_5 comp(c_2 c_3)) c_4 c_1)
+                           - A[IXITO](comp(c_5 comp(c_2 c_3)) c_4 c_1)
+                           - A[IXITO](comp(comp(c_5 c_2) c_3) c_4 c_1)
+
+R54 1=2        --> * D55:  - A[IXITO](comp(c_5 comp(c_2 c_3)) c_4 c_1)
+                           - A[IXITO](comp(comp(c_5 c_2) c_3) c_4 c_1)
+
+R12,2 & R13,1  --> * R56:  + A[IXITO](comp(c_5 comp(c_2 c_3)) c_4 c_1)
+                           - A[IXITO](comp(c_2 c_3)
+                                      f_1(c_5 f_1(comp(c_5 c_2) c_1 c_4 c_3) c_4 c_2)
+                                      c_1)
+                           - A[IXITO](comp(comp(c_5 c_2) c_3) c_4 c_1)
+
+R56,3 & D35,1  --> * R57:  + A[IXITO](comp(c_5 comp(c_2 c_3)) c_4 c_1)
+                           - A[IXITO](comp(c_2 c_3)
+                                      f_1(c_5 f_1(comp(c_5 c_2) c_1 c_4 c_3) c_4 c_2)
+                                      c_1)
+                           + A[IXITO](comp(c_5 comp(c_2 c_3)) c_4 c_1)
+
+R57 1=3        --> * D58:  + A[IXITO](comp(c_5 comp(c_2 c_3)) c_4 c_1)
+                           - A[IXITO](comp(c_2 c_3)
+                                      f_1(c_5 f_1(comp(c_5 c_2) c_1 c_4 c_3) c_4 c_2)
+                                      c_1)
+
+D58,2 & D46,2  --> * R59:  + A[IXITO](comp(c_5 comp(c_2 c_3)) c_4 c_1)
+                           + A[IXITO](comp(c_5 comp(c_2 c_3)) c_4 c_1)
+
+R59 1=2        --> * D60:  + A[IXITO](comp(c_5 comp(c_2 c_3)) c_4 c_1)
+
+D55,1 & D60,1  --> * R61:  - A[IXITO](comp(comp(c_5 c_2) c_3) c_4 c_1)
+
+D39,1 & R61,1  --> * R65:  + A[IXITO](comp(c_5 c_2)
+                                      c_4
+                                      f_1(c_2 c_1 f_1(c_5 c_1 c_4 comp(c_2 c_3)) c_3))
+
+R6,1 & R61,1   --> * R76:  + A[IXITO](c_3
+                                      f_1(c_2 c_1 f_1(c_5 c_1 c_4 comp(c_2 c_3)) c_3)
+                                      c_1)
+
+R65,1 & A4,1   --> * R77:  - A[IXITO](c_3
+                                      f_1(c_2 c_1 f_1(c_5 c_1 c_4 comp(c_2 c_3)) c_3)
+                                      c_1)
+                           + A[IXITO](comp(comp(c_5 c_2) c_3) c_4 c_1)
+
+R77,1 & R76,1  --> * R78:  + A[IXITO](comp(comp(c_5 c_2) c_3) c_4 c_1)
+
+R78,1 & R61,1  --> * R79:  []
+
+
+
+------------------------------------------------------------------------------------------
+
+
+
+  q.e.d. 
+
+
+Time Used for Refutation: 1 seconds

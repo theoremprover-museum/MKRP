@@ -1,0 +1,37 @@
+
+(problem group1 initialized 
+	 ((type-variables aa)
+	  (type-variables bb)
+	  (type-constants o)
+	  (type-constants i)
+	  (constants (sk1594 i))
+	  (constants (= (o aa aa)))
+	  (constants (false o))
+	  (constants (true o))
+	  (constants (and (o o o)))
+	  (constants (or (o o o)))
+	  (constants (implies (o o o)))
+	  (constants (equiv (o o o)))
+	  (constants (not (o o)))
+	  (constants (forall (o (o aa))))
+	  (constants (exists (o (o aa))))
+	  (constants (p o i))
+	  (type-constants A)
+	  (constants (one a)
+		     (inv (a a))
+		     (comp (a a a)))
+	  (assumption one-def
+		      (forall (lam (x a) 
+				   (= (comp one x) x))))
+	  (assumption inv-def
+		      (forall (lam (x a) 
+				   (= (comp (inv x) x) one))))
+	  (assumption assoc
+		      (forall (lam (x a)
+				   (forall (lam (z a)
+						(forall (lam (y a) 
+							     (= (comp (comp y z) x)
+								(comp y (comp z x))))))))))
+	  (conclusion conc (= (inv one) one))
+	  ))
+

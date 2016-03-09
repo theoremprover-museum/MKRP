@@ -1,0 +1,118 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 48.7                                                *
+                     *           DATE: 03-SEP,1991  14:00                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 03-SEP,1991 14:00 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   NOT Q (C1)
+             ALL X NOT P (X) OR Q (X) OR A (X)
+             ALL X P (X) IMPL B (X)
+             ALL X P (X) OR C (X)
+             ALL X P (X) OR D (X)
+             ALL X (NOT F (X)) IMPL (NOT ((A (X) AND B (X)) OR (C (X) AND D (X))))
+             
+   Theorems: EX X F (X)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+           * A2:   - Q(c1)
+           * A3:   All x:Any - P(x)  + B(x)
+           * A4:   All x:Any + P(x)  + C(x)
+           * A5:   All x:Any + P(x)  + D(x)
+           * A6:   All x:Any - P(x)  + Q(x)  + A(x)
+           * A7:   All x:Any + F(x)  - A(x)  - B(x)
+           * A8:   All x:Any + F(x)  - C(x)  - D(x)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T9: All x:Any - F(x)
+
+
+
+    Literals: ((T9 16) (A8 11 14 15) (A7 11 12 13) (A6 2 3 4) (A5 9 10) (A4 7 8) (A3 5 6) (A2 1) (A1 NIL))
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:   A1:   All x:Any + =(x x)
+                    * A2:   - Q(c1)
+                    * A3:   All x:Any - P(x)  + B(x)
+                    * A4:   All x:Any + P(x)  + C(x)
+                    * A5:   All x:Any + P(x)  + D(x)
+                    * A6:   All x:Any - P(x)  + Q(x)  + A(x)
+                    * A7:   All x:Any + F(x)  - A(x)  - B(x)
+                    * A8:   All x:Any + F(x)  - C(x)  - D(x)
+                    * T9:   All x:Any - F(x)
+                    
+
+   
+   A7,1 & T9,1  --> * R1:   All x:Any - A(x)  - B(x)
+   
+   A6,3 & R1,1  --> * R2:   All x:Any - P(x)  + Q(x)  - B(x)
+   
+   R2,3 & A3,2  --> * R3:   All x:Any - P(x)  + Q(x)  - P(x)
+   
+   R3 1=3       --> * D4:   All x:Any - P(x)  + Q(x)
+   
+   D4,2 & A2,1  --> * R5:   - P(c1)
+   
+   A4,1 & R5,1  --> * R6:   + C(c1)
+   
+   R6,1 & A8,2  --> * R7:   + F(c1)  - D(c1)
+   
+   R7,2 & A5,2  --> * R8:   + F(c1)  + P(c1)
+   
+   R8,2 & R5,1  --> * R9:   + F(c1)
+   
+   R9,1 & T9,1  --> * R10:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 11 seconds

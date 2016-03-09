@@ -1,0 +1,108 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 48.4                                                *
+                     *           DATE: 21-JUN,1991  13:04                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 05-JUL,1990 11:16 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   ALL X P (E X X)
+             ALL X P (X E X)
+             ALL X P (I (X) X E)
+             ALL X P (X I (X) E)
+             ALL X,Y,Z S (Z) AND S (Y) AND P (Z I (Y) X) IMPL S (X)
+             
+   Theorems: ALL X S (X) IMPL S (I (X))
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+           * A2:   All x:Any + P(e x x)
+             A3:   All x:Any + P(x e x)
+             A4:   All x:Any + P(i(x) x e)
+           * A5:   All x:Any + P(x i(x) e)
+           * A6:   All x,y,z:Any - S(z)  - S(y)  - P(z i(y) x)  + S(x)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T7: + S(c_1)
+           * T8: - S(i(c_1))
+
+
+
+    Literals: ((T8 10) (T7 9) (A6 5 6 7 8) (A5 4) (A4 3) (A3 2) (A2 1) (A1 NIL))
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:   A1:  All x:Any + =(x x)
+                    * A2:  All x:Any + P(e x x)
+                      A4:  All x:Any + P(i(x) x e)
+                    * A5:  All x:Any + P(x i(x) e)
+                    * A6:  All x,y,z:Any - S(z)  - S(y)  - P(z i(y) x)  + S(x)
+                    * T7:  + S(c_1)
+                    * T8:  - S(i(c_1))
+                    
+
+   
+   T7,1 & A6,1  --> * R1:  All x,y:Any - S(y)  - P(c_1 i(y) x)  + S(x)
+   
+   A5,1 & R1,2  --> * R2:  - S(c_1)  + S(e)
+   
+   R2,1 & T7,1  --> * R3:  + S(e)
+   
+   T7,1 & A6,2  --> * R4:  - S(e)  - P(e i(c_1) i(c_1))  + S(i(c_1))
+   
+   R4,1 & R3,1  --> * R5:  - P(e i(c_1) i(c_1))  + S(i(c_1))
+   
+   R5,1 & A2,1  --> * R6:  + S(i(c_1))
+   
+   R6,1 & T8,1  --> * R7:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 13 seconds

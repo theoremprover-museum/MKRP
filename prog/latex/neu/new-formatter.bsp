@@ -1,0 +1,111 @@
+(optimize-iterm (parse-term '(fdsagdhsa (gsgsg (hddhsahds (g1 (h a x) (f y)))))) 10)
+(optimize-iterm (parse-term '(bins (rop (f (g x)) !) + (lop - (h y)))) 10)
+(optimize-iterm (parse-term '(bins (rop (f (g x)) !) + (lop - (h y)) + (lop - (h y)) + (lop - (h y)))) 10)
+(optimize-iterm (parse-term '(bins (rop (f (g x)) !) + (lop - (h y)) + (lop - (h y)) + (lop - (h y)))) 3)
+
+(optimize-iterm (parse-term '(quant all ((any x y)) (bins (rop (f (g x)) !) = (h y)))) 20)
+(optimize-iterm (parse-term '(quant all ((any x y)) (bins (rop (f (g x)) !) = (h y)))) 5)
+
+(optimize-iterm (parse-term '(quant all ((any x y z) (s1 v w)) (bins (rop (f (g x)) !) = (h y)))) 5)
+
+(optimize-iterm (parse-term 
+ '(quant all ((any x y z) (s1 v w)) (f (bins (g (bins x + y + z)) * (h (rop v !) (lop - w)))))
+) 20)
+
+(optimize-iterm (parse-term 
+ '(quant all ((any x y z) (s1 v w)) 
+    (bins (f (bins (g (bins x + y + z)) * (h (rop v !) (lop - w)))) = (bins (rop (f (g x)) !) + (h y z))))
+) 20)
+
+(optimize-iterm (parse-term
+  '(quant ALL ((ANY X Y))
+     (not (bins (bins Y + X + Y + X) = (bins Y + Y + X + X))))
+) 20)
+
+(optimize-iterm (parse-term
+  '(quant ALL ((ANY X Y))
+     (not 
+       (bins (bins Y + (bins X + (bins Y + X)))
+          =  (bins (bins Y + Y) + (bins X + X)))))
+) 20)
+
+;----
+(optimize-iterm (parse-term
+  '("quant" FORALL ((ANY ("X" "Y")))
+     ((- ("bins" ("bins" "Y" "+" ("bins" "X" "+" ("bins" "Y" "+" "X")))
+          "=" ("bins" ("bins" "Y" "+" "Y") "+" ("bins" "X" "+" "X"))))))
+) 20)
+; so inkorrekt
+
+;---
+(optimize-iterm (parse-term '(QUANT ALL ((ANY ("X")))
+         (((BINS (BINS (LOP "-" "X") "+" "X") "=" "0"))))) 20)
+(optimize-iterm (parse-term '(QUANT ALL ((ANY ("X" "Y")))
+          (((BINS (BINS "Y" "+" "X") "=" (BINS "X" "+" "Y")))))) 20)
+(optimize-iterm (parse-term '(NOT (BINS (BINS (KL (BINS "c_2" "+" "c_1")) "+"
+                     (KL (BINS "c_2" "+" "c_1")))
+               "="
+               (BINS (KL (BINS "c_2" "+" "c_2")) "+"
+                     (KL (BINS "c_1" "+" "c_1")))))) 20)
+(optimize-iterm (parse-term '(QUANT ALL ((ANY ("X" "Y")))
+          (((BINS (BINS (KL (BINS "Y" "+" "X")) "+"
+                        (KL (BINS "Y" "+" "X")))
+                  "="
+                  (BINS (KL (BINS "Y" "+" "Y")) "+"
+                        (KL (BINS "X" "+" "X")))))))) 20)
+(optimize-iterm (parse-term '((NOT (BINS (LOP "-" (KL (BINS "c_4" "+" "c_3"))) "="
+               (BINS (LOP "-" "c_4") "+" (LOP "-" "c_3")))))) 20)
+(optimize-iterm (parse-term '(QUANT ALL ((ANY ("X" "Y")))
+          (((BINS (LOP "-" (KL (BINS "Y" "+" "X"))) "="
+                  (BINS (LOP "-" "Y") "+" (LOP "-" "X"))))))) 20)
+(optimize-iterm (parse-term '(QUANT ALL ((ANY ("X" "Y")))
+          (((BINS (LOP "-" (KL (BINS "Y" "+" "X"))) "="
+                  (BINS (LOP "-" "Y") "+" (LOP "-" "X"))))))) 5)
+(optimize-iterm (parse-term '((NOT (BINS (BINS "c_6" "+" "c_5") "=" (BINS "c_5" "+" "c_6"))))) 20)
+(optimize-iterm (parse-term '((NOT (BINS (BINS "c_2" "+"
+                      (KL (BINS "c_1" "+" (KL (BINS "c_2" "+" "c_1")))))
+                "="
+                (BINS (KL (BINS "c_2" "+" "c_2")) "+"
+                      (KL (BINS "c_1" "+" "c_1"))))))) 20)
+(optimize-iterm (parse-term '((NOT (BINS (BINS "c_2" "+"
+                      (KL (BINS "c_1" "+" (KL (BINS "c_2" "+" "c_1")))))
+                "="
+                (BINS "c_2" "+"
+                      (KL (BINS "c_2" "+" (KL (BINS "c_1" "+" "c_1"))))))))) 20)
+(optimize-iterm (parse-term '(QUANT ALL ((ANY ("X" "Y")))
+           (((BINS (BINS "Y" "+"
+                         (KL (BINS "X" "+" (KL (BINS "Y" "+" "X")))))
+                   "="
+                   (BINS (KL (BINS "Y" "+" "Y")) "+"
+                         (KL (BINS "X" "+" "X")))))))) 20)
+(optimize-iterm (parse-term '(QUANT ALL ((ANY ("X" "Y")))
+           (((BINS (BINS "Y" "+"
+                         (KL (BINS "X" "+" (KL (BINS "Y" "+" "X")))))
+                   "="
+                   (BINS "Y" "+"
+                         (KL (BINS "Y" "+" (KL (BINS "X" "+" "X")))))))))) 20)
+
+;---
+wrong: (optimize-iterm (parse-term '(QUANT ALL ((ANY ("X"))) (((BINS "X" "=" "X"))))) 20)
+right: (optimize-iterm (parse-term '(QUANT ALL ((ANY ("X"))) (BINS "X" "=" "X"))) 20)
+wrong: (optimize-iterm (parse-term '(QUANT ALL ((ANY ("X" "Y" "Z")))
+         (((BINS (BINS (KL (BINS "Z" "+" "Y")) "+" "X") "="
+                 (BINS "Z" "+" (KL (BINS "Y" "+" "X")))))))) 20)
+right: (optimize-iterm (parse-term '(QUANT ALL ((ANY ("X" "Y" "Z")))
+         (BINS (BINS (KL (BINS "Z" "+" "Y")) "+" "X") "="
+                 (BINS "Z" "+" (KL (BINS "Y" "+" "X")))))) 20)
+; bins zu tief geschachtelt 
+wrong: (optimize-iterm (parse-term '(QUANT ALL ((ANY ("X"))) (((BINS (BINS "0" "+" "X") "=" "X"))))) 5)
+right: (optimize-iterm (parse-term '(QUANT ALL ((ANY ("X"))) (((BINS (kl (BINS "0" "+" "X")) "=" "X"))))) 5)
+; evtl. kein Fehler kl fehlt
+
+;----
+(setq *iterm1 (parse-term '(bins (rop (f (g x)) !) + (lop - (h y)))))
+(pr-int-term *iterm1)
+(STEP-INT-TERM *iterm1)
+(pr-int-term *iterm1)
+(toplpr (setq *erg (FIND-LONGEST-TERM-PATH *iterm1)))
+;----
+> (get-zielterm (find-longest-term-path *iterm3))
+> (step-int-term (get-zielterm (find-longest-term-path *iterm3)))
+> (pr-int-term *iterm3)

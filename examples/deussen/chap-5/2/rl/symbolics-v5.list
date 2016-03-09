@@ -1,0 +1,217 @@
+;;; -*- Package: MKRP; Base: 10. -*-
+
+
+
+                    ********************************************************************************
+                    *                                                                              *
+                    *     MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN                   *
+                    *                                                                              *
+                    *       11-SEP-85                                                              *
+                    *          11-SEP-85  09:58:15                                                 *
+                    *                                                                              *
+                    ********************************************************************************
+
+
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   11-SEP-85 09:55:52
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   D52>RL
+                                                                        
+************************************************************************
+                                                                        
+
+
+
+
+
+FORMULAE GIVEN TO THE EDITOR
+============================
+
+
+AXIOMS   : SORT SET:ANY
+           SORT REL:SET
+           SORT EQU.RELATION:REL
+           SORT ELEMENT:SET
+           SORT EL.F:ELEMENT
+           SORT SYMB.FUNCTION2:ANY
+           TYPE F:SET
+           TYPE MAL.F:SYMB.FUNCTION2
+           TYPE SEMIGROUP (SET SYMB.FUNCTION2)
+           TYPE IN.RELATION (REL ELEMENT ELEMENT)
+           * SORTENPROBLEM: EIGENTLICH IN.RELATION (REL EL.F EL.F) ERWUENSCHT
+           TYPE L.CONGRUENCE (REL)
+           TYPE R.CONGRUENCE (REL)
+           TYPE CONGRUENCE (REL)
+           TYPE PAIR (ELEMENT ELEMENT) :ELEMENT
+           TYPE APPLY2 (SYMB.FUNCTION2 ELEMENT ELEMENT) :ELEMENT
+           TYPE EL*SUBSET.F (SYMB.FUNCTION2 ELEMENT SET) :SET
+           TYPE PREIMAGE (REL ELEMENT) :SET
+           * ERNEUTES SORTENPROBLEM : PREIMAGE (REL EL.F) GEWUENSCHT
+           * DEFINTION SUBSET
+           ALL A,B:SET SUBSET (A B) EQV (ALL X:ELEMENT EL (X A) IMPL EL (X B))
+           * DEFINITION EL*SUBSET.F
+           ALL T:SET  ALL X:EL.F  
+               SEMIGROUP (F MAL.F) AND SUBSET (T F)
+               IMPL  
+               (ALL Y:ELEMENT EL (Y EL*SUBSET.F (MAL.F X T)) EQV (EX Z:EL.F EL (Z T) AND Y = APPLY2 (MAL.F X Z)))
+           * DEFINTION LINKSKONGRUENZ
+           ALL RHO:EQU.RELATION  
+               SEMIGROUP (F MAL.F)
+               IMPL  
+                  L.CONGRUENCE (RHO)
+                  EQV  
+                   ALL G,F1,F2:EL.F  
+                     IN.RELATION (RHO F1 F2) IMPL IN.RELATION (RHO APPLY2 (MAL.F G F1) APPLY2 (MAL.F G F2))
+           * DEFINTION PREIMAGE
+           ALL RHO:REL ALL A,B:ELEMENT EL (B PREIMAGE (RHO A)) EQV IN.RELATION (RHO B A)
+           * LEMMA ?
+           ALL RHO:REL ALL A:EL.F SUBSET (PREIMAGE (RHO A) F)
+
+THEOREMS : * THEOREM 5.2.RL
+           ALL RHO:EQU.RELATION  
+               SEMIGROUP (F MAL.F)
+               IMPL  
+                  (ALL G,H:EL.F SUBSET (EL*SUBSET.F (MAL.F H PREIMAGE (RHO G)) PREIMAGE (RHO APPLY2 (MAL.F H G))))
+                  IMPL  
+                  L.CONGRUENCE (RHO)
+
+
+
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+* A1   : ALL X:ANY  + =(X X)
+* A2   : ALL X:EL.F  Y:REL  + SUBSET(PREIMAGE(Y X) F)
+  A3   : ALL X,Y:SET  + SUBSET(Y X)  - EL(F_1(X Y) X)
+  A4   : ALL X,Y:SET  + SUBSET(Y X)  + EL(F_1(X Y) Y)
+* A5   : ALL X:EQU.RELATION  - SEMIGROUP(F MAL.F)  + L.CONGRUENCE(X)
+                               - EL(APPLY2(MAL.F F_3(X) F_5(X)) PREIMAGE(X APPLY2(MAL.F F_3(X) F_4(X))))
+* A6   : ALL X:EQU.RELATION  - SEMIGROUP(F MAL.F)  + L.CONGRUENCE(X)  + EL(F_5(X) PREIMAGE(X F_4(X)))
+* A7   : ALL X:ELEMENT  Y,Z:SET  - SUBSET(Z Y)  - EL(X Z)  + EL(X Y)
+  A8   : ALL X,Y,Z:EL.F  U:EQU.RELATION  
+              - SEMIGROUP(F MAL.F)  - L.CONGRUENCE(U)  - EL(Z PREIMAGE(U Y))
+                + EL(APPLY2(MAL.F X Z) PREIMAGE(U APPLY2(MAL.F X Y)))
+  A9   : ALL X:EL.F  Y:ELEMENT  Z:SET  
+              - SEMIGROUP(F MAL.F)  - SUBSET(Z F)  - EL(Y EL*SUBSET.F(MAL.F X Z))  + =(Y APPLY2(MAL.F X F_2(X Y Z)))
+  A10  : ALL X:EL.F  Y:ELEMENT  Z:SET  
+              - SEMIGROUP(F MAL.F)  - SUBSET(Z F)  - EL(Y EL*SUBSET.F(MAL.F X Z))  + EL(F_2(X Y Z) Z)
+* A11  : ALL X,Y:EL.F  Z:ELEMENT  U:SET  
+              - SEMIGROUP(F MAL.F)  - SUBSET(U F)  + EL(Z EL*SUBSET.F(MAL.F Y U))  - EL(X U)  - =(Z APPLY2(MAL.F Y X))
+
+
+
+
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+* T12  : + SEMIGROUP(F MAL.F)
+* T13  : ALL X,Y:EL.F  + SUBSET(EL*SUBSET.F(MAL.F Y PREIMAGE(C_1 X)) PREIMAGE(C_1 APPLY2(MAL.F Y X)))
+* T14  : - L.CONGRUENCE(C_1)
+
+
+
+
+
+
+INITIAL OPERATIONS ON THEOREMS
+==============================
+
+
+A5,1 & T12,1    -->  * R1 : ALL X:EQU.RELATION  
+                                 + L.CONGRUENCE(X)
+                                   - EL(APPLY2(MAL.F F_3(X) F_5(X)) PREIMAGE(X APPLY2(MAL.F F_3(X) F_4(X))))
+
+A6,1 & T12,1    -->  * R2 : ALL X:EQU.RELATION  + L.CONGRUENCE(X)  + EL(F_5(X) PREIMAGE(X F_4(X)))
+
+A8,1 & T12,1    -->    R3 : ALL X,Y,Z:EL.F  U:EQU.RELATION  
+                                 - L.CONGRUENCE(U)  - EL(Z PREIMAGE(U Y))
+                                   + EL(APPLY2(MAL.F X Z) PREIMAGE(U APPLY2(MAL.F X Y)))
+
+A9,1 & T12,1    -->    R4 : ALL X:EL.F  Y:ELEMENT  Z:SET  
+                                 - SUBSET(Z F)  - EL(Y EL*SUBSET.F(MAL.F X Z))  + =(Y APPLY2(MAL.F X F_2(X Y Z)))
+
+A10,1 & T12,1   -->    R5 : ALL X:EL.F  Y:ELEMENT  Z:SET  
+                                 - SUBSET(Z F)  - EL(Y EL*SUBSET.F(MAL.F X Z))  + EL(F_2(X Y Z) Z)
+
+A11,1 & T12,1   -->  * R6 : ALL X,Y:EL.F  Z:ELEMENT  U:SET  
+                                 - SUBSET(U F)  + EL(Z EL*SUBSET.F(MAL.F Y U))  - EL(X U)  - =(Z APPLY2(MAL.F Y X))
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+REFUTATION
+
+  THE FOLLOWING OPTIONS HAVE BEEN CHANGED :
+
+PR:OPTIONS   NIL
+
+
+INITIAL CLAUSES :    * A1  : ALL X:ANY  + =(X X)
+                     * A2  : ALL X:EL.F  Y:REL  + SUBSET(PREIMAGE(Y X) F)
+                       A3  : ALL X,Y:SET  + SUBSET(Y X)  - EL(F_1(X Y) X)
+                       A4  : ALL X,Y:SET  + SUBSET(Y X)  + EL(F_1(X Y) Y)
+                     * R1  : ALL X:EQU.RELATION  
+                                  + L.CONGRUENCE(X)
+                                    - EL(APPLY2(MAL.F F_3(X) F_5(X)) PREIMAGE(X APPLY2(MAL.F F_3(X) F_4(X))))
+                     * R2  : ALL X:EQU.RELATION  + L.CONGRUENCE(X)  + EL(F_5(X) PREIMAGE(X F_4(X)))
+                     * A7  : ALL X:ELEMENT  Y,Z:SET  - SUBSET(Z Y)  - EL(X Z)  + EL(X Y)
+                       R3  : ALL X,Y,Z:EL.F  U:EQU.RELATION  
+                                  - L.CONGRUENCE(U)  - EL(Z PREIMAGE(U Y))
+                                    + EL(APPLY2(MAL.F X Z) PREIMAGE(U APPLY2(MAL.F X Y)))
+                       R4  : ALL X:EL.F  Y:ELEMENT  Z:SET  
+                                  - SUBSET(Z F)  - EL(Y EL*SUBSET.F(MAL.F X Z))  + =(Y APPLY2(MAL.F X F_2(X Y Z)))
+                       R5  : ALL X:EL.F  Y:ELEMENT  Z:SET  
+                                  - SUBSET(Z F)  - EL(Y EL*SUBSET.F(MAL.F X Z))  + EL(F_2(X Y Z) Z)
+                     * R6  : ALL X,Y:EL.F  Z:ELEMENT  U:SET  
+                                  - SUBSET(U F)  + EL(Z EL*SUBSET.F(MAL.F Y U))  - EL(X U)  - =(Z APPLY2(MAL.F Y X))
+                     * T13 : ALL X,Y:EL.F  + SUBSET(EL*SUBSET.F(MAL.F Y PREIMAGE(C_1 X))
+                                                    PREIMAGE(C_1 APPLY2(MAL.F Y X)))
+                     * T14 : - L.CONGRUENCE(C_1)
+
+A4,2 & A3,2     -->    R7  : ALL X:SET  + SUBSET(X X)  + SUBSET(X X)
+
+R7 2=1          -->    D8  : ALL X:SET  + SUBSET(X X)
+
+R1,1 & T14,1    -->  * R9  : - EL(APPLY2(MAL.F F_3(C_1) F_5(C_1)) PREIMAGE(C_1 APPLY2(MAL.F F_3(C_1) F_4(C_1))))
+
+T13,1 & A7,1    -->  * R10 : - EL(APPLY2(MAL.F F_3(C_1) F_5(C_1)) EL*SUBSET.F(MAL.F F_3(C_1) PREIMAGE(C_1 F_4(C_1))))
+                               + EL(APPLY2(MAL.F F_3(C_1) F_5(C_1)) PREIMAGE(C_1 APPLY2(MAL.F F_3(C_1) F_4(C_1))))
+
+R10,2 & R9,1    -->  * R11 : - EL(APPLY2(MAL.F F_3(C_1) F_5(C_1)) EL*SUBSET.F(MAL.F F_3(C_1) PREIMAGE(C_1 F_4(C_1))))
+
+R2,1 & T14,1    -->  * R12 : + EL(F_5(C_1) PREIMAGE(C_1 F_4(C_1)))
+
+A1,1 & R6,4     -->  * R13 : - SUBSET(PREIMAGE(C_1 F_4(C_1)) F)
+                               + EL(APPLY2(MAL.F F_3(C_1) F_5(C_1)) EL*SUBSET.F(MAL.F F_3(C_1) PREIMAGE(C_1 F_4(C_1))))
+                               - EL(F_5(C_1) PREIMAGE(C_1 F_4(C_1)))
+
+R13,3 & R12,1   -->  * R14 : - SUBSET(PREIMAGE(C_1 F_4(C_1)) F)
+                               + EL(APPLY2(MAL.F F_3(C_1) F_5(C_1)) EL*SUBSET.F(MAL.F F_3(C_1) PREIMAGE(C_1 F_4(C_1))))
+
+R14,1 & A2,1    -->  * R15 : + EL(APPLY2(MAL.F F_3(C_1) F_5(C_1)) EL*SUBSET.F(MAL.F F_3(C_1) PREIMAGE(C_1 F_4(C_1))))
+
+R15,1 & R11,1   -->  * R16 :  ce
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+  Q. E. D. 

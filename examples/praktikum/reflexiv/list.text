@@ -1,0 +1,114 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: Genera 7.1 IP-TCP 52.16 Experimental MKRP 15.10          *
+                     *           DATE: 04-DEC-1987  02:06                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+                                                                            
+   
+   *************************************************************************
+   
+    EDIT:     Axioms and Theorems edited: 04-DEC-1987 02:05 
+   
+   *************************************************************************
+   
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   SORT MENGE,ELEMENT:ANY
+             SORT REL:MENGE
+             SORT EL.VON.S:ELEMENT
+             TYPE EL (ELEMENT MENGE)
+             TYPE PAAR (ELEMENT ELEMENT) :ELEMENT
+             * DEFINITION VON DURCHSCHNITT
+             TYPE DURCHSCHNITT (REL REL) :REL
+             ALL X,Y:REL ALL A:ELEMENT EL (A DURCHSCHNITT (X Y)) EQV EL (A X) AND EL (A Y)
+             * DEFINITION REFLEXIV
+             TYPE REFLEXIV (REL)
+             ALL RHO:REL REFLEXIV (RHO) EQV (ALL A:EL.VON.S EL (PAAR (A A) RHO))
+             * DEFINITION SYMMETRISCH
+             TYPE SYMMETRISCH (REL)
+             ALL RHO:REL SYMMETRISCH (RHO) EQV (ALL A,B:EL.VON.S EL (PAAR (A B) RHO) IMPL EL (PAAR (B A) RHO))
+             * DEFINITION TRANSITIV
+             TYPE TRANSITIV (REL)
+             ALL RHO:REL TRANSITIV (RHO)
+                          EQV (ALL A,B,C:EL.VON.S EL (PAAR (A B) RHO) AND EL (PAAR (B C) RHO) IMPL EL (PAAR (A C) RHO))
+             * DEFINITION AEQUIVALENZRELATION
+             TYPE EQU.REL (REL)
+             ALL RHO:REL EQU.REL (RHO) EQV REFLEXIV (RHO) AND SYMMETRISCH (RHO) AND TRANSITIV (RHO)
+             
+   Theorems: ALL RHO,SIGMA:REL EQU.REL (RHO) AND EQU.REL (SIGMA) IMPL REFLEXIV (DURCHSCHNITT (RHO SIGMA))
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x,y:Rel z:Element -EL(z durchschnitt(y x))  +EL(z y)
+             A2:   All x,y:Rel z:Element -EL(z durchschnitt(y x))  +EL(z x)
+           * A3:   All x,y:Rel z:Element +EL(z durchschnitt(y x))  -EL(z y)  -EL(z x)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T4: All x:El.von.s +EL(paar(x x) c_2)
+             T5: All x,y:El.von.s -EL(paar(y x) c_2)  +EL(paar(x y) c_2)
+             T6: All x,y,z:El.von.s -EL(paar(z y) c_2)  -EL(paar(y x) c_2)  +EL(paar(z x) c_2)
+           * T7: All x:El.von.s +EL(paar(x x) c_3)
+             T8: All x,y:El.von.s -EL(paar(y x) c_3)  +EL(paar(x y) c_3)
+             T9: All x,y,z:El.von.s -EL(paar(z y) c_3)  -EL(paar(y x) c_3)  +EL(paar(z x) c_3)
+           * T10: -EL(paar(c_1 c_1) durchschnitt(c_2 c_3))
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+
+   
+   Initial Clauses:     A1:   All x,y:Rel z:Element -EL(z durchschnitt(y x))  +EL(z y)
+                        A2:   All x,y:Rel z:Element -EL(z durchschnitt(y x))  +EL(z x)
+                      * A3:   All x,y:Rel z:Element +EL(z durchschnitt(y x))  -EL(z y)  -EL(z x)
+                      * T4:   All x:El.von.s +EL(paar(x x) c_2)
+                        T5:   All x,y:El.von.s -EL(paar(y x) c_2)  +EL(paar(x y) c_2)
+                        T6:   All x,y,z:El.von.s -EL(paar(z y) c_2)  -EL(paar(y x) c_2)  +EL(paar(z x) c_2)
+                      * T7:   All x:El.von.s +EL(paar(x x) c_3)
+                        T8:   All x,y:El.von.s -EL(paar(y x) c_3)  +EL(paar(x y) c_3)
+                        T9:   All x,y,z:El.von.s -EL(paar(z y) c_3)  -EL(paar(y x) c_3)  +EL(paar(z x) c_3)
+                      * T10:  -EL(paar(c_1 c_1) durchschnitt(c_2 c_3))
+                      
+
+   
+   T7,1 & A3,3   -->  * R1:   +EL(paar(c_1 c_1) durchschnitt(c_2 c_3))  -EL(paar(c_1 c_1) c_2)
+   
+   R1,2 & T4,1   -->  * R2:   +EL(paar(c_1 c_1) durchschnitt(c_2 c_3))
+   
+   R2,1 & T10,1  -->  * R3:   []
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 

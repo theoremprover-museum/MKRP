@@ -1,0 +1,413 @@
+;;; -*- Package: MKRP; Base: 10. -*-
+
+
+
+                    ********************************************************************************
+                    *                                                                              *
+                    *     MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN                   *
+                    *                                                                              *
+                    *       28-AUG-85                                                              *
+                    *          28-AUG-85  10:07:13                                                 *
+                    *                                                                              *
+                    ********************************************************************************
+
+
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   28-AUG-85 10:02:50
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   D314
+                                                                        
+************************************************************************
+                                                                        
+
+
+
+
+
+FORMULAE GIVEN TO THE EDITOR
+============================
+
+
+AXIOMS   : SORT MENGE,VERKN,ELEMENT,INDEX,INDEXMENGE:ANY
+           TYPE LIDEAL (MENGE MENGE VERKN)
+           TYPE RIDEAL (MENGE MENGE VERKN)
+           TYPE UHG (MENGE MENGE VERKN)
+           TYPE ME (MENGE MENGE)
+           TYPE NICHTLEER (MENGE)
+           TYPE HG (MENGE VERKN)
+           TYPE EL (ELEMENT MENGE)
+           TYPE MINIMAL (MENGE MENGE VERKN)
+           TYPE MPROD (MENGE MENGE VERKN) :MENGE
+           TYPE APPLYV (VERKN ELEMENT ELEMENT) :ELEMENT
+           TYPE F*X (MENGE ELEMENT VERKN) :MENGE
+           TYPE SM (MENGE MENGE) :MENGE
+           TYPE SET (ELEMENT) :MENGE
+           TYPE VER (MENGE MENGE) :MENGE
+           TYPE GR (MENGE VERKN ELEMENT)
+           TYPE INVERS (VERKN ELEMENT) :ELEMENT
+           TYPE MINIMAL-BED-L (MENGE VERKN)
+           TYPE MINIMAL-BED-R (MENGE VERKN)
+           TYPE EL-IND (INDEX INDEXMENGE)
+           TYPE U (INDEX) : MENGE
+           TYPE E (INDEX INDEX) : ELEMENT
+           TYPE NICHTLEER-IND (INDEXMENGE)
+           TYPE GLEICH (MENGE MENGE)
+           TYPE VER-IND (INDEXMENGE) : MENGE
+           TYPE SM-IND (INDEXMENGE) : MENGE
+           TYPE IDEAL (MENGE MENGE VERKN)
+           TYPE G (INDEX INDEX) :MENGE
+           TYPE GLEICH-E (ELEMENT ELEMENT)
+           TYPE VER-I (INDEX INDEXMENGE MENGE) : MENGE
+           * VOR1 (F MAL) BEDEUTET : HG (F MAL) AND MINIMAL-BED-L (F MAL) AND MINIMAL-BED-R (F MAL) *
+             * VOR2 (F MAL I1 I2) BEDEUTET: VOR1 (F MAL)
+             AND  
+             (ALL J1:INDEX EL-IND (J1 I1) IMPL RIDEAL (U (J1) F MAL) AND MINIMAL (U (J1) F MAL))
+             AND  
+             (ALL J2:INDEX EL-IND (J2 I2) IMPL LIDEAL (U (J2) F MAL) AND MINIMAL (U (J2) F)) *
+           * SATZ 3.13 *
+           ALL F:MENGE  ALL MAL:VERKN  ALL I1,I2:INDEXMENGE  ALL LAMBDA,RHO:INDEX  
+               VOR2 (F MAL I1 I2) AND EL-IND (LAMBDA I2) AND EL-IND (RHO I1)
+               IMPL  
+               U (LAMBDA) = VER-I (RHO I1 G (RHO LAMBDA))
+           * SATZ 3.10.4.2 *
+           ALL F:MENGE  ALL MAL:VERKN  ALL I1,I2:INDEXMENGE  ALL LAMBDA,RHO,RHO0:INDEX  
+               VOR2 (F MAL I1 I2) AND EL-IND (LAMBDA I2) AND EL-IND (RHO I1) AND EL-IND (RHO0 I1)
+               IMPL  
+               G (RHO LAMBDA) = MPROD (SET (E (RHO LAMBDA)) G (RHO0 LAMBDA) MAL)
+           * SATZ 3.10.4.1 *
+           ALL F:MENGE  ALL MAL:VERKN  ALL I1,I2:INDEXMENGE  ALL LAMBDA,LAMBDA0,RHO0:INDEX  
+               VOR2 (F MAL I1 I2) AND EL-IND (LAMBDA I2) AND EL-IND (RHO0 I1) AND EL-IND (LAMBDA0 I2)
+               IMPL  
+               G (RHO0 LAMBDA) = MPROD (G (RHO0 LAMBDA0) SET (E (RHO0 LAMBDA)) MAL)
+           * DISTRIBUTIVGESETZ FUER MPROD MIT VER-I *
+           ALL F:MENGE  ALL MAL:VERKN  ALL I:INDEXMENGE  ALL J:INDEX  ALL A,B:MENGE  
+             VOR1 (F MAL) IMPL VER-I (J I MPROD (A B MAL)) = MPROD (VER-I (J I A) B MAL)
+
+THEOREMS : ALL F:MENGE  ALL MAL:VERKN  ALL I1,I2:INDEXMENGE  ALL LAMBDA,RHO0,LAMBDA0,RHO:INDEX  
+                 HG (F MAL)
+                 AND  
+                 MINIMAL-BED-L (F MAL)
+                 AND  
+                 MINIMAL-BED-R (F MAL)
+                 AND  
+                 (ALL J1:INDEX EL-IND (J1 I1) IMPL RIDEAL (U (J1) F MAL) AND MINIMAL (U (J1) F MAL))
+                 AND  
+                 (ALL J2:INDEX EL-IND (J2 I2) IMPL LIDEAL (U (J2) F MAL) AND MINIMAL (U (J2) F MAL))
+                 AND  
+                 EL-IND (LAMBDA I2)
+                 AND  
+                 EL-IND (RHO0 I1)
+                 AND  
+                 EL-IND (LAMBDA0 I2)
+                 AND  
+                 EL-IND (RHO I1)
+                 AND  
+                 VOR1 (F MAL)
+                 AND  
+                 VOR2 (F MAL I1 I2)
+               IMPL  
+                U  
+                LAMBDA
+                =  
+                MPROD  
+                VER-I (RHO I1 SET (E (RHO LAMBDA))) MPROD (G (RHO0 LAMBDA0) SET (E (RHO0 LAMBDA)) MAL) MAL
+
+
+
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+  A1   : ALL X:ANY  + =(X X)
+  A2   : ALL X,Y,Z:MENGE  U:INDEXMENGE  V:INDEX  W:VERKN  
+              - VOR1(Z W)  + =(VER-I(V U MPROD(Y X W)) MPROD(VER-I(V U Y) X W))
+  A3   : ALL X,Y:INDEX  Z,U:INDEXMENGE  V:VERKN  W:MENGE  
+              - VOR2(W V U Z)  - EL-IND(Y Z)  - EL-IND(X U)  + =(U(Y) VER-I(X U G(X Y)))
+  A4   : ALL X,Y,Z:INDEX  U,V:INDEXMENGE  W:VERKN  XX:MENGE  
+              - VOR2(XX W V U)  - EL-IND(Z U)  - EL-IND(Y V)  - EL-IND(X U)  + =(G(Y Z) MPROD(G(Y X) SET(E(Y Z)) W))
+  A5   : ALL X,Y,Z:INDEX  U,V:INDEXMENGE  W:VERKN  XX:MENGE  
+              - VOR2(XX W V U)  - EL-IND(Z U)  - EL-IND(Y V)  - EL-IND(X V)  + =(G(Y Z) MPROD(SET(E(Y Z)) G(X Z) W))
+
+
+
+
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+  T6   : + HG(C_2 C_7)
+  T7   : + MINIMAL-BED-L(C_2 C_7)
+  T8   : + MINIMAL-BED-R(C_2 C_7)
+  T9   : ALL X:INDEX  - EL-IND(X C_5)  + RIDEAL(U(X) C_2 C_7)
+  T10  : ALL X:INDEX  - EL-IND(X C_5)  + MINIMAL(U(X) C_2 C_7)
+  T11  : ALL X:INDEX  - EL-IND(X C_1)  + LIDEAL(U(X) C_2 C_7)
+  T12  : ALL X:INDEX  - EL-IND(X C_1)  + MINIMAL(U(X) C_2 C_7)
+  T13  : + EL-IND(C_3 C_1)
+  T14  : + EL-IND(C_6 C_5)
+  T15  : + EL-IND(C_8 C_1)
+  T16  : + EL-IND(C_4 C_5)
+  T17  : + VOR1(C_2 C_7)
+  T18  : + VOR2(C_2 C_7 C_5 C_1)
+  T19  : - =(U(C_3) MPROD(VER-I(C_4 C_5 SET(E(C_4 C_3))) MPROD(G(C_6 C_8) SET(E(C_6 C_3)) C_7) C_7))
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+REFUTATION ( FAILURE : ABORTED.MAXSTEPS )
+
+  THE FOLLOWING OPTIONS HAVE BEEN CHANGED :
+
+GEN:MAXIMUM.STEPS   33.
+PR:OPTIONS   NIL
+
+
+INITIAL CLAUSES :      A1  : ALL X:ANY  + =(X X)
+                       A2  : ALL X,Y,Z:MENGE  U:INDEXMENGE  V:INDEX  W:VERKN  
+                                  - VOR1(Z W)  + =(VER-I(V U MPROD(Y X W)) MPROD(VER-I(V U Y) X W))
+                       A3  : ALL X,Y:INDEX  Z,U:INDEXMENGE  V:VERKN  W:MENGE  
+                                  - VOR2(W V U Z)  - EL-IND(Y Z)  - EL-IND(X U)  + =(U(Y) VER-I(X U G(X Y)))
+                       A4  : ALL X,Y,Z:INDEX  U,V:INDEXMENGE  W:VERKN  XX:MENGE  
+                                  - VOR2(XX W V U)  - EL-IND(Z U)  - EL-IND(Y V)  - EL-IND(X U)
+                                    + =(G(Y Z) MPROD(G(Y X) SET(E(Y Z)) W))
+                       A5  : ALL X,Y,Z:INDEX  U,V:INDEXMENGE  W:VERKN  XX:MENGE  
+                                  - VOR2(XX W V U)  - EL-IND(Z U)  - EL-IND(Y V)  - EL-IND(X V)
+                                    + =(G(Y Z) MPROD(SET(E(Y Z)) G(X Z) W))
+                       T9  : ALL X:INDEX  - EL-IND(X C_5)  + RIDEAL(U(X) C_2 C_7)
+                       T10 : ALL X:INDEX  - EL-IND(X C_5)  + MINIMAL(U(X) C_2 C_7)
+                       T11 : ALL X:INDEX  - EL-IND(X C_1)  + LIDEAL(U(X) C_2 C_7)
+                       T12 : ALL X:INDEX  - EL-IND(X C_1)  + MINIMAL(U(X) C_2 C_7)
+                       T13 : + EL-IND(C_3 C_1)
+                       T14 : + EL-IND(C_6 C_5)
+                       T15 : + EL-IND(C_8 C_1)
+                       T16 : + EL-IND(C_4 C_5)
+                       T17 : + VOR1(C_2 C_7)
+                       T18 : + VOR2(C_2 C_7 C_5 C_1)
+                       T19 : - =(U(C_3) MPROD(VER-I(C_4 C_5 SET(E(C_4 C_3))) MPROD(G(C_6 C_8) SET(E(C_6 C_3)) C_7) C_7))
+
+T18,1 & A3,1    -->    R1  : ALL X,Y:INDEX  - EL-IND(Y C_1)  - EL-IND(X C_5)  + =(U(Y) VER-I(X C_5 G(X Y)))
+
+T18,1 & A4,1    -->    R2  : ALL X,Y,Z:INDEX  - EL-IND(Z C_1)  - EL-IND(Y C_5)  - EL-IND(X C_1)
+                                                + =(G(Y Z) MPROD(G(Y X) SET(E(Y Z)) C_7))
+
+T18,1 & A5,1    -->    R3  : ALL X,Y,Z:INDEX  - EL-IND(Z C_1)  - EL-IND(Y C_5)  - EL-IND(X C_5)
+                                                + =(G(Y Z) MPROD(SET(E(Y Z)) G(X Z) C_7))
+
+T17,1 & A2,1    -->    R4  : ALL X,Y:MENGE  Z:INDEXMENGE  U:INDEX  
+                                  + =(VER-I(U Z MPROD(Y X C_7)) MPROD(VER-I(U Z Y) X C_7))
+
+T14,1 & T9,1    -->    R5  : + RIDEAL(U(C_6) C_2 C_7)
+
+T16,1 & T9,1    -->    R6  : + RIDEAL(U(C_4) C_2 C_7)
+
+T13,1 & T11,1   -->    R7  : + LIDEAL(U(C_3) C_2 C_7)
+
+T15,1 & T11,1   -->    R8  : + LIDEAL(U(C_8) C_2 C_7)
+
+T13,1 & T12,1   -->    R9  : + MINIMAL(U(C_3) C_2 C_7)
+
+T15,1 & T12,1   -->    R10 : + MINIMAL(U(C_8) C_2 C_7)
+
+T14,1 & T10,1   -->    R11 : + MINIMAL(U(C_6) C_2 C_7)
+
+T16,1 & T10,1   -->    R12 : + MINIMAL(U(C_4) C_2 C_7)
+
+T13,1 & R1,1    -->    R13 : - EL-IND(C_6 C_5)  + =(U(C_3) VER-I(C_6 C_5 G(C_6 C_3)))
+
+R13,1 & T14,1   -->    R14 : + =(U(C_3) VER-I(C_6 C_5 G(C_6 C_3)))
+
+T15,1 & R1,1    -->    R15 : - EL-IND(C_6 C_5)  + =(U(C_8) VER-I(C_6 C_5 G(C_6 C_8)))
+
+R15,1 & T14,1   -->    R16 : + =(U(C_8) VER-I(C_6 C_5 G(C_6 C_8)))
+
+T13,1 & R1,1    -->    R17 : - EL-IND(C_4 C_5)  + =(U(C_3) VER-I(C_4 C_5 G(C_4 C_3)))
+
+R17,1 & T16,1   -->    R18 : + =(U(C_3) VER-I(C_4 C_5 G(C_4 C_3)))
+
+T15,1 & R1,1    -->    R19 : - EL-IND(C_4 C_5)  + =(U(C_8) VER-I(C_4 C_5 G(C_4 C_8)))
+
+R19,1 & T16,1   -->    R20 : + =(U(C_8) VER-I(C_4 C_5 G(C_4 C_8)))
+
+T14,1 & R3,2    -->    R21 : - EL-IND(C_3 C_1)  - EL-IND(C_6 C_5)  + =(G(C_6 C_3) MPROD(SET(E(C_6 C_3)) G(C_6 C_3) C_7))
+
+R21,1 & T13,1   -->    R22 : - EL-IND(C_6 C_5)  + =(G(C_6 C_3) MPROD(SET(E(C_6 C_3)) G(C_6 C_3) C_7))
+
+R22 NIL=1       -->    D23 : + =(G(C_6 C_3) MPROD(SET(E(C_6 C_3)) G(C_6 C_3) C_7))
+
+T16,1 & R3,2    -->    R24 : - EL-IND(C_3 C_1)  - EL-IND(C_4 C_5)  + =(G(C_4 C_3) MPROD(SET(E(C_4 C_3)) G(C_4 C_3) C_7))
+
+R24,1 & T13,1   -->    R25 : - EL-IND(C_4 C_5)  + =(G(C_4 C_3) MPROD(SET(E(C_4 C_3)) G(C_4 C_3) C_7))
+
+R25 NIL=1       -->    D26 : + =(G(C_4 C_3) MPROD(SET(E(C_4 C_3)) G(C_4 C_3) C_7))
+
+T14,1 & R3,2    -->    R27 : - EL-IND(C_8 C_1)  - EL-IND(C_6 C_5)  + =(G(C_6 C_8) MPROD(SET(E(C_6 C_8)) G(C_6 C_8) C_7))
+
+R27,1 & T15,1   -->    R28 : - EL-IND(C_6 C_5)  + =(G(C_6 C_8) MPROD(SET(E(C_6 C_8)) G(C_6 C_8) C_7))
+
+R28 NIL=1       -->    D29 : + =(G(C_6 C_8) MPROD(SET(E(C_6 C_8)) G(C_6 C_8) C_7))
+
+T16,1 & R3,2    -->    R30 : - EL-IND(C_8 C_1)  - EL-IND(C_4 C_5)  + =(G(C_4 C_8) MPROD(SET(E(C_4 C_8)) G(C_4 C_8) C_7))
+
+R30,1 & T15,1   -->    R31 : - EL-IND(C_4 C_5)  + =(G(C_4 C_8) MPROD(SET(E(C_4 C_8)) G(C_4 C_8) C_7))
+
+R31 NIL=1       -->    D32 : + =(G(C_4 C_8) MPROD(SET(E(C_4 C_8)) G(C_4 C_8) C_7))
+
+T16,1 & R3,2    -->    R33 : - EL-IND(C_3 C_1)  - EL-IND(C_6 C_5)  + =(G(C_4 C_3) MPROD(SET(E(C_4 C_3)) G(C_6 C_3) C_7))
+
+R33,1 & T13,1   -->    R34 : - EL-IND(C_6 C_5)  + =(G(C_4 C_3) MPROD(SET(E(C_4 C_3)) G(C_6 C_3) C_7))
+
+R34,1 & T14,1   -->    R35 : + =(G(C_4 C_3) MPROD(SET(E(C_4 C_3)) G(C_6 C_3) C_7))
+
+T16,1 & R3,2    -->    R36 : - EL-IND(C_8 C_1)  - EL-IND(C_6 C_5)  + =(G(C_4 C_8) MPROD(SET(E(C_4 C_8)) G(C_6 C_8) C_7))
+
+R36,1 & T15,1   -->    R37 : - EL-IND(C_6 C_5)  + =(G(C_4 C_8) MPROD(SET(E(C_4 C_8)) G(C_6 C_8) C_7))
+
+R37,1 & T14,1   -->    R38 : + =(G(C_4 C_8) MPROD(SET(E(C_4 C_8)) G(C_6 C_8) C_7))
+
+T14,1 & R3,2    -->    R39 : - EL-IND(C_3 C_1)  - EL-IND(C_4 C_5)  + =(G(C_6 C_3) MPROD(SET(E(C_6 C_3)) G(C_4 C_3) C_7))
+
+R39,1 & T13,1   -->    R40 : - EL-IND(C_4 C_5)  + =(G(C_6 C_3) MPROD(SET(E(C_6 C_3)) G(C_4 C_3) C_7))
+
+R40,1 & T16,1   -->    R41 : + =(G(C_6 C_3) MPROD(SET(E(C_6 C_3)) G(C_4 C_3) C_7))
+
+T14,1 & R3,2    -->    R42 : - EL-IND(C_8 C_1)  - EL-IND(C_4 C_5)  + =(G(C_6 C_8) MPROD(SET(E(C_6 C_8)) G(C_4 C_8) C_7))
+
+R42,1 & T15,1   -->    R43 : - EL-IND(C_4 C_5)  + =(G(C_6 C_8) MPROD(SET(E(C_6 C_8)) G(C_4 C_8) C_7))
+
+R43,1 & T16,1   -->    R44 : + =(G(C_6 C_8) MPROD(SET(E(C_6 C_8)) G(C_4 C_8) C_7))
+
+T14,1 & R2,2    -->    R45 : - EL-IND(C_3 C_1)  - EL-IND(C_3 C_1)  + =(G(C_6 C_3) MPROD(G(C_6 C_3) SET(E(C_6 C_3)) C_7))
+
+R45,1 & T13,1   -->    R46 : - EL-IND(C_3 C_1)  + =(G(C_6 C_3) MPROD(G(C_6 C_3) SET(E(C_6 C_3)) C_7))
+
+R46 NIL=1       -->    D47 : + =(G(C_6 C_3) MPROD(G(C_6 C_3) SET(E(C_6 C_3)) C_7))
+
+T16,1 & R2,2    -->    R48 : - EL-IND(C_3 C_1)  - EL-IND(C_3 C_1)  + =(G(C_4 C_3) MPROD(G(C_4 C_3) SET(E(C_4 C_3)) C_7))
+
+R48,1 & T13,1   -->    R49 : - EL-IND(C_3 C_1)  + =(G(C_4 C_3) MPROD(G(C_4 C_3) SET(E(C_4 C_3)) C_7))
+
+R49 NIL=1       -->    D50 : + =(G(C_4 C_3) MPROD(G(C_4 C_3) SET(E(C_4 C_3)) C_7))
+
+T14,1 & R2,2    -->    R51 : - EL-IND(C_8 C_1)  - EL-IND(C_8 C_1)  + =(G(C_6 C_8) MPROD(G(C_6 C_8) SET(E(C_6 C_8)) C_7))
+
+R51,1 & T15,1   -->    R52 : - EL-IND(C_8 C_1)  + =(G(C_6 C_8) MPROD(G(C_6 C_8) SET(E(C_6 C_8)) C_7))
+
+R52 NIL=1       -->    D53 : + =(G(C_6 C_8) MPROD(G(C_6 C_8) SET(E(C_6 C_8)) C_7))
+
+T16,1 & R2,2    -->    R54 : - EL-IND(C_8 C_1)  - EL-IND(C_8 C_1)  + =(G(C_4 C_8) MPROD(G(C_4 C_8) SET(E(C_4 C_8)) C_7))
+
+R54,1 & T15,1   -->    R55 : - EL-IND(C_8 C_1)  + =(G(C_4 C_8) MPROD(G(C_4 C_8) SET(E(C_4 C_8)) C_7))
+
+R55 NIL=1       -->    D56 : + =(G(C_4 C_8) MPROD(G(C_4 C_8) SET(E(C_4 C_8)) C_7))
+
+T14,1 & R2,2    -->    R57 : - EL-IND(C_8 C_1)  - EL-IND(C_3 C_1)  + =(G(C_6 C_8) MPROD(G(C_6 C_3) SET(E(C_6 C_8)) C_7))
+
+R57,1 & T15,1   -->    R58 : - EL-IND(C_3 C_1)  + =(G(C_6 C_8) MPROD(G(C_6 C_3) SET(E(C_6 C_8)) C_7))
+
+R58,1 & T13,1   -->    R59 : + =(G(C_6 C_8) MPROD(G(C_6 C_3) SET(E(C_6 C_8)) C_7))
+
+T16,1 & R2,2    -->    R60 : - EL-IND(C_8 C_1)  - EL-IND(C_3 C_1)  + =(G(C_4 C_8) MPROD(G(C_4 C_3) SET(E(C_4 C_8)) C_7))
+
+R60,1 & T15,1   -->    R61 : - EL-IND(C_3 C_1)  + =(G(C_4 C_8) MPROD(G(C_4 C_3) SET(E(C_4 C_8)) C_7))
+
+R61,1 & T13,1   -->    R62 : + =(G(C_4 C_8) MPROD(G(C_4 C_3) SET(E(C_4 C_8)) C_7))
+
+T14,1 & R2,2    -->    R63 : - EL-IND(C_3 C_1)  - EL-IND(C_8 C_1)  + =(G(C_6 C_3) MPROD(G(C_6 C_8) SET(E(C_6 C_3)) C_7))
+
+R63,1 & T13,1   -->    R64 : - EL-IND(C_8 C_1)  + =(G(C_6 C_3) MPROD(G(C_6 C_8) SET(E(C_6 C_3)) C_7))
+
+R64,1 & T15,1   -->    R65 : + =(G(C_6 C_3) MPROD(G(C_6 C_8) SET(E(C_6 C_3)) C_7))
+
+T16,1 & R2,2    -->    R66 : - EL-IND(C_3 C_1)  - EL-IND(C_8 C_1)  + =(G(C_4 C_3) MPROD(G(C_4 C_8) SET(E(C_4 C_3)) C_7))
+
+R66,1 & T13,1   -->    R67 : - EL-IND(C_8 C_1)  + =(G(C_4 C_3) MPROD(G(C_4 C_8) SET(E(C_4 C_3)) C_7))
+
+R67,1 & T15,1   -->    R68 : + =(G(C_4 C_3) MPROD(G(C_4 C_8) SET(E(C_4 C_3)) C_7))
+
+R14,1 & T19,1   -->    P69 : - =(VER-I(C_6 C_5 G(C_6 C_3))
+                                 MPROD(VER-I(C_4 C_5 SET(E(C_4 C_3))) MPROD(G(C_6 C_8) SET(E(C_6 C_3)) C_7) C_7))
+
+
+R14,1 & R4,1    -->    P70 : ALL X:MENGE  + =(VER-I(C_6 C_5 MPROD(G(C_6 C_3) X C_7)) MPROD(U(C_3) X C_7))
+
+R14,1 & R7,1    -->    P71 : + LIDEAL(VER-I(C_6 C_5 G(C_6 C_3)) C_2 C_7)
+
+R14,1 & R9,1    -->    P72 : + MINIMAL(VER-I(C_6 C_5 G(C_6 C_3)) C_2 C_7)
+
+R16,1 & R4,1    -->    P73 : ALL X:MENGE  + =(VER-I(C_6 C_5 MPROD(G(C_6 C_8) X C_7)) MPROD(U(C_8) X C_7))
+
+R16,1 & R8,1    -->    P74 : + LIDEAL(VER-I(C_6 C_5 G(C_6 C_8)) C_2 C_7)
+
+R16,1 & R10,1   -->    P75 : + MINIMAL(VER-I(C_6 C_5 G(C_6 C_8)) C_2 C_7)
+
+R18,1 & T19,1   -->    P76 : - =(VER-I(C_4 C_5 G(C_4 C_3))
+                                 MPROD(VER-I(C_4 C_5 SET(E(C_4 C_3))) MPROD(G(C_6 C_8) SET(E(C_6 C_3)) C_7) C_7))
+
+
+R18,1 & R4,1    -->    P77 : ALL X:MENGE  + =(VER-I(C_4 C_5 MPROD(G(C_4 C_3) X C_7)) MPROD(U(C_3) X C_7))
+
+R18,1 & R7,1    -->    P78 : + LIDEAL(VER-I(C_4 C_5 G(C_4 C_3)) C_2 C_7)
+
+R18,1 & R9,1    -->    P79 : + MINIMAL(VER-I(C_4 C_5 G(C_4 C_3)) C_2 C_7)
+
+R18,1 & R14,1   -->    P80 : + =(VER-I(C_4 C_5 G(C_4 C_3)) VER-I(C_6 C_5 G(C_6 C_3)))
+
+R20,1 & R4,1    -->    P81 : ALL X:MENGE  + =(VER-I(C_4 C_5 MPROD(G(C_4 C_8) X C_7)) MPROD(U(C_8) X C_7))
+
+R20,1 & R8,1    -->    P82 : + LIDEAL(VER-I(C_4 C_5 G(C_4 C_8)) C_2 C_7)
+
+R20,1 & R10,1   -->    P83 : + MINIMAL(VER-I(C_4 C_5 G(C_4 C_8)) C_2 C_7)
+
+R20,1 & R16,1   -->    P84 : + =(VER-I(C_4 C_5 G(C_4 C_8)) VER-I(C_6 C_5 G(C_6 C_8)))
+
+D23,1 & R4,1    -->    P85 : ALL X:INDEXMENGE  Y:INDEX  
+                                  + =(VER-I(Y X G(C_6 C_3)) MPROD(VER-I(Y X SET(E(C_6 C_3))) G(C_6 C_3) C_7))
+
+D23,1 & R14,1   -->    P86 : + =(U(C_3) VER-I(C_6 C_5 MPROD(SET(E(C_6 C_3)) G(C_6 C_3) C_7)))
+
+D26,1 & R4,1    -->    P87 : ALL X:INDEXMENGE  Y:INDEX  
+                                  + =(VER-I(Y X G(C_4 C_3)) MPROD(VER-I(Y X SET(E(C_4 C_3))) G(C_4 C_3) C_7))
+
+D26,1 & R18,1   -->    P88 : + =(U(C_3) VER-I(C_4 C_5 MPROD(SET(E(C_4 C_3)) G(C_4 C_3) C_7)))
+
+D29,1 & R4,1    -->    P89 : ALL X:INDEXMENGE  Y:INDEX  
+                                  + =(VER-I(Y X G(C_6 C_8)) MPROD(VER-I(Y X SET(E(C_6 C_8))) G(C_6 C_8) C_7))
+
+D29,1 & R16,1   -->    P90 : + =(U(C_8) VER-I(C_6 C_5 MPROD(SET(E(C_6 C_8)) G(C_6 C_8) C_7)))
+
+D32,1 & R4,1    -->    P91 : ALL X:INDEXMENGE  Y:INDEX  
+                                  + =(VER-I(Y X G(C_4 C_8)) MPROD(VER-I(Y X SET(E(C_4 C_8))) G(C_4 C_8) C_7))
+
+D32,1 & R20,1   -->    P92 : + =(U(C_8) VER-I(C_4 C_5 MPROD(SET(E(C_4 C_8)) G(C_4 C_8) C_7)))
+
+R35,1 & R4,1    -->    P93 : ALL X:INDEXMENGE  Y:INDEX  
+                                  + =(VER-I(Y X G(C_4 C_3)) MPROD(VER-I(Y X SET(E(C_4 C_3))) G(C_6 C_3) C_7))
+
+R35,1 & R18,1   -->    P94 : + =(U(C_3) VER-I(C_4 C_5 MPROD(SET(E(C_4 C_3)) G(C_6 C_3) C_7)))
+
+R35,1 & D26,1   -->    P95 : + =(MPROD(SET(E(C_4 C_3)) G(C_6 C_3) C_7) MPROD(SET(E(C_4 C_3)) G(C_4 C_3) C_7))
+
+R38,1 & R4,1    -->    P96 : ALL X:INDEXMENGE  Y:INDEX  
+                                  + =(VER-I(Y X G(C_4 C_8)) MPROD(VER-I(Y X SET(E(C_4 C_8))) G(C_6 C_8) C_7))
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+THE THEOREM(S) COULD NOT BE PROVED.
+

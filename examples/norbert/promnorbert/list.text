@@ -1,0 +1,151 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: Genera 7.1 IP-TCP 52.16 MKRP 27.0                        *
+                     *           DATE: 20-FEB,1989  18:04                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+                                                                            
+   
+   
+   
+    EDIT:     Axioms and Theorems edited: 20-FEB,1989 18:03 
+   
+   
+   
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   P (N)
+             P (I)
+             ALL X P (X) IMPL K (X) OR W (F (X) X)
+             ALL X,Y W (X Y) IMPL G (X Y)
+             ALL X (W (N X) IMPL NOT (K (N)))
+             ALL X,Y K (X) AND K (Y) IMPL G (X Y)
+             F (N) = I
+             F (I) = N
+             SYMMETRIC (W)
+             SYMMETRIC (G)
+             
+   Theorems: G (I N)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+           * A2:   + P(n)
+           * A3:   + P(i)
+           * A4:   + =(f(n) i)
+           * A5:   + =(f(i) n)
+           * A6:   All x,y:Any - W(y x)  + G(y x)
+           * A7:   All x:Any - W(n x)  - K(n)
+           * A8:   All x:Any - P(x)  + K(x)  + W(f(x) x)
+           * A9:   All x,y:Any - K(y)  - K(x)  + G(y x)
+           
+
+
+
+
+             Initial Operations on Axioms
+             ============================
+
+
+          
+   A4         --> * RS1: + =(i f(n))
+   
+   A3,1 & RS1 --> * RW2: + P(f(n))
+   
+   A5,1 & RS1 --> * RW3: + =(f(f(n)) n)
+   
+
+   
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T10: - G(i n)
+
+
+
+
+
+
+             Initial Operations on Theorems
+             ==============================
+
+
+          
+   T10,1 & RS1 --> * RW4: - G(f(n) n)
+   
+
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:      A1:   All x:Any + =(x x)
+                       * A2:   + P(n)
+                       * RW2:  + P(f(n))
+                       * RW3:  + =(f(f(n)) n)
+                       * A6:   All x,y:Any - W(y x)  + G(y x)
+                       * A7:   All x:Any - W(n x)  - K(n)
+                       * A8:   All x:Any - P(x)  + K(x)  + W(f(x) x)
+                       * A9:   All x,y:Any - K(y)  - K(x)  + G(y x)
+                       * RW4:  - G(f(n) n)
+                       
+
+   
+   A6,2 & RW4,1   -->  * R5:   - W(f(n) n)
+   
+   A9,3 & RW4,1   -->  * R7:   - K(f(n))  - K(n)
+   
+   R7,2 & A8,2    -->  * R8:   - K(f(n))  - P(n)  + W(f(n) n)
+   
+   R8,2 & A2,1    -->  * R9:   - K(f(n))  + W(f(n) n)
+   
+   R9,2 & R5,1    -->  * R10:  - K(f(n))
+   
+   A8,3 & R5,1    -->  * R14:  - P(n)  + K(n)
+   
+   R14,1 & A2,1   -->  * R15:  + K(n)
+   
+   A7,2 & R15,1   -->  * R16:  All x:Any - W(n x)
+   
+   RW3,1 & R16,1  -->  * P21:  All x:Any - W(f(f(n)) x)
+   
+   P21,1 & A8,3   -->  * R22:  - P(f(n))  + K(f(n))
+   
+   R22,1 & RW2,1  -->  * R23:  + K(f(n))
+   
+   R23,1 & R10,1  -->  * R24:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 

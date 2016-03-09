@@ -1,0 +1,106 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 41.1 EQUALITY 16.1                                  *
+                     *           DATE: 02-MAY,1990  11:36                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 02-MAY,1990 11:36 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * POSITIVE2
+             ALL X,Y P (X) AND P (Y) IMPL P (F (X Y))
+             P (A)
+             P (B)
+             
+   Theorems: P (F (F (A F (B A)) F (B F (A B))))
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+           * A2:   + P(a)
+           * A3:   + P(b)
+           * A4:   All x,y:Any - P(y)  - P(x)  + P(f(y x))
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T5: - P(f(f(a f(b a)) f(b f(a b))))
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:     A1:   All x:Any + =(x x)
+                      * A2:   + P(a)
+                      * A3:   + P(b)
+                      * A4:   All x,y:Any - P(y)  - P(x)  + P(f(y x))
+                      * T5:   - P(f(f(a f(b a)) f(b f(a b))))
+                      
+
+   
+   A4,3 & T5,1   -->  * R1:   - P(f(a f(b a)))  - P(f(b f(a b)))
+   
+   A4,3 & R1,2   -->  * R2:   - P(b)  - P(f(a b))  - P(f(a f(b a)))
+   
+   R2,1 & A3,1   -->  * R3:   - P(f(a b))  - P(f(a f(b a)))
+   
+   A4,3 & R3,1   -->  * R4:   - P(a)  - P(b)  - P(f(a f(b a)))
+   
+   R4,2 & A3,1   -->  * R5:   - P(a)  - P(f(a f(b a)))
+   
+   R5,1 & A2,1   -->  * R6:   - P(f(a f(b a)))
+   
+   A4,3 & R6,1   -->  * R7:   - P(a)  - P(f(b a))
+   
+   R7,2 & A4,3   -->  * R8:   - P(a)  - P(b)  - P(a)
+   
+   R8 1=3        -->  * D9:   - P(a)  - P(b)
+   
+   D9,2 & A3,1   -->  * R10:  - P(a)
+   
+   R10,1 & A2,1  -->  * R11:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 12 seconds

@@ -1,0 +1,608 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 35.4 EQUALITY 16.1                                  *
+                     *           DATE: 21-DEC,1989  09:21                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 15-DEC,1989 01:34 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Adjustment of the Options:
+   ==========================
+
+   TWO_RULES                             T
+   TWO_RULES.MAXLEVEL                    2
+   TWO_SUPPRESS.NORULES                  T
+
+   RED.I_CLAUSE.MULTIPLE.LITERALS        T
+   RED.I_CLAUSE.PURITY                   T
+   RED.I_CLAUSE.TAUTOLOGY                T
+   RED.I_CLAUSE.TAUTOLOGY.RECHECK        PARTIAL
+   RED.I_CLAUSE.SUBSUMPTION              T
+   RED.I_CLAUSE.SUBSUMPTION.RECHECK      PARTIAL
+   RED.I_CLAUSE.REPL.FACTORING           T
+   RED.I_CLAUSE.REPL.FACTORING.RECHECK   T
+   RED.I_CLAUSE.REPL.RESOLUTION          GENERALIZING
+   RED.I_CLAUSE.REPL.RESOLUTION.RECHECK  T
+   RED.I_CLAUSE.REWRITING                T
+   RED.I_LINK.INCOMPATIBILITY            T
+   RED.I_LINK.TAUTOLOGY                  REMOVE-INHIBIT
+   RED.I_LINK.TAUTOLOGY.RECHECK          NIL
+   RED.I_LINK.SUBSUMPTION                REMOVE-INHIBIT
+   RED.I_LINK.SUBSUMPTION.RECHECK        NIL
+
+   RED.D_CLAUSE.MULTIPLE.LITERALS        T
+   RED.D_CLAUSE.PURITY                   T
+   RED.D_CLAUSE.TAUTOLOGY                REMOVE-INHIBIT
+   RED.D_CLAUSE.TAUTOLOGY.RECHECK        NIL
+   RED.D_CLAUSE.SUBSUMPTION.FORWARD      REMOVE-INHIBIT
+   RED.D_CLAUSE.SUBSUMPTION.BACKWARD     REMOVE
+   RED.D_CLAUSE.SUBSUMPTION.RECHECK      NIL
+   RED.D_CLAUSE.REPL.FACTORING           T
+   RED.D_CLAUSE.REPL.FACTORING.RECHECK   T
+   RED.D_CLAUSE.REPL.RESOLUTION          GENERALIZING
+   RED.D_CLAUSE.REPL.RESOLUTION.RECHECK  T
+   RED.D_LINK.INCOMPATIBILITY            T
+   RED.D_LINK.TAUTOLOGY                  REMOVE-INHIBIT
+   RED.D_LINK.TAUTOLOGY.RECHECK          NIL
+   RED.D_LINK.SUBSUMPTION                REMOVE-INHIBIT
+   RED.D_LINK.SUBSUMPTION.RECHECK        NIL
+
+   FAC_INITIAL                           NIL
+   FAC_EACH.STEP                         NIL
+
+   STR_RESOLUTION                        SET-OF-SUPPORT
+   STR_E-RESOLUTION                      NIL
+   STR_LINK.DEPTH                        NIL
+   STR_TERM.DEPTH                        NIL
+   STR_R.DEMODULATION                    T
+   STR_P.DEMODULATION                    T
+   STR_INDUCTION                         NIL
+
+   TERM_UNITS                            T
+   TERM_ITERATIONS                       0
+   TERM_SET.OF.SUPPORT                   NIL
+   TERM_BREADTH.FIRST                    NIL
+
+   ER_PARAMODULATION                     HEURISTIC-COMPLETION
+   ER_COMPLETION                         IGNORING
+   ER_ORDERING                           POLYNOMIAL
+   ER_LINK.DEPTH.WEIGHT                  0
+   ER_KNUTH.BENDIX.WEIGHT                ((PLUS 5) (MULT 5) (MINUS 2) (0 2) (1 2))
+   ER_POLYNOMIAL.VARIABLES               (X Y Z U V W)
+   ER_POLYNOMIAL.WEIGHT                  ((PLUS (+ 5 (* 2 X) Y)) (MULT (+ X (* X Y))) (MINUS (* 2 X)) (0 2) (1 2))
+
+   GEN_SPLITTING                         0
+   GEN_PRESIMPLIFICATION                 T
+   GEN_MIN.EXPRESSION.LENGTH.FOR.FILE    NIL
+   GEN_MIN.EXPRESSION.SIZE.FOR.FILE      NIL
+   GEN_MANUAL.CONTROL                    NIL
+   GEN_MAXIMUM.STEPS                     NIL
+   GEN_GRAPH.SAVING                      NIL
+   GEN_SAVE.FILE                         SAVEDEFAULT
+   GEN_LISP.GARBAGE.COLLECTION           NIL
+   GEN_COMMON.LISP                       NIL
+
+   TR_PREPROCESSING                      NIL
+   TR_STEP.MODE                          LR
+   TR_DUMP                               NIL
+   TR_CLAUSE.MODE                        I
+   TR_LINK.MODE                          I
+   TR_TRACE.FILE                         NIL
+   TR_TERMINAL                           T
+
+   PR_INFIX.FORM                         T
+   PR_PREFIX.FORM                        NIL
+   PR_OPTIONS                            T
+   PR_AXIOM.CLAUSES                      T
+   PR_SYMBOLS                            NIL
+   PR_DIRECT.PROOF                       T
+   PR_VARIABLE.PRINT.NAMES               (X Y Z U V W XX YY ZZ UU VV WW XXX YYY ZZZ UUU VVV WWW)
+   PR_STATISTICS                         NIL
+   PR_PROTOCOL                           T
+   PR_LEFT.MARGIN                        3
+   PR_RIGHT.MARGIN                       117
+   PR_LINELENGTH                         114
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * PROBLEM 50
+             *
+             * ONE DAY ALICE MET THE LION.
+             * HE MADE THE FOLLOWING STATEMENT :
+             *
+             * I LIED YESTERDAY AND
+             * I WILL LIE AGAIN TOMORROW.
+             *
+             * ON WHAT DAYS OF THE WEEK IS THIS POSSIBLE?
+             *
+             *
+             * FORMALIZING THE PROBLEM IN FIRST ORDER LOGIC
+             *
+             ALL X: DAYS MO (X) EQV (NOT TU (X) AND NOT WE (X) AND NOT TH (X) AND NOT FR (X) AND NOT SA (X) AND NOT SU (X))
+             ALL X: DAYS TU (X) EQV (NOT MO (X) AND NOT WE (X) AND NOT TH (X) AND NOT FR (X) AND NOT SA (X) AND NOT SU (X))
+             ALL X: DAYS WE (X) EQV (NOT MO (X) AND NOT TU (X) AND NOT TH (X) AND NOT FR (X) AND NOT SA (X) AND NOT SU (X))
+             ALL X: DAYS TH (X) EQV (NOT MO (X) AND NOT TU (X) AND NOT WE (X) AND NOT FR (X) AND NOT SA (X) AND NOT SU (X))
+             ALL X: DAYS FR (X) EQV (NOT MO (X) AND NOT TU (X) AND NOT WE (X) AND NOT TH (X) AND NOT SA (X) AND NOT SU (X))
+             ALL X: DAYS SA (X) EQV (NOT MO (X) AND NOT TU (X) AND NOT WE (X) AND NOT TH (X) AND NOT FR (X) AND NOT SU (X))
+             ALL X: DAYS SU (X) EQV (NOT MO (X) AND NOT TU (X) AND NOT WE (X) AND NOT TH (X) AND NOT FR (X) AND NOT SA (X))
+             *
+             TYPE YESTERDAY (DAYS) : DAYS
+             ALL X : DAYS MO (YESTERDAY (X)) EQV TU (X)
+             ALL X : DAYS TU (YESTERDAY (X)) EQV WE (X)
+             ALL X : DAYS WE (YESTERDAY (X)) EQV TH (X)
+             ALL X : DAYS TH (YESTERDAY (X)) EQV FR (X)
+             ALL X : DAYS FR (YESTERDAY (X)) EQV SA (X)
+             ALL X : DAYS SA (YESTERDAY (X)) EQV SU (X)
+             ALL X : DAYS SU (YESTERDAY (X)) EQV MO (X)
+             *
+             TYPE TOMORROW (DAYS) : DAYS
+             ALL X : DAYS MO (TOMORROW (X)) EQV SU (X)
+             ALL X : DAYS TU (TOMORROW (X)) EQV MO (X)
+             ALL X : DAYS WE (TOMORROW (X)) EQV TU (X)
+             ALL X : DAYS TH (TOMORROW (X)) EQV WE (X)
+             ALL X : DAYS FR (TOMORROW (X)) EQV TH (X)
+             ALL X : DAYS SA (TOMORROW (X)) EQV FR (X)
+             ALL X : DAYS SU (TOMORROW (X)) EQV SA (X)
+             *
+             * THE PREDICATE LA2 HAS THE FOLLOWING MEANING :
+             * LA (X Y Z U) MEANS THAT X COULD SAY AT THE DAY Y : I LIE AT DAY Z AND U.
+             *
+             TYPE LA2 (ANIMAL DAYS DAYS DAYS)
+             TYPE LION : ANIMAL
+             ALL X : DAYS MEMBER (X LYING.DAYS (LION)) EQV (MO (X) OR TU (X) OR WE (X))
+             *
+             ALL T: ANIMAL ALL X,Y,U : DAYS NOT MEMBER (X LYING.DAYS (T))
+                               AND MEMBER (Y LYING.DAYS (T))
+                               AND MEMBER (U LYING.DAYS (T))
+                               IMPL LA2 (T X Y U)
+             ALL T: ANIMAL ALL X,Y,U : DAYS MEMBER (X LYING.DAYS (T))
+                               AND MEMBER (Y LYING.DAYS (T))
+                               AND MEMBER (U LYING.DAYS (T))
+                               IMPL NOT LA2 (T X Y U)
+             ALL T: ANIMAL ALL X,Y,U : DAYS NOT MEMBER (X LYING.DAYS (T))
+                               AND NOT (MEMBER (Y LYING.DAYS (T)) AND MEMBER (U LYING.DAYS (T)))
+                               IMPL NOT LA2 (T X Y U)
+             ALL T: ANIMAL ALL X,Y,U : DAYS MEMBER (X LYING.DAYS (T))
+                               AND NOT (MEMBER (Y LYING.DAYS (T)) AND MEMBER (U LYING.DAYS (T)))
+                               IMPL LA2 (T X Y U)
+             *
+             *
+             TYPE MONDAY,TUESDAY,WEDNESDAY,THURSDAY,FRIDAY,SATURDAY,SUNDAY : DAYS
+             MO (MONDAY)
+             TU (TUESDAY)
+             WE (WEDNESDAY)
+             TH (THURSDAY)
+             FR (FRIDAY)
+             SA (SATURDAY)
+             SU (SUNDAY)
+             *
+             
+   Theorems: EX X : DAYS LA2 (LION X YESTERDAY (X) TOMORROW (X))
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   + MO(monday)
+             A2:   + TU(tuesday)
+           * A3:   + WE(wednesday)
+             A4:   + TH(thursday)
+             A5:   + FR(friday)
+             A6:   + SA(saturday)
+             A7:   + SU(sunday)
+             A8:   All x:Days - MO(x)  - TU(x)
+           * A9:   All x:Days - MO(x)  - WE(x)
+             A10:  All x:Days - MO(x)  - TH(x)
+             A11:  All x:Days - MO(x)  - FR(x)
+             A12:  All x:Days - MO(x)  - SA(x)
+             A13:  All x:Days - MO(x)  - SU(x)
+             A14:  All x:Days - TU(x)  - MO(x)
+           * A15:  All x:Days - TU(x)  - WE(x)
+             A16:  All x:Days - TU(x)  - TH(x)
+             A17:  All x:Days - TU(x)  - FR(x)
+             A18:  All x:Days - TU(x)  - SA(x)
+             A19:  All x:Days - TU(x)  - SU(x)
+             A20:  All x:Days - WE(x)  - MO(x)
+             A21:  All x:Days - WE(x)  - TU(x)
+             A22:  All x:Days - WE(x)  - TH(x)
+             A23:  All x:Days - WE(x)  - FR(x)
+             A24:  All x:Days - WE(x)  - SA(x)
+           * A25:  All x:Days - WE(x)  - SU(x)
+             A26:  All x:Days - TH(x)  - MO(x)
+             A27:  All x:Days - TH(x)  - TU(x)
+             A28:  All x:Days - TH(x)  - WE(x)
+             A29:  All x:Days - TH(x)  - FR(x)
+             A30:  All x:Days - TH(x)  - SA(x)
+             A31:  All x:Days - TH(x)  - SU(x)
+             A32:  All x:Days - FR(x)  - MO(x)
+             A33:  All x:Days - FR(x)  - TU(x)
+             A34:  All x:Days - FR(x)  - WE(x)
+             A35:  All x:Days - FR(x)  - TH(x)
+             A36:  All x:Days - FR(x)  - SA(x)
+             A37:  All x:Days - FR(x)  - SU(x)
+             A38:  All x:Days - SA(x)  - MO(x)
+             A39:  All x:Days - SA(x)  - TU(x)
+             A40:  All x:Days - SA(x)  - WE(x)
+             A41:  All x:Days - SA(x)  - TH(x)
+             A42:  All x:Days - SA(x)  - FR(x)
+             A43:  All x:Days - SA(x)  - SU(x)
+             A44:  All x:Days - SU(x)  - MO(x)
+             A45:  All x:Days - SU(x)  - TU(x)
+             A46:  All x:Days - SU(x)  - WE(x)
+             A47:  All x:Days - SU(x)  - TH(x)
+             A48:  All x:Days - SU(x)  - FR(x)
+             A49:  All x:Days - SU(x)  - SA(x)
+             A50:  All x:Days + MO(yesterday(x))  - TU(x)
+             A51:  All x:Days - MO(yesterday(x))  + TU(x)
+             A52:  All x:Days + TU(yesterday(x))  - WE(x)
+             A53:  All x:Days - TU(yesterday(x))  + WE(x)
+             A54:  All x:Days + WE(yesterday(x))  - TH(x)
+             A55:  All x:Days - WE(yesterday(x))  + TH(x)
+             A56:  All x:Days + TH(yesterday(x))  - FR(x)
+             A57:  All x:Days - TH(yesterday(x))  + FR(x)
+             A58:  All x:Days + FR(yesterday(x))  - SA(x)
+             A59:  All x:Days - FR(yesterday(x))  + SA(x)
+             A60:  All x:Days + SA(yesterday(x))  - SU(x)
+             A61:  All x:Days - SA(yesterday(x))  + SU(x)
+             A62:  All x:Days + SU(yesterday(x))  - MO(x)
+             A63:  All x:Days - SU(yesterday(x))  + MO(x)
+             A64:  All x:Days + MO(tomorrow(x))  - SU(x)
+           * A65:  All x:Days - MO(tomorrow(x))  + SU(x)
+             A66:  All x:Days + TU(tomorrow(x))  - MO(x)
+           * A67:  All x:Days - TU(tomorrow(x))  + MO(x)
+             A68:  All x:Days + WE(tomorrow(x))  - TU(x)
+           * A69:  All x:Days - WE(tomorrow(x))  + TU(x)
+             A70:  All x:Days + TH(tomorrow(x))  - WE(x)
+             A71:  All x:Days - TH(tomorrow(x))  + WE(x)
+             A72:  All x:Days + FR(tomorrow(x))  - TH(x)
+             A73:  All x:Days - FR(tomorrow(x))  + TH(x)
+             A74:  All x:Days + SA(tomorrow(x))  - FR(x)
+             A75:  All x:Days - SA(tomorrow(x))  + FR(x)
+             A76:  All x:Days + SU(tomorrow(x))  - SA(x)
+             A77:  All x:Days - SU(tomorrow(x))  + SA(x)
+             A78:  All x:Days + MEMBER(x lying.days(lion))  - MO(x)
+             A79:  All x:Days + MEMBER(x lying.days(lion))  - TU(x)
+           * A80:  All x:Days + MEMBER(x lying.days(lion))  - WE(x)
+             A81:  All x,y,z:Days u:Animal + MEMBER(z lying.days(u))  + MEMBER(y lying.days(u))  - LA2(u z y x)
+             A82:  All x,y,z:Days u:Animal + MEMBER(z lying.days(u))  + MEMBER(y lying.days(u))  - LA2(u z x y)
+             A83:  All x,y,z:Days u:Animal - MEMBER(z lying.days(u))  + MEMBER(y lying.days(u))  + LA2(u z y x)
+           * A84:  All x,y,z:Days u:Animal - MEMBER(z lying.days(u))  + MEMBER(y lying.days(u))  + LA2(u z x y)
+           * A85:  All x:Days - MEMBER(x lying.days(lion))  + MO(x)  + TU(x)  + WE(x)
+             A86:  All x,y,z:Days u:Animal + MEMBER(z lying.days(u))  - MEMBER(y lying.days(u))
+                                           - MEMBER(x lying.days(u))  + LA2(u z y x)
+             A87:  All x,y,z:Days u:Animal - MEMBER(z lying.days(u))  - MEMBER(y lying.days(u))
+                                           - MEMBER(x lying.days(u))  - LA2(u z y x)
+             A88:  All x:Days + MO(x)  + TU(x)  + WE(x)  + TH(x)  + FR(x)  + SA(x)  + SU(x)
+             A89:  All x:Days + TU(x)  + MO(x)  + WE(x)  + TH(x)  + FR(x)  + SA(x)  + SU(x)
+             A90:  All x:Days + WE(x)  + MO(x)  + TU(x)  + TH(x)  + FR(x)  + SA(x)  + SU(x)
+             A91:  All x:Days + TH(x)  + MO(x)  + TU(x)  + WE(x)  + FR(x)  + SA(x)  + SU(x)
+             A92:  All x:Days + FR(x)  + MO(x)  + TU(x)  + WE(x)  + TH(x)  + SA(x)  + SU(x)
+             A93:  All x:Days + SA(x)  + MO(x)  + TU(x)  + WE(x)  + TH(x)  + FR(x)  + SU(x)
+             A94:  All x:Days + SU(x)  + MO(x)  + TU(x)  + WE(x)  + TH(x)  + FR(x)  + SA(x)
+           
+
+
+
+
+             Initial Operations on Axioms
+             ============================
+
+
+          
+   A65,2 & A25,2  --> * R124: All x:Days - MO(tomorrow(x))  - WE(x)
+   
+   A67,2 & A9,1   --> * R144: All x:Days - TU(tomorrow(x))  - WE(x)
+   
+   A69,2 & A15,1  --> * R166: All x:Days - WE(tomorrow(x))  - WE(x)
+   
+
+   
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T95: All x:Days - LA2(lion x yesterday(x) tomorrow(x))
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses: 
+
+      * A80:   All x:Days + MEMBER(x lying.days(lion))  - WE(x)
+        R278:  All x:Days - TH(tomorrow(x))  + MEMBER(x lying.days(lion))
+        R277:  All x:Days - TU(x)  + MEMBER(tomorrow(x) lying.days(lion))
+        R276:  All x:Days - TH(x)  + MEMBER(yesterday(x) lying.days(lion))
+        R275:  All x:Days - TU(yesterday(x))  + MEMBER(x lying.days(lion))
+        A79:   All x:Days + MEMBER(x lying.days(lion))  - TU(x)
+        R274:  All x:Days - WE(tomorrow(x))  + MEMBER(x lying.days(lion))
+        R273:  All x:Days - MO(x)  + MEMBER(tomorrow(x) lying.days(lion))
+        R272:  All x:Days - WE(x)  + MEMBER(yesterday(x) lying.days(lion))
+        R271:  All x:Days - MO(yesterday(x))  + MEMBER(x lying.days(lion))
+        A78:   All x:Days + MEMBER(x lying.days(lion))  - MO(x)
+        R270:  All x:Days - TU(tomorrow(x))  + MEMBER(x lying.days(lion))
+        R269:  All x:Days - SU(x)  + MEMBER(tomorrow(x) lying.days(lion))
+        R268:  All x:Days - SU(yesterday(x))  + MEMBER(x lying.days(lion))
+        R267:  All x:Days - TU(x)  + MEMBER(yesterday(x) lying.days(lion))
+        A77:   All x:Days - SU(tomorrow(x))  + SA(x)
+        R264:  All x:Days - SU(tomorrow(tomorrow(x)))  + FR(x)
+        R263:  All x:Days - MO(tomorrow(tomorrow(x)))  + SA(x)
+        R262:  All x:Days - SU(tomorrow(yesterday(x)))  + SU(x)
+        R261:  All x:Days - SA(yesterday(tomorrow(x)))  + SA(x)
+        R260:  All x:Days - SU(tomorrow(x))  + FR(yesterday(x))
+        A76:   All x:Days + SU(tomorrow(x))  - SA(x)
+        R253:  All x:Days - FR(x)  + SU(tomorrow(tomorrow(x)))
+        R252:  All x:Days - SA(x)  + MO(tomorrow(tomorrow(x)))
+        R251:  All x:Days - SU(x)  + SU(tomorrow(yesterday(x)))
+        R250:  All x:Days - SA(x)  + SA(yesterday(tomorrow(x)))
+        R249:  All x:Days - FR(yesterday(x))  + SU(tomorrow(x))
+        A75:   All x:Days - SA(tomorrow(x))  + FR(x)
+        R240:  All x:Days - SA(tomorrow(tomorrow(x)))  + TH(x)
+        R239:  All x:Days - SA(tomorrow(yesterday(x)))  + SA(x)
+        R238:  All x:Days - FR(yesterday(tomorrow(x)))  + FR(x)
+        R237:  All x:Days - SA(tomorrow(x))  + TH(yesterday(x))
+        R235:  All x:Days - SA(tomorrow(x))  - SA(x)
+        A74:   All x:Days + SA(tomorrow(x))  - FR(x)
+        R230:  All x:Days - TH(x)  + SA(tomorrow(tomorrow(x)))
+        R229:  All x:Days - SA(x)  + SA(tomorrow(yesterday(x)))
+        R228:  All x:Days - FR(x)  + FR(yesterday(tomorrow(x)))
+        R227:  All x:Days - TH(yesterday(x))  + SA(tomorrow(x))
+        R226:  All x:Days - FR(x)  - SU(tomorrow(x))
+        A73:   All x:Days - FR(tomorrow(x))  + TH(x)
+        R218:  All x:Days - FR(tomorrow(tomorrow(x)))  + WE(x)
+        R217:  All x:Days - FR(tomorrow(yesterday(x)))  + FR(x)
+        R216:  All x:Days - TH(yesterday(tomorrow(x)))  + TH(x)
+        R215:  All x:Days - FR(tomorrow(x))  + WE(yesterday(x))
+        R213:  All x:Days - FR(tomorrow(x))  - SA(x)
+        R212:  All x:Days - FR(tomorrow(x))  - FR(x)
+        A72:   All x:Days + FR(tomorrow(x))  - TH(x)
+        R208:  All x:Days - WE(x)  + FR(tomorrow(tomorrow(x)))
+        R207:  All x:Days - FR(x)  + FR(tomorrow(yesterday(x)))
+        R206:  All x:Days - TH(x)  + TH(yesterday(tomorrow(x)))
+        R205:  All x:Days - WE(yesterday(x))  + FR(tomorrow(x))
+        R204:  All x:Days - TH(x)  - SU(tomorrow(x))
+        R203:  All x:Days - TH(x)  - SA(tomorrow(x))
+        A71:   All x:Days - TH(tomorrow(x))  + WE(x)
+        R196:  All x:Days - TH(tomorrow(tomorrow(x)))  + TU(x)
+        R195:  All x:Days - TH(tomorrow(yesterday(x)))  + TH(x)
+        R194:  All x:Days - WE(yesterday(tomorrow(x)))  + WE(x)
+        R193:  All x:Days - TH(tomorrow(x))  + TU(yesterday(x))
+        R191:  All x:Days - TH(tomorrow(x))  - SA(x)
+        R190:  All x:Days - TH(tomorrow(x))  - FR(x)
+        R189:  All x:Days - TH(tomorrow(x))  - TH(x)
+        A70:   All x:Days + TH(tomorrow(x))  - WE(x)
+        R186:  All x:Days - TU(x)  + TH(tomorrow(tomorrow(x)))
+        R185:  All x:Days - TH(x)  + TH(tomorrow(yesterday(x)))
+        R184:  All x:Days - WE(x)  + WE(yesterday(tomorrow(x)))
+        R183:  All x:Days - TU(yesterday(x))  + TH(tomorrow(x))
+        R182:  All x:Days - WE(x)  - SU(tomorrow(x))
+        R181:  All x:Days - WE(x)  - SA(tomorrow(x))
+        R180:  All x:Days - WE(x)  - FR(tomorrow(x))
+      * A69:   All x:Days - WE(tomorrow(x))  + TU(x)
+        R174:  All x:Days - WE(tomorrow(tomorrow(x)))  + MO(x)
+        R173:  All x:Days - WE(tomorrow(yesterday(x)))  + WE(x)
+        R172:  All x:Days - TU(yesterday(tomorrow(x)))  + TU(x)
+        R171:  All x:Days - WE(tomorrow(x))  + MO(yesterday(x))
+        R169:  All x:Days - WE(tomorrow(x))  - SA(x)
+        R168:  All x:Days - WE(tomorrow(x))  - FR(x)
+        R167:  All x:Days - WE(tomorrow(x))  - TH(x)
+      * R166:  All x:Days - WE(tomorrow(x))  - WE(x)
+        A68:   All x:Days + WE(tomorrow(x))  - TU(x)
+        R164:  All x:Days - MO(x)  + WE(tomorrow(tomorrow(x)))
+        R163:  All x:Days - WE(x)  + WE(tomorrow(yesterday(x)))
+        R162:  All x:Days - TU(x)  + TU(yesterday(tomorrow(x)))
+        R161:  All x:Days - MO(yesterday(x))  + WE(tomorrow(x))
+        R160:  All x:Days - TU(x)  - SU(tomorrow(x))
+        R159:  All x:Days - TU(x)  - SA(tomorrow(x))
+        R158:  All x:Days - TU(x)  - FR(tomorrow(x))
+        R157:  All x:Days - TU(x)  - TH(tomorrow(x))
+      * A67:   All x:Days - TU(tomorrow(x))  + MO(x)
+        R152:  All x:Days - TU(tomorrow(tomorrow(x)))  + SU(x)
+        R151:  All x:Days - TU(tomorrow(x))  + SU(yesterday(x))
+        R150:  All x:Days - TU(tomorrow(yesterday(x)))  + TU(x)
+        R149:  All x:Days - MO(yesterday(tomorrow(x)))  + MO(x)
+        R147:  All x:Days - TU(tomorrow(x))  - SA(x)
+        R146:  All x:Days - TU(tomorrow(x))  - FR(x)
+        R145:  All x:Days - TU(tomorrow(x))  - TH(x)
+      * R144:  All x:Days - TU(tomorrow(x))  - WE(x)
+        R143:  All x:Days - TU(tomorrow(x))  - TU(x)
+        A66:   All x:Days + TU(tomorrow(x))  - MO(x)
+        R142:  All x:Days - SU(x)  + TU(tomorrow(tomorrow(x)))
+        R141:  All x:Days - SU(yesterday(x))  + TU(tomorrow(x))
+        R140:  All x:Days - TU(x)  + TU(tomorrow(yesterday(x)))
+        R139:  All x:Days - MO(x)  + MO(yesterday(tomorrow(x)))
+        R138:  All x:Days - MO(x)  - SU(tomorrow(x))
+        R137:  All x:Days - MO(x)  - SA(tomorrow(x))
+        R136:  All x:Days - MO(x)  - FR(tomorrow(x))
+        R135:  All x:Days - MO(x)  - TH(tomorrow(x))
+        R134:  All x:Days - MO(x)  - WE(tomorrow(x))
+      * A65:   All x:Days - MO(tomorrow(x))  + SU(x)
+        R130:  All x:Days - MO(tomorrow(yesterday(x)))  + MO(x)
+        R129:  All x:Days - SU(yesterday(tomorrow(x)))  + SU(x)
+        R128:  All x:Days - MO(tomorrow(x))  + SA(yesterday(x))
+        R127:  All x:Days - MO(tomorrow(x))  - SA(x)
+        R126:  All x:Days - MO(tomorrow(x))  - FR(x)
+        R125:  All x:Days - MO(tomorrow(x))  - TH(x)
+      * R124:  All x:Days - MO(tomorrow(x))  - WE(x)
+        R123:  All x:Days - MO(tomorrow(x))  - TU(x)
+        R122:  All x:Days - MO(tomorrow(x))  - MO(x)
+        A64:   All x:Days + MO(tomorrow(x))  - SU(x)
+        R121:  All x:Days - MO(x)  + MO(tomorrow(yesterday(x)))
+        R120:  All x:Days - SU(x)  + SU(yesterday(tomorrow(x)))
+        R119:  All x:Days - SA(yesterday(x))  + MO(tomorrow(x))
+        R118:  All x:Days - SU(x)  - SU(tomorrow(x))
+        R117:  All x:Days - SU(x)  - SA(tomorrow(x))
+        R116:  All x:Days - SU(x)  - FR(tomorrow(x))
+        R115:  All x:Days - SU(x)  - TH(tomorrow(x))
+        R114:  All x:Days - SU(x)  - WE(tomorrow(x))
+        R113:  All x:Days - SU(x)  - TU(tomorrow(x))
+        A63:   All x:Days - SU(yesterday(x))  + MO(x)
+        R110:  All x:Days - SA(yesterday(yesterday(x)))  + MO(x)
+        R109:  All x:Days - SU(yesterday(yesterday(x)))  + TU(x)
+        A62:   All x:Days + SU(yesterday(x))  - MO(x)
+        R102:  All x:Days - MO(x)  + SA(yesterday(yesterday(x)))
+        R101:  All x:Days - TU(x)  + SU(yesterday(yesterday(x)))
+        A61:   All x:Days - SA(yesterday(x))  + SU(x)
+        R92:   All x:Days - FR(yesterday(yesterday(x)))  + SU(x)
+        R86:   All x:Days - SA(yesterday(x))  - MO(x)
+        A60:   All x:Days + SA(yesterday(x))  - SU(x)
+        R85:   All x:Days - SU(x)  + FR(yesterday(yesterday(x)))
+        R84:   All x:Days - SU(x)  - SU(yesterday(x))
+        A59:   All x:Days - FR(yesterday(x))  + SA(x)
+        R76:   All x:Days - TH(yesterday(yesterday(x)))  + SA(x)
+        R75:   All x:Days - FR(yesterday(x))  - SU(x)
+        R70:   All x:Days - FR(yesterday(x))  - MO(x)
+        A58:   All x:Days + FR(yesterday(x))  - SA(x)
+        R69:   All x:Days - SA(x)  + TH(yesterday(yesterday(x)))
+        R68:   All x:Days - SA(x)  - SU(yesterday(x))
+        R67:   All x:Days - SA(x)  - SA(yesterday(x))
+        A57:   All x:Days - TH(yesterday(x))  + FR(x)
+        R60:   All x:Days - WE(yesterday(yesterday(x)))  + FR(x)
+        R59:   All x:Days - TH(yesterday(x))  - SU(x)
+        R58:   All x:Days - TH(yesterday(x))  - SA(x)
+        R54:   All x:Days - TH(yesterday(x))  - MO(x)
+        A56:   All x:Days + TH(yesterday(x))  - FR(x)
+        R53:   All x:Days - FR(x)  + WE(yesterday(yesterday(x)))
+        R52:   All x:Days - FR(x)  - SU(yesterday(x))
+        R51:   All x:Days - FR(x)  - SA(yesterday(x))
+        R50:   All x:Days - FR(x)  - FR(yesterday(x))
+        A55:   All x:Days - WE(yesterday(x))  + TH(x)
+        R44:   All x:Days - TU(yesterday(yesterday(x)))  + TH(x)
+        R43:   All x:Days - WE(yesterday(x))  - SU(x)
+        R42:   All x:Days - WE(yesterday(x))  - SA(x)
+        R41:   All x:Days - WE(yesterday(x))  - FR(x)
+        R38:   All x:Days - WE(yesterday(x))  - MO(x)
+        A54:   All x:Days + WE(yesterday(x))  - TH(x)
+        R37:   All x:Days - TH(x)  + TU(yesterday(yesterday(x)))
+        R36:   All x:Days - TH(x)  - SU(yesterday(x))
+        R35:   All x:Days - TH(x)  - SA(yesterday(x))
+        R34:   All x:Days - TH(x)  - FR(yesterday(x))
+        R33:   All x:Days - TH(x)  - TH(yesterday(x))
+        A53:   All x:Days - TU(yesterday(x))  + WE(x)
+        R28:   All x:Days - MO(yesterday(yesterday(x)))  + WE(x)
+        R27:   All x:Days - TU(yesterday(x))  - SU(x)
+        R26:   All x:Days - TU(yesterday(x))  - SA(x)
+        R25:   All x:Days - TU(yesterday(x))  - FR(x)
+        R24:   All x:Days - TU(yesterday(x))  - TH(x)
+        R22:   All x:Days - TU(yesterday(x))  - MO(x)
+        A52:   All x:Days + TU(yesterday(x))  - WE(x)
+        R21:   All x:Days - WE(x)  + MO(yesterday(yesterday(x)))
+        R20:   All x:Days - WE(x)  - SU(yesterday(x))
+        R19:   All x:Days - WE(x)  - SA(yesterday(x))
+        R18:   All x:Days - WE(x)  - FR(yesterday(x))
+        R17:   All x:Days - WE(x)  - TH(yesterday(x))
+        R16:   All x:Days - WE(x)  - WE(yesterday(x))
+        A51:   All x:Days - MO(yesterday(x))  + TU(x)
+        R12:   All x:Days - MO(yesterday(x))  - SU(x)
+        R11:   All x:Days - MO(yesterday(x))  - SA(x)
+        R10:   All x:Days - MO(yesterday(x))  - FR(x)
+        R9:    All x:Days - MO(yesterday(x))  - TH(x)
+        R8:    All x:Days - MO(yesterday(x))  - WE(x)
+        R7:    All x:Days - MO(yesterday(x))  - MO(x)
+        A50:   All x:Days + MO(yesterday(x))  - TU(x)
+        R6:    All x:Days - TU(x)  - SU(yesterday(x))
+        R5:    All x:Days - TU(x)  - SA(yesterday(x))
+        R4:    All x:Days - TU(x)  - FR(yesterday(x))
+        R3:    All x:Days - TU(x)  - TH(yesterday(x))
+        R2:    All x:Days - TU(x)  - WE(yesterday(x))
+        R1:    All x:Days - TU(x)  - TU(yesterday(x))
+        A43:   All x:Days - SA(x)  - SU(x)
+        A37:   All x:Days - FR(x)  - SU(x)
+        A36:   All x:Days - FR(x)  - SA(x)
+        A31:   All x:Days - TH(x)  - SU(x)
+        A30:   All x:Days - TH(x)  - SA(x)
+        A29:   All x:Days - TH(x)  - FR(x)
+      * A25:   All x:Days - WE(x)  - SU(x)
+        A24:   All x:Days - WE(x)  - SA(x)
+        A23:   All x:Days - WE(x)  - FR(x)
+        A22:   All x:Days - WE(x)  - TH(x)
+        A19:   All x:Days - TU(x)  - SU(x)
+        A18:   All x:Days - TU(x)  - SA(x)
+        A17:   All x:Days - TU(x)  - FR(x)
+        A16:   All x:Days - TU(x)  - TH(x)
+      * A15:   All x:Days - TU(x)  - WE(x)
+        A13:   All x:Days - MO(x)  - SU(x)
+        A12:   All x:Days - MO(x)  - SA(x)
+        A11:   All x:Days - MO(x)  - FR(x)
+        A10:   All x:Days - MO(x)  - TH(x)
+      * A9:    All x:Days - MO(x)  - WE(x)
+        A8:    All x:Days - MO(x)  - TU(x)
+        A1:    + MO(monday)
+        A2:    + TU(tuesday)
+      * A3:    + WE(wednesday)
+        A4:    + TH(thursday)
+        A5:    + FR(friday)
+        A6:    + SA(saturday)
+        A7:    + SU(sunday)
+        A81:   All x,y,z:Days u:Animal + MEMBER(z lying.days(u))  + MEMBER(y lying.days(u))  - LA2(u z y x)
+        A82:   All x,y,z:Days u:Animal + MEMBER(z lying.days(u))  + MEMBER(y lying.days(u))  - LA2(u z x y)
+        A83:   All x,y,z:Days u:Animal - MEMBER(z lying.days(u))  + MEMBER(y lying.days(u))  + LA2(u z y x)
+      * A84:   All x,y,z:Days u:Animal - MEMBER(z lying.days(u))  + MEMBER(y lying.days(u))  + LA2(u z x y)
+      * A85:   All x:Days - MEMBER(x lying.days(lion))  + MO(x)  + TU(x)  + WE(x)
+        A86:   All x,y,z:Days u:Animal + MEMBER(z lying.days(u))  - MEMBER(y lying.days(u))
+                                       - MEMBER(x lying.days(u))  + LA2(u z y x)
+        A87:   All x,y,z:Days u:Animal - MEMBER(z lying.days(u))  - MEMBER(y lying.days(u))
+                                       - MEMBER(x lying.days(u))  - LA2(u z y x)
+        A88:   All x:Days + MO(x)  + TU(x)  + WE(x)  + TH(x)  + FR(x)  + SA(x)  + SU(x)
+      * T95:   All x:Days - LA2(lion x yesterday(x) tomorrow(x))
+      
+
+   
+   A84,3 & T95,1        --> 
+      * R280:  All x:Days - MEMBER(x lying.days(lion))  + MEMBER(tomorrow(x) lying.days(lion))
+   
+   A85,2 & A3,1 (R124)  --> 
+      * R282:  - MEMBER(tomorrow(wednesday) lying.days(lion))  + TU(tomorrow(wednesday))  + WE(tomorrow(wednesday))
+   
+   R282,3 & A3,1 (R166) --> 
+      * R283:  - MEMBER(tomorrow(wednesday) lying.days(lion))  + TU(tomorrow(wednesday))
+   
+   R283,2 & A3,1 (R144) --> 
+      * R284:  - MEMBER(tomorrow(wednesday) lying.days(lion))
+   
+   R280,1 & A3,1 (A80)  --> 
+      * R285:  + MEMBER(tomorrow(wednesday) lying.days(lion))
+   
+   R285,1 & R284,1      --> 
+      * R286:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 332 seconds

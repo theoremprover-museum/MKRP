@@ -1,0 +1,7 @@
+;;; -*- Mode: LISP; Package: MKRP; Syntax: Common-lisp -*-
+(* IN AN ASSOCIATIVE SYSTEM WITH LEFT AND RIGHT SOLUTIONS, THERE IS A RIGHT IDENTITY ELEMENT.)
+(ALL X,Y P (G (X Y) X Y))
+(ALL X,Y P (X H (X Y) Y))
+(ALL U,V,W,X,Y,Z P (X Y U) AND P (Y Z V) AND P (X V W) IMPL P (U Z W))
+
+(EX X ALL Y P (Y X Y))

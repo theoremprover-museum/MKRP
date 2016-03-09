@@ -1,0 +1,117 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 40.2 EQUALITY 16.1                                  *
+                     *           DATE: 02-MAR,1990  00:53                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 02-MAR,1990 00:52 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * AXIOMS *
+             ALL X,Y,Z,V,W COMPOSE (COMPOSE (V W X) Y COMPOSE (V W Z)) = COMPOSE (V W COMPOSE (X Y Z))
+             ALL X,Y COMPOSE (Y X X) = X
+             ALL X,Y COMPOSE (X X Y) = X
+             ALL X,Y COMPOSE (MINUS (Y) Y X) = X
+             
+   Theorems: * THEOREM *
+             ALL X,Y COMPOSE (X MINUS (X) Y) = Y
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+           * A2:   All x,y,z,u,v:Any + =(compose(compose(v u z) y compose(v u x)) compose(v u compose(z y x)))
+           * A3:   All x,y:Any + =(compose(y x x) x)
+           * A4:   All x,y:Any + =(compose(y y x) y)
+           * A5:   All x,y:Any + =(compose(minus(y) y x) x)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T6: - =(compose(c_1 minus(c_1) c_2) c_2)
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:       A1:    All x:Any + =(x x)
+                        * A2:    All x,y,z,u,v:Any + =(compose(compose(v u z) y compose(v u x))
+                                                       compose(v u compose(z y x)))
+                        * A3:    All x,y:Any + =(compose(y x x) x)
+                        * A4:    All x,y:Any + =(compose(y y x) y)
+                        * A5:    All x,y:Any + =(compose(minus(y) y x) x)
+                        * T6:    - =(compose(c_1 minus(c_1) c_2) c_2)
+                        
+
+   
+   A4,1 & A2,1     -->  * P1:    All x,y,z,u:Any + =(compose(u z compose(u u y)) compose(u u compose(x z y)))
+   
+   P1,1 & A4       -->  * RW2:   All x,y,z:Any + =(compose(z y compose(z z x)) z)
+   
+   RW2,1 & A4      -->  * RW3:   All x,y:Any + =(compose(y x y) y)
+   
+   A3,1 & A2,1     -->  * P7:    All x,y,z,u:Any + =(compose(compose(u z y) x z) compose(u z compose(y x z)))
+   
+   A5,1 & P7,1     -->  * P8:    All x,y,z:Any + =(compose(compose(z y minus(x)) x y) compose(z y y))
+   
+   P8,1 & A3       -->  * RW9:   All x,y,z:Any + =(compose(compose(z y minus(x)) x y) y)
+   
+   A4,1 & P7,1     -->  * P10:   All x,y,z:Any + =(compose(compose(z y x) x y) compose(z y x))
+   
+   P10,1 & RW9,1   -->  * P11:   All x,y,z:Any + =(compose(compose(z minus(y) x) y x) x)
+   
+   RW3,1 & A2,1    -->  * P20:   All x,y,z,u:Any + =(compose(compose(u z y) x u) compose(u z compose(y x u)))
+   
+   A4,1 & P20,1    -->  * P23:   All x,y,z:Any + =(compose(compose(z y x) x z) compose(z y x))
+   
+   P23,1 & P10,1   -->  * P25:   All x,y,z:Any + =(compose(compose(z y x) z x) compose(compose(z y x) x z))
+   
+   P25,1 & P23     -->  * RW26:  All x,y,z:Any + =(compose(compose(z y x) z x) compose(z y x))
+   
+   P11,1 & RW26,1  -->  * P27:   All x,y:Any + =(y compose(x minus(x) y))
+   
+   P27,1 & T6,1    -->  * R28:   []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 592 seconds

@@ -1,0 +1,7 @@
+This is makeindex, portable version 2.3 [16-Jan-88].
+Scanning style file rahmen.isty....done (4 attributes redefined, 0 ignored).
+Scanning input file rahmen.idx....done (539 entries accepted, 0 rejected).
+Sorting entries.......done (5251 comparisons).
+Generating output file rahmen.ind....done (583 lines written, 0 warnings).
+Output written in rahmen.ind.
+Transcript written in rahmen.ilg.

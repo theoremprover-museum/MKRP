@@ -1,0 +1,243 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 33.16 EQUALITY 16.1                                 *
+                     *           DATE: 12-OCT,1989  18:07                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 12-OCT,1989 18:05 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   WOLF (LUPO)
+             FOX (FOXI)
+             BIRD (TWEETY)
+             CATERPILLAR (RAUPI)
+             SNAIL (SCHNECKI)
+             GRAIN (MUESLI)
+             ALL X (WOLF (X) OR FOX (X) OR BIRD (X) OR CATERPILLAR (X) OR SNAIL (X)) IMPL ANIMAL (X)
+             ALL X GRAIN (X) IMPL PLANT (X)
+             ALL X ANIMAL (X)
+                   IMPL (ALL Y PLANT (Y) IMPL EATS (X Y))
+                        OR (ALL Y ANIMAL (Y) AND SMALLER (Y X) AND (EX Z PLANT (Z) AND EATS (Y Z)) IMPL EATS (X Y))
+             ALL X,Y (CATERPILLAR (X) OR SNAIL (X)) AND BIRD (Y) IMPL SMALLER (X Y)
+             ALL X,Y BIRD (X) AND FOX (Y) IMPL SMALLER (X Y)
+             ALL X,Y FOX (X) AND WOLF (Y) IMPL SMALLER (X Y)
+             ALL X,Y (FOX (X) OR GRAIN (X)) AND WOLF (Y) IMPL NOT EATS (Y X)
+             ALL X,Y BIRD (X) AND CATERPILLAR (Y) IMPL EATS (X Y)
+             ALL X,Y BIRD (X) AND SNAIL (Y) IMPL NOT EATS (X Y)
+             ALL X (CATERPILLAR (X) OR SNAIL (X)) IMPL (EX Y PLANT (Y) AND EATS (X Y))
+             
+   Theorems: EX X,Y (ANIMAL (X) AND ANIMAL (Y) AND (EATS (X Y) AND (EX Z (GRAIN (Z) AND EATS (Y Z)))))
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+           * A1:   + WOLF(lupo)
+           * A2:   + FOX(foxi)
+           * A3:   + BIRD(tweety)
+             A4:   + CATERPILLAR(raupi)
+           * A5:   + SNAIL(schnecki)
+           * A6:   + GRAIN(muesli)
+           * A7:   All x:Any - WOLF(x)  + ANIMAL(x)
+           * A8:   All x:Any - FOX(x)  + ANIMAL(x)
+           * A9:   All x:Any - BIRD(x)  + ANIMAL(x)
+             A10:  All x:Any - CATERPILLAR(x)  + ANIMAL(x)
+           * A11:  All x:Any - SNAIL(x)  + ANIMAL(x)
+           * A12:  All x:Any - GRAIN(x)  + PLANT(x)
+             A13:  All x:Any - CATERPILLAR(x)  + PLANT(f_1(x))
+             A14:  All x:Any - CATERPILLAR(x)  + EATS(x f_1(x))
+           * A15:  All x:Any - SNAIL(x)  + PLANT(f_1(x))
+           * A16:  All x:Any - SNAIL(x)  + EATS(x f_1(x))
+             A17:  All x,y:Any - CATERPILLAR(y)  - BIRD(x)  + SMALLER(y x)
+           * A18:  All x,y:Any - SNAIL(y)  - BIRD(x)  + SMALLER(y x)
+           * A19:  All x,y:Any - BIRD(y)  - FOX(x)  + SMALLER(y x)
+           * A20:  All x,y:Any - FOX(y)  - WOLF(x)  + SMALLER(y x)
+           * A21:  All x,y:Any - FOX(y)  - WOLF(x)  - EATS(x y)
+           * A22:  All x,y:Any - GRAIN(y)  - WOLF(x)  - EATS(x y)
+             A23:  All x,y:Any - BIRD(y)  - CATERPILLAR(x)  + EATS(y x)
+           * A24:  All x,y:Any - BIRD(y)  - SNAIL(x)  - EATS(y x)
+           * A25:  All x,y,z,u:Any - ANIMAL(u)  - PLANT(z)  + EATS(u z)  - ANIMAL(y)  - SMALLER(y u)  - PLANT(x)
+                                   - EATS(y x)  + EATS(u y)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T26: All x,y,z:Any - ANIMAL(z)  - ANIMAL(y)  - EATS(z y)  - GRAIN(x)  - EATS(y x)
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:    * A1:   + WOLF(lupo)
+                       * A2:   + FOX(foxi)
+                       * A3:   + BIRD(tweety)
+                         A4:   + CATERPILLAR(raupi)
+                       * A5:   + SNAIL(schnecki)
+                       * A6:   + GRAIN(muesli)
+                       * A7:   All x:Any - WOLF(x)  + ANIMAL(x)
+                       * A8:   All x:Any - FOX(x)  + ANIMAL(x)
+                       * A9:   All x:Any - BIRD(x)  + ANIMAL(x)
+                         A10:  All x:Any - CATERPILLAR(x)  + ANIMAL(x)
+                       * A11:  All x:Any - SNAIL(x)  + ANIMAL(x)
+                       * A12:  All x:Any - GRAIN(x)  + PLANT(x)
+                         A13:  All x:Any - CATERPILLAR(x)  + PLANT(f_1(x))
+                         A14:  All x:Any - CATERPILLAR(x)  + EATS(x f_1(x))
+                       * A15:  All x:Any - SNAIL(x)  + PLANT(f_1(x))
+                       * A16:  All x:Any - SNAIL(x)  + EATS(x f_1(x))
+                         A17:  All x,y:Any - CATERPILLAR(y)  - BIRD(x)  + SMALLER(y x)
+                       * A18:  All x,y:Any - SNAIL(y)  - BIRD(x)  + SMALLER(y x)
+                       * A19:  All x,y:Any - BIRD(y)  - FOX(x)  + SMALLER(y x)
+                       * A20:  All x,y:Any - FOX(y)  - WOLF(x)  + SMALLER(y x)
+                       * A21:  All x,y:Any - FOX(y)  - WOLF(x)  - EATS(x y)
+                       * A22:  All x,y:Any - GRAIN(y)  - WOLF(x)  - EATS(x y)
+                         A23:  All x,y:Any - BIRD(y)  - CATERPILLAR(x)  + EATS(y x)
+                       * A24:  All x,y:Any - BIRD(y)  - SNAIL(x)  - EATS(y x)
+                       * A25:  All x,y,z,u:Any - ANIMAL(u)  - PLANT(z)  + EATS(u z)  - ANIMAL(y)  - SMALLER(y u)
+                                               - PLANT(x)  - EATS(y x)  + EATS(u y)
+                       * T26:  All x,y,z:Any - ANIMAL(z)  - ANIMAL(y)  - EATS(z y)  - GRAIN(x)  - EATS(y x)
+                       
+
+   
+   A6,1 & T26,4   -->  * R1:   All x,y:Any - ANIMAL(y)  - ANIMAL(x)  - EATS(y x)  - EATS(x muesli)
+   
+   A3,1 & A24,1   -->  * R3:   All x:Any - SNAIL(x)  - EATS(tweety x)
+   
+   A5,1 & R3,1    -->  * R4:   - EATS(tweety schnecki)
+   
+   A6,1 & A22,1   -->  * R9:   All x:Any - WOLF(x)  - EATS(x muesli)
+   
+   A1,1 & R9,1    -->  * R10:  - EATS(lupo muesli)
+   
+   A2,1 & A21,1   -->  * R12:  All x:Any - WOLF(x)  - EATS(x foxi)
+   
+   A1,1 & R12,1   -->  * R13:  - EATS(lupo foxi)
+   
+   A2,1 & A20,1   -->  * R15:  All x:Any - WOLF(x)  + SMALLER(foxi x)
+   
+   A1,1 & R15,1   -->  * R16:  + SMALLER(foxi lupo)
+   
+   A3,1 & A19,1   -->  * R18:  All x:Any - FOX(x)  + SMALLER(tweety x)
+   
+   A2,1 & R18,1   -->  * R19:  + SMALLER(tweety foxi)
+   
+   A5,1 & A18,1   -->  * R21:  All x:Any - BIRD(x)  + SMALLER(schnecki x)
+   
+   A3,1 & R21,1   -->  * R22:  + SMALLER(schnecki tweety)
+   
+   A5,1 & A16,1   -->  * R27:  + EATS(schnecki f_1(schnecki))
+   
+   A5,1 & A15,1   -->  * R28:  + PLANT(f_1(schnecki))
+   
+   A6,1 & A12,1   -->  * R31:  + PLANT(muesli)
+   
+   A5,1 & A11,1   -->  * R32:  + ANIMAL(schnecki)
+   
+   A3,1 & A9,1    -->  * R34:  + ANIMAL(tweety)
+   
+   A2,1 & A8,1    -->  * R35:  + ANIMAL(foxi)
+   
+   A1,1 & A7,1    -->  * R36:  + ANIMAL(lupo)
+   
+   R34,1 & A25,1  -->  * R48:  - PLANT(muesli)  + EATS(tweety muesli)  - ANIMAL(schnecki)
+                               - SMALLER(schnecki tweety)  - PLANT(f_1(schnecki))  - EATS(schnecki f_1(schnecki))
+                               + EATS(tweety schnecki)
+   
+   R48,1 & R31,1  -->  * R49:  + EATS(tweety muesli)  - ANIMAL(schnecki)  - SMALLER(schnecki tweety)
+                               - PLANT(f_1(schnecki))  - EATS(schnecki f_1(schnecki))  + EATS(tweety schnecki)
+   
+   R49,2 & R32,1  -->  * R50:  + EATS(tweety muesli)  - SMALLER(schnecki tweety)  - PLANT(f_1(schnecki))
+                               - EATS(schnecki f_1(schnecki))  + EATS(tweety schnecki)
+   
+   R50,5 & R4,1   -->  * R51:  + EATS(tweety muesli)  - SMALLER(schnecki tweety)  - PLANT(f_1(schnecki))
+                               - EATS(schnecki f_1(schnecki))
+   
+   R51,4 & R27,1  -->  * R52:  + EATS(tweety muesli)  - SMALLER(schnecki tweety)  - PLANT(f_1(schnecki))
+   
+   R52,3 & R28,1  -->  * R53:  + EATS(tweety muesli)  - SMALLER(schnecki tweety)
+   
+   R53,2 & R22,1  -->  * R54:  + EATS(tweety muesli)
+   
+   A25,8 & R13,1  -->  * R55:  - ANIMAL(lupo)  - PLANT(muesli)  + EATS(lupo muesli)  - ANIMAL(foxi)
+                               - SMALLER(foxi lupo)  - PLANT(muesli)  - EATS(foxi muesli)
+   
+   R55,4 & R35,1  -->  * R56:  - ANIMAL(lupo)  - PLANT(muesli)  + EATS(lupo muesli)  - SMALLER(foxi lupo)
+                               - PLANT(muesli)  - EATS(foxi muesli)
+   
+   R56 2=5        -->  * D57:  - ANIMAL(lupo)  - PLANT(muesli)  + EATS(lupo muesli)  - SMALLER(foxi lupo)
+                               - EATS(foxi muesli)
+   
+   D57,1 & R36,1  -->  * R58:  - PLANT(muesli)  + EATS(lupo muesli)  - SMALLER(foxi lupo)  - EATS(foxi muesli)
+   
+   R58,1 & R31,1  -->  * R59:  + EATS(lupo muesli)  - SMALLER(foxi lupo)  - EATS(foxi muesli)
+   
+   R59,1 & R10,1  -->  * R60:  - SMALLER(foxi lupo)  - EATS(foxi muesli)
+   
+   R60,1 & R16,1  -->  * R61:  - EATS(foxi muesli)
+   
+   R34,1 & R1,2   -->  * R62:  - ANIMAL(foxi)  - EATS(foxi tweety)  - EATS(tweety muesli)
+   
+   R62,1 & R35,1  -->  * R63:  - EATS(foxi tweety)  - EATS(tweety muesli)
+   
+   R63,2 & R54,1  -->  * R64:  - EATS(foxi tweety)
+   
+   A25,8 & R64,1  -->  * R65:  - ANIMAL(foxi)  - PLANT(muesli)  + EATS(foxi muesli)  - ANIMAL(tweety)
+                               - SMALLER(tweety foxi)  - PLANT(muesli)  - EATS(tweety muesli)
+   
+   R65,6 & R31,1  -->  * R66:  - ANIMAL(foxi)  - PLANT(muesli)  + EATS(foxi muesli)  - ANIMAL(tweety)
+                               - SMALLER(tweety foxi)  - EATS(tweety muesli)
+   
+   R66,4 & R34,1  -->  * R67:  - ANIMAL(foxi)  - PLANT(muesli)  + EATS(foxi muesli)  - SMALLER(tweety foxi)
+                               - EATS(tweety muesli)
+   
+   R67,1 & R35,1  -->  * R68:  - PLANT(muesli)  + EATS(foxi muesli)  - SMALLER(tweety foxi)  - EATS(tweety muesli)
+   
+   R68,1 & R31,1  -->  * R69:  + EATS(foxi muesli)  - SMALLER(tweety foxi)  - EATS(tweety muesli)
+   
+   R69,1 & R61,1  -->  * R70:  - SMALLER(tweety foxi)  - EATS(tweety muesli)
+   
+   R70,1 & R19,1  -->  * R71:  - EATS(tweety muesli)
+   
+   R71,1 & R54,1  -->  * R72:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 183 seconds

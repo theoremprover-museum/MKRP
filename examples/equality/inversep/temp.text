@@ -1,0 +1,78 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: Genera 7.1 IP-TCP 52.16 DNA 29.22 MKRP 19.3              *
+                     *           DATE: 07-JUL-1988  15:35                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+                                                                            
+   
+   *************************************************************************
+   
+    EDIT:     Axioms and Theorems edited: 07-JUL-1988 15:35 
+   
+   *************************************************************************
+   
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   ALL X E (+ (O X) X)
+             ALL X E (+ (X O) X)
+             ALL X,Y,Z E (+ (X + (Y Z)) + (+ (X Y) Z))
+             ALL X E (+ (- (X) X) O)
+             
+   Theorems: E (- (- (A)) A)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any +E(+(o x) x)
+             A2:   All x:Any +E(+(x o) x)
+             A3:   All x,y,z:Any +E(+(z +(y x)) +(+(z y) x))
+             A4:   All x:Any +E(+(-(x) x) o)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+             T5: -E(-(-(a)) a)
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation: (Failure: GRAPH.COLLAPSED)
+   ===========
+
+   
+   Initial Clauses:   T5:  -E(-(-(a)) a)
+                    
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   The theorem(s) could not be proved.
+

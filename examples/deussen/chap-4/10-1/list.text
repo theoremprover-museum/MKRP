@@ -1,0 +1,232 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: Genera 7.1 IP-TCP 52.16 Experimental MKRP 10.1           *
+                     *           DATE: 23-NOV-1987  13:10                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   *************************************************************************
+   
+   EDIT:
+   
+   AXIOMS
+   
+   AND
+   
+   THEOREMS
+   
+   EDITED:
+   
+   17-NOV-1987
+   
+   22:50
+   
+   *************************************************************************
+   
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * ************************************************
+             * DEFINITIONEN DER MENGENLEHRE
+             SORT SET:ANY
+             SORT ELEMENT:SET
+             TYPE EL (ELEMENT SET)
+             * DEFINITION 2.2: KARTESISCHES PRODUKT
+             TYPE PAIR (ELEMENT ELEMENT) :ELEMENT
+             * DEFINITION 1.7: FUNKTION
+             SORT SYMB.OF.FUNCTION:ANY
+             TYPE MAPPING (SYMB.OF.FUNCTION SET SET)
+             TYPE APPLY (SYMB.OF.FUNCTION ELEMENT) :ELEMENT
+             ALL F:SYMB.OF.FUNCTION ALL X,Y:SET MAPPING (F X Y) EQV (ALL A:ELEMENT EL (A X) IMPL EL (APPLY (F A) Y))
+             * DEFINITION 1.8: SURJEKTIV
+             TYPE SURJECTIVE (SYMB.OF.FUNCTION SET SET)
+             (ALL F:SYMB.OF.FUNCTION)(ALL X,Y:SET)SURJECTIVE (F X Y) EQV MAPPING (F X Y) AND (ALL B:ELEMENT EL (B Y) IMPL (EX A:ELEMENT EL (A X) AND APPLY (F A) = B))
+             * DEFINITIONEN VON RELATIONEN AUF EINER FESTEN MENGE S
+             SORT REL:SET
+             TYPE S:SET
+             SORT EL.OF.S:ELEMENT
+             ALL A:EL.OF.S EL (A S)
+             * DEFINITION 2.5: REFLEXIV
+             TYPE REFLEXIV (REL)
+             * DEFINITION 2.6: SYMMETRISCH
+             TYPE SYMMETRISCH (REL)
+             * DEFINITION 2.7: TRANSITIV
+             TYPE TRANSITIV (REL)
+             * DEFINITION 2.8: AEQUIVALENZRELATION
+             TYPE EQU.REL (REL)
+             ALL RHO:REL EQU.REL (RHO) EQV REFLEXIV (RHO) AND SYMMETRISCH (RHO) AND TRANSITIV (RHO)
+             SORT EQU.RELATION:REL
+             ALL RHO:EQU.RELATION REFLEXIV (RHO) AND SYMMETRISCH (RHO) AND TRANSITIV (RHO)
+             * DEFINITION 2.13: DIE VON EINER ABBILDUNG PHI VON S NACH U INDUZIERTE AEQUIVALENZRELATION
+             TYPE IND.EQU (SYMB.OF.FUNCTION SET) :EQU.RELATION
+             (ALL PHI:SYMB.OF.FUNCTION)(ALL U:SET)MAPPING (PHI S U)IMPL  (ALL A:ELEMENT EL (A IND.EQU (PHI U)) EQV
+ (EX B,C:EL.OF.S A = PAIR (B C) AND APPLY (PHI B) = APPLY (PHI C)))
+             ALL PHI:SYMB.OF.FUNCTION ALL U:SET NOT MAPPING (PHI S U) IMPL IND.EQU (PHI U) = CARTES (S S)
+             * DEFINITION 2.14: VORBEREICH EINER RELATION UND EINES ELEMENTES
+             TYPE PREIMAGE (REL EL.OF.S) :SET
+             ALL RHO:REL ALL B:ELEMENT ALL A:EL.OF.S EL (B PREIMAGE (RHO A)) EQV EL (PAIR (B A) RHO)
+             * DEFINITION 2.15: QUOTIENTENMENGE S MODULO RHO
+             TYPE MODULO (EQU.RELATION) :SET
+             ALL RHO:EQU.RELATION ALL A:ELEMENT EL (A MODULO (RHO)) EQV (EX B:EL.OF.S A = PREIMAGE (RHO B))
+             * DEFINITION 2.16: KANONISCHE PROJEKTION VON S AUF (S MODULO RHO)
+             TYPE CAN.PROJ (EQU.RELATION) :SYMB.OF.FUNCTION
+             (ALL RHO:EQU.RELATION)MAPPING (CAN.PROJ (RHO) S MODULO (RHO)) AND (ALL A:EL.OF.S APPLY (CAN.PROJ (RHO) A) = PREIMAGE (RHO A))
+             
+   Theorems: ALL PHI:SYMB.OF.FUNCTION ALL U:SET SURJECTIVE (CAN.PROJ (IND.EQU (PHI U)) S MODULO (IND.EQU (PHI U)))
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1: All x:Any +=(x x)
+           * A2: All x:El.of.s +EL(x s)
+             A3: All x:Equ.relation +REFLEXIV(x)
+             A4: All x:Equ.relation +SYMMETRISCH(x)
+             A5: All x:Equ.relation +TRANSITIV(x)
+           * A6: All x:El.of.s y:Equ.relation +=(apply(can.proj(y) x) preimage(y x))
+             A7: All x:El.of.s y:Rel z:Element +EL(z preimage(y x))  -EL(pair(z x) y)
+             A8: All x:El.of.s y:Rel z:Element -EL(z preimage(y x))  +EL(pair(z x) y)
+             A9: All x:El.of.s y:Equ.relation z:Element +EL(z modulo(y))  -=(z preimage(y x))
+           * A10: All x:Equ.relation y:Element -EL(y modulo(x))  +=(y preimage(x f_4(x y)))
+           * A11: All x:Equ.relation y:Element -EL(y s)  +EL(apply(can.proj(x) y) modulo(x))
+             A12: All x:Element y:Set z:Symb.of.function       +el(f_1(z y) s)  -EL(x ind.equ(z y))  +=(x pair(f_3(x z y) f_2(x z y)))
+             A13: All x:Element y:Set z:Symb.of.function       +el(f_1(z y) s)  -EL(x ind.equ(z y))  +=(apply(z f_3(x z y)) apply(z f_2(x z y)))
+             A14: All x:Element y:Set z:Symb.of.function       -el(apply(z f_1(z y)) y)  -EL(x ind.equ(z y))  +=(x pair(f_3(x z y) f_2(x z y)))
+             A15: All x:Element y:Set z:Symb.of.function       -el(apply(z f_1(z y)) y)  -EL(x ind.equ(z y))  +=(apply(z f_3(x z y)) apply(z f_2(x z y)))
+             A16: All x:Set y:Symb.of.function z:Element       -el(z s)  +EL(apply(y z) x)  +=(ind.equ(y x) cartes(s s))
+             A17: All x,y:El.of.s z:Element u:Set v:Symb.of.function       +el(f_1(v u) s)  +EL(z ind.equ(v u))  -=(z pair(y x))  -=(apply(v y) apply(v x))
+             A18: All x,y:El.of.s z:Element u:Set v:Symb.of.function       -el(apply(v f_1(v u)) u)  +EL(z ind.equ(v u))  -=(z pair(y x))  -=(apply(v y) apply(v x))
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization and Splitting
+             =================================================================
+
+SPLITPART 1
+
+* T19: +EL(c_3 s)
+           * T20: -EL(apply(can.proj(ind.equ(c_2 c_1)) c_3) modulo(ind.equ(c_2 c_1)))
+           
+
+
+
+SPLITPART 2
+
+* T21: +EL(c_5 modulo(ind.equ(c_6 c_4)))
+           * T22: All x:Element -EL(x s)  -=(apply(can.proj(ind.equ(c_6 c_4)) x) c_5)
+           
+
+
+
+
+
+
+
+
+   NILINITIAL OPERATIONS ON THEOREMS
+   ==============================
+
+
+   NIL
+   1Splitpart NIL :
+   
+   
+   T20,1 & A11,2  --> * R1: -EL(c_3 s)
+   
+   
+   R1,1 & T19,1   --> * R2: []
+   
+
+   NIL
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation of Splitpart 1:
+   =========================
+
+   The following Options have been Changed:NIL
+
+   GEN_MAXIMUM.STEPS   81
+   GEN_GRAPH.SAVING   80
+   GEN_SAVE.FILE   >PRCKLN>MKRP>EXAMPLES>BOSE>SAVE
+   PR_PREFIX.FORM   NIL
+   PR_OPTIONS   NIL
+   PR_SYMBOLS   NIL
+   PR_LEFT.MARGIN   3
+   PR_LINELENGTH   114
+
+   
+   Initial Clauses: 
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation of Splitpart 2:
+   =========================
+
+   The following Options have been Changed:NIL
+
+   GEN_MAXIMUM.STEPS   81
+   GEN_GRAPH.SAVING   80
+   GEN_SAVE.FILE   >PRCKLN>MKRP>EXAMPLES>BOSE>SAVE
+   PR_PREFIX.FORM   NIL
+   PR_OPTIONS   NIL
+   PR_SYMBOLS   NIL
+   PR_LEFT.MARGIN   3
+   PR_LINELENGTH   114
+
+   
+   Initial Clauses:     A1: All x:Any +=(x x)
+                      * A2: All x:El.of.s +EL(x s)
+                      * A6: All x:El.of.s y:Equ.relation +=(apply(can.proj(y) x) preimage(y x))
+                        A7: All x:El.of.s y:Rel z:Element +EL(z preimage(y x))  -EL(pair(z x) y)
+                        A8: All x:El.of.s y:Rel z:Element -EL(z preimage(y x))  +EL(pair(z x) y)
+                        A9: All x:El.of.s y:Equ.relation z:Element       +el(z modulo(y))     -=(z preimage(y x))
+                      * A10: All x:Equ.relation y:Element       -el(y modulo(x))     +=(y preimage(x f_4(x y)))
+                        A11: All x:Equ.relation y:Element       -el(y s)     +EL(apply(can.proj(x) y) modulo(x))
+                        A12: All x:Element y:Set z:Symb.of.function       +el(f_1(z y) s)     -EL(x ind.equ(z y))     +=(x pair(f_3(x z y) f_2(x z y)))
+                        A13: All x:Element y:Set z:Symb.of.function       +el(f_1(z y) s)     -EL(x ind.equ(z y))     +=(apply(z f_3(x z y)) apply(z f_2(x z y)))
+                        A14: All x:Element y:Set z:Symb.of.function       -el(apply(z f_1(z y)) y)     -EL(x ind.equ(z y))     +=(x pair(f_3(x z y) f_2(x z y)))
+                        A15: All x:Element y:Set z:Symb.of.function       -el(apply(z f_1(z y)) y)     -EL(x ind.equ(z y))     +=(apply(z f_3(x z y)) apply(z f_2(x z y)))
+                        A16: All x:Set y:Symb.of.function z:Element       -el(z s)     +EL(apply(y z) x)     +=(ind.equ(y x) cartes(s s))
+                        A17: All x,y:El.of.s z:Element u:Set v:Symb.of.function       +el(f_1(v u) s)     +EL(z ind.equ(v u))     -=(z pair(y x))     -=(apply(v y) apply(v x))
+                        A18: All x,y:El.of.s z:Element u:Set v:Symb.of.function       -el(apply(v f_1(v u)) u)     +EL(z ind.equ(v u))     -=(z pair(y x))     -=(apply(v y) apply(v x))
+                      * T21: +EL(c_5 modulo(ind.equ(c_6 c_4)))
+                      * T22: All x:Element -EL(x s)  -=(apply(can.proj(ind.equ(c_6 c_4)) x) c_5)
+                      
+
+   
+   A10,2 & A6,1  --> * P3: All x:Element y:Equ.relation       +=(apply(can.proj(y) f_4(y x)) x)     -EL(x modulo(y))
+   
+   P3,1 & T22,2  --> * R4: -EL(c_5 modulo(ind.equ(c_6 c_4)))  -EL(f_4(ind.equ(c_6 c_4) c_5) s)
+   
+   R4,1 & T21,1  --> * R5: -EL(f_4(ind.equ(c_6 c_4) c_5) s)
+   
+   R5,1 & A2,1   --> * R6: []
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 

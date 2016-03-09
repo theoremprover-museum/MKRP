@@ -1,0 +1,6 @@
+(load "dialog.lisp")
+(load "menu.lisp")
+(load "XKeyboard.lisp")
+;(load "menu-single.lisp")
+(load "test.lisp")
+;(load "choose-cursor.lisp")

@@ -1,0 +1,163 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 40.12 EQUALITY 16.1                                 *
+                     *           DATE: 23-MAR,1990  07:00                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 22-MAR,1990 11:24 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   ALL X0,XP0,XP1 NOT E (X0) OR NOT EXP (F (X0 XP0)) OR GT (F (X0 AP0) F (X0 XP1)) OR NOT EXP (F (X0 XP1))
+             ALL X0,XP0 NOT E (X0) OR NOT EXP (F (X0 XP0)) OR S (F (X0 AP0))
+             ALL X0,XP0 NOT E (X0) OR NOT EXP (F (X0 XP0)) OR INE (F (X0 AP0))
+             ALL X0 EXP (F (X0 AP1)) OR E (X0)
+             ALL X0,XP2,XP3 NOT S  
+             ALL X0,XP2 NOT S (F (X0 XP2)) OR NOT INE (F (X0 XP2)) OR EXP (F (X0 AP2)) OR E (X0)
+             ALL X1,XP4 NOT S (X1) OR GT (F (X1 AP3) F (X1 XP4)) OR NOT INE (F (X1 XP4))
+             ALL X1 NOT S (X1) OR E (F (X1 AP3))
+             ALL X1 NOT S (X1) OR EXP (F (X1 AP3))
+             ALL X1,XP5,XP6 NOT E  
+             ALL X1,XP5 NOT E (F (X1 XP5)) OR NOT EXP (F (X1 XP5)) OR INE (F (X1 AP4)) OR S (X1)
+             ALL X2 NOT S (X2) OR NOT BS (X2) OR OS (F (X2 AF0))
+             ALL X3 NOT OS (X3) OR S (F (X3 AP5))
+             ALL X3 NOT OS (X3) OR BS (F (X3 AP5))
+             ALL X4 NOT S (X4) OR NOT INI (X4) OR OSA (F (X4 AF1))
+             ALL X5 NOT OSA (X5) OR S (F (X5 AP6))
+             ALL X5 NOT OSA (X5) OR INI (F (X5 AP6))
+             ALL X6 NOT S (X6) OR NOT INE (X6) OR R (X6)
+             ALL X7 NOT BC (X7) OR OSE (F (X7 AF2))
+             ALL X8 NOT OSE (X8) OR BC (F (X8 AP7))
+             ALL X9 BS (X9) EQV PS (X9)
+             ALL X10 BC (X10) EQV PC (X10)
+             
+   Theorems: NOT ((PC (A0) OR OSE (A1))
+                  AND (ALL XF0 NOT OSE (F (A0 XF0)) OR OSE (A1))
+                  AND (ALL XP7 PC (A0) OR NOT PC (F (A1 XP7)))
+                  AND (ALL XF0,XP7 NOT OSE (F (A0 XF0)) OR NOT PC (F (A1 XP7))))
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+             A2:   All x:Any + EXP(f(x ap1))  + E(x)
+             A3:   All x:Any - S(x)  + E(f(x ap3))
+             A4:   All x:Any - S(x)  + EXP(f(x ap3))
+             A5:   All x:Any - OS(x)  + S(f(x ap5))
+             A6:   All x:Any - OS(x)  + PS(f(x ap5))
+             A7:   All x:Any - OSA(x)  + S(f(x ap6))
+             A8:   All x:Any - OSA(x)  + INI(f(x ap6))
+           * A9:   All x:Any - PC(x)  + OSE(f(x af2))
+           * A10:  All x:Any - OSE(x)  + PC(f(x ap7))
+             A11:  All x,y:Any - E(y)  - EXP(f(y x))  + S(f(y ap0))
+             A12:  All x,y:Any - E(y)  - EXP(f(y x))  + INE(f(y ap0))
+             A13:  All x,y:Any - S(y)  + GT(f(y ap3) f(y x))  - INE(f(y x))
+             A14:  All x:Any - S(x)  - PS(x)  + OS(f(x af0))
+             A15:  All x:Any - S(x)  - INI(x)  + OSA(f(x af1))
+             A16:  All x:Any - S(x)  - INE(x)  + R(x)
+             A17:  All x,y,z:Any - E(z)  - EXP(f(z y))  + GT(f(z ap0) f(z x))  - EXP(f(z x))
+             A18:  All x,y:Any - S(f(y x))  - INE(f(y x))  + EXP(f(y ap2))  + E(y)
+             A19:  All x,y:Any - E(f(y x))  - EXP(f(y x))  + INE(f(y ap4))  + S(y)
+             A20:  All x,y,z:Any - S(f(z y))  - INE(f(z y))  + GE(f(z ap2) f(z x))  - S(f(z x))  - INE(f(z x))
+                                 + E(x)
+             A21:  All x,y,z:Any - E(f(z y))  - EXP(f(z y))  + GE(f(z ap4) f(z x))  - E(f(z x))  - EXP(f(z x))
+                                 + S(z)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T22: + PC(a0)  + OSE(a1)
+           * T23: All x:Any - OSE(f(a0 x))  + OSE(a1)
+           * T24: All x:Any + PC(a0)  - PC(f(a1 x))
+           * T25: All x,y:Any - OSE(f(a0 y))  - PC(f(a1 x))
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:      A1:   All x:Any + =(x x)
+                         A2:   All x:Any + EXP(f(x ap1))  + E(x)
+                         A3:   All x:Any - S(x)  + E(f(x ap3))
+                         A4:   All x:Any - S(x)  + EXP(f(x ap3))
+                         A5:   All x:Any - OS(x)  + S(f(x ap5))
+                         A6:   All x:Any - OS(x)  + PS(f(x ap5))
+                         A7:   All x:Any - OSA(x)  + S(f(x ap6))
+                         A8:   All x:Any - OSA(x)  + INI(f(x ap6))
+                       * A9:   All x:Any - PC(x)  + OSE(f(x af2))
+                       * A10:  All x:Any - OSE(x)  + PC(f(x ap7))
+                         A11:  All x,y:Any - E(y)  - EXP(f(y x))  + S(f(y ap0))
+                         A12:  All x,y:Any - E(y)  - EXP(f(y x))  + INE(f(y ap0))
+                         A13:  All x,y:Any - S(y)  + GT(f(y ap3) f(y x))  - INE(f(y x))
+                         A14:  All x:Any - S(x)  - PS(x)  + OS(f(x af0))
+                         A15:  All x:Any - S(x)  - INI(x)  + OSA(f(x af1))
+                         A16:  All x:Any - S(x)  - INE(x)  + R(x)
+                         D2:   All x,y,z:Any - E(y)  + GT(f(y ap0) f(y x))  - EXP(f(y x))
+                         A18:  All x,y:Any - S(f(y x))  - INE(f(y x))  + EXP(f(y ap2))  + E(y)
+                         A19:  All x,y:Any - E(f(y x))  - EXP(f(y x))  + INE(f(y ap4))  + S(y)
+                         D5:   All x,y,z:Any + GE(f(y ap2) f(y x))  - S(f(y x))  - INE(f(y x))  + E(x)
+                         D8:   All x,y,z:Any + GE(f(y ap4) f(y x))  - E(f(y x))  - EXP(f(y x))  + S(y)
+                       * T22:  + PC(a0)  + OSE(a1)
+                       * T23:  All x:Any - OSE(f(a0 x))  + OSE(a1)
+                       * T24:  All x:Any + PC(a0)  - PC(f(a1 x))
+                       * T25:  All x,y:Any - OSE(f(a0 y))  - PC(f(a1 x))
+                       
+
+   
+   T22,2 & A10,1  -->  * R9:   + PC(a0)  + PC(f(a1 ap7))
+   
+   R9,2 & T24,2   -->  * R10:  + PC(a0)  + PC(a0)
+   
+   R10 1=2        -->  * D11:  + PC(a0)
+   
+   D11,1 & A9,1   -->  * R12:  + OSE(f(a0 af2))
+   
+   T23,1 & R12,1  -->  * R13:  + OSE(a1)
+   
+   T25,1 & R12,1  -->  * R14:  All x:Any - PC(f(a1 x))
+   
+   R13,1 & A10,1  -->  * R15:  + PC(f(a1 ap7))
+   
+   R15,1 & R14,1  -->  * R16:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 18 seconds

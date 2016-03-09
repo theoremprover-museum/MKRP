@@ -1,0 +1,146 @@
+ 
+ 
+ 
+             ****************************************************
+             *                                                  *
+             *   ATP-SYSTEM :  M K R P , UNI KARLSRUHE          *
+             *                                                  *
+             *      VERSION : 3-FEB-84                          *
+             *         DATE : 8-AUG-84  12:43:22                *
+             *                                                  *
+             ****************************************************
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : SORT ELEMENT,MENGE,VERKN : ANY
+           TYPE SM (MENGE MENGE) :MENGE
+           TYPE APPLY (VERKN ELEMENT ELEMENT) :ELEMENT
+           ALL X:ELEMENT  ALL M1,M2  
+             : MENGE EL (X SM (M1 M2)) EQV EL (X M1) AND EL (X M2)
+           ALL U,F:MENGE  ALL PHI:VERKN  ALL E:ELEMENT  
+             UG (U F PHI E) IMPL EINS (E PHI U)
+           ALL X,E  
+             :ELEMENT ALL  
+               M:MENGE ALL  
+                   PHI:VERKN EL (X M) AND EINS (E PHI M)
+                   IMPL  
+                   GLEICH (APPLY (PHI X E) X) AND GLEICH (APPLY (PHI E X)
+X)
+           ALL X,E  
+             :ELEMENT ALL  
+               PHI :VERKN  ALL M:MENGE  
+                     EL (X M)
+                     AND  
+                     GLEICH (APPLY (PHI X E) X)
+                     AND  
+                     GLEICH (APPLY (PHI E X) X)
+                   IMPL  
+                   EINS (E PHI M)
+ 
+THEOREMS : ALL E:ELEMENT  ALL U1,U2,F:MENGE  ALL PHI:VERKN  
+                 UG (U1 F PHI E)
+                 AND  
+                 UG (U2 F PHI E)
+                 AND  
+                 (EX X: ELEMENT EL (X SM (U1 U2)))
+               IMPL  
+               EINS (E PHI SM (U1 U2))
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+  A1   : ALL X:ELEMENT  Y,Z:MENGE  +EL(X SM(Y Z)) -EL(X Y) -EL(X Z)
+  A2   : ALL X:ELEMENT  Y,Z:MENGE  -EL(X SM(Y Z)) +EL(X Y)
+* A3   : ALL X:ELEMENT  Y,Z:MENGE  -EL(X SM(Y Z)) +EL(X Z)
+* A4   : ALL X,Y:MENGE  Z:VERKN  U:ELEMENT  -UG(X Y Z U) +EINS(U Z X)
+* A5   : ALL X,Y:ELEMENT  Z:MENGE  U:VERKN  
+              -EL(X Z) -EINS(Y U Z) +GLEICH(APPLY(U X Y) X) 
+* A6   : ALL X,Y:ELEMENT  Z:MENGE  U:VERKN  
+              -EL(X Z) -EINS(Y U Z) +GLEICH(APPLY(U Y X) X) 
+* A7   : ALL X,Y:ELEMENT  Z:MENGE  U:VERKN  
+              -EL(X Z) -GLEICH(APPLY(U X Y) X) -GLEICH(APPLY(U Y X) X) 
+              +EINS(Y U Z) 
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+  T8   : +UG(C_2 C_5 C_4 C_1)
+* T9   : +UG(C_3 C_5 C_4 C_1)
+* T10  : +EL(C_6 SM(C_2 C_3))
+* T11  : -EINS(C_1 C_4 SM(C_2 C_3))
+ 
+ 
+ 
+ 
+--------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION
+ 
+INITIAL CLAUSES :       A1  : ALL X:ELEMENT  Y,Z:MENGE  
+                                   +EL(X SM(Y Z)) -EL(X Y) -EL(X Z) 
+                        A2  : ALL X:ELEMENT  Y,Z:MENGE  
+                                   -EL(X SM(Y Z)) +EL(X Y) 
+                      * A3  : ALL X:ELEMENT  Y,Z:MENGE  
+                                   -EL(X SM(Y Z)) +EL(X Z) 
+                      * A4  : ALL X,Y:MENGE  Z:VERKN  U:ELEMENT  
+                                   -UG(X Y Z U) +EINS(U Z X) 
+                      * A5  : ALL X,Y:ELEMENT  Z:MENGE  U:VERKN  
+                                   -EL(X Z) -EINS(Y U Z) 
+                                   +GLEICH(APPLY(U X Y) X) 
+                      * A6  : ALL X,Y:ELEMENT  Z:MENGE  U:VERKN  
+                                   -EL(X Z) -EINS(Y U Z) 
+                                   +GLEICH(APPLY(U Y X) X) 
+                      * A7  : ALL X,Y:ELEMENT  Z:MENGE  U:VERKN  
+                                   -EL(X Z) -GLEICH(APPLY(U X Y) X) 
+                                   -GLEICH(APPLY(U Y X) X) +EINS(Y U Z) 
+                        T8  : +UG(C_2 C_5 C_4 C_1)
+                      * T9  : +UG(C_3 C_5 C_4 C_1)
+                      * T10 : +EL(C_6 SM(C_2 C_3))
+                      * T11 : -EINS(C_1 C_4 SM(C_2 C_3))
+ 
+T9,1  +  A4,1    -->  * R1  : +EINS(C_1 C_4 C_3)
+T10,1  +  A3,1   -->  * R2  : +EL(C_6 C_3)
+R2,1  +  A6,1    -->  * R3  : -EINS(C_1 C_4 C_3) 
+                              +GLEICH(APPLY(C_4 C_1 C_6) C_6) 
+R1,1  +  R3,1    -->  * R4  : +GLEICH(APPLY(C_4 C_1 C_6) C_6)
+R2,1  +  A5,1    -->  * R5  : -EINS(C_1 C_4 C_3) 
+                              +GLEICH(APPLY(C_4 C_6 C_1) C_6) 
+R1,1  +  R5,1    -->  * R6  : +GLEICH(APPLY(C_4 C_6 C_1) C_6)
+T10,1  +  A7,1   -->  * R7  : -GLEICH(APPLY(C_4 C_6 C_1) C_6) 
+                              -GLEICH(APPLY(C_4 C_1 C_6) C_6) 
+                              +EINS(C_1 C_4 SM(C_2 C_3)) 
+R6,1  +  R7,1    -->  * R8  : -GLEICH(APPLY(C_4 C_1 C_6) C_6) 
+                              +EINS(C_1 C_4 SM(C_2 C_3)) 
+R4,1  +  R8,1    -->  * R9  : +EINS(C_1 C_4 SM(C_2 C_3))
+R9,1  +  T11,1   -->  * R10 : 
+ 
+ 
+ 
+--------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+ 

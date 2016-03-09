@@ -1,0 +1,331 @@
+;;; -*- Package: MKRP; Base: 10. -*-
+
+
+
+                    ********************************************************************************
+                    *                                                                              *
+                    *     MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN                   *
+                    *                                                                              *
+                    *       25-JUL-85                                                              *
+                    *          25-JUL-85  09:24:06                                                 *
+                    *                                                                              *
+                    ********************************************************************************
+
+
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   25-JUL-85 09:22:17
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   D3102>ME-RK
+                                                                        
+************************************************************************
+                                                                        
+
+
+
+
+
+FORMULAE GIVEN TO THE EDITOR
+============================
+
+
+AXIOMS   : SORT MENGE,VERKN,ELEMENT,INDEX,INDEXMENGE:ANY
+           TYPE LIDEAL (MENGE MENGE VERKN)
+           TYPE RIDEAL (MENGE MENGE VERKN)
+           TYPE UHG (MENGE MENGE VERKN)
+           TYPE ME (MENGE MENGE)
+           TYPE NICHTLEER (MENGE)
+           TYPE HG (MENGE VERKN)
+           TYPE EL (ELEMENT MENGE)
+           TYPE MINIMAL (MENGE MENGE VERKN)
+           TYPE MPROD (MENGE MENGE VERKN) :MENGE
+           TYPE APPLYV (VERKN ELEMENT ELEMENT) :ELEMENT
+           TYPE F*X (MENGE ELEMENT VERKN) :MENGE
+           TYPE SM (MENGE MENGE) :MENGE
+           TYPE SET (ELEMENT) :MENGE
+           TYPE VER (MENGE MENGE) :MENGE
+           TYPE GR (MENGE VERKN ELEMENT)
+           TYPE INVERS (VERKN ELEMENT) :ELEMENT
+           TYPE MINIMAL-BED-L (MENGE VERKN)
+           TYPE MINIMAL-BED-R (MENGE VERKN)
+           TYPE EL-IND (INDEX INDEXMENGE)
+           TYPE U (INDEX) : MENGE
+           TYPE E (INDEX INDEX) : ELEMENT
+           TYPE NICHTLEER-IND (INDEXMENGE)
+           TYPE GLEICH (MENGE MENGE)
+           TYPE VER-IND (INDEXMENGE) : MENGE
+           TYPE SM-IND (INDEXMENGE) : MENGE
+           TYPE IDEAL (MENGE MENGE VERKN)
+           TYPE G (INDEX INDEX) :MENGE
+           TYPE GLEICH-E (ELEMENT ELEMENT)
+           * SCHNITTMENGENAXIOM *
+           ALL A,B:MENGE ALL X:ELEMENT EL (X SM (A B)) IMPL EL (X A) AND EL (X B)
+           * SATZ 3.9 *
+             * VOR (F MAL I1) BEDEUTET : HG (F MAL)
+             AND  
+             MINIMAL-BED-L (F MAL)
+             AND  
+             (ALL K1:INDEX EL-IND (K1 I1) IMPL RIDEAL (U (K1) F MAL) AND MINIMAL (U (K1) F MAL)) *
+           ALL F:MENGE ALL MAL:VERKN ALL I1:INDEXMENGE VOR (F MAL I1) IMPL LIDEAL (VER-IND (I1) F MAL)
+           * SATZ 3.8 *
+           ALL F,L,M:MENGE  ALL MAL:VERKN  ALL X:ELEMENT  
+             HG (F MAL) AND LIDEAL (L F MAL) AND LIDEAL (M F MAL) AND EL (X M) IMPL GLEICH (F*X (L X MAL) M)
+           * EIGENSCAHFT F*X *
+           ALL F,L,M:MENGE  ALL MAL:VERKN  ALL X:ELEMENT  
+               GLEICH (F*X (L X MAL) M) AND EL (X M) AND HG (F MAL) AND ME (M F) AND ME (L F)
+               IMPL  
+               (EX R:ELEMENT EL (R L) AND X = APPLYV (MAL R X))
+           * TEIL DEFINITION LIDEAL *
+           ALL F,L:MENGE ALL MAL:VERKN LIDEAL (L F MAL) IMPL ME (L F)
+
+THEOREMS : ALL F:MENGE  ALL MAL:VERKN  ALL I1,I2:INDEXMENGE  ALL J1,J2:INDEX  ALL X:ELEMENT  
+                 HG (F MAL)
+                 AND  
+                 MINIMAL-BED-L (F MAL)
+                 AND  
+                 MINIMAL-BED-R (F MAL)
+                 AND  
+                 (ALL K1:INDEX EL-IND (K1 I1) IMPL RIDEAL (U (K1) F MAL) AND MINIMAL (U (K1) F MAL))
+                 AND  
+                 (ALL K2:INDEX EL-IND (K2 I2) IMPL LIDEAL (U (K2) F MAL) AND MINIMAL (U (K2) F MAL))
+                 AND  
+                 EL-IND (J1 I1)
+                 AND  
+                 EL-IND (J2 I2)
+                 AND  
+                 EL (X SM (U (J1) U (J2)))
+                 AND  
+                 VOR (F MAL I1)
+               IMPL  
+               (EX R:ELEMENT EL (R VER-IND (I1)) AND X = APPLYV (MAL R X))
+
+
+
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+  A1   : ALL X:ANY  + =(X X)
+* A2   : ALL X:VERKN  Y,Z:MENGE  - LIDEAL(Z Y X)  + ME(Z Y)
+* A3   : ALL X:INDEXMENGE  Y:VERKN  Z:MENGE  - VOR(Z Y X)  + LIDEAL(VER-IND(X) Z Y)
+* A4   : ALL X,Y:MENGE  Z:ELEMENT  - EL(Z SM(Y X))  + EL(Z X)
+  A5   : ALL X,Y:MENGE  Z:ELEMENT  - EL(Z SM(Y X))  + EL(Z Y)
+* A6   : ALL X:ELEMENT  Y,Z,U:MENGE  V:VERKN  
+              - HG(U V)  - LIDEAL(Z U V)  - LIDEAL(Y U V)  - EL(X Y)  + GLEICH(F*X(Z X V) Y)
+* A7   : ALL X,Y,Z:MENGE  U:VERKN  V:ELEMENT  
+              - GLEICH(F*X(Z V U) Y)  - EL(V Y)  - HG(X U)  - ME(Y X)  - ME(Z X)  + =(V APPLYV(U F_1(U Z V) V))
+* A8   : ALL X,Y,Z:MENGE  U:VERKN  V:ELEMENT  
+              - GLEICH(F*X(Z V U) Y)  - EL(V Y)  - HG(X U)  - ME(Y X)  - ME(Z X)  + EL(F_1(U Z V) Z)
+
+
+
+
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+* T9   : + HG(C_4 C_6)
+  T10  : + MINIMAL-BED-L(C_4 C_6)
+  T11  : + MINIMAL-BED-R(C_4 C_6)
+  T12  : ALL X:INDEX  - EL-IND(X C_7)  + RIDEAL(U(X) C_4 C_6)
+  T13  : ALL X:INDEX  - EL-IND(X C_7)  + MINIMAL(U(X) C_4 C_6)
+* T14  : ALL X:INDEX  - EL-IND(X C_3)  + LIDEAL(U(X) C_4 C_6)
+  T15  : ALL X:INDEX  - EL-IND(X C_3)  + MINIMAL(U(X) C_4 C_6)
+  T16  : + EL-IND(C_2 C_7)
+* T17  : + EL-IND(C_1 C_3)
+* T18  : + EL(C_5 SM(U(C_2) U(C_1)))
+* T19  : + VOR(C_4 C_6 C_7)
+* T20  : ALL X:ELEMENT  - EL(X VER-IND(C_7))  - =(C_5 APPLYV(C_6 X C_5))
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+REFUTATION
+
+INITIAL CLAUSES :      A1  : ALL X:ANY  + =(X X)
+                     * A2  : ALL X:VERKN  Y,Z:MENGE  - LIDEAL(Z Y X)  + ME(Z Y)
+                     * A3  : ALL X:INDEXMENGE  Y:VERKN  Z:MENGE  - VOR(Z Y X)  + LIDEAL(VER-IND(X) Z Y)
+                     * A4  : ALL X,Y:MENGE  Z:ELEMENT  - EL(Z SM(Y X))  + EL(Z X)
+                       A5  : ALL X,Y:MENGE  Z:ELEMENT  - EL(Z SM(Y X))  + EL(Z Y)
+                     * A6  : ALL X:ELEMENT  Y,Z,U:MENGE  V:VERKN  
+                                  - HG(U V)  - LIDEAL(Z U V)  - LIDEAL(Y U V)  - EL(X Y)  + GLEICH(F*X(Z X V) Y)
+                     * A7  : ALL X,Y,Z:MENGE  U:VERKN  V:ELEMENT  
+                                  - GLEICH(F*X(Z V U) Y)  - EL(V Y)  - HG(X U)  - ME(Y X)  - ME(Z X)
+                                    + =(V APPLYV(U F_1(U Z V) V))
+                     * A8  : ALL X,Y,Z:MENGE  U:VERKN  V:ELEMENT  
+                                  - GLEICH(F*X(Z V U) Y)  - EL(V Y)  - HG(X U)  - ME(Y X)  - ME(Z X)
+                                    + EL(F_1(U Z V) Z)
+                     * T9  : + HG(C_4 C_6)
+                     * T14 : ALL X:INDEX  - EL-IND(X C_3)  + LIDEAL(U(X) C_4 C_6)
+                     * T17 : + EL-IND(C_1 C_3)
+                     * T18 : + EL(C_5 SM(U(C_2) U(C_1)))
+                     * T19 : + VOR(C_4 C_6 C_7)
+                     * T20 : ALL X:ELEMENT  - EL(X VER-IND(C_7))  - =(C_5 APPLYV(C_6 X C_5))
+
+T19,1 & A3,1    -->  * R1  : + LIDEAL(VER-IND(C_7) C_4 C_6)
+
+T17,1 & T14,1   -->  * R2  : + LIDEAL(U(C_1) C_4 C_6)
+
+T9,1 & A6,1     -->  * R3  : ALL X:ELEMENT  Y,Z:MENGE  
+                                  - LIDEAL(Z C_4 C_6)  - LIDEAL(Y C_4 C_6)  - EL(X Y)  + GLEICH(F*X(Z X C_6) Y)
+
+T9,1 & A7,3     -->  * R4  : ALL X,Y:MENGE  Z:ELEMENT  
+                                  - GLEICH(F*X(Y Z C_6) X)  - EL(Z X)  - ME(X C_4)  - ME(Y C_4)
+                                    + =(Z APPLYV(C_6 F_1(C_6 Y Z) Z))
+
+T9,1 & A8,3     -->  * R5  : ALL X,Y:MENGE  Z:ELEMENT  
+                                  - GLEICH(F*X(Y Z C_6) X)  - EL(Z X)  - ME(X C_4)  - ME(Y C_4)  + EL(F_1(C_6 Y Z) Y)
+
+R3,4 & R5,1     -->  * R6  : ALL X:ELEMENT  Y,Z:MENGE  
+                                  - LIDEAL(Z C_4 C_6)  - LIDEAL(Y C_4 C_6)  - EL(X Y)  - EL(X Y)  - ME(Y C_4)
+                                    - ME(Z C_4)  + EL(F_1(C_6 Z X) Z)
+
+R6 3=4          -->  * D7  : ALL X:ELEMENT  Y,Z:MENGE  
+                                  - LIDEAL(Z C_4 C_6)  - LIDEAL(Y C_4 C_6)  - EL(X Y)  - ME(Y C_4)  - ME(Z C_4)
+                                    + EL(F_1(C_6 Z X) Z)
+
+D7,5 & A2,2     -->  * R8  : ALL X:ELEMENT  Y,Z:MENGE  
+                                  - LIDEAL(Z C_4 C_6)  - LIDEAL(Y C_4 C_6)  - EL(X Y)  - ME(Y C_4)
+                                    + EL(F_1(C_6 Z X) Z)  - LIDEAL(Z C_4 C_6)
+
+R8 1=6          -->  * D9  : ALL X:ELEMENT  Y,Z:MENGE  
+                                  - LIDEAL(Z C_4 C_6)  - LIDEAL(Y C_4 C_6)  - EL(X Y)  - ME(Y C_4)
+                                    + EL(F_1(C_6 Z X) Z)
+
+R3,4 & R4,1     -->  * R10 : ALL X:ELEMENT  Y,Z:MENGE  
+                                  - LIDEAL(Z C_4 C_6)  - LIDEAL(Y C_4 C_6)  - EL(X Y)  - EL(X Y)  - ME(Y C_4)
+                                    - ME(Z C_4)  + =(X APPLYV(C_6 F_1(C_6 Z X) X))
+
+R10 3=4         -->  * D11 : ALL X:ELEMENT  Y,Z:MENGE  
+                                  - LIDEAL(Z C_4 C_6)  - LIDEAL(Y C_4 C_6)  - EL(X Y)  - ME(Y C_4)  - ME(Z C_4)
+                                    + =(X APPLYV(C_6 F_1(C_6 Z X) X))
+
+D11,5 & A2,2    -->  * R12 : ALL X:ELEMENT  Y,Z:MENGE  
+                                  - LIDEAL(Z C_4 C_6)  - LIDEAL(Y C_4 C_6)  - EL(X Y)  - ME(Y C_4)
+                                    + =(X APPLYV(C_6 F_1(C_6 Z X) X))  - LIDEAL(Z C_4 C_6)
+
+R12 1=6         -->  * D13 : ALL X:ELEMENT  Y,Z:MENGE  
+                                  - LIDEAL(Z C_4 C_6)  - LIDEAL(Y C_4 C_6)  - EL(X Y)  - ME(Y C_4)
+                                    + =(X APPLYV(C_6 F_1(C_6 Z X) X))
+
+R1,1 & A2,1     -->    R14 : + ME(VER-IND(C_7) C_4)
+
+R2,1 & A2,1     -->  * R15 : + ME(U(C_1) C_4)
+
+T18,1 & A5,1    -->    R16 : + EL(C_5 U(C_2))
+
+T18,1 & A4,1    -->  * R17 : + EL(C_5 U(C_1))
+
+A5,2 & T20,1    -->    R18 : ALL X:MENGE  Y:ELEMENT  - EL(Y SM(VER-IND(C_7) X))  - =(C_5 APPLYV(C_6 Y C_5))
+
+A4,2 & T20,1    -->    R19 : ALL X:MENGE  Y:ELEMENT  - EL(Y SM(X VER-IND(C_7)))  - =(C_5 APPLYV(C_6 Y C_5))
+
+A4,2 & R18,1    -->    R20 : ALL X,Y:MENGE  Z:ELEMENT  - EL(Z SM(Y SM(VER-IND(C_7) X)))  - =(C_5 APPLYV(C_6 Z C_5))
+
+A5,2 & R18,1    -->    R21 : ALL X,Y:MENGE  Z:ELEMENT  - EL(Z SM(SM(VER-IND(C_7) Y) X))  - =(C_5 APPLYV(C_6 Z C_5))
+
+A5,2 & R19,1    -->    R22 : ALL X,Y:MENGE  Z:ELEMENT  - EL(Z SM(SM(Y VER-IND(C_7)) X))  - =(C_5 APPLYV(C_6 Z C_5))
+
+A4,2 & R19,1    -->    R23 : ALL X,Y:MENGE  Z:ELEMENT  - EL(Z SM(Y SM(X VER-IND(C_7))))  - =(C_5 APPLYV(C_6 Z C_5))
+
+R17,1 & D13,3   -->  * R24 : ALL X:MENGE  - LIDEAL(X C_4 C_6)  - LIDEAL(U(C_1) C_4 C_6)  - ME(U(C_1) C_4)
+                                            + =(C_5 APPLYV(C_6 F_1(C_6 X C_5) C_5))
+
+R24,3 & R15,1   -->  * R25 : ALL X:MENGE  - LIDEAL(X C_4 C_6)  - LIDEAL(U(C_1) C_4 C_6)
+                                            + =(C_5 APPLYV(C_6 F_1(C_6 X C_5) C_5))
+
+R25,2 & R2,1    -->  * R26 : ALL X:MENGE  - LIDEAL(X C_4 C_6)  + =(C_5 APPLYV(C_6 F_1(C_6 X C_5) C_5))
+
+R1,1 & R26,1    -->  * R27 : + =(C_5 APPLYV(C_6 F_1(C_6 VER-IND(C_7) C_5) C_5))
+
+R27,1 & T20,2   -->  * R28 : - EL(F_1(C_6 VER-IND(C_7) C_5) VER-IND(C_7))
+
+R2,1 & D9,2     -->  * R29 : - LIDEAL(VER-IND(C_7) C_4 C_6)  - EL(C_5 U(C_1))  - ME(U(C_1) C_4)
+                               + EL(F_1(C_6 VER-IND(C_7) C_5) VER-IND(C_7))
+
+R29,1 & R1,1    -->  * R30 : - EL(C_5 U(C_1))  - ME(U(C_1) C_4)  + EL(F_1(C_6 VER-IND(C_7) C_5) VER-IND(C_7))
+
+R30,1 & R17,1   -->  * R31 : - ME(U(C_1) C_4)  + EL(F_1(C_6 VER-IND(C_7) C_5) VER-IND(C_7))
+
+R31,2 & R28,1   -->  * R32 : - ME(U(C_1) C_4)
+
+R1,1 & D9,1     -->    R33 : - LIDEAL(U(C_1) C_4 C_6)  - EL(C_5 U(C_1))  - ME(U(C_1) C_4)
+                               + EL(F_1(C_6 VER-IND(C_7) C_5) VER-IND(C_7))
+
+R33,3 & R15,1   -->    R34 : - LIDEAL(U(C_1) C_4 C_6)  - EL(C_5 U(C_1))  + EL(F_1(C_6 VER-IND(C_7) C_5) VER-IND(C_7))
+
+R34,3 & R28,1   -->    R35 : - LIDEAL(U(C_1) C_4 C_6)  - EL(C_5 U(C_1))
+
+R35,2 & R17,1   -->    R36 : - LIDEAL(U(C_1) C_4 C_6)
+
+R2,1 & D9,2     -->    R37 : - LIDEAL(VER-IND(C_7) C_4 C_6)  - EL(C_5 U(C_1))  - ME(U(C_1) C_4)
+                               + EL(F_1(C_6 VER-IND(C_7) C_5) VER-IND(C_7))
+
+R37,3 & R15,1   -->    R38 : - LIDEAL(VER-IND(C_7) C_4 C_6)  - EL(C_5 U(C_1))
+                               + EL(F_1(C_6 VER-IND(C_7) C_5) VER-IND(C_7))
+
+R38,3 & R28,1   -->    R39 : - LIDEAL(VER-IND(C_7) C_4 C_6)  - EL(C_5 U(C_1))
+
+R39,2 & R17,1   -->    R40 : - LIDEAL(VER-IND(C_7) C_4 C_6)
+
+R2,1 & R26,1    -->    R41 : + =(C_5 APPLYV(C_6 F_1(C_6 U(C_1) C_5) C_5))
+
+R41,1 & T20,2   -->    R42 : - EL(F_1(C_6 U(C_1) C_5) VER-IND(C_7))
+
+R27,1 & R23,2   -->    R43 : ALL X,Y:MENGE  - EL(F_1(C_6 VER-IND(C_7) C_5) SM(Y SM(X VER-IND(C_7))))
+
+R41,1 & R23,2   -->    R44 : ALL X,Y:MENGE  - EL(F_1(C_6 U(C_1) C_5) SM(Y SM(X VER-IND(C_7))))
+
+R27,1 & R22,2   -->    R45 : ALL X,Y:MENGE  - EL(F_1(C_6 VER-IND(C_7) C_5) SM(SM(Y VER-IND(C_7)) X))
+
+R41,1 & R22,2   -->    R46 : ALL X,Y:MENGE  - EL(F_1(C_6 U(C_1) C_5) SM(SM(Y VER-IND(C_7)) X))
+
+R27,1 & R21,2   -->    R47 : ALL X,Y:MENGE  - EL(F_1(C_6 VER-IND(C_7) C_5) SM(SM(VER-IND(C_7) Y) X))
+
+R41,1 & R21,2   -->    R48 : ALL X,Y:MENGE  - EL(F_1(C_6 U(C_1) C_5) SM(SM(VER-IND(C_7) Y) X))
+
+R27,1 & R20,2   -->    R49 : ALL X,Y:MENGE  - EL(F_1(C_6 VER-IND(C_7) C_5) SM(Y SM(VER-IND(C_7) X)))
+
+R41,1 & R20,2   -->    R50 : ALL X,Y:MENGE  - EL(F_1(C_6 U(C_1) C_5) SM(Y SM(VER-IND(C_7) X)))
+
+R1,1 & D9,2     -->    R51 : - LIDEAL(VER-IND(C_7) C_4 C_6)  - EL(C_5 VER-IND(C_7))  - ME(VER-IND(C_7) C_4)
+                               + EL(F_1(C_6 VER-IND(C_7) C_5) VER-IND(C_7))
+
+R51,1 & R1,1    -->    R52 : - EL(C_5 VER-IND(C_7))  - ME(VER-IND(C_7) C_4)
+                               + EL(F_1(C_6 VER-IND(C_7) C_5) VER-IND(C_7))
+
+R52,2 & R14,1   -->    R53 : - EL(C_5 VER-IND(C_7))  + EL(F_1(C_6 VER-IND(C_7) C_5) VER-IND(C_7))
+
+R53,2 & R28,1   -->    R54 : - EL(C_5 VER-IND(C_7))
+
+R2,1 & D9,2     -->    R55 : - LIDEAL(VER-IND(C_7) C_4 C_6)  - EL(C_5 U(C_1))  - ME(U(C_1) C_4)
+                               + EL(F_1(C_6 VER-IND(C_7) C_5) VER-IND(C_7))
+
+R55,1 & R1,1    -->    R56 : - EL(C_5 U(C_1))  - ME(U(C_1) C_4)  + EL(F_1(C_6 VER-IND(C_7) C_5) VER-IND(C_7))
+
+R56,2 & R15,1   -->    R57 : - EL(C_5 U(C_1))  + EL(F_1(C_6 VER-IND(C_7) C_5) VER-IND(C_7))
+
+R57,2 & R28,1   -->    R58 : - EL(C_5 U(C_1))
+
+R32,1 & R15,1   -->  * R59 :  ce
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+  Q. E. D. 

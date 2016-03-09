@@ -1,0 +1,231 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 34.4 EQUALITY 16.1                                  *
+                     *           DATE: 02-NOV,1989  21:42                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 02-NOV,1989 21:38 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   NIL  
+             
+   Theorems: * THEOREMS *
+             (ALL X P (A) AND (P (X) IMPL P (F (X))) IMPL P (F (F (X))))
+             EQV (ALL X (NOT P (A) OR P (X) OR P (F (F (X)))) AND (NOT P (A) OR NOT P (F (X)) OR P (F (F (X)))))
+             
+   
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T1: + P(a)  + P(a)  + P(a)
+             T2: + P(a)  + P(a)  + P(f(c_3))
+             T3: + P(a)  + P(a)  - P(f(f(c_3)))
+             T4: + P(a)  - P(c_2)  + P(a)
+             T5: + P(a)  - P(c_2)  + P(f(c_3))
+             T6: + P(a)  - P(c_2)  - P(f(f(c_3)))
+             T7: + P(a)  - P(f(f(c_2)))  + P(a)
+             T8: + P(a)  - P(f(f(c_2)))  + P(f(c_3))
+             T9: + P(a)  - P(f(f(c_2)))  - P(f(f(c_3)))
+             T10: - P(f(f(c_1)))  + P(a)  + P(a)
+             T11: - P(f(f(c_1)))  + P(a)  + P(f(c_3))
+             T12: - P(f(f(c_1)))  + P(a)  - P(f(f(c_3)))
+             T13: - P(f(f(c_1)))  - P(c_2)  + P(a)
+           * T14: - P(f(f(c_1)))  - P(c_2)  + P(f(c_3))
+           * T15: - P(f(f(c_1)))  - P(c_2)  - P(f(f(c_3)))
+             T16: - P(f(f(c_1)))  - P(f(f(c_2)))  + P(a)
+           * T17: - P(f(f(c_1)))  - P(f(f(c_2)))  + P(f(c_3))
+           * T18: - P(f(f(c_1)))  - P(f(f(c_2)))  - P(f(f(c_3)))
+             T19: - P(c_1)  + P(f(c_1))  + P(a)  + P(a)
+             T20: - P(c_1)  + P(f(c_1))  + P(a)  + P(f(c_3))
+             T21: - P(c_1)  + P(f(c_1))  + P(a)  - P(f(f(c_3)))
+             T22: - P(c_1)  + P(f(c_1))  - P(c_2)  + P(a)
+           * T23: - P(c_1)  + P(f(c_1))  - P(c_2)  + P(f(c_3))
+           * T24: - P(c_1)  + P(f(c_1))  - P(c_2)  - P(f(f(c_3)))
+             T25: - P(c_1)  + P(f(c_1))  - P(f(f(c_2)))  + P(a)
+           * T26: - P(c_1)  + P(f(c_1))  - P(f(f(c_2)))  + P(f(c_3))
+           * T27: - P(c_1)  + P(f(c_1))  - P(f(f(c_2)))  - P(f(f(c_3)))
+           * T28: All x,y:Any - P(a)  + P(y)  + P(f(f(y)))  - P(a)  + P(x)  + P(f(f(x)))
+             T29: All x,y:Any - P(a)  + P(y)  + P(f(f(y)))  - P(a)  - P(f(x))  + P(f(f(x)))
+             T30: All x,y:Any - P(a)  - P(f(y))  + P(f(f(y)))  - P(a)  + P(x)  + P(f(f(x)))
+           * T31: All x,y:Any - P(a)  - P(f(y))  + P(f(f(y)))  - P(a)  - P(f(x))  + P(f(f(x)))
+
+
+
+
+
+
+             Initial Operations on Theorems
+             ==============================
+
+
+          
+   T1 2=3         --> * D1:  + P(a)  + P(a)
+   
+   D1 1=2         --> * D2:  + P(a)
+   
+   T28 1=4        --> * D9:  All x,y:Any - P(a)  + P(x)  + P(f(f(x)))  + P(y)  + P(f(f(y)))
+   
+   D9 (INSTANCE)  --> * I10: All x,y:Any - P(a)  + P(x)  + P(f(f(x)))  + P(x)  + P(f(f(x)))
+   
+   I10 2=4        --> * D11: All x,y:Any - P(a)  + P(x)  + P(f(f(x)))  + P(f(f(x)))
+   
+   D11 3=4        --> * D12: All x,y:Any - P(a)  + P(x)  + P(f(f(x)))
+   
+   D12,1 & D2,1   --> * R13: All x:Any + P(x)  + P(f(f(x)))
+   
+   T31 1=4        --> * D16: All x,y:Any - P(a)  - P(f(x))  + P(f(f(x)))  - P(f(y))  + P(f(f(y)))
+   
+   D16 (INSTANCE) --> * I17: All x,y:Any - P(a)  - P(f(x))  + P(f(f(x)))  - P(f(x))  + P(f(f(x)))
+   
+   I17 2=4        --> * D18: All x,y:Any - P(a)  - P(f(x))  + P(f(f(x)))  + P(f(f(x)))
+   
+   D18 3=4        --> * D19: All x,y:Any - P(a)  - P(f(x))  + P(f(f(x)))
+   
+   D19,1 & D2,1   --> * R20: All x:Any - P(f(x))  + P(f(f(x)))
+   
+
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   The following Options have been Changed:NIL
+
+   RED.I_CLAUSE.REWRITING   T
+   TERM_ITERATIONS   0
+   ER_COMPLETION   IGNORING
+   ER_ORDERING   POLYNOMIAL
+   GEN_PRESIMPLIFICATION   T
+   PR_OPTIONS   NIL
+
+   
+   Initial Clauses:    * D2:   + P(a)
+                       * T14:  - P(f(f(c_1)))  - P(c_2)  + P(f(c_3))
+                       * T15:  - P(f(f(c_1)))  - P(c_2)  - P(f(f(c_3)))
+                       * T17:  - P(f(f(c_1)))  - P(f(f(c_2)))  + P(f(c_3))
+                       * T18:  - P(f(f(c_1)))  - P(f(f(c_2)))  - P(f(f(c_3)))
+                       * T23:  - P(c_1)  + P(f(c_1))  - P(c_2)  + P(f(c_3))
+                       * T24:  - P(c_1)  + P(f(c_1))  - P(c_2)  - P(f(f(c_3)))
+                       * T26:  - P(c_1)  + P(f(c_1))  - P(f(f(c_2)))  + P(f(c_3))
+                       * T27:  - P(c_1)  + P(f(c_1))  - P(f(f(c_2)))  - P(f(f(c_3)))
+                       * R13:  All x:Any + P(x)  + P(f(f(x)))
+                       * R20:  All x:Any - P(f(x))  + P(f(f(x)))
+                       
+
+   
+   R13,2 & T18,1  -->  * R24:  + P(c_1)  - P(f(f(c_2)))  - P(f(f(c_3)))
+   
+   T27,1 & R24,1  -->  * R25:  + P(f(c_1))  - P(f(f(c_2)))  - P(f(f(c_3)))  - P(f(f(c_2)))  - P(f(f(c_3)))
+   
+   R25 2=4        -->  * D26:  + P(f(c_1))  - P(f(f(c_2)))  - P(f(f(c_3)))  - P(f(f(c_3)))
+   
+   D26 3=4        -->  * D27:  + P(f(c_1))  - P(f(f(c_2)))  - P(f(f(c_3)))
+   
+   R13,2 & D27,2  -->  * R28:  + P(c_2)  + P(f(c_1))  - P(f(f(c_3)))
+   
+   T24,3 & R28,1  -->  * R29:  - P(c_1)  + P(f(c_1))  - P(f(f(c_3)))  + P(f(c_1))  - P(f(f(c_3)))
+   
+   R29 2=4        -->  * D30:  - P(c_1)  + P(f(c_1))  - P(f(f(c_3)))  - P(f(f(c_3)))
+   
+   D30 3=4        -->  * D31:  - P(c_1)  + P(f(c_1))  - P(f(f(c_3)))
+   
+   R13,2 & T18,2  -->  * R34:  + P(c_2)  - P(f(f(c_1)))  - P(f(f(c_3)))
+   
+   R34,1 & T15,2  -->  * R35:  - P(f(f(c_1)))  - P(f(f(c_3)))  - P(f(f(c_1)))  - P(f(f(c_3)))
+   
+   R35 1=3        -->  * D36:  - P(f(f(c_1)))  - P(f(f(c_3)))  - P(f(f(c_3)))
+   
+   D36 2=3        -->  * D37:  - P(f(f(c_1)))  - P(f(f(c_3)))
+   
+   R20,2 & D37,2  -->  * R38:  - P(f(c_3))  - P(f(f(c_1)))
+   
+   T17,3 & R38,1  -->  * R39:  - P(f(f(c_1)))  - P(f(f(c_2)))  - P(f(f(c_1)))
+   
+   R39 1=3        -->  * D40:  - P(f(f(c_1)))  - P(f(f(c_2)))
+   
+   T14,3 & R38,1  -->  * R41:  - P(f(f(c_1)))  - P(c_2)  - P(f(f(c_1)))
+   
+   R41 1=3        -->  * D42:  - P(f(f(c_1)))  - P(c_2)
+   
+   R13,2 & D40,1  -->  * R43:  + P(c_1)  - P(f(f(c_2)))
+   
+   T26,1 & R43,1  -->  * R44:  + P(f(c_1))  - P(f(f(c_2)))  + P(f(c_3))  - P(f(f(c_2)))
+   
+   R44 2=4        -->  * D45:  + P(f(c_1))  - P(f(f(c_2)))  + P(f(c_3))
+   
+   R13,2 & D40,2  -->  * R46:  + P(c_2)  - P(f(f(c_1)))
+   
+   R46,1 & D42,2  -->  * R47:  - P(f(f(c_1)))  - P(f(f(c_1)))
+   
+   R47 1=2        -->  * D48:  - P(f(f(c_1)))
+   
+   R20,2 & D48,1  -->  * R49:  - P(f(c_1))
+   
+   D45,1 & R49,1  -->  * R51:  - P(f(f(c_2)))  + P(f(c_3))
+   
+   D31,2 & R49,1  -->  * R52:  - P(c_1)  - P(f(f(c_3)))
+   
+   T23,2 & R49,1  -->  * R53:  - P(c_1)  - P(c_2)  + P(f(c_3))
+   
+   R28,2 & R49,1  -->  * R54:  + P(c_2)  - P(f(f(c_3)))
+   
+   R53,1 & R13,1  -->  * R57:  All x:Any - P(c_2)  + P(f(c_3))  + P(f(f(x)))
+   
+   R57,3 & D48,1  -->  * R58:  - P(c_2)  + P(f(c_3))
+   
+   R52,1 & R13,1  -->  * R59:  All x:Any - P(f(f(c_3)))  + P(f(f(x)))
+   
+   R59,2 & D48,1  -->  * R60:  - P(f(f(c_3)))
+   
+   R58,2 & R20,1  -->  * R63:  All x:Any - P(c_2)  + P(f(f(x)))
+   
+   R63,2 & R60,1  -->  * R64:  - P(c_2)
+   
+   R54,1 & R64,1  -->  * R65:  - P(f(f(c_3)))
+   
+   R51,2 & R20,1  -->  * R66:  - P(f(f(c_2)))  + P(f(f(c_3)))
+   
+   R66,2 & R65,1  -->  * R67:  - P(f(f(c_2)))
+   
+   R67,1 & R13,2  -->  * R68:  All x:Any + P(x)
+   
+   R68,1 & R64,1  -->  * R69:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 33 seconds

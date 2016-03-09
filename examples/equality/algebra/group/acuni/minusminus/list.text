@@ -1,0 +1,104 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 46.5                                                *
+                     *           DATE: 31-JAN,1991  22:19                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 30-AUG,1990 16:04 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * AXIOMS *
+             * COMMUTATIVE GROUP *
+             AC (+)
+             ALL X + (- (X) X) = 0
+             ALL X + (0 X) = X
+             
+   Theorems: * THEOREM *
+             ALL X - (- (X)) = X
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+           * A2:   All x:Any + =(+(-(x) x) 0)
+           * A3:   All x:Any + =(+(0 x) x)
+           
+
+
+
+
+             Initial Operations on Axioms
+             ============================
+
+
+          
+   A2 (instance) --> * I1:  All x,y:Any + =(+(y +(-(x) x)) +(y 0))
+   
+   I1,1 & A3     --> * RW3: All x,y:Any + =(+(y +(-(x) x)) y)
+   
+
+   
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T4: - =(-(-(c_1)) c_1)
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:      A1:   All x:Any + =(x x)
+                       * A2:   All x:Any + =(+(-(x) x) 0)
+                       * RW3:  All x,y:Any + =(+(y +(-(x) x)) y)
+                       * A3:   All x:Any + =(+(0 x) x)
+                       * T4:   - =(-(-(c_1)) c_1)
+                       
+
+   
+   RW3,1 & RW3,1  -->  * P5:   All x:Any + =(x -(-(x)))
+   
+   P5,1 & T4,1    -->  * R6:   []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 27 seconds

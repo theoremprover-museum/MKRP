@@ -1,0 +1,93 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 20.7                                                *
+                     *           DATE: 15-AUG-1988  15:11                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+                                                                            
+   
+   *************************************************************************
+   
+    EDIT:     Axioms and Theorems edited: 15-AUG-1988 15:11 
+   
+   *************************************************************************
+   
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   ALL X P (X) OR P (F (X))
+             ALL X NOT P (X) OR NOT P (F (F (F (F (F (F (F (F (F (F (X)))))))))))
+             
+   Theorems: NIL  
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+           * A1:   All x:Any + P(x)  + P(f(x))
+           * A2:   All x:Any - P(x)  - P(f(f(f(f(f(f(f(f(f(f(x)))))))))))
+           
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:      * A1:    All x:Any + P(x)  + P(f(x))
+                         * A2:    All x:Any - P(x)  - P(f(f(f(f(f(f(f(f(f(f(x)))))))))))
+                         
+
+   
+   A1,1 & A2,2      -->  * R1:    All x:Any + P(f(f(f(f(f(f(f(f(f(f(f(x))))))))))))  - P(x)
+   
+   A1,2 & A2,2      -->  * R2:    All x:Any + P(f(f(f(f(f(f(f(f(f(x))))))))))  - P(x)
+   
+   A1,1 & A2,1      -->  * R3:    All x:Any + P(f(x))  - P(f(f(f(f(f(f(f(f(f(f(x)))))))))))
+   
+   A1,2 & R1,2      -->  * R5:    All x:Any + P(x)  + P(f(f(f(f(f(f(f(f(f(f(f(f(x)))))))))))))
+   
+   R1,1 & A2,2      -->  * R8:    All x:Any - P(x)  - P(f(x))
+   
+   R1,1 & R3,2      -->  * R14:   All x:Any - P(x)  + P(f(f(x)))
+   
+   R5,2 & R3,2      -->  * R18:   All x:Any + P(x)  + P(f(f(f(x))))
+   
+   R2,1 & R8,2      -->  * R34:   All x:Any - P(x)  - P(f(f(f(f(f(f(f(f(x)))))))))
+   
+   R18,2 & R14,1    -->  * R87:   All x:Any + P(x)  + P(f(f(f(f(f(x))))))
+   
+   R18,2 & R34,2    -->  * R182:  All x:Any + P(f(f(f(f(f(x))))))  - P(x)
+   
+   R182,2 & R87,1   -->  * R183:  All x:Any + P(f(f(f(f(f(x))))))  + P(f(f(f(f(f(x))))))
+   
+   R183 1=2         -->  * D184:  All x:Any + P(f(f(f(f(f(x))))))
+   
+   D184,1 & R8,1    -->  * R185:  - P(f(f(f(f(f(f(15457)))))))
+   
+   R185,1 & D184,1  -->  * R186:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 

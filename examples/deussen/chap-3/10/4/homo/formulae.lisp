@@ -1,0 +1,164 @@
+;;; -*- Package: MKRP; Base: 10.; Mode: LISP; Syntax: Common-lisp -*-
+#|
+TWO:RULES                             NIL                   TWO:RULES.MAXLEVEL                    1.
+TWO:SUPPRESS.NORULES                  NIL
+
+
+RED.I:CLAUSE.MULTIPLE.LITERALS        T                     RED.I:CLAUSE.PURITY                   T
+RED.I:CLAUSE.TAUTOLOGY                T                     RED.I:CLAUSE.TAUTOLOGY.RECHECK        PARTIAL
+RED.I:CLAUSE.SUBSUMPTION              T                     RED.I:CLAUSE.SUBSUMPTION.RECHECK      PARTIAL
+RED.I:CLAUSE.REPL.FACTORING           T                     RED.I:CLAUSE.REPL.FACTORING.RECHECK   T
+RED.I:CLAUSE.REPL.RESOLUTION          SIMPLE                RED.I:CLAUSE.REPL.RESOLUTION.RECHECK  T
+RED.I:CLAUSE.REWRITING                T                     RED.I:LINK.INCOMPATIBILITY            T
+RED.I:LINK.TAUTOLOGY                  REMOVE-INHIBIT        RED.I:LINK.TAUTOLOGY.RECHECK          NIL
+RED.I:LINK.SUBSUMPTION                REMOVE-INHIBIT        RED.I:LINK.SUBSUMPTION.RECHECK        NIL
+
+RED.D:CLAUSE.MULTIPLE.LITERALS        T                     RED.D:CLAUSE.PURITY                   T
+RED.D:CLAUSE.TAUTOLOGY                REMOVE-INHIBIT        RED.D:CLAUSE.TAUTOLOGY.RECHECK        NIL
+RED.D:CLAUSE.SUBSUMPTION.FORWARD      REMOVE-INHIBIT        RED.D:CLAUSE.SUBSUMPTION.BACKWARD     REMOVE
+RED.D:CLAUSE.SUBSUMPTION.RECHECK      NIL                   RED.D:CLAUSE.REPL.FACTORING           T
+RED.D:CLAUSE.REPL.FACTORING.RECHECK   T                     RED.D:CLAUSE.REPL.RESOLUTION          SIMPLE
+RED.D:CLAUSE.REPL.RESOLUTION.RECHECK  T                     RED.D:LINK.INCOMPATIBILITY            T
+RED.D:LINK.TAUTOLOGY                  REMOVE-INHIBIT        RED.D:LINK.TAUTOLOGY.RECHECK          NIL
+RED.D:LINK.SUBSUMPTION                REMOVE-INHIBIT        RED.D:LINK.SUBSUMPTION.RECHECK        NIL
+
+FAC:INITIAL                           NIL                   FAC:EACH.STEP                         NIL
+
+STR:RESOLUTION                        SET-OF-SUPPORT        STR:E-RESOLUTION                      NIL
+STR:PARAMODULATION                    UNIT-ANCESTRY         STR:LINK.DEPTH                        NIL
+STR:TERM.DEPTH                        3.                    STR:R.DEMODULATION                    T
+STR:P.DEMODULATION                    T                     STR:INDUCTION                         NIL
+
+TERM:UNITS                            T                     TERM:ITERATIONS                       1.
+TERM:SET.OF.SUPPORT                   NIL                   TERM:BREADTH.FIRST                    NIL
+
+GEN:SPLITTING                         0.                    GEN:MANUAL.CONTROL                    NIL
+GEN:MAXIMUM.STEPS                     NIL                   GEN:GRAPH.SAVING                      NIL
+GEN:SAVE.FILE                         SAVE.DEFAULT
+
+
+TR:PREPROCESSING                      NIL                   TR:STEP.MODE                          LR
+TR:DUMP                               NIL                   TR:CLAUSE.MODE                        I
+TR:LINK.MODE                          I                     TR:TRACE.FILE                         NIL
+TR:TERMINAL                           T
+
+
+PR:INFIX.FORM                         T                     PR:PREFIX.FORM                        NIL
+PR:OPTIONS                            T                     PR:AXIOM.CLAUSES                      NIL
+PR:SYMBOLS                            NIL                   PR:STATISTICS                         NIL
+PR:PROTOCOL                           T                     PR:LEFT.MARGIN                        0.
+PR:LINELENGTH                         120.
+|#
+
+(SORT MENGE,VERKN,ELEMENT,INDEX,INDEXMENGE:ANY)
+(TYPE LIDEAL (MENGE MENGE VERKN))
+(TYPE RIDEAL (MENGE MENGE VERKN))
+(TYPE UHG (MENGE MENGE VERKN))
+(TYPE ME (MENGE MENGE))
+(TYPE NICHTLEER (MENGE))
+(TYPE HG (MENGE VERKN))
+(TYPE EL (ELEMENT MENGE))
+(TYPE MINIMAL (MENGE MENGE VERKN))
+(TYPE MPROD (MENGE MENGE VERKN) :MENGE)
+(TYPE APPLYV (VERKN ELEMENT ELEMENT) :ELEMENT)
+(TYPE F*X (MENGE ELEMENT VERKN) :MENGE)
+(TYPE SM (MENGE MENGE) :MENGE)
+(TYPE SET (ELEMENT) :MENGE)
+(TYPE VER (MENGE MENGE) :MENGE)
+(TYPE GR (MENGE VERKN ELEMENT))
+(TYPE INVERS (VERKN ELEMENT) :ELEMENT)
+(TYPE MINIMAL-BED-L (MENGE VERKN))
+(TYPE MINIMAL-BED-R (MENGE VERKN))
+(TYPE EL-IND (INDEX INDEXMENGE))
+(TYPE U (INDEX) : MENGE)
+(TYPE E (INDEX INDEX) : ELEMENT)
+(TYPE NICHTLEER-IND (INDEXMENGE))
+(TYPE GLEICH (MENGE MENGE))
+(TYPE VER-IND (INDEXMENGE) : MENGE)
+(TYPE SM-IND (INDEXMENGE) : MENGE)
+(TYPE IDEAL (MENGE MENGE VERKN))
+(TYPE BIJEKTIV (ABB MENGE MENGE))
+(TYPE HOMOMORPH (ABB MENGE MENGE))
+(TYPE ISOMORPH (ABB MENGE MENGE))
+(TYPE ABBVOR (ABB ELEMENT ELEMENT))
+(TYPE G (INDEX INDEX) :MENGE)
+(TYPE * (ELEMENT ELEMENT) :ELEMENT)
+(* ABKUERZUNG *)
+(ALL MAL:VERKN ALL A,B:ELEMENT * (A B) = APPLYV (MAL A B))
+(* DEFINITION VON HOMOMORPH *)
+(TYPE APPLYA (ABB ELEMENT) :ELEMENT)
+(ALL A,B:MENGE  ALL PHI:ABB  ALL X,Y:ELEMENT  
+     ABBILDUNG (PHI A B)
+     AND  
+     (EL (X A) AND EL (Y A) IMPL APPLYA (PHI * (X Y)) = * (APPLYA (PHI X) APPLYA (PHI Y)))
+     IMPL  
+     HOMOMORPH (PHI A B))
+(* WIRKUNG DES EINSELEMENTES *)
+(ALL GRUPPE:MENGE  ALL MAL:VERKN  ALL X,E:ELEMENT  
+     GR (GRUPPE MAL E) AND EL (X GRUPPE) IMPL * (X E) = X AND * (E X) = X)
+(* ABGESCHLOSSENHEIT VON GRUPPEN *)
+(ALL GRUPPE:MENGE  ALL MAL:VERKN  ALL X,Y,E:ELEMENT  
+     GR (GRUPPE MAL E) AND EL (* (X Y) GRUPPE) IMPL EL (X GRUPPE) AND EL (Y GRUPPE))
+(* FOLGERUNG AUS SATZ 3.11 *
+   * VORRAUSSETZUNG-TH (H MAL I1 I2 J1 J2) BEDEUTET DABEI : HG (H MAL)
+   AND  
+   MINIMAL-BED-R (H MAL)
+   AND  
+   MINIMAL-BED-L (H MAL)
+   AND  
+   (ALL J1:INDEX EL-IND (J1 I1) IMPL RIDEAL (U (J1) H MAL) AND MINIMAL (U (J1) H MAL))
+   AND  
+   (AL J2:INDEX EL-IND (J2 I2) IMPL LIDEAL (U (J2) H MAL) AND MINIMAL (U (J2) H MAL))
+   AND  
+   EL-IND (J1 I1)
+   AND  
+   EL-IND (J2 I2)
+   AND  
+   (ALL J1,J2:INDEX EL-IND (J1 I1) AND EL-IND (J2 I2) IMPL MPROD (U (J1) U (J2) MAL) = SM (U (J1) U (J2))) *)
+(ALL X,Y:ELEMENT  ALL H:MENGE  ALL I1,I2:INDEXMENGE  ALL MAL:VERKN  ALL J1,J2,J3,J4:INDEX  
+     VORRAUSSETZUNG-TH (H MAL I1 I2 J1 J2)
+     AND  
+     EL-IND (J3 I1)
+     AND  
+     EL-IND (J4 I2)
+     AND  
+     EL (X G (J1 J2))
+     AND  
+     EL (Y G (J3 J4))
+     IMPL  
+     EL (* (X Y) G (J1 J4)))
+(ALL A:MENGE ALL MAL:VERKN ALL E:ELEMENT GR (A MAL E) IMPL EL (E A))
+
+(ALL E1,E2:ELEMENT  ALL PHI:ABB  ALL H:MENGE  ALL MAL:VERKN  ALL I1,I2:INDEXMENGE  ALL J1,J2,J3:INDEX  )
+(ALL F:ELEMENT  
+     VORRAUSSETZUNG-TH (H MAL I1 I2 J1 J2)
+     AND  
+     HG (H MAL)
+     AND  
+     MINIMAL-BED-R (H MAL)
+     AND  
+     MINIMAL-BED-L (H MAL)
+     AND  
+     (ALL J1:INDEX EL-IND (J1 I1) IMPL RIDEAL (U (J1) H MAL) AND MINIMAL (U (J1) H MAL))
+     AND  
+     (ALL J2:INDEX EL-IND (J2 I2) IMPL LIDEAL (U (J2) H MAL) AND MINIMAL (U (J2) H MAL))
+     AND  
+     EL-IND (J1 I1)
+     AND  
+     EL-IND (J2 I2)
+     AND  
+     (ALL J1,J2:INDEX EL-IND (J1 I1) AND EL-IND (J2 I2) IMPL MPROD (U (J1) U (J2) MAL) = SM (U (J1) U (J2)))
+     AND  
+     EL (F SM (U (J1) U (J2)))
+     AND  
+     EL-IND (J3 I2)
+     AND  
+     GR (G (J1 J2) MAL E1)
+     AND  
+     GR (G (J1 J3) MAL E2)
+     AND  
+     ABBILDUNG (PHI G (J1 J2) G (J1 J3))
+     AND  
+     (ALL X:ELEMENT EL (X G (J1 J2)) IMPL APPLYA (PHI X) = APPLYV (MAL X E2))
+     IMPL  
+     HOMOMORPH (PHI G (J1 J2) G (J1 J3)))

@@ -1,0 +1,1185 @@
+\chapter{Equality Reasoning}
+\label{EqualityReasoning}
+
+We begin this chapter with the basic definitions for terms, clauses, and
+other symbolic objects that are normally used in the field. Then an overview of the
+context of the work is given, this seems appropriate because of the more 
+practical approach we take in this thesis: The main 
+goal of our work is to integrate these 
+methods into one system and to evaluate the different approaches. 
+
+\section{Definitions}
+
+\begin{Def}[Variables, Functions, Terms]
+
+\label{VariablesFunctionsTerms}
+\return
+$F= \bigcup F_n$ is a denumerable set of \definee{function symbols}, called
+a signature and consisting of disjoint subsets of function symbols with
+arity $n\geq 0$.
+
+$V$ is a denumerable set of \definee{variable symbols}.
+
+$T=T(V, F)$ is the set of \definee{terms}, that is, 
+the least set with $V \subseteq T$,
+and $f_n t_1\dots t_n \subseteq T$, whenever $f_n\in F_n$ and all $t_i\in
+T$.
+\end{Def}
+
+Now we have a look at the particulars
+of the clause graph calculus, which is the basis for
+the Markgraf-Karl system \cite{Raph84,OhSi89,EiOhPr89,Eisinger89}. 
+A clause graph consists 
+of a set of clauses,
+each of them a multiset of literals, and a set of links, which connect pairs
+of literals with unifiable atoms. A link connecting a positive and a negative
+literal is called an R-link (Resolution), while an S-link (Subsumption)
+joins two literals with the same sign. If the literals incident with a link
+belong to two different clauses, it is an R2- or S2-link. If both literals
+belong to the same clause, the link is called an R1- or an S1-link. In case
+that the atoms of the literals are unifiable only after renaming
+their variables apart, then we speak of a weak link.
+
+The different kinds of links provide immediate access to different kinds of
+operations involving a given literal occurrence. Most notably, R2-links
+represent the possible applications of the resolution rule and S1-links
+indicate factoring. Sets of compatible S2-links represent subsumption 
+possibilities. When applying such deduction rules, we have to add to
+the graph the new clause along with the links connecting the new literals
+to the existing graph. If the new literals are instances of ancestor
+literals already present in the graph, the new links can be obtained
+without search by a simple inheritance process. This inheritance was
+invented by R.\ Kowalski \cite{Kowalski75} and later extended to R1-links by M.\
+Bruynooghe \cite{Bruynooghe75}. For a detailed explanation of the mechanism in the
+MKRP-system see H.\ J.\ Ohlbach \cite{Ohlbach87}, or 
+H.\ J.\ Ohlbach and J.\ Siekmann \cite{OhSi89}. 
+The transfer to S-links is trivial. For new
+literals that are not obtained by instantiating others, for example the
+paramodulated literal in a paramodulation step, this form of link
+inheritance unfortunately does not work \cite{Blaesius86}.
+
+In the case of paramodulation there have also been approaches
+based on links and inheritance for example by J.\ Siekmann 
+and G.\ Wrightson \cite{SiWr80}. Links to be paramodulated
+upon do not join literals, they join one side of a positive literal with
+equality predicate with an arbitrary unifiable term in another literal.
+They are P2-links if the other literal is in another clause, P1-links if
+they are in the same. Such a link mechanism was implemented in our system,
+but unfortunately P-link inheritance can not work as for R-links because
+after each resolution or paramodulation step unifiers are applied and therefore
+completely new terms are generated. Hence our first task was to repair this
+inheritance mechanism to produce the lacking links. This is simply done by
+newly generating all P-links and all problematic other links.
+
+In accordance with N.\ Eisinger \cite{Eisinger89} we define deduction and
+reduction rules. For such definitions we use the schemes of definitions
+\ref{DeductionRuleScheme} and
+\ref{ReductionRuleScheme}.
+
+
+\begin{Def}[Deduction Rule Scheme]
+\return\vspace{-3mm}
+\label{DeductionRuleScheme}
+
+\hlineblockthree%
+{+}%
+{$Clause_{n+1}$}%
+{$Clause_1$}%
+{$\vdots$}%
+{$Clause_n$}
+\inferencerule{%
+condition}
+
+The scheme means that clause $Clause_{n+1}$ can be derived from the clauses $Clause_1$,
+$\ldots$, $Clause_n$. The + indicates that the new clause is added.
+\end{Def}
+
+\begin{Def}[Reduction Rule Scheme]
+\return\vspace{-3mm}
+\label{ReductionRuleScheme}
+
+\hlineblockfour%
+{--+}%
+{$Clause_1'$}%
+{$Clause_1$}%
+{$Clause_2$}%
+{$\vdots$}%
+{$Clause_n$}
+\inferencerule{%
+condition}
+
+The scheme means that clause $Clause_1$ can be replaced by $Clause_1'$ using $Clause_2
+\dots Clause_n$. The --+ indicates that a clause is replaced.
+\end{Def}
+
+
+\section{Unification Theory}
+\label{UnificationTheory}
+
+The simplest case of working with equality is
+to make two
+objects equal by the replacement of subobjects by others.
+Unification is the process of finding
+a uniform replacement for the variables in terms such that
+these terms become syntactically equal, which means that
+they can be written as the same string. The endomorphism
+describing the replacement for the variables is called
+a substitution. A unifier is a
+substitution that makes the terms equal. For example
+\{$x \mapsto b, y \mapsto a$\}
+is a unifier of $f(x,a)$ and $f(b,y)$. $f(a,x)$ and $f(b,y)$ are 
+not unifiable. In the following we often
+discard the parentheses of the terms, when the arities of the function
+symbols are clear.
+
+To come closer to the mathematical equality relation the
+notion of unification can be extended to E-unification,
+where a set E of equations is given as axioms, which
+induce an equivalence relation that is written
+$=_E$. An example for a unifier of
+$f(a,x)$ and $f(b,y)$ under the theory E=\{$f(x,y)=f(y,x)$\} of
+commutativity is \{$x \mapsto b, y \mapsto a$\}.
+
+In general a unification problem can have more than one
+solution. J.\ Robinson \cite{Robinson65a} proved that in the 
+case of the empty theory E there exists (up to the renaming of variables)
+a unique most general
+unifier  representing the whole set of solutions whenever
+this set is not empty. In arbitrary theories there is not necessarily
+such a representative unique unifier. The next step was to extend the 
+concept to sets of unifiers, which fulfill the 
+requirements to be correct, complete,
+and minimal. But there are theories for which such sets do not exist
+either.
+Hence equational theories can be classified as to
+whether for each unifiable set of terms 
+the set of most general unifiers
+has only one element, is finite, infinite,
+or does not exist at all, that is, it can not be
+distinguished from the set of all unifiers \cite{Siekmann88}. The
+corresponding theories are called unitary,
+finitary, infinitary, and nullary. \goodbreak
+
+One task in unification theory is to develop
+algorithms to compute sets of unifiers. A universal 
+unification algorithm is one working for all theories,
+usually this notion is also used for algorithms handling
+whole classes of theories. One main goal in this area is to combine known
+unification algorithms for special theories 
+to new ones for more complex theories. However there are problems:
+for example the algorithms for associative
+unification and commutative unification could not be combined to an
+algorithm for theories that have both properties, and this is the case for
+almost all theories. In general a new
+algorithm must be designed for such combined theories. Currently the
+most advanced
+approach is M.\ Schmidt-Schau{\ss}' method for the combination of unification 
+algorithms \cite{Schmidt87}. It works for arbitrary disjoint
+theories and free function symbols.
+
+
+\paragraph{Usage}
+
+In some cases theory unification algorithms are powerful tools to prove
+theorems which can not be proved in any other way, but there are examples 
+where they slow down the search for a proof because the unification process
+itself is very time consuming. These points are discussed in section
+\ref{TheoryUnification} and by A.\ Mahn \cite{Mahn91}.
+
+C.\ Kirchner's approach \cite{Kirchner85} as well as that of 
+M.\ Schmidt-Schauss induces the idea
+to automatically or manually construct new 
+unification algorithms. This is especially worthy for frequently occurring 
+theories but we have none of them integrated in our system. It appears that
+it is not 
+compatible with the compilation approach as presented in chapter 
+\ref{CompilationTowardsanEqualityReasoningMachine}, at least not with our
+current understanding.
+
+
+\section{Paramodulation}
+\label{Paramodulation}
+
+A general purpose deduction system must handle all
+combinations of equations, even if they occur
+together with other predicates in the same formula, as
+for example in the formula
+\hbox{$\forall n:\  Even(n)
+\Leftrightarrow (\exists m: \ n=2m)$}. 
+
+The handling of equality via the axioms in definition \ref{EqualityAxioms} is 
+very inefficient and hence
+J.\ Darlington \cite{Darlington68}, E.\ Siebert \cite{Sibert69}, J.\ Robinson 
+\cite{Robinson65a}, and G.\ Robinson and L.\ Wos \cite{RoWo69} incorporated 
+the equality relation into automated deduction
+systems by designing new inference rules.
+The best known inference rule is paramo\-du\-la\-tion, which works on 
+two clauses where one of them contains an 
+equality literal. One side of the equation
+must be unifiable with a term $t$ in the other
+clause by a substitution $\sigma$. Then the
+paramodulant consists of all literals of the two
+clauses without the equality literal after
+replacing the term $t$
+by the other side of the equation and applying
+the substitution $\sigma$ to all literals of the
+new clause.
+R.\ Kowalski showed \cite{Kowalski75} the advantages of
+the paramodulation rule and how it can enhance the power of 
+a deduction system.
+
+\begin{Def}[Paramodulation]
+\return\vspace{-3mm}
+\label{DefinitionParamodulation}
+
+\hlineblocktwo%
+{+}%
+{$\sigma(L_0[s]$, $L_1$, $\dots$, $L_n$, $K_1$,
+$\dots$, $K_m)$}%
+{$L_0[t']$, $L_1$, $\dots$, $L_n$}%
+{$t = s$, $K_1$, $\dots$, $K_m$}
+\inferencerule{%
+$\sigma$ is an mgu of $t'$ and $t$.}
+
+\end{Def}
+
+
+Originally this rule was shown to be sound and complete in combination with 
+the resolution rule and the 
+functional reflexive axioms \cite{RoWo69}. The functional 
+reflexive axioms were shown to be superfluous by D.\ Brand \cite{Brand75}
+(for this fact see also M.\ M.\ Richter \cite{Richter75}). 
+Additionally it is 
+known that we never need to paramodulate into variables, one of
+the main factors for the immense search space.
+For terms $t'$ also no variables must be considered.
+
+Paramodulation is a deduction rule that is applicable 
+`almost everywhere' making search graphs
+very bushy \cite{Bundy83} (see section \ref{TheCentralRoleofCompletion}),
+and so it should only be 
+used if the result is of overriding importance
+for other arguments in the proof.
+To transform two literals into resolvable ones using
+equations is the motivation for the so-called
+E-Resolution principle \cite{Morris69,Anderson70}.
+\begin{Def}[E-Resolution]
+\return\vspace{-3mm}
+\label{EResolution}
+
+Let $A, B, C, D_1,\ldots , D_n$ be clauses. Then the following two rules
+deduce E-resolvents.
+$Ps_1\ldots s_m$ and $\nott{
+Pt_1\ldots t_m}$ are the literals to be resolved upon.
+$l_i=r_i$ for $1\leq i\leq n$ are the defining 
+equations of the
+theory. 
+\vspace{2mm}
+
+\hlineblockfive%
+{+}%
+{$\sigma(A\lor B \lor D_1 \lor \cdots \lor D_n)$}%
+{$Ps_1\ldots s_m \lor A$}%
+{$\neg Pt_1\ldots t_m \lor B$}%
+{$l_1=r_1 \lor D_1$}%
+{$\vdots$}%
+{$l_n=r_n \lor D_n$}
+\inferencerule{%
+$s_1=t_1, \ldots ,s_m=t_m$ can be shown to be
+valid using $\sigma l_1=\sigma r_1,\ldots ,
+\sigma l_n=\sigma r_n$.}
+
+\vspace{3mm}
+\hlineblockfour%
+{+}%
+{$\sigma(C \lor D_1 \lor \cdots \lor D_n)$}%
+{$l\not=r \lor C$}%
+{$l_1=r_1 \lor D_1$}%
+{$\vdots$}%
+{$l_n=r_n \lor D_n$}
+\inferencerule{%
+$l=r$ can be shown to be
+valid using $\sigma l_1=\sigma r_1,\ldots ,
+\sigma l_n=\sigma r_n$}
+
+
+\end{Def}
+
+This can be seen as a
+special case of theory resolution, with an undecidable theory. The question
+of how to prove validity of the equations $s_1=t_1, \ldots ,s_m=t_m$ is 
+left open in the formulation of theory resolution. J.\ Morris \cite{Morris69} 
+uses a variant of paramodulation where the intermediate results are 
+stored in trees. So E-Resolution is an approach to use paramodulation 
+more goal oriented, but in the conclusion of section 
+\ref{DifferenceReduction} we shall argue that the resolution steps
+are not the mile stones of equational proofs: they are at best something
+ like second order steps, because they behave comparatively trivial. 
+Therefore there are practical reasons to use a calculus with 
+paramodulation as the first order rule and resolution as a second order 
+one.  \label{DecDisc1}
+%In the case of E-Resolution it is additionally nearly impossible to 
+%couple both types of reasoning. the control problem is to administrate 
+%the search for unifiers in a globally informed way, such that local 
+%equality problems are not solved blowing up the superproblem by
+%complicating residues $D_i$.
+
+\paragraph{Usage}
+
+Paramodulation is the frame to incorporate several general equality reasoning 
+strategies into one system as elaborated in chapter \ref{TheCalculus}.
+
+
+\section{Difference Reduction}
+\label{DifferenceReduction}
+
+Two main principles can be distinguished in equality reasoning: {\em
+subterm replacement} and {\em difference reduction}.
+\label{ReplacementDifference} Paramodulation works
+according to the first principle, where a subterm of a term is replaced by
+another term without any plan. In contrast difference reduction tries to
+minimize and finally remove the difference of two terms with special
+operations as for example those used in GPS \cite{NeShSi59}.
+
+The decomposition approach 
+in general automated theorem proving
+which is based on difference reduction
+was advocated and elaborated by V.\ Digricoli \cite{Digricoli79}.
+
+\subsection{RUE-Resolution}
+
+Digricoli extends the resolution calculus by defining
+two additional inference rules RUE (resolution by unification and equality) 
+and NRF (negative reflexive function) on the same
+abstraction level as the resolution rule.
+
+\begin{Def}[Disagreement Sets]
+
+\label{DisagreementSet}
+\return
+A \definee{disagreement set} for two terms
+$s$ and $t$ is defined recursively:
+
+If $s$ and $t$ are equal, the unique disagreement set
+is $\emptyset$.
+
+If $s$ and $t$ differ at top level, the unique disagreement
+set is $\{[s,t]\}$.
+
+If $s=fs_1\ldots s_n$ and $t=ft_1\ldots t_n$ then
+$\{[s_i,t_i] | s_i$ and $t_i$ are different$\}$ and
+all $\bigcup_{1\leq i\leq n}D_i$ are disagreement sets,
+with each $D_i$ a disagreement set of $s_i$ and $t_i$,
+\end{Def}
+
+\begin{Def}[RUE]
+\return\vspace{-4mm}
+\label{RUEResolution}
+
+Let A and B be clauses:
+
+\vspace{2mm}
+\hlineblocktwo%
+{+}%
+{$\sigma(A \lor B \lor D_{RUE})$}%
+{$Ps_1\ldots s_m \lor A$}%
+{$\nott{Pt_1\ldots t_m} \lor B$}
+\inferencerule{%
+$D_{RUE}$ is the disjunction of inequalities
+$s\not= t$ with $[s,t]$ element of a disagreement set
+of $\sigma(Ps_1\ldots s_m)$ and $\sigma(Pt_1\ldots t_m)$ with 
+an arbitrary  substitution $\sigma$\footnotemark .}
+\end{Def}
+
+\begin{Def}[NRF]
+\return\vspace{-4mm}
+\label{NRFResolution}
+
+Let C be a clause:
+
+\vspace{2mm}
+\hlineblockone%
+{+}%
+{$\sigma(C \lor D_{NRF})$}%
+{$l\not=r \lor C$}
+\inferencerule{%
+$D_{NRF}$ is
+the disjunction of inequalities
+$s\not=t$ with all $[s,t]$ in one disagreement set
+of $\sigma(l)$ and
+\addtocounter{footnote}{-1}
+ $\sigma(r)$ with an arbitrary substitution $\sigma$\footnotemark .}
+
+\footnotetext{V.\ Digricoli proposes
+ to use special substitutions for $\sigma$ ({\em most general partial
+ unifiers\/}) but the completeness proof is based on arbitrary ones and can
+ only be restricted to using empty substitutions. Hence the selection of
+ the unifier has to be driven heuristically.}
+
+\end{Def}
+
+These rules perform a difference reduction strategy that embeds
+equality unification into
+the deduction and not into the unification method.
+As these definitions show, part of the unification
+process, namely the successive computation
+of the disagreement sets, is performed on the same 
+level as resolution. RUE and NRF steps work really on
+terms and not on literals and hence are `smaller'
+than E-Resolution steps which solves the control 
+problem of E-Resolution mentioned above. This has the
+advantage that the steps can be performed
+more often but it has the disadvantage that many
+new clauses can be brought in and the deduction 
+procedure, which controls the application
+of the resolution rule is overstrained with decisions
+concerning the equality predicate. In this way
+the concept of theory resolution is diluted. No oriention of equations is
+provided.
+
+Hence in contrast to J. Morris, V. Digricoli uses no
+separate new unification method but puts the equality
+inference rules on a par with the resolution
+rule.
+
+V. Digricoli \cite{Digricoli85} gives a set of heuristics to control 
+the application of RUE and NRF.
+He uses syntactic heuristic 
+rules, which are generally applicable to all 
+equality problems or to resolution 
+like inference rules. These heuristic rules are also used and 
+extended by K.\ Bl\"asius (see section \ref{Decomposition}).
+
+
+\subsection{Decomposition}
+\label{Decomposition}
+
+Decomposition was first used 
+by J.\ Herbrand in his thesis \cite{Herbrand30}.
+With this concept we mean the method to derive unifiers
+for the subterms of the given terms, which must be proved to be equal, and to combine these solutions to
+solve the equality problem for the whole term.
+
+
+A.\ Martelli and U.\ Montanari
+\cite{MaMo82} exploited the `divide and conquer' strategy of J.\ Herbrand
+for an
+alternative to the unification algorithm of J.\ Robinson \cite{Robinson65a}.
+The kernel of the unification algorithm based on decomposition is given in 
+definition \ref{UnificationbyTransformationRules}.
+
+\begin{Def}[Unification by Transformation Rules]
+
+\label{UnificationbyTransformationRules}
+\return
+A unification problem is a set of equations.
+It is in solved form when each equation has
+the form $x=t$ with $x$ not occurring anywhere
+else in the equation set.
+The following rules are performed on a set of equations
+until no rule is applicable. If the system is in 
+solved form this is the final situation and the derived set of
+equations represents a solution, else no solution exists.
+
+
+\begin{enumerate}
+\item Switching: Replace an equation $t=x$ by $x=t$.
+
+\item Deletion: Delete $t=t$.
+
+\item Decomposition: Replace 
+$fs_1\ldots s_n=ft_1\ldots t_n$ by $s_1=t_1, \ldots,
+s_n=t_n$.
+
+\item Elimination: replace all occurrences of $x$
+by $t$ in all other equations if $x=t$ is an equation
+where $x$ does not occur in $t$.
+\end{enumerate}
+\end{Def}
+
+A.\ Martelli and U.\ Montanari refined this version using special
+datastructures and labelings and obtained an almost linear
+unification algorithm. Of course they used another representation of
+unifiers because the exponentiality of Robinson-unification stems from 
+the term replacement
+property of idempotent unifiers.
+
+One advantage of the usage of nondeterministic rules is
+that the order of operations is easier to control and
+unessential conditions need not be checked in the
+control mechanism. This can make soundness and
+completeness proofs for theory unification
+algorithms much easier.
+
+C.\ Kirchner \cite{Kirchner85} invented a conceptual framework to include 
+special equality theories in such a rule based algorithm. J.\ Gallier and
+W.\ Snyder
+\cite{GaSn89} and K.\ Bl\"asius \cite{Blaesius86} concurrently 
+described universal 
+unification algorithms via rules. J.\ Gallier used a Martelli-Montanari-like
+version for the pure unification part, whereas K.\ Bl\"asius unifies with a
+Robinson procedure. In addition K.\ Bl\"asius' approach is more 
+implementation
+oriented and proposes special graph structures for storing the information
+about the unification state.
+Both do not handle equations with conditions and both have a substantial 
+disadvantage against superposition oriented equational reasoning: they need 
+functional reflexive axioms. In J.\ Gallier's and W.\ Snyder's system a restricted 
+form of those axioms are put in the rule ``root imitation'' and are constrained 
+to be applied only on top level of terms. It can be seen as variable abstraction
+of all subterms of a compound term.
+
+In their improved system they relax the constraint of top level application of
+equations and as result they do not need the functional reflexive axioms any more. 
+But even in this system they can not avoid to use rewrite rules in the opposite
+direction, the introduced reduction ordering can only be used when the set
+of equations and rules is known to be ground Church-Rosser. Herein they
+state an extension of narrowing.
+
+D.\ Dougherty and P.\ Johann \cite{DoJo90} constrained the Gallier-approach
+to the usage of narrowing instead of paramodulation when applying
+equations.
+
+We implemented
+an improved version of K.\ Bl\"asius'
+rule system, where the Robinson rules are
+replaced by Martelli-Montanari-rules because these fit better into the
+general framework.
+
+We demonstrate the usage of the rules with the help of a classical example,
+namely that $-$$-$$x=x$ in a group. Unsolved 
+subproblems are indicated by dashed 
+lines, solved subproblems by complete lines labeled with unifiers. Equality 
+chains are written in the text $term_1$ --- $l_1 = r_1$ --- $\cdots$ --- 
+$l_n = r_n$ --- $term_2$, two terms concatenated with --- must always have 
+the same function symbol or must be variables, no equation is allowed to 
+occur more than once in one chain.
+
+\singlepicfixfig{../pic/graph1}{%
+In this figure the 
+initial termgraph is shown, it represents that
+$-$$-$a and a are to be made equal.
+The dashed line indicates the problem to be solved.}{4.5cm}%
+{Initial Graph}%
+{InitialGraph}
+
+\singlepicfixfig{../pic/graph2}{%
+This figure shows the 
+graph after the insertion of the
+equality chain u = +u0 --- +x+yz = ++xyz --- +0v = v.
+Four subproblems indicated by the dashed lines must be
+solved and their solutions must be combined to solve the
+whole problem. The chains to be inserted must have the property that the
+terms of each subproblem have the same top level symbol. In this
+case the pairs of toplevel symbols of
+the terms are u --- $-$, + --- +, + --- +, and v --- a.}{4.5cm}%
+{Second Graph}%
+{SecondGraph}
+
+
+\singlepicfixfig{../pic/graph3}{%
+The figure shows the graph after the solution of the
+first and fourth subproblems and the decomposition of 
+the second and third.
+Two of the new subproblems can be solved trivially.
+Note that the subproblems $0=+yz$ and $+xy=0$ are structurally
+equal.}{4.5cm}%
+{Third Graph}%
+{ThirdGraph}
+
+\singlepicfixfig{../pic/graph4}{%
+In this figure the solved subproblems are indicated by li\-nes mar\-ked with
+the corres\-ponding unifier. Two chains can be inserted to solve
+the nontrivial subproblems of the last graph.}{4.5cm}%
+{Fourth Graph}%
+{FourthGraph}
+
+\singlepicfixfig{../pic/graph5}{%
+In the final graph, depicted here,
+all considered sub\-prob\-lems were solved and the unifiers can
+be suc\-ces\-sively combined to derive the empty substitution
+$\varepsilon$.}{4.5cm}%
+{Last Graph}%
+{LastGraph}
+
+\begin{Ex}[Group, Involution]
+\label{groupinvolution}
+\return
+Figures \ref{InitialGraph} through \ref{LastGraph} show the development
+of a graph for the equation $-$$-$a = a in a group.
+\end{Ex}
+
+In this example only the successful steps of the algorithm are depicted,
+however as anyone knows who works in the field there is also 
+an enormous amount of useless steps in the search space. The power 
+of an equality prover lies in its
+facility to avoid such useless steps as much as possible. Even the 
+duplicate steps, like for example the second one
+with the axiom $+$$-$$ww=0$ in the above example, should be avoided.
+
+K.\ Bl\"asius and V.\ Lotz [Lotz88] used several heuristics in the 
+implementation of the system and the main power of the program stems from
+these heuristics. But the results are unsatisfactory if we consider the
+standard problems of equality reasoning. Only the first two really simple
+examples \ref{wos1} and \ref{wos2}
+proposed by E.\ Lusk and R.\ Overbeek \cite{LuOv84} could be solved by the
+program.
+
+Refinements of the methods like the following one resembling the method 
+``dynamic programming'' enhances the power of the method only slightly. 
+To use different solutions of structurally identical
+subproblems at different positions in the graph all 
+subproblems with their graphs can be organized in a hashtable.
+The hashkey is computed from the structure of the two terms of the equality
+problem. The test for equality of two such pairs of terms (two equality
+problems) is made efficient by
+using the same variable, theory-free constant, and theory-free
+function symbols, that is,
+$fc_1c_2=fc_2x$ is structurally the same problem as $fc_2c_1=fc_1y$ when
+$c_1$ and $c_2$ are Skolem constants (not occurring in a theory) and $x$
+and $y$ are variables. This
+approach is similar to the usual indexing mechanisms in automated theorem
+proving \cite{OvLu80,Ohlbach89}. Everywhere in the graph 
+a ``renaming'' to the standard representation is stored
+instead of commonly used subproblems, 
+in the just given example \{$x\mapsto x_1$\} and 
+\{$c_2\mapsto c_1, c_1\mapsto c_2, y\mapsto x_1$\}.
+Solutions for the subproblems are then simply propagated to all
+superproblems applying the inverse of the ``renaming'' to the solutions.
+
+\singlepicfixfig{../pic/subgraph}{%
+This is a variant of the fourth graph of example \ref{groupinvolution}.
+The same (up to
+renaming) subproblem $0=+x_1x_2$ occurs at two different positions. 
+The renaming substitutions are depicted in the boxes.}{7cm}%
+{Structure Sharing}%
+{StructureSharing}
+
+\begin{Ex}[Structure Sharing]
+\label{Structuresharing1}
+\return
+Figure \ref{StructureSharing} shows a graph where two subgraphs are shared.
+\end{Ex}
+
+\paragraph{Usage}
+
+The conclusion drawn from the results of two implementations of this idea is
+that decomposition is a handy tool for theoretical issues of theory
+unification, especially general E-unification
+\cite{GaSn89}, but is not feasible for an
+efficient immediate implementation of a general equality reasoner. The
+main reason for this fact is that 
+rewriting alone is more powerful than the decomposition mechanism
+combined with heuristics. 
+
+We think that E-Resolution and related methods even intuitively work 
+at the wrong level:
+If equations are present the replacement of equals is the main line of proof and 
+implicational steps which correspond to resolution have only auxillary and 
+finishing character. Adequate calculi to handle resolution as a subcase 
+of equational reasoning are presented in section \ref{ConditionalRewriting}. 
+By the combination of E-Resolution and
+E-unification the central problems are tried to 
+be solved locally without any possibility to respect the global context.
+Therefore decomposition is inadequate to handle equational problems that
+are mainly based on equality. \label{DecDisc2}
+
+However an approach related to decomposition can be used on a more general level to guide the
+search for refutation graphs as explained in chapter
+\ref{SearchingRefutationGraphs}.
+
+\section{Rewriting}
+
+\subsection{Knuth-Bendix Completion}
+\label{KnuthBendixCompletion}
+
+The observation that equations can be `applied'
+to terms led to a term replacement 
+approach for the treatment of the equality relation.
+To obtain an algorithm to prove the equality of two terms
+one can successively apply equations to the
+terms. Such an algorithm only decides the equality of the terms but
+can not make them equal by computing an instantiation of
+their variables as required for resolution based systems.
+The main idea is to consider the equations as rules that can only be
+applied in one direction. The direction is determined by a partial
+ordering on the set of terms.
+
+A method to decide the equality of two terms under
+special equality theories can then be obtained by ``reducing'' the
+terms to
+a unique normal form using the directed equations. The theory axioms
+must obey certain conditions, they must be 
+confluent and Noetherian,
+to ensure completeness
+and termination of the decision procedure.
+The equations defining the theory must be
+directable and must have the properties above or it must be
+possible to add other equations such that the new system
+is equivalent to the old one and has the desired properties.
+ This 
+procedure developed by D.\ Knuth and P.\ Bendix \cite{KnBe70}
+is called completion. 
+The new system of directed equations
+constitutes a set of rewriting rules. 
+
+When computing a normal form all situations where two rules can be 
+applied to derive different successors are potentially 
+dangerous, because it must be 
+ensured that both cases later 
+on lead to the same normal form. D.\ Knuth 
+and P.\ Bendix showed that it is enough to consider critical pairs just
+between the
+rules and to add corresponding equations to ensure this property.
+Critical pairs can be constructed from two rules or two instances of the
+same rule if the left hand sides of the rules overlap, that means that some
+subterm of the left hand side can be unified with the other left hand
+side. One term of the critical pair is the right hand side of the first
+rule with the unifier applied to it. For the other term the unifiable subterm
+in the one left hand side is replaced by the other right hand side and 
+again the unifier is applied to the result.
+
+In principle the Knuth-Bendix completion algorithm then works as follows
+\cite{KnBe70,HuOp80,Buchberger85,Dershowitz87,JoLe87}:
+Beginning with a set of undirected equations, an empty set of directed
+rules, and a reduction ordering it tries to derive a convergent set of rules
+from the equations. It applies the following steps
+until no equations remain: Take an
+equation, apply all rules to the equation, direct the equation according to
+the given reduction ordering, and put it
+into the set of rules. Generate all critical pairs, that is, terms for which
+rule applications overlap, between the new rule and
+the set of rules and put them into the set of equations. If this
+algorithm terminates, it produces a set of rules that can be used to decide
+the equality of arbitrary terms of the given theory.
+
+A rule is applicable to a term if the left hand side of the rule matches
+the term or a subterm of it. If a rule is applied to an object with subterms to which it
+is applicable, then these are replaced by the right hand side of the rule
+with the matcher applied to it. In the field of Automated Deduction the
+application of the rules is often called demodulation \cite{WoRoCaSh67,WoOvLuBo84} and we
+will use this term here too. In the field of
+Automated Deduction the orientation is often
+selected heuristically, unless an immediately obvious ordering is possible.
+
+
+Of course there are interrelations between unification
+theory and term rewriting systems and one goal is 
+to combine rewriting techniques and unification algorithms.
+
+Some results of the research in term
+rewriting systems led to universal unification algorithms
+restricted to so called confluent or canonical theories.
+F.\ Fages \cite{Fages83},
+J.\ Hullot \cite{Hullot80}, J.-P.\ Jouannaud, C.\ Kirchner, H.\ Kirchner
+\cite{JoKiKi83}, J.\ You, P.\ Subramayou \cite{YoSu86}, A.\ Martelli, C.\ Moiso,
+G.\ Rossi \cite{MaMoRo86}, and C.\ Kirchner \cite{Kirchner85} defined
+systems for this purpose.
+
+
+Sometimes special theory unification algorithms
+are used in completion systems.
+Such a method was used for example by M.\ Stickel \cite{Stickel85}
+to prove ring commutativity from $x^3=x$. We shall recourse to this point
+in section \ref{TheoryUnification}.
+
+There are also interrelations
+between special deduction rules and rewriting systems; we shall come back
+to them in section \ref{MKRPFeatures}.
+
+A powerful instrument to handle unorientable equations may be the
+usage of theory unification.
+
+\subsection{Conditional Rewriting}
+\label{ConditionalRewriting}
+Now we turn to the problem of conditional equations. In most cases they
+occur together with unit equations that can be handled by completion and
+rewriting. So one strategy would be to generate all ``good and necessary''
+rewrite rules and then to use heuristics when applying the conditional
+equations.
+
+All advanced equality 
+reasoning methods mentioned above are led
+astray when formulae like $A \Rightarrow x=y$ or $A \Rightarrow x=c$ (see 
+example \ref{zdfrshuman}) are
+among the axioms. Such conditional equations are typical for real
+situations and neither do they
+have any particular structure that can be exploited 
+nor are they directable, and there is no reason to 
+believe that the ``equality problem'' is solved 
+when a satisfactory procedure for handling the unit equations is 
+found. 
+
+The development of completion, that is superposition, and of rewriting
+steps themselves, that is reduction, can be depicted separately.
+
+\subsubsection{Completion}
+
+Completion algorithms for conditional equations are based on a
+para\-mo\-du\-la\-tion calculus incorporating resolution as a special case of
+paramodulation, paramodulating $L=true$ into $L'=false$.
+
+G.\ Peterson \cite{Peterson83} was the first who developped a resolution
+and pa\-ra\-mo\-du\-la\-tion calculus which reduces to the Knuth-Bendix algorithm
+when only given unit equality axioms and theorems. M.\ Rusinowitch
+\cite{HsRu86,Rusinowitch87} extended this work such that only maximal
+literals of the clauses must be considered for paramodulation. G.\
+Peterson's as well as M.\ Rusinowitch's approaches only allow very
+restricted reduction orderings and only demodulations by unit reduction
+rules.
+H.\ Zhang and D.\ Kapur \cite{ZhKa88} extended it to more orderings and
+contextual rewriting. We present the rules not in the original notation to
+gain a homogenous view on them.
+
+In the definition \ref{OrderedParamodulation} of Hsiang and Rusinowitch
+superpositions with the left and right hand side of an equation in a
+maximal literal are allowed. The problem of ordered paramodulation is that
+it does not reduce to Knuth-Bendix completion in the case when only unit
+equations are present. In this case ordered paramodulation is weaker, in
+the sense that
+it has a larger search space, than completion.
+
+\begin{Def}[Ordered Paramodulation]
+\return\vspace{-3mm}
+\label{OrderedParamodulation}
+
+
+\hlineblocktwo%
+{+}%
+{$\sigma(s[u\leftarrow r] = t$, $L_1$, $\dots$, $L_n$, $K_1$,
+$\dots$, $K_m)$}%
+{$(s = t)_{max}$, $L_1$, $\dots$, $L_n$}%
+{$(l \rightarrow r)_{max}$, $K_1$, $\dots$, $K_m$}
+\inferencerule{%
+$u$ is a non variable position of $s$, $\sigma$ is an mgu of $s|u$ and $l$.}
+\end{Def}
+
+In the definition \ref{WeakClausalSuperposition} of Rusinowitch
+superposition into left hand sides of all literals are allowed. This rule
+reduces to the critical pair creation of Knuth and Bendix, but is weaker
+than ordered paramodulation in the conditional case where more operation
+possibilities are allowed.
+
+\begin{Def}[Weak Clausal Superposition]
+\return\vspace{-3mm}
+\label{WeakClausalSuperposition}
+
+
+\hlineblocktwo%
+{+}%
+{$\sigma(s[u\leftarrow r] = t$, $L_1$, $\dots$, $L_n$, $K_1$,
+$\dots$, $K_m)$}%
+{$(s \rightarrow t)_{max}$, $L_1$, $\dots$, $L_n$}%
+{$l \rightarrow r$, $K_1$, $\dots$, $K_m$}
+\inferencerule{%
+$u$ is a non variable position of $s$, $\sigma$ is an mgu of $s|u$ and $l$.}
+\end{Def}
+
+The inference rule \ref{ClausalSuperposition} 
+of Kapur and Zhang \cite{ZhKa88} removes both restrictions, that is, 
+it possesses the property to reduce to Knuth-Bendix completion as well 
+as the constraint to consider only maximal literals.
+
+\begin{Def}[Clausal Superposition]
+\return\vspace{-3mm}
+\label{ClausalSuperposition}
+
+\hlineblocktwo%
+{+}%
+{$\sigma(s[u\leftarrow r] = t$, $L_1$, $\dots$, $L_n$, $K_1$,
+$\dots$, $K_m)$}%
+{$(s \rightarrow t)_{max}$, $L_1$, $\dots$, $L_n$}%
+{$(l \rightarrow r)_{max}$, $K_1$, $\dots$, $K_m$}
+\inferencerule{%
+$u$ is a non variable position of $s$, $\sigma$ is an mgu of $s|u$ and $l$.}
+\end{Def}
+
+But unfortunately H.\ Zhang' s refutation system is not complete together
+with the tautology removal rule, as L.\
+Bachmair and H.\ Ganzinger showed with an example \cite{BaGa90}. But they
+also propose how the system can be repaired such that this incompleteness
+does not occur.
+
+
+\begin{Def}[Strict Superposition]
+\return\vspace{-3mm}
+\label{StrictSuperposition}
+
+\hlineblocktwo%
+{+}%
+{$\sigma(sign(s[u\leftarrow r] = t)$, $L_1$, $\dots$, $L_n$, $K_1$,
+$\dots$, $K_m)$}%
+{$sign(s = t)$, $L_1$, $\dots$, $L_n$}%
+{$(l \rightarrow r)$, $K_1$, $\dots$, $K_m$}
+\inferencerule{%
+Let $C$ be the first clause. 
+\topsep0cm
+\itemsep0cm
+\tabcolsep1mm
+\begin{itemize}
+\item $u$ is a non variable position of $s$, 
+$\sigma$ is an mgu of $s|u$ and $l$.
+\item $\sigma(r) \not> \sigma(l)$ 
+\item $\sigma(l = r)$ strictly maximal in $\sigma(C)$.
+\item $\sigma(t) \not> \sigma(s)$
+\item $\sigma(sign(s = t))$ is strictly maximal in all positive literals of
+$\sigma(C)$. If $sign$ is positive it is also strictly maximal for all
+negative literals, else it is only maximal.
+\end{itemize}}
+\end{Def}
+
+\begin{Def}[Merging Superposition]
+\return\vspace{-3mm}
+\label{MergingSuperposition}
+
+\hlineblocktwo%
+{+}%
+{$\sigma(s = t[u\leftarrow r]$, $s = t'$, $L_1$, $\dots$, $L_n$, $K_1$,
+$\dots$, $K_m)$}%
+{$(s = t)$, $(s' = t')$, $L_2$, $\dots$, $L_n$}%
+{$(l \rightarrow r)$, $K_1$, $\dots$, $K_m$}
+\inferencerule{%
+Let $C$ be the first clause. 
+\topsep0cm
+\itemsep0cm
+\tabcolsep1mm
+\begin{itemize}
+\item $\sigma = \tau\rho$ where $\tau$ is an mgu of $t|u$ and $l$, $\rho$ an
+mgu of $\tau(s)$ and $\tau(s')$, and $u$ is a non variable position of $t$.
+\item $\sigma(r) \not> \sigma(l)$.
+\item $\sigma(l = r)$ strictly maximal in $\sigma(C)$.
+\item $\sigma(s) \not> \sigma(t)$.
+\item $\sigma(s = t)$ strictly maximal in $\sigma(C) - (s'=t')$.
+\item $\tau(s) > \tau(t)$ and $\sigma(t') \not\geq \sigma(t)$.
+\end{itemize}}
+\end{Def}
+Using such a superposition method drastically changes the resolution strategy
+because it can only be resolved or paramodulated on links joining 
+maximal literals. In this case no set-of-support or linear strategy is complete
+and in fact the Markgraf-Karl system
+first had difficulties to solve problems, which were
+solved before. One main task was to avoid this disadvantage.
+
+\subsubsection{Rewriting}
+
+H.\ Zhang \cite{Zhang88} gives the following very powerful reduction rule, 
+which reduces to Knuth-Bendix reduction in the case of uni equations, and 
+which can also be used to apply the subsumption rule.
+
+\begin{Def}[Contextual Rewriting]
+\return\vspace{-3mm}
+\label{ContextualRewriting}
+
+\hlineblocktwo%
+{-+}%
+{$L_0[t'[\mu(r)]]$, $L_1$, $\dots$, $L_n$}%
+{$L_0[t]$, $L_1$, $\dots$, $L_n$}%
+{$l \rightarrow r$, $K_1$, $\dots$, $K_m$}
+\inferencerule{%
+that is, $t \rightarrow_C t'[\mu(r)]$, with $C=\{L_1$, $\dots$, $L_n\}$, 
+$t$ is a subterm of $L_0$, $t \cong_C t'[s]$, $\mu(l) = s$, $\mu(K_i) 
+\rightarrow_C^+ TRUE$}.
+\end{Def}
+
+\paragraph{Usage}
+
+The extensions of completion to all versions of superposition calculi are 
+very powerful because of the constraints to the Paramodulation rule 
+application and the reduction facility. In addition every Resolution and 
+Paramaodulation theorem prover can be controlled in such 
+a way that it simulates this
+calculus and all features of the underlaying prover remain available when 
+equations are absent (see chapter \ref{TheCalculus}). This result rests on
+the fact that resolution is a subcase of paramodulation in the usual
+presentation of superposition calculi. The results in the appendix show
+that choosing paramodulation with restrictions as base of the calculus is
+the adequate way to build equality theorem provers.
+
+\section{Narrowing}
+\label{NarrowingtoSupportDifferenceReduction}
+
+After the discovery of canonical rewrite systems attempts were made to use
+them in a wider context than simple reduction, such that not only the
+equality of terms can be decided but proper solution for equations can be
+computed. By this way the matching in the directed application of equations
+for rewriting is replaced by complete unification. Of course this is no
+reduction operation and hence the complete search space must be regarded,
+which is nevertheless considerably reduced by the orientation of the
+equations. For this constrained usage of equations the notion ``narrowing'' was
+moulded.
+
+\subsection{State of the Art}
+
+M.\ Fay, J.\ M.\ Hullot \cite{Fay79,Hullot80} were the first
+to use narrowing techniques to construct unification 
+algorithms for a  canonical theory, J.\ M.\ Hullot found further
+constraints and called his procedure basic narrowing, that means 
+that postions that are prefixes of the narrow position must 
+not be considered for further steps.
+
+L.\ Fribourg \cite{Fribourg84,Fribourg85a,Fribourg85b} made additional
+restrictions, he used an innermost strategy, but for his method
+more conditions must hold for the equational theory. 
+
+P.\ G.\ Bosco, E.\ Giovannetti, C.\ Moiso \cite{BoGiMo88} give a better 
+strategy developed from 
+SLD resolution. They introduce non terminating rewrite systems
+which are used for modelling infinite datastructures.
+For this method normalizing for the intermediate results is 
+not usable (selection narrowing). Their paper also shows how
+to represent equational problems only at the
+predicative level.
+
+M.\ Fay \cite{Fay79} as well as P.\ Rety, C.\ Kirchner, H.\ Kirchner,
+P.\ Lescanne 
+\cite{ReKiKiLe85} use normalizing narrowing, which allows to keep
+intermediate results reduced. 
+The second work   introduces subsumption and finite representation of loops.
+
+Lazy narrowing is used in the context of logic programming \cite{Reddy85,DaGu89}.
+
+A good overview about these different strategies of narrowing is given
+in the diploma thesis of S.\ Krischer \cite{Krischer90}.
+Statistics about the effect of the various restrictions are given there
+which demonstrate their respective usefulness.
+
+
+
+\subsection{Hyperparamodulation as a Forerunner of Narrowing}
+\label{Hyperparamodulation}
+
+As in the case of rewriting where L.\ Wos developed a heuristic version
+he and his fellows were successful to adopt the technique of narrowing for
+a heuristic extension of paramodulation in automated theorem proving.
+
+Hyperparamodulation was defined by L.\ Wos, R.\ Overbeek, and L.\ Henschen
+\cite{WoOvHe80} as follows.
+\begin{Def}[Hyperparamodulation]
+\return\vspace{-3mm}
+\label{DefHyperparamodulation}
+
+\hlineblockthree%
+{+}%
+{$C_n$}%
+{$s_1=t_1$, $\dots$, $s_n=t_n$}% 
+{$C_0$}% 
+{$C_{i+1} := \sigma(C_i[t'_i\leftarrow s_i])$}
+\inferencerule{%
+$t'_1$, $\dots$, $t'_n$ distinct terms in $C_0$,
+$\sigma(t'_i)=\sigma(t_i)$ for $i \in \{0,\dots ,n-1\}$}
+
+Then $C_n$ is a \definee{hyperparamodulant} with nucleus $C_0$ and
+satellites $s_1=t_1$, $\dots$, $s_n=t_n$.
+\end{Def}
+
+It is clear that hyperparamodulation is complete in the sense that all
+paramodulation steps are hyperparamodulation steps with $n=1$. It is a
+straightforward restriction for hyperparamodulation to apply it just in
+those cases where a new resolution possibility is introduced by the
+successive paramodulations. In chapter \ref{TheCalculus} we shall give a
+rule with the aim to combine narrowing, hyperparamodulation, and
+E-Resolution.
+\paragraph{Usage}
+For us narrowing is a useful tool to perform lazy E-unification
+relative to a canonical theory. Of course narrowing can be used before a
+complete set of rewrite rules is derived, it can be used even if no 
+such set exists but then only in a lazy manner.
+
+Narrowing can serve for difference reduction, that is, to derive E-re\-so\-lu\-tion
+steps.
+
+Narrowing can be controlled in a lazy way, that is, the incorporation of 
+new rules is allowed.
+
+\section{Logic Programming}
+\label{LogicProgramming}
+
+For our purposes Prolog is not considered as programming language but as
+a proof procedure. However its most interesting feature is a programming
+language feature, namely the possibility of compilation.
+Because we are concerned with 
+equality we have to sketch the methods which incorporate equality, that means 
+functional programming in this context and their semantics, into logic programs.
+
+\subsection{Prolog and Equality}
+
+There seem to be the five distinguishable approaches of J.\ Jaffar, J.-L.\ 
+Lassez, and M.\ J.\ Maher \cite{JaLaMa84}, J.\ A.\ Goguen and J.\ Meseguer
+\cite{GoMe85}, SLDE-resolution of J.\ H.\ Gallier and S.\ Raatz \cite{GaRa89},
+N.\ Dershowitz and D.\ A.\ Plaisted \cite{DePl85},
+and L.\ Fribourg \cite{Fribourg84a,Fribourg85a}. The first three are E-unification 
+based (see section \ref{Paramodulation}) whereas the other two build
+upon superposition (see section \ref{ConditionalRewriting}).
+
+The E-unification based approaches are easier to incorporate into existing
+non-equational Prolog-systems but they are less specialized to equational
+reasoning and hence less effective in proving theorems than the others 
+(see sections \ref{Decomposition} and 
+\ref{ConditionalRewriting}).
+
+The main example of J.\ Gallier and S.\ Raatz in \cite{GaRa89} shows the 
+inefficiency of such a system.
+
+\begin{Ex}[Gallier-Raatz]
+\label{GallierRaatz}
+\return
+The first row of table \ref{RewritingtheGallierRaatzExample} gives the 
+set of Prolog clauses to be refuted, where the usual Prolog syntax := is used.
+We begin by reducing the first clause
+by $a\rightarrow b$\footnote{An orientation in the opposite direction makes
+no essential difference.} and deletion of the 
+false literal and arive at the second row
+with a new rewrite rule $f^3a\rightarrow a$. With that clauses 4 and 5 can be reduced
+again producing a new rule: $f^2a \rightarrow a$. This 
+rule reduces $f^3a\rightarrow a$ to $fa\rightarrow a$
+and that leads to a refutation only simplifying the set of clauses.
+\begin{table}
+\caption{Rewriting the Gallier-Raatz Example}
+\label{RewritingtheGallierRaatzExample}
+\begin{center}
+\tabcolsep1mm
+\begin{tabular}{|l|l|l|l|}
+\hline
+$f^3a=a := fa=fb$ & $f^3a=a$         & $f^3a=a$         & $fa=a$  \\
+$a=b$             & $a=b$            & $a=b$            & $a=b$   \\
+$Pa$              & $Pa$             & $Pa$             & $Pa$    \\
+$f^5=a := Qa$     & $f^5=a := Qa$    & $f^2=a$          & $fa=a$  \\
+$Qa := f^3=a$     & $Qa := f^3=a$    & $Qa$             & $Qa$    \\
+$Ra := fa=a,Pfa$  & $Ra := fa=a,Pfa$ & $Ra := fa=a,Pfa$ & $Ra$    \\
+$ := Rfa$         & $ := Rfa$        & $ := Rfa$        & $ := Ra$\\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+\end{Ex}
+
+The advantage of the E-unification based systems is that they also can be incorporated 
+into Prolog compilers and hence the non-equational part is very efficient.
+
+\subsection{Prolog and Compilation}
+The best known method to compile logic programs is that based on the the Warren
+Abstract Machine (WAM) of D.\ H.\ D.\ Warren \cite{Warren77,Warren83,GaLiLuOv84}. 
+The main idea is to comile each head literal of a clause into a self unifying
+piece of code representing a specialized unification algorithm instead of using
+a general one. In addition a set of stacks are needed to handle backtracking and
+bindings.
+
+\paragraph{Usage}
+The essential point used in our work is the idea of compilation. In chapter
+\ref{CompilationTowardsanEqualityReasoningMachine}
+we shall focus on the main difference of our system: newly
+derived rules.
+
+We do not think that Prolog techniques extended in the E-unification style
+are very useful in general theorem proving with equality due to similar
+reasons as general E-unification. The disadvantage
+of superposition style is that it is not really Prolog and is therefore 
+not better than the normal superposition calculi.
+
+%Abbruchkrit. bei Tiefe z.B. Abstand bei Narrowing (linke und rechte Seite
+%einer Regel) (Difference Reduction?!)
+
+M.\ Stickel's PTTP idea \cite{Stickel86} (iterative deepening)
+is not as promising as for 
+pure resolution systems because of the high branching 
+rate of equation applications.

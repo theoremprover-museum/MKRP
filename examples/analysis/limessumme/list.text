@@ -1,0 +1,171 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 23.5                                                *
+                     *           DATE: 06-FEB-1989  20:17                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+                                                                            
+   
+   *************************************************************************
+   
+    EDIT:     Axioms and Theorems edited: 06-FEB-1989 19:29 
+   
+   *************************************************************************
+   
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * TYPISIERTE VERSION
+             * AXIOME
+             * TYPENVEREINBARUNGEN
+             SORT REAL,FUNKTION:ANY
+             SORT POSREAL:ANY
+             TYPE HALF (POSREAL) :POSREAL
+             TYPE FUNPLUS (FUNKTION FUNKTION) :FUNKTION
+             TYPE APPLY (FUNKTION REAL) :REAL
+             TYPE KLEINERGLEICH (REAL REAL)
+             TYPE POSKLEINERGLEICH (POSREAL POSREAL)
+             TYPE ABS (REAL) :POSREAL
+             TYPE PLUS (REAL REAL) :REAL
+             TYPE POSPLUS (POSREAL POSREAL) :POSREAL
+             TYPE MINUS (REAL REAL) :REAL
+             TYPE LIMES (FUNKTION REAL REAL)
+             TYPE F,G:FUNKTION
+             * HILFSAXIOME
+             * KLEINERGLEICH TRANSITIVITAET UND VERTRAEGLICHKEIT MIT MINIMUM
+             ALL X,Y,Z:POSREAL POSKLEINERGLEICH (X Y) AND POSKLEINERGLEICH (Y Z) IMPL POSKLEINERGLEICH (X Z)
+             * ARCHIMEDISCHE EIGENSCHAFT VON R
+             ALL X:POSREAL EX Y:POSREAL POSKLEINERGLEICH (POSPLUS (Y Y) X)
+             * TRANSITIVITAET VON PLUS BZGL. KLEINERGLEICH
+             ALL X,Y,Z,U:POSREAL POSKLEINERGLEICH (X Y) AND POSKLEINERGLEICH (Z U)
+                                 IMPL POSKLEINERGLEICH (POSPLUS (X Z) POSPLUS (Y U))
+             * VERTRAEGLICHKEIT VON PLUS UND MINUS
+             ALL A,B,C,D:REAL MINUS (PLUS (A B) PLUS (C D)) := PLUS (MINUS (A C) MINUS (B D))
+             * DREIECKSUNGLEICHUNG
+             ALL X,Y:REAL POSKLEINERGLEICH (ABS (PLUS (X Y)) POSPLUS (ABS (X) ABS (Y)))
+             * DEFINITION DER SUMMENFUNKTION
+             ALL X:REAL APPLY (FUNPLUS (F G) X) = PLUS (APPLY (F X) APPLY (G X))
+             * DEFINITION VON GRENZWERTEN
+             ALL F:FUNKTION ALL X0,A:REAL LIMES (F X0 A)
+                                          EQV (ALL EPSILON:POSREAL ALL X:REAL EX DELTA:POSREAL 
+                                                 POSKLEINERGLEICH (ABS (MINUS (X X0)) DELTA)
+                                                 IMPL POSKLEINERGLEICH (ABS (MINUS (APPLY (F X) A)) EPSILON))
+             
+   Theorems: * THEOREM
+             * DIE GRENZWERT EINER SUMME IST DIE SUMME DER GRENZWERTE, WENN DIESE EXISTIEREN
+             ALL A,B,X0:REAL (LIMES (F X0 A) AND LIMES (G X0 B) IMPL LIMES (FUNPLUS (F G) X0 PLUS (A B)))
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+           * A2:   All x:Posreal + POSKLEINERGLEICH(posplus(f_1(x) f_1(x)) x)
+           * A3:   All x,y,z,u:Real + =(minus(plus(u z) plus(y x)) plus(minus(u y) minus(z x)))
+           * A4:   All x,y:Real + POSKLEINERGLEICH(abs(plus(y x)) posplus(abs(y) abs(x)))
+           * A5:   All x:Real + =(apply(funplus(f g) x) plus(apply(f x) apply(g x)))
+           * A6:   All x,y,z:Posreal - POSKLEINERGLEICH(z y)  - POSKLEINERGLEICH(y x)  + POSKLEINERGLEICH(z x)
+           * A7:   All x,y,z,u:Posreal - POSKLEINERGLEICH(u z)  - POSKLEINERGLEICH(y x)
+                                       + POSKLEINERGLEICH(posplus(u y) posplus(z x))
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T8: All x:Posreal + POSKLEINERGLEICH(abs(minus(c_2 c_5)) x)
+           * T9: - POSKLEINERGLEICH(abs(minus(apply(funplus(f g) c_2) plus(c_3 c_4))) c_1)
+           * T10: All x:Posreal y:Real - POSKLEINERGLEICH(abs(minus(y c_5)) f_2(y))
+                                       + POSKLEINERGLEICH(abs(minus(apply(f y) c_3)) x)
+           * T11: All x:Posreal y:Real - POSKLEINERGLEICH(abs(minus(y c_5)) f_3(y))
+                                       + POSKLEINERGLEICH(abs(minus(apply(g y) c_4)) x)
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:        A1:    All x:Any + =(x x)
+                         * A2:    All x:Posreal + POSKLEINERGLEICH(posplus(f_1(x) f_1(x)) x)
+                         * A3:    All x,y,z,u:Real + =(minus(plus(u z) plus(y x)) plus(minus(u y) minus(z x)))
+                         * A4:    All x,y:Real + POSKLEINERGLEICH(abs(plus(y x)) posplus(abs(y) abs(x)))
+                         * A5:    All x:Real + =(apply(funplus(f g) x) plus(apply(f x) apply(g x)))
+                         * A6:    All x,y,z:Posreal - POSKLEINERGLEICH(z y)  - POSKLEINERGLEICH(y x)
+                                                    + POSKLEINERGLEICH(z x)
+                         * A7:    All x,y,z,u:Posreal - POSKLEINERGLEICH(u z)  - POSKLEINERGLEICH(y x)
+                                                      + POSKLEINERGLEICH(posplus(u y) posplus(z x))
+                         * T8:    All x:Posreal + POSKLEINERGLEICH(abs(minus(c_2 c_5)) x)
+                         * T9:    - POSKLEINERGLEICH(abs(minus(apply(funplus(f g) c_2) plus(c_3 c_4))) c_1)
+                         * T10:   All x:Posreal y:Real - POSKLEINERGLEICH(abs(minus(y c_5)) f_2(y))
+                                                       + POSKLEINERGLEICH(abs(minus(apply(f y) c_3)) x)
+                         * T11:   All x:Posreal y:Real - POSKLEINERGLEICH(abs(minus(y c_5)) f_3(y))
+                                                       + POSKLEINERGLEICH(abs(minus(apply(g y) c_4)) x)
+                         
+
+   
+   A3,1 & A4,1      -->  * P1:    All x,y,z,u:Real + POSKLEINERGLEICH(abs(minus(plus(u z) plus(y x)))
+                                                                      posplus(abs(minus(u y)) abs(minus(z x))))
+   
+   A5,1 & P1,1      -->  * P6:    All x,y,z:Real + POSKLEINERGLEICH(abs(minus(apply(funplus(f g) z) plus(y x)))
+                                                                    posplus(abs(minus(apply(f z) y))
+                                                                            abs(minus(apply(g z) x))))
+   
+   T8,1 & T10,1     -->  * R12:   All x:Posreal + POSKLEINERGLEICH(abs(minus(apply(f c_2) c_3)) x)
+   
+   T8,1 & T11,1     -->  * R13:   All x:Posreal + POSKLEINERGLEICH(abs(minus(apply(g c_2) c_4)) x)
+   
+   A6,3 & T9,1      -->  * R14:   All x:Posreal - POSKLEINERGLEICH(abs(minus(apply(funplus(f g) c_2) plus(c_3 c_4)))
+                                                                   x)
+                                                - POSKLEINERGLEICH(x c_1)
+   
+   A2,1 & R14,2     -->  * R18:   - POSKLEINERGLEICH(abs(minus(apply(funplus(f g) c_2) plus(c_3 c_4)))
+                                                     posplus(f_1(c_1) f_1(c_1)))
+   
+   R12,1 & A7,1     -->  * R138:  All x,y,z:Posreal - POSKLEINERGLEICH(z y)
+                                                    + POSKLEINERGLEICH(posplus(abs(minus(apply(f c_2) c_3)) z)
+                                                                       posplus(x y))
+   
+   R13,1 & R138,1   -->  * R140:  All x,y:Posreal + POSKLEINERGLEICH(posplus(abs(minus(apply(f c_2) c_3))
+                                                                             abs(minus(apply(g c_2) c_4)))
+                                                                     posplus(y x))
+   
+   P6,1 & A6,1      -->  * R141:  - POSKLEINERGLEICH(posplus(abs(minus(apply(f c_2) c_3))
+                                                             abs(minus(apply(g c_2) c_4)))
+                                                     posplus(f_1(c_1) f_1(c_1)))
+                                  + POSKLEINERGLEICH(abs(minus(apply(funplus(f g) c_2) plus(c_3 c_4)))
+                                                     posplus(f_1(c_1) f_1(c_1)))
+   
+   R141,1 & R140,1  -->  * R142:  + POSKLEINERGLEICH(abs(minus(apply(funplus(f g) c_2) plus(c_3 c_4)))
+                                                     posplus(f_1(c_1) f_1(c_1)))
+   
+   R142,1 & R18,1   -->  * R143:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 

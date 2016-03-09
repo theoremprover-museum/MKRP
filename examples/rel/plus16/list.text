@@ -1,0 +1,593 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 33.4 EQUALITY 16.1                                  *
+                     *           DATE: 11-SEP,1989  21:57                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+                                                                                                                    
+      
+   
+   ******************************************************************************************************************
+   ***
+   
+    EDIT:     Axioms and Theorems edited: 25-JUL,1989 14:08 
+   
+   ******************************************************************************************************************
+   ***
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   NIL  
+             
+   Theorems: (ALL U,V (((NOT ((ALL W,X ((((MODEL (A W))
+                                                                OR (NOT ((ALL Y,Z (((MODEL (A Y))
+                                                                                         AND (R (STAR (W) Y Z)))
+                                                                                   IMPL (NOT (NOT (MODEL(A
+                                                                                                         STAR(STAR(Z)))))))))))
+                                                           AND (R (STAR (U) W X)))
+                                                     IMPL (NOT (((NOT ((ALL X0719,X0720 
+                                                                             ((((MODEL (B X0719))
+                                                                                         OR (NOT ((ALL X0721,X0722 
+                                                                                                     (((MODEL(B
+                                                                                                                       X0721))
+                                                                                                            AND (R(STAR(X0719)
+                                                                                                                   X0721
+                                                                                                                   X0722)))
+                                                                                                      IMPL (NOT (NOT (MODEL(B
+                                                                                                                            STAR(STAR(X0722)))))))))))
+                                                                                    AND (R(STAR (STAR (X))
+                                                                                           X0719
+                                                                                           X0720)))
+                                                                              IMPL (NOT (((MODEL(C
+                                                                                                    STAR (X0720)))
+                                                                                          OR (NOT (MODEL(C
+                                                                                                         STAR(STAR(X0720))))))))))))
+                                                                 OR (NOT (NOT ((ALL X0723,X0724 
+                                                                                  ((((MODEL(B
+                                                                                                        X0723))
+                                                                                              OR (NOT ((ALL X0725,X0726 
+                                                                                                          (((MODEL(B
+                                                                                                                            X0725))
+                                                                                                                 AND (R(STAR(X0723)
+                                                                                                                        X0725
+                                                                                                                        X0726)))
+                                                                                                           IMPL (NOT (NOT (MODEL(B
+                                                                                                                                 STAR(STAR(X0726)))))))))))
+                                                                                         AND (R(STAR(STAR(STAR(X)))
+                                                                                                X0723
+                                                                                                X0724)))
+                                                                                   IMPL (NOT (((MODEL(C
+                                                                                                         STAR(X0724)))
+                                                                                               OR (NOT (MODEL(C
+                                                                                                              STAR(STAR(X0724))))))))))))))))))))
+                                 AND (R (0 U V)))
+                           IMPL (NOT ((ALL X0727,X0728 ((((NOT ((ALL X0729,X0730 
+                                                                               ((((MODEL (A X0729))
+                                                                                           OR (NOT ((ALL X0731,X0732 
+                                                                                                       (((MODEL(A
+                                                                                                                         X0731))
+                                                                                                              AND (R(STAR(X0729)
+                                                                                                                     X0731
+                                                                                                                     X0732)))
+                                                                                                        IMPL (NOT (NOT (MODEL(A
+                                                                                                                              STAR(STAR(X0732)))))))))))
+                                                                                      AND (R(STAR (X0727)
+                                                                                             X0729
+                                                                                             X0730)))
+                                                                                IMPL (NOT (((MODEL(B
+                                                                                                      STAR(X0730)))
+                                                                                            OR (NOT (MODEL(B
+                                                                                                           STAR(STAR(X0730))))))))))))
+                                                                   OR (NOT ((ALL X0733,X0734 
+                                                                               (((NOT ((ALL X0735,X0736 
+                                                                                                   ((((MODEL(A
+                                                                                                                         X0735))
+                                                                                                               OR (NOT ((ALL X0737,X0738 
+                                                                                                                           (((MODEL(A
+                                                                                                                                             X0737))
+                                                                                                                                  AND (R(STAR(X0735)
+                                                                                                                                         X0737
+                                                                                                                                         X0738)))
+                                                                                                                            IMPL (NOT (NOT (MODEL(A
+                                                                                                                                                  STAR(STAR(X0738)))))))))))
+                                                                                                          AND (R(STAR(X0733)
+                                                                                                                 X0735
+                                                                                                                 X0736)))
+                                                                                                    IMPL (NOT (((MODEL(B
+                                                                                                                          STAR(X0736)))
+                                                                                                                OR (NOT (MODEL(B
+                                                                                                                               STAR(STAR(X0736))))))))))))
+                                                                                      AND (R(STAR (X0727)
+                                                                                             X0733
+                                                                                             X0734)))
+                                                                                IMPL (NOT (NOT (NOT ((ALL X0739,X0740 
+                                                                                                        ((((MODEL(A
+                                                                                                                              X0739))
+                                                                                                                    OR (NOT ((ALL X0741,X0742 
+                                                                                                                                (((MODEL(A
+                                                                                                                                                  X0741))
+                                                                                                                                       AND (R(STAR(X0739)
+                                                                                                                                              X0741
+                                                                                                                                              X0742)))
+                                                                                                                                 IMPL (NOT (NOT (MODEL(A
+                                                                                                                                                       STAR(STAR(X0742)))))))))))
+                                                                                                               AND (R(STAR(STAR(STAR(X0734)))
+                                                                                                                      X0739
+                                                                                                                      X0740)))
+                                                                                                         IMPL (NOT (((MODEL(B
+                                                                                                                               STAR(X0740)))
+                                                                                                                     OR (NOT (MODEL(B
+                                                                                                                                    STAR(STAR(X0740)))))))))))))))))))
+                                                              AND (R (STAR (V) X0727 X0728)))
+                                                        IMPL (NOT (((MODEL (C STAR (X0728)))
+                                                                    OR (NOT (MODEL (C STAR (STAR (X0728))))))))))))))
+             AND (ALL X0743,X0744 (((NOT ((ALL X0745,X0746 ((((NOT ((ALL X0747,X0748 
+                                                                                            ((((MODEL(A
+                                                                                                                  X0747))
+                                                                                                        OR (NOT ((ALL X0749,X0750 
+                                                                                                                    (((MODEL(A
+                                                                                                                                      X0749))
+                                                                                                                           AND (R(STAR(X0747)
+                                                                                                                                  X0749
+                                                                                                                                  X0750)))
+                                                                                                                     IMPL (NOT (NOT (MODEL(A
+                                                                                                                                           STAR(STAR(X0750)))))))))))
+                                                                                                   AND (R(STAR(X0745)
+                                                                                                          X0747
+                                                                                                          X0748)))
+                                                                                             IMPL (NOT (((MODEL(B
+                                                                                                                   STAR(X0748)))
+                                                                                                         OR (NOT (MODEL(B
+                                                                                                                        STAR(STAR(X0748))))))))))))
+                                                                                OR (NOT ((ALL X0751,X0752 
+                                                                                            (((NOT ((ALL X0753,X0754 
+                                                                                                                ((((MODEL(A
+                                                                                                                                      X0753))
+                                                                                                                            OR (NOT ((ALL X0755,X0756 
+                                                                                                                                        (((MODEL(A
+                                                                                                                                                          X0755))
+                                                                                                                                               AND (R(STAR(X0753)
+                                                                                                                                                      X0755
+                                                                                                                                                      X0756)))
+                                                                                                                                         IMPL (NOT (NOT (MODEL(A
+                                                                                                                                                               STAR(STAR(X0756)))))))))))
+                                                                                                                       AND (R(STAR(X0751)
+                                                                                                                              X0753
+                                                                                                                              X0754)))
+                                                                                                                 IMPL (NOT (((MODEL(B
+                                                                                                                                       STAR(X0754)))
+                                                                                                                             OR (NOT (MODEL(B
+                                                                                                                                            STAR(STAR(X0754))))))))))))
+                                                                                                   AND (R(STAR(X0745)
+                                                                                                          X0751
+                                                                                                          X0752)))
+                                                                                             IMPL (NOT (NOT (NOT ((ALL X0757,X0758 
+                                                                                                                     ((((MODEL(A
+                                                                                                                                           X0757))
+                                                                                                                                 OR (NOT ((ALL X0759,X0760 
+                                                                                                                                             (((MODEL(A
+                                                                                                                                                               X0759))
+                                                                                                                                                    AND (R(STAR(X0757)
+                                                                                                                                                           X0759
+                                                                                                                                                           X0760)))
+                                                                                                                                              IMPL (NOT (NOT (MODEL(A
+                                                                                                                                                                    STAR(STAR(X0760)))))))))))
+                                                                                                                            AND (R(STAR(STAR(STAR(X0752)))
+                                                                                                                                   X0757
+                                                                                                                                   X0758)))
+                                                                                                                      IMPL (NOT (((MODEL(B
+                                                                                                                                            STAR(X0758)))
+                                                                                                                                  OR (NOT (MODEL(B
+                                                                                                                                                 STAR(STAR(X0758)))))))))))))))))))
+                                                                           AND (R (STAR (X0743) X0745 X0746)))
+                                                                     IMPL (NOT (((MODEL (C STAR (X0746)))
+                                                                                 OR (NOT MODEL (C STAR (STAR (X0746)))))))))))
+                                         AND (R (0 X0743 X0744)))
+                                   IMPL (NOT ((ALL X0761,X0762 ((((MODEL (A X0761))
+                                                                           OR (NOT ((ALL X0763,X0764 
+                                                                                       (((MODEL(A
+                                                                                                         X0763))
+                                                                                              AND (R(STAR(X0761)
+                                                                                                     X0763
+                                                                                                     X0764)))
+                                                                                        IMPL (NOT (NOT (MODEL(A
+                                                                                                              STAR(STAR(X0764)))))))))))
+                                                                      AND (R (STAR (X0744) X0761 X0762)))
+                                                                IMPL (NOT (((NOT ((ALL X0765,X0766 
+                                                                                        ((((MODEL(B
+                                                                                                              X0765))
+                                                                                                    OR (NOT ((ALL X0767,X0768 
+                                                                                                                (((MODEL(B
+                                                                                                                                  X0767))
+                                                                                                                       AND (R(STAR(X0765)
+                                                                                                                              X0767
+                                                                                                                              X0768)))
+                                                                                                                 IMPL (NOT (NOT (MODEL(B
+                                                                                                                                       STAR(STAR(X0768)))))))))))
+                                                                                               AND (R(STAR(STAR(X0762))
+                                                                                                      X0765
+                                                                                                      X0766)))
+                                                                                         IMPL (NOT (((MODEL(C
+                                                                                                               STAR(X0766)))
+                                                                                                     OR (NOT (MODEL(C
+                                                                                                                    STAR(STAR(X0766))))))))))))
+                                                                            OR (NOT (NOT ((ALL X0769,X0770 
+                                                                                             ((((MODEL(B
+                                                                                                                   X0769))
+                                                                                                         OR (NOT ((ALL X0771,X0772 
+                                                                                                                     (((MODEL(B
+                                                                                                                                       X0771))
+                                                                                                                            AND (R(STAR(X0769)
+                                                                                                                                   X0771
+                                                                                                                                   X0772)))
+                                                                                                                      IMPL (NOT (NOT (MODEL(B
+                                                                                                                                            STAR(STAR(X0772)))))))))))
+                                                                                                    AND (R(STAR(STAR(STAR(X0762)))
+                                                                                                           X0769
+                                                                                                           X0770)))
+                                                                                              IMPL (NOT (((MODEL(C
+                                                                                                                    STAR(X0770)))
+                                                                                                          OR (NOT (MODEL(C
+                                                                                                                         STAR(STAR(X0770))))))))))))))))))))))
+             
+   
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization and Splitting
+             =================================================================
+
+   Splitpart 1
+
+             T1: + R(star(c_9) c_3 c_8)
+             T2: + R(0 c_9 c_10)
+             T3: + MODEL(a c_3)  + MODEL(a c_1)
+             T4: + MODEL(a c_3)  + R(star(c_3) c_1 c_2)
+             T5: + MODEL(a c_3)  - MODEL(a star(star(c_2)))
+             T6: All x,y:Any + R(star(star(c_8)) c_6 c_7)  - MODEL(b y)  - R(star(star(star(c_8))) y x)
+                             - MODEL(c star(x))
+             T7: All x,y:Any + R(star(star(c_8)) c_6 c_7)  - MODEL(b y)  - R(star(star(star(c_8))) y x)
+                             + MODEL(c star(star(x)))
+             T8: All x,y:Any + MODEL(b c_6)  + MODEL(b c_4)  - MODEL(b y)  - R(star(star(star(c_8))) y x)
+                             - MODEL(c star(x))
+             T9: All x,y:Any + MODEL(b c_6)  + MODEL(b c_4)  - MODEL(b y)  - R(star(star(star(c_8))) y x)
+                             + MODEL(c star(star(x)))
+             T10: All x,y:Any + MODEL(b c_6)  + R(star(c_6) c_4 c_5)  - MODEL(b y)  - R(star(star(star(c_8))) y x)
+                              - MODEL(c star(x))
+             T11: All x,y:Any + MODEL(b c_6)  + R(star(c_6) c_4 c_5)  - MODEL(b y)  - R(star(star(star(c_8))) y x)
+                              + MODEL(c star(star(x)))
+             T12: All x,y:Any + MODEL(b c_6)  - MODEL(b star(star(c_5)))  - MODEL(b y)
+                              - R(star(star(star(c_8))) y x)  - MODEL(c star(x))
+             T13: All x,y:Any + MODEL(b c_6)  - MODEL(b star(star(c_5)))  - MODEL(b y)
+                              - R(star(star(star(c_8))) y x)  + MODEL(c star(star(x)))
+             T14: All x,y:Any + MODEL(c star(c_7))  - MODEL(c star(star(c_7)))  - MODEL(b y)
+                              - R(star(star(star(c_8))) y x)  - MODEL(c star(x))
+             T15: All x,y:Any + MODEL(c star(c_7))  - MODEL(c star(star(c_7)))  - MODEL(b y)
+                              - R(star(star(star(c_8))) y x)  + MODEL(c star(star(x)))
+             T16: All x,y,z,u:Any - MODEL(a u)  - R(star(z) u y)  - MODEL(b star(y))  - R(star(c_10) z x)
+                                  - MODEL(c star(x))
+             T17: All x,y,z,u:Any - MODEL(a u)  - R(star(z) u y)  - MODEL(b star(y))  - R(star(c_10) z x)
+                                  + MODEL(c star(star(x)))
+             T18: All x,y,z,u:Any - MODEL(a u)  - R(star(z) u y)  + MODEL(b star(star(y)))  - R(star(c_10) z x)
+                                  - MODEL(c star(x))
+             T19: All x,y,z,u:Any - MODEL(a u)  - R(star(z) u y)  + MODEL(b star(star(y)))  - R(star(c_10) z x)
+                                  + MODEL(c star(star(x)))
+             T20: All x,y,z,u:Any + R(star(star(c_8)) c_6 c_7)  - MODEL(b u)  - R(star(z) u y)
+                                  + MODEL(b star(star(y)))  - R(star(star(star(c_8))) z x)  - MODEL(c star(x))
+             T21: All x,y,z,u:Any + R(star(star(c_8)) c_6 c_7)  - MODEL(b u)  - R(star(z) u y)
+                                  + MODEL(b star(star(y)))  - R(star(star(star(c_8))) z x)  + MODEL(c star(star(x)))
+             T22: All x,y,z,u:Any + MODEL(b c_6)  + MODEL(b c_4)  - MODEL(b u)  - R(star(z) u y)
+                                  + MODEL(b star(star(y)))  - R(star(star(star(c_8))) z x)  - MODEL(c star(x))
+             T23: All x,y,z,u:Any + MODEL(b c_6)  + MODEL(b c_4)  - MODEL(b u)  - R(star(z) u y)
+                                  + MODEL(b star(star(y)))  - R(star(star(star(c_8))) z x)  + MODEL(c star(star(x)))
+             T24: All x,y,z,u:Any + MODEL(b c_6)  + R(star(c_6) c_4 c_5)  - MODEL(b u)  - R(star(z) u y)
+                                  + MODEL(b star(star(y)))  - R(star(star(star(c_8))) z x)  - MODEL(c star(x))
+             T25: All x,y,z,u:Any + MODEL(b c_6)  + R(star(c_6) c_4 c_5)  - MODEL(b u)  - R(star(z) u y)
+                                  + MODEL(b star(star(y)))  - R(star(star(star(c_8))) z x)  + MODEL(c star(star(x)))
+             T26: All x,y,z,u:Any + MODEL(b c_6)  - MODEL(b star(star(c_5)))  - MODEL(b u)  - R(star(z) u y)
+                                  + MODEL(b star(star(y)))  - R(star(star(star(c_8))) z x)  - MODEL(c star(x))
+             T27: All x,y,z,u:Any + MODEL(b c_6)  - MODEL(b star(star(c_5)))  - MODEL(b u)  - R(star(z) u y)
+                                  + MODEL(b star(star(y)))  - R(star(star(star(c_8))) z x)  + MODEL(c star(star(x)))
+             T28: All x,y,z,u:Any + MODEL(c star(c_7))  - MODEL(c star(star(c_7)))  - MODEL(b u)  - R(star(z) u y)
+                                  + MODEL(b star(star(y)))  - R(star(star(star(c_8))) z x)  - MODEL(c star(x))
+             T29: All x,y,z,u:Any + MODEL(c star(c_7))  - MODEL(c star(star(c_7)))  - MODEL(b u)  - R(star(z) u y)
+                                  + MODEL(b star(star(y)))  - R(star(star(star(c_8))) z x)  + MODEL(c star(star(x)))
+             T30: All x,y,z,u,v,w:Any - MODEL(a w)  - R(star(v) w u)  + MODEL(a star(star(u)))  - R(star(z) v y)
+                                      - MODEL(b star(y))  - R(star(c_10) z x)  - MODEL(c star(x))
+             T31: All x,y,z,u,v,w:Any - MODEL(a w)  - R(star(v) w u)  + MODEL(a star(star(u)))  - R(star(z) v y)
+                                      - MODEL(b star(y))  - R(star(c_10) z x)  + MODEL(c star(star(x)))
+             T32: All x,y,z,u,v,w:Any - MODEL(a w)  - R(star(v) w u)  + MODEL(a star(star(u)))  - R(star(z) v y)
+                                      + MODEL(b star(star(y)))  - R(star(c_10) z x)  - MODEL(c star(x))
+             T33: All x,y,z,u,v,w:Any - MODEL(a w)  - R(star(v) w u)  + MODEL(a star(star(u)))  - R(star(z) v y)
+                                      + MODEL(b star(star(y)))  - R(star(c_10) z x)  + MODEL(c star(star(x)))
+             T34: All x,y,z,u,v,w:Any - MODEL(a w)  - R(star(v) w u)  - MODEL(b star(u))  - R(star(z) v y)
+                                      + R(star(star(star(y))) f_3(y z x) f_4(y z x))  - R(star(c_10) z x)
+                                      - MODEL(c star(x))
+             T35: All x,y,z,u,v,w:Any - MODEL(a w)  - R(star(v) w u)  - MODEL(b star(u))  - R(star(z) v y)
+                                      + R(star(star(star(y))) f_3(y z x) f_4(y z x))  - R(star(c_10) z x)
+                                      + MODEL(c star(star(x)))
+             T36: All x,y,z,u,v,w:Any - MODEL(a w)  - R(star(v) w u)  + MODEL(b star(star(u)))  - R(star(z) v y)
+                                      + R(star(star(star(y))) f_3(y z x) f_4(y z x))  - R(star(c_10) z x)
+                                      - MODEL(c star(x))
+             T37: All x,y,z,u,v,w:Any - MODEL(a w)  - R(star(v) w u)  + MODEL(b star(star(u)))  - R(star(z) v y)
+                                      + R(star(star(star(y))) f_3(y z x) f_4(y z x))  - R(star(c_10) z x)
+                                      + MODEL(c star(star(x)))
+             T38: All x,y,z,u,v,w:Any - MODEL(a w)  - R(star(v) w u)  - MODEL(b star(u))  - R(star(z) v y)
+                                      + MODEL(a f_3(y z x))  + MODEL(a f_1(y z x))  - R(star(c_10) z x)
+                                      - MODEL(c star(x))
+             T39: All x,y,z,u,v,w:Any - MODEL(a w)  - R(star(v) w u)  - MODEL(b star(u))  - R(star(z) v y)
+                                      + MODEL(a f_3(y z x))  + MODEL(a f_1(y z x))  - R(star(c_10) z x)
+                                      + MODEL(c star(star(x)))
+             T40: All x,y,z,u,v,w:Any - MODEL(a w)  - R(star(v) w u)  - MODEL(b star(u))  - R(star(z) v y)
+                                      + MODEL(a f_3(y z x))  + R(star(f_3(y z x)) f_1(y z x) f_2(y z x))
+                                      - R(star(c_10) z x)  - MODEL(c star(x))
+             T41: All x,y,z,u,v,w:Any - MODEL(a w)  - R(star(v) w u)  - MODEL(b star(u))  - R(star(z) v y)
+                                      + MODEL(a f_3(y z x))  + R(star(f_3(y z x)) f_1(y z x) f_2(y z x))
+                                      - R(star(c_10) z x)  + MODEL(c star(star(x)))
+             T42: All x,y,z,u,v,w:Any - MODEL(a w)  - R(star(v) w u)  - MODEL(b star(u))  - R(star(z) v y)
+                                      + MODEL(a f_3(y z x))  - MODEL(a star(star(f_2(y z x))))  - R(star(c_10) z x)
+                                      - MODEL(c star(x))
+             T43: All x,y,z,u,v,w:Any - MODEL(a w)  - R(star(v) w u)  - MODEL(b star(u))  - R(star(z) v y)
+                                      + MODEL(a f_3(y z x))  - MODEL(a star(star(f_2(y z x))))  - R(star(c_10) z x)
+                                      + MODEL(c star(star(x)))
+             T44: All x,y,z,u,v,w:Any - MODEL(a w)  - R(star(v) w u)  - MODEL(b star(u))  - R(star(z) v y)
+                                      + MODEL(b star(f_4(y z x)))  - MODEL(b star(star(f_4(y z x))))
+                                      - R(star(c_10) z x)  - MODEL(c star(x))
+             T45: All x,y,z,u,v,w:Any - MODEL(a w)  - R(star(v) w u)  - MODEL(b star(u))  - R(star(z) v y)
+                                      + MODEL(b star(f_4(y z x)))  - MODEL(b star(star(f_4(y z x))))
+                                      - R(star(c_10) z x)  + MODEL(c star(star(x)))
+             T46: All x,y,z,u,v,w:Any - MODEL(a w)  - R(star(v) w u)  + MODEL(b star(star(u)))  - R(star(z) v y)
+                                      + MODEL(a f_3(y z x))  + MODEL(a f_1(y z x))  - R(star(c_10) z x)
+                                      - MODEL(c star(x))
+             T47: All x,y,z,u,v,w:Any - MODEL(a w)  - R(star(v) w u)  + MODEL(b star(star(u)))  - R(star(z) v y)
+                                      + MODEL(a f_3(y z x))  + MODEL(a f_1(y z x))  - R(star(c_10) z x)
+                                      + MODEL(c star(star(x)))
+             T48: All x,y,z,u,v,w:Any - MODEL(a w)  - R(star(v) w u)  + MODEL(b star(star(u)))  - R(star(z) v y)
+                                      + MODEL(a f_3(y z x))  + R(star(f_3(y z x)) f_1(y z x) f_2(y z x))
+                                      - R(star(c_10) z x)  - MODEL(c star(x))
+             T49: All x,y,z,u,v,w:Any - MODEL(a w)  - R(star(v) w u)  + MODEL(b star(star(u)))  - R(star(z) v y)
+                                      + MODEL(a f_3(y z x))  + R(star(f_3(y z x)) f_1(y z x) f_2(y z x))
+                                      - R(star(c_10) z x)  + MODEL(c star(star(x)))
+             T50: All x,y,z,u,v,w:Any - MODEL(a w)  - R(star(v) w u)  + MODEL(b star(star(u)))  - R(star(z) v y)
+                                      + MODEL(a f_3(y z x))  - MODEL(a star(star(f_2(y z x))))  - R(star(c_10) z x)
+                                      - MODEL(c star(x))
+             T51: All x,y,z,u,v,w:Any - MODEL(a w)  - R(star(v) w u)  + MODEL(b star(star(u)))  - R(star(z) v y)
+                                      + MODEL(a f_3(y z x))  - MODEL(a star(star(f_2(y z x))))  - R(star(c_10) z x)
+                                      + MODEL(c star(star(x)))
+             T52: All x,y,z,u,v,w:Any - MODEL(a w)  - R(star(v) w u)  + MODEL(b star(star(u)))  - R(star(z) v y)
+                                      + MODEL(b star(f_4(y z x)))  - MODEL(b star(star(f_4(y z x))))
+                                      - R(star(c_10) z x)  - MODEL(c star(x))
+             T53: All x,y,z,u,v,w:Any - MODEL(a w)  - R(star(v) w u)  + MODEL(b star(star(u)))  - R(star(z) v y)
+                                      + MODEL(b star(f_4(y z x)))  - MODEL(b star(star(f_4(y z x))))
+                                      - R(star(c_10) z x)  + MODEL(c star(star(x)))
+             T54: All x,y,z,u,v,w,xx,yy:Any - MODEL(a yy)  - R(star(xx) yy w)  + MODEL(a star(star(w)))
+                                            - R(star(v) xx u)  - MODEL(b star(u))  - R(star(z) v y)
+                                            + R(star(star(star(y))) f_3(y z x) f_4(y z x))  - R(star(c_10) z x)
+                                            - MODEL(c star(x))
+             T55: All x,y,z,u,v,w,xx,yy:Any - MODEL(a yy)  - R(star(xx) yy w)  + MODEL(a star(star(w)))
+                                            - R(star(v) xx u)  - MODEL(b star(u))  - R(star(z) v y)
+                                            + R(star(star(star(y))) f_3(y z x) f_4(y z x))  - R(star(c_10) z x)
+                                            + MODEL(c star(star(x)))
+             T56: All x,y,z,u,v,w,xx,yy:Any - MODEL(a yy)  - R(star(xx) yy w)  + MODEL(a star(star(w)))
+                                            - R(star(v) xx u)  + MODEL(b star(star(u)))  - R(star(z) v y)
+                                            + R(star(star(star(y))) f_3(y z x) f_4(y z x))  - R(star(c_10) z x)
+                                            - MODEL(c star(x))
+             T57: All x,y,z,u,v,w,xx,yy:Any - MODEL(a yy)  - R(star(xx) yy w)  + MODEL(a star(star(w)))
+                                            - R(star(v) xx u)  + MODEL(b star(star(u)))  - R(star(z) v y)
+                                            + R(star(star(star(y))) f_3(y z x) f_4(y z x))  - R(star(c_10) z x)
+                                            + MODEL(c star(star(x)))
+             T58: All x,y,z,u,v,w,xx,yy:Any - MODEL(a yy)  - R(star(xx) yy w)  + MODEL(a star(star(w)))
+                                            - R(star(v) xx u)  - MODEL(b star(u))  - R(star(z) v y)
+                                            + MODEL(a f_3(y z x))  + MODEL(a f_1(y z x))  - R(star(c_10) z x)
+                                            - MODEL(c star(x))
+             T59: All x,y,z,u,v,w,xx,yy:Any - MODEL(a yy)  - R(star(xx) yy w)  + MODEL(a star(star(w)))
+                                            - R(star(v) xx u)  - MODEL(b star(u))  - R(star(z) v y)
+                                            + MODEL(a f_3(y z x))  + MODEL(a f_1(y z x))  - R(star(c_10) z x)
+                                            + MODEL(c star(star(x)))
+             T60: All x,y,z,u,v,w,xx,yy:Any - MODEL(a yy)  - R(star(xx) yy w)  + MODEL(a star(star(w)))
+                                            - R(star(v) xx u)  - MODEL(b star(u))  - R(star(z) v y)
+                                            + MODEL(a f_3(y z x))  + R(star(f_3(y z x)) f_1(y z x) f_2(y z x))
+                                            - R(star(c_10) z x)  - MODEL(c star(x))
+             T61: All x,y,z,u,v,w,xx,yy:Any - MODEL(a yy)  - R(star(xx) yy w)  + MODEL(a star(star(w)))
+                                            - R(star(v) xx u)  - MODEL(b star(u))  - R(star(z) v y)
+                                            + MODEL(a f_3(y z x))  + R(star(f_3(y z x)) f_1(y z x) f_2(y z x))
+                                            - R(star(c_10) z x)  + MODEL(c star(star(x)))
+             T62: All x,y,z,u,v,w,xx,yy:Any - MODEL(a yy)  - R(star(xx) yy w)  + MODEL(a star(star(w)))
+                                            - R(star(v) xx u)  - MODEL(b star(u))  - R(star(z) v y)
+                                            + MODEL(a f_3(y z x))  - MODEL(a star(star(f_2(y z x))))
+                                            - R(star(c_10) z x)  - MODEL(c star(x))
+             T63: All x,y,z,u,v,w,xx,yy:Any - MODEL(a yy)  - R(star(xx) yy w)  + MODEL(a star(star(w)))
+                                            - R(star(v) xx u)  - MODEL(b star(u))  - R(star(z) v y)
+                                            + MODEL(a f_3(y z x))  - MODEL(a star(star(f_2(y z x))))
+                                            - R(star(c_10) z x)  + MODEL(c star(star(x)))
+             T64: All x,y,z,u,v,w,xx,yy:Any - MODEL(a yy)  - R(star(xx) yy w)  + MODEL(a star(star(w)))
+                                            - R(star(v) xx u)  - MODEL(b star(u))  - R(star(z) v y)
+                                            + MODEL(b star(f_4(y z x)))  - MODEL(b star(star(f_4(y z x))))
+                                            - R(star(c_10) z x)  - MODEL(c star(x))
+             T65: All x,y,z,u,v,w,xx,yy:Any - MODEL(a yy)  - R(star(xx) yy w)  + MODEL(a star(star(w)))
+                                            - R(star(v) xx u)  - MODEL(b star(u))  - R(star(z) v y)
+                                            + MODEL(b star(f_4(y z x)))  - MODEL(b star(star(f_4(y z x))))
+                                            - R(star(c_10) z x)  + MODEL(c star(star(x)))
+             T66: All x,y,z,u,v,w,xx,yy:Any - MODEL(a yy)  - R(star(xx) yy w)  + MODEL(a star(star(w)))
+                                            - R(star(v) xx u)  + MODEL(b star(star(u)))  - R(star(z) v y)
+                                            + MODEL(a f_3(y z x))  + MODEL(a f_1(y z x))  - R(star(c_10) z x)
+                                            - MODEL(c star(x))
+             T67: All x,y,z,u,v,w,xx,yy:Any - MODEL(a yy)  - R(star(xx) yy w)  + MODEL(a star(star(w)))
+                                            - R(star(v) xx u)  + MODEL(b star(star(u)))  - R(star(z) v y)
+                                            + MODEL(a f_3(y z x))  + MODEL(a f_1(y z x))  - R(star(c_10) z x)
+                                            + MODEL(c star(star(x)))
+             T68: All x,y,z,u,v,w,xx,yy:Any - MODEL(a yy)  - R(star(xx) yy w)  + MODEL(a star(star(w)))
+                                            - R(star(v) xx u)  + MODEL(b star(star(u)))  - R(star(z) v y)
+                                            + MODEL(a f_3(y z x))  + R(star(f_3(y z x)) f_1(y z x) f_2(y z x))
+                                            - R(star(c_10) z x)  - MODEL(c star(x))
+             T69: All x,y,z,u,v,w,xx,yy:Any - MODEL(a yy)  - R(star(xx) yy w)  + MODEL(a star(star(w)))
+                                            - R(star(v) xx u)  + MODEL(b star(star(u)))  - R(star(z) v y)
+                                            + MODEL(a f_3(y z x))  + R(star(f_3(y z x)) f_1(y z x) f_2(y z x))
+                                            - R(star(c_10) z x)  + MODEL(c star(star(x)))
+             T70: All x,y,z,u,v,w,xx,yy:Any - MODEL(a yy)  - R(star(xx) yy w)  + MODEL(a star(star(w)))
+                                            - R(star(v) xx u)  + MODEL(b star(star(u)))  - R(star(z) v y)
+                                            + MODEL(a f_3(y z x))  - MODEL(a star(star(f_2(y z x))))
+                                            - R(star(c_10) z x)  - MODEL(c star(x))
+             T71: All x,y,z,u,v,w,xx,yy:Any - MODEL(a yy)  - R(star(xx) yy w)  + MODEL(a star(star(w)))
+                                            - R(star(v) xx u)  + MODEL(b star(star(u)))  - R(star(z) v y)
+                                            + MODEL(a f_3(y z x))  - MODEL(a star(star(f_2(y z x))))
+                                            - R(star(c_10) z x)  + MODEL(c star(star(x)))
+             T72: All x,y,z,u,v,w,xx,yy:Any - MODEL(a yy)  - R(star(xx) yy w)  + MODEL(a star(star(w)))
+                                            - R(star(v) xx u)  + MODEL(b star(star(u)))  - R(star(z) v y)
+                                            + MODEL(b star(f_4(y z x)))  - MODEL(b star(star(f_4(y z x))))
+                                            - R(star(c_10) z x)  - MODEL(c star(x))
+             T73: All x,y,z,u,v,w,xx,yy:Any - MODEL(a yy)  - R(star(xx) yy w)  + MODEL(a star(star(w)))
+                                            - R(star(v) xx u)  + MODEL(b star(star(u)))  - R(star(z) v y)
+                                            + MODEL(b star(f_4(y z x)))  - MODEL(b star(star(f_4(y z x))))
+                                            - R(star(c_10) z x)  + MODEL(c star(star(x)))
+
+   Splitpart 2
+
+             T74: + R(star(c_23) c_21 c_22)
+             T75: + R(0 c_23 c_24)
+             T76: + R(star(c_21) c_13 c_14)  + R(star(c_19) c_17 c_18)
+             T77: + R(star(c_21) c_13 c_14)  + R(star(c_21) c_19 c_20)
+             T78: + MODEL(c star(c_22))  - MODEL(c star(star(c_22)))
+             T79: + MODEL(a c_13)  + MODEL(a c_11)  + R(star(c_19) c_17 c_18)
+             T80: + MODEL(a c_13)  + MODEL(a c_11)  + R(star(c_21) c_19 c_20)
+             T81: + MODEL(a c_13)  + R(star(c_13) c_11 c_12)  + R(star(c_19) c_17 c_18)
+             T82: + MODEL(a c_13)  + R(star(c_13) c_11 c_12)  + R(star(c_21) c_19 c_20)
+             T83: + MODEL(a c_13)  - MODEL(a star(star(c_12)))  + R(star(c_19) c_17 c_18)
+             T84: + MODEL(a c_13)  - MODEL(a star(star(c_12)))  + R(star(c_21) c_19 c_20)
+             T85: + R(star(c_21) c_13 c_14)  + MODEL(a c_17)  + MODEL(a c_15)
+             T86: + R(star(c_21) c_13 c_14)  + MODEL(a c_17)  + R(star(c_17) c_15 c_16)
+             T87: + R(star(c_21) c_13 c_14)  + MODEL(a c_17)  - MODEL(a star(star(c_16)))
+             T88: + R(star(c_21) c_13 c_14)  + MODEL(b star(c_18))  - MODEL(b star(star(c_18)))
+             T89: + MODEL(b star(c_14))  - MODEL(b star(star(c_14)))  + R(star(c_19) c_17 c_18)
+             T90: + MODEL(b star(c_14))  - MODEL(b star(star(c_14)))  + R(star(c_21) c_19 c_20)
+             T91: All x,y:Any - MODEL(a y)  - R(star(c_24) y x)  + R(star(star(star(x))) f_7(x) f_8(x))
+             T92: + MODEL(a c_13)  + MODEL(a c_11)  + MODEL(a c_17)  + MODEL(a c_15)
+             T93: + MODEL(a c_13)  + MODEL(a c_11)  + MODEL(a c_17)  + R(star(c_17) c_15 c_16)
+             T94: + MODEL(a c_13)  + MODEL(a c_11)  + MODEL(a c_17)  - MODEL(a star(star(c_16)))
+             T95: + MODEL(a c_13)  + MODEL(a c_11)  + MODEL(b star(c_18))  - MODEL(b star(star(c_18)))
+             T96: + MODEL(a c_13)  + R(star(c_13) c_11 c_12)  + MODEL(a c_17)  + MODEL(a c_15)
+             T97: + MODEL(a c_13)  + R(star(c_13) c_11 c_12)  + MODEL(a c_17)  + R(star(c_17) c_15 c_16)
+             T98: + MODEL(a c_13)  + R(star(c_13) c_11 c_12)  + MODEL(a c_17)  - MODEL(a star(star(c_16)))
+             T99: + MODEL(a c_13)  + R(star(c_13) c_11 c_12)  + MODEL(b star(c_18))  - MODEL(b star(star(c_18)))
+             T100: + MODEL(a c_13)  - MODEL(a star(star(c_12)))  + MODEL(a c_17)  + MODEL(a c_15)
+             T101: + MODEL(a c_13)  - MODEL(a star(star(c_12)))  + MODEL(a c_17)  + R(star(c_17) c_15 c_16)
+             T102: + MODEL(a c_13)  - MODEL(a star(star(c_12)))  + MODEL(a c_17)  - MODEL(a star(star(c_16)))
+             T103: + MODEL(a c_13)  - MODEL(a star(star(c_12)))  + MODEL(b star(c_18))  - MODEL(b star(star(c_18)))
+             T104: All x,y:Any + R(star(c_21) c_13 c_14)  - MODEL(a y)  - R(star(star(star(c_20))) y x)
+                               - MODEL(b star(x))
+             T105: All x,y:Any + R(star(c_21) c_13 c_14)  - MODEL(a y)  - R(star(star(star(c_20))) y x)
+                               + MODEL(b star(star(x)))
+             T106: + MODEL(b star(c_14))  - MODEL(b star(star(c_14)))  + MODEL(a c_17)  + MODEL(a c_15)
+             T107: + MODEL(b star(c_14))  - MODEL(b star(star(c_14)))  + MODEL(a c_17)  + R(star(c_17) c_15 c_16)
+             T108: + MODEL(b star(c_14))  - MODEL(b star(star(c_14)))  + MODEL(a c_17)  - MODEL(a star(star(c_16)))
+             T109: + MODEL(b star(c_14))  - MODEL(b star(star(c_14)))  + MODEL(b star(c_18))
+                   - MODEL(b star(star(c_18)))
+             T110: All x,y:Any - MODEL(a y)  - R(star(c_24) y x)  + MODEL(b f_7(x))  + MODEL(b f_5(x))
+             T111: All x,y:Any - MODEL(a y)  - R(star(c_24) y x)  + MODEL(b f_7(x))  + R(star(f_7(x)) f_5(x) f_6(x))
+             T112: All x,y:Any - MODEL(a y)  - R(star(c_24) y x)  + MODEL(b f_7(x))  - MODEL(b star(star(f_6(x))))
+             T113: All x,y:Any - MODEL(a y)  - R(star(c_24) y x)  + MODEL(c star(f_8(x)))
+                               - MODEL(c star(star(f_8(x))))
+             T114: All x,y:Any + MODEL(a c_13)  + MODEL(a c_11)  - MODEL(a y)  - R(star(star(star(c_20))) y x)
+                               - MODEL(b star(x))
+             T115: All x,y:Any + MODEL(a c_13)  + MODEL(a c_11)  - MODEL(a y)  - R(star(star(star(c_20))) y x)
+                               + MODEL(b star(star(x)))
+             T116: All x,y:Any + MODEL(a c_13)  + R(star(c_13) c_11 c_12)  - MODEL(a y)
+                               - R(star(star(star(c_20))) y x)  - MODEL(b star(x))
+             T117: All x,y:Any + MODEL(a c_13)  + R(star(c_13) c_11 c_12)  - MODEL(a y)
+                               - R(star(star(star(c_20))) y x)  + MODEL(b star(star(x)))
+             T118: All x,y:Any + MODEL(a c_13)  - MODEL(a star(star(c_12)))  - MODEL(a y)
+                               - R(star(star(star(c_20))) y x)  - MODEL(b star(x))
+             T119: All x,y:Any + MODEL(a c_13)  - MODEL(a star(star(c_12)))  - MODEL(a y)
+                               - R(star(star(star(c_20))) y x)  + MODEL(b star(star(x)))
+             T120: All x,y:Any + MODEL(b star(c_14))  - MODEL(b star(star(c_14)))  - MODEL(a y)
+                               - R(star(star(star(c_20))) y x)  - MODEL(b star(x))
+             T121: All x,y:Any + MODEL(b star(c_14))  - MODEL(b star(star(c_14)))  - MODEL(a y)
+                               - R(star(star(star(c_20))) y x)  + MODEL(b star(star(x)))
+             T122: All x,y,z,u:Any - MODEL(a u)  - R(star(c_24) u z)  - MODEL(b y)  - R(star(star(z)) y x)
+                                   - MODEL(c star(x))
+             T123: All x,y,z,u:Any - MODEL(a u)  - R(star(c_24) u z)  - MODEL(b y)  - R(star(star(z)) y x)
+                                   + MODEL(c star(star(x)))
+             T124: All x,y,z,u:Any - MODEL(a u)  - R(star(z) u y)  + MODEL(a star(star(y)))  - R(star(c_24) z x)
+                                   + R(star(star(star(x))) f_7(x) f_8(x))
+             T125: All x,y,z,u:Any + R(star(c_21) c_13 c_14)  - MODEL(a u)  - R(star(z) u y)
+                                   + MODEL(a star(star(y)))  - R(star(star(star(c_20))) z x)  - MODEL(b star(x))
+             T126: All x,y,z,u:Any + R(star(c_21) c_13 c_14)  - MODEL(a u)  - R(star(z) u y)
+                                   + MODEL(a star(star(y)))  - R(star(star(star(c_20))) z x)
+                                   + MODEL(b star(star(x)))
+             T127: All x,y,z,u:Any - MODEL(a u)  - R(star(z) u y)  + MODEL(a star(star(y)))  - R(star(c_24) z x)
+                                   + MODEL(b f_7(x))  + MODEL(b f_5(x))
+             T128: All x,y,z,u:Any - MODEL(a u)  - R(star(z) u y)  + MODEL(a star(star(y)))  - R(star(c_24) z x)
+                                   + MODEL(b f_7(x))  + R(star(f_7(x)) f_5(x) f_6(x))
+             T129: All x,y,z,u:Any - MODEL(a u)  - R(star(z) u y)  + MODEL(a star(star(y)))  - R(star(c_24) z x)
+                                   + MODEL(b f_7(x))  - MODEL(b star(star(f_6(x))))
+             T130: All x,y,z,u:Any - MODEL(a u)  - R(star(z) u y)  + MODEL(a star(star(y)))  - R(star(c_24) z x)
+                                   + MODEL(c star(f_8(x)))  - MODEL(c star(star(f_8(x))))
+             T131: All x,y,z,u:Any + MODEL(a c_13)  + MODEL(a c_11)  - MODEL(a u)  - R(star(z) u y)
+                                   + MODEL(a star(star(y)))  - R(star(star(star(c_20))) z x)  - MODEL(b star(x))
+             T132: All x,y,z,u:Any + MODEL(a c_13)  + MODEL(a c_11)  - MODEL(a u)  - R(star(z) u y)
+                                   + MODEL(a star(star(y)))  - R(star(star(star(c_20))) z x)
+                                   + MODEL(b star(star(x)))
+             T133: All x,y,z,u:Any + MODEL(a c_13)  + R(star(c_13) c_11 c_12)  - MODEL(a u)  - R(star(z) u y)
+                                   + MODEL(a star(star(y)))  - R(star(star(star(c_20))) z x)  - MODEL(b star(x))
+             T134: All x,y,z,u:Any + MODEL(a c_13)  + R(star(c_13) c_11 c_12)  - MODEL(a u)  - R(star(z) u y)
+                                   + MODEL(a star(star(y)))  - R(star(star(star(c_20))) z x)
+                                   + MODEL(b star(star(x)))
+             T135: All x,y,z,u:Any + MODEL(a c_13)  - MODEL(a star(star(c_12)))  - MODEL(a u)  - R(star(z) u y)
+                                   + MODEL(a star(star(y)))  - R(star(star(star(c_20))) z x)  - MODEL(b star(x))
+             T136: All x,y,z,u:Any + MODEL(a c_13)  - MODEL(a star(star(c_12)))  - MODEL(a u)  - R(star(z) u y)
+                                   + MODEL(a star(star(y)))  - R(star(star(star(c_20))) z x)
+                                   + MODEL(b star(star(x)))
+             T137: All x,y,z,u:Any + MODEL(b star(c_14))  - MODEL(b star(star(c_14)))  - MODEL(a u)
+                                   - R(star(z) u y)  + MODEL(a star(star(y)))  - R(star(star(star(c_20))) z x)
+                                   - MODEL(b star(x))
+             T138: All x,y,z,u:Any + MODEL(b star(c_14))  - MODEL(b star(star(c_14)))  - MODEL(a u)
+                                   - R(star(z) u y)  + MODEL(a star(star(y)))  - R(star(star(star(c_20))) z x)
+                                   + MODEL(b star(star(x)))
+             T139: All x,y,z,u,v,w:Any - MODEL(a w)  - R(star(c_24) w v)  - MODEL(b u)  - R(star(z) u y)
+                                       + MODEL(b star(star(y)))  - R(star(star(v)) z x)  - MODEL(c star(x))
+             T140: All x,y,z,u,v,w:Any - MODEL(a w)  - R(star(c_24) w v)  - MODEL(b u)  - R(star(z) u y)
+                                       + MODEL(b star(star(y)))  - R(star(star(v)) z x)  + MODEL(c star(star(x)))
+             T141: All x,y,z,u,v,w:Any - MODEL(a w)  - R(star(v) w u)  + MODEL(a star(star(u)))  - R(star(c_24) v z)
+                                       - MODEL(b y)  - R(star(star(z)) y x)  - MODEL(c star(x))
+             T142: All x,y,z,u,v,w:Any - MODEL(a w)  - R(star(v) w u)  + MODEL(a star(star(u)))  - R(star(c_24) v z)
+                                       - MODEL(b y)  - R(star(star(z)) y x)  + MODEL(c star(star(x)))
+             T143: All x,y,z,u,v,w,xx,yy:Any - MODEL(a yy)  - R(star(xx) yy w)  + MODEL(a star(star(w)))
+                                             - R(star(c_24) xx v)  - MODEL(b u)  - R(star(z) u y)
+                                             + MODEL(b star(star(y)))  - R(star(star(v)) z x)  - MODEL(c star(x))
+             T144: All x,y,z,u,v,w,xx,yy:Any - MODEL(a yy)  - R(star(xx) yy w)  + MODEL(a star(star(w)))
+                                             - R(star(c_24) xx v)  - MODEL(b u)  - R(star(z) u y)
+                                             + MODEL(b star(star(y)))  - R(star(star(v)) z x)
+                                             + MODEL(c star(star(x)))
+
+
+   End of Splitparts
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+

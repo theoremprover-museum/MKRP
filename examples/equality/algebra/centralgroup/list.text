@@ -1,0 +1,130 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                  ******************************************************************************
+                  *                                                                            *
+                  *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN     *
+                  *                                                                            *
+                  *        VERSION: MKRP 53.6 GENTRAFO 3.0                                     *
+                  *           DATE: 15-APR,1992  10:07                                         *
+                  *                                                                            *
+                  ******************************************************************************
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+Edit:     Axioms and Theorems edited: 15-APR,1992 10:07 
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+          Formulae given to the editor
+          ============================
+
+
+Axioms:   ALL X,Y,Z * (* (X Y) * (Y Z)) = Y
+          ALL X * (* (X X) X) = F (X)
+          ALL X * (X * (X X)) = G (X)
+          ALL X,Y * (G (X) Y) = * (X Y)
+          
+Theorems: ALL X,Y,Z * (* (X Y) Z) = * (F (Y) Z)
+          
+
+
+
+          Set of Axiom Clauses Resulting from Normalization
+          =================================================
+
+          A1:   All x:Any + =(x x)
+        * A2:   All x,y,z:Any + =(*(*(z y) *(y x)) y)
+        * A3:   All x:Any + =(*(*(x x) x) f(x))
+        * A4:   All x:Any + =(*(x *(x x)) g(x))
+        * A5:   All x,y:Any + =(*(g(y) x) *(y x))
+        
+
+
+
+
+          Set of Theorem Clauses Resulting from Normalization
+          ===================================================
+
+        * T6: - =(*(*(c_1 c_2) c_3) *(f(c_2) c_3))
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+Refutation:
+===========
+
+Initial Clauses:      A1:    All x:Any + =(x x)
+                    * A2:    All x,y,z:Any + =(*(*(z y) *(y x)) y)
+                    * A3:    All x:Any + =(*(*(x x) x) f(x))
+                    * A4:    All x:Any + =(*(x *(x x)) g(x))
+                    * A5:    All x,y:Any + =(*(g(y) x) *(y x))
+                    * T6:    - =(*(*(c_1 c_2) c_3) *(f(c_2) c_3))
+                    
+
+
+A2,1 & A4,1     --> * P3:    All x:Any + =(*(*(x x) x) g(*(x x)))
+
+P3,1 & A3       --> * RW4:   All x:Any + =(f(x) g(*(x x)))
+
+A3,1 & A2,1     --> * P5:    All x,y:Any + =(*(f(y) *(y x)) y)
+
+A4,1 & P5,1     --> * P6:    All x:Any + =(*(f(x) g(x)) x)
+
+A4,1 & A2,1     --> * P7:    All x,y:Any + =(*(*(y x) g(x)) x)
+
+P6,1 & A2,1     --> * P11:   All x,y:Any + =(*(y *(g(y) x)) g(y))
+
+P11,1 & A5      --> * RW12:  All x,y:Any + =(*(y *(y x)) g(y))
+
+RW12,1 & A5,1   --> * P13:   All x,y:Any + =(g(g(y)) *(y *(g(y) x)))
+
+P13,1 & A5      --> * RW14:  All x,y:Any + =(g(g(y)) *(y *(y x)))
+
+RW14,1 & RW12   --> * RW15:  All x:Any + =(g(g(x)) g(x))
+
+P7,1 & RW12,1   --> * P46:   All x,y:Any + =(*(*(y x) x) g(*(y x)))
+
+RW15,1 & P7,1   --> * P47:   All x,y:Any + =(*(*(y g(x)) g(x)) g(x))
+
+P47,1 & P46     --> * RW48:  All x,y:Any + =(g(*(y g(x))) g(x))
+
+RW48,1 & A5,1   --> * P51:   All x,y,z:Any + =(*(g(z) y) *(*(x g(z)) y))
+
+P51,1 & A5      --> * RW52:  All x,y,z:Any + =(*(z y) *(*(x g(z)) y))
+
+P5,1 & A2,1     --> * P53:   All x,y,z:Any + =(*(z *(*(z y) x)) *(z y))
+
+RW52,1 & P53,1  --> * P54:   All x,y,z:Any + =(*(z *(y x)) *(z g(y)))
+
+P54,1 & RW4,1   --> * P66:   All x,y:Any + =(f(*(y x)) g(*(*(y x) g(y))))
+
+P66,1 & RW48    --> * RW67:  All x,y:Any + =(f(*(y x)) g(y))
+
+P7,1 & RW67,1   --> * P70:   All x,y:Any + =(f(y) g(*(x y)))
+
+P70,1 & A5,1    --> * P85:   All x,y,z:Any + =(*(f(z) y) *(*(x z) y))
+
+P85,1 & T6,1    --> * R86:   []
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+  q.e.d. 
+
+
+Time Used for Refutation: 70 seconds

@@ -1,0 +1,59 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: Genera 7.1 PS 3.10 IP-TCP 52.16 DNA 29.22 MKRP 18.10     *
+                     *           DATE: 24-FEB-1988  21:29                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+
+   
+   Initial Clauses:    * IC1:  All x,y:Any +K(abs(plus(y x)) plus(abs(y) abs(x)))
+                       * IC2:  All x:Any +K(plus(f(x) f(x)) x)
+                       * IC3:  All x:Any +K(abs(minus(c2 c5)) x)
+                       * IC4:  All x,y:Any -K(abs(minus(y c5)) f1(y))  +K(abs(minus(a(c6 y) c3)) x)
+                       * IC5:  All x,y:Any -K(abs(minus(y c5)) f2(y))  +K(abs(minus(a(c7 y) c4)) x)
+                       * IC6:  All x,y,z:Any -K(z y)  -K(y x)  +K(z x)
+                       * IC7:  All x,y,z,u:Any -K(u z)  -K(y x)  +K(plus(u y) plus(z x))
+                       * IC8:  -K(abs(plus(minus(a(c6 c2) c3) minus(a(c7 c2) c4))) c1)
+                       
+
+   
+   IC6,3 & IC8,1  -->  * R9:   All x:Any -K(abs(plus(minus(a(c6 c2) c3) minus(a(c7 c2) c4))) x)  -K(x c1)
+   
+   IC2,1 & R9,2   -->  * R10:  -K(abs(plus(minus(a(c6 c2) c3) minus(a(c7 c2) c4))) plus(f(c1) f(c1)))
+   
+   IC6,3 & R10,1  -->  * R17:  All x:Any -K(abs(plus(minus(a(c6 c2) c3) minus(a(c7 c2) c4))) x)
+                                         -K(x plus(f(c1) f(c1)))
+   
+   IC1,1 & R17,1  -->  * R19:  -K(plus(abs(minus(a(c6 c2) c3)) abs(minus(a(c7 c2) c4))) plus(f(c1) f(c1)))
+   
+   IC7,3 & R19,1  -->  * R40:  -K(abs(minus(a(c6 c2) c3)) f(c1))  -K(abs(minus(a(c7 c2) c4)) f(c1))
+   
+   R40,2 & IC5,2  -->  * R41:  -K(abs(minus(a(c6 c2) c3)) f(c1))  -K(abs(minus(c2 c5)) f2(c2))
+   
+   R41,2 & IC3,1  -->  * R42:  -K(abs(minus(a(c6 c2) c3)) f(c1))
+   
+   R42,1 & IC4,2  -->  * R43:  -K(abs(minus(c2 c5)) f1(c2))
+   
+   R43,1 & IC3,1  -->  * R44:  []
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 

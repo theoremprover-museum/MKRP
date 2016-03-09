@@ -1,0 +1,333 @@
+ 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 24-JAN-85                                                     *
+                    *         DATE : 11-FEB-85  11:38:44                                           *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   11-FEB-85 11:19:23
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   3.9.2.LJME
+                                                                        
+************************************************************************
+                                                                        
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : SORT MENGE,VERKN,ELEMENT,INDEX,INDEXMENGE:ANY
+           TYPE LIDEAL(MENGE MENGE VERKN)
+           TYPE RIDEAL(MENGE MENGE VERKN)
+           TYPE IDEAL(MENGE MENGE VERKN)
+           TYPE UHG(MENGE MENGE VERKN)
+           TYPE ME(MENGE MENGE)
+           TYPE NICHTLEER(MENGE)
+           TYPE HG(MENGE VERKN)
+           TYPE NICHTLEER-IND(INDEXMENGE)
+           TYPE GLEICH(MENGE MENGE)
+           TYPE EL-IND(INDEX INDEXMENGE)
+           TYPE EL(ELEMENT MENGE)
+           TYPE MINIMAL(MENGE MENGE VERKN)
+           TYPE MINIMAL-BED-L(MENGE VERKN)
+           TYPE MINIMAL-BED-R(MENGE VERKN)
+           TYPE MPROD(MENGE MENGE VERKN) :MENGE
+           TYPE U(INDEX) :MENGE
+           TYPE VER-IND(INDEXMENGE) :MENGE
+           TYPE SM-IND(INDEXMENGE) :MENGE
+           TYPE APPLYV(VERKN ELEMENT ELEMENT) :ELEMENT
+           TYPE F*X(MENGE ELEMENT VERKN) :MENGE
+           TYPE SM(MENGE MENGE) :MENGE
+           TYPE T*(MENGE VERKN MENGE ELEMENT) :MENGE
+           * AUS DEFINITION VON IDEAL *
+           ALL IDL,F:MENGE ALL MAL:VERKN IDEAL(IDL F MAL) IMPL LIDEAL(IDL F MAL)
+           * FOLGERUNG AUS MINIMALITAET VON F *
+           ALL IDL,F:MENGE  ALL MAL:VERKN  
+                  MINIMAL-BED-L(F MAL) AND LIDEAL(IDL F MAL)
+             IMPL (EX MINIDL:MENGE LIDEAL(MINIDL F MAL) AND ME(MINIDL IDL) AND MINIMAL(MINIDL F MAL))
+           * EIGENSCHAFT VON VER-IND(I) *
+           ALL J:INDEX ALL I:INDEXMENGE EL-IND(J I) IMPL ME(U(J) VER-IND(I))
+           * EIGENSCHAFT VON SCHNITTMENGEN *
+           ALL A,B,C:MENGE ME(A C) AND ME(A B) IMPL ME(A SM(B C))
+ 
+THEOREMS : ALL F,IDL:MENGE  ALL MAL:VERKN  ALL I:INDEXMENGE  EX K:INDEX  
+                      (ALL T:MENGE LIDEAL(T F MAL) AND MINIMAL(T F MAL) IMPL(EX L:INDEX EL-IND(L I) AND U(L) = T))
+                  AND HG(F MAL)
+                  AND MINIMAL-BED-L(F MAL)
+                  AND IDEAL(IDL F MAL)
+                  AND EL-IND(K I)
+                  AND (ALL J:INDEX EL-IND(J I) IMPL LIDEAL(U(J) F MAL) AND MINIMAL(U(J) F MAL))
+             IMPL (EX J1:INDEX EL-IND(J1 I) IMPL ME(U(J1) SM(IDL VER-IND(I))))
+ 
+ 
+ 
+ 
+CONSTANTS : 
+=========== 
+ 
+| NAME          | SORT                        |            | ATTRIBUTES                                                 
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+| C_1           | VERKN                       |            |                                                            
+|
+| C_2           | MENGE                       |            |                                                            
+|
+| C_3           | INDEXMENGE                  |            |                                                            
+|
+| C_4           | MENGE                       |            |                                                            
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+ 
+ 
+ 
+FUNCTIONS : 
+=========== 
+ 
+| NAME          | DOMAIN                      | RANGE      | ATTRIBUTES                                                 
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+| MPROD         | MENGE MENGE VERKN           | MENGE      |                                                            
+|
+| U             | INDEX                       | MENGE      |                                                            
+|
+| VER-IND       | INDEXMENGE                  | MENGE      |                                                            
+|
+| SM-IND        | INDEXMENGE                  | MENGE      |                                                            
+|
+| APPLYV        | VERKN ELEMENT ELEMENT       | ELEMENT    |                                                            
+|
+| F*X           | MENGE ELEMENT VERKN         | MENGE      |                                                            
+|
+| SM            | MENGE MENGE                 | MENGE      |                                                            
+|
+| T*            | MENGE VERKN MENGE ELEMENT   | MENGE      |                                                            
+|
+| F_1           | MENGE MENGE VERKN           | MENGE      |                                                            
+|
+| F_2           | MENGE                       | INDEX      |                                                            
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+ 
+ 
+ 
+PREDICATES : 
+============ 
+ 
+| NAME          | DOMAIN                      |            | ATTRIBUTES                                                 
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+| TRUE          |                             |            | DEFINED                                                    
+|
+| FALSE         |                             |            | DEFINED                                                    
+|
+| LIDEAL        | MENGE MENGE VERKN           |            |                                                            
+|
+| RIDEAL        | MENGE MENGE VERKN           |            |                                                            
+|
+| IDEAL         | MENGE MENGE VERKN           |            |                                                            
+|
+| UHG           | MENGE MENGE VERKN           |            |                                                            
+|
+| ME            | MENGE MENGE                 |            |                                                            
+|
+| NICHTLEER     | MENGE                       |            |                                                            
+|
+| HG            | MENGE VERKN                 |            |                                                            
+|
+| NICHTLEER-IND | INDEXMENGE                  |            |                                                            
+|
+| GLEICH        | MENGE MENGE                 |            |                                                            
+|
+| EL-IND        | INDEX INDEXMENGE            |            |                                                            
+|
+| EL            | ELEMENT MENGE               |            |                                                            
+|
+| MINIMAL       | MENGE MENGE VERKN           |            |                                                            
+|
+| MINIMAL-BED-L | MENGE VERKN                 |            |                                                            
+|
+| MINIMAL-BED-R | MENGE VERKN                 |            |                                                            
+|
+| =             | ANY ANY                     |            | DEFINED SYMMETRIC REFLEXIVE SYMMETRIC REFLEXIVE SYMMETRIC  
+|
+|               |                             |            | REFLEXIVE                                                  
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+ 
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+  A1   : ALL X:ANY  + =(X X)
+* A2   : ALL X:VERKN  Y,Z:MENGE  - IDEAL(Z Y X)  + LIDEAL(Z Y X)
+* A3   : ALL X:INDEXMENGE  Y:INDEX  - EL-IND(Y X)  + ME(U(Y) VER-IND(X))
+* A4   : ALL X,Y:MENGE  Z:VERKN  - MINIMAL-BED-L(Y Z)  - LIDEAL(X Y Z)  + LIDEAL(F_1(Y X Z) Y Z)
+* A5   : ALL X,Y:MENGE  Z:VERKN  - MINIMAL-BED-L(Y Z)  - LIDEAL(X Y Z)  + ME(F_1(Y X Z) X)
+* A6   : ALL X,Y:MENGE  Z:VERKN  - MINIMAL-BED-L(Y Z)  - LIDEAL(X Y Z)  + MINIMAL(F_1(Y X Z) Y Z)
+* A7   : ALL X,Y,Z:MENGE  - ME(Z Y)  - ME(Z X)  + ME(Z SM(X Y))
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+  T8   : ALL X:MENGE  - LIDEAL(X C_2 C_1)  - MINIMAL(X C_2 C_1)  + EL-IND(F_2(X) C_3)
+* T9   : ALL X:MENGE  - LIDEAL(X C_2 C_1)  - MINIMAL(X C_2 C_1)  + =(U(F_2(X)) X)
+  T10  : + HG(C_2 C_1)
+* T11  : + MINIMAL-BED-L(C_2 C_1)
+* T12  : + IDEAL(C_4 C_2 C_1)
+* T13  : ALL X:INDEX  + EL-IND(X C_3)
+  T14  : ALL X:INDEX  - EL-IND(X C_3)  + LIDEAL(U(X) C_2 C_1)
+  T15  : ALL X:INDEX  - EL-IND(X C_3)  + MINIMAL(U(X) C_2 C_1)
+  T16  : ALL X:INDEX  + EL-IND(X C_3)
+* T17  : ALL X:INDEX  - ME(U(X) SM(C_4 VER-IND(C_3)))
+ 
+ 
+ 
+ 
+ 
+ 
+INITIAL OPERATIONS ON THEOREMS
+==============================
+ 
+ 
+T14,1 & T13,1   -->    R1 : ALL X:INDEX  + LIDEAL(U(X) C_2 C_1)
+ 
+T15,1 & T13,1   -->    R2 : ALL X:INDEX  + MINIMAL(U(X) C_2 C_1)
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION
+ 
+INITIAL CLAUSES :      A1  : ALL X:ANY  + =(X X)
+                     * A2  : ALL X:VERKN  Y,Z:MENGE  - IDEAL(Z Y X)  + LIDEAL(Z Y X)
+                     * A3  : ALL X:INDEXMENGE  Y:INDEX  - EL-IND(Y X)  + ME(U(Y) VER-IND(X))
+                     * A4  : ALL X,Y:MENGE  Z:VERKN  - MINIMAL-BED-L(Y Z)  - LIDEAL(X Y Z)  + LIDEAL(F_1(Y X Z) Y Z)
+                     * A5  : ALL X,Y:MENGE  Z:VERKN  - MINIMAL-BED-L(Y Z)  - LIDEAL(X Y Z)  + ME(F_1(Y X Z) X)
+                     * A6  : ALL X,Y:MENGE  Z:VERKN  - MINIMAL-BED-L(Y Z)  - LIDEAL(X Y Z)  + MINIMAL(F_1(Y X Z) Y Z)
+                     * A7  : ALL X,Y,Z:MENGE  - ME(Z Y)  - ME(Z X)  + ME(Z SM(X Y))
+                     * T9  : ALL X:MENGE  - LIDEAL(X C_2 C_1)  - MINIMAL(X C_2 C_1)  + =(U(F_2(X)) X)
+                       T10 : + HG(C_2 C_1)
+                     * T11 : + MINIMAL-BED-L(C_2 C_1)
+                     * T12 : + IDEAL(C_4 C_2 C_1)
+                     * T13 : ALL X:INDEX  + EL-IND(X C_3)
+                       R1  : ALL X:INDEX  + LIDEAL(U(X) C_2 C_1)
+                       R2  : ALL X:INDEX  + MINIMAL(U(X) C_2 C_1)
+                     * T17 : ALL X:INDEX  - ME(U(X) SM(C_4 VER-IND(C_3)))
+ 
+T13,1 & A3,1    -->  * R3  : ALL X:INDEX  + ME(U(X) VER-IND(C_3))
+ 
+T12,1 & A2,1    -->  * R4  : + LIDEAL(C_4 C_2 C_1)
+ 
+T11,1 & A4,1    -->  * R5  : ALL X:MENGE  - LIDEAL(X C_2 C_1)  + LIDEAL(F_1(C_2 X C_1) C_2 C_1)
+ 
+T11,1 & A5,1    -->  * R6  : ALL X:MENGE  - LIDEAL(X C_2 C_1)  + ME(F_1(C_2 X C_1) X)
+ 
+T11,1 & A6,1    -->  * R7  : ALL X:MENGE  - LIDEAL(X C_2 C_1)  + MINIMAL(F_1(C_2 X C_1) C_2 C_1)
+ 
+A7,3 & T17,1    -->    R8  : ALL X:INDEX  - ME(U(X) VER-IND(C_3))  - ME(U(X) C_4)
+ 
+R8,1 & R3,1     -->    R9  : ALL X:INDEX  - ME(U(X) C_4)
+ 
+R2,1 & T9,2     -->    R10 : ALL X:INDEX  - LIDEAL(U(X) C_2 C_1)  + =(U(F_2(U(X))) U(X))
+ 
+R10,1 & R1,1    -->    R11 : ALL X:INDEX  + =(U(F_2(U(X))) U(X))
+ 
+R11,1 & R1,1    -->    P12 : ALL X:INDEX  + LIDEAL(U(X) C_2 C_1)
+ 
+R11,1 & R1,1    -->    P13 : ALL X:INDEX  + LIDEAL(U(F_2(U(X))) C_2 C_1)
+ 
+R11,1 & R2,1    -->    P14 : ALL X:INDEX  + MINIMAL(U(X) C_2 C_1)
+ 
+R11,1 & R2,1    -->    P15 : ALL X:INDEX  + MINIMAL(U(F_2(U(X))) C_2 C_1)
+ 
+R11,1 & T17,1   -->    P16 : ALL X:INDEX  - ME(U(X) SM(C_4 VER-IND(C_3)))
+ 
+R11,1 & T17,1   -->    P17 : ALL X:INDEX  - ME(U(F_2(U(X))) SM(C_4 VER-IND(C_3)))
+ 
+R11,1 & R3,1    -->    P18 : ALL X:INDEX  + ME(U(X) VER-IND(C_3))
+ 
+R11,1 & R3,1    -->    P19 : ALL X:INDEX  + ME(U(F_2(U(X))) VER-IND(C_3))
+ 
+R4,1 & R5,1     -->    R20 : + LIDEAL(F_1(C_2 C_4 C_1) C_2 C_1)
+ 
+R1,1 & R5,1     -->    R21 : ALL X:INDEX  + LIDEAL(F_1(C_2 U(X) C_1) C_2 C_1)
+ 
+R4,1 & R6,1     -->  * R22 : + ME(F_1(C_2 C_4 C_1) C_4)
+ 
+R1,1 & R6,1     -->    R23 : ALL X:INDEX  + ME(F_1(C_2 U(X) C_1) U(X))
+ 
+R4,1 & R7,1     -->  * R24 : + MINIMAL(F_1(C_2 C_4 C_1) C_2 C_1)
+ 
+R24,1 & T9,2    -->  * R25 : - LIDEAL(F_1(C_2 C_4 C_1) C_2 C_1)  + =(U(F_2(F_1(C_2 C_4 C_1))) F_1(C_2 C_4 C_1))
+ 
+R25,1 & R5,2    -->  * R26 : + =(U(F_2(F_1(C_2 C_4 C_1))) F_1(C_2 C_4 C_1))  - LIDEAL(C_4 C_2 C_1)
+ 
+R26,2 & R4,1    -->  * R27 : + =(U(F_2(F_1(C_2 C_4 C_1))) F_1(C_2 C_4 C_1))
+ 
+R27,1 & R1,1    -->    P28 : + LIDEAL(F_1(C_2 C_4 C_1) C_2 C_1)
+ 
+R27,1 & R2,1    -->    P29 : + MINIMAL(F_1(C_2 C_4 C_1) C_2 C_1)
+ 
+R27,1 & T17,1   -->  * P30 : - ME(F_1(C_2 C_4 C_1) SM(C_4 VER-IND(C_3)))
+ 
+A7,3 & P30,1    -->    R31 : - ME(F_1(C_2 C_4 C_1) VER-IND(C_3))  - ME(F_1(C_2 C_4 C_1) C_4)
+ 
+R31,2 & R6,2    -->    R32 : - ME(F_1(C_2 C_4 C_1) VER-IND(C_3))  - LIDEAL(C_4 C_2 C_1)
+ 
+R32,2 & R4,1    -->    R33 : - ME(F_1(C_2 C_4 C_1) VER-IND(C_3))
+ 
+R27,1 & R3,1    -->  * P34 : + ME(F_1(C_2 C_4 C_1) VER-IND(C_3))
+ 
+P34,1 & A7,1    -->  * R35 : - ME(F_1(C_2 C_4 C_1) C_4)  + ME(F_1(C_2 C_4 C_1) SM(C_4 VER-IND(C_3)))
+ 
+R35,1 & R22,1   -->  * R36 : + ME(F_1(C_2 C_4 C_1) SM(C_4 VER-IND(C_3)))
+ 
+R36,1 & P30,1   -->  * R37 :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+STOP
+ 

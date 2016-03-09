@@ -1,0 +1,746 @@
+   S Y M B O L - T A B L E   :                                          
+   ===========================                                          
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+SORTS                                                                   
+-----                                                                   
+ NAME|SUBSORTS|SUPERSORTS|ATTRIBUTES                                    
+-----+--------+----------+-----------                                   
+ ANY |        |          |                                              
+                                                                        
+PREDICATES                                                              
+----------                                                              
+ NAME |ARITY|DOMAIN|ATTRIBUTES                                          
+------+-----+------+-----------                                         
+ FALSE|0    |      |DEFINED                                             
+ TRUE |0    |      |DEFINED                                             
+                                                                        
+                                                                        
+                                                                        
+   F O R M U L A S   :                                                  
+   ===================                                                  
+                                                                        
+                                                                        
+    1     * PROBLEM 66                                                  
+                                                                        
+    2     *                                                             
+                                                                        
+    3     * ON ANOTHER OCCASSION THEY MADE THE FOLLOWING STATEMENTS.    
+                                                                        
+    4     *                                                             
+                                                                        
+    5     * FIRST ONE / TWEEDLEDOO EXISTS.                              
+                                                                        
+    6     * SECOND ONE / I EXIST.                                       
+                                                                        
+    7     *                                                             
+                                                                        
+    8     * DOES TWEEDLEDOO EXISTS?                                     
+                                                                        
+    9     *                                                             
+                                                                        
+   10     *                                                             
+                                                                        
+   11     * FORMALIZING THE PROBLEM IN FIRST ORDER LOGIC                
+                                                                        
+   12     *                                                             
+                                                                        
+   13     TYPE FIRSTONE, SECONDONE:PERSON                               
+                                                                        
+   14     TYPE TWEEDLEDEE,TWEEDLEDUM,TWEEDLEDOO:BROTHERS                
+                                                                        
+   15     *                                                             
+                                                                        
+   16     ALL X:DAYS MO (X) EQV (NOT TU (X) AND NOT WE (X) AND NOT TH   
+          (X) AND NOT FR (X) AND NOT SA (X) AND NOT SU (X))             
+                                                                        
+   17     ALL X:DAYS TU (X) EQV (NOT MO (X) AND NOT WE (X) AND NOT TH   
+          (X) AND NOT FR (X) AND NOT SA (X) AND NOT SU (X))             
+                                                                        
+   18     ALL X:DAYS WE (X) EQV (NOT MO (X) AND NOT TU (X) AND NOT TH   
+          (X) AND NOT FR (X) AND NOT SA (X) AND NOT SU (X))             
+                                                                        
+   19     ALL X:DAYS TH (X) EQV (NOT MO (X) AND NOT TU (X) AND NOT WE   
+          (X) AND NOT FR (X) AND NOT SA (X) AND NOT SU (X))             
+                                                                        
+   20     ALL X:DAYS FR (X) EQV (NOT MO (X) AND NOT TU (X) AND NOT WE   
+          (X) AND NOT TH (X) AND NOT SA (X) AND NOT SU (X))             
+                                                                        
+   21     ALL X:DAYS SA (X) EQV (NOT MO (X) AND NOT TU (X) AND NOT WE   
+          (X) AND NOT TH (X) AND NOT FR (X) AND NOT SU (X))             
+                                                                        
+   22     ALL X:DAYS SU (X) EQV (NOT MO (X) AND NOT TU (X) AND NOT WE   
+          (X) AND NOT TH (X) AND NOT FR (X) AND NOT SA (X))             
+                                                                        
+   23     *                                                             
+                                                                        
+   24     *                                                             
+                                                                        
+   25     ALL X:PERSON ALL Y:BROTHERS IS (X Y) IMPL (ALL Z:DAYS (       
+          MEMBER (Z LYING-DAYS (Y)) EQV MEMBER (Z LYING-DAYS (X))))     
+                                                                        
+   26     *                                                             
+                                                                        
+   27     TYPE                                                          
+          MONDAY,TUESDAY,WEDNESDAY,THURSDAY,FRYDAY,SATURDAY,SUNDAY:     
+          DAYS                                                          
+                                                                        
+   28     MO (MONDAY)                                                   
+                                                                        
+   29     TU (TUESDAY)                                                  
+                                                                        
+   30     WE (WEDNESDAY)                                                
+                                                                        
+   31     TH (THURSDAY)                                                 
+                                                                        
+   32     FR (FRYDAY)                                                   
+                                                                        
+   33     SA (SATURDAY)                                                 
+                                                                        
+   34     SU (SUNDAY)                                                   
+                                                                        
+   35     * IS (X Y) MEANS: X IS Y.                                     
+                                                                        
+   36     ALL X:PERSON IS (X TWEEDLEDUM) EQV (NOT IS (X TWEEDLEDEE)     
+          AND NOT IS (X TWEEDLEDOO))                                    
+                                                                        
+   37     ALL X:PERSON IS (X TWEEDLEDEE) EQV (NOT IS (X TWEEDLEDUM)     
+          AND NOT IS (X TWEEDLEDOO))                                    
+                                                                        
+   38     ALL X:PERSON IS (X TWEEDLEDOO) EQV (NOT IS (X TWEEDLEDEE)     
+          AND NOT IS (X TWEEDLEDUM))                                    
+                                                                        
+   39     NOT (IS (FIRSTONE TWEEDLEDUM) AND IS (SECONDONE TWEEDLEDUM))  
+                                                                        
+   40     NOT (IS (FIRSTONE TWEEDLEDEE) AND IS (SECONDONE TWEEDLEDEE))  
+                                                                        
+   41     NOT (IS (FIRSTONE TWEEDLEDOO) AND IS (SECONDONE TWEEDLEDOO))  
+                                                                        
+   42     ALL X:PERSON IS (X TWEEDLEDUM) OR IS (X TWEEDLEDEE) OR IS (X  
+          TWEEDLEDOO)                                                   
+                                                                        
+   43     *                                                             
+                                                                        
+   44     ALL X:DAYS MEMBER (X LYING-DAYS (TWEEDLEDUM)) EQV (MO (X) OR  
+          TU (X) OR WE (X))                                             
+                                                                        
+   45     ALL X:DAYS MEMBER (X LYING-DAYS (TWEEDLEDEE)) EQV (TH (X) OR  
+          FR (X) OR SA (X))                                             
+                                                                        
+   46     ALL X:DAYS MEMBER (X LYING-DAYS (TWEEDLEDOO))                 
+                                                                        
+   47     *                                                             
+                                                                        
+   48     * EXIST3 (X Y Z) MEANS: X COULD STATE AT DAY Y: Z EXISTS.     
+                                                                        
+   49     *                                                             
+                                                                        
+   50     ALL Z ALL X:PERSON ALL Y:DAYS NOT MEMBER (Y LYING-DAYS (X))   
+          AND NOT EXIST (Z) IMPL NOT EXIST3 (X Y Z)                     
+                                                                        
+   51     ALL Z ALL X:PERSON ALL Y:DAYS NOT MEMBER (Y LYING-DAYS (X))   
+          AND EXIST (Z) IMPL EXIST3 (X Y Z)                             
+                                                                        
+   52     ALL Z ALL X:PERSON ALL Y:DAYS MEMBER (Y LYING-DAYS (X)) AND   
+          NOT EXIST (Z) IMPL EXIST3 (X Y Z)                             
+                                                                        
+   53     ALL Z ALL X:PERSON ALL Y:DAYS MEMBER (Y LYING-DAYS (X)) AND   
+          EXIST (Z) IMPL NOT EXIST3 (X Y Z)                             
+                                                                        
+   54     *                                                             
+                                                                        
+   55     ALL X:BROTHERS EXIST (X) EQV (IS (FIRSTONE X) OR IS (         
+          SECONDONE X) OR (EX Y:PERSON EX Z:DAYS EXIST3 (Y Z X) AND     
+          NOT MEMBER (Z LYING-DAYS (Y))))                               
+                                                                        
+   56     *                                                             
+                                                                        
+   57     TYPE TODAY:DAYS                                               
+                                                                        
+   58     EXIST3 (FIRSTONE TODAY TWEEDLEDOO) AND EXIST3 (SECONDONE      
+          TODAY SECONDONE)                                              
+                                                                        
+   59     EXIST (FIRSTONE) AND EXIST (SECONDONE)                        
+                                                                        
+   60     * PROBLEM 64                                                  
+                                                                        
+   61     *                                                             
+                                                                        
+   62     * ON ANOTHER OCCASSION THEY MADE THE FOLLOWING STATEMENTS.    
+                                                                        
+   63     *                                                             
+                                                                        
+   64     * FIRST ONE / I AM TWEEDLEDOO.                                
+                                                                        
+   65     * SECOND ONE / YES, HE IS TWEEDLEDOO.                         
+                                                                        
+   66     *                                                             
+                                                                        
+   67     * DOES TWEEDLEDOO EXISTS?                                     
+                                                                        
+   68     *                                                             
+                                                                        
+   69     *                                                             
+                                                                        
+   70     * FORMALIZING THE PROBLEM IN FIRST ORDER LOGIC                
+                                                                        
+   71     *                                                             
+                                                                        
+   72     TYPE FIRSTONE,SECONDONE:PERSON                                
+                                                                        
+   73     TYPE TWEEDLEDEE,TWEEDLEDUM,TWEEDLEDOO:BROTHERS                
+                                                                        
+   74     *                                                             
+                                                                        
+   75     ALL X:DAYS MO (X) EQV (NOT TU (X) AND NOT WE (X) AND NOT TH   
+          (X) AND NOT FR (X) AND NOT SA (X) AND NOT SU (X))             
+                                                                        
+   76     ALL X:DAYS TU (X) EQV (NOT MO (X) AND NOT WE (X) AND NOT TH   
+          (X) AND NOT FR (X) AND NOT SA (X) AND NOT SU (X))             
+                                                                        
+   77     ALL X:DAYS WE (X) EQV (NOT MO (X) AND NOT TU (X) AND NOT TH   
+          (X) AND NOT FR (X) AND NOT SA (X) AND NOT SU (X))             
+                                                                        
+   78     ALL X:DAYS TH (X) EQV (NOT MO (X) AND NOT TU (X) AND NOT WE   
+          (X) AND NOT FR (X) AND NOT SA (X) AND NOT SU (X))             
+                                                                        
+   79     ALL X:DAYS FR (X) EQV (NOT MO (X) AND NOT TU (X) AND NOT WE   
+          (X) AND NOT TH (X) AND NOT SA (X) AND NOT SU (X))             
+                                                                        
+   80     ALL X:DAYS SA (X) EQV (NOT MO (X) AND NOT TU (X) AND NOT WE   
+          (X) AND NOT TH (X) AND NOT FR (X) AND NOT SU (X))             
+                                                                        
+   81     ALL X:DAYS SU (X) EQV (NOT MO (X) AND NOT TU (X) AND NOT WE   
+          (X) AND NOT TH (X) AND NOT FR (X) AND NOT SA (X))             
+                                                                        
+   82     *                                                             
+                                                                        
+   83     *                                                             
+                                                                        
+   84     ALL X:PERSON ALL Y:BROTHERS IS (X Y) IMPL (ALL Z:DAYS (       
+          MEMBER (Z LYING-DAYS (Y)) EQV MEMBER (Z LYING-DAYS (X))))     
+                                                                        
+   85     *                                                             
+                                                                        
+   86     TYPE                                                          
+          MONDAY,TUESDAY,WEDNESDAY,THURSDAY,FRYDAY,SATURDAY,SUNDAY:     
+          DAYS                                                          
+                                                                        
+   87     MO (MONDAY)                                                   
+                                                                        
+   88     TU (TUESDAY)                                                  
+                                                                        
+   89     WE (WEDNESDAY)                                                
+                                                                        
+   90     TH (THURSDAY)                                                 
+                                                                        
+   91     FR (FRYDAY)                                                   
+                                                                        
+   92     SA (SATURDAY)                                                 
+                                                                        
+   93     SU (SUNDAY)                                                   
+                                                                        
+   94     * IS (X Y) MEANS: X IS Y.                                     
+                                                                        
+   95     IS (X TWEEDLEDUM) EQV (NOT IS (X TWEEDLEDEE) AND NOT IS (X    
+          TWEEDLEDOO))                                                  
+                                                                        
+   96     IS (X TWEEDLEDEE) EQV (NOT IS (X TWEEDLEDUM) AND NOT IS (X    
+          TWEEDLEDOO))                                                  
+                                                                        
+   97     IS (X TWEEDLEDOO) EQV (NOT IS (X TWEEDLEDEE) AND NOT IS (X    
+          TWEEDLEDUM))                                                  
+                                                                        
+   98     NOT (IS (FIRSTONE TWEEDLEDUM) AND IS (SECONDONE TWEEDLEDUM))  
+                                                                        
+   99     NOT (IS (FIRSTONE TWEEDLEDEE) AND IS (SECONDONE TWEEDLEDEE))  
+                                                                        
+  100     NOT (IS (FIRSTONE TWEEDLEDOO) AND IS (SECONDONE TWEEDLEDOO))  
+                                                                        
+  101     ALL X:PERSON IS (X TWEEDLEDUM) OR IS (X TWEEDLEDEE) OR IS (X  
+          TWEEDLEDOO)                                                   
+                                                                        
+  102     *                                                             
+                                                                        
+  103     ALL X:DAYS MEMBER (X LYING-DAYS (TWEEDLEDUM)) EQV (MO (X) OR  
+          TU (X) OR WE (X))                                             
+                                                                        
+  104     ALL X:DAYS MEMBER (X LYING-DAYS (TWEEDLEDEE)) EQV (TH (X) OR  
+          FR (X) OR SA (X))                                             
+                                                                        
+  105     ALL X:DAYS MEMBER (X LYING-DAYS (TWEEDLEDOO))                 
+                                                                        
+  106     *                                                             
+                                                                        
+  107     * IS-TWEEDLEDOO3 (X Y Z) MEANS: X COULD STATE AT DAY Y: Z IS  
+          TWEEDLEDOO.                                                   
+                                                                        
+  108     ALL X,Z:PERSON ALL Y:DAYS NOT MEMBER (Y LYING-DAYS (X)) AND   
+          NOT IS (Z TWEEDLEDOO) IMPL NOT IS-TWEEDLDOO3 (X Y Z)          
+                                                                        
+  109     ALL X,Z:PERSON ALL Y:DAYS NOT MEMBER (Y LYING-DAYS (X)) AND   
+          IS (Z TWEEDLEDOO) IMPL IS-TWEEDLDOO3 (X Y Z)                  
+                                                                        
+  110     ALL X,Z:PERSON ALL Y:DAYS MEMBER (Y LYING-DAYS (X)) AND IS (  
+          Z TWEEDLEDOO) IMPL NOT IS-TWEEDLDOO3 (X Y Z)                  
+                                                                        
+  111     ALL X,Z:PERSON ALL Y:DAYS MEMBER (Y LYING-DAYS (X)) AND NOT   
+          IS (Z TWEEDLEDOO) IMPL IS-TWEEDLDOO3 (X Y Z)                  
+                                                                        
+  112     TYPE TODAY:DAYS                                               
+                                                                        
+  113     TWEEDLEDOO3 (FIRSTONE TODAY FIRSTONE) AND TWEEDLEDOO3 (       
+          SECONDONE TODAY FIRSTONE)                                     
+                                                                        
+  114     * PROBLEM 62                                                  
+                                                                        
+  115     *                                                             
+                                                                        
+  116     * ONE DAY ALICE MET THE BROTHERS.                             
+                                                                        
+  117     * SHE ASKED THE FIRSTONE:                                     
+                                                                        
+  118     * DO YOU OWN THE RATTLE?                                      
+                                                                        
+  119     * HE ANSWERED YES.                                            
+                                                                        
+  120     * SHE ASKED THE SECONDONE THE SAME QUESTION.                  
+                                                                        
+  121     * HE ANSWERED AND ALICE GAVE THE RATTLE TO ONE OF THEM.       
+                                                                        
+  122     *                                                             
+                                                                        
+  123     * WHO OWNS THE RATTLE?                                        
+                                                                        
+  124     *                                                             
+                                                                        
+  125     * FORMALIZING THE PROBLEM IN FIRST ORDER LOGIC                
+                                                                        
+  126     *                                                             
+                                                                        
+  127     TYPE FIRSTONE,SECONDONE :PERSON                               
+                                                                        
+  128     *                                                             
+                                                                        
+  129     ALL X:DAYS MO (X) EQV (NOT TU (X) AND NOT WE (X) AND NOT TH   
+          (X) AND NOT FR (X) AND NOT SA (X) AND NOT SU (X))             
+                                                                        
+  130     ALL X:DAYS TU (X) EQV (NOT MO (X) AND NOT WE (X) AND NOT TH   
+          (X) AND NOT FR (X) AND NOT SA (X) AND NOT SU (X))             
+                                                                        
+  131     ALL X:DAYS WE (X) EQV (NOT MO (X) AND NOT TU (X) AND NOT TH   
+          (X) AND NOT FR (X) AND NOT SA (X) AND NOT SU (X))             
+                                                                        
+  132     ALL X:DAYS TH (X) EQV (NOT MO (X) AND NOT TU (X) AND NOT WE   
+          (X) AND NOT FR (X) AND NOT SA (X) AND NOT SU (X))             
+                                                                        
+  133     ALL X:DAYS FR (X) EQV (NOT MO (X) AND NOT TU (X) AND NOT WE   
+          (X) AND NOT TH (X) AND NOT SA (X) AND NOT SU (X))             
+                                                                        
+  134     ALL X:DAYS SA (X) EQV (NOT MO (X) AND NOT TU (X) AND NOT WE   
+          (X) AND NOT TH (X) AND NOT FR (X) AND NOT SU (X))             
+                                                                        
+  135     ALL X:DAYS SU (X) EQV (NOT MO (X) AND NOT TU (X) AND NOT WE   
+          (X) AND NOT TH (X) AND NOT FR (X) AND NOT SA (X))             
+                                                                        
+  136     *                                                             
+                                                                        
+  137     ALL Y:PERSON TWEEDLEDUM (Y) IMPL (ALL X:DAYS MEMBER (X        
+          LYING-DAYS (Y)) EQV (MO (X) OR TU (X) OR WE (X)))             
+                                                                        
+  138     ALL Y:PERSON TWEEDLEDEE (Y) IMPL (ALL X:DAYS MEMBER (X        
+          LYING-DAYS (Y)) EQV (TH (X) OR FR (X) OR SA (X)))             
+                                                                        
+  139     *                                                             
+                                                                        
+  140     *                                                             
+                                                                        
+  141     *                                                             
+                                                                        
+  142     *                                                             
+                                                                        
+  143     * RATTLE-OWNER (X) MEANS: X OWNS THE RATTLE.                  
+                                                                        
+  144     *                                                             
+                                                                        
+  145     RATTLE-OWNER (FIRSTONE) OR RATTLE-OWNER (SECONDONE)           
+                                                                        
+  146     NOT (RATTLE-OWNER (FIRSTONE) AND RATTLE-OWNER (SECONDONE))    
+                                                                        
+  147     *                                                             
+                                                                        
+  148     * RATTLE-OWNER2 (X Y) MEANS: X COULD STATE AT DAY Y: THE      
+          RATTLE IS MINE.                                               
+                                                                        
+  149     ALL X:PERSON ALL Y:DAYS NOT RATTLE-OWNER (X) AND NOT MEMBER   
+          (Y LYING-DAYS (X)) IMPL NOT RATTLE-OWNER2 (X Y)               
+                                                                        
+  150     ALL X:PERSON ALL Y:DAYS RATTLE-OWNER (X) AND NOT MEMBER (Y    
+          LYING-DAYS (X)) IMPL RATTLE-OWNER2 (X Y)                      
+                                                                        
+  151     ALL X:PERSON ALL Y:DAYS RATTLE-OWNER (X) AND MEMBER (Y        
+          LYING-DAYS (X)) IMPL NOT RATTLE-OWNER2 (X Y)                  
+                                                                        
+  152     ALL X:PERSON ALL Y:DAYS NOT RATTLE-OWNER (X) AND MEMBER (Y    
+          LYING-DAYS (X)) IMPL RATTLE-OWNER2 (X Y)                      
+                                                                        
+  153     *                                                             
+                                                                        
+  154     * YES (X Y) MEANS: X COULD SAY AT DAY Y: YES, THE RATTLE IS   
+          MINE.                                                         
+                                                                        
+  155     ALL X:PERSON ALL Y:DAYS YES (X Y) IMPL RATTLE-OWNER2 (X Y)    
+                                                                        
+  156     * NO (X Y) MEANS: X COULD SAY AT DAY Y: NO, THE RATTLE IS     
+          NOT MINE.                                                     
+                                                                        
+  157     TYPE NO (PERSON DAYS)                                         
+                                                                        
+  158     ALL X:PERSON ALL Y:DAYS NO (X Y) IMPL NOT RATTLE-OWNER2 (X Y  
+          )                                                             
+                                                                        
+  159     ALL X:PERSON ALL Y:DAYS NO (X Y) EQV NOT YES (X Y)            
+                                                                        
+  160     *                                                             
+                                                                        
+  161     TYPE TODAY:DAYS                                               
+                                                                        
+  162     YES (FIRSTONE TODAY) AND (YES (SECONDONE TODAY) OR NO (       
+          SECONDONE TODAY))                                             
+                                                                        
+  163     * PROBLEM 58                                                  
+                                                                        
+  164     *                                                             
+                                                                        
+  165     * ONE DAY ALICE MET THE BROTHERS .                            
+                                                                        
+  166     * THEY MADE THE FOLLOWING STATEMENTS:                         
+                                                                        
+  167     *                                                             
+                                                                        
+  168     * FIRSTONE/ TODAY IS NOT SUNDAY.                              
+                                                                        
+  169     * SECONDONE / TODAY IS MONDAY.                                
+                                                                        
+  170     * FIRSTONE / TWEEDLEDEE WILL LIE TOMORROW.                    
+                                                                        
+  171     * SECONDONE / THE LION LIED YESTERDAY.                        
+                                                                        
+  172     *                                                             
+                                                                        
+  173     * (1) WHAT DAY IS IT.                                         
+                                                                        
+  174     * (2) WHICH OF THE TWO IS TWEEDLEDUM.                         
+                                                                        
+  175     * (3) WHETHER TWEEDLEDUM IS LIKE THE LION OR THE UNICORN .    
+                                                                        
+  176     *                                                             
+                                                                        
+  177     *                                                             
+                                                                        
+  178     * FORMALIZING THE PROBLEM IN FIRST ORDER LOGIC                
+                                                                        
+  179     *                                                             
+                                                                        
+  180     TYPE FIRSTONE,SECONDONE :PERSON                               
+                                                                        
+  181     TYPE LION,UNICORN:ANIMAL                                      
+                                                                        
+  182     * LIKE (X Y) MEANS : THE LYING-BEHAVIOR OF X IS LIKE THE      
+          ANIMAL Y.                                                     
+                                                                        
+  183     ALL X:PERSON LIKE (X LION) OR LIKE (X UNICORN)                
+                                                                        
+  184     ALL X:PERSON NOT (LIKE (X LION) AND LIKE (X UNICORN))         
+                                                                        
+  185     *                                                             
+                                                                        
+  186     ALL X:DAYS MO (X) EQV (NOT TU (X) AND NOT WE (X) AND NOT TH   
+          (X) AND NOT FR (X) AND NOT SA (X) AND NOT SU (X))             
+                                                                        
+  187     ALL X:DAYS TU (X) EQV (NOT MO (X) AND NOT WE (X) AND NOT TH   
+          (X) AND NOT FR (X) AND NOT SA (X) AND NOT SU (X))             
+                                                                        
+  188     ALL X:DAYS WE (X) EQV (NOT MO (X) AND NOT TU (X) AND NOT TH   
+          (X) AND NOT FR (X) AND NOT SA (X) AND NOT SU (X))             
+                                                                        
+  189     ALL X:DAYS TH (X) EQV (NOT MO (X) AND NOT TU (X) AND NOT WE   
+          (X) AND NOT FR (X) AND NOT SA (X) AND NOT SU (X))             
+                                                                        
+  190     ALL X:DAYS FR (X) EQV (NOT MO (X) AND NOT TU (X) AND NOT WE   
+          (X) AND NOT TH (X) AND NOT SA (X) AND NOT SU (X))             
+                                                                        
+  191     ALL X:DAYS SA (X) EQV (NOT MO (X) AND NOT TU (X) AND NOT WE   
+          (X) AND NOT TH (X) AND NOT FR (X) AND NOT SU (X))             
+                                                                        
+  192     ALL X:DAYS SU (X) EQV (NOT MO (X) AND NOT TU (X) AND NOT WE   
+          (X) AND NOT TH (X) AND NOT FR (X) AND NOT SA (X))             
+                                                                        
+  193     *                                                             
+                                                                        
+  194     TYPE TOMORROW (DAYS) :DAYS                                    
+                                                                        
+  195     ALL X:DAYS MO (TOMORROW (X)) EQV SU (X)                       
+                                                                        
+  196     ALL X:DAYS TU (TOMORROW (X)) EQV MO (X)                       
+                                                                        
+  197     ALL X:DAYS WE (TOMORROW (X)) EQV TU (X)                       
+                                                                        
+  198     ALL X:DAYS TH (TOMORROW (X)) EQV WE (X)                       
+                                                                        
+  199     ALL X:DAYS FR (TOMORROW (X)) EQV TH (X)                       
+                                                                        
+  200     ALL X:DAYS SA (TOMORROW (X)) EQV FR (X)                       
+                                                                        
+  201     ALL X:DAYS SU (TOMORROW (X)) EQV SA (X)                       
+                                                                        
+  202     *                                                             
+                                                                        
+  203     TYPE YESTERDAY (DAYS) :DAYS                                   
+                                                                        
+  204     ALL X:DAYS MO (YESTERDAY (X)) EQV TU (X)                      
+                                                                        
+  205     ALL X:DAYS TU (YESTERDAY (X)) EQV WE (X)                      
+                                                                        
+  206     ALL X:DAYS WE (YESTERDAY (X)) EQV TH (X)                      
+                                                                        
+  207     ALL X:DAYS TH (YESTERDAY (X)) EQV FR (X)                      
+                                                                        
+  208     ALL X:DAYS FR (YESTERDAY (X)) EQV SA (X)                      
+                                                                        
+  209     ALL X:DAYS SA (YESTERDAY (X)) EQV SU (X)                      
+                                                                        
+  210     ALL X:DAYS SU (YESTERDAY (X)) EQV MO (X)                      
+                                                                        
+  211     *                                                             
+                                                                        
+  212     ALL X:DAYS MEMBER (X LYING-DAYS (LION)) EQV (MO (X) OR TU (X  
+          ) OR WE (X))                                                  
+                                                                        
+  213     ALL X:DAYS MEMBER (X LYING-DAYS (UNICORN)) EQV (TH (X) OR FR  
+          (X) OR SA (X))                                                
+                                                                        
+  214     *                                                             
+                                                                        
+  215     ALL X:PERSON ALL Y:ANIMAL LIKE (X Y) IMPL (ALL Z:DAYS (       
+          MEMBER (Z LYING-DAYS (Y)) EQV MEMBER (Z LYING-DAYS (X))))     
+                                                                        
+  216     ALL X:PERSON ALL Y:ANIMAL ((EX Z:DAYS (MEMBER (Z LYING-DAYS   
+          (X)) AND MEMBER (Z LYING-DAYS (Y)))) IMPL LIKE (X Y))         
+                                                                        
+  217     *                                                             
+                                                                        
+  218     * TODAY-IS-NOSU (X Y) MEANS X COULD STATE AT DAY Y:TODAY IS   
+          NOT SUNDAY.                                                   
+                                                                        
+  219     ALL X: PERSON ALL Y:DAYS TODAY-IS-NOSU (X Y) EQV (MEMBER (Y   
+          LYING-DAYS (X)) AND SU (Y) OR NOT MEMBER (Y LYING-DAYS (X))   
+          AND NOT SU (Y))                                               
+                                                                        
+  220     * TODAY-IS-MO (X Y) MEANS: X COULD STATE AT DAY Y: TODAY IS   
+          MONDAY.                                                       
+                                                                        
+  221     ALL X: PERSON ALL Y:DAYS TODAY-IS-MO (X Y) EQV (MEMBER (Y     
+          LYING-DAYS (X)) AND NOT MO (X) OR NOT MEMBER (Y LYING-DAYS (  
+          X)) AND MO (X))                                               
+                                                                        
+  222     * LION-LIED (X Y Z) MEANS: X COULD SAY AT DAY Y: THE LION     
+          LIES AT THE DAY Z.                                            
+                                                                        
+  223     ALL X:PERSON ALL Y,Z: DAYS LION-LIED (X Y Z) EQV (MEMBER (Y   
+          LYING-DAYS (X)) AND NOT MEMBER (Z LYING-DAYS (LION)) OR NOT   
+          MEMBER (Y LYING-DAYS (X)) AND MEMBER (Z LYING-DAYS (LION)))   
+                                                                        
+  224     * TOM-LD-DEE (X Y Z) MEANS: X COULD SAY AT DAY Y: TWEEDLEDEE  
+          LIES TOMORROW.                                                
+                                                                        
+  225     ALL X,Z:PERSON ALL Y:DAYS NOT MEMBER (Y LYING-DAYS (X)) AND   
+          TWEEDLEDEE (Z) AND MEMBER (TOMORROW (Y) LYING-DAYS (Z)) IMPL  
+          TOM-LD-DEE (X Y Z)                                            
+                                                                        
+  226     ALL X,Z:PERSON ALL Y:DAYS NOT MEMBER (Y LYING-DAYS (X)) AND   
+          TWEEDLEDEE (X) AND MEMBER (TOMORROW (Y) LYING-DAYS (X)) IMPL  
+          TOM-LD-DEE (X Y Z)                                            
+                                                                        
+  227     ALL X,Z:PERSON ALL Y:DAYS MEMBER (Y LYING-DAYS (X)) AND       
+          TWEEDLEDEE (X) AND MEMBER (TOMORROW (Y) LYING-DAYS (X)) IMPL  
+          NOT TOM-LD-DEE (X Y Z)                                        
+                                                                        
+  228     ALL X,Z:PERSON ALL Y:DAYS MEMBER (Y LYING-DAYS (X)) AND       
+          TWEEDLEDEE (Z) AND MEMBER (TOMORROW (Y) LYING-DAYS (Z)) IMPL  
+          NOT TOM-LD-DEE (X Y Z)                                        
+                                                                        
+  229     ALL X,Z:PERSON ALL Y:DAYS MEMBER (Y LYING-DAYS (X)) AND       
+          TWEEDLEDEE (Z) AND NOT MEMBER (TOMORROW (Y) LYING-DAYS (Z))   
+          IMPL TOM-LD-DEE (X Y Z)                                       
+                                                                        
+  230     ALL X,Z:PERSON ALL Y:DAYS MEMBER (Y LYING-DAYS (X)) AND       
+          TWEEDLEDEE (X) AND NOT MEMBER (TOMORROW (Y) LYING-DAYS (X))   
+          IMPL TOM-LD-DEE (X Y Z)                                       
+                                                                        
+  231     ALL X,Z:PERSON ALL Y:DAYS NOT MEMBER (Y LYING-DAYS (X)) AND   
+          TWEEDLEDEE (X) AND NOT MEMBER (TOMORROW (Y) LYING-DAYS (X))   
+          IMPL NOT TOM-LD-DEE (X Y Z)                                   
+                                                                        
+  232     ALL X,Z:PERSON ALL Y:DAYS NOT MEMBER (Y LYING-DAYS (X)) AND   
+          TWEEDLEDEE (Z) AND NOT MEMBER (TOMORROW (Y) LYING-DAYS (Z))   
+          IMPL NOT TOM-LD-DEE (X Y Z)                                   
+                                                                        
+  233     TYPE                                                          
+          MONDAY,TUESDAY,WEDNESDAY,THURSDAY,FRYDAY,SATURDAY,SUNDAY:     
+          DAYS                                                          
+                                                                        
+  234     MO (MONDAY)                                                   
+                                                                        
+  235     TU (TUESDAY)                                                  
+                                                                        
+  236     WE (WEDNESDAY)                                                
+                                                                        
+  237     TH (THURSDAY)                                                 
+                                                                        
+  238     FR (FRYDAY)                                                   
+                                                                        
+  239     SA (SATURDAY)                                                 
+                                                                        
+  240     SU (SUNDAY)                                                   
+                                                                        
+  241     ALL X:PERSON TWEEDLEDUM (X) EQV NOT TWEEDLEDEE (X)            
+                                                                        
+  242     TWEEDLEDEE (FIRSTONE) AND TWEEDLEDUM (SECONDONE) OR           
+          TWEEDLEDUM (FIRSTONE) AND TWEEDLEDEE (SECONDONE)              
+                                                                        
+  243     * PROBLEM 54                                                  
+                                                                        
+  244     *                                                             
+                                                                        
+  245     * ON ANOTHER OCCASSION THEY MADE THE FOLLOWING STATEMENTS.    
+                                                                        
+  246     *                                                             
+                                                                        
+  247     * FIRST ONE / I LIE ON SATURDAYS.I LIE ON SUNDAYS.            
+                                                                        
+  248     * SECOND ONE / I WILL LIE TOMORROW.                           
+                                                                        
+  249     *                                                             
+                                                                        
+  250     * WHAT DAY OF THE WEEK WAS IT?                                
+                                                                        
+  251     *                                                             
+                                                                        
+  252     *                                                             
+                                                                        
+  253     * FORMALIZING THE PROBLEM IN FIRST ORDER LOGIC                
+                                                                        
+  254     *                                                             
+                                                                        
+  255     TYPE FIRSTONE,SECONDONE:PERSON                                
+                                                                        
+  256     TYPE LION,UNICORN:ANIMAL                                      
+                                                                        
+  257     * LIKE (X Y) MEANS : THE LYING-BEHAVIOR OF X IS LIKE THE      
+          ANIMAL Y.                                                     
+                                                                        
+  258     ALL X:PERSON LIKE (X LION) OR LIKE (X UNICORN)                
+                                                                        
+  259     ALL X:PERSON NOT (LIKE (X LION) AND LIKE (X UNICORN))         
+                                                                        
+  260     *                                                             
+                                                                        
+  261     ALL X:DAYS MO (X) EQV (NOT TU (X) AND NOT WE (X) AND NOT TH   
+          (X) AND NOT FR (X) AND NOT SA (X) AND NOT SU (X))             
+                                                                        
+  262     ALL X:DAYS TU (X) EQV (NOT MO (X) AND NOT WE (X) AND NOT TH   
+          (X) AND NOT FR (X) AND NOT SA (X) AND NOT SU (X))             
+                                                                        
+  263     ALL X:DAYS WE (X) EQV (NOT MO (X) AND NOT TU (X) AND NOT TH   
+          (X) AND NOT FR (X) AND NOT SA (X) AND NOT SU (X))             
+                                                                        
+  264     ALL X:DAYS TH (X) EQV (NOT MO (X) AND NOT TU (X) AND NOT WE   
+          (X) AND NOT FR (X) AND NOT SA (X) AND NOT SU (X))             
+                                                                        
+  265     ALL X:DAYS FR (X) EQV (NOT MO (X) AND NOT TU (X) AND NOT WE   
+          (X) AND NOT TH (X) AND NOT SA (X) AND NOT SU (X))             
+                                                                        
+  266     ALL X:DAYS SA (X) EQV (NOT MO (X) AND NOT TU (X) AND NOT WE   
+          (X) AND NOT TH (X) AND NOT FR (X) AND NOT SU (X))             
+                                                                        
+  267     ALL X:DAYS SU (X) EQV (NOT MO (X) AND NOT TU (X) AND NOT WE   
+          (X) AND NOT TH (X) AND NOT FR (X) AND NOT SA (X))             
+                                                                        
+  268     *                                                             
+                                                                        
+  269     TYPE TOMORROW (DAYS) :DAYS                                    
+                                                                        
+  270     ALL X:DAYS MO (TOMORROW (X)) EQV SU (X)                       
+                                                                        
+  271     ALL X:DAYS TU (TOMORROW (X)) EQV MO (X)                       
+                                                                        
+  272     ALL X:DAYS WE (TOMORROW (X)) EQV TU (X)                       
+                                                                        
+  273     ALL X:DAYS TH (TOMORROW (X)) EQV WE (X)                       
+                                                                        
+  274     ALL X:DAYS FR (TOMORROW (X)) EQV TH (X)                       
+                                                                        
+  275     ALL X:DAYS SA (TOMORROW (X)) EQV FR (X)                       
+                                                                        
+  276     ALL X:DAYS SU (TOMORROW (X)) EQV SA (X)                       
+                                                                        
+  277     *                                                             
+                                                                        
+  278     * THE PREDICATE LA HAS THE FOLLOWING MEANING:                 
+                                                                        
+  279     * LA (X Y Z) IS TRUE, IF IT IS POSSIBLE FOR X ,TO STATE AT    
+          THE DAY Y , THAT HE LIES AT DAY Z.                            
+                                                                        
+  280     *                                                             
+                                                                        
+  281     *                                                             
+                                                                        
+  282     ALL T:PERSON ALL X,Y:DAYS NOT MEMBER (X LYING-DAYS (T)) AND   
+          NOT MEMBER (Y LYING-DAYS (T)) IMPL NOT LA (T X Y)             
+                                                                        
+  283     ALL T:PERSON ALL X,Y:DAYS NOT MEMBER (X LYING-DAYS (T)) AND   
+          MEMBER (Y LYING-DAYS (T)) IMPL LA (T X Y)                     
+                                                                        
+  284     ALL T:PERSON ALL X,Y:DAYS MEMBER (X LYING-DAYS (T)) AND NOT   
+          MEMBER (Y LYING-DAYS (T)) IMPL LA (T X Y)                     
+                                                                        
+  285     ALL T:PERSON ALL X,Y:DAYS MEMBER (X LYING-DAYS (T)) AND       
+          MEMBER (Y LYING-DAYS (T)) IMPL NOT LA (T X Y)                 
+                                                                        
+  286     *                                                             
+                                                                        
+  287     ALL X:DAYS MEMBER (X LYING-DAYS (LION)) EQV (MO (X) OR TU (X  
+          ) OR WE (X))                                                  
+                                                                        
+  288     ALL X:DAYS MEMBER (X LYING-DAYS (UNICORN)) EQV (TH (X) OR FR  
+          (X) OR SA (X))                                                
+                                                                        
+  289     *                                                             
+                                                                        
+  290     ALL X:PERSON ALL Y:ANIMAL LIKE (X Y) IMPL (ALL Z:DAYS (       
+          MEMBER (Z LYING-DAYS (Y)) EQV MEMBER (Z LYING-DAYS (X))))     
+                                                                        
+  291     *                                                             
+                                                                        
+  292     TYPE                                                          
+          MONDAY,TUESDAY,WEDNESDAY,THURSDAY,FRYDAY,SATURDAY,SUNDAY:     
+          DAYS                                                          
+                                                                        
+  293     MO (MONDAY)                                                   
+                                                                        
+  294     TU (TUESDAY)                                                  
+                                                                        
+  295     WE (WEDNESDAY)                                                
+                                                                        
+  296     TH (THURSDAY)                                                 
+                                                                        
+  297     FR (FRYDAY)                                                   
+                                                                        
+  298     SA (SATURDAY)                                                 
+                                                                        
+  299     SU (SUNDAY)                                                   
+                                                                        
+ 

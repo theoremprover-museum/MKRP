@@ -1,0 +1,116 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 48.4                                                *
+                     *           DATE: 09-JUL,1991  10:44                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 09-JUL,1991 10:42 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   SORT WOLF,FOX,BIRD,CATERPILLAR,SNAIL : ANIMAL
+             SORT GRAIN : PLANT
+             ALL X: ANIMAL (ALL Y : PLANT EATS (X Y))
+                    OR (ALL Y : ANIMAL SMALLER (Y X) AND (EX Z : PLANT EATS (Y Z)) IMPL EATS (X Y))
+             ALL X : CATERPILLAR ALL Y : BIRD SMALLER (X Y)
+             ALL X : SNAIL ALL Y : BIRD SMALLER (X Y)
+             ALL X : BIRD ALL Y : FOX SMALLER (X Y)
+             ALL X : FOX ALL Y : WOLF SMALLER (X Y)
+             ALL X : FOX ALL Y : WOLF NOT EATS (Y X)
+             ALL X : GRAIN ALL Y : WOLF NOT EATS (Y X)
+             ALL X : BIRD ALL Y : CATERPILLAR EATS (X Y)
+             ALL X : BIRD ALL Y : SNAIL NOT EATS (X Y)
+             ALL X : CATERPILLAR EX Y : PLANT EATS (X Y)
+             ALL X : SNAIL EX Y : PLANT EATS (X Y)
+             
+   Theorems: ALL X,Y : ANIMAL ALL Z : GRAIN EATS (X Y) AND EATS (Y Z)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+             A2:   All x:Bird y:Caterpillar + SMALLER(y x)
+             A3:   All x:Bird y:Snail + SMALLER(y x)
+             A4:   All x:Fox y:Bird + SMALLER(y x)
+             A5:   All x:Wolf y:Fox + SMALLER(y x)
+             A6:   All x:Fox y:Wolf - EATS(y x)
+             A7:   All x:Grain y:Wolf - EATS(y x)
+             A8:   All x:Caterpillar y:Bird + EATS(y x)
+             A9:   All x:Snail y:Bird - EATS(y x)
+             A10:  All x:Caterpillar + EATS(x f_1(x))
+             A11:  All x:Snail + EATS(x f_2(x))
+             A12:  All x,y:Plant z,u:Animal + EATS(u y)  - SMALLER(z u)  - EATS(z x)  + EATS(u z)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+             T13: - EATS(c_1 c_2)  - EATS(c_4 c_3)
+
+
+
+    Literals: ((T13 15 16) (A12 1 2 3 4) (A11 14) (A10 13) (A9 12) (A8 11) (A7 10) (A6 9) (A5 8) (A4 7) (A3 6) (A2 5) (A1 NIL))
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation: (Failure: GRAPH.COLLAPSED)
+   ======================================
+   
+   Initial Clauses:     A1:   All x:Any + =(x x)
+                        A2:   All x:Bird y:Caterpillar + SMALLER(y x)
+                        A3:   All x:Bird y:Snail + SMALLER(y x)
+                        A4:   All x:Fox y:Bird + SMALLER(y x)
+                        A5:   All x:Wolf y:Fox + SMALLER(y x)
+                        A6:   All x:Fox y:Wolf - EATS(y x)
+                        A7:   All x:Grain y:Wolf - EATS(y x)
+                        A9:   All x:Snail y:Bird - EATS(y x)
+                        A10:  All x:Caterpillar + EATS(x f_1(x))
+                        A11:  All x:Snail + EATS(x f_2(x))
+                        A12:  All x,y:Plant z,u:Animal + EATS(u y)  - SMALLER(z u)  - EATS(z x)  + EATS(u z)
+                        T13:  - EATS(c_1 c_2)  - EATS(c_4 c_3)
+                      
+
+   
+   A12,1 & T13,2  -->   R1:   All x:Plant y:Animal - SMALLER(y c_4)  - EATS(y x)  + EATS(c_4 y)  - EATS(c_1 c_2)
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   The theorem(s) could not be proved.
+
+
+
+   Time Used for Refutation: 7 seconds

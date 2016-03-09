@@ -1,0 +1,106 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 34.2 EQUALITY 16.1                                  *
+                     *           DATE: 01-NOV,1989  21:20                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 01-NOV,1989 21:20 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * AXIOMS *
+             ALL Z (EX Y (ALL X F (X Y) EQV (F (X Z) AND NOT F (X X))))
+             
+   Theorems: * THEOREMS *
+             NOT (EX Z (ALL X F (X Z)))
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x,y:Any - F(y f_1(x))  + F(y x)
+           * A2:   All x,y:Any - F(y f_1(x))  - F(y y)
+           * A3:   All x,y:Any + F(y f_1(x))  - F(y x)  + F(y y)
+           
+
+
+
+
+             Initial Operations on Axioms
+             ============================
+
+
+          
+   A2 (factor)  --> * F1: All x:Any - F(f_1(x) f_1(x))
+   
+
+   
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T4: All x:Any + F(x c_1)
+
+
+
+
+
+
+             Initial Operations on Theorems
+             ==============================
+
+
+          
+   T4,1 & A3,2  --> * R2: + F(f_1(c_1) f_1(c_1))  + F(f_1(c_1) f_1(c_1))
+   
+   R2,1 & F1,1  --> * R3: + F(f_1(c_1) f_1(c_1))
+   
+   R3,1 & F1,1  --> * R4: []
+   
+
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   See operations on theorems of splitpart 1
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 2 seconds

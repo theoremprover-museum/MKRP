@@ -1,0 +1,226 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: Genera 7.1 IP-TCP 52.16 MKRP 18.10                       *
+                     *           DATE: 09-FEB-1988  15:17                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+                                                                            
+   
+   *************************************************************************
+   
+    EDIT:     Axioms and Theorems edited: 09-FEB-1988 15:01 
+   
+   *************************************************************************
+   
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   SORT MENGE,ELEMENT:ANY
+             SORT REL:MENGE
+             SORT EL.VON.S:ELEMENT
+             TYPE EL (ELEMENT MENGE)
+             TYPE PAAR (ELEMENT ELEMENT) :ELEMENT
+             * DEFINITION VON DURCHSCHNITT
+             TYPE DURCHSCHNITT (REL REL) :REL
+             ALL X,Y:REL ALL A:ELEMENT EL (A DURCHSCHNITT (X Y)) EQV EL (A X) AND EL (A Y)
+             * DEFINITION REFLEXIV
+             TYPE REFLEXIV (REL)
+             ALL RHO:REL REFLEXIV (RHO) EQV (ALL A:EL.VON.S EL (PAAR (A A) RHO))
+             * DEFINITION SYMMETRISCH
+             TYPE SYMMETRISCH (REL)
+             ALL RHO:REL SYMMETRISCH (RHO) EQV (ALL A,B:EL.VON.S EL (PAAR (A B) RHO) IMPL EL (PAAR (B A) RHO))
+             * DEFINITION TRANSITIV
+             TYPE TRANSITIV (REL)
+             ALL RHO:REL TRANSITIV (RHO)
+                         EQV (ALL A,B,C:EL.VON.S EL (PAAR (A B) RHO) AND EL (PAAR (B C) RHO) IMPL EL (PAAR (A C) RHO))
+             * DEFINITION AEQUIVALENZRELATION
+             TYPE EQU.REL (REL)
+             ALL RHO:REL EQU.REL (RHO) EQV REFLEXIV (RHO) AND SYMMETRISCH (RHO) AND TRANSITIV (RHO)
+             
+   Theorems: ALL RHO,SIGMA:REL EQU.REL (RHO) AND EQU.REL (SIGMA) IMPL EQU.REL (DURCHSCHNITT (RHO SIGMA))
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+           * A1:   All x,y:Rel z:Element -EL(z durchschnitt(y x))  +EL(z y)
+           * A2:   All x,y:Rel z:Element -EL(z durchschnitt(y x))  +EL(z x)
+           * A3:   All x,y:Rel z:Element +EL(z durchschnitt(y x))  -EL(z y)  -EL(z x)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization and Splitting
+             =================================================================
+
+   Splitpart 1
+
+           * T4: All x:El.von.s +EL(paar(x x) c_7)
+             T5: All x,y:El.von.s -EL(paar(y x) c_7)  +EL(paar(x y) c_7)
+             T6: All x,y,z:El.von.s -EL(paar(z y) c_7)  -EL(paar(y x) c_7)  +EL(paar(z x) c_7)
+           * T7: All x:El.von.s +EL(paar(x x) c_8)
+             T8: All x,y:El.von.s -EL(paar(y x) c_8)  +EL(paar(x y) c_8)
+             T9: All x,y,z:El.von.s -EL(paar(z y) c_8)  -EL(paar(y x) c_8)  +EL(paar(z x) c_8)
+           * T10: -EL(paar(c_1 c_1) durchschnitt(c_7 c_8))
+
+
+
+   Splitpart 2
+
+             T11: All x:El.von.s +EL(paar(x x) c_7)
+           * T12: All x,y:El.von.s -EL(paar(y x) c_7)  +EL(paar(x y) c_7)
+             T13: All x,y,z:El.von.s -EL(paar(z y) c_7)  -EL(paar(y x) c_7)  +EL(paar(z x) c_7)
+             T14: All x:El.von.s +EL(paar(x x) c_8)
+           * T15: All x,y:El.von.s -EL(paar(y x) c_8)  +EL(paar(x y) c_8)
+             T16: All x,y,z:El.von.s -EL(paar(z y) c_8)  -EL(paar(y x) c_8)  +EL(paar(z x) c_8)
+           * T17: +EL(paar(c_2 c_3) durchschnitt(c_7 c_8))
+           * T18: -EL(paar(c_3 c_2) durchschnitt(c_7 c_8))
+
+
+
+   Splitpart 3
+
+             T19: All x:El.von.s +EL(paar(x x) c_7)
+             T20: All x,y:El.von.s -EL(paar(y x) c_7)  +EL(paar(x y) c_7)
+           * T21: All x,y,z:El.von.s -EL(paar(z y) c_7)  -EL(paar(y x) c_7)  +EL(paar(z x) c_7)
+             T22: All x:El.von.s +EL(paar(x x) c_8)
+             T23: All x,y:El.von.s -EL(paar(y x) c_8)  +EL(paar(x y) c_8)
+           * T24: All x,y,z:El.von.s -EL(paar(z y) c_8)  -EL(paar(y x) c_8)  +EL(paar(z x) c_8)
+           * T25: +EL(paar(c_5 c_4) durchschnitt(c_7 c_8))
+           * T26: +EL(paar(c_4 c_6) durchschnitt(c_7 c_8))
+           * T27: -EL(paar(c_5 c_6) durchschnitt(c_7 c_8))
+
+
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation of Splitpart 1:
+   =========================
+
+   
+   Initial Clauses:     A1:   All x,y:Rel z:Element -EL(z durchschnitt(y x))  +EL(z y)
+                        A2:   All x,y:Rel z:Element -EL(z durchschnitt(y x))  +EL(z x)
+                      * A3:   All x,y:Rel z:Element +EL(z durchschnitt(y x))  -EL(z y)  -EL(z x)
+                      * T4:   All x:El.von.s +EL(paar(x x) c_7)
+                        T5:   All x,y:El.von.s -EL(paar(y x) c_7)  +EL(paar(x y) c_7)
+                        T6:   All x,y,z:El.von.s -EL(paar(z y) c_7)  -EL(paar(y x) c_7)  +EL(paar(z x) c_7)
+                      * T7:   All x:El.von.s +EL(paar(x x) c_8)
+                        T8:   All x,y:El.von.s -EL(paar(y x) c_8)  +EL(paar(x y) c_8)
+                        T9:   All x,y,z:El.von.s -EL(paar(z y) c_8)  -EL(paar(y x) c_8)  +EL(paar(z x) c_8)
+                      * T10:  -EL(paar(c_1 c_1) durchschnitt(c_7 c_8))
+                      
+
+   
+   T7,1 & A3,3   -->  * R1:   +EL(paar(c_1 c_1) durchschnitt(c_7 c_8))  -EL(paar(c_1 c_1) c_7)
+   
+   R1,2 & T4,1   -->  * R2:   +EL(paar(c_1 c_1) durchschnitt(c_7 c_8))
+   
+   R2,1 & T10,1  -->  * R3:   []
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation of Splitpart 2:
+   =========================
+
+   
+   Initial Clauses:   * A1:   All x,y:Rel z:Element -EL(z durchschnitt(y x))  +EL(z y)
+                      * A2:   All x,y:Rel z:Element -EL(z durchschnitt(y x))  +EL(z x)
+                      * A3:   All x,y:Rel z:Element +EL(z durchschnitt(y x))  -EL(z y)  -EL(z x)
+                        T11:  All x:El.von.s +EL(paar(x x) c_7)
+                      * T12:  All x,y:El.von.s -EL(paar(y x) c_7)  +EL(paar(x y) c_7)
+                        T13:  All x,y,z:El.von.s -EL(paar(z y) c_7)  -EL(paar(y x) c_7)  +EL(paar(z x) c_7)
+                        T14:  All x:El.von.s +EL(paar(x x) c_8)
+                      * T15:  All x,y:El.von.s -EL(paar(y x) c_8)  +EL(paar(x y) c_8)
+                        T16:  All x,y,z:El.von.s -EL(paar(z y) c_8)  -EL(paar(y x) c_8)  +EL(paar(z x) c_8)
+                      * T17:  +EL(paar(c_2 c_3) durchschnitt(c_7 c_8))
+                      * T18:  -EL(paar(c_3 c_2) durchschnitt(c_7 c_8))
+                      
+
+   
+   T17,1 & A1,1  -->  * R4:   +EL(paar(c_2 c_3) c_7)
+   
+   R4,1 & T12,1  -->  * R5:   +EL(paar(c_3 c_2) c_7)
+   
+   R5,1 & A3,2   -->  * R6:   +EL(paar(c_3 c_2) durchschnitt(c_7 c_8))  -EL(paar(c_3 c_2) c_8)
+   
+   R6,1 & T18,1  -->  * R7:   -EL(paar(c_3 c_2) c_8)
+   
+   T17,1 & A2,1  -->  * R8:   +EL(paar(c_2 c_3) c_8)
+   
+   R8,1 & T15,1  -->  * R9:   +EL(paar(c_3 c_2) c_8)
+   
+   R9,1 & R7,1   -->  * R10:  []
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation of Splitpart 3:
+   =========================
+
+   
+   Initial Clauses:    * A1:   All x,y:Rel z:Element -EL(z durchschnitt(y x))  +EL(z y)
+                       * A2:   All x,y:Rel z:Element -EL(z durchschnitt(y x))  +EL(z x)
+                       * A3:   All x,y:Rel z:Element +EL(z durchschnitt(y x))  -EL(z y)  -EL(z x)
+                         T19:  All x:El.von.s +EL(paar(x x) c_7)
+                         T20:  All x,y:El.von.s -EL(paar(y x) c_7)  +EL(paar(x y) c_7)
+                       * T21:  All x,y,z:El.von.s -EL(paar(z y) c_7)  -EL(paar(y x) c_7)  +EL(paar(z x) c_7)
+                         T22:  All x:El.von.s +EL(paar(x x) c_8)
+                         T23:  All x,y:El.von.s -EL(paar(y x) c_8)  +EL(paar(x y) c_8)
+                       * T24:  All x,y,z:El.von.s -EL(paar(z y) c_8)  -EL(paar(y x) c_8)  +EL(paar(z x) c_8)
+                       * T25:  +EL(paar(c_5 c_4) durchschnitt(c_7 c_8))
+                       * T26:  +EL(paar(c_4 c_6) durchschnitt(c_7 c_8))
+                       * T27:  -EL(paar(c_5 c_6) durchschnitt(c_7 c_8))
+                       
+
+   
+   T26,1 & A1,1   -->  * R11:  +EL(paar(c_4 c_6) c_7)
+   
+   T25,1 & A1,1   -->  * R12:  +EL(paar(c_5 c_4) c_7)
+   
+   R12,1 & T21,1  -->  * R13:  -EL(paar(c_4 c_6) c_7)  +EL(paar(c_5 c_6) c_7)
+   
+   R13,1 & R11,1  -->  * R14:  +EL(paar(c_5 c_6) c_7)
+   
+   T26,1 & A2,1   -->  * R15:  +EL(paar(c_4 c_6) c_8)
+   
+   T25,1 & A2,1   -->  * R16:  +EL(paar(c_5 c_4) c_8)
+   
+   R16,1 & T24,1  -->  * R17:  -EL(paar(c_4 c_6) c_8)  +EL(paar(c_5 c_6) c_8)
+   
+   R17,1 & R15,1  -->  * R18:  +EL(paar(c_5 c_6) c_8)
+   
+   R18,1 & A3,3   -->  * R19:  +EL(paar(c_5 c_6) durchschnitt(c_7 c_8))  -EL(paar(c_5 c_6) c_7)
+   
+   R19,2 & R14,1  -->  * R20:  +EL(paar(c_5 c_6) durchschnitt(c_7 c_8))
+   
+   R20,1 & T27,1  -->  * R21:  []
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 

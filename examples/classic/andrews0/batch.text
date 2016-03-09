@@ -1,0 +1,42 @@
+
+***** Construct: Construction of the initial graphs. ****************************************************************
+AXIOM              106 Msec Links:     0   +0    -0 Clauses:    1  +1  -0 Store:   3059  156
+Inserted: R.=<10>: All X_8:ANY   + =(x_8 x_8)
+          T1<30>: All X_15,X_11:ANY   - P(x_11)  - P(f_1(x_11))  - P(x_15)  - P(c_1)
+THEOREM           1710 Msec Links:     3   +3    -0 Clauses:    2  +2  -0 Store:   3058  155
+Inserted: R.=<10>: All X_8:ANY   + =(x_8 x_8)
+          T1<30>: All X_11:ANY   - P(x_11)  - P(f_1(x_11))  - P(c_1)
+All:      R.= T1 
+Inserted: T2<33>: All X_27,X_29:ANY   - P(x_29)  - P(f_1(x_29))  + P(c_2)  + P(x_27)
+THEOREM            661 Msec Links:    12   +9    -0 Clauses:    3  +1  -0 Store:   3057  155
+Inserted: T2<33>: All X_29:ANY   - P(x_29)  - P(f_1(x_29))  + P(c_2)
+All:      R.= T1 T2 
+Inserted: T3<39>: All X_4,X_26:ANY   + P(x_26)  + P(f_1(x_26))  - P(x_4)  - P(c_1)
+THEOREM            888 Msec Links:    28  +16    -0 Clauses:    4  +1  -0 Store:   3047  155
+Inserted: T3<39>: All X_26:ANY   + P(x_26)  + P(f_1(x_26))  - P(c_1)
+All:      R.= T1 T2 T3 
+Inserted: T4<61>: All X_14,X_7:ANY   + P(x_7)  + P(f_1(x_7))  + P(c_2)  + P(x_14)
+THEOREM            895 Msec Links:    50  +22    -0 Clauses:    5  +1  -0 Store:   3046  154
+Inserted: T4<61>: All X_7:ANY   + P(x_7)  + P(f_1(x_7))  + P(c_2)
+All:      R.= T1 T2 T3 T4 
+Inserted: T5<66>: All X_21:ANY   + P(c_3)  - P(x_21)  + P(c_4)  - P(c_5)
+THEOREM            662 Msec Links:    62  +12    -0 Clauses:    6  +1  -0 Store:   3045  154
+Inserted: T5<66>: + P(c_3)  + P(c_4)  - P(c_5)
+All:      R.= T1 T2 T3 T4 T5 
+Inserted: T6<87>: All X_22,X_23,X_24:ANY   + P(c_3)  - P(x_24)  - P(x_23)  + P(x_22)
+THEOREM           1265 Msec Links:    54   +4   -12 Clauses:    6  +1  -1 Store:   3043  154
+Inserted: T6<87>: + P(c_3)
+All:      R.= T1 T2 T3 T4 T6 
+Inserted: T7<173>: All X_25:ANY   - P(c_3)  + P(x_25)  + P(c_4)  - P(c_5)
+THEOREM           1040 Msec Links:    62   +8    -0 Clauses:    7  +1  -0 Store:   3041  154
+Inserted: T7<173>: + P(c_4)  - P(c_5)
+All:      R.= T1 T2 T3 T4 T6 T7 
+Inserted: T8<146>: All X_18,X_6,X_19:ANY   - P(c_3)  + P(x_19)  - P(x_6)  + P(x_18)
+Inserted: T8<146>: []
+Changed:  T8<146>: []
+RED.SUC            532 Msec Links:    62  +62   -62 Clauses:    8  +1  -0 Store:   3032  153
+All:      R.= T1 T2 T3 T4 T6 T7 T8 
+
+***** Construct: Theorem proved. ************************************************************************************
+
+Protocol: The protocol was created on file F:>mkrp>examples>classic>andrews0>LIST.TEXT.70.

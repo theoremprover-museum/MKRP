@@ -1,0 +1,98 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: Genera 7.1 IP-TCP 52.16 DNA 29.22 MKRP 18.5              *
+                     *           DATE: 17-DEC-1987  21:49                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+                                                                            
+   
+   *************************************************************************
+   
+    EDIT:     Axioms and Theorems edited: 17-DEC-1987 21:48 
+   
+   *************************************************************************
+   
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   SORT SET :ANY
+             SORT ELEMENT :ANY
+             TYPE INTERSECTION (SET SET) :SET
+             TYPE MEMBER (ELEMENT SET)
+             TYPE SETEQUAL (SET SET)
+             ALL A,B :SET SETEQUAL (A B) EQV (ALL X:ELEMENT MEMBER (X A) EQV MEMBER (X B))
+             ALL A,B :SET ALL X:ELEMENT MEMBER (X INTERSECTION (A B)) EQV (MEMBER (X A) AND MEMBER (X B))
+             
+   Theorems: ALL A,B:SET SETEQUAL (INTERSECTION (A B) INTERSECTION (B A))
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+           * A1:   All x,y:Set z:Element -MEMBER(z intersection(y x))  +MEMBER(z y)
+           * A2:   All x,y:Set z:Element -MEMBER(z intersection(y x))  +MEMBER(z x)
+           * A3:   All x,y:Set z:Element +MEMBER(z intersection(y x))  -MEMBER(z y)  -MEMBER(z x)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T4: -MEMBER(c_1 intersection(c_2 c_3))  -MEMBER(c_1 intersection(c_3 c_2))
+           * T5: +MEMBER(c_1 intersection(c_2 c_3))  +MEMBER(c_1 intersection(c_3 c_2))
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+
+   
+   Initial Clauses:       * A2:   All x,y:Set z:Element -MEMBER(z intersection(y x))  +MEMBER(z x)
+                          * A1:   All x,y:Set z:Element -MEMBER(z intersection(y x))  +MEMBER(z y)
+                            R1:   All x,y,z:Set u:Element -MEMBER(u intersection(intersection(z y) x))  +MEMBER(u z)
+                            R3:   All x,y,z:Set u:Element -MEMBER(u intersection(z intersection(y x)))  +MEMBER(u y)
+                            R2:   All x,y,z:Set u:Element -MEMBER(u intersection(intersection(z y) x))  +MEMBER(u y)
+                            R4:   All x,y,z:Set u:Element -MEMBER(u intersection(z intersection(y x)))  +MEMBER(u x)
+                          * A3:   All x,y:Set z:Element +MEMBER(z intersection(y x))  -MEMBER(z y)  -MEMBER(z x)
+                          * D7:   -MEMBER(c_1 intersection(c_2 c_3))
+                          * R8:   +MEMBER(c_1 intersection(c_3 c_2))
+                          
+
+   
+   A3,1 & D7,1       -->  * R9:   -MEMBER(c_1 c_2)  -MEMBER(c_1 c_3)
+   
+   R9,2 & R8,1 (A1)  -->  * R10:  -MEMBER(c_1 c_2)
+   
+   R10,1 & A3,1 (A1) -->  * R11:  -MEMBER(c_1 c_2)  -MEMBER(c_1 c_2)
+   
+   R11,1 & R8,1 (A2) -->  * R12:  -MEMBER(c_1 c_2)
+   
+   R12,1 & R8,1 (A2) -->  * R13:  []
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 

@@ -1,0 +1,12 @@
+
+(problem group1 initialized 
+	 ((type-variables aa) (type-variables bb) (type-constants o) (type-constants i)
+	  (constants (sk1594 i)) (constants (= (o aa aa)))
+	  (constants (false o)) (constants (true o)) (constants (and (o o o)))
+	  (constants (or (o o o))) (constants (implies (o o o)))
+	  (constants (equiv (o o o))) (constants (not (o o))) (constants (forall (o (o aa))))
+	  (constants (exists (o (o aa))))(constants (p o i))
+	  (conclusion conc
+		      (equiv (EXISTS (lam (X i) (forALL (lam (Y i) (equiv (p x) (p y))))))
+			     (equiv (EXISTS (lam (X i) (P X)))
+				    (forALL (lam (Y i) (P Y))))))))

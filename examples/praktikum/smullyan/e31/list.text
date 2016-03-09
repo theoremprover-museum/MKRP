@@ -1,0 +1,234 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 34.6 EQUALITY 16.1                                  *
+                     *           DATE: 07-DEC,1989  18:16                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 07-DEC,1989 18:15 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * AXIOMS OF PROBLEM 31 %.
+             * WE HAVE THREE PEOPLE : A, B, C.
+             * A SAYS : ALL OF US ARE KNAVES.
+             * B SAYS : EXACTLY ONE OF US IS A KNIGHT.
+             * WHAT ARE A, B, C?
+             *
+             * EVERY (X) MEANS : X SAYS : WE ARE ALL KNAVES.
+             * EXACT (X) MEANS : X SAYS : EXACTLY ONE OF US IS A KNIGHT.
+             *
+             ALL X KNIGHT (X) EQV NOT KNAVE (X)
+             ALL X NOT (KNIGHT (X) AND EVERY (X))
+             ALL X KNAVE (X) AND EXACT (X)
+                   IMPL NOT ((KNIGHT (A) OR KNIGHT (B) OR KNIGHT (C))
+                             AND NOT (KNIGHT (A) AND KNIGHT (B))
+                             AND NOT (KNIGHT (A) AND KNIGHT (C))
+                             AND NOT (KNIGHT (B) AND KNIGHT (C)))
+             ALL X (KNAVE (X) AND EVERY (X)) IMPL NOT (KNAVE (A) AND KNAVE (B) AND KNAVE (C))
+             ALL X KNIGHT (X) AND EXACT (X)
+                   IMPL (KNIGHT (A) OR KNIGHT (B) OR KNIGHT (C))
+                        AND NOT (KNIGHT (A) AND KNIGHT (B))
+                        AND NOT (KNIGHT (A) AND KNIGHT (C))
+                        AND NOT (KNIGHT (B) AND KNIGHT (C))
+             EVERY (A)
+             EXACT (B)
+             
+   Theorems: KNAVE (A) AND NOT KNAVE (B) AND KNAVE (C)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+           * A1:   + EVERY(a)
+           * A2:   + EXACT(b)
+           * A3:   All x:Any + KNAVE(x)  - EVERY(x)
+             A4:   All x:Any + KNAVE(x)  - EXACT(x)  + KNAVE(a)  + KNAVE(b)
+             A5:   All x:Any + KNAVE(x)  - EXACT(x)  + KNAVE(a)  + KNAVE(c)
+           * A6:   All x:Any + KNAVE(x)  - EXACT(x)  + KNAVE(b)  + KNAVE(c)
+           * A7:   All x:Any - KNAVE(x)  - EVERY(x)  - KNAVE(a)  - KNAVE(b)  - KNAVE(c)
+             A8:   All x:Any + KNAVE(x)  - EXACT(x)  - KNAVE(a)  - KNAVE(b)  - KNAVE(c)
+             A9:   All x:Any - KNAVE(x)  - EXACT(x)  + KNAVE(a)  - KNAVE(a)  - KNAVE(a)  - KNAVE(b)
+             A10:  All x:Any - KNAVE(x)  - EXACT(x)  + KNAVE(a)  - KNAVE(a)  - KNAVE(a)  - KNAVE(c)
+             A11:  All x:Any - KNAVE(x)  - EXACT(x)  + KNAVE(a)  - KNAVE(a)  - KNAVE(c)  - KNAVE(b)
+             A12:  All x:Any - KNAVE(x)  - EXACT(x)  + KNAVE(a)  - KNAVE(a)  - KNAVE(c)  - KNAVE(c)
+             A13:  All x:Any - KNAVE(x)  - EXACT(x)  + KNAVE(a)  - KNAVE(b)  - KNAVE(a)  - KNAVE(b)
+             A14:  All x:Any - KNAVE(x)  - EXACT(x)  + KNAVE(a)  - KNAVE(b)  - KNAVE(a)  - KNAVE(c)
+             A15:  All x:Any - KNAVE(x)  - EXACT(x)  + KNAVE(a)  - KNAVE(b)  - KNAVE(c)  - KNAVE(b)
+             A16:  All x:Any - KNAVE(x)  - EXACT(x)  + KNAVE(a)  - KNAVE(b)  - KNAVE(c)  - KNAVE(c)
+             A17:  All x:Any - KNAVE(x)  - EXACT(x)  + KNAVE(b)  - KNAVE(a)  - KNAVE(a)  - KNAVE(b)
+             A18:  All x:Any - KNAVE(x)  - EXACT(x)  + KNAVE(b)  - KNAVE(a)  - KNAVE(a)  - KNAVE(c)
+             A19:  All x:Any - KNAVE(x)  - EXACT(x)  + KNAVE(b)  - KNAVE(a)  - KNAVE(c)  - KNAVE(b)
+             A20:  All x:Any - KNAVE(x)  - EXACT(x)  + KNAVE(b)  - KNAVE(a)  - KNAVE(c)  - KNAVE(c)
+             A21:  All x:Any - KNAVE(x)  - EXACT(x)  + KNAVE(b)  - KNAVE(b)  - KNAVE(a)  - KNAVE(b)
+             A22:  All x:Any - KNAVE(x)  - EXACT(x)  + KNAVE(b)  - KNAVE(b)  - KNAVE(a)  - KNAVE(c)
+             A23:  All x:Any - KNAVE(x)  - EXACT(x)  + KNAVE(b)  - KNAVE(b)  - KNAVE(c)  - KNAVE(b)
+             A24:  All x:Any - KNAVE(x)  - EXACT(x)  + KNAVE(b)  - KNAVE(b)  - KNAVE(c)  - KNAVE(c)
+           * A25:  All x:Any - KNAVE(x)  - EXACT(x)  + KNAVE(c)  - KNAVE(a)  - KNAVE(a)  - KNAVE(b)
+             A26:  All x:Any - KNAVE(x)  - EXACT(x)  + KNAVE(c)  - KNAVE(a)  - KNAVE(a)  - KNAVE(c)
+             A27:  All x:Any - KNAVE(x)  - EXACT(x)  + KNAVE(c)  - KNAVE(a)  - KNAVE(c)  - KNAVE(b)
+             A28:  All x:Any - KNAVE(x)  - EXACT(x)  + KNAVE(c)  - KNAVE(a)  - KNAVE(c)  - KNAVE(c)
+             A29:  All x:Any - KNAVE(x)  - EXACT(x)  + KNAVE(c)  - KNAVE(b)  - KNAVE(a)  - KNAVE(b)
+             A30:  All x:Any - KNAVE(x)  - EXACT(x)  + KNAVE(c)  - KNAVE(b)  - KNAVE(a)  - KNAVE(c)
+             A31:  All x:Any - KNAVE(x)  - EXACT(x)  + KNAVE(c)  - KNAVE(b)  - KNAVE(c)  - KNAVE(b)
+             A32:  All x:Any - KNAVE(x)  - EXACT(x)  + KNAVE(c)  - KNAVE(b)  - KNAVE(c)  - KNAVE(c)
+           
+
+
+
+
+             Initial Operations on Axioms
+             ============================
+
+
+          
+   A6,2 & A2,1   --> * R3:  + KNAVE(b)  + KNAVE(b)  + KNAVE(c)
+   
+   R3 2=1        --> * D4:  + KNAVE(b)  + KNAVE(c)
+   
+   A7,3 & A3,1   --> * R5:  All x:Any - KNAVE(x)  - EVERY(x)  - KNAVE(b)  - KNAVE(c)  - EVERY(a)
+   
+   R5,5 & A1,1   --> * R6:  All x:Any - KNAVE(x)  - EVERY(x)  - KNAVE(b)  - KNAVE(c)
+   
+   R6,1 & A3,1   --> * R7:  All x:Any - EVERY(x)  - KNAVE(b)  - KNAVE(c)  - EVERY(x)
+   
+   R7 1=4        --> * D8:  All x:Any - EVERY(x)  - KNAVE(b)  - KNAVE(c)
+   
+   D8,1 & A1,1   --> * R9:  - KNAVE(b)  - KNAVE(c)
+   
+   A25 4=5       --> * D26: All x:Any - KNAVE(x)  - EXACT(x)  + KNAVE(c)  - KNAVE(a)  - KNAVE(b)
+   
+   D26,5 & D4,1  --> * R27: All x:Any - KNAVE(x)  - EXACT(x)  + KNAVE(c)  - KNAVE(a)  + KNAVE(c)
+   
+   R27 3=5       --> * D28: All x:Any - KNAVE(x)  - EXACT(x)  + KNAVE(c)  - KNAVE(a)
+   
+   D28,4 & A3,1  --> * R29: All x:Any - KNAVE(x)  - EXACT(x)  + KNAVE(c)  - EVERY(a)
+   
+   R29,4 & A1,1  --> * R30: All x:Any - KNAVE(x)  - EXACT(x)  + KNAVE(c)
+   
+   R30,1 & D4,1  --> * R31: - EXACT(b)  + KNAVE(c)  + KNAVE(c)
+   
+   R31 2=3       --> * D32: - EXACT(b)  + KNAVE(c)
+   
+   D32,1 & A2,1  --> * R33: + KNAVE(c)
+   
+   R9,2 & R33,1  --> * R34: - KNAVE(b)
+   
+
+   
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization and Splitting
+             =================================================================
+
+   Splitpart 1
+
+           * T33: - KNAVE(a)
+
+   Splitpart 2
+
+           * T34: + KNAVE(b)
+
+   Splitpart 3
+
+           * T35: - KNAVE(c)
+
+
+   End of Splitparts
+
+
+
+
+
+             Initial Operations on Theorems
+             ==============================
+
+
+          
+   Splitpart 1:
+   
+   T33,1 & A3,1  --> * R42: - EVERY(a)
+   
+   R42,1 & A1,1  --> * R43: []
+   
+
+   
+   Splitpart 2:
+   
+   T34,1 & R34,1  --> * R44: []
+   
+
+   
+   Splitpart 3:
+   
+   T35,1 & R33,1  --> * R45: []
+   
+
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation of Splitpart 1:
+   ==========================
+   
+   See operations on theorems of splitpart 1
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation of Splitpart 2:
+   ==========================
+   
+   See operations on theorems of splitpart 2
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation of Splitpart 3:
+   ==========================
+   
+   See operations on theorems of splitpart 3
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation of Splitpart 1: 2 seconds
+   Time Used for Refutation of Splitpart 2: 2 seconds
+   Time Used for Refutation of Splitpart 3: 2 seconds

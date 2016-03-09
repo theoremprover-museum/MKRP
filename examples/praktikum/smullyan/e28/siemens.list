@@ -1,0 +1,27 @@
+***********************************************************************************ATP-SYSTEM:MARKGRAFKARLREFUTATION
+PROCEDURE,UNIKAISERSLAUTERN****VERSION:5-NOV-84**DATE:9-DEC-8421:05:46***
+********************************************************************************
+*************************************************************************EDIT:AXIOMSANDTHEOREMSEDITED:28-NOV-8418:40:08
+*************************************************************************FORMULAEGIVENTOTHEEDITOR
+============================AXIOMS:*AXIOMSFORPROBLEM28%.*TWOPEOPLE,AANDB%.*ASAYS:ATLEASTONEOFUSISAKNAVE.**WHATAREAANDB.*
+*ATLEAST(X Y)MEANS:XSAYS:ATLEASTONEOFUSISAKNAVE.*ALLX,YATLEAST(X Y)ANDKNIGHT(X)IMPLKNAVE(X)ORKNAVE(Y)ALLX,YNOT(ATLEAST
+(X Y) AND KNAVE (X))ALLXKNIGHT(X)EQVNOTKNAVE(X)ATLEAST(A B)THEOREMS:KNIGHT(A)ANDKNIGHT(B)ANDKNAVE(A)ANDKNAVE(B)SETOF
+AXIOMCLAUSESRESULTINGFROMNORMALIZATION=================================================*A1:+ATLEAST(A B)*A2:ALLX,Y:ANY-
+ATLEAST(Y X)-KNAVE(Y)*A3:ALLX,Y:ANY-ATLEAST(Y X)+KNAVE(Y)+KNAVE(Y)+KNAVE(X)OPERATIONSONAXIOMS====================A32=3--
+NIL*D1:ALLX,Y:ANY-ATLEAST(Y X)+KNAVE(Y)+KNAVE(X)D1,2&A2,2--NIL*R2:ALLX,Y:ANY-ATLEAST(Y X)+KNAVE(X)-ATLEAST(Y X)R21=3--
+NIL*D3:ALLX,Y:ANY-ATLEAST(Y X)+KNAVE(X)SETOFTHEOREMCLAUSESRESULTINGFROMNORMALIZATIONANDSPLITTING
+=================================================================SPLITPART1*T4:+KNAVE(A)SPLITPART2T5:+KNAVE(B)SPLITPART
+3T6:-KNAVE(A)SPLITPART4*T7:-KNAVE(B)INITIALOPERATIONSONTHEOREMS==============================SPLITPART1:T4,1&A2,2--NIL*
+R4:-ATLEAST(A B)R4,1&A1,1--NIL*R5:[]SPLITPART4:T7,1&D3,2--NIL*R6:ALLX,Y:ANY-ATLEAST(Y X)R6,1&A1,1--NIL*R7:[]
+------------------------------------------------------------------------------------------------------------------------
+REFUTATIONOFSPLITPART1INITIALCLAUSES:
+------------------------------------------------------------------------------------------------------------------------
+REFUTATIONOFSPLITPART2(FAILURE : GRAPH.COLLAPSED)INITIALCLAUSES:A1:+ATLEAST(A B)A2:ALLX,Y:ANY-ATLEAST(Y X)-KNAVE(Y)D3:
+ALLX,Y:ANY-ATLEAST(Y X)+KNAVE(X)A1,1&D3,1--NILR8:+KNAVE(B)
+------------------------------------------------------------------------------------------------------------------------
+REFUTATIONOFSPLITPART3(FAILURE : GRAPH.COLLAPSED)INITIALCLAUSES:A1:+ATLEAST(A B)A2:ALLX,Y:ANY-ATLEAST(Y X)-KNAVE(Y)D3:
+ALLX,Y:ANY-ATLEAST(Y X)+KNAVE(X)A1,1&D3,1--NILR9:+KNAVE(B)
+------------------------------------------------------------------------------------------------------------------------
+REFUTATIONOFSPLITPART4INITIALCLAUSES:
+------------------------------------------------------------------------------------------------------------------------
+ 

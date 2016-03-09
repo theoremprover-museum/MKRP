@@ -1,0 +1,90 @@
+Die Dateien XKeyboard.lisp, dialog.lisp und menu.lisp enthalten die Implementation von Menues und
+der Funktion 'choose-variable-values' wie im KK-Lisp-Manual Kapitel 20.1 und 20.2 beschrieben.
+Das im Kapitel 20.2 beschriebene :choice Menue ist nicht implementiert.
+
+
+Vor Benutzung irgendeiner Funktion muss die Funktion
+
+dial-init [host.name]
+
+aufgerufen werden (in der Regel braucht man host.name nicht anzugeben).
+Werden keine Menue-Routinen oder 'choose-variable-values' mehr gebraucht, sollte die
+Funktion
+
+dial-exit
+
+aufgerufen werden.
+
+
+Bei den in 20.2 beschriebenen Menues gibt es folgende Erweiterungen:
+
+(siehe Seite 263, Beschreibung von Item-list:)
+
+Item-list ist eine Liste von Ausdruecken:
+
+(string [item-type argument {font info centered selectable exit}:])
+
+Keyword     Defaultwert   Bedeutung
+centered        nil       Button zentriert, wenn true
+selectable      t         Button kann ausgewaehlt werden  (nur relevant bei :single Menues)
+exit            t         Wenn Button gewaehlt wird, wird Dialog verlassen (nur bei :single Menues)
+
+Als zusaetzlichen item-type gibt es :no-select. Solche Items koennen nicht ausgewahlt werden.
+
+Zusaetzliche bzw. erweiterte Funktionen:
+
+Das Argument top-line bei der Funktion darf auch die Form '(:string "String" :font "Fontname") haben.
+Dann wird der Titel im angegebenen Font dargestellt.
+
+menu-dispose menu
+
+Gibt die Strukturen und Resourcen, die fuer das Menue benoetigt wurden wieder frei. Sollte immer
+aufgerufen werden, wenn das Menue nicht mehr gebraucht wird.
+
+menu-choose menu {near-mode mouse-cursor}:
+
+near-mode ist es Ausdruck der Form '(point x y). Das Menue erscheint dann an der Position x y.
+Das Argument mous-cursor wird nicht beachtet.
+
+menu-get-title menu
+
+Gibt den Title des Menues zurueck.
+
+Die im Text auf Seite 264 erwaehnten Funktionen menu-deactivate und menu-get-item-list wurden ebenfalls
+implementiert.
+
+
+Bei choose-variable-values gibt es folgende Erweiterungen:
+
+(siehe Beschreibung von variables auf Seite 260 im KK-List Manual:)
+
+variables = (variable namestring info category [function] {min-width max-width}:)
+
+Nach dem optionalen Parameter kann eine beliebige Menge von Keyword-Parametern stehen. Nur min-width
+und max-width werden beachtet und dies auch nur, wenn category = (:infinite predicate type-info).
+
+min-width ist dabei die minimale Anzahl der Zeichen, die im Edit-Feld gleichzeitig sichtbar sind und
+max-width ist entsprechend die maximale Anzahl der Zeichen. Es kann nach dem Anklicken von Edit-
+Feldern mit Control-B bzw Control-F ggf. nach links bzw. nach rechts gescrollt werden. Nach dem Ancklicken
+wird der im Edit-Feld stehende Eintrag nicht geloescht, sondern kann editiert werden.
+Wenn der printstring der Variablen, die im Edit-Feld dargestellt wird, sehr lang werden kann, sollte
+auf jeden Fall :max-width angegeben werden, weil die Buttons sonst immer automatisch die Groesse des
+enthaltenen Textes bekommen.
+
+Erweiterte Funktionen:
+
+choose-variable-values header variables [margin-choices near-mode]
+
+near-mode hat die gleiche Bedeutung wie bei menu-choose.
+
+
+Bei den Beispielen muessen ggf. die Font-Namen geaendert werden. Es macht aber nichts, wenn ein falscher
+Name angegeben wird. Dann wird der Default-Name genommen.
+
+
+Anfragen bitte an:
+
+Michael_Seyfried@lu.maus.de
+oder in Notfaellen Tel: 0631-68895
+
+

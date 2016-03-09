@@ -1,0 +1,228 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 20.4                                                *
+                     *           DATE: 11-AUG-1988  04:39                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+                                                                            
+   
+   *************************************************************************
+   
+    EDIT:     Axioms and Theorems edited: 11-AUG-1988 04:39 
+   
+   *************************************************************************
+   
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   SORT SET:ANY
+             SORT FUNCTION:ANY
+             SORT ELEMENT:SET
+             SORT ELEMENT.F:ELEMENT
+             SORT NAT:SET
+             SORT REL:SET
+             SORT UNARY.FUNC:FUNCTION
+             SORT BINARY.FUNC:FUNCTION
+             SORT EQU.REL-S:REL
+             SORT L.CONGRUENCE-S:EQU.REL-S
+             SORT R.CONGRUENCE-S:EQU.REL-S
+             SORT CONGRUENCE-S:L.CONGRUENCE-S
+             SORT CONGRUENCE-S:R.CONGRUENCE-S
+             * CONSTANTS *
+             TYPE F:SET
+             TYPE CONN.F:BINARY.FUNC
+             TYPE 1 :NAT
+             TYPE CONN.F.RHO:BINARY.FUNC
+             * PREDICATS *
+             TYPE SEMIGROUP (SET BINARY.FUNC)
+             TYPE L.CONGRUENCE (REL)
+             TYPE R.CONGRUENCE (REL)
+             TYPE CONGRUENCE (EQU.REL-S)
+             TYPE IN.RELATION (REL ELEMENT.F ELEMENT.F)
+             TYPE INJECTIVE (UNARY.FUNC SET SET)
+             TYPE SURJECTIVE (UNARY.FUNC SET SET)
+             TYPE BIJECTIVE (UNARY.FUNC SET SET)
+             TYPE HOMOMORPH (UNARY.FUNC SET SET)
+             TYPE ISOMORPH (UNARY.FUNC SET SET)
+             TYPE EPIMORPH (UNARY.FUNC SET SET)
+             TYPE MAPPING (UNARY.FUNC SET SET)
+             TYPE MEMBER (ELEMENT SET)
+             TYPE SUBSET (SET SET)
+             * FUNCTIONS *
+             TYPE INVERSE.EL (ELEMENT BINARY.FUNC ELEMENT) :ELEMENT
+             TYPE APPLY1 (UNARY.FUNC SET) :SET
+             TYPE APPLY1-EL (UNARY.FUNC ELEMENT) :ELEMENT
+             TYPE APPLY2 (BINARY.FUNC SET SET) :SET
+             TYPE APPLY2-EL (BINARY.FUNC ELEMENT ELEMENT) :ELEMENT
+             TYPE APPLY2-EL.F (BINARY.FUNC ELEMENT.F ELEMENT.F) :ELEMENT.F
+             TYPE PREIMAGE (REL ELEMENT) :SET
+             TYPE POWER (REL NAT) :REL
+             TYPE PLUS (NAT NAT) :NAT
+             TYPE MODULO (EQU.REL-S) :SET
+             TYPE COMP (REL REL) :REL
+             TYPE TRANS.CLOS (REL) :REL
+             TYPE UNION-REL (REL REL) :REL
+             TYPE TRANS.UNION (EQU.REL-S EQU.REL-S) :EQU.REL-S
+             TYPE CAN.PROJ (EQU.REL-S) :UNARY.FUNC
+             TYPE IND.EQU.REL (UNARY.FUNC SET) :EQU.REL-S
+             TYPE MOD.PHI (UNARY.FUNC SET) :UNARY.FUNC
+             *
+             * THEOREM 1.1 *
+             ALL E:ELEMENT.F ALL U:SET GROUP (F CONN.F E) AND SUBSET (U F)
+                                       IMPL (ALL X,Y:ELEMENT.F MEMBER (X U) AND MEMBER (Y U)
+                                                               IMPL MEMBER(APPLY2-EL(CONN.F
+                                                                                     INVERSE.EL (Y CONN.F E)
+                                                                                     X)
+                                                                           U))
+                                       IMPL SUBGROUP (U F CONN.F E)
+             * REPRESENTANTS OF A CONGRUENCE-CLASS CAN BE EXCHANGED *
+             ALL RHO:REL ALL X,Y:ELEMENT.F MEMBER (X PREIMAGE (RHO Y)) IMPL PREIMAGE (RHO Y) := PREIMAGE (RHO X)
+             * THEOREM 5.9.1 *
+             ALL E,X:ELEMENT.F ALL RHO:L.CONGRUENCE-S 
+               GROUP (F CONN.F E) IMPL APPLY2 (CONN.F X PREIMAGE (RHO E)) = PREIMAGE (RHO X)
+             * PREIMAGE CONTAINED IN F *
+             ALL RHO:REL ALL X:ELEMENT.F SUBSET (PREIMAGE (RHO X) F)
+             * *
+             ALL E,X,Y:ELEMENT.F ALL A:SET GROUP (F CONN.F E) AND SUBSET (A F)
+                                           IMPL (MEMBER (X APPLY2 (CONN.F Y A))
+                                                 IMPL MEMBER (APPLY2-EL (CONN.F INVERSE.EL (Y CONN.F E) X) A))
+             
+   Theorems: ALL E:ELEMENT.F ALL RHO:L.CONGRUENCE-S GROUP (F CONN.F E) IMPL SUBGROUP (PREIMAGE (RHO E) F CONN.F E)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+           * A2:   All x:Element.f y:Rel + SUBSET(preimage(y x) f)
+           * A3:   All x,y:Element.f z:Rel - MEMBER(y preimage(z x))  + =(preimage(z x) preimage(z y))
+           * A4:   All x:L.congruence-s y,z:Element.f 
+                        - GROUP(f conn.f z)  + =(apply2(conn.f y preimage(x z)) preimage(x y))
+           * A5:   All x:Set y:Element.f - GROUP(f conn.f y)  - SUBSET(x f)  + MEMBER(f_1(y x) x)
+                                         + SUBGROUP(x f conn.f y)
+           * A6:   All x:Set y:Element.f - GROUP(f conn.f y)  - SUBSET(x f)  + MEMBER(f_2(y x) x)
+                                         + SUBGROUP(x f conn.f y)
+           * A7:   All x:Set y:Element.f - GROUP(f conn.f y)  - SUBSET(x f)
+                                         - MEMBER(apply2-el(conn.f inverse.el(f_2(y x) conn.f y) f_1(y x)) x)
+                                         + SUBGROUP(x f conn.f y)
+           * A8:   All x,y,z:Element.f u:Set - GROUP(f conn.f z)  - SUBSET(u f)  - MEMBER(y apply2(conn.f x u))
+                                             + MEMBER(apply2-el(conn.f inverse.el(x conn.f z) y) u)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T9: + GROUP(f conn.f c_2)
+           * T10: - SUBGROUP(preimage(c_1 c_2) f conn.f c_2)
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:       A1:    All x:Any + =(x x)
+                        * A2:    All x:Element.f y:Rel + SUBSET(preimage(y x) f)
+                        * A3:    All x,y:Element.f z:Rel - MEMBER(y preimage(z x))  + =(preimage(z x) preimage(z y))
+                        * A4:    All x:L.congruence-s y,z:Element.f 
+                                      - GROUP(f conn.f z)  + =(apply2(conn.f y preimage(x z)) preimage(x y))
+                        * A5:    All x:Set y:Element.f - GROUP(f conn.f y)  - SUBSET(x f)  + MEMBER(f_1(y x) x)
+                                                       + SUBGROUP(x f conn.f y)
+                        * A6:    All x:Set y:Element.f - GROUP(f conn.f y)  - SUBSET(x f)  + MEMBER(f_2(y x) x)
+                                                       + SUBGROUP(x f conn.f y)
+                        * A7:    All x:Set y:Element.f - GROUP(f conn.f y)  - SUBSET(x f)
+                                                       - MEMBER(apply2-el(conn.f
+                                                                          inverse.el(f_2(y x) conn.f y)
+                                                                          f_1(y x))
+                                                                x)
+                                                       + SUBGROUP(x f conn.f y)
+                        * A8:    All x,y,z:Element.f u:Set - GROUP(f conn.f z)  - SUBSET(u f)
+                                                           - MEMBER(y apply2(conn.f x u))
+                                                           + MEMBER(apply2-el(conn.f inverse.el(x conn.f z) y) u)
+                        * T9:    + GROUP(f conn.f c_2)
+                        * T10:   - SUBGROUP(preimage(c_1 c_2) f conn.f c_2)
+                        
+
+   
+   A6,4 & T10,1    -->  * R4:    - GROUP(f conn.f c_2)  - SUBSET(preimage(c_1 c_2) f)
+                                 + MEMBER(f_2(c_2 preimage(c_1 c_2)) preimage(c_1 c_2))
+   
+   R4,2 & A2,1     -->  * R5:    - GROUP(f conn.f c_2)  + MEMBER(f_2(c_2 preimage(c_1 c_2)) preimage(c_1 c_2))
+   
+   R5,1 & T9,1     -->  * R6:    + MEMBER(f_2(c_2 preimage(c_1 c_2)) preimage(c_1 c_2))
+   
+   A7,4 & T10,1    -->  * R7:    - GROUP(f conn.f c_2)  - SUBSET(preimage(c_1 c_2) f)
+                                 - MEMBER(apply2-el(conn.f
+                                                    inverse.el(f_2(c_2 preimage(c_1 c_2)) conn.f c_2)
+                                                    f_1(c_2 preimage(c_1 c_2)))
+                                          preimage(c_1 c_2))
+   
+   R7,2 & A2,1     -->  * R8:    - GROUP(f conn.f c_2)
+                                 - MEMBER(apply2-el(conn.f
+                                                    inverse.el(f_2(c_2 preimage(c_1 c_2)) conn.f c_2)
+                                                    f_1(c_2 preimage(c_1 c_2)))
+                                          preimage(c_1 c_2))
+   
+   R8,1 & T9,1     -->  * R9:    - MEMBER(apply2-el(conn.f
+                                                    inverse.el(f_2(c_2 preimage(c_1 c_2)) conn.f c_2)
+                                                    f_1(c_2 preimage(c_1 c_2)))
+                                          preimage(c_1 c_2))
+   
+   A8,4 & R9,1     -->  * R10:   - GROUP(f conn.f c_2)  - SUBSET(preimage(c_1 c_2) f)
+                                 - MEMBER(f_1(c_2 preimage(c_1 c_2))
+                                          apply2(conn.f f_2(c_2 preimage(c_1 c_2)) preimage(c_1 c_2)))
+   
+   R10,2 & A2,1    -->  * R11:   - GROUP(f conn.f c_2)
+                                 - MEMBER(f_1(c_2 preimage(c_1 c_2))
+                                          apply2(conn.f f_2(c_2 preimage(c_1 c_2)) preimage(c_1 c_2)))
+   
+   R11,1 & T9,1    -->  * R12:   - MEMBER(f_1(c_2 preimage(c_1 c_2))
+                                          apply2(conn.f f_2(c_2 preimage(c_1 c_2)) preimage(c_1 c_2)))
+   
+   T9,1 & A4,1     -->  * R13:   All x:L.congruence-s y:Element.f 
+                                      + =(apply2(conn.f y preimage(x c_2)) preimage(x y))
+   
+   R13,1 & R12,1   -->  * P32:   - MEMBER(f_1(c_2 preimage(c_1 c_2)) preimage(c_1 f_2(c_2 preimage(c_1 c_2))))
+   
+   R6,1 & A3,1     -->  * R128:  + =(preimage(c_1 c_2) preimage(c_1 f_2(c_2 preimage(c_1 c_2))))
+   
+   R128,1 & P32,1  -->  * P159:  - MEMBER(f_1(c_2 preimage(c_1 c_2)) preimage(c_1 c_2))
+   
+   P159,1 & A5,3   -->  * R160:  - GROUP(f conn.f c_2)  - SUBSET(preimage(c_1 c_2) f)
+                                 + SUBGROUP(preimage(c_1 c_2) f conn.f c_2)
+   
+   R160,1 & T9,1   -->  * R161:  - SUBSET(preimage(c_1 c_2) f)  + SUBGROUP(preimage(c_1 c_2) f conn.f c_2)
+   
+   R161,1 & A2,1   -->  * R162:  + SUBGROUP(preimage(c_1 c_2) f conn.f c_2)
+   
+   R162,1 & T10,1  -->  * R163:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 

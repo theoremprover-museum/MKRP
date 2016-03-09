@@ -1,0 +1,719 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 35.2 EQUALITY 16.1                                  *
+                     *           DATE: 14-DEC,1989  18:58                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 14-DEC,1989 18:57 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * SMULLYAN, CHAPTER 8, PROBLEM 125
+             * ANOTHER TIME I WAS VISITING A DIFFERENT ISLAND OF KNIGHTS,
+             * KNAVES, AND NORMALS.
+             ALL X KNIGHT (X) IMPL NOT KNAVE (X)
+             ALL X KNAVE (X) IMPL NOT NORMAL (X)
+             ALL X NORMAL (X) IMPL NOT KNIGHT (X)
+             ALL X,Y KNIGHT (X) AND ANSWER (X Y) IMPL T (Y)
+             ALL X,Y KNAVE (X) AND ANSWER (X Y) IMPL NOT T (Y)
+             ALL X KNIGHT (X) OR KNAVE (X) OR NORMAL (X)
+             * IT WAS RUMORED THAT THERE WAS GOLD ON THE ISLAND, AND I
+             * WANTED TO FIND OUT WHETHER THERE WAS. THE KING OF THE ISLAND,
+             * WHO WAS A KNIGHT, GRACIOUSLY INTRODUCED ME TO THREE OF THE
+             * NATIVES, A, B, C, AND TOLD ME THAT AT MOST ONE OF THEM WAS
+             * NORMAL.
+             ((KNIGHT (A) OR KNAVE (A)) AND (KNIGHT (B) OR KNAVE (B)))
+             OR ((KNIGHT (A) OR KNAVE (A)) AND (KNIGHT (C) OR KNAVE (C)))
+             OR ((KNIGHT (B) OR KNAVE (B)) AND (KNIGHT (C) OR KNAVE (C)))
+             * I WAS ALLOWED TO ASK TWO YES-NO QUESTIONS TO WHICHEVER ONES
+             * I WISHED.
+             T (YES1) EQV QUESTION1
+             T (NO1) EQV NOT QUESTION1
+             T (YES2-A) EQV QUESTION2-A
+             T (NO2-A) EQV NOT QUESTION2-A
+             T (YES2-B) EQV QUESTION2-B
+             T (NO2-B) EQV NOT QUESTION2-B
+             
+   Theorems: * IS THERE A WAY OF FINDING OUT IN TWO QUESTIONS WHETHER THERE
+             * IS GOLD ON THE ISLAND?
+             (QUESTION1 EQV (KNIGHT (A) EQV NORMAL (B)))
+             IMPL ((QUESTION2-A EQV (KNIGHT (C) EQV THERE-IS-GOLD-ON-THE-ISLAND))
+                   AND (QUESTION2-B EQV (KNIGHT (B) EQV THERE-IS-GOLD-ON-THE-ISLAND))
+                   IMPL (ANSWER (A YES1)
+                         IMPL ((ANSWER (C YES2-A) IMPL THERE-IS-GOLD-ON-THE-ISLAND)
+                               AND (ANSWER (C NO2-A) IMPL NOT THERE-IS-GOLD-ON-THE-ISLAND)))
+                        AND (ANSWER (A NO1)
+                             IMPL ((ANSWER (B YES2-B) IMPL THERE-IS-GOLD-ON-THE-ISLAND)
+                                   AND (ANSWER (B NO2-B) IMPL NOT THERE-IS-GOLD-ON-THE-ISLAND))))
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any - KNIGHT(x)  - KNAVE(x)
+           * A2:   All x:Any - KNAVE(x)  - NORMAL(x)
+           * A3:   All x:Any - NORMAL(x)  - KNIGHT(x)
+           * A4:   + T(no1)  + T(yes1)
+           * A5:   - T(no1)  - T(yes1)
+           * A6:   + T(no2-a)  + T(yes2-a)
+           * A7:   - T(no2-a)  - T(yes2-a)
+           * A8:   + T(no2-b)  + T(yes2-b)
+           * A9:   - T(no2-b)  - T(yes2-b)
+           * A10:  All x,y:Any - KNIGHT(y)  - ANSWER(y x)  + T(x)
+           * A11:  All x,y:Any - KNAVE(y)  - ANSWER(y x)  - T(x)
+           * A12:  All x:Any + KNIGHT(x)  + KNAVE(x)  + NORMAL(x)
+           * A13:  + KNIGHT(a)  + KNAVE(a)  + KNIGHT(a)  + KNAVE(a)  + KNIGHT(b)  + KNAVE(b)
+           * A14:  + KNIGHT(a)  + KNAVE(a)  + KNIGHT(a)  + KNAVE(a)  + KNIGHT(c)  + KNAVE(c)
+             A15:  + KNIGHT(a)  + KNAVE(a)  + KNIGHT(c)  + KNAVE(c)  + KNIGHT(b)  + KNAVE(b)
+             A16:  + KNIGHT(a)  + KNAVE(a)  + KNIGHT(c)  + KNAVE(c)  + KNIGHT(c)  + KNAVE(c)
+             A17:  + KNIGHT(b)  + KNAVE(b)  + KNIGHT(a)  + KNAVE(a)  + KNIGHT(b)  + KNAVE(b)
+             A18:  + KNIGHT(b)  + KNAVE(b)  + KNIGHT(a)  + KNAVE(a)  + KNIGHT(c)  + KNAVE(c)
+           * A19:  + KNIGHT(b)  + KNAVE(b)  + KNIGHT(c)  + KNAVE(c)  + KNIGHT(b)  + KNAVE(b)
+             A20:  + KNIGHT(b)  + KNAVE(b)  + KNIGHT(c)  + KNAVE(c)  + KNIGHT(c)  + KNAVE(c)
+           
+
+
+
+
+             Initial Operations on Axioms
+             ============================
+
+
+          
+   A13 2=4  --> * D1:  + KNIGHT(a)  + KNAVE(a)  + KNIGHT(a)  + KNIGHT(b)  + KNAVE(b)
+   
+   D1 1=3   --> * D2:  + KNIGHT(a)  + KNAVE(a)  + KNIGHT(b)  + KNAVE(b)
+   
+   A14 2=4  --> * D3:  + KNIGHT(a)  + KNAVE(a)  + KNIGHT(a)  + KNIGHT(c)  + KNAVE(c)
+   
+   D3 1=3   --> * D4:  + KNIGHT(a)  + KNAVE(a)  + KNIGHT(c)  + KNAVE(c)
+   
+   A19 2=6  --> * D9:  + KNIGHT(b)  + KNAVE(b)  + KNIGHT(c)  + KNAVE(c)  + KNIGHT(b)
+   
+   D9 1=5   --> * D10: + KNIGHT(b)  + KNAVE(b)  + KNIGHT(c)  + KNAVE(c)
+   
+
+   
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization and Splitting
+             =================================================================
+
+   Splitpart 1
+
+           * T21: + T(yes1)
+           * T22: + ANSWER(a yes1)
+             T23: + KNIGHT(a)  - NORMAL(b)
+           * T24: - KNIGHT(a)  + NORMAL(b)
+             T25: + ANSWER(c yes2-a)  + ANSWER(c no2-a)
+           * T26: + ANSWER(c yes2-a)  + THERE-IS-GOLD-ON-THE-ISLAND
+           * T27: - THERE-IS-GOLD-ON-THE-ISLAND  + ANSWER(c no2-a)
+             T28: - THERE-IS-GOLD-ON-THE-ISLAND  + THERE-IS-GOLD-ON-THE-ISLAND
+           * T29: + T(yes2-a)  - KNIGHT(c)  - THERE-IS-GOLD-ON-THE-ISLAND
+           * T30: + T(yes2-a)  + KNIGHT(c)  + THERE-IS-GOLD-ON-THE-ISLAND
+           * T31: - T(yes2-a)  + KNIGHT(c)  - THERE-IS-GOLD-ON-THE-ISLAND
+           * T32: - T(yes2-a)  - KNIGHT(c)  + THERE-IS-GOLD-ON-THE-ISLAND
+             T33: + T(yes2-b)  - KNIGHT(b)  - THERE-IS-GOLD-ON-THE-ISLAND
+             T34: + T(yes2-b)  + KNIGHT(b)  + THERE-IS-GOLD-ON-THE-ISLAND
+             T35: - T(yes2-b)  + KNIGHT(b)  - THERE-IS-GOLD-ON-THE-ISLAND
+             T36: - T(yes2-b)  - KNIGHT(b)  + THERE-IS-GOLD-ON-THE-ISLAND
+
+   Splitpart 2
+
+           * T37: + T(yes1)
+           * T38: + ANSWER(a no1)
+           * T39: + KNIGHT(a)  - NORMAL(b)
+             T40: - KNIGHT(a)  + NORMAL(b)
+             T41: + ANSWER(b yes2-b)  + ANSWER(b no2-b)
+           * T42: + ANSWER(b yes2-b)  + THERE-IS-GOLD-ON-THE-ISLAND
+           * T43: - THERE-IS-GOLD-ON-THE-ISLAND  + ANSWER(b no2-b)
+             T44: - THERE-IS-GOLD-ON-THE-ISLAND  + THERE-IS-GOLD-ON-THE-ISLAND
+             T45: + T(yes2-a)  - KNIGHT(c)  - THERE-IS-GOLD-ON-THE-ISLAND
+             T46: + T(yes2-a)  + KNIGHT(c)  + THERE-IS-GOLD-ON-THE-ISLAND
+             T47: - T(yes2-a)  + KNIGHT(c)  - THERE-IS-GOLD-ON-THE-ISLAND
+             T48: - T(yes2-a)  - KNIGHT(c)  + THERE-IS-GOLD-ON-THE-ISLAND
+           * T49: + T(yes2-b)  - KNIGHT(b)  - THERE-IS-GOLD-ON-THE-ISLAND
+           * T50: + T(yes2-b)  + KNIGHT(b)  + THERE-IS-GOLD-ON-THE-ISLAND
+           * T51: - T(yes2-b)  + KNIGHT(b)  - THERE-IS-GOLD-ON-THE-ISLAND
+           * T52: - T(yes2-b)  - KNIGHT(b)  + THERE-IS-GOLD-ON-THE-ISLAND
+
+   Splitpart 3
+
+           * T53: - T(yes1)
+           * T54: + ANSWER(a yes1)
+             T55: - KNIGHT(a)  - NORMAL(b)
+           * T56: + KNIGHT(a)  + NORMAL(b)
+             T57: + ANSWER(c yes2-a)  + ANSWER(c no2-a)
+           * T58: + ANSWER(c yes2-a)  + THERE-IS-GOLD-ON-THE-ISLAND
+           * T59: - THERE-IS-GOLD-ON-THE-ISLAND  + ANSWER(c no2-a)
+             T60: - THERE-IS-GOLD-ON-THE-ISLAND  + THERE-IS-GOLD-ON-THE-ISLAND
+           * T61: + T(yes2-a)  - KNIGHT(c)  - THERE-IS-GOLD-ON-THE-ISLAND
+           * T62: + T(yes2-a)  + KNIGHT(c)  + THERE-IS-GOLD-ON-THE-ISLAND
+           * T63: - T(yes2-a)  + KNIGHT(c)  - THERE-IS-GOLD-ON-THE-ISLAND
+           * T64: - T(yes2-a)  - KNIGHT(c)  + THERE-IS-GOLD-ON-THE-ISLAND
+           * T65: + T(yes2-b)  - KNIGHT(b)  - THERE-IS-GOLD-ON-THE-ISLAND
+           * T66: + T(yes2-b)  + KNIGHT(b)  + THERE-IS-GOLD-ON-THE-ISLAND
+           * T67: - T(yes2-b)  + KNIGHT(b)  - THERE-IS-GOLD-ON-THE-ISLAND
+           * T68: - T(yes2-b)  - KNIGHT(b)  + THERE-IS-GOLD-ON-THE-ISLAND
+
+   Splitpart 4
+
+           * T69: - T(yes1)
+           * T70: + ANSWER(a no1)
+           * T71: - KNIGHT(a)  - NORMAL(b)
+           * T72: + KNIGHT(a)  + NORMAL(b)
+             T73: + ANSWER(b yes2-b)  + ANSWER(b no2-b)
+           * T74: + ANSWER(b yes2-b)  + THERE-IS-GOLD-ON-THE-ISLAND
+           * T75: - THERE-IS-GOLD-ON-THE-ISLAND  + ANSWER(b no2-b)
+             T76: - THERE-IS-GOLD-ON-THE-ISLAND  + THERE-IS-GOLD-ON-THE-ISLAND
+             T77: + T(yes2-a)  - KNIGHT(c)  - THERE-IS-GOLD-ON-THE-ISLAND
+             T78: + T(yes2-a)  + KNIGHT(c)  + THERE-IS-GOLD-ON-THE-ISLAND
+             T79: - T(yes2-a)  + KNIGHT(c)  - THERE-IS-GOLD-ON-THE-ISLAND
+             T80: - T(yes2-a)  - KNIGHT(c)  + THERE-IS-GOLD-ON-THE-ISLAND
+           * T81: + T(yes2-b)  - KNIGHT(b)  - THERE-IS-GOLD-ON-THE-ISLAND
+           * T82: + T(yes2-b)  + KNIGHT(b)  + THERE-IS-GOLD-ON-THE-ISLAND
+           * T83: - T(yes2-b)  + KNIGHT(b)  - THERE-IS-GOLD-ON-THE-ISLAND
+           * T84: - T(yes2-b)  - KNIGHT(b)  + THERE-IS-GOLD-ON-THE-ISLAND
+
+
+   End of Splitparts
+
+
+
+
+
+             Initial Operations on Theorems
+             ==============================
+
+
+          
+   Splitpart 2:
+   
+   A5,2 & T37,1   --> * R14: - T(no1)
+   
+   T39,1 & A10,1  --> * R15: - NORMAL(b)  - ANSWER(a no1)  + T(no1)
+   
+   R15,2 & T38,1  --> * R16: - NORMAL(b)  + T(no1)
+   
+   R16,2 & R14,1  --> * R17: - NORMAL(b)
+   
+
+   
+   Splitpart 3:
+   
+   T56,1 & A10,1  --> * R22: + NORMAL(b)  - ANSWER(a yes1)  + T(yes1)
+   
+   R22,2 & T54,1  --> * R23: + NORMAL(b)  + T(yes1)
+   
+   R23,2 & T53,1  --> * R24: + NORMAL(b)
+   
+   T66,2 & A3,2   --> * R32: + T(yes2-b)  + THERE-IS-GOLD-ON-THE-ISLAND  - NORMAL(b)
+   
+   R32,3 & R24,1  --> * R33: + T(yes2-b)  + THERE-IS-GOLD-ON-THE-ISLAND
+   
+   T65,3 & R33,2  --> * R34: + T(yes2-b)  - KNIGHT(b)  + T(yes2-b)
+   
+   R34 1=3        --> * D35: + T(yes2-b)  - KNIGHT(b)
+   
+   T67,2 & A3,2   --> * R36: - T(yes2-b)  - THERE-IS-GOLD-ON-THE-ISLAND  - NORMAL(b)
+   
+   R36,3 & R24,1  --> * R37: - T(yes2-b)  - THERE-IS-GOLD-ON-THE-ISLAND
+   
+   T68,3 & R37,2  --> * R38: - T(yes2-b)  - KNIGHT(b)  - T(yes2-b)
+   
+   R38 1=3        --> * D39: - T(yes2-b)  - KNIGHT(b)
+   
+   D39,1 & D35,1  --> * R40: - KNIGHT(b)  - KNIGHT(b)
+   
+   R40 1=2        --> * D41: - KNIGHT(b)
+   
+   D10,1 & D41,1  --> * R42: + KNAVE(b)  + KNIGHT(c)  + KNAVE(c)
+   
+   R42,1 & A2,1   --> * R43: + KNIGHT(c)  + KNAVE(c)  - NORMAL(b)
+   
+   R43,3 & R24,1  --> * R44: + KNIGHT(c)  + KNAVE(c)
+   
+
+   
+   Splitpart 4:
+   
+   A4,2 & T69,1  --> * R45: + T(no1)
+   
+
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation of Splitpart 1:
+   ==========================
+   
+   Initial Clauses:        A1:    All x:Any - KNIGHT(x)  - KNAVE(x)
+                         * A2:    All x:Any - KNAVE(x)  - NORMAL(x)
+                         * A3:    All x:Any - NORMAL(x)  - KNIGHT(x)
+                           R13:   - T(no1)
+                         * A6:    + T(no2-a)  + T(yes2-a)
+                         * A7:    - T(no2-a)  - T(yes2-a)
+                           A8:    + T(no2-b)  + T(yes2-b)
+                           A9:    - T(no2-b)  - T(yes2-b)
+                         * A10:   All x,y:Any - KNIGHT(y)  - ANSWER(y x)  + T(x)
+                         * A11:   All x,y:Any - KNAVE(y)  - ANSWER(y x)  - T(x)
+                           A12:   All x:Any + KNIGHT(x)  + KNAVE(x)  + NORMAL(x)
+                           D2:    + KNIGHT(a)  + KNAVE(a)  + KNIGHT(b)  + KNAVE(b)
+                         * D4:    + KNIGHT(a)  + KNAVE(a)  + KNIGHT(c)  + KNAVE(c)
+                         * D10:   + KNIGHT(b)  + KNAVE(b)  + KNIGHT(c)  + KNAVE(c)
+                         * T21:   + T(yes1)
+                         * T22:   + ANSWER(a yes1)
+                           T23:   + KNIGHT(a)  - NORMAL(b)
+                         * T24:   - KNIGHT(a)  + NORMAL(b)
+                           T25:   + ANSWER(c yes2-a)  + ANSWER(c no2-a)
+                         * T26:   + ANSWER(c yes2-a)  + THERE-IS-GOLD-ON-THE-ISLAND
+                         * T27:   - THERE-IS-GOLD-ON-THE-ISLAND  + ANSWER(c no2-a)
+                         * T29:   + T(yes2-a)  - KNIGHT(c)  - THERE-IS-GOLD-ON-THE-ISLAND
+                         * T30:   + T(yes2-a)  + KNIGHT(c)  + THERE-IS-GOLD-ON-THE-ISLAND
+                         * T31:   - T(yes2-a)  + KNIGHT(c)  - THERE-IS-GOLD-ON-THE-ISLAND
+                         * T32:   - T(yes2-a)  - KNIGHT(c)  + THERE-IS-GOLD-ON-THE-ISLAND
+                           T33:   + T(yes2-b)  - KNIGHT(b)  - THERE-IS-GOLD-ON-THE-ISLAND
+                           T34:   + T(yes2-b)  + KNIGHT(b)  + THERE-IS-GOLD-ON-THE-ISLAND
+                           T35:   - T(yes2-b)  + KNIGHT(b)  - THERE-IS-GOLD-ON-THE-ISLAND
+                           T36:   - T(yes2-b)  - KNIGHT(b)  + THERE-IS-GOLD-ON-THE-ISLAND
+                         
+
+   
+   T22,1 & A11,2    -->  * R46:   - KNAVE(a)  - T(yes1)
+   
+   R46,2 & T21,1    -->  * R47:   - KNAVE(a)
+   
+   D4,2 & R47,1     -->  * R49:   + KNIGHT(a)  + KNIGHT(c)  + KNAVE(c)
+   
+   T24,2 & A3,1     -->  * R53:   - KNIGHT(a)  - KNIGHT(b)
+   
+   T24,2 & A2,2     -->  * R54:   - KNIGHT(a)  - KNAVE(b)
+   
+   T26,1 & A11,2    -->  * R75:   + THERE-IS-GOLD-ON-THE-ISLAND  - KNAVE(c)  - T(yes2-a)
+   
+   T26,1 & A10,2    -->  * R76:   + THERE-IS-GOLD-ON-THE-ISLAND  - KNIGHT(c)  + T(yes2-a)
+   
+   R76,3 & T32,1    -->  * R77:   + THERE-IS-GOLD-ON-THE-ISLAND  - KNIGHT(c)  - KNIGHT(c)  + THERE-IS-GOLD-ON-THE-ISLAND
+   
+   R77 2=3          -->  * D78:   + THERE-IS-GOLD-ON-THE-ISLAND  - KNIGHT(c)  + THERE-IS-GOLD-ON-THE-ISLAND
+   
+   D78 1=3          -->  * D79:   + THERE-IS-GOLD-ON-THE-ISLAND  - KNIGHT(c)
+   
+   T30,2 & D79,2    -->  * R80:   + T(yes2-a)  + THERE-IS-GOLD-ON-THE-ISLAND  + THERE-IS-GOLD-ON-THE-ISLAND
+   
+   R80 2=3          -->  * D81:   + T(yes2-a)  + THERE-IS-GOLD-ON-THE-ISLAND
+   
+   T29,3 & D79,1    -->  * R82:   + T(yes2-a)  - KNIGHT(c)  - KNIGHT(c)
+   
+   R82 2=3          -->  * D83:   + T(yes2-a)  - KNIGHT(c)
+   
+   R75,3 & D81,1    -->  * R84:   + THERE-IS-GOLD-ON-THE-ISLAND  - KNAVE(c)  + THERE-IS-GOLD-ON-THE-ISLAND
+   
+   R84 1=3          -->  * D85:   + THERE-IS-GOLD-ON-THE-ISLAND  - KNAVE(c)
+   
+   T32,1 & D81,1    -->  * R86:   - KNIGHT(c)  + THERE-IS-GOLD-ON-THE-ISLAND  + THERE-IS-GOLD-ON-THE-ISLAND
+   
+   R86 2=3          -->  * D87:   - KNIGHT(c)  + THERE-IS-GOLD-ON-THE-ISLAND
+   
+   D83,1 & A7,2     -->  * R88:   - KNIGHT(c)  - T(no2-a)
+   
+   D87,2 & T27,1    -->  * R95:   - KNIGHT(c)  + ANSWER(c no2-a)
+   
+   R95,2 & A10,2    -->  * R97:   - KNIGHT(c)  - KNIGHT(c)  + T(no2-a)
+   
+   R97 2=1          -->  * D98:   - KNIGHT(c)  + T(no2-a)
+   
+   D98,2 & R88,2    -->  * R99:   - KNIGHT(c)  - KNIGHT(c)
+   
+   R99 1=2          -->  * D100:  - KNIGHT(c)
+   
+   R49,2 & D100,1   -->  * R101:  + KNIGHT(a)  + KNAVE(c)
+   
+   D10,3 & D100,1   -->  * R102:  + KNIGHT(b)  + KNAVE(b)  + KNAVE(c)
+   
+   T31,2 & D100,1   -->  * R103:  - T(yes2-a)  - THERE-IS-GOLD-ON-THE-ISLAND
+   
+   A6,2 & R103,1    -->  * R106:  + T(no2-a)  - THERE-IS-GOLD-ON-THE-ISLAND
+   
+   R101,1 & R53,1   -->  * R107:  + KNAVE(c)  - KNIGHT(b)
+   
+   R102,1 & R107,2  -->  * R108:  + KNAVE(b)  + KNAVE(c)  + KNAVE(c)
+   
+   R108 2=3         -->  * D109:  + KNAVE(b)  + KNAVE(c)
+   
+   D109,1 & R54,2   -->  * R110:  + KNAVE(c)  - KNIGHT(a)
+   
+   R110,2 & R101,1  -->  * R111:  + KNAVE(c)  + KNAVE(c)
+   
+   R111 1=2         -->  * D112:  + KNAVE(c)
+   
+   D85,2 & D112,1   -->  * R115:  + THERE-IS-GOLD-ON-THE-ISLAND
+   
+   R106,2 & R115,1  -->  * R118:  + T(no2-a)
+   
+   T27,1 & R115,1   -->  * R122:  + ANSWER(c no2-a)
+   
+   R118,1 & A11,3   -->  * R123:  - KNAVE(c)  - ANSWER(c no2-a)
+   
+   R123,1 & D112,1  -->  * R124:  - ANSWER(c no2-a)
+   
+   R124,1 & R122,1  -->  * R125:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation of Splitpart 2:
+   ==========================
+   
+   Initial Clauses:        A1:    All x:Any - KNIGHT(x)  - KNAVE(x)
+                           A2:    All x:Any - KNAVE(x)  - NORMAL(x)
+                           A3:    All x:Any - NORMAL(x)  - KNIGHT(x)
+                         * R14:   - T(no1)
+                           A6:    + T(no2-a)  + T(yes2-a)
+                           A7:    - T(no2-a)  - T(yes2-a)
+                         * A8:    + T(no2-b)  + T(yes2-b)
+                         * A9:    - T(no2-b)  - T(yes2-b)
+                         * A10:   All x,y:Any - KNIGHT(y)  - ANSWER(y x)  + T(x)
+                         * A11:   All x,y:Any - KNAVE(y)  - ANSWER(y x)  - T(x)
+                         * A12:   All x:Any + KNIGHT(x)  + KNAVE(x)  + NORMAL(x)
+                           R19:   + KNAVE(a)  + KNIGHT(b)  + KNAVE(b)
+                           R20:   + KNAVE(a)  + KNIGHT(c)  + KNAVE(c)
+                           D10:   + KNIGHT(b)  + KNAVE(b)  + KNIGHT(c)  + KNAVE(c)
+                         * T37:   + T(yes1)
+                         * T38:   + ANSWER(a no1)
+                         * R17:   - NORMAL(b)
+                           R18:   - KNIGHT(a)
+                           T41:   + ANSWER(b yes2-b)  + ANSWER(b no2-b)
+                         * T42:   + ANSWER(b yes2-b)  + THERE-IS-GOLD-ON-THE-ISLAND
+                         * T43:   - THERE-IS-GOLD-ON-THE-ISLAND  + ANSWER(b no2-b)
+                           T45:   + T(yes2-a)  - KNIGHT(c)  - THERE-IS-GOLD-ON-THE-ISLAND
+                           T46:   + T(yes2-a)  + KNIGHT(c)  + THERE-IS-GOLD-ON-THE-ISLAND
+                           T47:   - T(yes2-a)  + KNIGHT(c)  - THERE-IS-GOLD-ON-THE-ISLAND
+                           T48:   - T(yes2-a)  - KNIGHT(c)  + THERE-IS-GOLD-ON-THE-ISLAND
+                         * T49:   + T(yes2-b)  - KNIGHT(b)  - THERE-IS-GOLD-ON-THE-ISLAND
+                         * T50:   + T(yes2-b)  + KNIGHT(b)  + THERE-IS-GOLD-ON-THE-ISLAND
+                         * T51:   - T(yes2-b)  + KNIGHT(b)  - THERE-IS-GOLD-ON-THE-ISLAND
+                         * T52:   - T(yes2-b)  - KNIGHT(b)  + THERE-IS-GOLD-ON-THE-ISLAND
+                         
+
+   
+   T42,1 & A11,2    -->  * R137:  + THERE-IS-GOLD-ON-THE-ISLAND  - KNAVE(b)  - T(yes2-b)
+   
+   T42,1 & A10,2    -->  * R138:  + THERE-IS-GOLD-ON-THE-ISLAND  - KNIGHT(b)  + T(yes2-b)
+   
+   R138,3 & T52,1   -->  * R139:  + THERE-IS-GOLD-ON-THE-ISLAND  - KNIGHT(b)  - KNIGHT(b)  + THERE-IS-GOLD-ON-THE-ISLAND
+   
+   R139 2=3         -->  * D140:  + THERE-IS-GOLD-ON-THE-ISLAND  - KNIGHT(b)  + THERE-IS-GOLD-ON-THE-ISLAND
+   
+   D140 1=3         -->  * D141:  + THERE-IS-GOLD-ON-THE-ISLAND  - KNIGHT(b)
+   
+   T50,2 & D141,2   -->  * R142:  + T(yes2-b)  + THERE-IS-GOLD-ON-THE-ISLAND  + THERE-IS-GOLD-ON-THE-ISLAND
+   
+   R142 2=3         -->  * D143:  + T(yes2-b)  + THERE-IS-GOLD-ON-THE-ISLAND
+   
+   T49,3 & D141,1   -->  * R144:  + T(yes2-b)  - KNIGHT(b)  - KNIGHT(b)
+   
+   R144 2=3         -->  * D145:  + T(yes2-b)  - KNIGHT(b)
+   
+   R137,3 & D143,1  -->  * R146:  + THERE-IS-GOLD-ON-THE-ISLAND  - KNAVE(b)  + THERE-IS-GOLD-ON-THE-ISLAND
+   
+   R146 1=3         -->  * D147:  + THERE-IS-GOLD-ON-THE-ISLAND  - KNAVE(b)
+   
+   T52,1 & D143,1   -->  * R148:  - KNIGHT(b)  + THERE-IS-GOLD-ON-THE-ISLAND  + THERE-IS-GOLD-ON-THE-ISLAND
+   
+   R148 2=3         -->  * D149:  - KNIGHT(b)  + THERE-IS-GOLD-ON-THE-ISLAND
+   
+   A12,1 & D145,2   -->  * R150:  + KNAVE(b)  + NORMAL(b)  + T(yes2-b)
+   
+   R150,2 & R17,1   -->  * R151:  + KNAVE(b)  + T(yes2-b)
+   
+   D145,1 & A9,2    -->  * R152:  - KNIGHT(b)  - T(no2-b)
+   
+   A12,1 & D149,1   -->  * R160:  + KNAVE(b)  + NORMAL(b)  + THERE-IS-GOLD-ON-THE-ISLAND
+   
+   R160,2 & R17,1   -->  * R161:  + KNAVE(b)  + THERE-IS-GOLD-ON-THE-ISLAND
+   
+   R161,1 & D147,2  -->  * R162:  + THERE-IS-GOLD-ON-THE-ISLAND  + THERE-IS-GOLD-ON-THE-ISLAND
+   
+   R162 1=2         -->  * D163:  + THERE-IS-GOLD-ON-THE-ISLAND
+   
+   T51,3 & D163,1   -->  * R166:  - T(yes2-b)  + KNIGHT(b)
+   
+   T43,1 & D163,1   -->  * R167:  + ANSWER(b no2-b)
+   
+   R167,1 & A11,2   -->  * R172:  - KNAVE(b)  - T(no2-b)
+   
+   R167,1 & A10,2   -->  * R173:  - KNIGHT(b)  + T(no2-b)
+   
+   R173,2 & R152,2  -->  * R174:  - KNIGHT(b)  - KNIGHT(b)
+   
+   R174 1=2         -->  * D175:  - KNIGHT(b)
+   
+   R166,2 & D175,1  -->  * R178:  - T(yes2-b)
+   
+   A8,2 & R178,1    -->  * R181:  + T(no2-b)
+   
+   R151,2 & R178,1  -->  * R182:  + KNAVE(b)
+   
+   R181,1 & R172,2  -->  * R183:  - KNAVE(b)
+   
+   R183,1 & R182,1  -->  * R184:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation of Splitpart 3:
+   ==========================
+   
+   Initial Clauses:        A1:    All x:Any - KNIGHT(x)  - KNAVE(x)
+                         * A2:    All x:Any - KNAVE(x)  - NORMAL(x)
+                         * A3:    All x:Any - NORMAL(x)  - KNIGHT(x)
+                           R21:   + T(no1)
+                         * A6:    + T(no2-a)  + T(yes2-a)
+                         * A7:    - T(no2-a)  - T(yes2-a)
+                           A8:    + T(no2-b)  + T(yes2-b)
+                           A9:    - T(no2-b)  - T(yes2-b)
+                         * A10:   All x,y:Any - KNIGHT(y)  - ANSWER(y x)  + T(x)
+                         * A11:   All x,y:Any - KNAVE(y)  - ANSWER(y x)  - T(x)
+                           A12:   All x:Any + KNIGHT(x)  + KNAVE(x)  + NORMAL(x)
+                           R31:   + KNAVE(a)
+                         * R44:   + KNIGHT(c)  + KNAVE(c)
+                         * T53:   - T(yes1)
+                         * T54:   + ANSWER(a yes1)
+                           R25:   - KNIGHT(a)
+                         * R24:   + NORMAL(b)
+                           T57:   + ANSWER(c yes2-a)  + ANSWER(c no2-a)
+                         * T58:   + ANSWER(c yes2-a)  + THERE-IS-GOLD-ON-THE-ISLAND
+                         * T59:   - THERE-IS-GOLD-ON-THE-ISLAND  + ANSWER(c no2-a)
+                         * T61:   + T(yes2-a)  - KNIGHT(c)  - THERE-IS-GOLD-ON-THE-ISLAND
+                         * T62:   + T(yes2-a)  + KNIGHT(c)  + THERE-IS-GOLD-ON-THE-ISLAND
+                         * T63:   - T(yes2-a)  + KNIGHT(c)  - THERE-IS-GOLD-ON-THE-ISLAND
+                         * T64:   - T(yes2-a)  - KNIGHT(c)  + THERE-IS-GOLD-ON-THE-ISLAND
+                         * R33:   + T(yes2-b)  + THERE-IS-GOLD-ON-THE-ISLAND
+                         * R37:   - T(yes2-b)  - THERE-IS-GOLD-ON-THE-ISLAND
+                         * D41:   - KNIGHT(b)
+                         
+
+   
+   T58,1 & A11,2    -->  * R203:  + THERE-IS-GOLD-ON-THE-ISLAND  - KNAVE(c)  - T(yes2-a)
+   
+   T58,1 & A10,2    -->  * R204:  + THERE-IS-GOLD-ON-THE-ISLAND  - KNIGHT(c)  + T(yes2-a)
+   
+   R204,3 & T64,1   -->  * R205:  + THERE-IS-GOLD-ON-THE-ISLAND  - KNIGHT(c)  - KNIGHT(c)  + THERE-IS-GOLD-ON-THE-ISLAND
+   
+   R205 2=3         -->  * D206:  + THERE-IS-GOLD-ON-THE-ISLAND  - KNIGHT(c)  + THERE-IS-GOLD-ON-THE-ISLAND
+   
+   D206 1=3         -->  * D207:  + THERE-IS-GOLD-ON-THE-ISLAND  - KNIGHT(c)
+   
+   T62,2 & D207,2   -->  * R208:  + T(yes2-a)  + THERE-IS-GOLD-ON-THE-ISLAND  + THERE-IS-GOLD-ON-THE-ISLAND
+   
+   R208 2=3         -->  * D209:  + T(yes2-a)  + THERE-IS-GOLD-ON-THE-ISLAND
+   
+   T61,3 & D207,1   -->  * R210:  + T(yes2-a)  - KNIGHT(c)  - KNIGHT(c)
+   
+   R210 2=3         -->  * D211:  + T(yes2-a)  - KNIGHT(c)
+   
+   R203,3 & D209,1  -->  * R212:  + THERE-IS-GOLD-ON-THE-ISLAND  - KNAVE(c)  + THERE-IS-GOLD-ON-THE-ISLAND
+   
+   R212 1=3         -->  * D213:  + THERE-IS-GOLD-ON-THE-ISLAND  - KNAVE(c)
+   
+   T64,1 & D209,1   -->  * R214:  - KNIGHT(c)  + THERE-IS-GOLD-ON-THE-ISLAND  + THERE-IS-GOLD-ON-THE-ISLAND
+   
+   R214 2=3         -->  * D215:  - KNIGHT(c)  + THERE-IS-GOLD-ON-THE-ISLAND
+   
+   D211,1 & A7,2    -->  * R217:  - KNIGHT(c)  - T(no2-a)
+   
+   R44,1 & D215,1   -->  * R225:  + KNAVE(c)  + THERE-IS-GOLD-ON-THE-ISLAND
+   
+   R225,1 & D213,2  -->  * R226:  + THERE-IS-GOLD-ON-THE-ISLAND  + THERE-IS-GOLD-ON-THE-ISLAND
+   
+   R226 1=2         -->  * D227:  + THERE-IS-GOLD-ON-THE-ISLAND
+   
+   T63,3 & D227,1   -->  * R230:  - T(yes2-a)  + KNIGHT(c)
+   
+   T59,1 & D227,1   -->  * R231:  + ANSWER(c no2-a)
+   
+   R231,1 & A11,2   -->  * R234:  - KNAVE(c)  - T(no2-a)
+   
+   R231,1 & A10,2   -->  * R235:  - KNIGHT(c)  + T(no2-a)
+   
+   R235,2 & R217,2  -->  * R236:  - KNIGHT(c)  - KNIGHT(c)
+   
+   R236 1=2         -->  * D237:  - KNIGHT(c)
+   
+   R44,1 & D237,1   -->  * R238:  + KNAVE(c)
+   
+   R230,2 & D237,1  -->  * R239:  - T(yes2-a)
+   
+   R234,1 & R238,1  -->  * R240:  - T(no2-a)
+   
+   R240,1 & A6,1    -->  * R241:  + T(yes2-a)
+   
+   R241,1 & R239,1  -->  * R242:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation of Splitpart 4:
+   ==========================
+   
+   Initial Clauses:        A1:    All x:Any - KNIGHT(x)  - KNAVE(x)
+                         * A2:    All x:Any - KNAVE(x)  - NORMAL(x)
+                         * A3:    All x:Any - NORMAL(x)  - KNIGHT(x)
+                         * R45:   + T(no1)
+                           A6:    + T(no2-a)  + T(yes2-a)
+                           A7:    - T(no2-a)  - T(yes2-a)
+                         * A8:    + T(no2-b)  + T(yes2-b)
+                         * A9:    - T(no2-b)  - T(yes2-b)
+                         * A10:   All x,y:Any - KNIGHT(y)  - ANSWER(y x)  + T(x)
+                         * A11:   All x,y:Any - KNAVE(y)  - ANSWER(y x)  - T(x)
+                         * A12:   All x:Any + KNIGHT(x)  + KNAVE(x)  + NORMAL(x)
+                         * D2:    + KNIGHT(a)  + KNAVE(a)  + KNIGHT(b)  + KNAVE(b)
+                           D4:    + KNIGHT(a)  + KNAVE(a)  + KNIGHT(c)  + KNAVE(c)
+                           D10:   + KNIGHT(b)  + KNAVE(b)  + KNIGHT(c)  + KNAVE(c)
+                         * T69:   - T(yes1)
+                         * T70:   + ANSWER(a no1)
+                         * T71:   - KNIGHT(a)  - NORMAL(b)
+                         * T72:   + KNIGHT(a)  + NORMAL(b)
+                           T73:   + ANSWER(b yes2-b)  + ANSWER(b no2-b)
+                         * T74:   + ANSWER(b yes2-b)  + THERE-IS-GOLD-ON-THE-ISLAND
+                         * T75:   - THERE-IS-GOLD-ON-THE-ISLAND  + ANSWER(b no2-b)
+                           T77:   + T(yes2-a)  - KNIGHT(c)  - THERE-IS-GOLD-ON-THE-ISLAND
+                           T78:   + T(yes2-a)  + KNIGHT(c)  + THERE-IS-GOLD-ON-THE-ISLAND
+                           T79:   - T(yes2-a)  + KNIGHT(c)  - THERE-IS-GOLD-ON-THE-ISLAND
+                           T80:   - T(yes2-a)  - KNIGHT(c)  + THERE-IS-GOLD-ON-THE-ISLAND
+                         * T81:   + T(yes2-b)  - KNIGHT(b)  - THERE-IS-GOLD-ON-THE-ISLAND
+                         * T82:   + T(yes2-b)  + KNIGHT(b)  + THERE-IS-GOLD-ON-THE-ISLAND
+                         * T83:   - T(yes2-b)  + KNIGHT(b)  - THERE-IS-GOLD-ON-THE-ISLAND
+                         * T84:   - T(yes2-b)  - KNIGHT(b)  + THERE-IS-GOLD-ON-THE-ISLAND
+                         
+
+   
+   T70,1 & A11,2    -->  * R243:  - KNAVE(a)  - T(no1)
+   
+   R243,2 & R45,1   -->  * R244:  - KNAVE(a)
+   
+   D2,2 & R244,1    -->  * R245:  + KNIGHT(a)  + KNIGHT(b)  + KNAVE(b)
+   
+   T72,2 & A3,1     -->  * R248:  + KNIGHT(a)  - KNIGHT(b)
+   
+   R245,2 & R248,2  -->  * R249:  + KNIGHT(a)  + KNAVE(b)  + KNIGHT(a)
+   
+   R249 1=3         -->  * D250:  + KNIGHT(a)  + KNAVE(b)
+   
+   D250,1 & T71,1   -->  * R251:  + KNAVE(b)  - NORMAL(b)
+   
+   R251,1 & A2,1    -->  * R252:  - NORMAL(b)  - NORMAL(b)
+   
+   R252 1=2         -->  * D253:  - NORMAL(b)
+   
+   T74,1 & A11,2    -->  * R270:  + THERE-IS-GOLD-ON-THE-ISLAND  - KNAVE(b)  - T(yes2-b)
+   
+   T74,1 & A10,2    -->  * R271:  + THERE-IS-GOLD-ON-THE-ISLAND  - KNIGHT(b)  + T(yes2-b)
+   
+   R271,3 & T84,1   -->  * R272:  + THERE-IS-GOLD-ON-THE-ISLAND  - KNIGHT(b)  - KNIGHT(b)  + THERE-IS-GOLD-ON-THE-ISLAND
+   
+   R272 2=3         -->  * D273:  + THERE-IS-GOLD-ON-THE-ISLAND  - KNIGHT(b)  + THERE-IS-GOLD-ON-THE-ISLAND
+   
+   D273 1=3         -->  * D274:  + THERE-IS-GOLD-ON-THE-ISLAND  - KNIGHT(b)
+   
+   T82,2 & D274,2   -->  * R275:  + T(yes2-b)  + THERE-IS-GOLD-ON-THE-ISLAND  + THERE-IS-GOLD-ON-THE-ISLAND
+   
+   R275 2=3         -->  * D276:  + T(yes2-b)  + THERE-IS-GOLD-ON-THE-ISLAND
+   
+   T81,3 & D274,1   -->  * R277:  + T(yes2-b)  - KNIGHT(b)  - KNIGHT(b)
+   
+   R277 2=3         -->  * D278:  + T(yes2-b)  - KNIGHT(b)
+   
+   R270,3 & D276,1  -->  * R279:  + THERE-IS-GOLD-ON-THE-ISLAND  - KNAVE(b)  + THERE-IS-GOLD-ON-THE-ISLAND
+   
+   R279 1=3         -->  * D280:  + THERE-IS-GOLD-ON-THE-ISLAND  - KNAVE(b)
+   
+   T84,1 & D276,1   -->  * R281:  - KNIGHT(b)  + THERE-IS-GOLD-ON-THE-ISLAND  + THERE-IS-GOLD-ON-THE-ISLAND
+   
+   R281 2=3         -->  * D282:  - KNIGHT(b)  + THERE-IS-GOLD-ON-THE-ISLAND
+   
+   A12,1 & D278,2   -->  * R283:  + KNAVE(b)  + NORMAL(b)  + T(yes2-b)
+   
+   R283,2 & D253,1  -->  * R284:  + KNAVE(b)  + T(yes2-b)
+   
+   D278,1 & A9,2    -->  * R285:  - KNIGHT(b)  - T(no2-b)
+   
+   A12,1 & D282,1   -->  * R293:  + KNAVE(b)  + NORMAL(b)  + THERE-IS-GOLD-ON-THE-ISLAND
+   
+   R293,2 & D253,1  -->  * R294:  + KNAVE(b)  + THERE-IS-GOLD-ON-THE-ISLAND
+   
+   R294,1 & D280,2  -->  * R295:  + THERE-IS-GOLD-ON-THE-ISLAND  + THERE-IS-GOLD-ON-THE-ISLAND
+   
+   R295 1=2         -->  * D296:  + THERE-IS-GOLD-ON-THE-ISLAND
+   
+   T83,3 & D296,1   -->  * R299:  - T(yes2-b)  + KNIGHT(b)
+   
+   T75,1 & D296,1   -->  * R300:  + ANSWER(b no2-b)
+   
+   R300,1 & A11,2   -->  * R305:  - KNAVE(b)  - T(no2-b)
+   
+   R300,1 & A10,2   -->  * R306:  - KNIGHT(b)  + T(no2-b)
+   
+   R306,2 & R285,2  -->  * R307:  - KNIGHT(b)  - KNIGHT(b)
+   
+   R307 1=2         -->  * D308:  - KNIGHT(b)
+   
+   R299,2 & D308,1  -->  * R309:  - T(yes2-b)
+   
+   A8,2 & R309,1    -->  * R311:  + T(no2-b)
+   
+   R284,2 & R309,1  -->  * R312:  + KNAVE(b)
+   
+   R311,1 & R305,2  -->  * R313:  - KNAVE(b)
+   
+   R313,1 & R312,1  -->  * R314:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation of Splitpart 1: 77 seconds
+   Time Used for Refutation of Splitpart 2: 59 seconds
+   Time Used for Refutation of Splitpart 3: 64 seconds
+   Time Used for Refutation of Splitpart 4: 72 seconds

@@ -1,0 +1,104 @@
+ 
+ 
+ 
+             ****************************************************
+             *                                                  *
+             *   ATP-SYSTEM :  M K R P , UNI KARLSRUHE          *
+             *                                                  *
+             *      VERSION : 3-FEB-84                          *
+             *         DATE : 14-AUG-84  14:30:02               *
+             *                                                  *
+             ****************************************************
+ 
+ 
+***********************************************************************
+                                                                       
+     DATUM: 14-AUG-84 14:29:59
+AXIOME UND THEOREME FUER DIESEN BEWEIS WURDEN VON FOLGENDEN DATEIEN    
+GELESEN:   1) AXIOM-DATEI:   F.AX.DEUSSEN.1.10D2
+           2) THEOREM-DATEI: F.TH.DEUSSEN.1.10D2
+                                                                       
+***********************************************************************
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : SORT ELEM,VERKN,MENGE,ABB:ANY
+           TYPE APPLYA (ABB ELEM) :ELEM
+           TYPE APPLYV (VERKN ELEM ELEM) :ELEM
+           TYPE INVERS (VERKN ELEM) :ELEM
+           ALL U,F:MENGE  ALL PHI:VERKN  ALL CHI:ABB  ALL C,Z,E:ELEM  
+                 G (F PHI E)
+                 AND  
+                 ME (U F)
+                 AND  
+                 BIJEKTIV (CHI U U)
+                 AND  
+                 EL (Z U)
+                 AND  
+                 EL (C U)
+                 AND  
+                 APPLYA (CHI Z) = APPLYV (PHI Z C)
+               IMPL  
+               (EX X:ELEM APPLYV (PHI X C) = Z AND EL (X U))
+           ALL U,V:MENGE ALL X:ELEM ME (U V) AND EL (X U) IMPL EL (X V)
+           ALL F:MENGE  ALL PHI:VERKN  ALL X,Y,E:ELEM  
+               G (F PHI E) AND EL (X F) AND APPLYV (PHI Y X) = E
+               IMPL  
+               Y = INVERS (PHI X)
+           ALL F:MENGE ALL PHI:VERKN ALL E:ELEM EINS (E PHI F) IMPL EL (E
+F)
+ 
+THEOREMS : ALL U,F:MENGE  ALL PHI:VERKN  ALL Z,E:ELEM  
+               G (F PHI E) AND ME (U F) AND ENDLICH (U)
+               IMPL  
+                     UHG (U F PHI)
+                     AND  
+                     EL (Z U)
+                     AND  
+                     EINS (E PHI U)
+                     AND  
+                      ALL C:ELEM  
+                          EL (C U)
+                          IMPL  
+                           EX CHI:ABB  
+                               BIJEKTIV (CHI U U)
+                               AND  
+                                ALL X:ELEM  
+                                    EL (X U)
+                                    IMPL  
+                                    APPLYA (CHI X) = APPLYV (PHI X C)
+                  IMPL  
+                  EL (INVERS (PHI Z) U)
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+  A1   : ALL X,Y:MENGE  Z:VERKN  U,V,W:ELEM  XX:ABB  
+              -G(X Z U) -ME(Y X) -BIJEKTIV(XX Y Y) -EL(V Y) -EL(W Y) 
+              -=(APPLYA(XX V) APPLYV(Z V W)) +=(APPLYV(Z F_1(V Z Y W) W) V) 
+  A2   : ALL X,Y:MENGE  Z:VERKN  U,V,W:ELEM  XX:ABB  
+              -G(X Z U) -ME(Y X) -BIJEKTIV(XX Y Y) -EL(V Y) -EL(W Y) 
+              -=(APPLYA(XX V) APPLYV(Z V W)) +EL(F_1(V Z Y W) Y) 
+  R.:=:: ALL X:ANY  +:=:(X X)
+  A3   : ALL X,Y:MENGE  Z:ELEM  -ME(X Y) -EL(Z X) +EL(Z Y)
+  A4   : ALL X:MENGE  Y:VERKN  Z,U,V:ELEM  
+              -G(X Y Z) -EL(U X) -=(APPLYV(Y V U) Z) +=(V INVERS(Y U)) 
+  A5   : ALL X:ELEM  Y:VERKN  Z:MENGE  -EINS(X Y Z) +EL(X Z)
+ 
+ 
+--------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+  Q. E. D. 
+ 

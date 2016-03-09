@@ -1,0 +1,115 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: Genera 7.1 PS 3.10 IP-TCP 52.16 MKRP 20.1                *
+                     *           DATE: 04-AUG-1988  13:37                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+                                                                            
+   
+   *************************************************************************
+   
+    EDIT:     Axioms and Theorems edited: 04-AUG-1988 13:36 
+   
+   *************************************************************************
+   
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   SORT ELEMENT,MENGE,VERKN,ABB,NAT:ANY
+             TYPE W (MENGE) :MENGE
+             TYPE LENGTH (ELEMENT) : NAT
+             TYPE URBILD (ELEMENT ABB) :ELEMENT
+             TYPE APPLYA (ABB ELEMENT) : ELEMENT
+             TYPE RESTRICTION (ABB MENGE) :ABB
+             TYPE PHINULL,PHI:ABB
+             TYPE ONE:NAT
+             ALL X:ELEMENT ALL B : MENGE EL (X W (B)) AND GLEICH (LENGTH (X) ONE) IMPL EL (X B)
+             ALL A,B:MENGE ALL F:ABB ALL X:ELEMENT BIJEKTIV (F A B) AND EL (X B) IMPL EINDEUTIG (URBILD (X F))
+             ALL X:ELEMENT ALL CHI:ABB ALL A,B:MENGE 
+               EL (X B) AND BIJEKTIV (RESTRICTION (CHI A) A B) AND EINDEUTIG (URBILD (X RESTRICTION (CHI A)))
+               IMPL EINDEUTIG (URBILD (X CHI))
+             
+   Theorems: ALL X:ELEMENT ALL A,B:MENGE EL (X W (B))
+                                              AND GLEICH (LENGTH (X) ONE)
+                                              AND BIJEKTIV (PHINULL A B)
+                                              AND HOMOMORPH (PHI W (A) W (B))
+                                              AND RESTRICTION (PHI A) = PHINULL
+                                         IMPL EINDEUTIG (URBILD (X PHI))
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any +=(x x)
+           * A2:   All x:Menge y:Element -EL(y w(x))  -GLEICH(length(y) one)  +EL(y x)
+           * A3:   All x:Element y,z:Menge u:Abb -BIJEKTIV(u z y)  -EL(x y)  +EINDEUTIG(urbild(x u))
+           * A4:   All x,y:Menge z:Abb u:Element -EL(u y)  -BIJEKTIV(restriction(z x) x y)
+                                                 -EINDEUTIG(urbild(u restriction(z x)))  +EINDEUTIG(urbild(u z))
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T5: +EL(c_3 w(c_2))
+           * T6: +GLEICH(length(c_3) one)
+           * T7: +BIJEKTIV(phinull c_1 c_2)
+             T8: +HOMOMORPH(phi w(c_1) w(c_2))
+           * T9: +=(restriction(phi c_1) phinull)
+           * T10: -EINDEUTIG(urbild(c_3 phi))
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+
+   
+   Initial Clauses:     A1:   All x:Any +=(x x)
+                      * A2:   All x:Menge y:Element -EL(y w(x))  -GLEICH(length(y) one)  +EL(y x)
+                      * D3:   All x,y:Menge z:Abb u:Element 
+                                   -EL(u x)  -BIJEKTIV(restriction(z y) y x)  +EINDEUTIG(urbild(u z))
+                      * T5:   +EL(c_3 w(c_2))
+                      * T6:   +GLEICH(length(c_3) one)
+                      * RW5:  +BIJEKTIV(restriction(phi c_1) c_1 c_2)
+                        T8:   +HOMOMORPH(phi w(c_1) w(c_2))
+                      * T10:  -EINDEUTIG(urbild(c_3 phi))
+                      
+
+   
+   D3,3 & T10,1  -->  * R6:   All x,y:Menge -EL(c_3 y)  -BIJEKTIV(restriction(phi x) x y)
+   
+   A2,3 & R6,1   -->  * R7:   -EL(c_3 w(c_2))  -GLEICH(length(c_3) one)  -BIJEKTIV(restriction(phi c_1) c_1 c_2)
+   
+   R7,1 & T5,1   -->  * R8:   -GLEICH(length(c_3) one)  -BIJEKTIV(restriction(phi c_1) c_1 c_2)
+   
+   R8,1 & T6,1   -->  * R9:   -BIJEKTIV(restriction(phi c_1) c_1 c_2)
+   
+   R9,1 & RW5,1  -->  * R10:  []
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 

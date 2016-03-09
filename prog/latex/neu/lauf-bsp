@@ -1,0 +1,120 @@
+;;; Domain/CommonLISP, Development Environment Version 4.00, 25 February 1990
+;;; ...
+...
+> (load "new-formatter")
+;;; Loading source file "new-formatter.lisp"
+;;; Warning: File "new-formatter.lisp" does not begin with IN-PACKAGE.  Loading into package "USER"
+;;; Warning: Initial value NIL is not of type (OR NIL NUMBER), in slot ACTUAL-LENGTH
+;;; Warning: Initial value NIL is not of type (OR NIL NUMBER), in slot LOCAL-LENGTH
+;;; Warning: Initial value NIL is not of type (OR NIL NUMBER), in slot END-LENGTH
+;;; Warning: Initial value NIL is not of type (OR NIL NUMBER), in slot NEXT-STEP-LENGTH
+#P"//node_19669/data/rrl/dok-sys/other-things/term-format/new-formatter.lisp"
+> (load "spec")
+;;; Loading source file "spec.lisp"
+;;; Warning: File "spec.lisp" does not begin with IN-PACKAGE.  Loading into package "USER"
+#P"//node_19669/data/rrl/dok-sys/other-things/term-format/spec.lisp"
+> (optimize-iterm (parse-term '(bins (rop (f (g x)) !) + (lop - (h y)))) 10)
+...
+> (load "latex-out")
+...
+> (top-latex-out-int-term (silent-optimize-iterm (parse-term '(bins (rop (f (g x)) !) + (lop - (h y)))) 10))
+...
+> (top-latex-out-int-term (silent-optimize-iterm (parse-term '(quant ALL ((ANY X Y))
+     (not 
+       (bins (bins Y + (bins X + (bins Y + X)))
+          =  (bins (bins Y + Y) + (bins X + X)))))
+) 20)) ; gibt nicht die Intention wieder
+...
+> (top-latex-out-int-term (silent-optimize-iterm (parse-term 
+   '(quant ALL ((ANY X Y))
+     (lop not 
+       (kl (bins (bins Y + (kl (bins X + (kl (bins Y + X)))))
+          =  (bins (kl (bins Y + Y)) + (kl (bins X + X)))))))
+) 20)) ; dagegen hier...
+...
+> (load "latex-erg")
+;;; Loading source file "latex-erg.lisp"
+;;; Warning: File "latex-erg.lisp" does not begin with IN-PACKAGE.  Loading into package "USER"
+#P"//node_19669/data/rrl/dok-sys/other-things/term-format/latex-erg.lisp"
+> (latex-top-out "dummy1" '((("Splitpart" 1)
+  ("T6,1 \\land  A2"
+   (("* " "RW2")
+    ((NOT (BINS (BINS "c_2" "+"
+                      (KL (BINS "c_1" "+" (KL (BINS "c_2" "+" "c_1")))))
+                "="
+                (BINS (KL (BINS "c_2" "+" "c_2")) "+"
+                      (KL (BINS "c_1" "+" "c_1"))))))))
+  ("RW2,1 \\land  A2"
+   (("* " "RW3")
+    ((NOT (BINS (BINS "c_2" "+"
+                      (KL (BINS "c_1" "+" (KL (BINS "c_2" "+" "c_1")))))
+                "="
+                (BINS "c_2" "+"
+                      (KL (BINS "c_2" "+" (KL (BINS "c_1" "+" "c_1")))))))))))
+ (("Splitpart" 2)
+  ("T7,1 \\land  A2"
+   (("* " "RW4")
+    (QUANT ALL ((ANY ("X" "Y")))
+           (((BINS (BINS "Y" "+"
+                         (KL (BINS "X" "+" (KL (BINS "Y" "+" "X")))))
+                   "="
+                   (BINS (KL (BINS "Y" "+" "Y")) "+"
+                         (KL (BINS "X" "+" "X")))))))))
+  ("RW4,1 \\land  A2"
+   (("* " "RW5")
+    (QUANT ALL ((ANY ("X" "Y")))
+           (((BINS (BINS "Y" "+"
+                         (KL (BINS "X" "+" (KL (BINS "Y" "+" "X")))))
+                   "="
+                   (BINS "Y" "+"
+                         (KL (BINS "Y" "+" (KL (BINS "X" "+" "X"))))))))))))))
+;;; Warning: Incorrect term-form! Trying to correct.
+NOT(c_2 + (c_1 + (c_2 + c_1)) = (c_2 + c_2) + (c_1 + c_1))
+
+
+NOT(c_2 + (c_1 + (c_2 + c_1))
+     = 
+    (c_2 + c_2) + (c_1 + c_1))
+
+;;; Warning: Incorrect term-form! Trying to correct.
+NOT(c_2 + (c_1 + (c_2 + c_1)) = c_2 + (c_2 + (c_1 + c_1)))
+
+
+NOT(c_2 + (c_1 + (c_2 + c_1))
+     = 
+    c_2 + (c_2 + (c_1 + c_1)))
+
+;;; Warning: Incorrect term-form! Trying to correct.
+;;; Warning: Incorrect term-form! Trying to correct.
+all X, Y in ANY: Y + (X + (Y + X)) = (Y + Y) + (X + X)
+
+
+all X, Y in ANY: Y + (X + (Y + X))
+               = 
+              (Y + Y) + (X + X)
+
+
+all X, Y in ANY:
+Y + (X + (Y + X))
+ = 
+(Y + Y) + (X + X)
+
+;;; Warning: Incorrect term-form! Trying to correct.
+;;; Warning: Incorrect term-form! Trying to correct.
+all X, Y in ANY: Y + (X + (Y + X)) = Y + (Y + (X + X))
+
+
+all X, Y in ANY: Y + (X + (Y + X))
+               = 
+              Y + (Y + (X + X))
+
+
+all X, Y in ANY:
+Y + (X + (Y + X))
+ = 
+Y + (Y + (X + X))
+
+NIL
+
+
+

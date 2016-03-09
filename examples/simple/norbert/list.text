@@ -1,0 +1,78 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 52.4 Experimental GENTRAFO 2.0                      *
+                     *           DATE: 06-FEB,1992  21:17                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 06-FEB,1992 21:17 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   ALL X P (X) OR Q (X)
+             ALL X NOT P (X) OR Q (X)
+             NOT Q (A) OR R
+             NOT Q (B) OR NOT R
+             
+   Theorems: NIL  
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+           * A2:   All x:Any + P(x)  + Q(x)
+           * A3:   All x:Any - P(x)  + Q(x)
+           * A4:   - Q(a)  + R
+           * A5:   - Q(b)  - R
+           
+
+
+
+
+             Initial Operations on Axioms
+             ============================
+
+
+          
+   A3,1 & A2,1  --> * R1: All x:Any + Q(x)  + Q(x)
+   
+   R1 1=2       --> * D2: All x:Any + Q(x)
+   
+   A4,1 & D2,1  --> * R3: + R
+   
+   A5,2 & R3,1  --> * R4: - Q(b)
+   
+   R4,1 & D2,1  --> * R5: []
+   
+
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+

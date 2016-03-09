@@ -1,0 +1,5 @@
+refute laut protocol
+
+Vor Einbau compilation Einzelregel:  878 sec (Offensichtlich mit Fehler)
+Nach Einbau ausgeschaltet:            99 sec
+  "    "    eingeschaltet:            89 sec

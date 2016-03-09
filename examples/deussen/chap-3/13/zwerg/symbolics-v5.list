@@ -1,0 +1,224 @@
+;;; -*- Package: MKRP; Base: 10. -*-
+
+
+
+                    ********************************************************************************
+                    *                                                                              *
+                    *     MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN                   *
+                    *                                                                              *
+                    *       23-MAY-85                                                              *
+                    *          23-MAY-85  09:33:49                                                 *
+                    *                                                                              *
+                    ********************************************************************************
+
+
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   23-MAY-85 09:33:16
+*************************************************************************
+
+
+ADJUSTMENT OF THE OPTIONS : 
+============================
+
+
+
+TWO:RULES                             NIL                   TWO:RULES.MAXLEVEL                    1.
+TWO:SUPPRESS.NORULES                  NIL
+
+
+RED.I:CLAUSE.MULTIPLE.LITERALS        T                     RED.I:CLAUSE.PURITY                   T
+RED.I:CLAUSE.TAUTOLOGY                T                     RED.I:CLAUSE.TAUTOLOGY.RECHECK        PARTIAL
+RED.I:CLAUSE.SUBSUMPTION              T                     RED.I:CLAUSE.SUBSUMPTION.RECHECK      PARTIAL
+RED.I:CLAUSE.REPL.FACTORING           T                     RED.I:CLAUSE.REPL.FACTORING.RECHECK   T
+RED.I:CLAUSE.REPL.RESOLUTION          SIMPLE                RED.I:CLAUSE.REPL.RESOLUTION.RECHECK  T
+RED.I:CLAUSE.REWRITING                T                     RED.I:LINK.INCOMPATIBILITY            T
+RED.I:LINK.TAUTOLOGY                  REMOVE-INHIBIT        RED.I:LINK.TAUTOLOGY.RECHECK          NIL
+RED.I:LINK.SUBSUMPTION                REMOVE-INHIBIT        RED.I:LINK.SUBSUMPTION.RECHECK        NIL
+
+RED.D:CLAUSE.MULTIPLE.LITERALS        T                     RED.D:CLAUSE.PURITY                   T
+RED.D:CLAUSE.TAUTOLOGY                REMOVE-INHIBIT        RED.D:CLAUSE.TAUTOLOGY.RECHECK        NIL
+RED.D:CLAUSE.SUBSUMPTION.FORWARD      REMOVE-INHIBIT        RED.D:CLAUSE.SUBSUMPTION.BACKWARD     REMOVE
+RED.D:CLAUSE.SUBSUMPTION.RECHECK      NIL                   RED.D:CLAUSE.REPL.FACTORING           T
+RED.D:CLAUSE.REPL.FACTORING.RECHECK   T                     RED.D:CLAUSE.REPL.RESOLUTION          SIMPLE
+RED.D:CLAUSE.REPL.RESOLUTION.RECHECK  T                     RED.D:LINK.INCOMPATIBILITY            T
+RED.D:LINK.TAUTOLOGY                  REMOVE-INHIBIT        RED.D:LINK.TAUTOLOGY.RECHECK          NIL
+RED.D:LINK.SUBSUMPTION                REMOVE-INHIBIT        RED.D:LINK.SUBSUMPTION.RECHECK        NIL
+
+FAC:INITIAL                           NIL                   FAC:EACH.STEP                         NIL
+
+STR:RESOLUTION                        SET-OF-SUPPORT        STR:E-RESOLUTION                      NIL
+STR:PARAMODULATION                    UNIT-ANCESTRY         STR:LINK.DEPTH                        NIL
+STR:TERM.DEPTH                        NIL                   STR:R.DEMODULATION                    T
+STR:P.DEMODULATION                    T                     STR:INDUCTION                         NIL
+
+TERM:UNITS                            T                     TERM:ITERATIONS                       0.
+TERM:SET.OF.SUPPORT                   NIL                   TERM:BREADTH.FIRST                    NIL
+
+GEN:SPLITTING                         0.                    GEN:MANUAL.CONTROL                    NIL
+GEN:MAXIMUM.STEPS                     NIL                   GEN:GRAPH.SAVING                      NIL
+GEN:SAVE.FILE                         SAVE.DEFAULT
+
+
+TR:PREPROCESSING                      NIL                   TR:STEP.MODE                          LR
+TR:DUMP                               NIL                   TR:CLAUSE.MODE                        I
+TR:LINK.MODE                          I                     TR:TRACE.FILE                         NIL
+TR:TERMINAL                           NIL
+
+
+PR:INFIX.FORM                         T                     PR:PREFIX.FORM                        NIL
+PR:OPTIONS                            T                     PR:AXIOM.CLAUSES                      NIL
+PR:SYMBOLS                            NIL                   PR:STATISTICS                         NIL
+PR:PROTOCOL                           T                     PR:LEFT.MARGIN                        0.
+PR:LINELENGTH                         120.
+
+
+
+
+FORMULAE GIVEN TO THE EDITOR
+============================
+
+
+AXIOMS   : SORT MENGE : ANY
+           TYPE SM (MENGE MENGE) :MENGE
+           * ASSOZIATIVE VON SM *
+           ALL A,B,C:MENGE SM (SM (A B) C) = SM (A SM (B C))
+           * KOMMUTATIVITAET VON SM *
+           ALL A,B:MENGE SM (A B) = SM (B A)
+
+THEOREMS : ALL L1,L2,R1,R2:MENGE SM (SM (L1 R1) SM (L2 R2)) = SM (SM (L1 L2) SM (R1 R2))
+
+
+
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+  A1   : ALL X:ANY  + =(X X)
+* A2   : ALL X,Y:MENGE  + =(SM(Y X) SM(X Y))
+* A3   : ALL X,Y,Z:MENGE  + =(SM(SM(Z Y) X) SM(Z SM(Y X)))
+
+
+
+
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+* T4   : - =(SM(SM(C_1 C_3) SM(C_2 C_4)) SM(SM(C_1 C_2) SM(C_3 C_4)))
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+REFUTATION
+
+INITIAL CLAUSES :      A1  : ALL X:ANY  + =(X X)
+                     * A2  : ALL X,Y:MENGE  + =(SM(Y X) SM(X Y))
+                     * A3  : ALL X,Y,Z:MENGE  + =(SM(SM(Z Y) X) SM(Z SM(Y X)))
+                     * T4  : - =(SM(SM(C_1 C_3) SM(C_2 C_4)) SM(SM(C_1 C_2) SM(C_3 C_4)))
+
+A3,1 & A2,1     -->  * P1  : ALL X,Y,Z:MENGE  + =(SM(Z SM(Y X)) SM(X SM(Z Y)))
+
+A3,1 & A2,1     -->  * P2  : ALL X,Y,Z:MENGE  + =(SM(SM(Z Y) X) SM(SM(Y X) Z))
+
+A3,1 & A2,1     -->    P3  : ALL X,Y,Z:MENGE  + =(SM(Z SM(Y X)) SM(Y SM(X Z)))
+
+A3,1 & A2,1     -->    P4  : ALL X,Y,Z:MENGE  + =(SM(SM(Z Y) X) SM(SM(X Z) Y))
+
+A2,1 & A3,1     -->    P5  : ALL X,Y,Z:MENGE  + =(SM(SM(Z Y) X) SM(Y SM(Z X)))
+
+A2,1 & A3,1     -->    P6  : ALL X,Y,Z:MENGE  + =(SM(SM(Z Y) X) SM(Y SM(Z X)))
+
+A2,1 & A3,1     -->    P7  : ALL X,Y,Z:MENGE  + =(SM(SM(Z Y) X) SM(Z SM(X Y)))
+
+A2,1 & A3,1     -->    P8  : ALL X,Y,Z:MENGE  + =(SM(SM(Z Y) X) SM(Z SM(X Y)))
+
+A3,1 & T4,1     -->    P9  : - =(SM(C_1 SM(C_3 SM(C_2 C_4))) SM(SM(C_1 C_2) SM(C_3 C_4)))
+
+A3,1 & T4,1     -->    P10 : - =(SM(SM(SM(C_1 C_3) C_2) C_4) SM(SM(C_1 C_2) SM(C_3 C_4)))
+
+A2,1 & T4,1     -->    P11 : - =(SM(SM(C_2 C_4) SM(C_1 C_3)) SM(SM(C_1 C_2) SM(C_3 C_4)))
+
+A2,1 & T4,1     -->    P12 : - =(SM(SM(C_2 C_4) SM(C_1 C_3)) SM(SM(C_1 C_2) SM(C_3 C_4)))
+
+A2,1 & T4,1     -->    P13 : - =(SM(SM(C_3 C_1) SM(C_2 C_4)) SM(SM(C_1 C_2) SM(C_3 C_4)))
+
+A2,1 & T4,1     -->    P14 : - =(SM(SM(C_3 C_1) SM(C_2 C_4)) SM(SM(C_1 C_2) SM(C_3 C_4)))
+
+A2,1 & T4,1     -->    P15 : - =(SM(SM(C_1 C_3) SM(C_4 C_2)) SM(SM(C_1 C_2) SM(C_3 C_4)))
+
+A2,1 & T4,1     -->    P16 : - =(SM(SM(C_1 C_3) SM(C_4 C_2)) SM(SM(C_1 C_2) SM(C_3 C_4)))
+
+A3,1 & T4,1     -->    P17 : - =(SM(SM(C_1 C_3) SM(C_2 C_4)) SM(C_1 SM(C_2 SM(C_3 C_4))))
+
+A3,1 & T4,1     -->    P18 : - =(SM(SM(C_1 C_3) SM(C_2 C_4)) SM(SM(SM(C_1 C_2) C_3) C_4))
+
+A2,1 & T4,1     -->    P19 : - =(SM(SM(C_1 C_3) SM(C_2 C_4)) SM(SM(C_3 C_4) SM(C_1 C_2)))
+
+A2,1 & T4,1     -->    P20 : - =(SM(SM(C_1 C_3) SM(C_2 C_4)) SM(SM(C_3 C_4) SM(C_1 C_2)))
+
+A2,1 & T4,1     -->    P21 : - =(SM(SM(C_1 C_3) SM(C_2 C_4)) SM(SM(C_2 C_1) SM(C_3 C_4)))
+
+A2,1 & T4,1     -->    P22 : - =(SM(SM(C_1 C_3) SM(C_2 C_4)) SM(SM(C_2 C_1) SM(C_3 C_4)))
+
+A2,1 & T4,1     -->    P23 : - =(SM(SM(C_1 C_3) SM(C_2 C_4)) SM(SM(C_1 C_2) SM(C_4 C_3)))
+
+A2,1 & T4,1     -->    P24 : - =(SM(SM(C_1 C_3) SM(C_2 C_4)) SM(SM(C_1 C_2) SM(C_4 C_3)))
+
+P1,1 & A3,1     -->  * P25 : ALL X,Y,Z,U:MENGE  + =(SM(SM(U SM(Z Y)) X) SM(Y SM(SM(U Z) X)))
+
+P25,1 & P2,1    -->  * P26 : ALL X,Y,Z,U:MENGE  + =(SM(SM(U Z) SM(Y X)) SM(X SM(SM(Z Y) U)))
+
+P26,1 & T4,1    -->    P27 : - =(SM(SM(C_1 C_3) SM(C_2 C_4)) SM(C_4 SM(SM(C_2 C_3) C_1)))
+
+P26,1 & P27,1   -->    P28 : - =(SM(C_4 SM(SM(C_3 C_2) C_1)) SM(C_4 SM(SM(C_2 C_3) C_1)))
+
+P1,1 & A3,1     -->    P29 : ALL X,Y,Z,U:MENGE  + =(SM(SM(U SM(Z Y)) X) SM(Y SM(SM(U Z) X)))
+
+P1,1 & A3,1     -->    P30 : ALL X,Y,Z,U:MENGE  + =(SM(SM(U Z) SM(Y X)) SM(U SM(Y SM(X Z))))
+
+P1,1 & T4,1     -->    P31 : - =(SM(C_2 SM(C_4 SM(C_1 C_3))) SM(SM(C_1 C_2) SM(C_3 C_4)))
+
+P1,1 & T4,1     -->    P32 : - =(SM(SM(C_1 C_3) SM(C_2 C_4)) SM(C_3 SM(C_4 SM(C_1 C_2))))
+
+P26,1 & P32,1   -->    P33 : - =(SM(C_4 SM(SM(C_3 C_2) C_1)) SM(C_3 SM(C_4 SM(C_1 C_2))))
+
+P1,1 & T4,1     -->    P34 : - =(SM(SM(C_1 C_3) SM(C_2 C_4)) SM(C_3 SM(C_4 SM(C_1 C_2))))
+
+P1,1 & T4,1     -->    P35 : - =(SM(C_4 SM(SM(C_1 C_3) C_2)) SM(SM(C_1 C_2) SM(C_3 C_4)))
+
+P1,1 & T4,1     -->    P36 : - =(SM(SM(C_1 C_3) SM(C_2 C_4)) SM(C_4 SM(SM(C_1 C_2) C_3)))
+
+P2,1 & A3,1     -->    P37 : ALL X,Y,Z,U:MENGE  + =(SM(SM(SM(U Z) Y) X) SM(SM(Z Y) SM(U X)))
+
+P2,1 & A3,1     -->    P38 : ALL X,Y,Z,U:MENGE  + =(SM(SM(U SM(Z Y)) X) SM(U SM(SM(X Z) Y)))
+
+P2,1 & T4,1     -->  * P39 : - =(SM(SM(SM(C_2 C_4) C_1) C_3) SM(SM(C_1 C_2) SM(C_3 C_4)))
+
+P2,1 & T4,1     -->    P40 : - =(SM(SM(C_1 C_3) SM(C_2 C_4)) SM(SM(SM(C_3 C_4) C_1) C_2))
+
+P2,1 & P1,1     -->  * P41 : ALL X,Y,Z,U:MENGE  + =(SM(SM(SM(U Z) Y) X) SM(Z SM(SM(Y X) U)))
+
+P41,1 & P26,1   -->  * P42 : ALL X,Y,Z,U:MENGE  + =(SM(SM(U Z) SM(Y X)) SM(SM(SM(U X) Z) Y))
+
+A2,1 & P42,1    -->  * P43 : ALL X,Y,Z,U:MENGE  + =(SM(SM(U Z) SM(Y X)) SM(SM(SM(Z X) U) Y))
+
+P43,1 & P39,1   -->  * R44 :  ce
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+  Q. E. D. 

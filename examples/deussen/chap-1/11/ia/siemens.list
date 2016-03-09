@@ -1,0 +1,215 @@
+ 
+ 
+ 
+             ****************************************************
+             *                                                  *
+             *   ATP-SYSTEM :  M K R P , UNI KARLSRUHE          *
+             *                                                  *
+             *      VERSION : 3-FEB-84                          *
+             *         DATE : 3-JUL-84  09:15:25                *
+             *                                                  *
+             ****************************************************
+ 
+ 
+ 
+ 
+ADJUSTMENT OF THE OPTIONS : 
+============================
+ 
+ 
+ 
+RED.I:CLAUSE.PURITY                   T
+RED.I:CLAUSE.TAUTOLOGY                T
+RED.I:CLAUSE.SUBSUMPTION              T
+RED.I:CLAUSE.REPL.FACTORING           T
+RED.I:CLAUSE.REPL.RESOLUTION          SIMPLE
+RED.I:CLAUSE.REWRITING                T
+RED.I:LINK.INCOMPATIBILITY            T
+RED.I:LINK.TAUTOLOGY                  REMOVE-INHIBIT
+RED.I:LINK.SUBSUMPTION                REMOVE-INHIBIT
+ 
+ 
+RED.D:CLAUSE.PURITY                   REMOVE
+RED.D:CLAUSE.TAUTOLOGY                REMOVE
+RED.D:CLAUSE.TAUTOLOGY.RECHECK        T
+RED.D:CLAUSE.SUBSUMPTION.FORWARD      REMOVE-INHIBIT
+RED.D:CLAUSE.SUBSUMPTION.BACKWARD     REMOVE
+RED.D:CLAUSE.SUBSUMPTION.RECHECK      T
+RED.D:CLAUSE.REPL.FACTORING           T
+RED.D:CLAUSE.REPL.FACTORING.RECHECK   T
+RED.D:CLAUSE.REPL.RESOLUTION          SIMPLE
+RED.D:CLAUSE.REPL.RESOLUTION.RECHECK  T
+RED.D:LINK.INCOMPATIBILITY            REMOVE
+RED.D:LINK.TAUTOLOGY                  REMOVE-INHIBIT
+RED.D:LINK.TAUTOLOGY.RECHECK          T
+RED.D:LINK.SUBSUMPTION                REMOVE-INHIBIT
+RED.D:LINK.SUBSUMPTION.RECHECK        T
+ 
+ 
+RED:SUB.CLAUSES.INITIAL               T
+RED:SUB.CLAUSES.EACH.STEP             T
+RED:SUB.INITIAL                       T
+RED:SUB.EACH.STEP                     T
+RED:PUR.CLAUSES.INITIAL               T
+RED:PUR.CLAUSES.EACH.STEP             T
+RED:PUR.INITIAL                       T
+RED:PUR.EACH.STEP                     T
+RED:TAU.CLAUSES.INITIAL               T
+RED:TAU.CLAUSES.EACH.STEP             T
+RED:TAU.INITIAL                       T
+RED:TAU.EACH.STEP                     T
+ 
+FAC:INITIAL                           NIL
+FAC:EACH.STEP                         NIL
+ 
+STR:RESOLUTION                        SET-OF-SUPPORT
+STR:E-RESOLUTION                      NIL
+STR:PARAMODULATION                    UNIT-ANCESTRY
+STR:LINK.DEPTH                        NIL
+STR:TERM.DEPTH                        NIL
+STR:R.DEMODULATION                    T
+STR:P.DEMODULATION                    T
+ 
+ 
+TERM:UNITS                            T
+TERM:ITERATIONS                       5
+TERM:SET.OF.SUPPORT                   NIL
+TERM:BREADTH.FIRST                    NIL
+ 
+GEN:SPLITTING                         0
+GEN:MANUAL.CONTROL                    NIL
+GEN:SYSTEM.STRIP                      NIL
+GEN:MAXIMUM.STEPS                     NIL
+GEN:GRAPH.SAVING                      NIL
+GEN:SAVE.FILE                         SAVE.DEFAULT
+GEN:BATCH.ANSWER                      SC
+ 
+ 
+TR:PREPROCESSING                      NIL
+TR:STEP.MODE                          LR
+TR:DUMP                               NIL
+TR:CLAUSE.MODE                        I
+TR:LINK.MODE                          I
+TR:TRACE.FILE                         NIL
+TR:TERMINAL                           NIL
+ 
+ 
+PR:INFIX.FORM                         T
+PR:PREFIX.FORM                        NIL
+PR:OPTIONS                            T
+PR:AXIOM.CLAUSES                      T
+PR:SYMBOLS                            NIL
+PR:STATISTICS                         NIL
+PR:PROOF.FILE                         PR.DEUSSEN.1.11.IA
+PR:LEFT.MARGIN                        0
+PR:LINELENGTH                         80
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : SORT ELEM,MENGE,VERKN:ANY
+           TYPE APPLY (VERKN ELEM ELEM) :ELEM
+           TYPE SM (MENGE MENGE) :MENGE
+           ALL M,F:MENGE  ALL PHI:VERKN  ALL X,Y,E:ELEM  
+               UHG (M F PHI E) AND EL (X M) AND EL (Y M)
+               IMPL  
+               EL (APPLY (PHI X Y) M)
+           ALL M,N:MENGE ALL X:ELEM EL (X M) AND EL (X N) IMPL EL (X SM
+(M N))
+           ALL M,N:MENGE ALL X:ELEM EL (X SM (M N)) IMPL EL (X M) AND EL (X
+N)
+ 
+THEOREMS : ALL U,V,F:MENGE  ALL PHI:VERKN  ALL X,Y,E:ELEM  
+                 UHG (U F PHI E)
+                 AND  
+                 UHG (V F PHI E)
+                 AND  
+                 EL (X SM (U V))
+                 AND  
+                 EL (Y SM (U V))
+               IMPL  
+               EL (APPLY (PHI X Y) SM (U V))
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+* A1   : ALL X,Y:MENGE  Z:VERKN  U,V,W:ELEM  
+              -UHG(X Y Z U) -EL(V X) -EL(W X) +EL(APPLY(Z V W) X) 
+* A2   : ALL X:ELEM  Y,Z:MENGE  -EL(X Y) -EL(X Z) +EL(X SM(Y Z))
+* A3   : ALL X:ELEM  Y,Z:MENGE  -EL(X SM(Y Z)) +EL(X Y)
+* A4   : ALL X:ELEM  Y,Z:MENGE  -EL(X SM(Y Z)) +EL(X Z)
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+* T5   : +UHG(C_3 C_7 C_4 C_6)
+* T6   : +UHG(C_2 C_7 C_4 C_6)
+* T7   : +EL(C_5 SM(C_3 C_2))
+* T8   : +EL(C_1 SM(C_3 C_2))
+* T9   : -EL(APPLY(C_4 C_5 C_1) SM(C_3 C_2))
+ 
+ 
+ 
+ 
+--------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION
+ 
+INITIAL CLAUSES :     * A1  : ALL X,Y:MENGE  Z:VERKN  U,V,W:ELEM  
+                                   -UHG(X Y Z U) -EL(V X) -EL(W X) 
+                                   +EL(APPLY(Z V W) X) 
+                      * A2  : ALL X:ELEM  Y,Z:MENGE  
+                                   -EL(X Y) -EL(X Z) +EL(X SM(Y Z)) 
+                      * A3  : ALL X:ELEM  Y,Z:MENGE  -EL(X SM(Y Z)) +EL(X Y)
+                      * A4  : ALL X:ELEM  Y,Z:MENGE  -EL(X SM(Y Z)) +EL(X Z)
+                      * T5  : +UHG(C_3 C_7 C_4 C_6)
+                      * T6  : +UHG(C_2 C_7 C_4 C_6)
+                      * T7  : +EL(C_5 SM(C_3 C_2))
+                      * T8  : +EL(C_1 SM(C_3 C_2))
+                      * T9  : -EL(APPLY(C_4 C_5 C_1) SM(C_3 C_2))
+ 
+T7,1  +  A3,1    -->  * R1  : +EL(C_5 C_3)
+T8,1  +  A3,1    -->  * R2  : +EL(C_1 C_3)
+R2,1  +  A1,3    -->  * R3  : -UHG(C_3 C_7 C_4 C_6) -EL(C_5 C_3) 
+                              +EL(APPLY(C_4 C_5 C_1) C_3) 
+R1,1  +  R3,2    -->  * R4  : -UHG(C_3 C_7 C_4 C_6) 
+                              +EL(APPLY(C_4 C_5 C_1) C_3) 
+T5,1  +  R4,1    -->  * R5  : +EL(APPLY(C_4 C_5 C_1) C_3)
+T7,1  +  A4,1    -->  * R6  : +EL(C_5 C_2)
+T8,1  +  A4,1    -->  * R7  : +EL(C_1 C_2)
+R7,1  +  A1,3    -->  * R8  : -UHG(C_2 C_7 C_4 C_6) -EL(C_5 C_2) 
+                              +EL(APPLY(C_4 C_5 C_1) C_2) 
+R6,1  +  R8,2    -->  * R9  : -UHG(C_2 C_7 C_4 C_6) 
+                              +EL(APPLY(C_4 C_5 C_1) C_2) 
+T6,1  +  R9,1    -->  * R10 : +EL(APPLY(C_4 C_5 C_1) C_2)
+R10,1  +  A2,2   -->  * R11 : -EL(APPLY(C_4 C_5 C_1) C_3) 
+                              +EL(APPLY(C_4 C_5 C_1) SM(C_3 C_2)) 
+R5,1  +  R11,1   -->  * R12 : +EL(APPLY(C_4 C_5 C_1) SM(C_3 C_2))
+R12,1  +  T9,1   -->  * R13 : 
+ 
+ 
+ 
+--------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+ 

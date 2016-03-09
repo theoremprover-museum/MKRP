@@ -1,0 +1,297 @@
+;;; -*- Package: MKRP; Base: 10. -*-
+
+
+
+                    ********************************************************************************
+                    *                                                                              *
+                    *     MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN                   *
+                    *                                                                              *
+                    *       01-JUL-85                                                              *
+                    *          01-JUL-85  10:26:03                                                 *
+                    *                                                                              *
+                    ********************************************************************************
+
+
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   01-JUL-85 10:24:30
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   D315INJA
+                                                                        
+************************************************************************
+                                                                        
+
+
+
+
+
+FORMULAE GIVEN TO THE EDITOR
+============================
+
+
+AXIOMS   : SORT MENGE,VERKN,ELEMENT,INDEX,INDEXMENGE:ANY
+           TYPE LIDEAL (MENGE MENGE VERKN)
+           TYPE RIDEAL (MENGE MENGE VERKN)
+           TYPE UHG (MENGE MENGE VERKN)
+           TYPE ME (MENGE MENGE)
+           TYPE NICHTLEER (MENGE)
+           TYPE HG (MENGE VERKN)
+           TYPE EL (ELEMENT MENGE)
+           TYPE MINIMAL (MENGE MENGE VERKN)
+           TYPE MPROD (MENGE MENGE VERKN) :MENGE
+           TYPE APPLYV (VERKN ELEMENT ELEMENT) :ELEMENT
+           TYPE F*X (MENGE ELEMENT VERKN) :MENGE
+           TYPE SM (MENGE MENGE) :MENGE
+           TYPE SET (ELEMENT) :MENGE
+           TYPE VER (MENGE MENGE) :MENGE
+           TYPE GR (MENGE VERKN ELEMENT)
+           TYPE INVERS (VERKN ELEMENT) :ELEMENT
+           TYPE MINIMAL-BED-L (MENGE VERKN)
+           TYPE MINIMAL-BED-R (MENGE VERKN)
+           TYPE EL-IND (INDEX INDEXMENGE)
+           TYPE U (INDEX) : MENGE
+           TYPE E (INDEX INDEX) : ELEMENT
+           TYPE NICHTLEER-IND (INDEXMENGE)
+           TYPE GLEICH (MENGE MENGE)
+           TYPE VER-IND (INDEXMENGE) : MENGE
+           TYPE SM-IND (INDEXMENGE) : MENGE
+           TYPE IDEAL (MENGE MENGE VERKN)
+           TYPE G (INDEX INDEX) :MENGE
+           TYPE GLEICH-E (ELEMENT ELEMENT)
+           * LEMMA 3.15INJG1G=G2G *
+           ALL F:MENGE  ALL MAL:VERKN  ALL I1,I2:INDEXMENGE  ALL X,Y:ELEMENT  ALL J,RHO0,K:INDEX  ALL PHI:ABB  
+           ALL Z1,Z2,Z:ELEMENT  
+               VORAUSSETZUNG315INJA (F MAL I1 I2 X Y J RHO0 K PHI Z1 Z2 Z)
+               IMPL  
+               GLEICH-E (APPLYV (MAL Z1 Z) APPLYV (MAL Z2 Z))
+           * G (RHO0 J) UND G (RHO0 K) SIND GRUPPEN *
+           ALL F:MENGE  ALL MAL:VERKN  ALL I1,I2:INDEXMENGE  ALL X,Y:ELEMENT  ALL J,RHO0,K:INDEX  ALL PHI:ABB  
+           ALL Z1,Z2,Z:ELEMENT  
+               VORAUSSETZUNG315INJA (F MAL I1 I2 X Y J RHO0 K PHI Z1 Z2 Z)
+               IMPL  
+               GR (G (RHO0 J) MAL E (RHO0 J)) AND GR (G (RHO0 K) MAL E (RHO0 K))
+           * GRUPPENEIGENSCHAFT : EXISTENZ INVERSER ELEMENTE *
+           ALL F:MENGE  ALL MAL:VERKN  ALL E:ELEMENT  
+             GR (F MAL E) IMPL (ALL X:ELEMENT EL (X F) IMPL (EX Y:ELEMENT EL (Y F) AND APPLYV (MAL X Y) = E))
+           * EINSLEMENT IN GRUPPE ENTHALTEN *
+           ALL F:MENGE ALL MAL:VERKN ALL E:ELEMENT GR (F MAL E) IMPL EL (E F)
+           * RECHENREGEL 3.12.1 *
+           ALL F:MENGE  ALL MAL:VERKN  ALL I1,I2:INDEXMENGE  ALL X,Y:ELEMENT  ALL J,RHO0,K:INDEX  ALL PHI:ABB  
+           ALL Z1,Z2,Z:ELEMENT  
+               VORAUSSETZUNG315INJA (F MAL I1 I2 X Y J RHO0 K PHI Z1 Z2 Z)
+               IMPL  
+               APPLYV (MAL E (RHO0 K) E (RHO0 J)) = E (RHO0 J)
+           * MULTIPLIKATION MIT EINSELEMENT *
+           ALL F:MENGE ALL MAL:VERKN ALL X,E:ELEMENT GR (F MAL E) AND EL (X F) IMPL APPLYV (MAL X E) = X
+           * MODIFIKATION EINER GLEICHUNG DURCH MULTIPLIKATION UND ANWENDUNG DES ASSOZIATIVGESETZES *
+           ALL F:MENGE  ALL MAL:VERKN  ALL A,B,C,D,E,H:ELEMENT  
+               GR (F MAL E) AND EL (H F) AND GLEICH-E (APPLYV (MAL A B) APPLYV (MAL C D))
+               IMPL  
+               GLEICH-E (APPLYV (MAL A APPLYV (MAL B H)) APPLYV (MAL C APPLYV (MAL D H)))
+
+THEOREMS : ALL F:MENGE  ALL MAL:VERKN  ALL I1,I2:INDEXMENGE  ALL X,Y,X1,X2:ELEMENT  ALL J,RHO0,K,RHO1,RHO2:INDEX  
+           ALL PHI:ABB  ALL Z1,Z2,Z:ELEMENT  
+                 HG (F MAL)
+                 AND  
+                 MINIMAL-BED-L (F MAL)
+                 AND  
+                 MINIMAL-BED-R (F MAL)
+                 AND  
+                 (ALL J1:INDEX EL-IND (J1 I1) IMPL LIDEAL (U (J1) F MAL) AND MINIMAL (U (J1) F MAL))
+                 AND  
+                 (ALL J2:INDEX EL-IND (J2 I2) IMPL RIDEAL (U (J2) F MAL) AND MINIMAL (U (J2) F MAL))
+                 AND  
+                 EL-IND (J I1)
+                 AND  
+                 EL (X F)
+                 AND  
+                 EL-IND (RHO0 I2)
+                 AND  
+                 (EL-IND (K I1) IMPL GLEICH (F*X (U (J) X MAL) U (K)))
+                 AND  
+                 EL (X1 U (J))
+                 AND  
+                 EL (X2 U (J))
+                 AND  
+                 X1 = APPLYV (MAL E (RHO1 J) Z1)
+                 AND  
+                 X2 = APPLYV (MAL E (RHO2 J) Z2)
+                 AND  
+                 EL (Z1 G (RHO0 J))
+                 AND  
+                 EL (Z2 G (RHO0 J))
+                 AND  
+                 EL (Z G (RHO0 K))
+                 AND  
+                 APPLYV (MAL X1 X) = APPLYV (MAL X2 X)
+                 AND  
+                 Z = APPLYV (MAL E (RHO0 J) X)
+                 AND  
+                 VORAUSSETZUNG315INJA (F MAL I1 I2 X Y J RHO0 K PHI Z1 Z2 Z)
+               IMPL  
+               GLEICH-E (Z1 Z2)
+
+
+
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+  A1   : ALL X:ANY  + =(X X)
+  A2   : ALL X,Y,Z,U,V:ELEMENT  W:ABB  XX,YY,ZZ:INDEX  UU,VV:INDEXMENGE  WW:VERKN  XXX:MENGE  
+              - VORAUSSETZUNG315INJA(XXX WW VV UU V U ZZ YY XX W Z Y X)  + =(APPLYV(WW E(YY XX) E(YY ZZ)) E(YY ZZ))
+  A3   : ALL X:ELEMENT  Y:VERKN  Z:MENGE  - GR(Z Y X)  + EL(X Z)
+  A4   : ALL X,Y,Z,U,V:ELEMENT  W:ABB  XX,YY,ZZ:INDEX  UU,VV:INDEXMENGE  WW:VERKN  XXX:MENGE  
+              - VORAUSSETZUNG315INJA(XXX WW VV UU V U ZZ YY XX W Z Y X)  + GLEICH-E(APPLYV(WW Z X) APPLYV(WW Y X))
+  A5   : ALL X,Y,Z,U,V:ELEMENT  W:ABB  XX,YY,ZZ:INDEX  UU,VV:INDEXMENGE  WW:VERKN  XXX:MENGE  
+              - VORAUSSETZUNG315INJA(XXX WW VV UU V U ZZ YY XX W Z Y X)  + GR(G(YY XX) WW E(YY XX))
+  A6   : ALL X,Y,Z,U,V:ELEMENT  W:ABB  XX,YY,ZZ:INDEX  UU,VV:INDEXMENGE  WW:VERKN  XXX:MENGE  
+              - VORAUSSETZUNG315INJA(XXX WW VV UU V U ZZ YY XX W Z Y X)  + GR(G(YY ZZ) WW E(YY ZZ))
+  A7   : ALL X,Y:ELEMENT  Z:VERKN  U:MENGE  - GR(U Z Y)  - EL(X U)  + =(APPLYV(Z X Y) X)
+  A8   : ALL X,Y:ELEMENT  Z:VERKN  U:MENGE  - GR(U Z Y)  - EL(X U)  + =(APPLYV(Z X F_1(X U Z Y)) Y)
+  A9   : ALL X,Y:ELEMENT  Z:VERKN  U:MENGE  - GR(U Z Y)  - EL(X U)  + EL(F_1(X U Z Y) U)
+  A10  : ALL X,Y,Z,U,V,W:ELEMENT  XX:VERKN  YY:MENGE  
+              - GR(YY XX W)  - EL(V YY)  - GLEICH-E(APPLYV(XX U Z) APPLYV(XX Y X))
+                + GLEICH-E(APPLYV(XX U APPLYV(XX Z V)) APPLYV(XX Y APPLYV(XX X V)))
+
+
+
+
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+  T11  : + HG(C_14 C_15)
+  T12  : + MINIMAL-BED-L(C_14 C_15)
+  T13  : + MINIMAL-BED-R(C_14 C_15)
+  T14  : ALL X:INDEX  - EL-IND(X C_13)  + LIDEAL(U(X) C_14 C_15)
+  T15  : ALL X:INDEX  - EL-IND(X C_13)  + MINIMAL(U(X) C_14 C_15)
+  T16  : ALL X:INDEX  - EL-IND(X C_12)  + RIDEAL(U(X) C_14 C_15)
+  T17  : ALL X:INDEX  - EL-IND(X C_12)  + MINIMAL(U(X) C_14 C_15)
+  T18  : + EL-IND(C_11 C_13)
+  T19  : + EL(C_10 C_14)
+  T20  : + EL-IND(C_9 C_12)
+  T21  : - EL-IND(C_8 C_13)  + GLEICH(F*X(U(C_11) C_10 C_15) U(C_8))
+  T22  : + EL(C_7 U(C_11))
+  T23  : + EL(C_6 U(C_11))
+  T24  : + =(C_7 APPLYV(C_15 E(C_1 C_11) C_16))
+  T25  : + =(C_6 APPLYV(C_15 E(C_2 C_11) C_17))
+  T26  : + EL(C_16 G(C_9 C_11))
+  T27  : + EL(C_17 G(C_9 C_11))
+  T28  : + EL(C_5 G(C_9 C_8))
+  T29  : + =(APPLYV(C_15 C_7 C_10) APPLYV(C_15 C_6 C_10))
+  T30  : + =(C_5 APPLYV(C_15 E(C_9 C_11) C_10))
+  T31  : + VORAUSSETZUNG315INJA(C_14 C_15 C_13 C_12 C_10 C_4 C_11 C_9 C_8 C_3 C_16 C_17 C_5)
+  T32  : - GLEICH-E(C_16 C_17)
+
+
+
+
+
+
+INITIAL OPERATIONS ON THEOREMS
+==============================
+
+
+T22,1 & T24  -->    RW1 : + EL(APPLYV(C_15 E(C_1 C_11) C_16) U(C_11))
+
+T23,1 & T25  -->    RW2 : + EL(APPLYV(C_15 E(C_2 C_11) C_17) U(C_11))
+
+T29,1 & T24  -->    RW3 : + =(APPLYV(C_15 APPLYV(C_15 E(C_1 C_11) C_16) C_10) APPLYV(C_15 C_6 C_10))
+
+RW3,1 & T25  -->    RW4 : + =(APPLYV(C_15 APPLYV(C_15 E(C_1 C_11) C_16) C_10)
+                              APPLYV(C_15 APPLYV(C_15 E(C_2 C_11) C_17) C_10))
+
+
+T28,1 & T30  -->    RW5 : + EL(APPLYV(C_15 E(C_9 C_11) C_10) G(C_9 C_8))
+
+T31,1 & T30  -->    RW6 : + VORAUSSETZUNG315INJA(C_14
+                                                 C_15
+                                                 C_13
+                                                 C_12
+                                                 C_10
+                                                 C_4
+                                                 C_11
+                                                 C_9
+                                                 C_8
+                                                 C_3
+                                                 C_16
+                                                 C_17
+                                                 APPLYV(C_15 E(C_9 C_11) C_10))
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+REFUTATION ( FAILURE : ABORTED.MAXSTEPS )
+
+INITIAL CLAUSES :     A1  : ALL X:ANY  + =(X X)
+                      A2  : ALL X,Y,Z,U,V:ELEMENT  W:ABB  XX,YY,ZZ:INDEX  UU,VV:INDEXMENGE  WW:VERKN  XXX:MENGE  
+                                 - VORAUSSETZUNG315INJA(XXX WW VV UU V U ZZ YY XX W Z Y X)
+                                   + =(APPLYV(WW E(YY XX) E(YY ZZ)) E(YY ZZ))
+                      A3  : ALL X:ELEMENT  Y:VERKN  Z:MENGE  - GR(Z Y X)  + EL(X Z)
+                      A4  : ALL X,Y,Z,U,V:ELEMENT  W:ABB  XX,YY,ZZ:INDEX  UU,VV:INDEXMENGE  WW:VERKN  XXX:MENGE  
+                                 - VORAUSSETZUNG315INJA(XXX WW VV UU V U ZZ YY XX W Z Y X)
+                                   + GLEICH-E(APPLYV(WW Z X) APPLYV(WW Y X))
+                      A5  : ALL X,Y,Z,U,V:ELEMENT  W:ABB  XX,YY,ZZ:INDEX  UU,VV:INDEXMENGE  WW:VERKN  XXX:MENGE  
+                                 - VORAUSSETZUNG315INJA(XXX WW VV UU V U ZZ YY XX W Z Y X)  + GR(G(YY XX) WW E(YY XX))
+                      A6  : ALL X,Y,Z,U,V:ELEMENT  W:ABB  XX,YY,ZZ:INDEX  UU,VV:INDEXMENGE  WW:VERKN  XXX:MENGE  
+                                 - VORAUSSETZUNG315INJA(XXX WW VV UU V U ZZ YY XX W Z Y X)  + GR(G(YY ZZ) WW E(YY ZZ))
+                      A7  : ALL X,Y:ELEMENT  Z:VERKN  U:MENGE  - GR(U Z Y)  - EL(X U)  + =(APPLYV(Z X Y) X)
+                      A8  : ALL X,Y:ELEMENT  Z:VERKN  U:MENGE  - GR(U Z Y)  - EL(X U)  + =(APPLYV(Z X F_1(X U Z Y)) Y)
+                      A9  : ALL X,Y:ELEMENT  Z:VERKN  U:MENGE  - GR(U Z Y)  - EL(X U)  + EL(F_1(X U Z Y) U)
+                      A10 : ALL X,Y,Z,U,V,W:ELEMENT  XX:VERKN  YY:MENGE  
+                                 - GR(YY XX W)  - EL(V YY)  - GLEICH-E(APPLYV(XX U Z) APPLYV(XX Y X))
+                                   + GLEICH-E(APPLYV(XX U APPLYV(XX Z V)) APPLYV(XX Y APPLYV(XX X V)))
+                      T19 : + EL(C_10 C_14)
+                      RW1 : + EL(APPLYV(C_15 E(C_1 C_11) C_16) U(C_11))
+                      RW2 : + EL(APPLYV(C_15 E(C_2 C_11) C_17) U(C_11))
+                      T26 : + EL(C_16 G(C_9 C_11))
+                      T27 : + EL(C_17 G(C_9 C_11))
+                      RW5 : + EL(APPLYV(C_15 E(C_9 C_11) C_10) G(C_9 C_8))
+                      RW4 : + =(APPLYV(C_15 APPLYV(C_15 E(C_1 C_11) C_16) C_10)
+                                APPLYV(C_15 APPLYV(C_15 E(C_2 C_11) C_17) C_10))
+                      RW6 : + VORAUSSETZUNG315INJA(C_14
+                                                   C_15
+                                                   C_13
+                                                   C_12
+                                                   C_10
+                                                   C_4
+                                                   C_11
+                                                   C_9
+                                                   C_8
+                                                   C_3
+                                                   C_16
+                                                   C_17
+                                                   APPLYV(C_15 E(C_9 C_11) C_10))
+                      T32 : - GLEICH-E(C_16 C_17)
+
+RW6,1 & A2,1   -->    R7  : + =(APPLYV(C_15 E(C_9 C_8) E(C_9 C_11)) E(C_9 C_11))
+
+RW6,1 & A4,1   -->    R8  : + GLEICH-E(APPLYV(C_15 C_16 APPLYV(C_15 E(C_9 C_11) C_10))
+                                       APPLYV(C_15 C_17 APPLYV(C_15 E(C_9 C_11) C_10)))
+
+
+RW6,1 & A5,1   -->    R9  : + GR(G(C_9 C_8) C_15 E(C_9 C_8))
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+THE THEOREM(S) COULD NOT BE PROVED.
+

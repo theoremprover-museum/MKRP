@@ -1,0 +1,365 @@
+ 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 4-APR-85                                                      *
+                    *         DATE : 30-APR-85  14:22:14                                           *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   30-APR-85 10:56:15
+*************************************************************************
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : SORT MENGE,VERKN,ELEMENT,INDEX,INDEXMENGE:ANY
+           TYPE LIDEAL(MENGE MENGE VERKN)
+           TYPE RIDEAL(MENGE MENGE VERKN)
+           TYPE UHG(MENGE MENGE VERKN)
+           TYPE ME(MENGE MENGE)
+           TYPE NICHTLEER(MENGE)
+           TYPE HG(MENGE VERKN)
+           TYPE NICHTLEER-IND(INDEXMENGE)
+           TYPE GLEICH(MENGE MENGE)
+           TYPE EL-IND(INDEX INDEXMENGE)
+           TYPE EL(ELEMENT MENGE)
+           TYPE MINIMAL(MENGE MENGE VERKN)
+           TYPE MINIMAL-BED-L(MENGE VERKN)
+           TYPE MINIMAL-BED-R(MENGE VERKN)
+           TYPE MPROD(MENGE MENGE VERKN) :MENGE
+           TYPE U(INDEX) :MENGE
+           TYPE VER-IND(INDEXMENGE) :MENGE
+           TYPE SM-IND(INDEXMENGE) :MENGE
+           TYPE APPLYV(VERKN ELEMENT ELEMENT) :ELEMENT
+           TYPE F*X(MENGE ELEMENT VERKN) :MENGE
+           TYPE SM(MENGE MENGE) :MENGE
+           TYPE T*(MENGE VERKN MENGE ELEMENT) :MENGE
+           TYPE G(INDEX INDEX) :MENGE
+           TYPE BIJEKTIV(ABB MENGE MENGE)
+           TYPE HOMOMORPH(ABB MENGE MENGE)
+           TYPE ISOMORPH(ABB MENGE MENGE)
+           TYPE ABBVOR(ABB ELEMENT ELEMENT)
+           TYPE INVERS-E(ELEMENT VERKN ELEMENT) : ELEMENT
+           * DEFINITION UNTERGRUPPE *
+           ALL G,F:MENGE  ALL MAL:VERKN  ALL E:ELEMENT  
+                  HG(F MAL) AND UHG(G F MAL) AND EINS(E MAL G) AND(ALL X:ELEMENT EL(X G) IMPL EL(INVERS-E(X MAL E) G))
+             IMPL UG(G F MAL E)
+           * LEMMA 3.10.3.UHG *
+           ALL F,R,L:MENGE  ALL MAL:VERKN  
+             HG(F MAL) AND RIDEAL(R F MAL) AND LIDEAL(L F MAL) AND MINIMAL(R F MAL) IMPL UHG(MPROD(R L MAL) F MAL)
+           * VORAUSSETZUNG3103(F MAL I1 I2 J1 J2) BEDEUTET :
+           *  HG (F MAL) AND MINIMAL-BED-L (F MAL) AND MINIMAL-BED-R (F MAL) AND                                        
+           *  (ALL K1:INDEX EL-IND (K1 I1) IMPL RIDEAL (U (K1) F MAL) AND MINIMAL (U (K1) F MAL)) AND                   
+           *  (ALL K2:INDEX EL-IND (K2 I2) IMPL LIDEAL (U (K2) F MAL) AND MINIMAL (U (K2) F MAL)) AND EL-IND (J1
+I1) AND EL-IND (J2 I2) AND GLEICH (MPROD (U (J1) U (J2) MAL) SM (U (J1) U (J2)))                                        
+           * LEMMA 3.10.3.EINS *
+           ALL F:MENGE  ALL MAL:VERKN  ALL I1,I2:INDEXMENGE  ALL J1,J2:INDEX  
+             VORAUSSETZUNG3103(F MAL I1 I2 J1 J2) IMPL(EX E:ELEMENT EINS(E MAL SM(U(J1) U(J2))))
+           * LEMMA 3.10.3.INV *
+           ALL F:MENGE  ALL MAL:VERKN  ALL I1,I2:INDEXMENGE  ALL J1,J2:INDEX  ALL E:ELEMENT  
+                  VORAUSSETZUNG3103(F MAL I1 I2 J1 J2) AND EINS(E MAL SM(U(J1) U(J2)))
+             IMPL (ALL Y:ELEMENT EL(Y SM(U(J1) U(J2))) IMPL EL(INVERS-E(Y MAL E) SM(U(J1) U(J2))))
+ 
+THEOREMS : ALL F:MENGE  ALL MAL:VERKN  ALL I1,I2:INDEXMENGE  ALL J1,J2:INDEX  
+                      HG(F MAL)
+                  AND MINIMAL-BED-L(F MAL)
+                  AND MINIMAL-BED-R(F MAL)
+                  AND (ALL K1:INDEX EL-IND(K1 I1) IMPL RIDEAL(U(K1) F MAL) AND MINIMAL(U(K1) F MAL))
+                  AND (ALL K2:INDEX EL-IND(K2 I2) IMPL LIDEAL(U(K2) F MAL) AND MINIMAL(U(K2) F MAL))
+                  AND EL-IND(J1 I1)
+                  AND EL-IND(J2 I2)
+                  AND MPROD(U(J1) U(J2) MAL) = SM(U(J1) U(J2))
+                  AND VORAUSSETZUNG3103(F MAL I1 I2 J1 J2)
+             IMPL (EX E:ELEMENT UG(MPROD(U(J1) U(J2) MAL) F MAL E))
+ 
+ 
+ 
+ 
+CONSTANTS : 
+=========== 
+ 
+| NAME              | SORT                        |            | ATTRIBUTES                                             
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+| C_1               | INDEXMENGE                  |            |                                                        
+|
+| C_2               | INDEXMENGE                  |            |                                                        
+|
+| C_3               | INDEX                       |            |                                                        
+|
+| C_4               | INDEX                       |            |                                                        
+|
+| C_5               | VERKN                       |            |                                                        
+|
+| C_6               | MENGE                       |            |                                                        
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+ 
+ 
+ 
+FUNCTIONS : 
+=========== 
+ 
+| NAME              | DOMAIN                      | RANGE      | ATTRIBUTES                                             
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+| MPROD             | MENGE MENGE VERKN           | MENGE      |                                                        
+|
+| U                 | INDEX                       | MENGE      |                                                        
+|
+| VER-IND           | INDEXMENGE                  | MENGE      |                                                        
+|
+| SM-IND            | INDEXMENGE                  | MENGE      |                                                        
+|
+| APPLYV            | VERKN ELEMENT ELEMENT       | ELEMENT    |                                                        
+|
+| F*X               | MENGE ELEMENT VERKN         | MENGE      |                                                        
+|
+| SM                | MENGE MENGE                 | MENGE      |                                                        
+|
+| T*                | MENGE VERKN MENGE ELEMENT   | MENGE      |                                                        
+|
+| G                 | INDEX INDEX                 | MENGE      |                                                        
+|
+| INVERS-E          | ELEMENT VERKN ELEMENT       | ELEMENT    |                                                        
+|
+| F_1               | MENGE VERKN MENGE ELEMENT   | ELEMENT    |                                                        
+|
+| F_2               | INDEX VERKN INDEX           | ELEMENT    |                                                        
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+ 
+ 
+ 
+PREDICATES : 
+============ 
+ 
+| NAME              | DOMAIN                      |            | ATTRIBUTES                                             
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+| TRUE              |                             |            | DEFINED                                                
+|
+| FALSE             |                             |            | DEFINED                                                
+|
+| LIDEAL            | MENGE MENGE VERKN           |            |                                                        
+|
+| RIDEAL            | MENGE MENGE VERKN           |            |                                                        
+|
+| UHG               | MENGE MENGE VERKN           |            |                                                        
+|
+| ME                | MENGE MENGE                 |            |                                                        
+|
+| NICHTLEER         | MENGE                       |            |                                                        
+|
+| HG                | MENGE VERKN                 |            |                                                        
+|
+| NICHTLEER-IND     | INDEXMENGE                  |            |                                                        
+|
+| GLEICH            | MENGE MENGE                 |            |                                                        
+|
+| EL-IND            | INDEX INDEXMENGE            |            |                                                        
+|
+| EL                | ELEMENT MENGE               |            |                                                        
+|
+| MINIMAL           | MENGE MENGE VERKN           |            |                                                        
+|
+| MINIMAL-BED-L     | MENGE VERKN                 |            |                                                        
+|
+| MINIMAL-BED-R     | MENGE VERKN                 |            |                                                        
+|
+| BIJEKTIV          | ABB MENGE MENGE             |            |                                                        
+|
+| HOMOMORPH         | ABB MENGE MENGE             |            |                                                        
+|
+| ISOMORPH          | ABB MENGE MENGE             |            |                                                        
+|
+| ABBVOR            | ABB ELEMENT ELEMENT         |            |                                                        
+|
+| EINS              | ANY ANY ANY                 |            |                                                        
+|
+| UG                | ANY ANY ANY ANY             |            |                                                        
+|
+| VORAUSSETZUNG3103 | ANY ANY ANY ANY ANY ANY     |            |                                                        
+|
+| =                 | ANY ANY                     |            | DEFINED SYMMETRIC REFLEXIVE SYMMETRIC REFLEXIVE        
+|
+|                   |                             |            | SYMMETRIC REFLEXIVE                                    
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+ 
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+  A1   : ALL X:ANY  + =(X X)
+* A2   : ALL X,Y:INDEX  Z,U:INDEXMENGE  V:VERKN  W:MENGE  
+              - VORAUSSETZUNG3103(W V U Z Y X)  + EINS(F_2(X V Y) V SM(U(Y) U(X)))
+* A3   : ALL X,Y:ELEMENT  Z,U:INDEX  V,W:INDEXMENGE  XX:VERKN  YY:MENGE  
+              - VORAUSSETZUNG3103(YY XX W V U Z)  - EINS(Y XX SM(U(U) U(Z)))  - EL(X SM(U(U) U(Z)))
+                + EL(INVERS-E(X XX Y) SM(U(U) U(Z)))
+* A4   : ALL X:ELEMENT  Y,Z:MENGE  U:VERKN  - HG(Z U)  - UHG(Y Z U)  - EINS(X U Y)  + EL(F_1(Z U Y X) Y)  + UG(Y Z U X)
+* A5   : ALL X:ELEMENT  Y,Z:MENGE  U:VERKN  
+              - HG(Z U)  - UHG(Y Z U)  - EINS(X U Y)  - EL(INVERS-E(F_1(Z U Y X) U X) Y)  + UG(Y Z U X)
+* A6   : ALL X,Y,Z:MENGE  U:VERKN  
+              - HG(Z U)  - RIDEAL(Y Z U)  - LIDEAL(X Z U)  - MINIMAL(Y Z U)  + UHG(MPROD(Y X U) Z U)
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+* T7   : + HG(C_6 C_5)
+  T8   : + MINIMAL-BED-L(C_6 C_5)
+  T9   : + MINIMAL-BED-R(C_6 C_5)
+* T10  : ALL X:INDEX  - EL-IND(X C_2)  + RIDEAL(U(X) C_6 C_5)
+* T11  : ALL X:INDEX  - EL-IND(X C_2)  + MINIMAL(U(X) C_6 C_5)
+* T12  : ALL X:INDEX  - EL-IND(X C_1)  + LIDEAL(U(X) C_6 C_5)
+  T13  : ALL X:INDEX  - EL-IND(X C_1)  + MINIMAL(U(X) C_6 C_5)
+* T14  : + EL-IND(C_3 C_2)
+* T15  : + EL-IND(C_4 C_1)
+* T16  : + =(MPROD(U(C_3) U(C_4) C_5) SM(U(C_3) U(C_4)))
+* T17  : + VORAUSSETZUNG3103(C_6 C_5 C_2 C_1 C_3 C_4)
+* T18  : ALL X:ELEMENT  - UG(MPROD(U(C_3) U(C_4) C_5) C_6 C_5 X)
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION
+ 
+INITIAL CLAUSES :      A1  : ALL X:ANY  + =(X X)
+                     * A2  : ALL X,Y:INDEX  Z,U:INDEXMENGE  V:VERKN  W:MENGE  
+                                  - VORAUSSETZUNG3103(W V U Z Y X)  + EINS(F_2(X V Y) V SM(U(Y) U(X)))
+                     * A3  : ALL X,Y:ELEMENT  Z,U:INDEX  V,W:INDEXMENGE  XX:VERKN  YY:MENGE  
+                                  - VORAUSSETZUNG3103(YY XX W V U Z)  - EINS(Y XX SM(U(U) U(Z)))  - EL(X SM(U(U) U(Z)))
+                                    + EL(INVERS-E(X XX Y) SM(U(U) U(Z)))
+                     * A4  : ALL X:ELEMENT  Y,Z:MENGE  U:VERKN  
+                                  - HG(Z U)  - UHG(Y Z U)  - EINS(X U Y)  + EL(F_1(Z U Y X) Y)  + UG(Y Z U X)
+                     * A5  : ALL X:ELEMENT  Y,Z:MENGE  U:VERKN  
+                                  - HG(Z U)  - UHG(Y Z U)  - EINS(X U Y)  - EL(INVERS-E(F_1(Z U Y X) U X) Y)
+                                    + UG(Y Z U X)
+                     * A6  : ALL X,Y,Z:MENGE  U:VERKN  
+                                  - HG(Z U)  - RIDEAL(Y Z U)  - LIDEAL(X Z U)  - MINIMAL(Y Z U)
+                                    + UHG(MPROD(Y X U) Z U)
+                     * T7  : + HG(C_6 C_5)
+                     * T10 : ALL X:INDEX  - EL-IND(X C_2)  + RIDEAL(U(X) C_6 C_5)
+                     * T11 : ALL X:INDEX  - EL-IND(X C_2)  + MINIMAL(U(X) C_6 C_5)
+                     * T12 : ALL X:INDEX  - EL-IND(X C_1)  + LIDEAL(U(X) C_6 C_5)
+                       T13 : ALL X:INDEX  - EL-IND(X C_1)  + MINIMAL(U(X) C_6 C_5)
+                     * T14 : + EL-IND(C_3 C_2)
+                     * T15 : + EL-IND(C_4 C_1)
+                     * T16 : + =(MPROD(U(C_3) U(C_4) C_5) SM(U(C_3) U(C_4)))
+                     * T17 : + VORAUSSETZUNG3103(C_6 C_5 C_2 C_1 C_3 C_4)
+                     * T18 : ALL X:ELEMENT  - UG(MPROD(U(C_3) U(C_4) C_5) C_6 C_5 X)
+ 
+T15,1 & T12,1   -->  * R1  : + LIDEAL(U(C_4) C_6 C_5)
+ 
+T14,1 & T10,1   -->  * R3  : + RIDEAL(U(C_3) C_6 C_5)
+ 
+T14,1 & T11,1   -->  * R4  : + MINIMAL(U(C_3) C_6 C_5)
+ 
+R4,1 & A6,4     -->  * R5  : - HG(C_6 C_5)  - RIDEAL(U(C_3) C_6 C_5)  - LIDEAL(U(C_4) C_6 C_5)
+                               + UHG(MPROD(U(C_3) U(C_4) C_5) C_6 C_5)
+ 
+R5,3 & R1,1     -->  * R6  : - HG(C_6 C_5)  - RIDEAL(U(C_3) C_6 C_5)  + UHG(MPROD(U(C_3) U(C_4) C_5) C_6 C_5)
+ 
+R6,2 & R3,1     -->  * R7  : - HG(C_6 C_5)  + UHG(MPROD(U(C_3) U(C_4) C_5) C_6 C_5)
+ 
+R7,1 & T7,1     -->  * R8  : + UHG(MPROD(U(C_3) U(C_4) C_5) C_6 C_5)
+ 
+T17,1 & A2,1    -->  * R9  : + EINS(F_2(C_4 C_5 C_3) C_5 SM(U(C_3) U(C_4)))
+ 
+T16,1 & T18,1   -->  * P10 : ALL X:ELEMENT  - UG(SM(U(C_3) U(C_4)) C_6 C_5 X)
+ 
+T16,1 & R8,1    -->  * P11 : + UHG(SM(U(C_3) U(C_4)) C_6 C_5)
+ 
+A4,5 & P10,1    -->  * R12 : - HG(C_6 C_5)  - UHG(SM(U(C_3) U(C_4)) C_6 C_5)
+                               - EINS(F_2(C_4 C_5 C_3) C_5 SM(U(C_3) U(C_4)))
+                               + EL(F_1(C_6 C_5 SM(U(C_3) U(C_4)) F_2(C_4 C_5 C_3)) SM(U(C_3) U(C_4)))
+ 
+R12,2 & P11,1   -->  * R13 : - HG(C_6 C_5)  - EINS(F_2(C_4 C_5 C_3) C_5 SM(U(C_3) U(C_4)))
+                               + EL(F_1(C_6 C_5 SM(U(C_3) U(C_4)) F_2(C_4 C_5 C_3)) SM(U(C_3) U(C_4)))
+ 
+R13,1 & T7,1    -->  * R14 : - EINS(F_2(C_4 C_5 C_3) C_5 SM(U(C_3) U(C_4)))
+                               + EL(F_1(C_6 C_5 SM(U(C_3) U(C_4)) F_2(C_4 C_5 C_3)) SM(U(C_3) U(C_4)))
+ 
+R14,1 & R9,1    -->  * R15 : + EL(F_1(C_6 C_5 SM(U(C_3) U(C_4)) F_2(C_4 C_5 C_3)) SM(U(C_3) U(C_4)))
+ 
+A5,5 & P10,1    -->  * R16 : - HG(C_6 C_5)  - UHG(SM(U(C_3) U(C_4)) C_6 C_5)
+                               - EINS(F_2(C_4 C_5 C_3) C_5 SM(U(C_3) U(C_4)))
+                             - EL(INVERS-E(F_1(C_6 C_5 SM(U(C_3) U(C_4)) F_2(C_4 C_5 C_3)) C_5 F_2(C_4 C_5 C_3))
+                                  SM(U(C_3) U(C_4)))
+ 
+ 
+R16,2 & P11,1   -->  * R17 : - HG(C_6 C_5)  - EINS(F_2(C_4 C_5 C_3) C_5 SM(U(C_3) U(C_4)))
+                             - EL(INVERS-E(F_1(C_6 C_5 SM(U(C_3) U(C_4)) F_2(C_4 C_5 C_3)) C_5 F_2(C_4 C_5 C_3))
+                                  SM(U(C_3) U(C_4)))
+ 
+ 
+R17,1 & T7,1    -->  * R18 : - EINS(F_2(C_4 C_5 C_3) C_5 SM(U(C_3) U(C_4)))
+                             - EL(INVERS-E(F_1(C_6 C_5 SM(U(C_3) U(C_4)) F_2(C_4 C_5 C_3)) C_5 F_2(C_4 C_5 C_3))
+                                  SM(U(C_3) U(C_4)))
+ 
+ 
+R18,1 & R9,1    -->  * R19 : - EL(INVERS-E(F_1(C_6 C_5 SM(U(C_3) U(C_4)) F_2(C_4 C_5 C_3)) C_5 F_2(C_4 C_5 C_3))
+                                  SM(U(C_3) U(C_4)))
+ 
+ 
+R15,1 & A3,3    -->  * R20 : - VORAUSSETZUNG3103(C_6 C_5 C_2 C_1 C_3 C_4)
+                               - EINS(F_2(C_4 C_5 C_3) C_5 SM(U(C_3) U(C_4)))
+                             + EL(INVERS-E(F_1(C_6 C_5 SM(U(C_3) U(C_4)) F_2(C_4 C_5 C_3)) C_5 F_2(C_4 C_5 C_3))
+                                  SM(U(C_3) U(C_4)))
+ 
+ 
+R20,1 & T17,1   -->  * R21 : - EINS(F_2(C_4 C_5 C_3) C_5 SM(U(C_3) U(C_4)))
+                             + EL(INVERS-E(F_1(C_6 C_5 SM(U(C_3) U(C_4)) F_2(C_4 C_5 C_3)) C_5 F_2(C_4 C_5 C_3))
+                                  SM(U(C_3) U(C_4)))
+ 
+ 
+R21,1 & R9,1    -->  * R22 : + EL(INVERS-E(F_1(C_6 C_5 SM(U(C_3) U(C_4)) F_2(C_4 C_5 C_3)) C_5 F_2(C_4 C_5 C_3))
+                                  SM(U(C_3) U(C_4)))
+ 
+ 
+R22,1 & R19,1   -->  * R23 :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+STOP
+ 

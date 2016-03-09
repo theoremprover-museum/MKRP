@@ -1,0 +1,346 @@
+ 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 4-APR-85                                                      *
+                    *         DATE : 24-AUG-85  14:17:19                                           *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+ 
+ 
+ 
+ 
+CONSTANTS : 
+=========== 
+ 
+| NAME  | SORT     |            | ATTRIBUTES |
+----------------------------------------------
+| A     | ANY      |            |            |
+| B     | ANY      |            |            |
+| C     | ANY      |            |            |
+----------------------------------------------
+ 
+ 
+ 
+FUNCTIONS : 
+=========== 
+ 
+| NAME  | DOMAIN   | RANGE      | ATTRIBUTES |
+----------------------------------------------
+| F     | ANY      | ANY        |            |
+| G     | ANY      | ANY        |            |
+| H     | ANY      | ANY        |            |
+----------------------------------------------
+ 
+ 
+ 
+PREDICATES : 
+============ 
+ 
+| NAME  | DOMAIN   |            | ATTRIBUTES |
+----------------------------------------------
+| TRUE  |          |            | DEFINED    |
+| FALSE |          |            | DEFINED    |
+| P     | ANY      |            |            |
+| Q     | ANY      |            |            |
+| R     | ANY      |            |            |
+----------------------------------------------
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION
+ 
+INITIAL CLAUSES :      * IC1  : + P(A)
+                       * IC2  : - P(F(F(F(A))))
+                       * IC3  : + Q(B)
+                       * IC4  : - Q(G(G(G(B))))
+                       * IC5  : + R(C)
+                       * IC6  : - R(H(H(H(C))))
+                       * IC7  : ALL X,Y,Z:ANY  - P(Z)  + P(F(Z))  - Q(Y)  + Q(G(Y))  - R(X)  + R(H(X))
+ 
+IC7,6 & IC6,1     -->  * R8   : ALL X,Y:ANY  - P(Y)  + P(F(Y))  - Q(X)  + Q(G(X))  - R(H(H(C)))
+ 
+R8,4 & IC4,1      -->  * R9   : ALL X:ANY  - P(X)  + P(F(X))  - Q(G(G(B)))  - R(H(H(C)))
+ 
+IC3,1 & R8,3      -->  * R12  : ALL X:ANY  - P(X)  + P(F(X))  + Q(G(B))  - R(H(H(C)))
+ 
+R8,2 & IC2,1      -->  * R15  : ALL X:ANY  - P(F(F(A)))  - Q(X)  + Q(G(X))  - R(H(H(C)))
+ 
+R9,2 & R15,1      -->  * R16  : ALL X:ANY  - P(F(A))  - Q(G(G(B)))  - R(H(H(C)))  - Q(X)  + Q(G(X))  - R(H(H(C)))
+ 
+R16 6=3           -->  * D17  : ALL X:ANY  - P(F(A))  - Q(G(G(B)))  - Q(X)  + Q(G(X))  - R(H(H(C)))
+ 
+D17,4 & IC4,1     -->  * R18  : - P(F(A))  - Q(G(G(B)))  - Q(G(G(B)))  - R(H(H(C)))
+ 
+R18 2=3           -->  * D19  : - P(F(A))  - Q(G(G(B)))  - R(H(H(C)))
+ 
+D19,1 & R9,2      -->  * R20  : - Q(G(G(B)))  - R(H(H(C)))  - P(A)  - Q(G(G(B)))  - R(H(H(C)))
+ 
+R20 1=4           -->  * D21  : - Q(G(G(B)))  - R(H(H(C)))  - P(A)  - R(H(H(C)))
+ 
+D21 2=4           -->  * D22  : - Q(G(G(B)))  - R(H(H(C)))  - P(A)
+ 
+D22,3 & IC1,1     -->  * R23  : - Q(G(G(B)))  - R(H(H(C)))
+ 
+R12,2 & R15,1     -->  * R24  : ALL X:ANY  - P(F(A))  + Q(G(B))  - R(H(H(C)))  - Q(X)  + Q(G(X))  - R(H(H(C)))
+ 
+R24 6=3           -->  * D25  : ALL X:ANY  - P(F(A))  + Q(G(B))  - Q(X)  + Q(G(X))  - R(H(H(C)))
+ 
+D25,3 & IC3,1     -->  * R26  : - P(F(A))  + Q(G(B))  + Q(G(B))  - R(H(H(C)))
+ 
+R26 2=3           -->  * D27  : - P(F(A))  + Q(G(B))  - R(H(H(C)))
+ 
+D27,1 & R12,2     -->  * R28  : + Q(G(B))  - R(H(H(C)))  - P(A)  + Q(G(B))  - R(H(H(C)))
+ 
+R28 1=4           -->  * D29  : + Q(G(B))  - R(H(H(C)))  - P(A)  - R(H(H(C)))
+ 
+D29 2=4           -->  * D30  : + Q(G(B))  - R(H(H(C)))  - P(A)
+ 
+D30,3 & IC1,1     -->  * R31  : + Q(G(B))  - R(H(H(C)))
+ 
+IC1,1 & R8,1      -->  * R32  : ALL X:ANY  + P(F(A))  - Q(X)  + Q(G(X))  - R(H(H(C)))
+ 
+IC5,1 & IC7,5     -->  * R33  : ALL X,Y:ANY  - P(Y)  + P(F(Y))  - Q(X)  + Q(G(X))  + R(H(C))
+ 
+R33,4 & IC4,1     -->  * R34  : ALL X:ANY  - P(X)  + P(F(X))  - Q(G(G(B)))  + R(H(C))
+ 
+IC3,1 & R33,3     -->  * R37  : ALL X:ANY  - P(X)  + P(F(X))  + Q(G(B))  + R(H(C))
+ 
+R33,2 & IC2,1     -->  * R40  : ALL X:ANY  - P(F(F(A)))  - Q(X)  + Q(G(X))  + R(H(C))
+ 
+R34,2 & R40,1     -->  * R41  : ALL X:ANY  - P(F(A))  - Q(G(G(B)))  + R(H(C))  - Q(X)  + Q(G(X))  + R(H(C))
+ 
+R41 6=3           -->  * D42  : ALL X:ANY  - P(F(A))  - Q(G(G(B)))  - Q(X)  + Q(G(X))  + R(H(C))
+ 
+D42,4 & IC4,1     -->  * R43  : - P(F(A))  - Q(G(G(B)))  - Q(G(G(B)))  + R(H(C))
+ 
+R43 2=3           -->  * D44  : - P(F(A))  - Q(G(G(B)))  + R(H(C))
+ 
+D44,1 & R34,2     -->  * R45  : - Q(G(G(B)))  + R(H(C))  - P(A)  - Q(G(G(B)))  + R(H(C))
+ 
+R45 1=4           -->  * D46  : - Q(G(G(B)))  + R(H(C))  - P(A)  + R(H(C))
+ 
+D46 2=4           -->  * D47  : - Q(G(G(B)))  + R(H(C))  - P(A)
+ 
+D47,3 & IC1,1     -->  * R48  : - Q(G(G(B)))  + R(H(C))
+ 
+R37,2 & R40,1     -->  * R49  : ALL X:ANY  - P(F(A))  + Q(G(B))  + R(H(C))  - Q(X)  + Q(G(X))  + R(H(C))
+ 
+R49 6=3           -->  * D50  : ALL X:ANY  - P(F(A))  + Q(G(B))  - Q(X)  + Q(G(X))  + R(H(C))
+ 
+D50,3 & IC3,1     -->  * R51  : - P(F(A))  + Q(G(B))  + Q(G(B))  + R(H(C))
+ 
+R51 2=3           -->  * D52  : - P(F(A))  + Q(G(B))  + R(H(C))
+ 
+D52,1 & R37,2     -->  * R53  : + Q(G(B))  + R(H(C))  - P(A)  + Q(G(B))  + R(H(C))
+ 
+R53 1=4           -->  * D54  : + Q(G(B))  + R(H(C))  - P(A)  + R(H(C))
+ 
+D54 2=4           -->  * D55  : + Q(G(B))  + R(H(C))  - P(A)
+ 
+D55,3 & IC1,1     -->  * R56  : + Q(G(B))  + R(H(C))
+ 
+IC1,1 & R33,1     -->  * R57  : ALL X:ANY  + P(F(A))  - Q(X)  + Q(G(X))  + R(H(C))
+ 
+IC7,4 & IC4,1     -->  * R58  : ALL X,Y:ANY  - P(Y)  + P(F(Y))  - Q(G(G(B)))  - R(X)  + R(H(X))
+ 
+R58,2 & IC2,1     -->  * R59  : ALL X:ANY  - P(F(F(A)))  - Q(G(G(B)))  - R(X)  + R(H(X))
+ 
+IC1,1 & R58,1     -->  * R60  : ALL X:ANY  + P(F(A))  - Q(G(G(B)))  - R(X)  + R(H(X))
+ 
+IC3,1 & IC7,3     -->  * R61  : ALL X,Y:ANY  - P(Y)  + P(F(Y))  + Q(G(B))  - R(X)  + R(H(X))
+ 
+R61,2 & IC2,1     -->  * R62  : ALL X:ANY  - P(F(F(A)))  + Q(G(B))  - R(X)  + R(H(X))
+ 
+IC1,1 & R61,1     -->  * R63  : ALL X:ANY  + P(F(A))  + Q(G(B))  - R(X)  + R(H(X))
+ 
+IC7,2 & IC2,1     -->  * R64  : ALL X,Y:ANY  - P(F(F(A)))  - Q(Y)  + Q(G(Y))  - R(X)  + R(H(X))
+ 
+IC1,1 & IC7,1     -->  * R65  : ALL X,Y:ANY  + P(F(A))  - Q(Y)  + Q(G(Y))  - R(X)  + R(H(X))
+ 
+R15,3 & R23,1     -->  * R66  : - P(F(F(A)))  - Q(G(B))  - R(H(H(C)))  - R(H(H(C)))
+ 
+R66 3=4           -->  * D67  : - P(F(F(A)))  - Q(G(B))  - R(H(H(C)))
+ 
+D67,2 & R31,1     -->  * R68  : - P(F(F(A)))  - R(H(H(C)))  - R(H(H(C)))
+ 
+R68 2=3           -->  * D69  : - P(F(F(A)))  - R(H(H(C)))
+ 
+R32,3 & R23,1     -->  * R70  : + P(F(A))  - Q(G(B))  - R(H(H(C)))  - R(H(H(C)))
+ 
+R70 3=4           -->  * D71  : + P(F(A))  - Q(G(B))  - R(H(H(C)))
+ 
+D71,2 & R31,1     -->  * R72  : + P(F(A))  - R(H(H(C)))  - R(H(H(C)))
+ 
+R72 2=3           -->  * D73  : + P(F(A))  - R(H(H(C)))
+ 
+R40,3 & R48,1     -->  * R74  : - P(F(F(A)))  - Q(G(B))  + R(H(C))  + R(H(C))
+ 
+R74 3=4           -->  * D75  : - P(F(F(A)))  - Q(G(B))  + R(H(C))
+ 
+D75,2 & R56,1     -->  * R76  : - P(F(F(A)))  + R(H(C))  + R(H(C))
+ 
+R76 2=3           -->  * D77  : - P(F(F(A)))  + R(H(C))
+ 
+R57,3 & R48,1     -->  * R78  : + P(F(A))  - Q(G(B))  + R(H(C))  + R(H(C))
+ 
+R78 3=4           -->  * D79  : + P(F(A))  - Q(G(B))  + R(H(C))
+ 
+D79,2 & R56,1     -->  * R80  : + P(F(A))  + R(H(C))  + R(H(C))
+ 
+R80 2=3           -->  * D81  : + P(F(A))  + R(H(C))
+ 
+R59,4 & R23,2     -->  * R82  : - P(F(F(A)))  - Q(G(G(B)))  - R(H(C))  - Q(G(G(B)))
+ 
+R82 2=4           -->  * D83  : - P(F(F(A)))  - Q(G(G(B)))  - R(H(C))
+ 
+D83,3 & R48,2     -->  * R84  : - P(F(F(A)))  - Q(G(G(B)))  - Q(G(G(B)))
+ 
+R84 2=3           -->  * D85  : - P(F(F(A)))  - Q(G(G(B)))
+ 
+R60,4 & R23,2     -->  * R86  : + P(F(A))  - Q(G(G(B)))  - R(H(C))  - Q(G(G(B)))
+ 
+R86 2=4           -->  * D87  : + P(F(A))  - Q(G(G(B)))  - R(H(C))
+ 
+D87,3 & R48,2     -->  * R88  : + P(F(A))  - Q(G(G(B)))  - Q(G(G(B)))
+ 
+R88 2=3           -->  * D89  : + P(F(A))  - Q(G(G(B)))
+ 
+R62,4 & R31,2     -->  * R90  : - P(F(F(A)))  + Q(G(B))  - R(H(C))  + Q(G(B))
+ 
+R90 2=4           -->  * D91  : - P(F(F(A)))  + Q(G(B))  - R(H(C))
+ 
+D91,3 & R56,2     -->  * R92  : - P(F(F(A)))  + Q(G(B))  + Q(G(B))
+ 
+R92 2=3           -->  * D93  : - P(F(F(A)))  + Q(G(B))
+ 
+R63,4 & R31,2     -->  * R94  : + P(F(A))  + Q(G(B))  - R(H(C))  + Q(G(B))
+ 
+R94 2=4           -->  * D95  : + P(F(A))  + Q(G(B))  - R(H(C))
+ 
+D95,3 & R56,2     -->  * R96  : + P(F(A))  + Q(G(B))  + Q(G(B))
+ 
+R96 2=3           -->  * D97  : + P(F(A))  + Q(G(B))
+ 
+IC7,6 & R8,5      -->  * R98  : ALL X,Y,Z,U:ANY  - P(U)  + P(F(U))  - Q(Z)  + Q(G(Z))  - R(H(C))  - P(Y)  + P(F(Y))
+                                                   - Q(X)  + Q(G(X))
+ 
+R98 (INSTANCE)    -->  * I99  : ALL X,Y,Z:ANY  - P(Z)  + P(F(Z))  - Q(Y)  + Q(G(Y))  - R(H(C))  - P(X)  + P(F(X))
+                                                 - Q(Y)  + Q(G(Y))
+ 
+I99 3=8           -->  * D100 : ALL X,Y,Z:ANY  - P(Z)  + P(F(Z))  - Q(Y)  + Q(G(Y))  - R(H(C))  - P(X)  + P(F(X))
+                                                 + Q(G(Y))
+ 
+D100 4=8          -->  * D101 : ALL X,Y,Z:ANY  - P(Z)  + P(F(Z))  - Q(Y)  + Q(G(Y))  - R(H(C))  - P(X)  + P(F(X))
+ 
+D101 (INSTANCE)   -->  * I102 : ALL X,Y:ANY  - P(Y)  + P(F(Y))  - Q(X)  + Q(G(X))  - R(H(C))  - P(Y)  + P(F(Y))
+ 
+I102 1=6          -->  * D103 : ALL X,Y:ANY  - P(Y)  + P(F(Y))  - Q(X)  + Q(G(X))  - R(H(C))  + P(F(Y))
+ 
+D103 2=6          -->  * D104 : ALL X,Y:ANY  - P(Y)  + P(F(Y))  - Q(X)  + Q(G(X))  - R(H(C))
+ 
+D104,5 & R33,5    -->  * R105 : ALL X,Y:ANY  - P(Y)  + P(F(Y))  - Q(X)  + Q(G(X))  - P(Y)  + P(F(Y))  - Q(X)  + Q(G(X))
+ 
+R105 1=5          -->  * D106 : ALL X,Y:ANY  - P(Y)  + P(F(Y))  - Q(X)  + Q(G(X))  + P(F(Y))  - Q(X)  + Q(G(X))
+ 
+D106 2=5          -->  * D107 : ALL X,Y:ANY  - P(Y)  + P(F(Y))  - Q(X)  + Q(G(X))  - Q(X)  + Q(G(X))
+ 
+D107 3=5          -->  * D108 : ALL X,Y:ANY  - P(Y)  + P(F(Y))  - Q(X)  + Q(G(X))  + Q(G(X))
+ 
+D108 4=5          -->  * D109 : ALL X,Y:ANY  - P(Y)  + P(F(Y))  - Q(X)  + Q(G(X))
+ 
+R58,5 & R23,2     -->  * R110 : ALL X:ANY  - P(X)  + P(F(X))  - Q(G(G(B)))  - R(H(C))  - Q(G(G(B)))
+ 
+R110 3=5          -->  * D111 : ALL X:ANY  - P(X)  + P(F(X))  - Q(G(G(B)))  - R(H(C))
+ 
+D111,4 & R48,2    -->  * R112 : ALL X:ANY  - P(X)  + P(F(X))  - Q(G(G(B)))  - Q(G(G(B)))
+ 
+R112 3=4          -->  * D113 : ALL X:ANY  - P(X)  + P(F(X))  - Q(G(G(B)))
+ 
+D113,2 & D85,1    -->  * R114 : - P(F(A))  - Q(G(G(B)))  - Q(G(G(B)))
+ 
+R114 2=3          -->  * D115 : - P(F(A))  - Q(G(G(B)))
+ 
+D115,1 & D89,1    -->  * R116 : - Q(G(G(B)))  - Q(G(G(B)))
+ 
+R116 1=2          -->  * D117 : - Q(G(G(B)))
+ 
+R61,5 & R31,2     -->  * R118 : ALL X:ANY  - P(X)  + P(F(X))  + Q(G(B))  - R(H(C))  + Q(G(B))
+ 
+R118 3=5          -->  * D119 : ALL X:ANY  - P(X)  + P(F(X))  + Q(G(B))  - R(H(C))
+ 
+D119,4 & R56,2    -->  * R120 : ALL X:ANY  - P(X)  + P(F(X))  + Q(G(B))  + Q(G(B))
+ 
+R120 3=4          -->  * D121 : ALL X:ANY  - P(X)  + P(F(X))  + Q(G(B))
+ 
+D121,3 & D109,3   -->  * R122 : ALL X:ANY  - P(X)  + P(F(X))  - P(X)  + P(F(X))  + Q(G(G(B)))
+ 
+R122 1=3          -->  * D123 : ALL X:ANY  - P(X)  + P(F(X))  + P(F(X))  + Q(G(G(B)))
+ 
+D123 2=3          -->  * D124 : ALL X:ANY  - P(X)  + P(F(X))  + Q(G(G(B)))
+ 
+D124,3 & D117,1   -->  * R125 : ALL X:ANY  - P(X)  + P(F(X))
+ 
+R125,2 & D93,1    -->  * R126 : - P(F(A))  + Q(G(B))
+ 
+R126,1 & D97,1    -->  * R127 : + Q(G(B))  + Q(G(B))
+ 
+R127 1=2          -->  * D128 : + Q(G(B))
+ 
+R65,2 & D128,1    -->  * R129 : ALL X:ANY  + P(F(A))  + Q(G(G(B)))  - R(X)  + R(H(X))
+ 
+R129,2 & D117,1   -->  * R130 : ALL X:ANY  + P(F(A))  - R(X)  + R(H(X))
+ 
+R64,2 & D128,1    -->  * R131 : ALL X:ANY  - P(F(F(A)))  + Q(G(G(B)))  - R(X)  + R(H(X))
+ 
+R131,2 & D117,1   -->  * R132 : ALL X:ANY  - P(F(F(A)))  - R(X)  + R(H(X))
+ 
+D109,3 & D128,1   -->  * R133 : ALL X:ANY  - P(X)  + P(F(X))  + Q(G(G(B)))
+ 
+R133,3 & D117,1   -->  * R134 : ALL X:ANY  - P(X)  + P(F(X))
+ 
+R132,3 & D69,2    -->  * R135 : - P(F(F(A)))  - R(H(C))  - P(F(F(A)))
+ 
+R135 1=3          -->  * D136 : - P(F(F(A)))  - R(H(C))
+ 
+D136,2 & D77,2    -->  * R137 : - P(F(F(A)))  - P(F(F(A)))
+ 
+R137 1=2          -->  * D138 : - P(F(F(A)))
+ 
+R134,2 & D138,1   -->  * R139 : - P(F(A))
+ 
+D81,1 & R139,1    -->  * R140 : + R(H(C))
+ 
+D73,1 & R139,1    -->  * R141 : - R(H(H(C)))
+ 
+R130,1 & R139,1   -->  * R142 : ALL X:ANY  - R(X)  + R(H(X))
+ 
+R142,2 & R141,1   -->  * R143 : - R(H(C))
+ 
+R143,1 & R140,1   -->  * R144 :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+STOP
+ 

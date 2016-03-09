@@ -1,0 +1,94 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 41.1 EQUALITY 16.1                                  *
+                     *           DATE: 27-APR,1990  17:45                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 27-APR,1990 17:43 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * TRANSITIVE
+             ALL X P (X) IMPL Q (X)
+             ALL X Q (X) IMPL R (X)
+             ALL X R (X) IMPL S (X)
+             
+   Theorems: ALL X P (X) IMPL S (X)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+           * A2:   All x:Any - P(x)  + Q(x)
+           * A3:   All x:Any - Q(x)  + R(x)
+           * A4:   All x:Any - R(x)  + S(x)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T5: + P(c_1)
+           * T6: - S(c_1)
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:    A1:  All x:Any + =(x x)
+                     * A2:  All x:Any - P(x)  + Q(x)
+                     * A3:  All x:Any - Q(x)  + R(x)
+                     * A4:  All x:Any - R(x)  + S(x)
+                     * T5:  + P(c_1)
+                     * T6:  - S(c_1)
+                     
+
+   
+   A4,2 & T6,1  -->  * R1:  - R(c_1)
+   
+   T5,1 & A2,1  -->  * R2:  + Q(c_1)
+   
+   R2,1 & A3,1  -->  * R3:  + R(c_1)
+   
+   R3,1 & R1,1  -->  * R4:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 5 seconds

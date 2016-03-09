@@ -1,0 +1,201 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 35.4 EQUALITY 16.1                                  *
+                     *           DATE: 20-DEC,1989  07:09                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 15-DEC,1989 01:31 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * AXIOMS FOR PROBLEM 45 %.
+             * THE ISLAND OF BAHAVA
+             * A KNIGHT COULD MARRY ONLY A KNAVE.
+             * A NORMAL COULD ONLY MARRY A NORMAL.
+             * A KNAVE COULD ONLY MARRY A KNAVE.
+             *
+             * WE FIRST CONSIDER A MARRIED COUPLE,MRS. AND MR.ABNORMAL.
+             * MR.ABNORMAL SAYS : MY WIFE IS NORMAL.
+             * MRS.ABNORMAL SAYS : MY HUSBAND IS NORMAL.
+             * WHAT ARE MRS. AND MR.ABNORMAL?
+             *
+             * MARRIED (X Y) MEANS X AND Y ARE MARRIED.
+             * NORMAL2 (X Y) MEANS X SAYS : Y IS NORMAL.
+             *
+             ALL X KNIGHT (X) EQV NOT KNAVE (X) AND NOT NORMAL (X)
+             ALL X KNAVE (X) EQV NOT KNIGHT (X) AND NOT NORMAL (X)
+             ALL X NORMAL (X) EQV NOT KNIGHT (X) AND NOT KNAVE (X)
+             ALL X,Y MARRIED (X Y) IMPL KNIGHT (X) AND KNAVE (Y) OR KNAVE (X) AND KNIGHT (Y) OR NORMAL (X) AND NORMAL (Y)
+             ALL X,Y NORMAL2 (X Y) AND KNAVE (X) IMPL NOT NORMAL (Y)
+             ALL X,Y NORMAL2 (X Y) AND KNIGHT (X) IMPL NORMAL (Y)
+             MARRIED (MRSABNORMAL MRABNORMAL)
+             NORMAL2 (MRABNORMAL MRSABNORMAL)
+             NORMAL2 (MRSABNORMAL MRABNORMAL)
+             
+   Theorems: NORMAL (MRABNORMAL) AND NORMAL (MRSABNORMAL)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+           * A1:   + MARRIED(mrsabnormal mrabnormal)
+           * A2:   + NORMAL2(mrabnormal mrsabnormal)
+           * A3:   + NORMAL2(mrsabnormal mrabnormal)
+           * A4:   All x:Any - KNAVE(x)  - NORMAL(x)
+             A5:   All x:Any - NORMAL(x)  - KNAVE(x)
+             A6:   All x:Any + KNAVE(x)  - KNAVE(x)  + NORMAL(x)
+             A7:   All x:Any + KNAVE(x)  - NORMAL(x)  + NORMAL(x)
+             A8:   All x:Any - KNAVE(x)  + KNAVE(x)  + NORMAL(x)
+             A9:   All x:Any + NORMAL(x)  - KNAVE(x)  + KNAVE(x)
+             A10:  All x:Any + NORMAL(x)  - NORMAL(x)  + KNAVE(x)
+             A11:  All x:Any - NORMAL(x)  + KNAVE(x)  + NORMAL(x)
+             A12:  All x,y:Any - NORMAL2(y x)  - KNAVE(y)  - NORMAL(x)
+             A13:  All x,y:Any - MARRIED(y x)  - KNAVE(y)  + KNAVE(y)  + NORMAL(y)
+             A14:  All x,y:Any - MARRIED(y x)  - KNAVE(y)  + KNAVE(y)  + NORMAL(x)
+           * A15:  All x,y:Any - MARRIED(y x)  - KNAVE(y)  - KNAVE(x)  + NORMAL(y)
+             A16:  All x,y:Any - MARRIED(y x)  - KNAVE(y)  - KNAVE(x)  + NORMAL(x)
+             A17:  All x,y:Any - MARRIED(y x)  - KNAVE(y)  - NORMAL(x)  + NORMAL(y)
+             A18:  All x,y:Any - MARRIED(y x)  - KNAVE(y)  - NORMAL(x)  + NORMAL(x)
+             A19:  All x,y:Any - MARRIED(y x)  - NORMAL(y)  + KNAVE(y)  + NORMAL(y)
+           * A20:  All x,y:Any - MARRIED(y x)  - NORMAL(y)  + KNAVE(y)  + NORMAL(x)
+             A21:  All x,y:Any - MARRIED(y x)  - NORMAL(y)  - KNAVE(x)  + NORMAL(y)
+             A22:  All x,y:Any - MARRIED(y x)  - NORMAL(y)  - KNAVE(x)  + NORMAL(x)
+             A23:  All x,y:Any - MARRIED(y x)  - NORMAL(y)  - NORMAL(x)  + NORMAL(y)
+             A24:  All x,y:Any - MARRIED(y x)  - NORMAL(y)  - NORMAL(x)  + NORMAL(x)
+             A25:  All x,y:Any - MARRIED(y x)  + KNAVE(x)  + KNAVE(y)  + NORMAL(y)
+             A26:  All x,y:Any - MARRIED(y x)  + KNAVE(x)  + KNAVE(y)  + NORMAL(x)
+             A27:  All x,y:Any - MARRIED(y x)  + KNAVE(x)  - KNAVE(x)  + NORMAL(y)
+             A28:  All x,y:Any - MARRIED(y x)  + KNAVE(x)  - KNAVE(x)  + NORMAL(x)
+           * A29:  All x,y:Any - MARRIED(y x)  + KNAVE(x)  - NORMAL(x)  + NORMAL(y)
+             A30:  All x,y:Any - MARRIED(y x)  + KNAVE(x)  - NORMAL(x)  + NORMAL(x)
+           * A31:  All x,y:Any - NORMAL2(y x)  + KNAVE(y)  + NORMAL(y)  + NORMAL(x)
+           
+
+
+
+
+             Initial Operations on Axioms
+             ============================
+
+
+          
+   A15,4 & A4,2  --> * R1: All x,y:Any - MARRIED(y x)  - KNAVE(y)  - KNAVE(x)  - KNAVE(y)
+   
+   R1 2=4        --> * D2: All x,y:Any - MARRIED(y x)  - KNAVE(y)  - KNAVE(x)
+   
+   A20,3 & A4,1  --> * R5: All x,y:Any - MARRIED(y x)  - NORMAL(y)  + NORMAL(x)  - NORMAL(y)
+   
+   R5 2=4        --> * D6: All x,y:Any - MARRIED(y x)  - NORMAL(y)  + NORMAL(x)
+   
+   A29,2 & A4,1  --> * R7: All x,y:Any - MARRIED(x y)  - NORMAL(y)  + NORMAL(x)  - NORMAL(y)
+   
+   R7 2=4        --> * D8: All x,y:Any - MARRIED(x y)  - NORMAL(y)  + NORMAL(x)
+   
+
+   
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T32: - NORMAL(mrabnormal)  - NORMAL(mrsabnormal)
+
+
+
+
+
+
+             Initial Operations on Theorems
+             ==============================
+
+
+          
+   T32,2 & D8,3  --> * R9:  - NORMAL(mrabnormal)  - MARRIED(mrsabnormal mrabnormal)  - NORMAL(mrabnormal)
+   
+   R9 1=3        --> * D10: - NORMAL(mrabnormal)  - MARRIED(mrsabnormal mrabnormal)
+   
+   D10,2 & A1,1  --> * R11: - NORMAL(mrabnormal)
+   
+
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:    * A1:   + MARRIED(mrsabnormal mrabnormal)
+                       * A2:   + NORMAL2(mrabnormal mrsabnormal)
+                       * A3:   + NORMAL2(mrsabnormal mrabnormal)
+                       * A4:   All x:Any - KNAVE(x)  - NORMAL(x)
+                         A12:  All x,y:Any - NORMAL2(y x)  - KNAVE(y)  - NORMAL(x)
+                       * D2:   All x,y:Any - MARRIED(y x)  - KNAVE(y)  - KNAVE(x)
+                         D4:   All x,y:Any - MARRIED(y x)  - KNAVE(y)  - NORMAL(x)
+                       * D6:   All x,y:Any - MARRIED(y x)  - NORMAL(y)  + NORMAL(x)
+                         A25:  All x,y:Any - MARRIED(y x)  + KNAVE(x)  + KNAVE(y)  + NORMAL(y)
+                         A26:  All x,y:Any - MARRIED(y x)  + KNAVE(x)  + KNAVE(y)  + NORMAL(x)
+                       * D8:   All x,y:Any - MARRIED(x y)  - NORMAL(y)  + NORMAL(x)
+                       * A31:  All x,y:Any - NORMAL2(y x)  + KNAVE(y)  + NORMAL(y)  + NORMAL(x)
+                       * R11:  - NORMAL(mrabnormal)
+                       
+
+   
+   A1,1 & D6,1    -->  * R15:  - NORMAL(mrsabnormal)  + NORMAL(mrabnormal)
+   
+   R15,2 & R11,1  -->  * R16:  - NORMAL(mrsabnormal)
+   
+   A1,1 & D2,1    -->  * R17:  - KNAVE(mrsabnormal)  - KNAVE(mrabnormal)
+   
+   R17,1 & A31,2  -->  * R18:  - KNAVE(mrabnormal)  - NORMAL2(mrsabnormal mrabnormal)  + NORMAL(mrsabnormal)
+                               + NORMAL(mrabnormal)
+   
+   R18,2 & A3,1   -->  * R19:  - KNAVE(mrabnormal)  + NORMAL(mrsabnormal)  + NORMAL(mrabnormal)
+   
+   R19,2 & R16,1  -->  * R20:  - KNAVE(mrabnormal)  + NORMAL(mrabnormal)
+   
+   R20,2 & R11,1  -->  * R21:  - KNAVE(mrabnormal)
+   
+   A31,4 & R16,1  -->  * R23:  - NORMAL2(mrabnormal mrsabnormal)  + KNAVE(mrabnormal)  + NORMAL(mrabnormal)
+   
+   R23,3 & R11,1  -->  * R24:  - NORMAL2(mrabnormal mrsabnormal)  + KNAVE(mrabnormal)
+   
+   R24,2 & R21,1  -->  * R25:  - NORMAL2(mrabnormal mrsabnormal)
+   
+   R25,1 & A2,1   -->  * R26:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 13 seconds

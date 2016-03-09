@@ -1,0 +1,210 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 48.4                                                *
+                     *           DATE: 09-JUL,1991  16:11                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 09-JUL,1991 16:11 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * PROBLEM E91
+             *
+             * THIS TIME WE GET THE FOLLOWING STATEMENTS :
+             * A : AT LEAST ONE OF THE THREE OF US IS A KNAVE.
+             * B : C IS A KNIGHT.
+             * GIVEN THAT THERE IS EXACTLY ONE WEREWOLF AND THAT HE IS A KNIGHT,
+             * WHO IS THE WEREWOLF?
+             *
+             *
+             * THE FUNCTION STATE (X) AND THE PREDICATES TRUTH (X) , KNIGHT (X) , KNAVE (X) ,
+             * AND WEREWOLF (X) MEAN THE SAME AS IN E89.
+             * THE FOLLOWING PREDICATES ARE NEW :
+             * STATE.KNIGHT (X Y) - STATEMENT X TELLS THAT PERSON Y IS A KNIGHT
+             * AT-LEAST-ONE-KNAVE (X Y Z) - AT LEAST ONE PERSON X,Y,OR Z IS A KNAVE
+             * STATE.AT-LEAST-ONE-KNAVE (S X Y Z) - STATEMENT S TELLS THAT AT LEAST ONE
+             * PERSON X,Y, OR Z IS A KNAVE
+             *
+             * DECLARATIONS :
+             TYPE A,B,C : PERSON
+             TYPE STATE (PERSON) : STATEMENT
+             TYPE TRUTH (STATEMENT)
+             TYPE KNIGHT (PERSON)
+             TYPE KNAVE (PERSON)
+             TYPE WEREWOLF (PERSON)
+             TYPE STATE.KNIGHT (STATEMENT PERSON)
+             TYPE AT-LEAST-ONE-KNAVE (PERSON PERSON PERSON)
+             TYPE STATE.AT-LEAST-ONE-KNAVE (STATEMENT PERSON PERSON PERSON)
+             *
+             * EVERY INHABITANT IS EITHER A KNIGHT OR A KNAVE :
+             ALL X : PERSON KNIGHT (X) OR KNAVE (X)
+             ALL X : PERSON NOT (KNIGHT (X) AND KNAVE (X))
+             *
+             * KNIGHT ALWAYS TELL THE TRUTH AND KNAVE ALWAYS LIE :
+             ALL X : PERSON KNIGHT (X) EQV TRUTH (STATE (X))
+             ALL X : PERSON KNAVE (X) EQV NOT (TRUTH (STATE (X)))
+             *
+             * A WEREWOLF CAN BE A KNIGHT OR A KNAVE :
+             ALL X : PERSON WEREWOLF (X) IMPL KNIGHT (X) OR KNAVE (X)
+             *
+             * THERE IS EXACTLY ONE WEREWOLF :
+             WEREWOLF (A) OR WEREWOLF (B) OR WEREWOLF (C)
+             NOT (WEREWOLF (A) AND WEREWOLF (B) OR WEREWOLF (B) AND WEREWOLF (C) OR WEREWOLF (C) AND WEREWOLF (A))
+             *
+             * EXPLANATION OF AT-LEAST-ONE-KNAVE :
+             ALL X,Y,Z : PERSON AT-LEAST-ONE-KNAVE (X Y Z) EQV KNAVE (X) OR KNAVE (Y) OR KNAVE (Z)
+             *
+             * IMPLICATIONS ABOUT STATEMENTS :
+             ALL X : STATEMENT ALL Y : PERSON STATE.KNIGHT (X Y) AND TRUTH (X) IMPL KNIGHT (Y)
+             ALL X : STATEMENT ALL Y : PERSON STATE.KNIGHT (X Y) AND NOT (TRUTH (X)) IMPL NOT (KNIGHT (Y))
+             ALL S: STATEMENT ALL X,Y,Z : PERSON STATE.AT-LEAST-ONE-KNAVE (S X Y Z) AND TRUTH (S)
+                                  IMPL AT-LEAST-ONE-KNAVE (X Y Z)
+             ALL S: STATEMENT ALL X,Y,Z : PERSON STATE.AT-LEAST-ONE-KNAVE (S X Y Z) AND NOT (TRUTH (S))
+                                  IMPL NOT (AT-LEAST-ONE-KNAVE (X Y Z))
+             *
+             * THE WEREWOLF IS A KNIGHT :
+             ALL X : PERSON WEREWOLF (X) IMPL KNIGHT (X)
+             *
+             * ACTUAL STATEMENTS :
+             STATE.AT-LEAST-ONE-KNAVE (STATE (A) A B C)
+             STATE.KNIGHT (STATE (B) C)
+             
+   Theorems: * THEOREM FOR E91
+             WEREWOLF (A)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+           * A2:   + STATE.AT-LEAST-ONE-KNAVE(state(a) a b c)
+           * A3:   + STATE.KNIGHT(state(b) c)
+             A4:   All x:Person + TRUTH(state(x))  - TRUTH(state(x))
+             A5:   All x:Person - TRUTH(state(x))  + TRUTH(state(x))
+             A6:   - WEREWOLF(a)  - WEREWOLF(b)
+             A7:   - WEREWOLF(b)  - WEREWOLF(c)
+             A8:   - WEREWOLF(c)  - WEREWOLF(a)
+           * A9:   All x:Person - WEREWOLF(x)  + TRUTH(state(x))
+             A10:  All x:Person - WEREWOLF(x)  + TRUTH(state(x))  - TRUTH(state(x))
+           * A11:  + WEREWOLF(a)  + WEREWOLF(b)  + WEREWOLF(c)
+           * A12:  All x:Person y:Statement - STATE.KNIGHT(y x)  - TRUTH(y)  + TRUTH(state(x))
+           * A13:  All x:Person y:Statement - STATE.KNIGHT(y x)  + TRUTH(y)  - TRUTH(state(x))
+           * A14:  All x,y,z:Person u:Statement - STATE.AT-LEAST-ONE-KNAVE(u z y x)  + TRUTH(u)  + TRUTH(state(z))
+             A15:  All x,y,z:Person u:Statement - STATE.AT-LEAST-ONE-KNAVE(u z y x)  + TRUTH(u)  + TRUTH(state(y))
+             A16:  All x,y,z:Person u:Statement - STATE.AT-LEAST-ONE-KNAVE(u z y x)  + TRUTH(u)  + TRUTH(state(x))
+           * A17:  All x,y,z:Person u:Statement - STATE.AT-LEAST-ONE-KNAVE(u z y x)  - TRUTH(u)  - TRUTH(state(z))
+                                                - TRUTH(state(y))  - TRUTH(state(x))
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T18: - WEREWOLF(a)
+
+
+
+
+
+
+             Initial Operations on Theorems
+             ==============================
+
+
+          
+   A11,1 & T18,1  -->* R1: + WEREWOLF(b)  + WEREWOLF(c)
+   
+
+   
+
+    Literals: ((T18 37) (A17 23 24 25 26 27) (A16 28 29 32) (A15 28 29 31) (A14 28 29 30) (A13 20 21 22) (A12 17 18 19) (A11 8 9 10) (A10 5 6 7) (A9 33 34) (A8 15 16) (A7 13 14) (A6 11 12) (A5 3 4) (A4 1 2) (A3 36) (A2 35) (A1 NIL))
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:     A1:   All x:Any + =(x x)
+                      * A2:   + STATE.AT-LEAST-ONE-KNAVE(state(a) a b c)
+                      * A3:   + STATE.KNIGHT(state(b) c)
+                      * A9:   All x:Person - WEREWOLF(x)  + TRUTH(state(x))
+                      * R1:   + WEREWOLF(b)  + WEREWOLF(c)
+                      * A12:  All x:Person y:Statement - STATE.KNIGHT(y x)  - TRUTH(y)  + TRUTH(state(x))
+                      * A13:  All x:Person y:Statement - STATE.KNIGHT(y x)  + TRUTH(y)  - TRUTH(state(x))
+                      * A14:  All x,y,z:Person u:Statement - STATE.AT-LEAST-ONE-KNAVE(u z y x)  + TRUTH(u)
+                                                           + TRUTH(state(z))
+                        A15:  All x,y,z:Person u:Statement - STATE.AT-LEAST-ONE-KNAVE(u z y x)  + TRUTH(u)
+                                                           + TRUTH(state(y))
+                        A16:  All x,y,z:Person u:Statement - STATE.AT-LEAST-ONE-KNAVE(u z y x)  + TRUTH(u)
+                                                           + TRUTH(state(x))
+                      * A17:  All x,y,z:Person u:Statement - STATE.AT-LEAST-ONE-KNAVE(u z y x)  - TRUTH(u)
+                                                           - TRUTH(state(z))  - TRUTH(state(y))  - TRUTH(state(x))
+                      
+
+   
+   A2,1 & A17,1   --> * R2:   - TRUTH(state(a))  - TRUTH(state(a))  - TRUTH(state(b))  - TRUTH(state(c))
+   
+   R2 1=2         --> * D3:   - TRUTH(state(a))  - TRUTH(state(b))  - TRUTH(state(c))
+   
+   A2,1 & A14,1   --> * R6:   + TRUTH(state(a))  + TRUTH(state(a))
+   
+   R6 1=2         --> * D7:   + TRUTH(state(a))
+   
+   D3,1 & D7,1    --> * R8:   - TRUTH(state(b))  - TRUTH(state(c))
+   
+   A3,1 & A13,1   --> * R9:   + TRUTH(state(b))  - TRUTH(state(c))
+   
+   R9,1 & R8,1    --> * R10:  - TRUTH(state(c))  - TRUTH(state(c))
+   
+   R10 1=2        --> * D11:  - TRUTH(state(c))
+   
+   A3,1 & A12,1   --> * R12:  - TRUTH(state(b))  + TRUTH(state(c))
+   
+   R12,2 & D11,1  --> * R13:  - TRUTH(state(b))
+   
+   R1,1 & A9,1    --> * R14:  + WEREWOLF(c)  + TRUTH(state(b))
+   
+   R14,2 & R13,1  --> * R15:  + WEREWOLF(c)
+   
+   R15,1 & A9,1   --> * R16:  + TRUTH(state(c))
+   
+   R16,1 & D11,1  --> * R17:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 24 seconds

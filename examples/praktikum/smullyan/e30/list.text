@@ -1,0 +1,82 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 34.6 EQUALITY 16.1                                  *
+                     *           DATE: 08-DEC,1989  12:47                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 08-DEC,1989 12:47 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * AXIOMS OF PROBLEM 30
+             *
+             * THERE IS JUST ONE PERSON,A.
+             * A SAYS : EITHER I AM A KNAVE OR ELSE TWO PLUS TWO EQUALS FIVE.
+             *
+             * EITHER2 (X) MEANS X SAYS : EITHER I AM A KNAVE OR FALSE.
+             ALL X KNIGHT (X) AND EITHER2 (X) IMPL (KNAVE (X) OR FALSE)
+             ALL X KNAVE (X) AND EITHER2 (X) IMPL NOT (KNAVE (X) OR FALSE)
+             ALL X KNIGHT (X) EQV NOT KNAVE (X)
+             EITHER2 (A)
+             
+   Theorems: P
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+           * A1:   + EITHER2(a)
+           * A2:   All x:Any + KNAVE(x)  - EITHER2(x)  + KNAVE(x)
+           * A3:   All x:Any - KNAVE(x)  - EITHER2(x)  - KNAVE(x)
+           
+
+
+
+
+             Initial Operations on Axioms
+             ============================
+
+
+          
+   A2 1=3       --> * D1: All x:Any + KNAVE(x)  - EITHER2(x)
+   
+   A3 1=3       --> * D2: All x:Any - KNAVE(x)  - EITHER2(x)
+   
+   D2,1 & D1,1  --> * R3: All x:Any - EITHER2(x)  - EITHER2(x)
+   
+   R3 1=2       --> * D4: All x:Any - EITHER2(x)
+   
+   D4,1 & A1,1  --> * R5: []
+   
+
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+

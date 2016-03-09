@@ -1,0 +1,182 @@
+ 
+ 
+ 
+             ****************************************************
+             *                                                  *
+             *   ATP-SYSTEM :  M K R P , UNI KARLSRUHE          *
+             *                                                  *
+             *      VERSION : 3-FEB-84                          *
+             *         DATE : 2-JUL-84  11:22:35                *
+             *                                                  *
+             ****************************************************
+ 
+ 
+***********************************************************************
+                                                                       
+     DATUM:  2-JUL-84 11:22:32
+AXIOME UND THEOREME FUER DIESEN BEWEIS WURDEN VON FOLGENDEN DATEIEN    
+GELESEN:   1) AXIOM-DATEI:   F.AX.DEU.1.15.RL.IA
+           2) THEOREM-DATEI: F.TH.DEU.1.15.RL.IA
+                                                                       
+***********************************************************************
+ 
+ 
+ADJUSTMENT OF THE OPTIONS : 
+============================
+ 
+ 
+ 
+RED.I:CLAUSE.PURITY                   T
+RED.I:CLAUSE.TAUTOLOGY                T
+RED.I:CLAUSE.SUBSUMPTION              T
+RED.I:CLAUSE.REPL.FACTORING           T
+RED.I:CLAUSE.REPL.RESOLUTION          SIMPLE
+RED.I:CLAUSE.REWRITING                T
+RED.I:LINK.INCOMPATIBILITY            T
+RED.I:LINK.TAUTOLOGY                  REMOVE-INHIBIT
+RED.I:LINK.SUBSUMPTION                REMOVE-INHIBIT
+ 
+ 
+RED.D:CLAUSE.PURITY                   REMOVE
+RED.D:CLAUSE.TAUTOLOGY                REMOVE
+RED.D:CLAUSE.TAUTOLOGY.RECHECK        T
+RED.D:CLAUSE.SUBSUMPTION.FORWARD      REMOVE-INHIBIT
+RED.D:CLAUSE.SUBSUMPTION.BACKWARD     REMOVE
+RED.D:CLAUSE.SUBSUMPTION.RECHECK      T
+RED.D:CLAUSE.REPL.FACTORING           T
+RED.D:CLAUSE.REPL.FACTORING.RECHECK   T
+RED.D:CLAUSE.REPL.RESOLUTION          SIMPLE
+RED.D:CLAUSE.REPL.RESOLUTION.RECHECK  T
+RED.D:LINK.INCOMPATIBILITY            REMOVE
+RED.D:LINK.TAUTOLOGY                  REMOVE-INHIBIT
+RED.D:LINK.TAUTOLOGY.RECHECK          T
+RED.D:LINK.SUBSUMPTION                REMOVE-INHIBIT
+RED.D:LINK.SUBSUMPTION.RECHECK        T
+ 
+ 
+RED:SUB.CLAUSES.INITIAL               T
+RED:SUB.CLAUSES.EACH.STEP             T
+RED:SUB.INITIAL                       T
+RED:SUB.EACH.STEP                     T
+RED:PUR.CLAUSES.INITIAL               T
+RED:PUR.CLAUSES.EACH.STEP             T
+RED:PUR.INITIAL                       T
+RED:PUR.EACH.STEP                     T
+RED:TAU.CLAUSES.INITIAL               T
+RED:TAU.CLAUSES.EACH.STEP             T
+RED:TAU.INITIAL                       T
+RED:TAU.EACH.STEP                     T
+ 
+FAC:INITIAL                           NIL
+FAC:EACH.STEP                         NIL
+ 
+STR:RESOLUTION                        SET-OF-SUPPORT
+STR:E-RESOLUTION                      NIL
+STR:PARAMODULATION                    UNIT-ANCESTRY
+STR:LINK.DEPTH                        NIL
+STR:TERM.DEPTH                        NIL
+STR:R.DEMODULATION                    T
+STR:P.DEMODULATION                    T
+ 
+ 
+TERM:UNITS                            T
+TERM:ITERATIONS                       3
+TERM:SET.OF.SUPPORT                   NIL
+TERM:BREADTH.FIRST                    NIL
+ 
+GEN:SPLITTING                         0
+GEN:MANUAL.CONTROL                    NIL
+GEN:SYSTEM.STRIP                      NIL
+GEN:MAXIMUM.STEPS                     NIL
+GEN:GRAPH.SAVING                      NIL
+GEN:SAVE.FILE                         SAVE.DEFAULT
+GEN:BATCH.ANSWER                      SC
+ 
+ 
+TR:PREPROCESSING                      NIL
+TR:STEP.MODE                          LR
+TR:DUMP                               NIL
+TR:CLAUSE.MODE                        I
+TR:LINK.MODE                          I
+TR:TRACE.FILE                         NIL
+TR:TERMINAL                           NIL
+ 
+ 
+PR:INFIX.FORM                         T
+PR:PREFIX.FORM                        NIL
+PR:OPTIONS                            T
+PR:AXIOM.CLAUSES                      T
+PR:SYMBOLS                            NIL
+PR:STATISTICS                         NIL
+PR:PROOF.FILE                         PR.DEU.1.15.RL.IA
+PR:LEFT.MARGIN                        0
+PR:LINELENGTH                         80
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : SORT MENGE,VERKN,INDEX:ANY
+           TYPE 1:INDEX
+           TYPE V (MENGE MENGE) :MENGE
+           TYPE KLUHG (MENGE MENGE VERKN) :MENGE
+           TYPE EHG (MENGE VERKN INDEX) :MENGE
+           ALL A,B:MENGE ALL PHI:VERKN ME (V (A B) KLUHG (A B PHI))
+           ALL E:MENGE ALL PHI:VERKN EHG (E PHI 1) = E
+ 
+THEOREMS : ALL A,B:MENGE ALL PHI:VERKN ME (EHG (V (A B) PHI 1) KLUHG (A
+B PHI))
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+* A1   : ALL X,Y:MENGE  Z:VERKN  +ME(V(X Y) KLUHG(X Y Z))
+  R.:=:: ALL X:ANY  +:=:(X X)
+* A2   : ALL X:MENGE  Y:VERKN  +=(EHG(X Y 1) X)
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+* T3   : -ME(EHG(V(C_2 C_1) C_3 1) KLUHG(C_2 C_1 C_3))
+ 
+ 
+ 
+ 
+--------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION
+ 
+INITIAL CLAUSES :      R.:=: : ALL X:ANY  +:=:(X X)
+                     * A1    : ALL X,Y:MENGE  Z:VERKN  +ME(V(X Y) KLUHG(X Y Z))
+                     * A2    : ALL X:MENGE  Y:VERKN  +=(EHG(X Y 1) X)
+                     * T3    : -ME(EHG(V(C_2 C_1) C_3 1) KLUHG(C_2 C_1 C_3))
+ 
+A2,1  +  A1,1   -->  * P1    : ALL X,Y:MENGE  Z,U:VERKN  
+                                    +ME(EHG(V(X Y) Z 1) KLUHG(X Y U)) 
+P1,1  +  T3,1   -->  * R1    : 
+ 
+ 
+ 
+--------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+ 

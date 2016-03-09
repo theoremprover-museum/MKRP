@@ -1,0 +1,724 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 35.6 EQUALITY 16.1                                  *
+                     *           DATE: 16-JAN,1990  19:30                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 26-AUG,1989 03:58 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * AXIOMS *
+             * KOMM. RING *
+             ALL X,Y,Z PLUS (PLUS (X Y) Z) = PLUS (X PLUS (Y Z))
+             ALL X,Y PLUS (X Y) = PLUS (Y X)
+             ALL X PLUS (0 X) = X
+             ALL X PLUS (MINUS (X) X) = 0
+             ALL X,Y,Z MULT (MULT (X Y) Z) = MULT (X MULT (Y Z))
+             ALL X,Y MULT (X Y) = MULT (Y X)
+             ALL X,Y,Z MULT (X PLUS (Y Z)) = PLUS (MULT (X Y) MULT (X Z))
+             * MIT EINS *
+             ALL X MULT (1 X) = X
+             * NULLTEILERFREI *
+             ALL X,Y MULT (X Y) = 0 IMPL X = 0 OR Y = 0
+             
+   Theorems: * THEOREM *
+             ALL X PLUS (MULT (X X) MINUS (1)) = 0 IMPL X = 1 OR X = MINUS (1)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+             A2:   All x,y,z:Any + =(plus(plus(z y) x) plus(z plus(y x)))
+             A3:   All x,y:Any + =(plus(y x) plus(x y))
+             A4:   All x:Any + =(plus(0 x) x)
+             A5:   All x:Any + =(plus(minus(x) x) 0)
+             A6:   All x,y,z:Any + =(mult(mult(z y) x) mult(z mult(y x)))
+             A7:   All x,y:Any + =(mult(y x) mult(x y))
+             A8:   All x,y,z:Any + =(mult(z plus(y x)) plus(mult(z y) mult(z x)))
+             A9:   All x:Any + =(mult(1 x) x)
+             A10:  All x,y:Any - =(mult(y x) 0)  + =(y 0)  + =(x 0)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+             T11: + =(plus(mult(c_1 c_1) minus(1)) 0)
+             T12: - =(c_1 1)
+             T13: - =(c_1 minus(1))
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation: (Failure: ABORTED.MAXSTEPS)
+   =======================================
+   The following Options have been Changed:NIL
+
+   RED.I_CLAUSE.REWRITING   NIL
+   ER_COMPLETION   UNFAILING
+   ER_LINK.DEPTH.WEIGHT   1
+   ER_KNUTH.BENDIX.WEIGHT   ((PLUS 2) (MULT 5) (MINUS 3) (0 2) (1 2))
+   GEN_PRESIMPLIFICATION   NIL
+   GEN_MAXIMUM.STEPS   300
+   TR_TERMINAL   T
+   PR_OPTIONS   NIL
+
+   
+   Initial Clauses:        A1:    All x:Any + =(x x)
+                           A2:    All x,y,z:Any + =(plus(plus(z y) x) plus(z plus(y x)))
+                           A3:    All x,y:Any + =(plus(y x) plus(x y))
+                           A4:    All x:Any + =(plus(0 x) x)
+                           A5:    All x:Any + =(plus(minus(x) x) 0)
+                           A6:    All x,y,z:Any + =(mult(mult(z y) x) mult(z mult(y x)))
+                           A7:    All x,y:Any + =(mult(y x) mult(x y))
+                           A8:    All x,y,z:Any + =(mult(z plus(y x)) plus(mult(z y) mult(z x)))
+                           A9:    All x:Any + =(mult(1 x) x)
+                           A10:   All x,y:Any - =(mult(y x) 0)  + =(y 0)  + =(x 0)
+                           T11:   + =(plus(mult(c_1 c_1) minus(1)) 0)
+                           T12:   - =(c_1 1)
+                           T13:   - =(c_1 minus(1))
+                         
+
+   
+   A3,1 & A5,1      -->    P1:    All x:Any + =(plus(x minus(x)) 0)
+   
+   A3,1 & T11,1     -->    P2:    + =(plus(minus(1) mult(c_1 c_1)) 0)
+   
+   P1,1 & A4,1      -->    P3:    + =(0 minus(0))
+   
+   A4,1 & A3,1      -->    P4:    All x:Any + =(x plus(x 0))
+   
+   A3,1 & P4,1      -->    P5:    All x:Any + =(x plus(0 x))
+   
+   A4,1 & A3,1      -->    P6:    All x:Any + =(plus(x 0) x)
+   
+   A3,1 & P6,1      -->    P7:    All x:Any + =(plus(0 x) x)
+   
+   A3,1 & A4,1      -->    P8:    All x:Any + =(plus(x 0) x)
+   
+   A3,1 & P8,1      -->    P9:    All x:Any + =(plus(0 x) x)
+   
+   A3,1 & A4,1      -->    P10:   All x:Any + =(plus(x 0) x)
+   
+   A3,1 & P10,1     -->    P11:   All x:Any + =(plus(0 x) x)
+   
+   A9,1 & A7,1      -->    P12:   All x:Any + =(x mult(x 1))
+   
+   A7,1 & P12,1     -->    P13:   All x:Any + =(x mult(1 x))
+   
+   A9,1 & A7,1      -->    P14:   All x:Any + =(mult(x 1) x)
+   
+   A7,1 & P14,1     -->    P15:   All x:Any + =(mult(1 x) x)
+   
+   A7,1 & A9,1      -->    P16:   All x:Any + =(mult(x 1) x)
+   
+   A7,1 & P16,1     -->    P17:   All x:Any + =(mult(1 x) x)
+   
+   A7,1 & A9,1      -->    P18:   All x:Any + =(mult(x 1) x)
+   
+   A7,1 & P18,1     -->    P19:   All x:Any + =(mult(1 x) x)
+   
+   P1,1 & A2,1      -->    P20:   All x,y:Any + =(plus(0 y) plus(x plus(minus(x) y)))
+   
+   A4,1 & P20,1     -->    P21:   All x,y:Any + =(y plus(x plus(minus(x) y)))
+   
+   P2,1 & P21,1     -->    P22:   + =(mult(c_1 c_1) plus(1 0))
+   
+   P22,1 & P2,1     -->    P23:   + =(plus(minus(1) plus(1 0)) 0)
+   
+   A3,1 & P22,1     -->    P24:   + =(mult(c_1 c_1) plus(0 1))
+   
+   A3,1 & P23,1     -->    P25:   + =(plus(minus(1) plus(0 1)) 0)
+   
+   A4,1 & P24,1     -->    P26:   + =(mult(c_1 c_1) 1)
+   
+   A4,1 & P25,1     -->    P27:   + =(plus(minus(1) 1) 0)
+   
+   A3,1 & P27,1     -->    P28:   + =(plus(1 minus(1)) 0)
+   
+   P1,1 & P21,1     -->    P29:   All x:Any + =(minus(minus(x)) plus(x 0))
+   
+   A3,1 & P29,1     -->    P30:   All x:Any + =(minus(minus(x)) plus(0 x))
+   
+   A4,1 & P30,1     -->    P31:   All x:Any + =(minus(minus(x)) x)
+   
+   P31,1 & P1,1     -->    P32:   All x:Any + =(plus(minus(x) x) 0)
+   
+   A3,1 & P32,1     -->    P33:   All x:Any + =(plus(x minus(x)) 0)
+   
+   P1,1 & A2,1      -->    P34:   All x,y:Any + =(0 plus(y plus(x minus(plus(y x)))))
+   
+   A4,1 & P34,1     -->    P35:   All x:Any + =(0 plus(x minus(plus(x 0))))
+   
+   A3,1 & P35,1     -->    P36:   All x:Any + =(0 plus(x minus(plus(0 x))))
+   
+   A4,1 & P36,1     -->    P37:   All x:Any + =(0 plus(x minus(x)))
+   
+   P26,1 & A6,1     -->    P38:   All x:Any + =(mult(1 x) mult(c_1 mult(c_1 x)))
+   
+   A9,1 & P38,1     -->    P39:   All x:Any + =(x mult(c_1 mult(c_1 x)))
+   
+   P26,1 & P39,1    -->    P40:   + =(c_1 mult(c_1 1))
+   
+   A7,1 & P40,1     -->    P41:   + =(c_1 mult(1 c_1))
+   
+   P31,1 & P21,1    -->    P42:   All x,y:Any + =(y plus(minus(x) plus(x y)))
+   
+   P42,1 & P34,1    -->    P43:   All x:Any + =(0 minus(plus(minus(x) x)))
+   
+   A3,1 & P43,1     -->    P44:   All x:Any + =(0 minus(plus(x minus(x))))
+   
+   P1,1 & P44,1     -->    P45:   + =(0 minus(0))
+   
+   P34,1 & P42,1    -->    P46:   All x:Any + =(minus(plus(minus(x) x)) 0)
+   
+   A3,1 & P46,1     -->    P47:   All x:Any + =(minus(plus(x minus(x))) 0)
+   
+   P1,1 & P47,1     -->    P48:   + =(minus(0) 0)
+   
+   P1,1 & P42,1     -->    P49:   All x:Any + =(minus(x) plus(minus(x) 0))
+   
+   A3,1 & P49,1     -->    P50:   All x:Any + =(minus(x) plus(0 minus(x)))
+   
+   P1,1 & A3,1      -->    P51:   All x:Any + =(0 plus(minus(x) x))
+   
+   A3,1 & P51,1     -->    P52:   All x:Any + =(0 plus(x minus(x)))
+   
+   P1,1 & A3,1      -->    P53:   All x:Any + =(plus(minus(x) x) 0)
+   
+   A3,1 & P53,1     -->    P54:   All x:Any + =(plus(x minus(x)) 0)
+   
+   A3,1 & P1,1      -->    P55:   All x:Any + =(plus(minus(x) x) 0)
+   
+   A3,1 & P55,1     -->    P56:   All x:Any + =(plus(x minus(x)) 0)
+   
+   A3,1 & P1,1      -->    P57:   All x:Any + =(plus(minus(x) x) 0)
+   
+   A3,1 & P57,1     -->    P58:   All x:Any + =(plus(x minus(x)) 0)
+   
+   P39,1 & A10,1    -->    R59:   + =(c_1 0)  + =(mult(c_1 0) 0)
+   
+   A7,1 & R59,2     -->    P60:   + =(mult(0 c_1) 0)  + =(c_1 0)
+   
+   P34,1 & A2,1     -->    P61:   All x,y,z:Any + =(plus(0 z) plus(y plus(plus(x minus(plus(y x))) z)))
+   
+   A4,1 & P61,1     -->    P62:   All x,y,z:Any + =(z plus(y plus(plus(x minus(plus(y x))) z)))
+   
+   A2,1 & P62,1     -->    P63:   All x,y,z:Any + =(z plus(y plus(x plus(minus(plus(y x)) z))))
+   
+   P1,1 & P63,1     -->    P64:   All x,y:Any + =(minus(minus(plus(y x))) plus(y plus(x 0)))
+   
+   P31,1 & P64,1    -->    P65:   All x,y:Any + =(plus(y x) plus(y plus(x 0)))
+   
+   A3,1 & P65,1     -->    P66:   All x,y:Any + =(plus(y x) plus(y plus(0 x)))
+   
+   A4,1 & P66,1     -->    P67:   All x,y:Any + =(plus(y x) plus(y x))
+   
+   P34,1 & P21,1    -->    P68:   All x,y:Any + =(plus(y minus(plus(minus(x) y))) plus(x 0))
+   
+   A3,1 & P68,1     -->    P69:   All x,y:Any + =(plus(y minus(plus(minus(x) y))) plus(0 x))
+   
+   A4,1 & P69,1     -->    P70:   All x,y:Any + =(plus(y minus(plus(minus(x) y))) x)
+   
+   P34,1 & P70,1    -->    P71:   All x,y:Any + =(plus(plus(y minus(plus(minus(x) y))) minus(0)) x)
+   
+   A2,1 & P71,1     -->    P72:   All x,y:Any + =(plus(y plus(minus(plus(minus(x) y)) minus(0))) x)
+   
+   A3,1 & P72,1     -->    P73:   All x,y:Any + =(plus(y plus(minus(0) minus(plus(minus(x) y)))) x)
+   
+   P3,1 & P73,1     -->    P74:   All x,y:Any + =(plus(y plus(0 minus(plus(minus(x) y)))) x)
+   
+   A4,1 & P74,1     -->    P75:   All x,y:Any + =(plus(y minus(plus(minus(x) y))) x)
+   
+   P21,1 & P70,1    -->    P76:   All x,y:Any + =(plus(plus(minus(minus(y)) x) minus(x)) y)
+   
+   A2,1 & P76,1     -->    P77:   All x,y:Any + =(plus(minus(minus(y)) plus(x minus(x))) y)
+   
+   P31,1 & P77,1    -->    P78:   All x,y:Any + =(plus(y plus(x minus(x))) y)
+   
+   P1,1 & P78,1     -->    P79:   All x:Any + =(plus(x 0) x)
+   
+   A3,1 & P79,1     -->    P80:   All x:Any + =(plus(0 x) x)
+   
+   P1,1 & P70,1     -->    P81:   All x:Any + =(plus(minus(minus(x)) minus(0)) x)
+   
+   A3,1 & P81,1     -->    P82:   All x:Any + =(plus(minus(0) minus(minus(x))) x)
+   
+   P3,1 & P82,1     -->    P83:   All x:Any + =(plus(0 minus(minus(x))) x)
+   
+   A4,1 & P83,1     -->    P84:   All x:Any + =(minus(minus(x)) x)
+   
+   P42,1 & P70,1    -->    P85:   All x,y:Any + =(plus(plus(y x) minus(x)) y)
+   
+   A2,1 & P85,1     -->    P86:   All x,y:Any + =(plus(y plus(x minus(x))) y)
+   
+   P1,1 & P86,1     -->    P87:   All x:Any + =(plus(x 0) x)
+   
+   A3,1 & P87,1     -->    P88:   All x:Any + =(plus(0 x) x)
+   
+   P70,1 & P34,1    -->    P89:   All x:Any + =(0 plus(minus(x) x))
+   
+   A3,1 & P89,1     -->    P90:   All x:Any + =(0 plus(x minus(x)))
+   
+   P70,1 & A4,1     -->    P91:   All x:Any + =(x minus(plus(minus(x) 0)))
+   
+   A3,1 & P91,1     -->    P92:   All x:Any + =(x minus(plus(0 minus(x))))
+   
+   A4,1 & P92,1     -->    P93:   All x:Any + =(x minus(minus(x)))
+   
+   A4,1 & P70,1     -->    P94:   All x:Any + =(minus(plus(minus(x) 0)) x)
+   
+   A3,1 & P94,1     -->    P95:   All x:Any + =(minus(plus(0 minus(x))) x)
+   
+   A4,1 & P95,1     -->    P96:   All x:Any + =(minus(minus(x)) x)
+   
+   P34,1 & P63,1    -->    P97:   All x,y,z:Any + =(plus(z minus(plus(minus(plus(y x)) z))) plus(y plus(x 0)))
+   
+   P70,1 & P97,1    -->    P98:   All x,y:Any + =(plus(y x) plus(y plus(x 0)))
+   
+   A3,1 & P98,1     -->    P99:   All x,y:Any + =(plus(y x) plus(y plus(0 x)))
+   
+   A4,1 & P99,1     -->    P100:  All x,y:Any + =(plus(y x) plus(y x))
+   
+   A4,1 & P63,1     -->    P101:  All x,y:Any + =(y plus(x plus(minus(plus(x 0)) y)))
+   
+   A3,1 & P101,1    -->    P102:  All x,y:Any + =(y plus(x plus(minus(plus(0 x)) y)))
+   
+   A4,1 & P102,1    -->    P103:  All x,y:Any + =(y plus(x plus(minus(x) y)))
+   
+   P31,1 & P70,1    -->    P104:  All x,y:Any + =(plus(y minus(plus(x y))) minus(x))
+   
+   P104,1 & P34,1   -->    P105:  All x:Any + =(0 plus(x minus(x)))
+   
+   P104,1 & P70,1   -->    P106:  All x:Any + =(minus(minus(x)) x)
+   
+   P42,1 & P104,1   -->    P107:  All x,y:Any + =(plus(plus(y x) minus(x)) minus(minus(y)))
+   
+   A2,1 & P107,1    -->    P108:  All x,y:Any + =(plus(y plus(x minus(x))) minus(minus(y)))
+   
+   P31,1 & P108,1   -->    P109:  All x,y:Any + =(plus(y plus(x minus(x))) y)
+   
+   P1,1 & P109,1    -->    P110:  All x:Any + =(plus(x 0) x)
+   
+   A3,1 & P110,1    -->    P111:  All x:Any + =(plus(0 x) x)
+   
+   P104,1 & A4,1    -->    P112:  All x:Any + =(minus(x) minus(plus(x 0)))
+   
+   A3,1 & P112,1    -->    P113:  All x:Any + =(minus(x) minus(plus(0 x)))
+   
+   A4,1 & P113,1    -->    P114:  All x:Any + =(minus(x) minus(x))
+   
+   A4,1 & P104,1    -->    P115:  All x:Any + =(minus(plus(x 0)) minus(x))
+   
+   A3,1 & P115,1    -->    P116:  All x:Any + =(minus(plus(0 x)) minus(x))
+   
+   A4,1 & P116,1    -->    P117:  All x:Any + =(minus(x) minus(x))
+   
+   P21,1 & P104,1   -->    P118:  All x,y:Any + =(plus(plus(minus(y) x) minus(x)) minus(y))
+   
+   A2,1 & P118,1    -->    P119:  All x,y:Any + =(plus(minus(y) plus(x minus(x))) minus(y))
+   
+   P1,1 & P119,1    -->    P120:  All x:Any + =(plus(minus(x) 0) minus(x))
+   
+   A3,1 & P120,1    -->    P121:  All x:Any + =(plus(0 minus(x)) minus(x))
+   
+   P1,1 & P104,1    -->    P122:  All x:Any + =(plus(minus(x) minus(0)) minus(x))
+   
+   A3,1 & P122,1    -->    P123:  All x:Any + =(plus(minus(0) minus(x)) minus(x))
+   
+   P3,1 & P123,1    -->    P124:  All x:Any + =(plus(0 minus(x)) minus(x))
+   
+   P63,1 & P42,1    -->    P125:  All x,y:Any + =(plus(minus(plus(minus(y) y)) x) x)
+   
+   A3,1 & P125,1    -->    P126:  All x,y:Any + =(plus(minus(plus(y minus(y))) x) x)
+   
+   P1,1 & P126,1    -->    P127:  All x:Any + =(plus(minus(0) x) x)
+   
+   P3,1 & P127,1    -->    P128:  All x:Any + =(plus(0 x) x)
+   
+   P42,1 & P63,1    -->    P129:  All x,y:Any + =(y plus(minus(plus(minus(x) x)) y))
+   
+   A3,1 & P129,1    -->    P130:  All x,y:Any + =(y plus(minus(plus(x minus(x))) y))
+   
+   P1,1 & P130,1    -->    P131:  All x:Any + =(x plus(minus(0) x))
+   
+   P3,1 & P131,1    -->    P132:  All x:Any + =(x plus(0 x))
+   
+   P26,1 & A8,1     -->    P133:  All x:Any + =(mult(c_1 plus(c_1 x)) plus(1 mult(c_1 x)))
+   
+   P26,1 & A8,1     -->    P134:  All x:Any + =(mult(c_1 plus(x c_1)) plus(mult(c_1 x) 1))
+   
+   A3,1 & P134,1    -->    P135:  All x:Any + =(mult(c_1 plus(c_1 x)) plus(mult(c_1 x) 1))
+   
+   P133,1 & P135,1  -->    P136:  All x:Any + =(plus(1 mult(c_1 x)) plus(mult(c_1 x) 1))
+   
+   P1,1 & P133,1    -->    P137:  + =(mult(c_1 0) plus(1 mult(c_1 minus(c_1))))
+   
+   A7,1 & P137,1    -->    P138:  + =(mult(0 c_1) plus(1 mult(c_1 minus(c_1))))
+   
+   P104,1 & P21,1   -->    P139:  All x,y:Any + =(minus(plus(y minus(x))) plus(x minus(y)))
+   
+   P104,1 & P139,1  -->    P140:  All x,y:Any + =(minus(minus(y)) plus(plus(y x) minus(x)))
+   
+   A2,1 & P140,1    -->    P141:  All x,y:Any + =(minus(minus(y)) plus(y plus(x minus(x))))
+   
+   P31,1 & P141,1   -->    P142:  All x,y:Any + =(y plus(y plus(x minus(x))))
+   
+   P1,1 & P142,1    -->    P143:  All x:Any + =(x plus(x 0))
+   
+   A3,1 & P143,1    -->    P144:  All x:Any + =(x plus(0 x))
+   
+   A4,1 & P139,1    -->    P145:  All x:Any + =(minus(minus(x)) plus(x minus(0)))
+   
+   P31,1 & P145,1   -->    P146:  All x:Any + =(x plus(x minus(0)))
+   
+   P3,1 & P146,1    -->    P147:  All x:Any + =(x plus(x 0))
+   
+   A3,1 & P147,1    -->    P148:  All x:Any + =(x plus(0 x))
+   
+   P3,1 & P139,1    -->    P149:  All x:Any + =(minus(plus(x 0)) plus(0 minus(x)))
+   
+   A4,1 & P149,1    -->    P150:  All x:Any + =(minus(plus(x 0)) minus(x))
+   
+   A3,1 & P150,1    -->    P151:  All x:Any + =(minus(plus(0 x)) minus(x))
+   
+   A4,1 & P151,1    -->    P152:  All x:Any + =(minus(x) minus(x))
+   
+   P104,1 & P42,1   -->    P153:  All x,y:Any + =(minus(plus(y x)) plus(minus(x) minus(y)))
+   
+   P153,1 & P1,1    -->    P154:  All x:Any + =(minus(plus(minus(x) x)) 0)
+   
+   A3,1 & P154,1    -->    P155:  All x:Any + =(minus(plus(x minus(x))) 0)
+   
+   P139,1 & P155,1  -->    P156:  All x:Any + =(plus(x minus(x)) 0)
+   
+   P153,1 & P42,1   -->    P157:  All x,y:Any + =(minus(y) plus(minus(minus(x)) minus(plus(y x))))
+   
+   P153,1 & P157,1  -->    P158:  All x,y:Any + =(minus(y) minus(plus(plus(y x) minus(x))))
+   
+   P139,1 & P158,1  -->    P159:  All x,y:Any + =(minus(y) plus(x minus(plus(y x))))
+   
+   P1,1 & P153,1    -->    P160:  All x:Any + =(minus(plus(minus(x) x)) 0)
+   
+   A3,1 & P160,1    -->    P161:  All x:Any + =(minus(plus(x minus(x))) 0)
+   
+   P139,1 & P161,1  -->    P162:  All x:Any + =(plus(x minus(x)) 0)
+   
+   P3,1 & P153,1    -->    P163:  All x:Any + =(minus(plus(x 0)) plus(0 minus(x)))
+   
+   A4,1 & P163,1    -->    P164:  All x:Any + =(minus(plus(x 0)) minus(x))
+   
+   A3,1 & P164,1    -->    P165:  All x:Any + =(minus(plus(0 x)) minus(x))
+   
+   A4,1 & P165,1    -->    P166:  All x:Any + =(minus(x) minus(x))
+   
+   P3,1 & P153,1    -->    P167:  All x:Any + =(minus(plus(0 x)) plus(minus(x) 0))
+   
+   A4,1 & P167,1    -->    P168:  All x:Any + =(minus(x) plus(minus(x) 0))
+   
+   A3,1 & P168,1    -->    P169:  All x:Any + =(minus(x) plus(0 minus(x)))
+   
+   P153,1 & P104,1  -->    P170:  All x,y:Any + =(plus(minus(y) minus(minus(plus(y x)))) minus(minus(x)))
+   
+   P31,1 & P170,1   -->    P171:  All x,y:Any + =(plus(minus(y) minus(minus(plus(y x)))) x)
+   
+   P153,1 & P171,1  -->    P172:  All x,y:Any + =(minus(plus(minus(plus(y x)) y)) x)
+   
+   A3,1 & P172,1    -->    P173:  All x,y:Any + =(minus(plus(y minus(plus(y x)))) x)
+   
+   P139,1 & P173,1  -->    P174:  All x,y:Any + =(plus(plus(y x) minus(y)) x)
+   
+   A2,1 & P174,1    -->    P175:  All x,y:Any + =(plus(y plus(x minus(y))) x)
+   
+   P175,1 & A4,1    -->    P176:  All x:Any + =(x plus(x minus(0)))
+   
+   P3,1 & P176,1    -->    P177:  All x:Any + =(x plus(x 0))
+   
+   A3,1 & P177,1    -->    P178:  All x:Any + =(x plus(0 x))
+   
+   A4,1 & P175,1    -->    P179:  All x:Any + =(plus(x minus(0)) x)
+   
+   P3,1 & P179,1    -->    P180:  All x:Any + =(plus(x 0) x)
+   
+   A3,1 & P180,1    -->    P181:  All x:Any + =(plus(0 x) x)
+   
+   P1,1 & P175,1    -->    P182:  All x:Any + =(plus(x 0) x)
+   
+   A3,1 & P182,1    -->    P183:  All x:Any + =(plus(0 x) x)
+   
+   P3,1 & P175,1    -->    P184:  All x:Any + =(plus(0 plus(x 0)) x)
+   
+   A4,1 & P184,1    -->    P185:  All x:Any + =(plus(x 0) x)
+   
+   A3,1 & P185,1    -->    P186:  All x:Any + =(plus(0 x) x)
+   
+   P138,1 & P42,1   -->    P187:  + =(mult(c_1 minus(c_1)) plus(minus(1) mult(0 c_1)))
+   
+   P187,1 & P104,1  -->    P188:  + =(plus(mult(0 c_1) minus(mult(c_1 minus(c_1)))) minus(minus(1)))
+   
+   P31,1 & P188,1   -->    P189:  + =(plus(mult(0 c_1) minus(mult(c_1 minus(c_1)))) 1)
+   
+   P138,1 & P104,1  -->    P190:  + =(plus(mult(c_1 minus(c_1)) minus(mult(0 c_1))) minus(1))
+   
+   A3,1 & P190,1    -->    P191:  + =(plus(minus(mult(0 c_1)) mult(c_1 minus(c_1))) minus(1))
+   
+   P191,1 & P21,1   -->    P192:  + =(mult(c_1 minus(c_1)) plus(mult(0 c_1) minus(1)))
+   
+   A3,1 & P192,1    -->    P193:  + =(mult(c_1 minus(c_1)) plus(minus(1) mult(0 c_1)))
+   
+   P191,1 & P42,1   -->    P194:  + =(mult(c_1 minus(c_1)) plus(minus(minus(mult(0 c_1))) minus(1)))
+   
+   P153,1 & P194,1  -->    P195:  + =(mult(c_1 minus(c_1)) minus(plus(1 minus(mult(0 c_1)))))
+   
+   P139,1 & P195,1  -->    P196:  + =(mult(c_1 minus(c_1)) plus(mult(0 c_1) minus(1)))
+   
+   A3,1 & P196,1    -->    P197:  + =(mult(c_1 minus(c_1)) plus(minus(1) mult(0 c_1)))
+   
+   P189,1 & P42,1   -->    P198:  + =(minus(mult(c_1 minus(c_1))) plus(minus(mult(0 c_1)) 1))
+   
+   A3,1 & P198,1    -->    P199:  + =(minus(mult(c_1 minus(c_1))) plus(1 minus(mult(0 c_1))))
+   
+   P191,1 & P104,1  -->    P200:  + =(plus(mult(c_1 minus(c_1)) minus(minus(1))) minus(minus(mult(0 c_1))))
+   
+   P31,1 & P200,1   -->    P201:  + =(plus(mult(c_1 minus(c_1)) minus(minus(1))) mult(0 c_1))
+   
+   A3,1 & P201,1    -->    P202:  + =(plus(minus(minus(1)) mult(c_1 minus(c_1))) mult(0 c_1))
+   
+   P31,1 & P202,1   -->    P203:  + =(plus(1 mult(c_1 minus(c_1))) mult(0 c_1))
+   
+   P63,1 & P104,1   -->    P204:  All x,y,z:Any + =(plus(plus(z plus(minus(plus(y z)) x)) minus(x)) minus(y))
+   
+   A2,1 & P204,1    -->    P205:  All x,y,z:Any + =(plus(z plus(plus(minus(plus(y z)) x) minus(x))) minus(y))
+   
+   A3,1 & P205,1    -->    P206:  All x,y,z:Any + =(plus(z plus(minus(y) plus(minus(plus(x z)) y))) minus(x))
+   
+   P133,1 & P39,1   -->    P207:  All x:Any + =(plus(c_1 x) mult(c_1 plus(1 mult(c_1 x))))
+   
+   P138,1 & P207,1  -->    P208:  + =(plus(c_1 minus(c_1)) mult(c_1 mult(0 c_1)))
+   
+   P1,1 & P208,1    -->    P209:  + =(0 mult(c_1 mult(0 c_1)))
+   
+   P26,1 & P207,1   -->    P210:  + =(plus(c_1 c_1) mult(c_1 plus(1 1)))
+   
+   P138,1 & A2,1    -->    P211:  All x:Any + =(plus(mult(0 c_1) x) plus(1 plus(mult(c_1 minus(c_1)) x)))
+   
+   P153,1 & P104,1  -->    P212:  All x,y:Any + =(minus(plus(plus(y minus(x)) x)) minus(y))
+   
+   A3,1 & P212,1    -->    P213:  All x,y:Any + =(minus(plus(y plus(x minus(y)))) minus(x))
+   
+   P175,1 & P213,1  -->    P214:  All x:Any + =(minus(x) minus(x))
+   
+   P104,1 & P153,1  -->    P215:  All x,y:Any + =(minus(plus(plus(y minus(x)) x)) minus(y))
+   
+   A3,1 & P215,1    -->    P216:  All x,y:Any + =(minus(plus(y plus(x minus(y)))) minus(x))
+   
+   P175,1 & P216,1  -->    P217:  All x:Any + =(minus(x) minus(x))
+   
+   P31,1 & P153,1   -->    P218:  All x,y:Any + =(minus(plus(minus(y) x)) plus(minus(x) y))
+   
+   P218,1 & P1,1    -->    P219:  All x,y:Any + =(plus(plus(minus(y) x) plus(minus(x) y)) 0)
+   
+   A2,1 & P219,1    -->    P220:  All x,y:Any + =(plus(minus(y) plus(x plus(minus(x) y))) 0)
+   
+   P21,1 & P220,1   -->    P221:  All x:Any + =(plus(minus(x) x) 0)
+   
+   A3,1 & P221,1    -->    P222:  All x:Any + =(plus(x minus(x)) 0)
+   
+   P1,1 & P218,1    -->    P223:  All x:Any + =(minus(0) plus(minus(minus(minus(x))) x))
+   
+   P3,1 & P223,1    -->    P224:  All x:Any + =(0 plus(minus(minus(minus(x))) x))
+   
+   A3,1 & P224,1    -->    P225:  All x:Any + =(0 plus(x minus(minus(minus(x)))))
+   
+   P31,1 & P225,1   -->    P226:  All x:Any + =(0 plus(x minus(x)))
+   
+   P3,1 & P218,1    -->    P227:  All x:Any + =(minus(plus(0 x)) plus(minus(x) 0))
+   
+   A4,1 & P227,1    -->    P228:  All x:Any + =(minus(x) plus(minus(x) 0))
+   
+   A3,1 & P228,1    -->    P229:  All x:Any + =(minus(x) plus(0 minus(x)))
+   
+   P187,1 & P218,1  -->    P230:  + =(minus(mult(c_1 minus(c_1))) plus(minus(mult(0 c_1)) 1))
+   
+   A3,1 & P230,1    -->    P231:  + =(minus(mult(c_1 minus(c_1))) plus(1 minus(mult(0 c_1))))
+   
+   P104,1 & P218,1  -->    P232:  All x,y:Any + =(minus(minus(y)) plus(minus(minus(plus(y minus(x)))) x))
+   
+   P31,1 & P232,1   -->    P233:  All x,y:Any + =(y plus(minus(minus(plus(y minus(x)))) x))
+   
+   A3,1 & P233,1    -->    P234:  All x,y:Any + =(y plus(x minus(minus(plus(y minus(x))))))
+   
+   P31,1 & P234,1   -->    P235:  All x,y:Any + =(y plus(x plus(y minus(x))))
+   
+   P63,1 & P218,1   -->    P236:  All x,y,z:Any + =(minus(z) plus(minus(plus(y plus(minus(plus(minus(x) y)) z))) x))
+   
+   A3,1 & P236,1    -->    P237:  All x,y,z:Any + =(minus(z) plus(y minus(plus(x plus(minus(plus(minus(y) x)) z)))))
+   
+   P218,1 & P237,1  -->    P238:  All x,y,z:Any + =(minus(z) plus(y minus(plus(x plus(plus(minus(x) y) z)))))
+   
+   A2,1 & P238,1    -->    P239:  All x,y,z:Any + =(minus(z) plus(y minus(plus(x plus(minus(x) plus(y z))))))
+   
+   P21,1 & P239,1   -->    P240:  All x,y:Any + =(minus(y) plus(x minus(plus(x y))))
+   
+   P240,1 & P175,1  -->    P241:  All x,y:Any + =(plus(plus(y x) minus(x)) y)
+   
+   A2,1 & P241,1    -->    P242:  All x,y:Any + =(plus(y plus(x minus(x))) y)
+   
+   P1,1 & P242,1    -->    P243:  All x:Any + =(plus(x 0) x)
+   
+   A3,1 & P243,1    -->    P244:  All x:Any + =(plus(0 x) x)
+   
+   P1,1 & P240,1    -->    P245:  All x:Any + =(minus(minus(x)) plus(x minus(0)))
+   
+   P31,1 & P245,1   -->    P246:  All x:Any + =(x plus(x minus(0)))
+   
+   P3,1 & P246,1    -->    P247:  All x:Any + =(x plus(x 0))
+   
+   A3,1 & P247,1    -->    P248:  All x:Any + =(x plus(0 x))
+   
+   P42,1 & P218,1   -->    P249:  All x,y:Any + =(minus(y) plus(minus(plus(x y)) x))
+   
+   A3,1 & P249,1    -->    P250:  All x,y:Any + =(minus(y) plus(x minus(plus(x y))))
+   
+   P21,1 & P218,1   -->    P251:  All x,y:Any + =(minus(y) plus(minus(plus(minus(minus(x)) y)) x))
+   
+   A3,1 & P251,1    -->    P252:  All x,y:Any + =(minus(y) plus(x minus(plus(minus(minus(x)) y))))
+   
+   P218,1 & P252,1  -->    P253:  All x,y:Any + =(minus(y) plus(x plus(minus(y) minus(x))))
+   
+   P206,1 & P21,1   -->    P254:  All x,y:Any + =(plus(minus(plus(y x)) x) minus(y))
+   
+   A3,1 & P254,1    -->    P255:  All x,y:Any + =(plus(y minus(plus(x y))) minus(x))
+   
+   P206,1 & P42,1   -->    P256:  All x,y:Any + =(plus(minus(plus(y minus(minus(x)))) x) minus(y))
+   
+   A3,1 & P256,1    -->    P257:  All x,y:Any + =(plus(y minus(plus(x minus(minus(y))))) minus(x))
+   
+   P139,1 & P257,1  -->    P258:  All x,y:Any + =(plus(y plus(minus(y) minus(x))) minus(x))
+   
+   P42,1 & P206,1   -->    P259:  All x,y:Any + =(plus(minus(plus(y minus(minus(x)))) x) minus(y))
+   
+   A3,1 & P259,1    -->    P260:  All x,y:Any + =(plus(y minus(plus(x minus(minus(y))))) minus(x))
+   
+   P139,1 & P260,1  -->    P261:  All x,y:Any + =(plus(y plus(minus(y) minus(x))) minus(x))
+   
+   P21,1 & P206,1   -->    P262:  All x,y:Any + =(plus(minus(plus(y x)) x) minus(y))
+   
+   A3,1 & P262,1    -->    P263:  All x,y:Any + =(plus(y minus(plus(x y))) minus(x))
+   
+   P209,1 & A6,1    -->    P264:  All x:Any + =(mult(0 x) mult(c_1 mult(mult(0 c_1) x)))
+   
+   A6,1 & P264,1    -->    P265:  All x:Any + =(mult(0 x) mult(c_1 mult(0 mult(c_1 x))))
+   
+   P26,1 & P265,1   -->    P266:  + =(mult(0 c_1) mult(c_1 mult(0 1)))
+   
+   P209,1 & P207,1  -->    P267:  + =(plus(c_1 mult(0 c_1)) mult(c_1 plus(1 0)))
+   
+   A3,1 & P267,1    -->    P268:  + =(plus(c_1 mult(0 c_1)) mult(c_1 plus(0 1)))
+   
+   A4,1 & P268,1    -->    P269:  + =(plus(c_1 mult(0 c_1)) mult(c_1 1))
+   
+   A7,1 & P269,1    -->    P270:  + =(plus(c_1 mult(0 c_1)) mult(1 c_1))
+   
+   A9,1 & P270,1    -->    P271:  + =(plus(c_1 mult(0 c_1)) c_1)
+   
+   P211,1 & P104,1  -->    P272:  All x:Any + =(plus(plus(mult(c_1 minus(c_1)) x) minus(plus(mult(0 c_1) x)))
+                                                minus(1))
+   
+   A2,1 & P272,1    -->    P273:  All x:Any + =(plus(mult(c_1 minus(c_1)) plus(x minus(plus(mult(0 c_1) x))))
+                                                minus(1))
+   
+   P104,1 & P273,1  -->    P274:  + =(plus(mult(c_1 minus(c_1)) minus(mult(0 c_1))) minus(1))
+   
+   A3,1 & P274,1    -->    P275:  + =(plus(minus(mult(0 c_1)) mult(c_1 minus(c_1))) minus(1))
+   
+   P1,1 & P211,1    -->    P276:  + =(plus(mult(0 c_1) minus(mult(c_1 minus(c_1)))) plus(1 0))
+   
+   P276,1 & P189,1  -->    P277:  + =(plus(1 0) 1)
+   
+   A3,1 & P276,1    -->    P278:  + =(plus(mult(0 c_1) minus(mult(c_1 minus(c_1)))) plus(0 1))
+   
+   A3,1 & P277,1    -->    P279:  + =(plus(0 1) 1)
+   
+   A4,1 & P278,1    -->    P280:  + =(plus(mult(0 c_1) minus(mult(c_1 minus(c_1)))) 1)
+   
+   P266,1 & P39,1   -->    P281:  + =(mult(0 1) mult(c_1 mult(0 c_1)))
+   
+   P209,1 & P281,1  -->    P282:  + =(mult(0 1) 0)
+   
+   P282,1 & P266,1  -->    P283:  + =(mult(0 c_1) mult(c_1 0))
+   
+   P280,1 & P42,1   -->    P284:  + =(minus(mult(c_1 minus(c_1))) plus(minus(mult(0 c_1)) 1))
+   
+   A3,1 & P284,1    -->    P285:  + =(minus(mult(c_1 minus(c_1))) plus(1 minus(mult(0 c_1))))
+   
+   A8,1 & A2,1      -->    P286:  All x,y,z,u:Any + =(plus(mult(u plus(z y)) x) plus(mult(u z) plus(mult(u y) x)))
+   
+   A7,1 & A10,1     -->    P287:  All x,y:Any - =(mult(y x) 0)  + =(x 0)  + =(y 0)
+   
+   A7,1 & A10,1     -->    P288:  All x,y:Any - =(mult(y x) 0)  + =(x 0)  + =(y 0)
+   
+   A2,1 & P42,1     -->    P289:  All x,y,z:Any + =(z plus(minus(plus(y x)) plus(y plus(x z))))
+   
+   P289,1 & P104,1  -->    P290:  All x,y,z:Any + =(plus(plus(z plus(y x)) minus(x)) minus(minus(plus(z y))))
+   
+   A2,1 & P290,1    -->    P291:  All x,y,z:Any + =(plus(z plus(plus(y x) minus(x))) minus(minus(plus(z y))))
+   
+   P31,1 & P291,1   -->    P292:  All x,y,z:Any + =(plus(z plus(plus(y x) minus(x))) plus(z y))
+   
+   A3,1 & P292,1    -->    P293:  All x,y,z:Any + =(plus(z plus(minus(y) plus(x y))) plus(z x))
+   
+   P293,1 & P206,1  -->    P294:  All x,y:Any + =(plus(y minus(plus(x y))) minus(x))
+   
+   A4,1 & P289,1    -->    P295:  All x,y:Any + =(y plus(minus(plus(x 0)) plus(x y)))
+   
+   A3,1 & P295,1    -->    P296:  All x,y:Any + =(y plus(minus(plus(0 x)) plus(x y)))
+   
+   A4,1 & P296,1    -->    P297:  All x,y:Any + =(y plus(minus(x) plus(x y)))
+   
+   P293,1 & A4,1    -->    P298:  All x,y:Any + =(plus(0 y) plus(minus(x) plus(y x)))
+   
+   A4,1 & P298,1    -->    P299:  All x,y:Any + =(y plus(minus(x) plus(y x)))
+   
+   P299,1 & P293,1  -->    P300:  All x,y:Any + =(plus(y x) plus(y x))
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   The theorem(s) could not be proved.
+
+
+
+   Time Used for Refutation: 2440 seconds

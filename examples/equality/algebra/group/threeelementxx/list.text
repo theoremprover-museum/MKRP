@@ -1,0 +1,119 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 40.2 EQUALITY 16.1                                  *
+                     *           DATE: 25-FEB,1990  14:23                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 25-FEB,1990 14:23 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * AXIOMS *
+             ALL X,Y,Z PLUS (PLUS (X Y) Z) = PLUS (X PLUS (Y Z))
+             ALL X PLUS (0 X) = X
+             ALL X PLUS (MINUS (X) X) = 0
+             
+   Theorems: * THEOREM *
+             (ALL X,Y,Z X = Y OR Z = Y OR X = Z) IMPL (ALL U PLUS (U U) = 0)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+           * A1:   All x:Any + =(x x)
+             A2:   All x,y,z:Any + =(plus(plus(z y) x) plus(z plus(y x)))
+           * A3:   All x:Any + =(plus(0 x) x)
+           * A4:   All x:Any + =(plus(minus(x) x) 0)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T5: - =(plus(c_1 c_1) 0)
+             T6: All x,y,z:Any + =(z y)  + =(x y)  + =(z x)
+             T7: All x,y,z:Any + =(z y)  + =(x y)  + =(z x)
+           * T8: All x,y,z:Any + =(z y)  + =(x y)  + =(z x)
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:    * A1:   All x:Any + =(x x)
+                         A2:   All x,y,z:Any + =(plus(plus(z y) x) plus(z plus(y x)))
+                       * A3:   All x:Any + =(plus(0 x) x)
+                       * A4:   All x:Any + =(plus(minus(x) x) 0)
+                       * T5:   - =(plus(c_1 c_1) 0)
+                       * T8:   All x,y,z:Any + =(z y)  + =(x y)  + =(z x)
+                       
+
+   
+   T8,3 & A3,1    -->  * P7:   All x,y,z:Any + =(plus(z y) y)  + =(0 x)  + =(z x)
+   
+   P7,2 & T5,1    -->  * P13:  All x,y:Any - =(0 0)  + =(plus(y x) x)  + =(y plus(c_1 c_1))
+   
+   P13,1 & A1,1   -->  * R15:  All x,y:Any + =(plus(y x) x)  + =(y plus(c_1 c_1))
+   
+   T8,3 & T5,1    -->  * P19:  All x,y:Any - =(plus(y c_1) 0)  + =(c_1 x)  + =(y x)
+   
+   P19,2 & T5,1   -->  * P21:  All x:Any - =(plus(c_1 c_1) c_1)  - =(plus(x c_1) 0)  + =(x 0)
+   
+   P21,1 & R15,1  -->  * R23:  All x:Any - =(plus(x c_1) 0)  + =(x 0)  + =(c_1 plus(c_1 c_1))
+   
+   R23,3 & P21,1  -->  * R24:  All x:Any - =(plus(x c_1) 0)  + =(x 0)  - =(plus(x c_1) 0)  + =(x 0)
+   
+   R24 1=3        -->  * D25:  All x:Any - =(plus(x c_1) 0)  + =(x 0)  + =(x 0)
+   
+   D25 2=3        -->  * D26:  All x:Any - =(plus(x c_1) 0)  + =(x 0)
+   
+   A4,1 & D26,1   -->  * R31:  + =(minus(c_1) 0)
+   
+   R31,1 & A4,1   -->  * P32:  + =(plus(0 c_1) 0)
+   
+   A3,1 & P32,1   -->  * P33:  + =(c_1 0)
+   
+   P33,1 & A3,1   -->  * P34:  All x:Any + =(plus(c_1 x) x)
+   
+   P33,1 & T5,1   -->  * P36:  - =(plus(c_1 c_1) c_1)
+   
+   P34,1 & P36,1  -->  * R37:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 1387 seconds

@@ -1,0 +1,193 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+            ****************************************************
+            *                                                  *
+            *     ATP-SYSTEM: M K R P , UNI KAISERSLAUTERN     *
+            *                                                  *
+            *        VERSION: MKRP 45.31 EQUALITY 16.1         *
+            *           DATE: 09-AUG,1990  18:59               *
+            *                                                  *
+            ****************************************************
+
+
+--------------------------------------------------------------------------------
+
+Edit:     Axioms and Theorems edited: 09-AUG,1990 18:44 
+
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+          Formulae given to the editor
+          ============================
+
+
+Axioms:   * AXIOMS *
+          * GROUP *
+          ALL X,Y,Z + (+ (X Y) Z) = + (X + (Y Z))
+          ALL X + (0 X) = X
+          ALL X + (- (X) X) = 0
+          
+Theorems: * THEOREMS *
+          ALL X + (0 X) = X AND + (1 X) = X IMPL 0 = 1
+          + (A1 A) = 0 AND + (A2 A) = 0 IMPL A1 = A2
+          
+
+
+
+          Set of Axiom Clauses Resulting from Normalization
+          =================================================
+
+          A1:   All x:Any + =(x x)
+        * A2:   All x,y,z:Any + =(+(+(z y) x) +(z +(y x)))
+        * A3:   All x:Any + =(+(0 x) x)
+        * A4:   All x:Any + =(+(-(x) x) 0)
+        
+
+
+
+
+          Set of Theorem Clauses Resulting from Normalization and Splitting
+          =================================================================
+
+Splitpart 1
+
+          T5: + =(+(0 c_1) c_1)
+        * T6: + =(+(1 c_1) c_1)
+        * T7: - =(0 1)
+
+Splitpart 2
+
+        * T8: + =(+(a1 a) 0)
+        * T9: + =(+(a2 a) 0)
+        * T10: - =(a1 a2)
+
+
+End of Splitparts
+
+
+
+--------------------------------------------------------------------------------
+
+
+
+Refutation of Splitpart 1:
+==========================
+
+Initial Clauses:      A1:    All x:Any + =(x x)
+                    * A2:    All x,y,z:Any + =(+(+(z y) x) +(z +(y x)))
+                    * A3:    All x:Any + =(+(0 x) x)
+                    * A4:    All x:Any + =(+(-(x) x) 0)
+                    * T6:    + =(+(1 c_1) c_1)
+                    * T7:    - =(0 1)
+                    
+
+
+A4,1 & A2,1    -->  * P2:    All x,y:Any + =(+(0 y) +(-(x) +(x y)))
+
+P2,1 & A3      -->  * RW3:   All x,y:Any + =(y +(-(x) +(x y)))
+
+A4,1 & RW3,1   -->  * P6:    All x:Any + =(x +(-(-(x)) 0))
+
+T6,1 & A2,1    -->  * P15:   All x:Any + =(+(c_1 x) +(1 +(c_1 x)))
+
+P6,1 & RW3,1   -->  * P16:   All x:Any + =(0 +(-(-(-(x))) x))
+
+P16,1 & RW3,1  -->  * P17:   All x:Any + =(x +(-(-(-(-(x)))) 0))
+
+P17,1 & P6     -->  * RW18:  All x:Any + =(x -(-(x)))
+
+P6,1 & RW18    -->  * RW19:  All x:Any + =(x +(x 0))
+
+RW18,1 & A4,1  -->  * P24:   All x:Any + =(+(x -(x)) 0)
+
+P24,1 & P15,1  -->  * P25:   + =(+(c_1 -(c_1)) +(1 0))
+
+P25,1 & P24    -->  * RW26:  + =(0 +(1 0))
+
+RW26,1 & RW19  -->  * RW27:  + =(0 1)
+
+RW27,1 & T7,1  -->  * R28:   []
+
+
+
+--------------------------------------------------------------------------------
+
+
+
+Refutation of Splitpart 2:
+==========================
+
+Initial Clauses: 
+
+        A1:    All x:Any + =(x x)
+      * A2:    All x,y,z:Any + =(+(+(z y) x) +(z +(y x)))
+      * A3:    All x:Any + =(+(0 x) x)
+      * A4:    All x:Any + =(+(-(x) x) 0)
+      * T8:    + =(+(a1 a) 0)
+      * T9:    + =(+(a2 a) 0)
+      * T10:   - =(a1 a2)
+      
+
+
+T8,1 & A2,1     --> 
+      * P29:   All x:Any + =(+(0 x) +(a1 +(a x)))
+
+P29,1 & A3      --> 
+      * RW30:  All x:Any + =(x +(a1 +(a x)))
+
+A4,1 & A2,1     --> 
+      * P33:   All x,y:Any + =(+(0 y) +(-(x) +(x y)))
+
+P33,1 & A3      --> 
+      * RW34:  All x,y:Any + =(y +(-(x) +(x y)))
+
+T9,1 & RW34,1   --> 
+      * P35:   + =(a +(-(a2) 0))
+
+A4,1 & RW34,1   --> 
+      * P38:   All x:Any + =(x +(-(-(x)) 0))
+
+P35,1 & RW34,1  --> 
+      * P39:   + =(0 +(-(-(a2)) a))
+
+P39,1 & RW34,1  --> 
+      * P40:   + =(a +(-(-(-(a2))) 0))
+
+P40,1 & P38     --> 
+      * RW41:  + =(a -(a2))
+
+RW41,1 & A4,1   --> 
+      * P45:   + =(+(a a2) 0)
+
+P45,1 & RW30,1  --> 
+      * P46:   + =(a2 +(a1 0))
+
+P46,1 & RW34,1  --> 
+      * P49:   + =(0 +(-(a1) a2))
+
+P49,1 & RW34,1  --> 
+      * P50:   + =(a2 +(-(-(a1)) 0))
+
+P50,1 & P38     --> 
+      * RW51:  + =(a2 a1)
+
+RW51,1 & T10,1  --> 
+      * R52:   []
+
+
+
+--------------------------------------------------------------------------------
+
+
+
+  q.e.d. 
+
+
+Time Used for Refutation of Splitpart 1: 33 seconds
+Time Used for Refutation of Splitpart 2: 35 seconds

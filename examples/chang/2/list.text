@@ -1,0 +1,112 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 34.8 EQUALITY 16.1                                  *
+                     *           DATE: 13-DEC,1989  18:38                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 13-DEC,1989 01:20 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * IN AN ASSOCIATIVE SYSTEM WITH AN IDENTITY ELEMENT
+             * IF THE SQUARE OF EVERY ELEMENT IS THE IDENTITY,
+             * THE SYSTEM IS COMMUTATIVE
+             ALL X P (X E X)
+             ALL X P (E X X)
+             ALL X P (X X E)
+             ALL U,V,W,X,Y,Z P (X Y U) AND P (Y Z V) AND P (U Z W) IMPL P (X V W)
+             ALL U,V,W,X,Y,Z P (X Y U) AND P (Y Z V) AND P (X V W) IMPL P (U Z W)
+             
+   Theorems: ALL X,Y,Z P (X Y Z) IMPL P (Y X Z)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+           * A1:   All x:Any + P(x e x)
+           * A2:   All x:Any + P(e x x)
+           * A3:   All x:Any + P(x x e)
+           * A4:   All x,y,z,u,v,w:Any - P(w v u)  - P(v z y)  - P(u z x)  + P(w y x)
+           * A5:   All x,y,z,u,v,w:Any - P(w v u)  - P(v z y)  - P(w y x)  + P(u z x)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T6: + P(c_1 c_2 c_3)
+           * T7: - P(c_2 c_1 c_3)
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:  * A1:   All x:Any + P(x e x)
+                     * A2:   All x:Any + P(e x x)
+                     * A3:   All x:Any + P(x x e)
+                     * A4:   All x,y,z,u,v,w:Any - P(w v u)  - P(v z y)  - P(u z x)  + P(w y x)
+                     * A5:   All x,y,z,u,v,w:Any - P(w v u)  - P(v z y)  - P(w y x)  + P(u z x)
+                     * T6:   + P(c_1 c_2 c_3)
+                     * T7:   - P(c_2 c_1 c_3)
+                     
+
+   
+   A3,1 & A4,1  -->  * R1:   - P(c_2 c_3 c_1)  - P(e c_3 c_3)  + P(c_2 c_1 c_3)
+   
+   R1,2 & A2,1  -->  * R2:   - P(c_2 c_3 c_1)  + P(c_2 c_1 c_3)
+   
+   R2,2 & T7,1  -->  * R3:   - P(c_2 c_3 c_1)
+   
+   T6,1 & A4,2  -->  * R4:   - P(c_1 c_1 e)  - P(e c_2 c_2)  + P(c_1 c_3 c_2)
+   
+   R4,1 & A3,1  -->  * R5:   - P(e c_2 c_2)  + P(c_1 c_3 c_2)
+   
+   R5,1 & A2,1  -->  * R6:   + P(c_1 c_3 c_2)
+   
+   A3,1 & A5,2  -->  * R7:   - P(c_1 c_3 c_2)  - P(c_1 e c_1)  + P(c_2 c_3 c_1)
+   
+   R7,1 & R6,1  -->  * R8:   - P(c_1 e c_1)  + P(c_2 c_3 c_1)
+   
+   R8,1 & A1,1  -->  * R9:   + P(c_2 c_3 c_1)
+   
+   R9,1 & R3,1  -->  * R10:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 15 seconds

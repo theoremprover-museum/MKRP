@@ -1,0 +1,133 @@
+ 
+ 
+ 
+             ****************************************************
+             *                                                  *
+             *   ATP-SYSTEM :  M K R P , UNI KARLSRUHE          *
+             *                                                  *
+             *      VERSION : 3-FEB-84                          *
+             *         DATE : 6-JUL-84  08:42:29                *
+             *                                                  *
+             ****************************************************
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : SORT ELEM,MENGE,VERK:ANY
+           TYPE APPLY (VERK ELEM ELEM) :ELEM
+           TYPE INVERS (VERK ELEM) :ELEM
+           ALL PHI:VERK  ALL F:MENGE  ALL X,E:ELEM  
+             G (F PHI E) AND EL (X F) IMPL APPLY (PHI INVERS (PHI X) X) = E
+           ALL U,V:MENGE ALL X:ELEM ME (U V) AND EL (X U) IMPL EL (X V)
+           ALL U,F:MENGE  ALL PHI:VERK  ALL E:ELEM  
+             UG (U F PHI E) IMPL ME (U F) AND G (U PHI E)
+           ALL F:MENGE  ALL PHI:VERK  ALL E:ELEM  EX X:ELEM  
+             G (F PHI E) IMPL EL (X F)
+ 
+THEOREMS : ALL PHI:VERK  ALL F,U:MENGE  ALL E1,E2:ELEM  
+             G (F PHI E1) AND UG (U F PHI E2) IMPL E1 = E2
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+* A1   : ALL X:MENGE  Y:VERK  Z,U:ELEM  
+              -G(X Y Z) -EL(U X) +=(APPLY(Y INVERS(Y U) U) Z) 
+  R.:=:: ALL X:ANY  +:=:(X X)
+* A2   : ALL X,Y:MENGE  Z:ELEM  -ME(X Y) -EL(Z X) +EL(Z Y)
+* A3   : ALL X,Y:MENGE  Z:VERK  U:ELEM  -UG(X Y Z U) +ME(X Y)
+* A4   : ALL X,Y:MENGE  Z:VERK  U:ELEM  -UG(X Y Z U) +G(X Z U)
+* A5   : ALL X:MENGE  Y:VERK  Z:ELEM  -G(X Y Z) +EL(F_1(X) X)
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+* T6   : +G(C_3 C_4 C_2)
+* T7   : +UG(C_5 C_3 C_4 C_1)
+* T8   : -=(C_2 C_1)
+ 
+ 
+ 
+ 
+--------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION
+ 
+INITIAL CLAUSES :       R.:=: : ALL X:ANY  +:=:(X X)
+                      * A1    : ALL X:MENGE  Y:VERK  Z,U:ELEM  
+                                     -G(X Y Z) -EL(U X) 
+                                     +=(APPLY(Y INVERS(Y U) U) Z) 
+                      * A2    : ALL X,Y:MENGE  Z:ELEM  
+                                     -ME(X Y) -EL(Z X) +EL(Z Y) 
+                      * A3    : ALL X,Y:MENGE  Z:VERK  U:ELEM  
+                                     -UG(X Y Z U) +ME(X Y) 
+                      * A4    : ALL X,Y:MENGE  Z:VERK  U:ELEM  
+                                     -UG(X Y Z U) +G(X Z U) 
+                      * A5    : ALL X:MENGE  Y:VERK  Z:ELEM  
+                                     -G(X Y Z) +EL(F_1(X) X) 
+                      * T6    : +G(C_3 C_4 C_2)
+                      * T7    : +UG(C_5 C_3 C_4 C_1)
+                      * T8    : -=(C_2 C_1)
+ 
+T7,1  +  A3,1    -->  * R1    : +ME(C_5 C_3)
+R1,1  +  A2,1    -->  * R2    : ALL X:ELEM  -EL(X C_5) +EL(X C_3)
+T7,1  +  A4,1    -->  * R3    : +G(C_5 C_4 C_1)
+T6,1  +  A5,1    -->  * R4    : +EL(F_1(C_3) C_3)
+T6,1  +  A1,1    -->  * R5    : ALL X:ELEM  
+                                     -EL(X C_3) 
+                                     +=(APPLY(C_4 INVERS(C_4 X) X) C_2) 
+R3,1  +  A5,1    -->  * R6    : +EL(F_1(C_5) C_5)
+R6,1  +  R2,1    -->  * R7    : +EL(F_1(C_5) C_3)
+R4,1  +  R5,1    -->  * R8    : +=(APPLY(C_4 INVERS(C_4 F_1(C_3)) F_1(C_3)) C_2)
+ 
+R8,1  +  T8,1    -->  * P1    : -=(APPLY(C_4 INVERS(C_4 F_1(C_3)) F_1(C_3)) C_1)
+ 
+R8,1  +  T6,1    -->    P2    : +G(C_3
+                                   C_4
+                                   APPLY(C_4 INVERS(C_4 F_1(C_3)) F_1(C_3)))
+ 
+R5,2  +  R8,1    -->  * P3    : ALL X:ELEM  
+                                     +=(APPLY(C_4 INVERS(C_4 F_1(C_3)) F_1(C_3))
+                                        APPLY(C_4 INVERS(C_4 X) X))
+                                     -EL(X C_3) 
+R7,1  +  P3,2    -->  * R9    : +=(APPLY(C_4 INVERS(C_4 F_1(C_3)) F_1(C_3))
+                                   APPLY(C_4 INVERS(C_4 F_1(C_5)) F_1(C_5)))
+ 
+R3,1  +  A1,1    -->  * R10   : ALL X:ELEM  
+                                     -EL(X C_5) 
+                                     +=(APPLY(C_4 INVERS(C_4 X) X) C_1) 
+R6,1  +  R10,1   -->  * R11   : +=(APPLY(C_4 INVERS(C_4 F_1(C_5)) F_1(C_5)) C_1)
+ 
+R11,1  +  P1,1   -->  * P4    : -=(APPLY(C_4 INVERS(C_4 F_1(C_3)) F_1(C_3))
+                                   APPLY(C_4 INVERS(C_4 F_1(C_5)) F_1(C_5)))
+ 
+R9,1  +  P4,1    -->  * R12   : 
+ 
+ 
+ 
+--------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+ 

@@ -1,0 +1,260 @@
+;;; -*- Package: MKRP; Base: 10. -*-
+
+
+
+                    ********************************************************************************
+                    *                                                                              *
+                    *     MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN                   *
+                    *                                                                              *
+                    *       22-MAY-85                                                              *
+                    *          22-MAY-85  16:26:38                                                 *
+                    *                                                                              *
+                    ********************************************************************************
+
+
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   22-MAY-85 16:24:44
+*************************************************************************
+
+
+
+
+
+FORMULAE GIVEN TO THE EDITOR
+============================
+
+
+AXIOMS   : SORT MENGE,VERKN,ELEMENT:ANY
+           TYPE LIDEAL (MENGE MENGE VERKN)
+           TYPE RIDEAL (MENGE MENGE VERKN)
+           TYPE UHG (MENGE MENGE VERKN)
+           TYPE ME (MENGE MENGE)
+           TYPE NICHTLEER (MENGE)
+           TYPE HG (MENGE VERKN)
+           TYPE EL (ELEMENT MENGE)
+           TYPE MINIMAL (MENGE MENGE VERKN)
+           TYPE MPROD (MENGE MENGE VERKN) :MENGE
+           TYPE APPLYV (VERKN ELEMENT ELEMENT) :ELEMENT
+           TYPE F*X (MENGE ELEMENT VERKN) :MENGE
+           TYPE SM (MENGE MENGE) :MENGE
+           TYPE SET (ELEMENT) :MENGE
+           TYPE VER (MENGE MENGE) :MENGE
+           TYPE GR (MENGE VERKN ELEMENT)
+           TYPE INVERS (VERKN ELEMENT) :ELEMENT
+           TYPE MINIMAL-BED-L (MENGE VERKN)
+           TYPE MINIMAL-BED-R (MENGE VERKN)
+           TYPE EL-IND (INDEX INDEXMENGE)
+           TYPE U (INDEX) : MENGE
+           TYPE E (INDEX INDEX) : ELEMENT
+           TYPE NICHTLEER-IND (INDEXMENGE)
+           TYPE GLEICH (MENGE MENGE)
+           TYPE VER-IND (INDEXMENGE) : MENGE
+           TYPE SM-IND (INDEXMENGE) : MENGE
+           TYPE IDEAL (MENGE MENGE VERKN)
+           * ASSOZIATIVITAET VON MPROD *
+           ALL A,B,C,F:MENGE  ALL MAL:VERKN  
+               HG (F MAL) AND ME (A F) AND ME (B F) AND ME (C F)
+               IMPL  
+               MPROD (MPROD (A B MAL) C MAL) := MPROD (A MPROD (B C MAL) MAL)
+           * DEFINITION MINIMAL *
+           ALL F,R:MENGE  ALL MAL:VERKN  
+             RIDEAL (R F MAL) IMPL (MINIMAL (R F MAL) IMPL (ALL M:MENGE RIDEAL (M F MAL) IMPL (ME (M R) IMPL M = R)))
+           * VOR3103RLR (F MAL L R) BEDEUTET : HG (F MAL) AND RIDEAL (R F MAL) AND LIDEAL (L F MAL) *
+           * LEMMA 3.10.3.UHG.RLR *
+           ALL F,R,L:MENGE ALL MAL:VERKN VOR3103RLR (F MAL L R) IMPL RIDEAL (MPROD (R MPROD (L R MAL) MAL) F MAL)
+           * LEMMA 3.10.3.UHG.RLR.ME *
+           ALL F,R,L:MENGE ALL MAL:VERKN VOR3103RLR (F MAL L R) IMPL ME (MPROD (R MPROD (L R MAL) MAL) R)
+           * TEIL DER DEFINITION RIDEAL *
+           ALL R,F:MENGE ALL MAL:VERKN RIDEAL (R F MAL) IMPL ME (R F)
+           * TEIL DER DEFINITION LIDEAL *
+           ALL L,F:MENGE ALL MAL:VERKN LIDEAL (L F MAL) IMPL ME (L F)
+
+THEOREMS : ALL F,R,L:MENGE  ALL MAL:VERKN  
+               HG (F MAL) AND RIDEAL (R F MAL) AND LIDEAL (L F MAL) AND MINIMAL (R F MAL) AND VOR3103RLR (F MAL L R)
+               IMPL  
+               MPROD (MPROD (R L MAL) R MAL) = R
+
+
+
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+  A1   : ALL X:ANY  + =(X X)
+* A2   : ALL X:VERKN  Y,Z:MENGE  - LIDEAL(Z Y X)  + ME(Z Y)
+* A3   : ALL X:VERKN  Y,Z:MENGE  - RIDEAL(Z Y X)  + ME(Z Y)
+* A4   : ALL X,Y,Z:MENGE  U:VERKN  - VOR3103RLR(Z U Y X)  + ME(MPROD(X MPROD(Y X U) U) X)
+* A5   : ALL X,Y,Z:MENGE  U:VERKN  - VOR3103RLR(Z U Y X)  + RIDEAL(MPROD(X MPROD(Y X U) U) Z U)
+* A6   : ALL X,Y,Z,U:MENGE  V:VERKN  
+              - HG(U V)  - ME(Z U)  - ME(Y U)  - ME(X U)  + =(MPROD(MPROD(Z Y V) X V) MPROD(Z MPROD(Y X V) V))
+* A7   : ALL X,Y,Z:MENGE  U:VERKN  - RIDEAL(Z Y U)  - MINIMAL(Z Y U)  - RIDEAL(X Y U)  - ME(X Z)  + =(X Z)
+
+
+
+
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+* T8   : + HG(C_1 C_2)
+* T9   : + RIDEAL(C_3 C_1 C_2)
+* T10  : + LIDEAL(C_4 C_1 C_2)
+* T11  : + MINIMAL(C_3 C_1 C_2)
+* T12  : + VOR3103RLR(C_1 C_2 C_4 C_3)
+* T13  : - =(MPROD(MPROD(C_3 C_4 C_2) C_3 C_2) C_3)
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+REFUTATION
+
+  THE FOLLOWING OPTIONS HAVE BEEN CHANGED :
+
+RED.I:LINK.INCOMPATIBILITY   NIL
+RED.I:LINK.TAUTOLOGY   NIL
+RED.I:LINK.SUBSUMPTION   NIL
+RED.D:LINK.INCOMPATIBILITY   NIL
+RED.D:LINK.TAUTOLOGY   NIL
+RED.D:LINK.SUBSUMPTION   NIL
+STR:TERM.DEPTH   5.
+TERM:ITERATIONS   1.
+PR:OPTIONS   NIL
+
+
+INITIAL CLAUSES :      A1  : ALL X:ANY  + =(X X)
+                     * A2  : ALL X:VERKN  Y,Z:MENGE  - LIDEAL(Z Y X)  + ME(Z Y)
+                     * A3  : ALL X:VERKN  Y,Z:MENGE  - RIDEAL(Z Y X)  + ME(Z Y)
+                     * A4  : ALL X,Y,Z:MENGE  U:VERKN  - VOR3103RLR(Z U Y X)  + ME(MPROD(X MPROD(Y X U) U) X)
+                     * A5  : ALL X,Y,Z:MENGE  U:VERKN  - VOR3103RLR(Z U Y X)  + RIDEAL(MPROD(X MPROD(Y X U) U) Z U)
+                     * A6  : ALL X,Y,Z,U:MENGE  V:VERKN  
+                                  - HG(U V)  - ME(Z U)  - ME(Y U)  - ME(X U)
+                                    + =(MPROD(MPROD(Z Y V) X V) MPROD(Z MPROD(Y X V) V))
+                     * A7  : ALL X,Y,Z:MENGE  U:VERKN  
+                                  - RIDEAL(Z Y U)  - MINIMAL(Z Y U)  - RIDEAL(X Y U)  - ME(X Z)  + =(X Z)
+                     * T8  : + HG(C_1 C_2)
+                     * T9  : + RIDEAL(C_3 C_1 C_2)
+                     * T10 : + LIDEAL(C_4 C_1 C_2)
+                     * T11 : + MINIMAL(C_3 C_1 C_2)
+                     * T12 : + VOR3103RLR(C_1 C_2 C_4 C_3)
+                     * T13 : - =(MPROD(MPROD(C_3 C_4 C_2) C_3 C_2) C_3)
+
+T9,1 & A3,1     -->  * R1  : + ME(C_3 C_1)
+
+T10,1 & A2,1    -->  * R2  : + ME(C_4 C_1)
+
+T12,1 & A4,1    -->  * R3  : + ME(MPROD(C_3 MPROD(C_4 C_3 C_2) C_2) C_3)
+
+T12,1 & A5,1    -->  * R4  : + RIDEAL(MPROD(C_3 MPROD(C_4 C_3 C_2) C_2) C_1 C_2)
+
+R3,1 & A7,4     -->  * R5  : - RIDEAL(C_3 C_1 C_2)  - MINIMAL(C_3 C_1 C_2)
+                               - RIDEAL(MPROD(C_3 MPROD(C_4 C_3 C_2) C_2) C_1 C_2)
+                               + =(MPROD(C_3 MPROD(C_4 C_3 C_2) C_2) C_3)
+
+R5,3 & R4,1     -->  * R6  : - RIDEAL(C_3 C_1 C_2)  - MINIMAL(C_3 C_1 C_2)  + =(MPROD(C_3 MPROD(C_4 C_3 C_2) C_2) C_3)
+
+R6,1 & T9,1     -->  * R7  : - MINIMAL(C_3 C_1 C_2)  + =(MPROD(C_3 MPROD(C_4 C_3 C_2) C_2) C_3)
+
+R7,1 & T11,1    -->  * R8  : + =(MPROD(C_3 MPROD(C_4 C_3 C_2) C_2) C_3)
+
+R2,1 & A6,3     -->    R9  : - HG(C_1 C_2)  - ME(C_4 C_1)  - ME(C_4 C_1)
+                               + =(MPROD(MPROD(C_4 C_4 C_2) C_4 C_2) MPROD(C_4 MPROD(C_4 C_4 C_2) C_2))
+
+R9,2 & R2,1     -->    R10 : - HG(C_1 C_2)  - ME(C_4 C_1)
+                               + =(MPROD(MPROD(C_4 C_4 C_2) C_4 C_2) MPROD(C_4 MPROD(C_4 C_4 C_2) C_2))
+
+R10 NIL=2       -->    D11 : - HG(C_1 C_2)  + =(MPROD(MPROD(C_4 C_4 C_2) C_4 C_2) MPROD(C_4 MPROD(C_4 C_4 C_2) C_2))
+
+D11,1 & T8,1    -->    R12 : + =(MPROD(MPROD(C_4 C_4 C_2) C_4 C_2) MPROD(C_4 MPROD(C_4 C_4 C_2) C_2))
+
+R1,1 & A6,3     -->    R13 : - HG(C_1 C_2)  - ME(C_4 C_1)  - ME(C_3 C_1)
+                               + =(MPROD(MPROD(C_4 C_3 C_2) C_3 C_2) MPROD(C_4 MPROD(C_3 C_3 C_2) C_2))
+
+R13,2 & R2,1    -->    R14 : - HG(C_1 C_2)  - ME(C_3 C_1)
+                               + =(MPROD(MPROD(C_4 C_3 C_2) C_3 C_2) MPROD(C_4 MPROD(C_3 C_3 C_2) C_2))
+
+R14 NIL=2       -->    D15 : - HG(C_1 C_2)  + =(MPROD(MPROD(C_4 C_3 C_2) C_3 C_2) MPROD(C_4 MPROD(C_3 C_3 C_2) C_2))
+
+D15,1 & T8,1    -->    R16 : + =(MPROD(MPROD(C_4 C_3 C_2) C_3 C_2) MPROD(C_4 MPROD(C_3 C_3 C_2) C_2))
+
+R2,1 & A6,3     -->    R17 : - HG(C_1 C_2)  - ME(C_3 C_1)  - ME(C_4 C_1)
+                               + =(MPROD(MPROD(C_3 C_4 C_2) C_4 C_2) MPROD(C_3 MPROD(C_4 C_4 C_2) C_2))
+
+R17,2 & R1,1    -->    R18 : - HG(C_1 C_2)  - ME(C_4 C_1)
+                               + =(MPROD(MPROD(C_3 C_4 C_2) C_4 C_2) MPROD(C_3 MPROD(C_4 C_4 C_2) C_2))
+
+R18 NIL=2       -->    D19 : - HG(C_1 C_2)  + =(MPROD(MPROD(C_3 C_4 C_2) C_4 C_2) MPROD(C_3 MPROD(C_4 C_4 C_2) C_2))
+
+D19,1 & T8,1    -->    R20 : + =(MPROD(MPROD(C_3 C_4 C_2) C_4 C_2) MPROD(C_3 MPROD(C_4 C_4 C_2) C_2))
+
+R1,1 & A6,3     -->    R21 : - HG(C_1 C_2)  - ME(C_3 C_1)  - ME(C_3 C_1)
+                               + =(MPROD(MPROD(C_3 C_3 C_2) C_3 C_2) MPROD(C_3 MPROD(C_3 C_3 C_2) C_2))
+
+R21,2 & R1,1    -->    R22 : - HG(C_1 C_2)  - ME(C_3 C_1)
+                               + =(MPROD(MPROD(C_3 C_3 C_2) C_3 C_2) MPROD(C_3 MPROD(C_3 C_3 C_2) C_2))
+
+R22 NIL=2       -->    D23 : - HG(C_1 C_2)  + =(MPROD(MPROD(C_3 C_3 C_2) C_3 C_2) MPROD(C_3 MPROD(C_3 C_3 C_2) C_2))
+
+D23,1 & T8,1    -->    R24 : + =(MPROD(MPROD(C_3 C_3 C_2) C_3 C_2) MPROD(C_3 MPROD(C_3 C_3 C_2) C_2))
+
+R1,1 & A6,3     -->    R25 : - HG(C_1 C_2)  - ME(C_4 C_1)  - ME(C_4 C_1)
+                               + =(MPROD(MPROD(C_4 C_3 C_2) C_4 C_2) MPROD(C_4 MPROD(C_3 C_4 C_2) C_2))
+
+R25,2 & R2,1    -->    R26 : - HG(C_1 C_2)  - ME(C_4 C_1)
+                               + =(MPROD(MPROD(C_4 C_3 C_2) C_4 C_2) MPROD(C_4 MPROD(C_3 C_4 C_2) C_2))
+
+R26 NIL=2       -->    D27 : - HG(C_1 C_2)  + =(MPROD(MPROD(C_4 C_3 C_2) C_4 C_2) MPROD(C_4 MPROD(C_3 C_4 C_2) C_2))
+
+D27,1 & T8,1    -->    R28 : + =(MPROD(MPROD(C_4 C_3 C_2) C_4 C_2) MPROD(C_4 MPROD(C_3 C_4 C_2) C_2))
+
+R2,1 & A6,3     -->  * R29 : - HG(C_1 C_2)  - ME(C_3 C_1)  - ME(C_3 C_1)
+                               + =(MPROD(MPROD(C_3 C_4 C_2) C_3 C_2) MPROD(C_3 MPROD(C_4 C_3 C_2) C_2))
+
+R29,2 & R1,1    -->  * R30 : - HG(C_1 C_2)  - ME(C_3 C_1)
+                               + =(MPROD(MPROD(C_3 C_4 C_2) C_3 C_2) MPROD(C_3 MPROD(C_4 C_3 C_2) C_2))
+
+R30 NIL=2       -->  * D31 : - HG(C_1 C_2)  + =(MPROD(MPROD(C_3 C_4 C_2) C_3 C_2) MPROD(C_3 MPROD(C_4 C_3 C_2) C_2))
+
+D31,1 & T8,1    -->  * R32 : + =(MPROD(MPROD(C_3 C_4 C_2) C_3 C_2) MPROD(C_3 MPROD(C_4 C_3 C_2) C_2))
+
+R1,1 & A6,3     -->    R33 : - HG(C_1 C_2)  - ME(C_3 C_1)  - ME(C_4 C_1)
+                               + =(MPROD(MPROD(C_3 C_3 C_2) C_4 C_2) MPROD(C_3 MPROD(C_3 C_4 C_2) C_2))
+
+R33,2 & R1,1    -->    R34 : - HG(C_1 C_2)  - ME(C_4 C_1)
+                               + =(MPROD(MPROD(C_3 C_3 C_2) C_4 C_2) MPROD(C_3 MPROD(C_3 C_4 C_2) C_2))
+
+R34,1 & T8,1    -->    R35 : - ME(C_4 C_1)  + =(MPROD(MPROD(C_3 C_3 C_2) C_4 C_2) MPROD(C_3 MPROD(C_3 C_4 C_2) C_2))
+
+R35,1 & R2,1    -->    R36 : + =(MPROD(MPROD(C_3 C_3 C_2) C_4 C_2) MPROD(C_3 MPROD(C_3 C_4 C_2) C_2))
+
+R2,1 & A6,3     -->    R37 : - HG(C_1 C_2)  - ME(C_4 C_1)  - ME(C_3 C_1)
+                               + =(MPROD(MPROD(C_4 C_4 C_2) C_3 C_2) MPROD(C_4 MPROD(C_4 C_3 C_2) C_2))
+
+R37,2 & R2,1    -->    R38 : - HG(C_1 C_2)  - ME(C_3 C_1)
+                               + =(MPROD(MPROD(C_4 C_4 C_2) C_3 C_2) MPROD(C_4 MPROD(C_4 C_3 C_2) C_2))
+
+R38,1 & T8,1    -->    R39 : - ME(C_3 C_1)  + =(MPROD(MPROD(C_4 C_4 C_2) C_3 C_2) MPROD(C_4 MPROD(C_4 C_3 C_2) C_2))
+
+R39,1 & R1,1    -->    R40 : + =(MPROD(MPROD(C_4 C_4 C_2) C_3 C_2) MPROD(C_4 MPROD(C_4 C_3 C_2) C_2))
+
+R8,1 & T13,1    -->  * P41 : - =(MPROD(MPROD(C_3 C_4 C_2) C_3 C_2) MPROD(C_3 MPROD(C_4 C_3 C_2) C_2))
+
+P41,1 & R32,1   -->  * R42 :  ce
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+  Q. E. D. 

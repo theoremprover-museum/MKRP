@@ -1,0 +1,534 @@
+;;; -*- Package: MKRP; Base: 10. -*-
+
+
+
+                    ********************************************************************************
+                    *                                                                              *
+                    *     MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN                   *
+                    *                                                                              *
+                    *       16-JUL-85                                                              *
+                    *          16-JUL-85  15:38:23                                                 *
+                    *                                                                              *
+                    ********************************************************************************
+
+
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   16-JUL-85 15:34:36
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   D3104HOMO
+                                                                        
+************************************************************************
+                                                                        
+
+
+ADJUSTMENT OF THE OPTIONS : 
+============================
+
+
+
+TWO:RULES                             NIL                   TWO:RULES.MAXLEVEL                    1.
+TWO:SUPPRESS.NORULES                  NIL
+
+
+RED.I:CLAUSE.MULTIPLE.LITERALS        T                     RED.I:CLAUSE.PURITY                   T
+RED.I:CLAUSE.TAUTOLOGY                T                     RED.I:CLAUSE.TAUTOLOGY.RECHECK        PARTIAL
+RED.I:CLAUSE.SUBSUMPTION              T                     RED.I:CLAUSE.SUBSUMPTION.RECHECK      PARTIAL
+RED.I:CLAUSE.REPL.FACTORING           T                     RED.I:CLAUSE.REPL.FACTORING.RECHECK   T
+RED.I:CLAUSE.REPL.RESOLUTION          SIMPLE                RED.I:CLAUSE.REPL.RESOLUTION.RECHECK  T
+RED.I:CLAUSE.REWRITING                T                     RED.I:LINK.INCOMPATIBILITY            T
+RED.I:LINK.TAUTOLOGY                  REMOVE-INHIBIT        RED.I:LINK.TAUTOLOGY.RECHECK          NIL
+RED.I:LINK.SUBSUMPTION                REMOVE-INHIBIT        RED.I:LINK.SUBSUMPTION.RECHECK        NIL
+
+RED.D:CLAUSE.MULTIPLE.LITERALS        T                     RED.D:CLAUSE.PURITY                   T
+RED.D:CLAUSE.TAUTOLOGY                REMOVE-INHIBIT        RED.D:CLAUSE.TAUTOLOGY.RECHECK        NIL
+RED.D:CLAUSE.SUBSUMPTION.FORWARD      REMOVE-INHIBIT        RED.D:CLAUSE.SUBSUMPTION.BACKWARD     REMOVE
+RED.D:CLAUSE.SUBSUMPTION.RECHECK      NIL                   RED.D:CLAUSE.REPL.FACTORING           T
+RED.D:CLAUSE.REPL.FACTORING.RECHECK   T                     RED.D:CLAUSE.REPL.RESOLUTION          SIMPLE
+RED.D:CLAUSE.REPL.RESOLUTION.RECHECK  T                     RED.D:LINK.INCOMPATIBILITY            T
+RED.D:LINK.TAUTOLOGY                  REMOVE-INHIBIT        RED.D:LINK.TAUTOLOGY.RECHECK          NIL
+RED.D:LINK.SUBSUMPTION                REMOVE-INHIBIT        RED.D:LINK.SUBSUMPTION.RECHECK        NIL
+
+FAC:INITIAL                           NIL                   FAC:EACH.STEP                         NIL
+
+STR:RESOLUTION                        SET-OF-SUPPORT        STR:E-RESOLUTION                      NIL
+STR:PARAMODULATION                    UNIT-ANCESTRY         STR:LINK.DEPTH                        NIL
+STR:TERM.DEPTH                        3.                    STR:R.DEMODULATION                    T
+STR:P.DEMODULATION                    T                     STR:INDUCTION                         NIL
+
+TERM:UNITS                            T                     TERM:ITERATIONS                       1.
+TERM:SET.OF.SUPPORT                   NIL                   TERM:BREADTH.FIRST                    NIL
+
+GEN:SPLITTING                         0.                    GEN:MANUAL.CONTROL                    NIL
+GEN:MAXIMUM.STEPS                     NIL                   GEN:GRAPH.SAVING                      NIL
+GEN:SAVE.FILE                         SAVE.DEFAULT
+
+
+TR:PREPROCESSING                      NIL                   TR:STEP.MODE                          LR
+TR:DUMP                               NIL                   TR:CLAUSE.MODE                        I
+TR:LINK.MODE                          I                     TR:TRACE.FILE                         NIL
+TR:TERMINAL                           T
+
+
+PR:INFIX.FORM                         T                     PR:PREFIX.FORM                        NIL
+PR:OPTIONS                            T                     PR:AXIOM.CLAUSES                      NIL
+PR:SYMBOLS                            NIL                   PR:STATISTICS                         NIL
+PR:PROTOCOL                           T                     PR:LEFT.MARGIN                        0.
+PR:LINELENGTH                         120.
+
+
+
+
+FORMULAE GIVEN TO THE EDITOR
+============================
+
+
+AXIOMS   : SORT MENGE,VERKN,ELEMENT,INDEX,INDEXMENGE:ANY
+           TYPE LIDEAL (MENGE MENGE VERKN)
+           TYPE RIDEAL (MENGE MENGE VERKN)
+           TYPE UHG (MENGE MENGE VERKN)
+           TYPE ME (MENGE MENGE)
+           TYPE NICHTLEER (MENGE)
+           TYPE HG (MENGE VERKN)
+           TYPE EL (ELEMENT MENGE)
+           TYPE MINIMAL (MENGE MENGE VERKN)
+           TYPE MPROD (MENGE MENGE VERKN) :MENGE
+           TYPE APPLYV (VERKN ELEMENT ELEMENT) :ELEMENT
+           TYPE F*X (MENGE ELEMENT VERKN) :MENGE
+           TYPE SM (MENGE MENGE) :MENGE
+           TYPE SET (ELEMENT) :MENGE
+           TYPE VER (MENGE MENGE) :MENGE
+           TYPE GR (MENGE VERKN ELEMENT)
+           TYPE INVERS (VERKN ELEMENT) :ELEMENT
+           TYPE MINIMAL-BED-L (MENGE VERKN)
+           TYPE MINIMAL-BED-R (MENGE VERKN)
+           TYPE EL-IND (INDEX INDEXMENGE)
+           TYPE U (INDEX) : MENGE
+           TYPE E (INDEX INDEX) : ELEMENT
+           TYPE NICHTLEER-IND (INDEXMENGE)
+           TYPE GLEICH (MENGE MENGE)
+           TYPE VER-IND (INDEXMENGE) : MENGE
+           TYPE SM-IND (INDEXMENGE) : MENGE
+           TYPE IDEAL (MENGE MENGE VERKN)
+           TYPE BIJEKTIV (ABB MENGE MENGE)
+           TYPE HOMOMORPH (ABB MENGE MENGE)
+           TYPE ISOMORPH (ABB MENGE MENGE)
+           TYPE ABBVOR (ABB ELEMENT ELEMENT)
+           TYPE G (INDEX INDEX) :MENGE
+           TYPE * (ELEMENT ELEMENT) :ELEMENT
+           * ABKUERZUNG *
+           ALL MAL:VERKN ALL A,B:ELEMENT * (A B) = APPLYV (MAL A B)
+           * DEFINITION VON HOMOMORPH *
+           TYPE APPLYA (ABB ELEMENT) :ELEMENT
+           ALL A,B:MENGE  ALL PHI:ABB  ALL X,Y:ELEMENT  
+                  ABBILDUNG (PHI A B)
+                  AND  
+                  (EL (X A) AND EL (Y A) IMPL APPLYA (PHI * (X Y)) = * (APPLYA (PHI X) APPLYA (PHI Y)))
+               IMPL  
+               HOMOMORPH (PHI A B)
+           * WIRKUNG DES EINSELEMENTES *
+           ALL GRUPPE:MENGE  ALL MAL:VERKN  ALL X,E:ELEMENT  
+             GR (GRUPPE MAL E) AND EL (X GRUPPE) IMPL * (X E) = X AND * (E X) = X
+           * ABGESCHLOSSENHEIT VON GRUPPEN *
+           ALL GRUPPE:MENGE  ALL MAL:VERKN  ALL X,Y,E:ELEMENT  
+             GR (GRUPPE MAL E) AND EL (* (X Y) GRUPPE) IMPL EL (X GRUPPE) AND EL (Y GRUPPE)
+           * FOLGERUNG AUS SATZ 3.11 *
+             * VORRAUSSETZUNG-TH (H MAL I1 I2 J1 J2) BEDEUTET DABEI : HG (H MAL)
+             AND  
+             MINIMAL-BED-R (H MAL)
+             AND  
+             MINIMAL-BED-L (H MAL)
+             AND  
+             (ALL J1:INDEX EL-IND (J1 I1) IMPL RIDEAL (U (J1) H MAL) AND MINIMAL (U (J1) H MAL))
+             AND  
+             (AL J2:INDEX EL-IND (J2 I2) IMPL LIDEAL (U (J2) H MAL) AND MINIMAL (U (J2) H MAL))
+             AND  
+             EL-IND (J1 I1)
+             AND  
+             EL-IND (J2 I2)
+             AND  
+             (ALL J1,J2:INDEX EL-IND (J1 I1) AND EL-IND (J2 I2) IMPL MPROD (U (J1) U (J2) MAL) = SM (U (J1) U (J2))) *
+           ALL X,Y:ELEMENT  ALL H:MENGE  ALL I1,I2:INDEXMENGE  ALL MAL:VERKN  ALL J1,J2,J3,J4:INDEX  
+                 VORRAUSSETZUNG-TH (H MAL I1 I2 J1 J2)
+                 AND  
+                 EL-IND (J3 I1)
+                 AND  
+                 EL-IND (J4 I2)
+                 AND  
+                 EL (X G (J1 J2))
+                 AND  
+                 EL (Y G (J3 J4))
+               IMPL  
+               EL (* (X Y) G (J1 J4))
+           ALL A:MENGE ALL MAL:VERKN ALL E:ELEMENT GR (A MAL E) IMPL EL (E A)
+
+THEOREMS : ALL E1,E2:ELEMENT  ALL PHI:ABB  ALL H:MENGE  ALL MAL:VERKN  ALL I1,I2:INDEXMENGE  ALL J1,J2,J3:INDEX  
+           ALL F:ELEMENT  
+                 VORRAUSSETZUNG-TH (H MAL I1 I2 J1 J2)
+                 AND  
+                 HG (H MAL)
+                 AND  
+                 MINIMAL-BED-R (H MAL)
+                 AND  
+                 MINIMAL-BED-L (H MAL)
+                 AND  
+                 (ALL J1:INDEX EL-IND (J1 I1) IMPL RIDEAL (U (J1) H MAL) AND MINIMAL (U (J1) H MAL))
+                 AND  
+                 (ALL J2:INDEX EL-IND (J2 I2) IMPL LIDEAL (U (J2) H MAL) AND MINIMAL (U (J2) H MAL))
+                 AND  
+                 EL-IND (J1 I1)
+                 AND  
+                 EL-IND (J2 I2)
+                 AND  
+                 (ALL J1,J2:INDEX EL-IND (J1 I1) AND EL-IND (J2 I2) IMPL MPROD (U (J1) U (J2) MAL) = SM (U (J1) U (J2)))
+                 AND  
+                 EL (F SM (U (J1) U (J2)))
+                 AND  
+                 EL-IND (J3 I2)
+                 AND  
+                 GR (G (J1 J2) MAL E1)
+                 AND  
+                 GR (G (J1 J3) MAL E2)
+                 AND  
+                 ABBILDUNG (PHI G (J1 J2) G (J1 J3))
+                 AND  
+                 (ALL X:ELEMENT EL (X G (J1 J2)) IMPL APPLYA (PHI X) = APPLYV (MAL X E2))
+               IMPL  
+               HOMOMORPH (PHI G (J1 J2) G (J1 J3))
+
+
+
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+  A1   : ALL X:ANY  + =(X X)
+* A2   : ALL X:VERKN  Y,Z:ELEMENT  + =(*(Z Y) APPLYV(X Z Y))
+* A3   : ALL X:ELEMENT  Y:VERKN  Z:MENGE  - GR(Z Y X)  + EL(X Z)
+  A4   : ALL X,Y,Z:ELEMENT  U:VERKN  V:MENGE  - GR(V U Z)  - EL(*(Y X) V)  + EL(X V)
+* A5   : ALL X:ELEMENT  Y,Z:MENGE  U:ABB  - ABBILDUNG(U Z Y)  + EL(X Z)  + HOMOMORPH(U Z Y)
+* A6   : ALL X,Y,Z:ELEMENT  U:VERKN  V:MENGE  - GR(V U Z)  - EL(*(Y X) V)  + EL(Y V)
+* A7   : ALL X,Y:ELEMENT  Z:VERKN  U:MENGE  - GR(U Z Y)  - EL(X U)  + =(*(Y X) X)
+  A8   : ALL X,Y:ELEMENT  Z:VERKN  U:MENGE  - GR(U Z Y)  - EL(X U)  + =(*(X Y) X)
+* A9   : ALL X,Y:ELEMENT  Z,U:MENGE  V:ABB  
+              - ABBILDUNG(V U Z)  - =(APPLYA(V *(Y X)) *(APPLYA(V Y) APPLYA(V X)))  + HOMOMORPH(V U Z)
+  A10  : ALL X:ELEMENT  Y,Z:MENGE  U:ABB  - ABBILDUNG(U Z Y)  + EL(X Z)  + HOMOMORPH(U Z Y)
+* A11  : ALL X,Y:ELEMENT  Z,U,V,W:INDEX  XX,YY:INDEXMENGE  ZZ:VERKN  UU:MENGE  
+              - VORRAUSSETZUNG-TH(UU ZZ YY XX W V)  - EL-IND(U YY)  - EL-IND(Z XX)  - EL(Y G(W V))  - EL(X G(U Z))
+                + EL(*(Y X) G(W Z))
+
+
+
+
+OPERATIONS ON AXIOMS
+====================
+
+
+A2   -->  * RS1 : ALL X,Y:ELEMENT  Z:VERKN  + =(APPLYV(Z Y X) *(Y X))
+
+
+
+
+
+
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+* T12  : + VORRAUSSETZUNG-TH(C_6 C_5 C_7 C_4 C_8 C_10)
+  T13  : + HG(C_6 C_5)
+  T14  : + MINIMAL-BED-R(C_6 C_5)
+  T15  : + MINIMAL-BED-L(C_6 C_5)
+  T16  : ALL X:INDEX  - EL-IND(X C_7)  + RIDEAL(U(X) C_6 C_5)
+  T17  : ALL X:INDEX  - EL-IND(X C_7)  + MINIMAL(U(X) C_6 C_5)
+  T18  : ALL X:INDEX  - EL-IND(X C_4)  + LIDEAL(U(X) C_6 C_5)
+  T19  : ALL X:INDEX  - EL-IND(X C_4)  + MINIMAL(U(X) C_6 C_5)
+* T20  : + EL-IND(C_8 C_7)
+  T21  : + EL-IND(C_10 C_4)
+  T22  : ALL X,Y:INDEX  - EL-IND(Y C_7)  - EL-IND(X C_4)  + =(MPROD(U(Y) U(X) C_5) SM(U(Y) U(X)))
+  T23  : + EL(C_1 SM(U(C_8) U(C_10)))
+* T24  : + EL-IND(C_11 C_4)
+* T25  : + GR(G(C_8 C_10) C_5 C_2)
+* T26  : + GR(G(C_8 C_11) C_5 C_3)
+* T27  : + ABBILDUNG(C_9 G(C_8 C_10) G(C_8 C_11))
+* T28  : ALL X:ELEMENT  - EL(X G(C_8 C_10))  + =(APPLYA(C_9 X) APPLYV(C_5 X C_3))
+* T29  : - HOMOMORPH(C_9 G(C_8 C_10) G(C_8 C_11))
+
+
+
+
+
+
+INITIAL OPERATIONS ON THEOREMS
+==============================
+
+
+T28,2 & RS1  -->  * RW2 : ALL X:ELEMENT  - EL(X G(C_8 C_10))  + =(APPLYA(C_9 X) *(X C_3))
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+REFUTATION
+
+INITIAL CLAUSES :        A1   : ALL X:ANY  + =(X X)
+                       * A3   : ALL X:ELEMENT  Y:VERKN  Z:MENGE  - GR(Z Y X)  + EL(X Z)
+                         A4   : ALL X,Y,Z:ELEMENT  U:VERKN  V:MENGE  - GR(V U Z)  - EL(*(Y X) V)  + EL(X V)
+                       * A5   : ALL X:ELEMENT  Y,Z:MENGE  U:ABB  - ABBILDUNG(U Z Y)  + EL(X Z)  + HOMOMORPH(U Z Y)
+                       * A6   : ALL X,Y,Z:ELEMENT  U:VERKN  V:MENGE  - GR(V U Z)  - EL(*(Y X) V)  + EL(Y V)
+                       * A7   : ALL X,Y:ELEMENT  Z:VERKN  U:MENGE  - GR(U Z Y)  - EL(X U)  + =(*(Y X) X)
+                         A8   : ALL X,Y:ELEMENT  Z:VERKN  U:MENGE  - GR(U Z Y)  - EL(X U)  + =(*(X Y) X)
+                       * A9   : ALL X,Y:ELEMENT  Z,U:MENGE  V:ABB  
+                                     - ABBILDUNG(V U Z)  - =(APPLYA(V *(Y X)) *(APPLYA(V Y) APPLYA(V X)))
+                                       + HOMOMORPH(V U Z)
+                       * A11  : ALL X,Y:ELEMENT  Z,U,V,W:INDEX  XX,YY:INDEXMENGE  ZZ:VERKN  UU:MENGE  
+                                     - VORRAUSSETZUNG-TH(UU ZZ YY XX W V)  - EL-IND(U YY)  - EL-IND(Z XX)
+                                       - EL(Y G(W V))  - EL(X G(U Z))  + EL(*(Y X) G(W Z))
+                       * T12  : + VORRAUSSETZUNG-TH(C_6 C_5 C_7 C_4 C_8 C_10)
+                       * T20  : + EL-IND(C_8 C_7)
+                         T21  : + EL-IND(C_10 C_4)
+                         T22  : ALL X,Y:INDEX  - EL-IND(Y C_7)  - EL-IND(X C_4)  + =(MPROD(U(Y) U(X) C_5) SM(U(Y) U(X)))
+                         T23  : + EL(C_1 SM(U(C_8) U(C_10)))
+                       * T24  : + EL-IND(C_11 C_4)
+                       * T25  : + GR(G(C_8 C_10) C_5 C_2)
+                       * T26  : + GR(G(C_8 C_11) C_5 C_3)
+                       * T27  : + ABBILDUNG(C_9 G(C_8 C_10) G(C_8 C_11))
+                       * RW2  : ALL X:ELEMENT  - EL(X G(C_8 C_10))  + =(APPLYA(C_9 X) *(X C_3))
+                       * T29  : - HOMOMORPH(C_9 G(C_8 C_10) G(C_8 C_11))
+
+A5,3 & T29,1      -->  * R3   : ALL X:ELEMENT  - ABBILDUNG(C_9 G(C_8 C_10) G(C_8 C_11))  + EL(X G(C_8 C_10))
+
+R3,1 & T27,1      -->  * R4   : ALL X:ELEMENT  + EL(X G(C_8 C_10))
+
+RW2,1 & R4,1      -->  * R5   : ALL X:ELEMENT  + =(APPLYA(C_9 X) *(X C_3))
+
+A9,3 & T29,1      -->  * R6   : ALL X,Y:ELEMENT  - ABBILDUNG(C_9 G(C_8 C_10) G(C_8 C_11))
+                                                   - =(APPLYA(C_9 *(Y X)) *(APPLYA(C_9 Y) APPLYA(C_9 X)))
+
+R6,1 & T27,1      -->  * R7   : ALL X,Y:ELEMENT  - =(APPLYA(C_9 *(Y X)) *(APPLYA(C_9 Y) APPLYA(C_9 X)))
+
+T20,1 & T22,1     -->    R8   : ALL X:INDEX  - EL-IND(X C_4)  + =(MPROD(U(C_8) U(X) C_5) SM(U(C_8) U(X)))
+
+T21,1 & R8,1      -->    R9   : + =(MPROD(U(C_8) U(C_10) C_5) SM(U(C_8) U(C_10)))
+
+T20,1 & A11,2     -->  * R10  : ALL X,Y:ELEMENT  Z,U,V:INDEX  W:INDEXMENGE  XX:VERKN  YY:MENGE  
+                                     - VORRAUSSETZUNG-TH(YY XX C_7 W V U)  - EL-IND(Z W)  - EL(Y G(V U))
+                                       - EL(X G(C_8 Z))  + EL(*(Y X) G(V Z))
+
+T12,1 & R10,1     -->  * R11  : ALL X,Y:ELEMENT  Z:INDEX  
+                                     - EL-IND(Z C_4)  - EL(Y G(C_8 C_10))  - EL(X G(C_8 Z))  + EL(*(Y X) G(C_8 Z))
+
+R11,2 & R4,1      -->  * R12  : ALL X,Y:ELEMENT  Z:INDEX  - EL-IND(Z C_4)  - EL(X G(C_8 Z))  + EL(*(Y X) G(C_8 Z))
+
+T24,1 & R12,1     -->  * R13  : ALL X,Y:ELEMENT  - EL(Y G(C_8 C_11))  + EL(*(X Y) G(C_8 C_11))
+
+T25,1 & A4,1      -->    R14  : ALL X,Y:ELEMENT  - EL(*(Y X) G(C_8 C_10))  + EL(X G(C_8 C_10))
+
+T25,1 & A6,1      -->    R15  : ALL X,Y:ELEMENT  - EL(*(Y X) G(C_8 C_10))  + EL(Y G(C_8 C_10))
+
+T25,1 & A7,1      -->  * R16  : ALL X:ELEMENT  - EL(X G(C_8 C_10))  + =(*(C_2 X) X)
+
+R16,1 & A6,3      -->  * R17  : ALL X,Y:ELEMENT  + =(*(C_2 Y) Y)  - GR(G(C_8 C_10) C_5 C_2)  - EL(*(Y X) G(C_8 C_10))
+
+R17,2 & T25,1     -->  * R18  : ALL X,Y:ELEMENT  + =(*(C_2 Y) Y)  - EL(*(Y X) G(C_8 C_10))
+
+R18,2 & R4,1      -->  * R19  : ALL X:ELEMENT  + =(*(C_2 X) X)
+
+R19,1 & R7,1      -->    P20  : ALL X,Y:ELEMENT  - =(*(C_2 APPLYA(C_9 *(Y X))) *(APPLYA(C_9 Y) APPLYA(C_9 X)))
+
+T25,1 & A7,1      -->    R21  : ALL X:ELEMENT  - EL(X G(C_8 C_10))  + =(*(C_2 X) X)
+
+T25,1 & A8,1      -->    R22  : ALL X:ELEMENT  - EL(X G(C_8 C_10))  + =(*(X C_2) X)
+
+R22,1 & A6,3      -->    R23  : ALL X,Y:ELEMENT  + =(*(Y C_2) Y)  - GR(G(C_8 C_10) C_5 C_2)  - EL(*(Y X) G(C_8 C_10))
+
+R23,2 & T25,1     -->    R24  : ALL X,Y:ELEMENT  + =(*(Y C_2) Y)  - EL(*(Y X) G(C_8 C_10))
+
+R24,2 & R4,1      -->    R25  : ALL X:ELEMENT  + =(*(X C_2) X)
+
+T26,1 & A3,1      -->  * R26  : + EL(C_3 G(C_8 C_11))
+
+R26,1 & R13,1     -->  * R27  : ALL X:ELEMENT  + EL(*(X C_3) G(C_8 C_11))
+
+R27,1 & R13,1     -->    R28  : ALL X,Y:ELEMENT  + EL(*(Y *(X C_3)) G(C_8 C_11))
+
+R28,1 & R13,1     -->    R29  : ALL X,Y,Z:ELEMENT  + EL(*(Z *(Y *(X C_3))) G(C_8 C_11))
+
+R27,1 & A6,2      -->  * R30  : ALL X:ELEMENT  - GR(G(C_8 C_11) C_5 C_3)  + EL(X G(C_8 C_11))
+
+R30,1 & T26,1     -->  * R31  : ALL X:ELEMENT  + EL(X G(C_8 C_11))
+
+R26,1 & A8,2      -->    R32  : - GR(G(C_8 C_11) C_5 C_3)  + =(*(C_3 C_3) C_3)
+
+R32,1 & T26,1     -->    R33  : + =(*(C_3 C_3) C_3)
+
+R27,1 & A8,2      -->    R34  : ALL X:ELEMENT  - GR(G(C_8 C_11) C_5 C_3)  + =(*(*(X C_3) C_3) *(X C_3))
+
+R34,1 & T26,1     -->    R35  : ALL X:ELEMENT  + =(*(*(X C_3) C_3) *(X C_3))
+
+R27,1 & A7,2      -->    R36  : ALL X:ELEMENT  - GR(G(C_8 C_11) C_5 C_3)  + =(*(C_3 *(X C_3)) *(X C_3))
+
+R36,1 & T26,1     -->    R37  : ALL X:ELEMENT  + =(*(C_3 *(X C_3)) *(X C_3))
+
+R28,1 & A7,2      -->    R38  : ALL X,Y:ELEMENT  - GR(G(C_8 C_11) C_5 C_3)  + =(*(C_3 *(Y *(X C_3))) *(Y *(X C_3)))
+
+R38,1 & T26,1     -->    R39  : ALL X,Y:ELEMENT  + =(*(C_3 *(Y *(X C_3))) *(Y *(X C_3)))
+
+R5,1 & R7,1       -->    P40  : ALL X,Y:ELEMENT  - =(*(*(Y X) C_3) *(APPLYA(C_9 Y) APPLYA(C_9 X)))
+
+R19,1 & P40,1     -->    P41  : ALL X,Y:ELEMENT  - =(*(*(Y X) C_3) *(C_2 *(APPLYA(C_9 Y) APPLYA(C_9 X))))
+
+R5,1 & R7,1       -->    P42  : ALL X,Y:ELEMENT  - =(*(*(Y X) C_3) *(APPLYA(C_9 Y) APPLYA(C_9 X)))
+
+R5,1 & R7,1       -->    P43  : ALL X:ELEMENT  - =(APPLYA(C_9 APPLYA(C_9 X)) *(APPLYA(C_9 X) APPLYA(C_9 C_3)))
+
+R5,1 & R7,1       -->    P44  : ALL X,Y:ELEMENT  - =(APPLYA(C_9 *(Y X)) *(*(Y C_3) APPLYA(C_9 X)))
+
+R5,1 & R7,1       -->    P45  : ALL X,Y:ELEMENT  - =(APPLYA(C_9 *(Y X)) *(APPLYA(C_9 Y) *(X C_3)))
+
+R9,1 & T23,1      -->    P46  : + EL(C_1 MPROD(U(C_8) U(C_10) C_5))
+
+R19,1 & T23,1     -->    P47  : + EL(*(C_2 C_1) SM(U(C_8) U(C_10)))
+
+R19,1 & T25,1     -->  * P48  : + GR(G(C_8 C_10) C_5 *(C_2 C_2))
+
+P48,1 & A7,1      -->  * R49  : ALL X:ELEMENT  - EL(X G(C_8 C_10))  + =(*(*(C_2 C_2) X) X)
+
+R49,1 & A6,3      -->  * R50  : ALL X,Y:ELEMENT  + =(*(*(C_2 C_2) Y) Y)  - GR(G(C_8 C_10) C_5 C_2)
+                                                   - EL(*(Y X) G(C_8 C_10))
+
+R50,2 & T25,1     -->  * R51  : ALL X,Y:ELEMENT  + =(*(*(C_2 C_2) Y) Y)  - EL(*(Y X) G(C_8 C_10))
+
+R51,2 & R4,1      -->  * R52  : ALL X:ELEMENT  + =(*(*(C_2 C_2) X) X)
+
+P48,1 & A8,1      -->    R53  : ALL X:ELEMENT  - EL(X G(C_8 C_10))  + =(*(X *(C_2 C_2)) X)
+
+R53,1 & A6,3      -->    R54  : ALL X,Y:ELEMENT  + =(*(Y *(C_2 C_2)) Y)  - GR(G(C_8 C_10) C_5 C_2)
+                                                   - EL(*(Y X) G(C_8 C_10))
+
+R54,2 & T25,1     -->    R55  : ALL X,Y:ELEMENT  + =(*(Y *(C_2 C_2)) Y)  - EL(*(Y X) G(C_8 C_10))
+
+R55,2 & R4,1      -->    R56  : ALL X:ELEMENT  + =(*(X *(C_2 C_2)) X)
+
+R19,1 & T26,1     -->    P57  : + GR(G(C_8 C_11) C_5 *(C_2 C_3))
+
+P57,1 & A7,1      -->    R58  : ALL X:ELEMENT  - EL(X G(C_8 C_11))  + =(*(*(C_2 C_3) X) X)
+
+R58,1 & R31,1     -->    R59  : ALL X:ELEMENT  + =(*(*(C_2 C_3) X) X)
+
+P57,1 & A8,1      -->    R60  : ALL X:ELEMENT  - EL(X G(C_8 C_11))  + =(*(X *(C_2 C_3)) X)
+
+R60,1 & R31,1     -->    R61  : ALL X:ELEMENT  + =(*(X *(C_2 C_3)) X)
+
+R19,1 & R5,1      -->    P62  : ALL X:ELEMENT  + =(APPLYA(C_9 X) *(X *(C_2 C_3)))
+
+R5,1 & R19,1      -->    P63  : + =(APPLYA(C_9 C_2) C_3)
+
+P63,1 & P45,1     -->    P64  : ALL X,Y:ELEMENT  - =(APPLYA(C_9 *(Y X)) *(APPLYA(C_9 Y) *(X APPLYA(C_9 C_2))))
+
+P63,1 & P44,1     -->    P65  : ALL X,Y:ELEMENT  - =(APPLYA(C_9 *(Y X)) *(*(Y APPLYA(C_9 C_2)) APPLYA(C_9 X)))
+
+P63,1 & P41,1     -->    P66  : ALL X,Y:ELEMENT  - =(*(*(Y X) APPLYA(C_9 C_2)) *(C_2 *(APPLYA(C_9 Y) APPLYA(C_9 X))))
+
+P63,1 & P40,1     -->    P67  : ALL X,Y:ELEMENT  - =(*(*(Y X) APPLYA(C_9 C_2)) *(APPLYA(C_9 Y) APPLYA(C_9 X)))
+
+R19,1 & R7,1      -->    P68  : ALL X:ELEMENT  - =(APPLYA(C_9 X) *(APPLYA(C_9 C_2) APPLYA(C_9 X)))
+
+A8,3 & P68,1      -->    R69  : ALL X:VERKN  - GR(G(C_8 C_11) X APPLYA(C_9 C_2))  - EL(APPLYA(C_9 C_2) G(C_8 C_11))
+
+R69,2 & R31,1     -->    R70  : ALL X:VERKN  - GR(G(C_8 C_11) X APPLYA(C_9 C_2))
+
+R19,1 & R7,1      -->    P71  : ALL X,Y:ELEMENT  - =(APPLYA(C_9 *(C_2 *(Y X))) *(APPLYA(C_9 Y) APPLYA(C_9 X)))
+
+R19,1 & R7,1      -->    P72  : ALL X,Y:ELEMENT  - =(APPLYA(C_9 *(Y X)) *(C_2 *(APPLYA(C_9 Y) APPLYA(C_9 X))))
+
+R19,1 & R7,1      -->    P73  : ALL X,Y:ELEMENT  - =(APPLYA(C_9 *(Y X)) *(*(C_2 APPLYA(C_9 Y)) APPLYA(C_9 X)))
+
+R19,1 & R7,1      -->    P74  : ALL X,Y:ELEMENT  - =(APPLYA(C_9 *(Y X)) *(APPLYA(C_9 Y) *(C_2 APPLYA(C_9 X))))
+
+R25,1 & R7,1      -->    P75  : ALL X:ELEMENT  - =(APPLYA(C_9 X) *(APPLYA(C_9 X) APPLYA(C_9 C_2)))
+
+A8,3 & P75,1      -->    R76  : ALL X:ELEMENT  Y:VERKN  
+                                     - GR(G(C_8 C_11) Y APPLYA(C_9 C_2))  - EL(APPLYA(C_9 X) G(C_8 C_11))
+
+R76,2 & R31,1     -->    R77  : ALL X:VERKN  - GR(G(C_8 C_11) X APPLYA(C_9 C_2))
+
+R25,1 & R19,1     -->    P78  : + =(C_2 C_2)
+
+R33,1 & T26,1     -->    P79  : + GR(G(C_8 C_11) C_5 *(C_3 C_3))
+
+P79,1 & A7,1      -->    R80  : ALL X:ELEMENT  - EL(X G(C_8 C_11))  + =(*(*(C_3 C_3) X) X)
+
+R80,1 & R31,1     -->    R81  : ALL X:ELEMENT  + =(*(*(C_3 C_3) X) X)
+
+P79,1 & A8,1      -->    R82  : ALL X:ELEMENT  - EL(X G(C_8 C_11))  + =(*(X *(C_3 C_3)) X)
+
+R82,1 & R31,1     -->    R83  : ALL X:ELEMENT  + =(*(X *(C_3 C_3)) X)
+
+R33,1 & R5,1      -->    P84  : ALL X:ELEMENT  + =(APPLYA(C_9 X) *(X *(C_3 C_3)))
+
+R5,1 & R33,1      -->    P85  : + =(APPLYA(C_9 C_3) C_3)
+
+R33,1 & R7,1      -->    P86  : - =(APPLYA(C_9 C_3) *(APPLYA(C_9 C_3) APPLYA(C_9 C_3)))
+
+A8,3 & P86,1      -->    R87  : ALL X:VERKN  - GR(G(C_8 C_11) X APPLYA(C_9 C_3))  - EL(APPLYA(C_9 C_3) G(C_8 C_11))
+
+R87,2 & R31,1     -->    R88  : ALL X:VERKN  - GR(G(C_8 C_11) X APPLYA(C_9 C_3))
+
+R5,1 & R35,1      -->    P89  : ALL X:ELEMENT  + =(APPLYA(C_9 *(X C_3)) *(X C_3))
+
+R35,1 & R7,1      -->    P90  : ALL X:ELEMENT  - =(APPLYA(C_9 *(X C_3)) *(APPLYA(C_9 *(X C_3)) APPLYA(C_9 C_3)))
+
+A8,3 & P90,1      -->    R91  : ALL X:ELEMENT  Y:VERKN  
+                                     - GR(G(C_8 C_11) Y APPLYA(C_9 C_3))  - EL(APPLYA(C_9 *(X C_3)) G(C_8 C_11))
+
+R91,2 & R31,1     -->    R92  : ALL X:VERKN  - GR(G(C_8 C_11) X APPLYA(C_9 C_3))
+
+R35,1 & R19,1     -->    P93  : + =(*(*(C_2 C_3) C_3) C_3)
+
+R37,1 & R7,1      -->    P94  : ALL X:ELEMENT  - =(APPLYA(C_9 *(X C_3)) *(APPLYA(C_9 C_3) APPLYA(C_9 *(X C_3))))
+
+A7,3 & P94,1      -->    R95  : ALL X:ELEMENT  Y:VERKN  
+                                     - GR(G(C_8 C_11) Y APPLYA(C_9 C_3))  - EL(APPLYA(C_9 *(X C_3)) G(C_8 C_11))
+
+R95,2 & R31,1     -->    R96  : ALL X:VERKN  - GR(G(C_8 C_11) X APPLYA(C_9 C_3))
+
+R25,1 & P48,1     -->    P97  : + GR(G(C_8 C_10) C_5 C_2)
+
+R5,1 & R52,1      -->  * P98  : + =(APPLYA(C_9 *(C_2 C_2)) C_3)
+
+P98,1 & R5,1      -->    P99  : ALL X:ELEMENT  + =(APPLYA(C_9 X) *(X APPLYA(C_9 *(C_2 C_2))))
+
+P98,1 & T26,1     -->  * P100 : + GR(G(C_8 C_11) C_5 APPLYA(C_9 *(C_2 C_2)))
+
+P100,1 & A7,1     -->  * R101 : ALL X:ELEMENT  - EL(X G(C_8 C_11))  + =(*(APPLYA(C_9 *(C_2 C_2)) X) X)
+
+R101,1 & R31,1    -->  * R102 : ALL X:ELEMENT  + =(*(APPLYA(C_9 *(C_2 C_2)) X) X)
+
+P100,1 & A8,1     -->    R103 : ALL X:ELEMENT  - EL(X G(C_8 C_11))  + =(*(X APPLYA(C_9 *(C_2 C_2))) X)
+
+R103,1 & R31,1    -->    R104 : ALL X:ELEMENT  + =(*(X APPLYA(C_9 *(C_2 C_2))) X)
+
+R52,1 & R7,1      -->  * P105 : ALL X:ELEMENT  - =(APPLYA(C_9 X) *(APPLYA(C_9 *(C_2 C_2)) APPLYA(C_9 X)))
+
+P105,1 & R102,1   -->  * R106 :  ce
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+  Q. E. D. 

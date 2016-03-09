@@ -1,0 +1,228 @@
+;;; -*- Package: MKRP; Base: 10. -*- 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 5-NOV-84                                                      *
+                    *         DATE : 1-DEC-84  11:00:39                                            *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+                                                                         
+*************************************************************************
+ EDIT:     AXIOME UND THEOREME EDITIERT AM:   8-NOV-84 13:50:53
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   2.6.LR.1.1
+                                                                        
+************************************************************************
+                                                                        
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : SORT MENGE,ELEMENT,VERKN:ANY
+           TYPE W(MENGE) :MENGE
+           TYPE CONC:VERKN
+           TYPE APPLY(VERKN ELEMENT ELEMENT) :ELEMENT
+           TYPE APPLYABB(MENGE ELEMENT) :ELEMENT
+           TYPE INVERS(MENGE) :MENGE
+           ALL A,B,ABB:MENGE  ALL PHI:VERKN  ALL X,Y:ELEMENT  
+                  HOMOMORPH(A B ABB) AND EL(X A) AND EL(Y A) AND HG(A PHI) AND HG(B PHI)
+             IMPL APPLYABB(ABB APPLY(PHI X Y)) = APPLY(PHI APPLYABB(ABB X) APPLYABB(ABB Y))
+           ALL A,B,F:MENGE         ISOMORPH(A B F)
+                              IMPL     HOMOMORPH(A B F)
+                                   AND HOMOMORPH(B A INVERS(F))
+                                   AND BIJEKTIV(A B F)
+                                   AND BIJEKTIV(B A INVERS(F))
+           ALL A,B,ABB:MENGE  ALL X:ELEMENT  
+             BIJEKTIV(A B ABB) AND EL(X A) IMPL APPLYABB(INVERS(ABB) APPLYABB(ABB X)) = X AND EL(APPLYABB(ABB X) B)
+           ALL A,B,ABB:MENGE  ALL X:ELEMENT  
+                  BIJEKTIV(A B ABB) AND EL(X B)
+             IMPL APPLYABB(ABB APPLYABB(INVERS(ABB) X)) = X AND EL(APPLYABB(INVERS(ABB) X) A)
+           ALL ALPHABET:MENGE HG(W(ALPHABET) CONC)
+           ALL X,S,T:ELEMENT ALL Y:MENGE NOT(BUCHSTABE(X Y)) OR NOT(X = APPLY(CONC S T))
+           ALL X:ELEMENT ALL Y:MENGE BUCHSTABE(X Y) IMPL EL(X W(Y))
+           ALL Y:MENGE  ALL X:ELEMENT  
+             EL(X W(Y)) IMPL(BUCHSTABE(X Y) OR(EX S,T:ELEMENT X = APPLY(CONC S T) AND EL(S W(Y)) AND EL(T W(Y))))
+ 
+THEOREMS : ALL A,B,F:MENGE ALL X:ELEMENT BUCHSTABE(X A) AND ISOMORPH(W(A) W(B) F) IMPL BUCHSTABE(APPLYABB(F X) B)
+ 
+ 
+ 
+ 
+CONSTANTS : 
+=========== 
+ 
+| NAME      | SORT                    |            | ATTRIBUTES                   |
+-----------------------------------------------------------------------------------
+| CONC      | VERKN                   |            |                              |
+| C_1       | MENGE                   |            |                              |
+| C_2       | ELEMENT                 |            |                              |
+| C_3       | MENGE                   |            |                              |
+| C_4       | MENGE                   |            |                              |
+-----------------------------------------------------------------------------------
+ 
+ 
+ 
+FUNCTIONS : 
+=========== 
+ 
+| NAME      | DOMAIN                  | RANGE      | ATTRIBUTES                   |
+-----------------------------------------------------------------------------------
+| W         | MENGE                   | MENGE      |                              |
+| APPLY     | VERKN ELEMENT ELEMENT   | ELEMENT    |                              |
+| APPLYABB  | MENGE ELEMENT           | ELEMENT    |                              |
+| INVERS    | MENGE                   | MENGE      |                              |
+| F_1       | MENGE ELEMENT           | ELEMENT    |                              |
+| F_2       | MENGE ELEMENT           | ELEMENT    |                              |
+-----------------------------------------------------------------------------------
+ 
+ 
+ 
+PREDICATES : 
+============ 
+ 
+| NAME      | DOMAIN                  |            | ATTRIBUTES                   |
+-----------------------------------------------------------------------------------
+| TRUE      |                         |            | DEFINED                      |
+| FALSE     |                         |            | DEFINED                      |
+| HOMOMORPH | ANY ANY ANY             |            |                              |
+| EL        | ANY ANY                 |            |                              |
+| HG        | ANY ANY                 |            |                              |
+| =         | ANY ANY                 |            | DEFINED SYMMETRIC REFLEXIVE  |
+| ISOMORPH  | ANY ANY ANY             |            |                              |
+| BIJEKTIV  | ANY ANY ANY             |            |                              |
+| BUCHSTABE | ANY ANY                 |            |                              |
+-----------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+  A1   : ALL X:ANY  + =(X X)
+  A2   : ALL X:MENGE  + HG(W(X) CONC)
+  A3   : ALL X,Y,Z:MENGE  - ISOMORPH(Z Y X)  + HOMOMORPH(Z Y X)
+  A4   : ALL X,Y,Z:MENGE  - ISOMORPH(Z Y X)  + HOMOMORPH(Y Z INVERS(X))
+  A5   : ALL X,Y,Z:MENGE  - ISOMORPH(Z Y X)  + BIJEKTIV(Z Y X)
+  A6   : ALL X,Y,Z:MENGE  - ISOMORPH(Z Y X)  + BIJEKTIV(Y Z INVERS(X))
+  A7   : ALL X,Y,Z:ELEMENT  U:MENGE  - BUCHSTABE(Z U)  - =(Z APPLY(CONC Y X))
+  A8   : ALL X:MENGE  Y:ELEMENT  - BUCHSTABE(Y X)  + EL(Y W(X))
+  A9   : ALL X:ELEMENT  Y,Z,U:MENGE  - BIJEKTIV(U Z Y)  - EL(X U)  + =(APPLYABB(INVERS(Y) APPLYABB(Y X)) X)
+  A10  : ALL X:ELEMENT  Y,Z,U:MENGE  - BIJEKTIV(U Z Y)  - EL(X U)  + EL(APPLYABB(Y X) Z)
+  A11  : ALL X:ELEMENT  Y,Z,U:MENGE  - BIJEKTIV(U Z Y)  - EL(X Z)  + =(APPLYABB(Y APPLYABB(INVERS(Y) X)) X)
+  A12  : ALL X:ELEMENT  Y,Z,U:MENGE  - BIJEKTIV(U Z Y)  - EL(X Z)  + EL(APPLYABB(INVERS(Y) X) U)
+  A13  : ALL X:MENGE  Y:ELEMENT  - EL(Y W(X))  + BUCHSTABE(Y X)  + =(Y APPLY(CONC F_1(X Y) F_2(X Y)))
+  A14  : ALL X:MENGE  Y:ELEMENT  - EL(Y W(X))  + BUCHSTABE(Y X)  + EL(F_1(X Y) W(X))
+  A15  : ALL X:MENGE  Y:ELEMENT  - EL(Y W(X))  + BUCHSTABE(Y X)  + EL(F_2(X Y) W(X))
+  A16  : ALL X:VERKN  Y,Z:ELEMENT  U,V,W:MENGE  
+              - HOMOMORPH(W V U)  - EL(Z W)  - EL(Y W)  - HG(W X)  - HG(V X)
+                + =(APPLYABB(U APPLY(X Z Y)) APPLY(X APPLYABB(U Z) APPLYABB(U Y)))
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+  T17  : + BUCHSTABE(C_2 C_1)
+  T18  : + ISOMORPH(W(C_1) W(C_3) C_4)
+  T19  : - BUCHSTABE(APPLYABB(C_4 C_2) C_3)
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION ( FAILURE : GRAPH.COLLAPSED )
+ 
+INITIAL CLAUSES :      A1  : ALL X:ANY  + =(X X)
+                       A2  : ALL X:MENGE  + HG(W(X) CONC)
+                       A3  : ALL X,Y,Z:MENGE  - ISOMORPH(Z Y X)  + HOMOMORPH(Z Y X)
+                       A4  : ALL X,Y,Z:MENGE  - ISOMORPH(Z Y X)  + HOMOMORPH(Y Z INVERS(X))
+                       A5  : ALL X,Y,Z:MENGE  - ISOMORPH(Z Y X)  + BIJEKTIV(Z Y X)
+                       A6  : ALL X,Y,Z:MENGE  - ISOMORPH(Z Y X)  + BIJEKTIV(Y Z INVERS(X))
+                       A7  : ALL X,Y,Z:ELEMENT  U:MENGE  - BUCHSTABE(Z U)  - =(Z APPLY(CONC Y X))
+                       A8  : ALL X:MENGE  Y:ELEMENT  - BUCHSTABE(Y X)  + EL(Y W(X))
+                       A9  : ALL X:ELEMENT  Y,Z,U:MENGE  
+                                  - BIJEKTIV(U Z Y)  - EL(X U)  + =(APPLYABB(INVERS(Y) APPLYABB(Y X)) X)
+                       A10 : ALL X:ELEMENT  Y,Z,U:MENGE  - BIJEKTIV(U Z Y)  - EL(X U)  + EL(APPLYABB(Y X) Z)
+                       A11 : ALL X:ELEMENT  Y,Z,U:MENGE  
+                                  - BIJEKTIV(U Z Y)  - EL(X Z)  + =(APPLYABB(Y APPLYABB(INVERS(Y) X)) X)
+                       A12 : ALL X:ELEMENT  Y,Z,U:MENGE  - BIJEKTIV(U Z Y)  - EL(X Z)  + EL(APPLYABB(INVERS(Y) X) U)
+                       A13 : ALL X:MENGE  Y:ELEMENT  
+                                  - EL(Y W(X))  + BUCHSTABE(Y X)  + =(Y APPLY(CONC F_1(X Y) F_2(X Y)))
+                       A14 : ALL X:MENGE  Y:ELEMENT  - EL(Y W(X))  + BUCHSTABE(Y X)  + EL(F_1(X Y) W(X))
+                       A15 : ALL X:MENGE  Y:ELEMENT  - EL(Y W(X))  + BUCHSTABE(Y X)  + EL(F_2(X Y) W(X))
+                       A16 : ALL X:VERKN  Y,Z:ELEMENT  U,V,W:MENGE  
+                                  - HOMOMORPH(W V U)  - EL(Z W)  - EL(Y W)  - HG(W X)  - HG(V X)
+                                    + =(APPLYABB(U APPLY(X Z Y)) APPLY(X APPLYABB(U Z) APPLYABB(U Y)))
+                       T17 : + BUCHSTABE(C_2 C_1)
+                       T18 : + ISOMORPH(W(C_1) W(C_3) C_4)
+                       T19 : - BUCHSTABE(APPLYABB(C_4 C_2) C_3)
+ 
+T18,1 & A3,1    -->    R1  : + HOMOMORPH(W(C_1) W(C_3) C_4)
+ 
+T18,1 & A4,1    -->    R2  : + HOMOMORPH(W(C_3) W(C_1) INVERS(C_4))
+ 
+T18,1 & A5,1    -->    R3  : + BIJEKTIV(W(C_1) W(C_3) C_4)
+ 
+T18,1 & A6,1    -->    R4  : + BIJEKTIV(W(C_3) W(C_1) INVERS(C_4))
+ 
+T17,1 & A8,1    -->    R5  : + EL(C_2 W(C_1))
+ 
+A2,1 & A16,4    -->    R6  : ALL X,Y:ELEMENT  Z,U,V:MENGE  
+                                  - HOMOMORPH(W(V) U Z)  - EL(Y W(V))  - EL(X W(V))  - HG(U CONC)
+                                    + =(APPLYABB(Z APPLY(CONC Y X)) APPLY(CONC APPLYABB(Z Y) APPLYABB(Z X)))
+ 
+A2,1 & R6,4     -->    R7  : ALL X,Y:ELEMENT  Z,U,V:MENGE  
+                                  - HOMOMORPH(W(V) W(U) Z)  - EL(Y W(V))  - EL(X W(V))
+                                    + =(APPLYABB(Z APPLY(CONC Y X)) APPLY(CONC APPLYABB(Z Y) APPLYABB(Z X)))
+ 
+T17,1 & A7,1    -->    R8  : ALL X,Y:ELEMENT  - =(C_2 APPLY(CONC Y X))
+ 
+A15,2 & T19,1   -->    R9  : - EL(APPLYABB(C_4 C_2) W(C_3))  + EL(F_2(C_3 APPLYABB(C_4 C_2)) W(C_3))
+ 
+R9,1 & A10,3    -->    R10 : + EL(F_2(C_3 APPLYABB(C_4 C_2)) W(C_3))  - BIJEKTIV(W(C_1) W(C_3) C_4)  - EL(C_2 W(C_1))
+ 
+R10,2 & R3,1    -->    R11 : + EL(F_2(C_3 APPLYABB(C_4 C_2)) W(C_3))  - EL(C_2 W(C_1))
+ 
+R11,2 & R5,1    -->    R12 : + EL(F_2(C_3 APPLYABB(C_4 C_2)) W(C_3))
+ 
+A14,2 & T19,1   -->    R13 : - EL(APPLYABB(C_4 C_2) W(C_3))  + EL(F_1(C_3 APPLYABB(C_4 C_2)) W(C_3))
+ 
+A13,2 & T19,1   -->    R14 : - EL(APPLYABB(C_4 C_2) W(C_3))
+                               + =(APPLYABB(C_4 C_2) APPLY(CONC F_1(C_3 APPLYABB(C_4 C_2)) F_2(C_3 APPLYABB(C_4 C_2))))
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+THE THEOREM(S) COULD NOT BE PROVED.
+ 
+STOP
+ 

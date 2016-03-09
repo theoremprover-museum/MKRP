@@ -1,0 +1,69 @@
+ 
+ 
+ 
+             ****************************************************
+             *                                                  *
+             *   ATP-SYSTEM :  M K R P , UNI KARLSRUHE          *
+             *                                                  *
+             *      VERSION : 3-FEB-84                          *
+             *         DATE : 17-JUL-84  12:36:03               *
+             *                                                  *
+             ****************************************************
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : SORT ELEM,MENGE,VERKN:ANY
+           TYPE APPLY (VERKN ELEM ELEM) :ELEM
+           TYPE INVERS (VERKN ELEM) :ELEM
+           ALL U,V:MENGE ALL X:ELEM ME (U V) AND EL (X U) IMPL EL (X V)
+           ALL F:MENGE  ALL PHI:VERKN  ALL X,E:ELEM  
+             G (F PHI E) AND EL (X F) IMPL APPLY (PHI X E) = X
+           ALL U:MENGE ALL PHI:VERKN ALL E:ELEM EINS (E PHI U) IMPL EL (E
+U)
+           ALL F:MENGE  ALL PHI:VERKN  ALL X,E:ELEM  
+             G (F PHI E) AND EL (X F) IMPL EL (INVERS (PHI X) F)
+ 
+THEOREMS : ALL U,F:MENGE  ALL PHI:VERKN  ALL Z,E:ELEM  
+               G (F PHI E) AND ME (U F)
+               IMPL  
+                     ALL X,Y:ELEM  
+                         EL (X U) AND EL (Y U)
+                         IMPL  
+                         EL (APPLY (PHI INVERS (PHI Y) X) U)
+                    AND  
+                    EL (Z U)
+                    AND  
+                    EINS (E PHI U)
+                  IMPL  
+                  EL (INVERS (PHI Z) U)
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+  A1   : ALL X,Y:MENGE  Z:ELEM  -ME(X Y) -EL(Z X) +EL(Z Y)
+  R.:=:: ALL X:ANY  +:=:(X X)
+  A2   : ALL X:MENGE  Y:VERKN  Z,U:ELEM  
+              -G(X Y Z) -EL(U X) +=(APPLY(Y U Z) U) 
+  A3   : ALL X:ELEM  Y:VERKN  Z:MENGE  -EINS(X Y Z) +EL(X Z)
+  A4   : ALL X:MENGE  Y:VERKN  Z,U:ELEM  
+              -G(X Y Z) -EL(U X) +EL(INVERS(Y U) X) 
+ 
+ 
+--------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+  Q. E. D. 
+ 

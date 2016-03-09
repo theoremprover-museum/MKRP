@@ -1,0 +1,267 @@
+;;; -*- Package: MKRP; Base: 10. -*- 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 5-NOV-84                                                      *
+                    *         DATE : 20-NOV-84  11:13:34                                           *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+                                                                         
+*************************************************************************
+ EDIT:     AXIOME UND THEOREME EDITIERT AM:  20-NOV-84 10:01:01
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   LEMMA 2.5.1.2.1.IA
+                                                                        
+************************************************************************
+                                                                        
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : SORT MENGE,VERKN,ELEMENT,NAT,ABB:ANY
+           TYPE W(MENGE) :MENGE
+           TYPE RESTRICTION(ABB MENGE) :ABB
+           TYPE APPLYV(VERKN ELEMENT ELEMENT) :ELEMENT
+           TYPE APPLYA(ABB ELEMENT) :ELEMENT
+           TYPE CONC:VERKN
+           TYPE HG(MENGE VERKN)
+           TYPE ABBILDUNG(ABB MENGE MENGE)
+           TYPE HOMOMORPH(ABB MENGE MENGE)
+           TYPE ME(MENGE MENGE)
+           TYPE REKERW(ABB MENGE) :MENGE
+           TYPE 1:NAT
+           TYPE LENGTH(ELEMENT) :NAT
+           * DEFINITION DER REKURSIVEN ERWEITERUNG REKERW *
+           ALL X,H:MENGE  ALL PHINULL,PHI:ABB  ALL MAL:VERKN  
+                  HG(H MAL) AND ABBILDUNG(PHINULL X H) AND ABBILDUNG(PHI W(X) H) AND GLEICH(REKERW(PHINULL W(X)) PHI)
+             IMPL(     (ALL U:ELEMENT EL(U X) IMPL APPLYA(PHI U) = APPLYA(PHINULL U))
+                   AND( ALL U,V:ELEMENT         EL(U X) AND EL(V W(X))
+                                           IMPL APPLYA(PHI
+                                                       APPLYV(CONC U V))))
+           * WOERTER DER LAENGE 1 SIND BUCHSTABEN *
+           ALL X:MENGE ALL U:ELEMENT EL(U W(X)) AND GLEICH(LENGTH(U) 1) IMPL EL(U X)
+ 
+THEOREMS : ALL X,H:MENGE  ALL PHINULL,PHI:ABB  ALL MAL:VERKN  
+                  HG(H MAL) AND ABBILDUNG(PHINULL X H) AND ABBILDUNG(PHI W(X) H) AND GLEICH(REKERW(PHINULL W(X)) PHI)
+             IMPL( ALL U,V:ELEMENT         EL(U W(X)) AND EL(V W(X)) AND GLEICH(LENGTH(U) 1)
+                                      IMPL APPLYA(PHI APPLYV(CONC U V)) = APPLYV(MAL APPLYA(PHI U) APPLYA(PHI V)))
+ 
+ 
+ 
+ 
+CONSTANTS : 
+=========== 
+ 
+| NAME        | SORT                    |            | ATTRIBUTES                                                       
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+| CONC        | VERKN                   |            |                                                                  
+|
+| 1           | NAT                     |            |                                                                  
+|
+| C_1         | ABB                     |            |                                                                  
+|
+| C_2         | MENGE                   |            |                                                                  
+|
+| C_3         | ELEMENT                 |            |                                                                  
+|
+| C_4         | ELEMENT                 |            |                                                                  
+|
+| C_5         | VERKN                   |            |                                                                  
+|
+| C_6         | MENGE                   |            |                                                                  
+|
+| C_7         | ABB                     |            |                                                                  
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+ 
+ 
+ 
+FUNCTIONS : 
+=========== 
+ 
+| NAME        | DOMAIN                  | RANGE      | ATTRIBUTES                                                       
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+| W           | MENGE                   | MENGE      |                                                                  
+|
+| RESTRICTION | ABB MENGE               | ABB        |                                                                  
+|
+| APPLYV      | VERKN ELEMENT ELEMENT   | ELEMENT    |                                                                  
+|
+| APPLYA      | ABB ELEMENT             | ELEMENT    |                                                                  
+|
+| REKERW      | ABB MENGE               | MENGE      |                                                                  
+|
+| LENGTH      | ELEMENT                 | NAT        |                                                                  
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+ 
+ 
+ 
+PREDICATES : 
+============ 
+ 
+| NAME        | DOMAIN                  |            | ATTRIBUTES                                                       
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+| TRUE        |                         |            | DEFINED                                                          
+|
+| FALSE       |                         |            | DEFINED                                                          
+|
+| HG          | MENGE VERKN             |            |                                                                  
+|
+| ABBILDUNG   | ABB MENGE MENGE         |            |                                                                  
+|
+| HOMOMORPH   | ABB MENGE MENGE         |            |                                                                  
+|
+| ME          | MENGE MENGE             |            |                                                                  
+|
+| GLEICH      | ANY ANY                 |            |                                                                  
+|
+| EL          | ANY ANY                 |            |                                                                  
+|
+| =           | ANY ANY                 |            | DEFINED SYMMETRIC REFLEXIVE SYMMETRIC REFLEXIVE SYMMETRIC        
+|
+|             |                         |            | REFLEXIVE                                                        
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+ 
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+  A1   : ALL X:ANY  + =(X X)
+* A2   : ALL X:MENGE  Y:ELEMENT  - EL(Y W(X))  - GLEICH(LENGTH(Y) 1)  + EL(Y X)
+* A3   : ALL X:ELEMENT  Y,Z:ABB  U,V:MENGE  W:VERKN  
+              - HG(V W)  - ABBILDUNG(Z U V)  - ABBILDUNG(Y W(U) V)  - GLEICH(REKERW(Z W(U)) Y)  - EL(X U)
+                + =(APPLYA(Y X) APPLYA(Z X))
+* A4   : ALL X,Y:ELEMENT  Z,U:ABB  V,W:MENGE  XX:VERKN  
+              - HG(W XX)  - ABBILDUNG(U V W)  - ABBILDUNG(Z W(V) W)  - GLEICH(REKERW(U W(V)) Z)  - EL(Y V)
+                - EL(X W(V))  + =(APPLYA(Z APPLYV(CONC Y X)) APPLYV(XX APPLYA(U Y) APPLYA(Z X)))
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+* T5   : + HG(C_2 C_5)
+* T6   : + ABBILDUNG(C_1 C_6 C_2)
+* T7   : + ABBILDUNG(C_7 W(C_6) C_2)
+* T8   : + GLEICH(REKERW(C_1 W(C_6)) C_7)
+* T9   : + EL(C_4 W(C_6))
+* T10  : + EL(C_3 W(C_6))
+* T11  : + GLEICH(LENGTH(C_4) 1)
+* T12  : - =(APPLYA(C_7 APPLYV(CONC C_4 C_3)) APPLYV(C_5 APPLYA(C_7 C_4) APPLYA(C_7 C_3)))
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION
+ 
+INITIAL CLAUSES :      A1  : ALL X:ANY  + =(X X)
+                     * A2  : ALL X:MENGE  Y:ELEMENT  - EL(Y W(X))  - GLEICH(LENGTH(Y) 1)  + EL(Y X)
+                     * A3  : ALL X:ELEMENT  Y,Z:ABB  U,V:MENGE  W:VERKN  
+                                  - HG(V W)  - ABBILDUNG(Z U V)  - ABBILDUNG(Y W(U) V)  - GLEICH(REKERW(Z W(U)) Y)
+                                    - EL(X U)  + =(APPLYA(Y X) APPLYA(Z X))
+                     * A4  : ALL X,Y:ELEMENT  Z,U:ABB  V,W:MENGE  XX:VERKN  
+                                  - HG(W XX)  - ABBILDUNG(U V W)  - ABBILDUNG(Z W(V) W)  - GLEICH(REKERW(U W(V)) Z)
+                                    - EL(Y V)  - EL(X W(V))
+                                    + =(APPLYA(Z APPLYV(CONC Y X)) APPLYV(XX APPLYA(U Y) APPLYA(Z X)))
+                     * T5  : + HG(C_2 C_5)
+                     * T6  : + ABBILDUNG(C_1 C_6 C_2)
+                     * T7  : + ABBILDUNG(C_7 W(C_6) C_2)
+                     * T8  : + GLEICH(REKERW(C_1 W(C_6)) C_7)
+                     * T9  : + EL(C_4 W(C_6))
+                     * T10 : + EL(C_3 W(C_6))
+                     * T11 : + GLEICH(LENGTH(C_4) 1)
+                     * T12 : - =(APPLYA(C_7 APPLYV(CONC C_4 C_3)) APPLYV(C_5 APPLYA(C_7 C_4) APPLYA(C_7 C_3)))
+ 
+T11,1 & A2,2    -->  * R1  : ALL X:MENGE  - EL(C_4 W(X))  + EL(C_4 X)
+ 
+T8,1 & A3,4     -->  * R2  : ALL X:ELEMENT  Y:VERKN  Z:MENGE  
+                                  - HG(Z Y)  - ABBILDUNG(C_1 C_6 Z)  - ABBILDUNG(C_7 W(C_6) Z)  - EL(X C_6)
+                                    + =(APPLYA(C_7 X) APPLYA(C_1 X))
+ 
+R2,1 & T5,1     -->  * R3  : ALL X:ELEMENT  - ABBILDUNG(C_1 C_6 C_2)  - ABBILDUNG(C_7 W(C_6) C_2)  - EL(X C_6)
+                                              + =(APPLYA(C_7 X) APPLYA(C_1 X))
+ 
+R3,1 & T6,1     -->  * R4  : ALL X:ELEMENT  - ABBILDUNG(C_7 W(C_6) C_2)  - EL(X C_6)  + =(APPLYA(C_7 X) APPLYA(C_1 X))
+ 
+R4,1 & T7,1     -->  * R5  : ALL X:ELEMENT  - EL(X C_6)  + =(APPLYA(C_7 X) APPLYA(C_1 X))
+ 
+T8,1 & A4,4     -->  * R6  : ALL X,Y:ELEMENT  Z:VERKN  U:MENGE  
+                                  - HG(U Z)  - ABBILDUNG(C_1 C_6 U)  - ABBILDUNG(C_7 W(C_6) U)  - EL(Y C_6)
+                                    - EL(X W(C_6))
+                                    + =(APPLYA(C_7 APPLYV(CONC Y X)) APPLYV(Z APPLYA(C_1 Y) APPLYA(C_7 X)))
+ 
+T5,1 & R6,1     -->  * R7  : ALL X,Y:ELEMENT  - ABBILDUNG(C_1 C_6 C_2)  - ABBILDUNG(C_7 W(C_6) C_2)  - EL(Y C_6)
+                                                - EL(X W(C_6))
+                                              + =(APPLYA(C_7 APPLYV(CONC Y X)) APPLYV(C_5 APPLYA(C_1 Y) APPLYA(C_7 X)))
+ 
+ 
+R7,2 & T7,1     -->  * R8  : ALL X,Y:ELEMENT  - ABBILDUNG(C_1 C_6 C_2)  - EL(Y C_6)  - EL(X W(C_6))
+                                              + =(APPLYA(C_7 APPLYV(CONC Y X)) APPLYV(C_5 APPLYA(C_1 Y) APPLYA(C_7 X)))
+ 
+ 
+R8,1 & T6,1     -->  * R9  : ALL X,Y:ELEMENT  - EL(Y C_6)  - EL(X W(C_6))
+                                              + =(APPLYA(C_7 APPLYV(CONC Y X)) APPLYV(C_5 APPLYA(C_1 Y) APPLYA(C_7 X)))
+ 
+ 
+R1,2 & R5,1     -->  * R10 : - EL(C_4 W(C_6))  + =(APPLYA(C_7 C_4) APPLYA(C_1 C_4))
+ 
+R10,1 & T9,1    -->  * R11 : + =(APPLYA(C_7 C_4) APPLYA(C_1 C_4))
+ 
+R11,1 & T12,1   -->  * P12 : - =(APPLYA(C_7 APPLYV(CONC C_4 C_3)) APPLYV(C_5 APPLYA(C_1 C_4) APPLYA(C_7 C_3)))
+ 
+R9,3 & P12,1    -->  * R13 : - EL(C_4 C_6)  - EL(C_3 W(C_6))
+ 
+R13,2 & T10,1   -->  * R14 : - EL(C_4 C_6)
+ 
+R14,1 & R1,2    -->  * R15 : - EL(C_4 W(C_6))
+ 
+R15,1 & T9,1    -->  * R16 :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+STOP
+ 

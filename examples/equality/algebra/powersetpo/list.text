@@ -1,0 +1,125 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 28.0 EQUALITY 15.1                                  *
+                     *           DATE: 21-MAR,1989  19:24                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+                                                                                                                    
+      
+   
+   ******************************************************************************************************************
+   ***
+   
+    EDIT:     Axioms and Theorems edited: 21-MAR,1989 19:15 
+   
+   ******************************************************************************************************************
+   ***
+   
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * AXIOMS *
+             * POWERSETS *
+             IN (EMPTY POWERSET)
+             ALL A EX B IN (B POWERSET) AND (IN (A B) IMPL NOT (EX X IN (X B) AND NOT (X = B)))
+             ALL A,B IN (A POWERSET) AND IN (B POWERSET) IMPL IN (UNION (A B) POWERSET)
+             * UNION *
+             ALL A,B,C IN (A C) AND IN (A B) IMPL IN (A UNION (B C))
+             * SUBSET *
+             ALL A,B,C IN (A B) AND SUBSET (B C) IMPL IN (A C)
+             * SET EQUALITY *
+             ALL A,B SUBSET (A B) AND SUBSET (B A) IMPL A = B
+             
+   Theorems: * THEOREM *
+             * SUBSET IS A PARTIAL ORDER ON A POWERSET *
+             (ALL A,B IN (A POWERSET) AND IN (B POWERSET) IMPL (SUBSET (A B) AND SUBSET (B A) IMPL A = B))
+             AND (ALL A,B,C IN (A POWERSET) AND IN (B POWERSET) AND IN (C POWERSET)
+                            IMPL (SUBSET (A B) AND SUBSET (B C) IMPL SUBSET (A C)))
+             AND (ALL A IN (A POWERSET) IMPL SUBSET (A A))
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+             A2:   + IN(empty powerset)
+             A3:   All x:Any + IN(f_1(x) powerset)
+             A4:   All x,y:Any - IN(y f_1(y))  - IN(x f_1(y))  + =(x f_1(y))
+             A5:   All x,y:Any - IN(y powerset)  - IN(x powerset)  + IN(union(y x) powerset)
+             A6:   All x,y,z:Any - IN(z y)  - IN(z x)  + IN(z union(x y))
+             A7:   All x,y,z:Any - IN(z y)  - SUBSET(y x)  + IN(z x)
+           * A8:   All x,y:Any - SUBSET(y x)  - SUBSET(x y)  + =(y x)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization and Splitting
+             =================================================================
+
+   Splitpart 1
+
+             T9: + IN(c_1 powerset)
+             T10: + IN(c_2 powerset)
+           * T11: + SUBSET(c_1 c_2)
+           * T12: + SUBSET(c_2 c_1)
+           * T13: - =(c_1 c_2)
+
+   Splitpart 2
+
+             T14: + IN(c_3 powerset)
+             T15: + IN(c_4 powerset)
+             T16: + IN(c_5 powerset)
+             T17: + SUBSET(c_3 c_4)
+             T18: + SUBSET(c_4 c_5)
+             T19: - SUBSET(c_3 c_5)
+
+   Splitpart 3
+
+             T20: + IN(c_6 powerset)
+             T21: - SUBSET(c_6 c_6)
+
+
+   End of Splitparts
+
+
+
+
+
+             Initial Operations on Theorems
+             ==============================
+
+
+          
+   Splitpart 1:
+   
+   T13,1 & A8,3  --> * R1: - SUBSET(c_1 c_2)  - SUBSET(c_2 c_1)
+   
+   R1,1 & T11,1  --> * R2: - SUBSET(c_2 c_1)
+   
+   R2,1 & T12,1  --> * R3: []
+   
+
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 

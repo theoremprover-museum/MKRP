@@ -1,0 +1,235 @@
+;;; -*- Package: MKRP; Base: 10. -*- 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 5-NOV-84                                                      *
+                    *         DATE : 26-NOV-84  22:44:55                                           *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+                                                                         
+*************************************************************************
+ EDIT:     AXIOME UND THEOREME EDITIERT AM:  26-NOV-84 14:55:10
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:    2.7.RL.EHG 
+                                                                        
+************************************************************************
+                                                                        
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : SORT ELEMENT,MENGE,ABB,LISTE:ANY
+           TYPE EHG(MENGE ABB) :MENGE
+           TYPE INVERS(ABB) :ABB
+           TYPE APPLYA(ABB ELEMENT) :ELEMENT
+           TYPE BILD(ABB MENGE) :MENGE
+           TYPE MAPC(ABB LISTE) :ELEMENT
+           TYPE MAPCAR(ABB LISTE) :ELEMENT
+           TYPE T:ELEMENT
+           TYPE F,X:MENGE
+           TYPE ELEM(MENGE) :ABB
+           * U SEI BELIEB. ELEMENT AUS F *
+           EX U:ELEMENT EL(U F)
+           * A ENTHALTEN IN W(A) *
+           ALL A:MENGE ME(A W(A))
+           ALL A,B:MENGE ALL PHI:ABB ISOMORPH(PHI A B) IMPL ISOMORPH(INVERS(PHI) A B)
+           * SIND A,B ISOMORPH BZGL. PHI UND IST D TEILM. VON A, DANN IST DAS BILD VON D BZGL. PHI TEILMENGE VON B *
+           ALL A,B,D:MENGE ALL PHI:ABB ISOMORPH(PHI A B) AND ME(D A) IMPL ME(BILD(PHI D) B)
+           * GILT: ISOMORPH F , W(X) BZGL. PHI , DANN GIBT ES ZU JEDEM U AUS F ENTSPRECHENDES PHI(U) AUS W(X) *
+           ALL A,B:MENGE  ALL PHI,MAL1,MAL2:ABB  ALL U:ELEMENT  
+                  HG(A MAL1) AND HG(B MAL2) AND ISOMORPH(PHI A B) AND EL(F A)
+             IMPL (EX W:ELEMENT EL(W B) AND APPLYA(INVERS(PHI) W) = F)
+           *  WENN ALLE U AUS F ALS PRODUKT VON ELEMENTEN EINER MENGE E DARGESTELLT WERDEN KOENNEN, DANN IST E          
+           *  ERZEUGENDENSYS. FUER F *                                                                                  
+           ALL U:ELEMENT  ALL A,B:MENGE  ALL MAL:ABB  
+                  HG(A MAL) AND EL(U A) AND ME(B A) AND(EX L:LISTE MAPC(MAL L) = U AND MAPC(ELEM(B) L) = T)
+             IMPL GLEICH(EHG(B MAL) A)
+           * AUSSEHEN EINES ELEMENTES W AUS W(A) MIT URBILD(W) = U AUS F *
+           ALL A,B:MENGE  ALL PSI:ABB  ALL U,W:ELEMENT  ALL MAL1,MAL2:ABB  
+                      HG(A MAL1)
+                  AND HG(W(B) MAL2)
+                  AND ISOMORPH(INVERS(PSI) W(B) A)
+                  AND EL(W W(B))
+                  AND APPLYA(INVERS(PSI) W) = U
+                  AND EL(U A)
+             IMPL( EX L1,L2:LISTE        MAPC(MAL2 L2) = W
+                                     AND MAPC(MAL1 L1) = U
+                                     AND MAPCAR(INVERS(PSI) L2) = L1
+                                     AND MAPC(ELEM(B) L2) = T)
+ 
+THEOREMS : ALL MAL,CONC,PSI:ABB         HG(F MAL) AND HG(W(X) CONC) AND ISOMORPH(PSI F W(X))
+                                   IMPL GLEICH(EHG(BILD(INVERS(PSI) X) MAL) F)
+ 
+ 
+ 
+ 
+CONSTANTS : 
+=========== 
+ 
+| NAME     | SORT                                |            | ATTRIBUTES                                              
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+| T        | ELEMENT                             |            |                                                         
+|
+| F        | MENGE                               |            |                                                         
+|
+| X        | MENGE                               |            |                                                         
+|
+| C_1      | ELEMENT                             |            |                                                         
+|
+| C_2      | ABB                                 |            |                                                         
+|
+| C_3      | ABB                                 |            |                                                         
+|
+| C_4      | ABB                                 |            |                                                         
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+ 
+ 
+ 
+FUNCTIONS : 
+=========== 
+ 
+| NAME     | DOMAIN                              | RANGE      | ATTRIBUTES                                              
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+| EHG      | MENGE ABB                           | MENGE      |                                                         
+|
+| INVERS   | ABB                                 | ABB        |                                                         
+|
+| APPLYA   | ABB ELEMENT                         | ELEMENT    |                                                         
+|
+| BILD     | ABB MENGE                           | MENGE      |                                                         
+|
+| MAPC     | ABB LISTE                           | ELEMENT    |                                                         
+|
+| MAPCAR   | ABB LISTE                           | ELEMENT    |                                                         
+|
+| ELEM     | MENGE                               | ABB        |                                                         
+|
+| W        | ANY                                 | ANY        |                                                         
+|
+| F_1      | MENGE ABB                           | ELEMENT    |                                                         
+|
+| F_2      | MENGE ELEMENT ELEMENT ABB ABB ABB   | LISTE      |                                                         
+|
+| F_3      | MENGE ELEMENT ELEMENT ABB ABB ABB   | LISTE      |                                                         
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+ 
+ 
+ 
+PREDICATES : 
+============ 
+ 
+| NAME     | DOMAIN                              |            | ATTRIBUTES                                              
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+| TRUE     |                                     |            | DEFINED                                                 
+|
+| FALSE    |                                     |            | DEFINED                                                 
+|
+| EL       | ANY ANY                             |            |                                                         
+|
+| ME       | ANY ANY                             |            |                                                         
+|
+| ISOMORPH | ANY ANY ANY                         |            |                                                         
+|
+| HG       | ANY ANY                             |            |                                                         
+|
+| =        | ANY ANY                             |            | DEFINED SYMMETRIC REFLEXIVE SYMMETRIC REFLEXIVE         
+|
+|          |                                     |            | SYMMETRIC REFLEXIVE                                     
+|
+| GLEICH   | ANY ANY                             |            |                                                         
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+ 
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+  A1   : ALL X:ANY  + =(X X)
+  A2   : + EL(C_1 F)
+  A3   : ALL X:MENGE  + ME(X W(X))
+  A4   : ALL X,Y:MENGE  Z:ABB  - ISOMORPH(Z Y X)  + ISOMORPH(INVERS(Z) Y X)
+  A5   : ALL X,Y,Z:MENGE  U:ABB  - ISOMORPH(U Z Y)  - ME(X Z)  + ME(BILD(U X) Y)
+  A6   : ALL X,Y,Z:ABB  U,V:MENGE  - HG(V Z)  - HG(U Y)  - ISOMORPH(X V U)  - EL(F V)  + EL(F_1(U X) U)
+  A7   : ALL X,Y,Z:ABB  U,V:MENGE  - HG(V Z)  - HG(U Y)  - ISOMORPH(X V U)  - EL(F V)  + =(APPLYA(INVERS(X) F_1(U X)) F)
+  A8   : ALL X:LISTE  Y,Z:MENGE  U:ELEMENT  V:ABB  
+              - HG(Z V)  - EL(U Z)  - ME(Y Z)  - =(MAPC(V X) U)  - =(MAPC(ELEM(Y) X) T)  + GLEICH(EHG(Y V) Z)
+  A9   : ALL X,Y:ELEMENT  Z,U,V:ABB  W,XX:MENGE  
+              - HG(XX V)  - HG(W(W) U)  - ISOMORPH(INVERS(Z) W(W) XX)  - EL(Y W(W))  - =(APPLYA(INVERS(Z) Y) X)
+                - EL(X XX)  + =(MAPC(U F_3(W X Y Z U V)) Y)
+  A10  : ALL X,Y:ELEMENT  Z,U,V:ABB  W,XX:MENGE  
+              - HG(XX V)  - HG(W(W) U)  - ISOMORPH(INVERS(Z) W(W) XX)  - EL(Y W(W))  - =(APPLYA(INVERS(Z) Y) X)
+                - EL(X XX)  + =(MAPC(V F_2(W X Y Z U V)) X)
+  A11  : ALL X,Y:ELEMENT  Z,U,V:ABB  W,XX:MENGE  
+              - HG(XX V)  - HG(W(W) U)  - ISOMORPH(INVERS(Z) W(W) XX)  - EL(Y W(W))  - =(APPLYA(INVERS(Z) Y) X)
+                - EL(X XX)  + =(MAPCAR(INVERS(Z) F_3(W X Y Z U V)) F_2(W X Y Z U V))
+  A12  : ALL X,Y:ELEMENT  Z,U,V:ABB  W,XX:MENGE  
+              - HG(XX V)  - HG(W(W) U)  - ISOMORPH(INVERS(Z) W(W) XX)  - EL(Y W(W))  - =(APPLYA(INVERS(Z) Y) X)
+                - EL(X XX)  + =(MAPC(ELEM(W) F_3(W X Y Z U V)) T)
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+  T13  : + HG(F C_3)
+  T14  : + HG(W(X) C_2)
+  T15  : + ISOMORPH(C_4 F W(X))
+  T16  : - GLEICH(EHG(BILD(INVERS(C_4) X) C_3) F)
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION ( FAILURE : GRAPH.COLLAPSED )
+ 
+INITIAL CLAUSES : 
+        A1  : ALL X:ANY  + =(X X)
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+THE THEOREM(S) COULD NOT BE PROVED.
+ 
+STOP
+ 

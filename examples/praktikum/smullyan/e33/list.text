@@ -1,0 +1,122 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 35.2 EQUALITY 16.1                                  *
+                     *           DATE: 15-DEC,1989  14:28                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 15-DEC,1989 14:28 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * AXIOMS FOR PROBLEM 33 %.
+             * THERE ARE TWO PERSONS A AND B
+             * A SAYS : I AM A KNAVE ,BUT B IS NOT.
+             * WHAT ARE A AND B ?
+             *
+             * BUT (X) MEANS : X SAYS : I AM A KNAVE ,BUT B IS NOT.
+             *
+             ALL X KNIGHT (X) EQV NOT KNAVE (X)
+             ALL X (KNAVE (X) AND BUT (X))
+             
+   Theorems: KNAVE (A) AND KNAVE (B)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+           * A1:   All x:Any + KNAVE(x)
+             A2:   All x:Any + BUT(x)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization and Splitting
+             =================================================================
+
+   Splitpart 1
+
+           * T3: - KNAVE(a)
+
+   Splitpart 2
+
+           * T4: - KNAVE(b)
+
+
+   End of Splitparts
+
+
+
+
+
+             Initial Operations on Theorems
+             ==============================
+
+
+          
+   Splitpart 1:
+   
+   T3,1 & A1,1  --> * R1: []
+   
+
+   
+   Splitpart 2:
+   
+   T4,1 & A1,1  --> * R2: []
+   
+
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation of Splitpart 1:
+   ==========================
+   
+   See operations on theorems of splitpart 1
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation of Splitpart 2:
+   ==========================
+   
+   See operations on theorems of splitpart 2
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation of Splitpart 1: 2 seconds
+   Time Used for Refutation of Splitpart 2: 2 seconds

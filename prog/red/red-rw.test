@@ -1,0 +1,262 @@
+;;; -*- package: MKRP; syntax: common-lisp; mode: lisp -*-
+
+
+(IN-PACKAGE "MKRP" :USE '("CL"))
+
+(mem-reset)
+(st-reset)
+(dt-reset)
+(ds-reset)
+(com-reset)
+
+
+;;; group example
+
+(setq plus (dt-function.create "+" 'any '(any any)))
+(setq minus (dt-function.create "-" 'any '(any)))
+(setq null (dt-constant.create "0" 'any))
+(setq x (dt-variable.create 'any))
+(setq y (dt-variable.create 'any))
+(setq z (dt-variable.create 'any))
+(setq c1 (ds-clause.create "A1" nil 0 `((+ 2 ((,minus ,null) ,null)))))
+(setq c2 (ds-clause.create "A2" nil 0 `((+ 2 ((,minus (,minus ,x)) ,x)))))
+(setq c3 (ds-clause.create "A3" nil 0 `((+ 2 ((,minus (,plus ,x ,y)) (,plus (,minus ,y) (,minus ,x)))))))
+(setq c4 (ds-clause.create "A4" nil 0 `((+ 2 ((,plus ,x ,null) ,x)))))
+(setq c5 (ds-clause.create "A5" nil 0 `((+ 2 ((,plus ,null ,x) ,x)))))
+(setq c6 (ds-clause.create "A6" nil 0 `((+ 2 ((,plus (,minus ,x) ,x) ,null)))))
+(setq c7 (ds-clause.create "A7" nil 0 `((+ 2 ((,plus ,x (,minus ,x)) ,null)))))
+(setq c8 (ds-clause.create "A8" nil 0 `((+ 2 ((,plus ,x (,plus (,minus ,x) ,y)) ,y)))))
+(setq c9 (ds-clause.create "A9" nil 0 `((+ 2 ((,plus (,minus ,x) (,plus ,x ,y)) ,y)))))
+(setq c10 (ds-clause.create "A10" nil 0 `((+ 2 ((,plus (,plus ,x ,y) ,z) (,plus ,x (,plus ,y ,z)))))))
+
+(dt-function.put.c.tree plus nil)
+(dt-function.put.c.tree minus nil)
+(setq tt (red=rw_function.c.tree plus))
+(setq ss (red=rw_function.c.tree minus))
+
+
+(setq rr (mapcar #'(lambda (rule) 
+		    (red=rw_rule.make :clause rule :left (first (ds-clause.termlist rule 1))
+					:right (second (ds-clause.termlist rule 1))))
+		(list c1 c2 c3 c4 c5 c6 c7 c8 c9 c10)))
+
+(mapc #'(lambda (rule)
+	  (red=rw_c.insert rule))
+      rr)
+
+(setq u (dt-variable.create 'any))
+(setq v (dt-variable.create 'any))
+
+;;; Interpretation of single rules
+
+(time (red=info_rec.p.link.list `((,plus
+				   (,plus (,plus (,plus (,plus (,minus ,u) (,minus ,u)) (,minus ,u)) (,minus ,u)) (,minus ,u))
+				   (,plus (,plus (,plus (,plus ,u ,u) ,u) ,u) ,u)))
+				nil rr nil 10))
+
+1.3
+
+(let ((xx `((,plus
+	     (,plus (,plus (,plus (,plus
+				   (,plus (,minus ,u) (,minus ,u))
+				   (,minus ,u))
+			    (,minus ,u))
+		     (,minus ,u))
+	      (,minus ,u))
+	     (,plus (,plus (,plus (,plus (,plus ,u ,u) ,u) ,u) ,u) ,u)))))
+  (time (red=info_rec.p.link.list  xx nil rr nil 10)))
+
+1.85
+
+;;; Interpretation of trees
+
+(let ((xx `((,plus ,u
+	     (,plus ,u (,plus ,u (,plus ,u (,plus ,u (,plus (,minus ,v) (,minus ,v))))))))))
+  (time (red=info_rec.p.link.list  xx nil rr nil 10)))
+
+0.089
+
+
+(let ((xx `((,plus
+	     (,plus (,plus (,plus (,plus
+				   (,plus (,minus ,u) (,minus ,u))
+				   (,minus ,u))
+			    (,minus ,u))
+		     (,minus ,u))
+	      (,minus ,u))
+	     (,plus (,plus (,plus (,plus (,plus ,u ,u) ,u) ,u) ,u) ,u)))))
+  (time (red=rw_apply.to.termlist.c.i  xx)))
+
+0.17
+
+(let ((xx `((,plus ,u
+	     (,plus ,u (,plus ,u (,plus ,u (,plus ,u (,plus (,minus ,v) (,minus ,v))))))))))
+  (time (red=rw_apply.to.termlist.c.i  xx)))
+
+0.018
+
+;;; Application of compiled trees
+
+(dt-function.put.c.tree plus (compile nil (red=rw_compile.proc (red=rw_function.c.tree plus))))
+(dt-function.put.c.tree minus (compile nil (red=rw_compile.proc (red=rw_function.c.tree minus))))
+
+(let ((xx `((,plus
+	     (,plus (,plus (,plus (,plus
+				   (,plus (,minus ,u) (,minus ,u))
+				   (,minus ,u))
+			    (,minus ,u))
+		     (,minus ,u))
+	      (,minus ,u))
+	     (,plus (,plus (,plus (,plus (,plus ,u ,u) ,u) ,u) ,u) ,u)))))
+  (time (red=rw_apply.to.termlist.c.c xx)))
+
+0.04
+
+(let ((xx `((,plus ,u
+	     (,plus ,u (,plus ,u (,plus ,u (,plus ,u (,plus (,minus ,v) (,minus ,v))))))))))
+  (time (red=rw_apply.to.termlist.c.c  xx)))
+
+0.0033
+
+
+
+
+
+
+
+;;; ring example
+
+(mem-reset)
+(st-reset)
+(dt-reset)
+(ds-reset)
+(com-reset)
+
+
+(setq plus (dt-function.create "+" 'any '(any any)))
+(setq mult (dt-function.create "*" 'any '(any any)))
+(setq minus (dt-function.create "-" 'any '(any)))
+(setq null (dt-constant.create "0" 'any))
+(setq one (dt-constant.create "1" 'any))
+(setq x (dt-variable.create 'any))
+(setq y (dt-variable.create 'any))
+(setq z (dt-variable.create 'any))
+(setq c1 (ds-clause.create "A1" nil 0 `((+ 2 ((,minus ,null) ,null)))))
+(setq c2 (ds-clause.create "A2" nil 0 `((+ 2 ((,minus (,minus ,x)) ,x)))))
+(setq c3 (ds-clause.create "A3" nil 0 `((+ 2 ((,minus (,plus ,x ,y)) (,plus (,minus ,y) (,minus ,x)))))))
+(setq c4 (ds-clause.create "A4" nil 0 `((+ 2 ((,plus ,x ,null) ,x)))))
+(setq c5 (ds-clause.create "A5" nil 0 `((+ 2 ((,plus ,null ,x) ,x)))))
+(setq c6 (ds-clause.create "A6" nil 0 `((+ 2 ((,plus (,minus ,x) ,x) ,null)))))
+(setq c7 (ds-clause.create "A7" nil 0 `((+ 2 ((,plus ,x (,minus ,x)) ,null)))))
+(setq c8 (ds-clause.create "A8" nil 0 `((+ 2 ((,plus ,x (,plus (,minus ,x) ,y)) ,y)))))
+(setq c9 (ds-clause.create "A9" nil 0 `((+ 2 ((,plus (,minus ,x) (,plus ,x ,y)) ,y)))))
+(setq c10 (ds-clause.create "A10" nil 0 `((+ 2 ((,plus (,plus ,x ,y) ,z) (,plus ,x (,plus ,y ,z)))))))
+(setq c11 (ds-clause.create "A11" nil 0 `((+ 2 ((,mult (,plus ,x ,y) ,z) (,plus (,mult ,x ,z) (,mult ,y ,z)))))))
+(setq c12 (ds-clause.create "A12" nil 0 `((+ 2 ((,mult ,z (,plus ,x ,y)) (,plus (,mult ,z ,x) (,mult ,z ,y)))))))
+(setq c13 (ds-clause.create "A13" nil 0 `((+ 2 ((,mult ,one ,x) ,x)))))
+(setq c14 (ds-clause.create "A14" nil 0 `((+ 2 ((,mult ,x ,one) ,x)))))
+(setq c15 (ds-clause.create "A15" nil 0 `((+ 2 ((,mult ,null ,x) ,null)))))
+(setq c16 (ds-clause.create "A16" nil 0 `((+ 2 ((,mult ,x ,null) ,null)))))
+(setq c17 (ds-clause.create "A17" nil 0 `((+ 2 ((,mult (,minus ,y) ,x) (,minus (,mult ,y ,x)))))))
+(setq c18 (ds-clause.create "A18" nil 0 `((+ 2 ((,mult ,x (,minus ,y)) (,minus (,mult ,x ,y)))))))
+(setq c19 (ds-clause.create "A19" nil 0 `((+ 2 ((,mult (,mult ,x ,y) ,z) (,mult ,x (,mult ,y ,z)))))))
+
+(dt-function.put.c.tree plus nil)
+(dt-function.put.c.tree minus nil)
+(dt-function.put.c.tree mult nil)
+(setq tt (red=rw_function.c.tree plus))
+(setq ss (red=rw_function.c.tree minus))
+(setq mm (red=rw_function.c.tree mult))
+
+(setq rr (mapcar #'(lambda (rule) 
+		    (rds=rw_rule.make :clause rule :left (first (ds-clause.termlist rule 1))
+					:right (second (ds-clause.termlist rule 1))))
+		(list c1 c2 c3 c4 c5 c6 c7 c8 c9 c10 c11 c12 c13 c14 c15 c16 c17 c18 c19)))
+
+(mapc #'(lambda (rule)
+	  (red=rw_c.insert rule))
+      rr)
+
+
+(setq u (dt-variable.create 'any))
+
+;;; Interpretation of single rules
+
+(defun ppp (x)
+  (if (stringp x)
+      (princ x)
+      (if (= (length x) 3)
+	  (progn (princ "(") (ppp (second x)) (princ (first x)) (ppp (third x)) (princ ")"))
+	  (progn (princ "(-") (ppp (second x)) (princ ")")))))
+
+(let ((pat `((,mult (,mult (,mult (,plus ,u ,one) (,mult (,plus ,u (,minus ,one)) (,plus ,u (,minus ,one))))
+		     (,plus ,u ,one))
+	      (,plus ,u (,minus ,one))))))
+  (time (red=info_rec.p.link.list pat
+				  nil rr nil nil)))
+
+305.38
+
+(let ((xx `((,mult (,mult (,mult (,plus ,u ,one) (,mult (,plus ,u (,minus ,one)) (,plus ,u (,minus ,one))))
+		    (,plus ,u ,one))
+	     (,plus ,u (,minus ,one))))))
+  (time (red=rw_apply.to.termlist.c.i  xx)))
+
+9.97
+
+(dt-function.put.c.tree plus (compile nil (red=rw_compile.proc (red=rw_function.c.tree plus))))
+(dt-function.put.c.tree minus (compile nil (red=rw_compile.proc (red=rw_function.c.tree minus))))
+(dt-function.put.c.tree mult (compile nil (red=rw_compile.proc (red=rw_function.c.tree mult))))
+
+(let ((xx `((,mult (,mult (,mult (,plus ,u ,one) (,mult (,plus ,u (,minus ,one)) (,plus ,u (,minus ,one))))
+		    (,plus ,u ,one))
+	     (,plus ,u (,minus ,one))))))
+  (time (red=rw_apply.to.termlist.c.c xx)))
+
+
+
+
+(mem-reset)
+(st-reset)
+(dt-reset)
+(ds-reset)
+(com-reset)
+
+
+(setq plus (dt-function.create "+" 'any '(any any)))
+
+(setq x (dt-variable.create 'any))
+(setq y (dt-variable.create 'any))
+(setq z (dt-variable.create 'any))
+
+(setq c10 (ds-clause.create "A10" nil 0 `((+ 2 ((,plus (,plus ,x ,y) ,z) (,plus ,x (,plus ,y ,z)))))))
+
+(dt-function.put.c.tree plus nil)
+
+(setq tt (red=rw_function.c.tree plus))
+
+(setq rr (mapcar #'(lambda (rule) 
+		    (rds=rw_rule.make :clause rule :left (first (ds-clause.termlist rule 1))
+					:right (second (ds-clause.termlist rule 1))))
+		(list c10)))
+
+(setq u (dt-variable.create 'any))
+
+(mapc #'(lambda (rule)
+	  (red=rw_c.insert rule))
+      rr)
+
+(let ((xx `((,plus (,plus (,plus (,plus (,plus (,plus (,plus (,plus (,plus ,u ,u) ,u) ,u) ,u) ,u) ,u) ,u) ,u) ,u))))
+  (time (red=info_rec.p.link.list  xx nil rr nil nil)))
+
+0.09
+
+(let ((xx `((,plus (,plus (,plus (,plus (,plus (,plus (,plus (,plus (,plus ,u ,u) ,u) ,u) ,u) ,u) ,u) ,u) ,u) ,u))))
+  (time (red=rw_apply.to.termlist.c.i  xx)))
+
+0.03
+
+(dt-function.put.c.tree plus (compile nil (red=rw_compile.proc (red=rw_function.c.tree plus))))
+
+(let ((xx `((,plus (,plus (,plus (,plus (,plus (,plus (,plus (,plus (,plus ,u ,u) ,u) ,u) ,u) ,u) ,u) ,u) ,u) ,u))))
+  (time (red=rw_apply.to.termlist.c.c xx)))

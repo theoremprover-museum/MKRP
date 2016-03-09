@@ -1,0 +1,136 @@
+;;; -*- Package: MKRP; Base: 10. -*- 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 18-OCT-84                                                     *
+                    *         DATE : 31-OCT-84  00:35:04                                           *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+                                                                         
+*************************************************************************
+ EDIT:     AXIOME UND THEOREME EDITIERT AM:  30-OCT-84 23:16:13
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   LEMMA 2.5.2.IA
+                                                                        
+************************************************************************
+                                                                        
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : SORT ELEMENT,MENGE,VERKN,NAT,ABB:ANY
+           TYPE APPLYA(ABB ELEMENT) :ELEMENT
+           TYPE APPLYV(VERKN ELEMENT ELEMENT) :ELEMENT
+           TYPE LENGTH(ELEMENT) :NAT
+           TYPE W(MENGE) :MENGE
+           TYPE CONC:VERKN
+           TYPE 1:NAT
+           ALL X:MENGE  ALL U,V,W:ELEMENT  
+             EL(U X) AND EL(V W(X)) AND EL(W W(X)) AND APPLYV(CONC U V) = APPLYV(CONC U W) IMPL V = W
+           ALL X:MENGE ALL U:ELEMENT EL(U W(X)) AND LENGTH(U) = 1 IMPL EL(U X)
+ 
+THEOREMS : ALL X:MENGE  ALL U,V,W:ELEMENT  
+                  EL(U W(X)) AND EL(V W(X)) AND EL(W W(X)) AND LENGTH(U) = 1 AND APPLYV(CONC U V) = APPLYV(CONC U W)
+             IMPL V = W
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+* A1   : ALL X:ANY  + =(X X)
+* A2   : ALL X:MENGE  Y:ELEMENT  - EL(Y W(X))  - =(LENGTH(Y) 1)  + EL(Y X)
+* A3   : ALL X,Y,Z:ELEMENT  U:MENGE  
+              - EL(Z U)  - EL(Y W(U))  - EL(X W(U))  - =(APPLYV(CONC Z Y) APPLYV(CONC Z X))  + =(Y X)
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+* T4   : + EL(C_2 W(C_1))
+* T5   : + EL(C_3 W(C_1))
+* T6   : + EL(C_4 W(C_1))
+* T7   : + =(LENGTH(C_2) 1)
+* T8   : + =(APPLYV(CONC C_2 C_3) APPLYV(CONC C_2 C_4))
+* T9   : - =(C_3 C_4)
+ 
+ 
+ 
+ 
+ 
+ 
+INITIAL OPERATIONS ON THEOREMS
+==============================
+ 
+ 
+T7          -->  * RS1 : + =(1 LENGTH(C_2))
+ 
+A2,2 & RS1  -->  * RW2 : ALL X:MENGE  Y:ELEMENT  - EL(Y W(X))  - =(LENGTH(Y) LENGTH(C_2))  + EL(Y X)
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION
+ 
+INITIAL CLAUSES :   * A1  : ALL X:ANY  + =(X X)
+                    * RW2 : ALL X:MENGE  Y:ELEMENT  - EL(Y W(X))  - =(LENGTH(Y) LENGTH(C_2))  + EL(Y X)
+                    * A3  : ALL X,Y,Z:ELEMENT  U:MENGE  
+                                 - EL(Z U)  - EL(Y W(U))  - EL(X W(U))  - =(APPLYV(CONC Z Y) APPLYV(CONC Z X))
+                                   + =(Y X)
+                    * T4  : + EL(C_2 W(C_1))
+                    * T5  : + EL(C_3 W(C_1))
+                    * T6  : + EL(C_4 W(C_1))
+                    * T8  : + =(APPLYV(CONC C_2 C_3) APPLYV(CONC C_2 C_4))
+                    * T9  : - =(C_3 C_4)
+ 
+T4,1 & RW2,1   -->  * R3  : - =(LENGTH(C_2) LENGTH(C_2))  + EL(C_2 C_1)
+ 
+R3,1 & A1,1    -->  * R4  : + EL(C_2 C_1)
+ 
+T6,1 & A3,3    -->  * R5  : - EL(C_2 C_1)  - EL(C_3 W(C_1))  - =(APPLYV(CONC C_2 C_3) APPLYV(CONC C_2 C_4))
+                              + =(C_3 C_4)
+ 
+R5,1 & R4,1    -->  * R6  : - EL(C_3 W(C_1))  - =(APPLYV(CONC C_2 C_3) APPLYV(CONC C_2 C_4))  + =(C_3 C_4)
+ 
+R6,1 & T5,1    -->  * R7  : - =(APPLYV(CONC C_2 C_3) APPLYV(CONC C_2 C_4))  + =(C_3 C_4)
+ 
+R7,1 & T8,1    -->  * R8  : + =(C_3 C_4)
+ 
+R8,1 & T9,1    -->  * R9  :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+STOP
+ 

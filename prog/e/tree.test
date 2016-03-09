@@ -1,0 +1,112 @@
+;;; -*- package: MKRP; syntax: common-lisp; mode: lisp -*-
+
+
+(IN-PACKAGE "MKRP" :USE '("CL"))
+
+(defun test-create (term)
+  (if (consp term)
+      (eds-term_create (test-create (first term)) (mapcar #'test-create (rest term)))
+      (symbol-value term)))
+
+(setq plus (eds-fct_create "+" 2))
+(setq minus (eds-fct_create "-" 1))
+(setq null (eds-const_create "0"))
+(setq equal (eds-fct_create "=" 2))
+(setq x (eds-var_create "X"))
+(setq y (eds-var_create "Y"))
+(setq z (eds-var_create "Z"))
+(setq c1 (eds-clause_create "A1" (list (test-create '(equal (minus null) null)))))
+(setq c2 (eds-clause_create "A2" (list (test-create '(equal (minus (minus x)) x)))))
+(setq c3 (eds-clause_create "A3" (list (test-create '(equal (minus (plus x y)) (plus (minus y) (minus x)))))))
+(setq c4 (eds-clause_create "A4" (list (test-create '(equal (plus x null) x)))))
+(setq c5 (eds-clause_create "A5" (list (test-create '(equal (plus null x) x)))))
+(setq c6 (eds-clause_create "A6" (list (test-create '(equal (plus (minus x) x) null)))))
+(setq c7 (eds-clause_create "A7" (list (test-create '(equal (plus x (minus x)) null)))))
+(setq c8 (eds-clause_create "A8" (list (test-create '(equal (plus x (plus (minus x) y)) y)))))
+(setq c9 (eds-clause_create "A9" (list (test-create '(equal (plus (minus x) (plus x y)) y)))))
+(setq c10 (eds-clause_create "A10" (list (test-create '(equal (plus (plus x y) z) (plus x (plus y z)))))))
+
+
+(setq tt (etree-create :subtrees nil))
+
+
+(setq cc (list c1 c2 c3 c4 c5 c6 c7 c8 c9 c10))
+
+(mapc #'(lambda (clause)
+	  (let ((store (etree-store_create :contents (second (eds-term_arguments (first (eds-clause_literals clause))))))
+		(term (first (eds-term_arguments (first (eds-clause_literals clause))))))
+	  (etree-insert tt (list term) store)))
+      cc) 
+
+(setq u (eds-var_create "U"))
+(setq v (eds-var_create "V"))
+
+;;; Interpretation of single rules
+
+(time (red=info_rec.p.link.list `((,plus
+				   (,plus (,plus (,plus (,plus (,minus ,u) (,minus ,u)) (,minus ,u)) (,minus ,u)) (,minus ,u))
+				   (,plus (,plus (,plus (,plus ,u ,u) ,u) ,u) ,u)))
+				nil rr nil 10))
+
+1.3
+
+(let ((xx `((,plus
+	     (,plus (,plus (,plus (,plus
+				   (,plus (,minus ,u) (,minus ,u))
+				   (,minus ,u))
+			    (,minus ,u))
+		     (,minus ,u))
+	      (,minus ,u))
+	     (,plus (,plus (,plus (,plus (,plus ,u ,u) ,u) ,u) ,u) ,u)))))
+  (time (red=info_rec.p.link.list  xx nil rr nil 10)))
+
+1.85
+
+(let ((xx `((,plus ,u
+	     (,plus ,u (,plus ,u (,plus ,u (,plus ,u (,plus (,minus ,v) (,minus ,v))))))))))
+  (time (red=info_rec.p.link.list  xx nil rr nil 10)))
+
+0.089
+
+;;; Interpretation of trees
+
+(let ((xx `((,plus
+	     (,plus (,plus (,plus (,plus
+				   (,plus (,minus ,u) (,minus ,u))
+				   (,minus ,u))
+			    (,minus ,u))
+		     (,minus ,u))
+	      (,minus ,u))
+	     (,plus (,plus (,plus (,plus (,plus ,u ,u) ,u) ,u) ,u) ,u)))))
+  (time (red=rw_apply.to.termlist.c.i  xx)))
+
+0.17
+
+(let ((xx `((,plus ,u
+	     (,plus ,u (,plus ,u (,plus ,u (,plus ,u (,plus (,minus ,v) (,minus ,v))))))))))
+  (time (red=rw_apply.to.termlist.c.i  xx)))
+
+0.018
+
+;;; Application of compiled trees
+
+(eds-fct_put.c.tree plus (compile nil (red=rw_compile.proc (red=rw_fct_c.tree plus))))
+(eds-fct_put.c.tree minus (compile nil (red=rw_compile.proc (red=rw_fct_c.tree minus))))
+
+(let ((xx `((,plus
+	     (,plus (,plus (,plus (,plus
+				   (,plus (,minus ,u) (,minus ,u))
+				   (,minus ,u))
+			    (,minus ,u))
+		     (,minus ,u))
+	      (,minus ,u))
+	     (,plus (,plus (,plus (,plus (,plus ,u ,u) ,u) ,u) ,u) ,u)))))
+  (time (red=rw_apply.to.termlist.c.c xx)))
+
+0.04
+
+(let ((xx `((,plus ,u
+	     (,plus ,u (,plus ,u (,plus ,u (,plus ,u (,plus (,minus ,v) (,minus ,v))))))))))
+  (time (red=rw_apply.to.termlist.c.c  xx)))
+
+0.0033

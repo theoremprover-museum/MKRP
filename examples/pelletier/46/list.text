@@ -1,0 +1,182 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 34.2 EQUALITY 16.1                                  *
+                     *           DATE: 01-NOV,1989  21:29                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 01-NOV,1989 21:28 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * AXIOMS *
+             ALL X F (X) AND (ALL Y F (Y) AND H (Y X) IMPL G (Y)) IMPL G (X)
+             (EX X F (X) AND NOT G (X)) IMPL (EX X F (X) AND NOT G (X) AND (ALL Y F (Y) AND NOT G (Y) IMPL J (X Y)))
+             ALL X,Y F (X) AND F (Y) AND H (X Y) IMPL NOT J (Y X)
+             
+   Theorems: * THEOREMS *
+             ALL X F (X) IMPL G (X)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+           * A1:   All x:Any - F(x)  + F(f_1(x))  + G(x)
+           * A2:   All x:Any - F(x)  + H(f_1(x) x)  + G(x)
+           * A3:   All x:Any - F(x)  - G(f_1(x))  + G(x)
+           * A4:   All x:Any - F(x)  + G(x)  + F(c_1)
+           * A5:   All x:Any - F(x)  + G(x)  - G(c_1)
+           * A6:   All x,y:Any - F(y)  - F(x)  - H(y x)  - J(x y)
+           * A7:   All x,y:Any - F(y)  + G(y)  - F(x)  + G(x)  + J(c_1 x)
+           
+
+
+
+
+             Initial Operations on Axioms
+             ============================
+
+
+          
+   A7 (INSTANCE) --> * I1: All x,y:Any - F(x)  + G(x)  - F(x)  + G(x)  + J(c_1 x)
+   
+   I1 3=1        --> * D2: All x,y:Any + G(x)  - F(x)  + G(x)  + J(c_1 x)
+   
+   D2 3=1        --> * D3: All x,y:Any - F(x)  + G(x)  + J(c_1 x)
+   
+
+   
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T8: + F(c_2)
+           * T9: - G(c_2)
+
+
+
+
+
+
+             Initial Operations on Theorems
+             ==============================
+
+
+          
+   A4,2 & T9,1  --> * R4: - F(c_2)  + F(c_1)
+   
+   R4,1 & T8,1  --> * R5: + F(c_1)
+   
+
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   The following Options have been Changed:NIL
+
+   GEN_SPLITTING   0
+   PR_OPTIONS   NIL
+
+   
+   Initial Clauses:    * A1:   All x:Any - F(x)  + F(f_1(x))  + G(x)
+                       * A2:   All x:Any - F(x)  + H(f_1(x) x)  + G(x)
+                       * A3:   All x:Any - F(x)  - G(f_1(x))  + G(x)
+                       * R5:   + F(c_1)
+                       * A5:   All x:Any - F(x)  + G(x)  - G(c_1)
+                       * A6:   All x,y:Any - F(y)  - F(x)  - H(y x)  - J(x y)
+                       * D3:   All x,y:Any - F(x)  + G(x)  + J(c_1 x)
+                       * T8:   + F(c_2)
+                       * T9:   - G(c_2)
+                       
+
+   
+   D3,3 & A6,4    -->  * R6:   All x:Any - F(x)  + G(x)  - F(x)  - F(c_1)  - H(x c_1)
+   
+   R6 3=1         -->  * D7:   All x:Any + G(x)  - F(x)  - F(c_1)  - H(x c_1)
+   
+   D7,3 & R5,1    -->  * R8:   All x:Any + G(x)  - F(x)  - H(x c_1)
+   
+   A1,3 & T9,1    -->  * R19:  - F(c_2)  + F(f_1(c_2))
+   
+   R19,1 & T8,1   -->  * R20:  + F(f_1(c_2))
+   
+   A3,3 & T9,1    -->  * R23:  - F(c_2)  - G(f_1(c_2))
+   
+   R23,1 & T8,1   -->  * R24:  - G(f_1(c_2))
+   
+   A3,3 & R24,1   -->  * R25:  - F(f_1(c_2))  - G(f_1(f_1(c_2)))
+   
+   R25,1 & R20,1  -->  * R26:  - G(f_1(f_1(c_2)))
+   
+   A1,3 & R24,1   -->  * R29:  - F(f_1(c_2))  + F(f_1(f_1(c_2)))
+   
+   R29,1 & R20,1  -->  * R30:  + F(f_1(f_1(c_2)))
+   
+   R30,1 & A3,1   -->  * R35:  - G(f_1(f_1(f_1(c_2))))  + G(f_1(f_1(c_2)))
+   
+   R35,2 & R26,1  -->  * R36:  - G(f_1(f_1(f_1(c_2))))
+   
+   A5,2 & R36,1   -->  * R43:  - F(f_1(f_1(f_1(c_2))))  - G(c_1)
+   
+   R43,1 & A1,2   -->  * R44:  - G(c_1)  - F(f_1(f_1(c_2)))  + G(f_1(f_1(c_2)))
+   
+   R44,2 & R30,1  -->  * R45:  - G(c_1)  + G(f_1(f_1(c_2)))
+   
+   R45,2 & R26,1  -->  * R46:  - G(c_1)
+   
+   A3,3 & R46,1   -->  * R47:  - F(c_1)  - G(f_1(c_1))
+   
+   R47,1 & R5,1   -->  * R48:  - G(f_1(c_1))
+   
+   A2,3 & R46,1   -->  * R49:  - F(c_1)  + H(f_1(c_1) c_1)
+   
+   R49,1 & R5,1   -->  * R50:  + H(f_1(c_1) c_1)
+   
+   R50,1 & R8,3   -->  * R51:  + G(f_1(c_1))  - F(f_1(c_1))
+   
+   R51,1 & R48,1  -->  * R52:  - F(f_1(c_1))
+   
+   A1,3 & R46,1   -->  * R53:  - F(c_1)  + F(f_1(c_1))
+   
+   R53,1 & R5,1   -->  * R54:  + F(f_1(c_1))
+   
+   R54,1 & R52,1  -->  * R55:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 52 seconds

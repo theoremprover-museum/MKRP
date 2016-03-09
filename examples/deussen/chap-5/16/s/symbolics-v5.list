@@ -1,0 +1,321 @@
+;;; -*- Package: MKRP; Base: 10. -*-
+
+
+
+                    ********************************************************************************
+                    *                                                                              *
+                    *     MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN                   *
+                    *                                                                              *
+                    *       13-FEB-86                                                              *
+                    *          13-FEB-86  09:48:23                                                 *
+                    *                                                                              *
+                    ********************************************************************************
+
+
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   13-FEB-86 09:47:07
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   Satz 5.16
+                                                                        
+************************************************************************
+                                                                        
+
+
+ADJUSTMENT OF THE OPTIONS : 
+============================
+
+
+
+TWO:RULES                             NIL                   TWO:RULES.MAXLEVEL                    1.
+TWO:SUPPRESS.NORULES                  NIL
+
+
+RED.I:CLAUSE.MULTIPLE.LITERALS        T                     RED.I:CLAUSE.PURITY                   T
+RED.I:CLAUSE.TAUTOLOGY                T                     RED.I:CLAUSE.TAUTOLOGY.RECHECK        PARTIAL
+RED.I:CLAUSE.SUBSUMPTION              T                     RED.I:CLAUSE.SUBSUMPTION.RECHECK      PARTIAL
+RED.I:CLAUSE.REPL.FACTORING           T                     RED.I:CLAUSE.REPL.FACTORING.RECHECK   T
+RED.I:CLAUSE.REPL.RESOLUTION          SIMPLE                RED.I:CLAUSE.REPL.RESOLUTION.RECHECK  T
+RED.I:CLAUSE.REWRITING                T                     RED.I:LINK.INCOMPATIBILITY            NIL
+RED.I:LINK.TAUTOLOGY                  NIL                   RED.I:LINK.TAUTOLOGY.RECHECK          NIL
+RED.I:LINK.SUBSUMPTION                NIL                   RED.I:LINK.SUBSUMPTION.RECHECK        NIL
+
+RED.D:CLAUSE.MULTIPLE.LITERALS        T                     RED.D:CLAUSE.PURITY                   T
+RED.D:CLAUSE.TAUTOLOGY                REMOVE-INHIBIT        RED.D:CLAUSE.TAUTOLOGY.RECHECK        NIL
+RED.D:CLAUSE.SUBSUMPTION.FORWARD      REMOVE-INHIBIT        RED.D:CLAUSE.SUBSUMPTION.BACKWARD     REMOVE
+RED.D:CLAUSE.SUBSUMPTION.RECHECK      NIL                   RED.D:CLAUSE.REPL.FACTORING           T
+RED.D:CLAUSE.REPL.FACTORING.RECHECK   T                     RED.D:CLAUSE.REPL.RESOLUTION          SIMPLE
+RED.D:CLAUSE.REPL.RESOLUTION.RECHECK  T                     RED.D:LINK.INCOMPATIBILITY            NIL
+RED.D:LINK.TAUTOLOGY                  NIL                   RED.D:LINK.TAUTOLOGY.RECHECK          NIL
+RED.D:LINK.SUBSUMPTION                NIL                   RED.D:LINK.SUBSUMPTION.RECHECK        NIL
+
+FAC:INITIAL                           NIL                   FAC:EACH.STEP                         NIL
+
+STR:RESOLUTION                        SET-OF-SUPPORT        STR:E-RESOLUTION                      NIL
+STR:PARAMODULATION                    UNIT-ANCESTRY         STR:LINK.DEPTH                        NIL
+STR:TERM.DEPTH                        5.                    STR:R.DEMODULATION                    T
+STR:P.DEMODULATION                    T                     STR:INDUCTION                         NIL
+
+TERM:UNITS                            T                     TERM:ITERATIONS                       1.
+TERM:SET.OF.SUPPORT                   NIL                   TERM:BREADTH.FIRST                    NIL
+
+GEN:SPLITTING                         0.                    GEN:MANUAL.CONTROL                    NIL
+GEN:MAXIMUM.STEPS                     150.                  GEN:GRAPH.SAVING                      NIL
+GEN:SAVE.FILE                         SAVE.DEFAULT
+
+
+TR:PREPROCESSING                      NIL                   TR:STEP.MODE                          LR
+TR:DUMP                               NIL                   TR:CLAUSE.MODE                        I
+TR:LINK.MODE                          I                     TR:TRACE.FILE                         NIL
+TR:TERMINAL                           T
+
+
+PR:INFIX.FORM                         T                     PR:PREFIX.FORM                        NIL
+PR:OPTIONS                            T                     PR:AXIOM.CLAUSES                      NIL
+PR:SYMBOLS                            NIL                   PR:STATISTICS                         NIL
+PR:PROTOCOL                           T                     PR:LEFT.MARGIN                        0.
+PR:LINELENGTH                         120.
+
+
+
+
+FORMULAE GIVEN TO THE EDITOR
+============================
+
+
+AXIOMS   : SORT SET:ANY
+           SORT FUNCTION:ANY
+           SORT ELEMENT:SET
+           SORT ELEMENT.F:ELEMENT
+           SORT NAT:SET
+           SORT REL:SET
+           SORT UNARY.FUNC:FUNCTION
+           SORT BINARY.FUNC:FUNCTION
+           SORT EQU.REL-S:REL
+           SORT L.CONGRUENCE-S:EQU.REL-S
+           SORT R.CONGRUENCE-S:EQU.REL-S
+           SORT CONGRUENCE-S:L.CONGRUENCE-S
+           SORT CONGRUENCE-S:R.CONGRUENCE-S
+           * CONSTANTS *
+           TYPE F:SET
+           TYPE CONN.F:BINARY.FUNC
+           TYPE 1:NAT
+           TYPE CONN.F.RHO:BINARY.FUNC
+           * PREDICATES *
+           TYPE SEMIGROUP (SET BINARY.FUNC)
+           TYPE L.CONGRUENCE (REL)
+           TYPE R.CONGRUENCE (REL)
+           TYPE CONGRUENCE (EQU.REL-S)
+           TYPE IN.RELATION (REL ELEMENT.F ELEMENT.F)
+           TYPE INJECTIVE (UNARY.FUNC SET SET)
+           TYPE SURJECTIVE (UNARY.FUNC SET SET)
+           TYPE BIJECTIVE (UNARY.FUNC SET SET)
+           TYPE HOMOMORPH (UNARY.FUNC SET SET)
+           TYPE ISOMORPH (UNARY.FUNC SET SET)
+           TYPE EPIMORPH (UNARY.FUNC SET SET)
+           TYPE MAPPING (UNARY.FUNC SET SET)
+           TYPE MEMBER (ELEMENT SET)
+           TYPE SUBSET (SET SET)
+           * FUNCTIONS *
+           TYPE INVERSE.EL (ELEMENT BINARY.FUNC ELEMENT) :ELEMENT
+           TYPE APPLY1 (UNARY.FUNC SET) :SET
+           TYPE APPLY1-EL (UNARY.FUNC ELEMENT) :ELEMENT
+           TYPE APPLY2 (BINARY.FUNC SET SET) :SET
+           TYPE APPLY2-EL (BINARY.FUNC ELEMENT ELEMENT) :ELEMENT
+           TYPE APPLY2-EL.F (BINARY.FUNC ELEMENT.F ELEMENT.F) :ELEMENT.F
+           TYPE PREIMAGE (REL ELEMENT) :SET
+           TYPE POWER (REL NAT) :REL
+           TYPE PLUS (NAT NAT) :NAT
+           TYPE MODULO (EQU.REL-S) :SET
+           TYPE COMP (REL REL) :REL
+           TYPE TRANS.CLOS (REL) :REL
+           TYPE UNION-REL (REL REL) :REL
+           TYPE TRANS.UNION (EQU.REL-S EQU.REL-S) :EQU.REL-S
+           TYPE CAN.PROJ (EQU.REL-S) :UNARY.FUNC
+           TYPE IND.EQU.REL (UNARY.FUNC SET) :EQU.REL-S
+           TYPE MOD.PHI (UNARY.FUNC SET) :UNARY.FUNC
+           TYPE NORMALISATOR (SET) :SET
+           *
+           * DEFINITION SUBGROUP *
+           ALL G:SET  ALL E:ELEMENT.F  
+             SUBGROUP (G F CONN.F E) EQV SUBSEMIGROUP (G F CONN.F) AND NEUTRAL.EL (E CONN.F G) AND EXINV (G CONN.F E)
+           * LEMMA 5.16.UHG *
+           ALL RHO:L.CONGRUENCE-S  ALL E:ELEMENT.F  
+             GROUP (F CONN.F E) IMPL SUBSEMIGROUP (NORMALISATOR (PREIMAGE (RHO E)) F CONN.F)
+           * LEMMA 5.16.INV *
+           ALL RHO:L.CONGRUENCE-S  ALL E:ELEMENT.F  
+             GROUP (F CONN.F E) IMPL EXINV (NORMALISATOR (PREIMAGE (RHO E)) CONN.F E)
+           * DEFINITION NEUTRAL.EL *
+           ALL G:SET  ALL E:ELEMENT.F  
+             GROUP (F CONN.F E) IMPL (NEUTRAL.EL (E CONN.F G) EQV SUBSEMIGROUP (G F CONN.F) AND MEMBER (E G))
+           * DEFINITION NORMALISATOR OF A SUBGROUP *
+           ALL U:SET  ALL E:ELEMENT.F  
+               SUBGROUP (U F CONN.F E)
+               IMPL  
+                ALL X:ELEMENT.F  
+                  MEMBER (X NORMALISATOR (U)) EQV APPLY2 (CONN.F INVERSE.EL (X CONN.F E) APPLY2 (CONN.F U X)) = U
+           * PROPERTY OF THE NEUTRAL ELEMENT *
+           ALL E:ELEMENT.F GROUP (F CONN.F E) IMPL INVERSE.EL (E CONN.F E) = E
+           * PROPERTY OF THE NEUTRAL ELEMENT *
+           ALL E:ELEMENT.F GROUP (F CONN.F E) IMPL (ALL A:SET APPLY2 (CONN.F A E) = A AND APPLY2 (CONN.F E A) = A)
+           * THEOREM 5.9 *
+           ALL RHO:L.CONGRUENCE-S ALL E:ELEMENT.F GROUP (F CONN.F E) IMPL SUBGROUP (PREIMAGE (RHO E) F CONN.F E)
+
+THEOREMS : * THEOREM 5.16 *
+           ALL E:ELEMENT.F  ALL RHO:L.CONGRUENCE-S  
+             GROUP (F CONN.F E) IMPL SUBGROUP (NORMALISATOR (PREIMAGE (RHO E)) F CONN.F E)
+
+
+
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+  A1   : ALL X:ANY  + =(X X)
+* A2   : ALL X:L.CONGRUENCE-S  Y:ELEMENT.F  - GROUP(F CONN.F Y)  + SUBGROUP(PREIMAGE(X Y) F CONN.F Y)
+* A3   : ALL X:SET  Y:ELEMENT.F  - GROUP(F CONN.F Y)  + =(APPLY2(CONN.F Y X) X)
+* A4   : ALL X:SET  Y:ELEMENT.F  - GROUP(F CONN.F Y)  + =(APPLY2(CONN.F X Y) X)
+* A5   : ALL X:ELEMENT.F  - GROUP(F CONN.F X)  + =(INVERSE.EL(X CONN.F X) X)
+* A6   : ALL X:L.CONGRUENCE-S  Y:ELEMENT.F  - GROUP(F CONN.F Y)  + EXINV(NORMALISATOR(PREIMAGE(X Y)) CONN.F Y)
+* A7   : ALL X:L.CONGRUENCE-S  Y:ELEMENT.F  - GROUP(F CONN.F Y)  + SUBSEMIGROUP(NORMALISATOR(PREIMAGE(X Y)) F CONN.F)
+  A8   : ALL X:ELEMENT.F  Y:SET  - SUBGROUP(Y F CONN.F X)  + EXINV(Y CONN.F X)
+  A9   : ALL X:ELEMENT.F  Y:SET  - SUBGROUP(Y F CONN.F X)  + NEUTRAL.EL(X CONN.F Y)
+  A10  : ALL X:ELEMENT.F  Y:SET  - SUBGROUP(Y F CONN.F X)  + SUBSEMIGROUP(Y F CONN.F)
+  A11  : ALL X,Y:ELEMENT.F  Z:SET  
+              - SUBGROUP(Z F CONN.F Y)  - MEMBER(X NORMALISATOR(Z))
+                + =(APPLY2(CONN.F INVERSE.EL(X CONN.F Y) APPLY2(CONN.F Z X)) Z)
+* A12  : ALL X,Y:ELEMENT.F  Z:SET  
+              - SUBGROUP(Z F CONN.F Y)  + MEMBER(X NORMALISATOR(Z))
+                - =(APPLY2(CONN.F INVERSE.EL(X CONN.F Y) APPLY2(CONN.F Z X)) Z)
+  A13  : ALL X:SET  Y:ELEMENT.F  - GROUP(F CONN.F Y)  - NEUTRAL.EL(Y CONN.F X)  + MEMBER(Y X)
+  A14  : ALL X:SET  Y:ELEMENT.F  - GROUP(F CONN.F Y)  - NEUTRAL.EL(Y CONN.F X)  + SUBSEMIGROUP(X F CONN.F)
+* A15  : ALL X:ELEMENT.F  Y:SET  
+              + SUBGROUP(Y F CONN.F X)  - SUBSEMIGROUP(Y F CONN.F)  - NEUTRAL.EL(X CONN.F Y)  - EXINV(Y CONN.F X)
+* A16  : ALL X:SET  Y:ELEMENT.F  
+              - GROUP(F CONN.F Y)  + NEUTRAL.EL(Y CONN.F X)  - SUBSEMIGROUP(X F CONN.F)  - MEMBER(Y X)
+
+
+
+
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+* T17  : + GROUP(F CONN.F C_2)
+* T18  : - SUBGROUP(NORMALISATOR(PREIMAGE(C_1 C_2)) F CONN.F C_2)
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+REFUTATION
+
+INITIAL CLAUSES :      A1  : ALL X:ANY  + =(X X)
+                     * A2  : ALL X:L.CONGRUENCE-S  Y:ELEMENT.F  
+                                  - GROUP(F CONN.F Y)  + SUBGROUP(PREIMAGE(X Y) F CONN.F Y)
+                     * A3  : ALL X:SET  Y:ELEMENT.F  - GROUP(F CONN.F Y)  + =(APPLY2(CONN.F Y X) X)
+                     * A4  : ALL X:SET  Y:ELEMENT.F  - GROUP(F CONN.F Y)  + =(APPLY2(CONN.F X Y) X)
+                     * A5  : ALL X:ELEMENT.F  - GROUP(F CONN.F X)  + =(INVERSE.EL(X CONN.F X) X)
+                     * A6  : ALL X:L.CONGRUENCE-S  Y:ELEMENT.F  
+                                  - GROUP(F CONN.F Y)  + EXINV(NORMALISATOR(PREIMAGE(X Y)) CONN.F Y)
+                     * A7  : ALL X:L.CONGRUENCE-S  Y:ELEMENT.F  
+                                  - GROUP(F CONN.F Y)  + SUBSEMIGROUP(NORMALISATOR(PREIMAGE(X Y)) F CONN.F)
+                       A8  : ALL X:ELEMENT.F  Y:SET  - SUBGROUP(Y F CONN.F X)  + EXINV(Y CONN.F X)
+                       A9  : ALL X:ELEMENT.F  Y:SET  - SUBGROUP(Y F CONN.F X)  + NEUTRAL.EL(X CONN.F Y)
+                       A10 : ALL X:ELEMENT.F  Y:SET  - SUBGROUP(Y F CONN.F X)  + SUBSEMIGROUP(Y F CONN.F)
+                       A11 : ALL X,Y:ELEMENT.F  Z:SET  
+                                  - SUBGROUP(Z F CONN.F Y)  - MEMBER(X NORMALISATOR(Z))
+                                    + =(APPLY2(CONN.F INVERSE.EL(X CONN.F Y) APPLY2(CONN.F Z X)) Z)
+                     * A12 : ALL X,Y:ELEMENT.F  Z:SET  
+                                  - SUBGROUP(Z F CONN.F Y)  + MEMBER(X NORMALISATOR(Z))
+                                    - =(APPLY2(CONN.F INVERSE.EL(X CONN.F Y) APPLY2(CONN.F Z X)) Z)
+                       A13 : ALL X:SET  Y:ELEMENT.F  - GROUP(F CONN.F Y)  - NEUTRAL.EL(Y CONN.F X)  + MEMBER(Y X)
+                       A14 : ALL X:SET  Y:ELEMENT.F  
+                                  - GROUP(F CONN.F Y)  - NEUTRAL.EL(Y CONN.F X)  + SUBSEMIGROUP(X F CONN.F)
+                     * A15 : ALL X:ELEMENT.F  Y:SET  
+                                  + SUBGROUP(Y F CONN.F X)  - SUBSEMIGROUP(Y F CONN.F)  - NEUTRAL.EL(X CONN.F Y)
+                                    - EXINV(Y CONN.F X)
+                     * A16 : ALL X:SET  Y:ELEMENT.F  
+                                  - GROUP(F CONN.F Y)  + NEUTRAL.EL(Y CONN.F X)  - SUBSEMIGROUP(X F CONN.F)
+                                    - MEMBER(Y X)
+                     * T17 : + GROUP(F CONN.F C_2)
+                     * T18 : - SUBGROUP(NORMALISATOR(PREIMAGE(C_1 C_2)) F CONN.F C_2)
+
+T17,1 & A7,1    -->  * R1  : ALL X:L.CONGRUENCE-S  + SUBSEMIGROUP(NORMALISATOR(PREIMAGE(X C_2)) F CONN.F)
+
+T17,1 & A6,1    -->  * R2  : ALL X:L.CONGRUENCE-S  + EXINV(NORMALISATOR(PREIMAGE(X C_2)) CONN.F C_2)
+
+R2,1 & A15,4    -->  * R3  : + SUBGROUP(NORMALISATOR(PREIMAGE(C_1 C_2)) F CONN.F C_2)
+                               - SUBSEMIGROUP(NORMALISATOR(PREIMAGE(C_1 C_2)) F CONN.F)
+                               - NEUTRAL.EL(C_2 CONN.F NORMALISATOR(PREIMAGE(C_1 C_2)))
+
+R3,2 & R1,1     -->  * R4  : + SUBGROUP(NORMALISATOR(PREIMAGE(C_1 C_2)) F CONN.F C_2)
+                               - NEUTRAL.EL(C_2 CONN.F NORMALISATOR(PREIMAGE(C_1 C_2)))
+
+R4,1 & T18,1    -->  * R5  : - NEUTRAL.EL(C_2 CONN.F NORMALISATOR(PREIMAGE(C_1 C_2)))
+
+T17,1 & A2,1    -->  * R6  : ALL X:L.CONGRUENCE-S  + SUBGROUP(PREIMAGE(X C_2) F CONN.F C_2)
+
+T17,1 & A5,1    -->  * R7  : + =(INVERSE.EL(C_2 CONN.F C_2) C_2)
+
+T17,1 & A4,1    -->  * R8  : ALL X:SET  + =(APPLY2(CONN.F X C_2) X)
+
+T17,1 & A3,1    -->    R9  : ALL X:SET  + =(APPLY2(CONN.F C_2 X) X)
+
+A16,2 & R5,1    -->  * R10 : - GROUP(F CONN.F C_2)  - SUBSEMIGROUP(NORMALISATOR(PREIMAGE(C_1 C_2)) F CONN.F)
+                               - MEMBER(C_2 NORMALISATOR(PREIMAGE(C_1 C_2)))
+
+R10,2 & A7,2    -->  * R11 : - GROUP(F CONN.F C_2)  - MEMBER(C_2 NORMALISATOR(PREIMAGE(C_1 C_2)))  - GROUP(F CONN.F C_2)
+
+R11 1=3         -->  * D12 : - GROUP(F CONN.F C_2)  - MEMBER(C_2 NORMALISATOR(PREIMAGE(C_1 C_2)))
+
+D12,1 & T17,1   -->  * R13 : - MEMBER(C_2 NORMALISATOR(PREIMAGE(C_1 C_2)))
+
+A13,3 & R13,1   -->    R14 : - GROUP(F CONN.F C_2)  - NEUTRAL.EL(C_2 CONN.F NORMALISATOR(PREIMAGE(C_1 C_2)))
+
+R6,1 & A12,1    -->  * R15 : + MEMBER(C_2 NORMALISATOR(PREIMAGE(C_1 C_2)))
+                             - =(APPLY2(CONN.F INVERSE.EL(C_2 CONN.F C_2) APPLY2(CONN.F PREIMAGE(C_1 C_2) C_2))
+                                 PREIMAGE(C_1 C_2))
+
+
+R15,1 & R13,1   -->  * R16 : - =(APPLY2(CONN.F INVERSE.EL(C_2 CONN.F C_2) APPLY2(CONN.F PREIMAGE(C_1 C_2) C_2))
+                                 PREIMAGE(C_1 C_2))
+
+
+A11,3 & R16,1   -->    R17 : - SUBGROUP(PREIMAGE(C_1 C_2) F CONN.F C_2)  - MEMBER(C_2 NORMALISATOR(PREIMAGE(C_1 C_2)))
+
+R7,1 & T17,1    -->    P18 : + GROUP(F CONN.F INVERSE.EL(C_2 CONN.F C_2))
+
+R7,1 & T18,1    -->    P19 : - SUBGROUP(NORMALISATOR(PREIMAGE(C_1 INVERSE.EL(C_2 CONN.F C_2))) F CONN.F C_2)
+
+R7,1 & T18,1    -->    P20 : - SUBGROUP(NORMALISATOR(PREIMAGE(C_1 C_2)) F CONN.F INVERSE.EL(C_2 CONN.F C_2))
+
+R8,1 & R9,1     -->    P21 : + =(C_2 C_2)
+
+R7,1 & R16,1    -->  * P22 : - =(APPLY2(CONN.F C_2 APPLY2(CONN.F PREIMAGE(C_1 C_2) C_2)) PREIMAGE(C_1 C_2))
+
+R8,1 & P22,1    -->  * P23 : - =(APPLY2(CONN.F C_2 PREIMAGE(C_1 C_2)) PREIMAGE(C_1 C_2))
+
+P23,1 & A3,2    -->  * R24 : - GROUP(F CONN.F C_2)
+
+R24,1 & T17,1   -->  * R25 :  ce
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+  Q. E. D. 

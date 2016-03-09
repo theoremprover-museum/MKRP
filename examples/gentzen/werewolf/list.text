@@ -1,0 +1,243 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 48.7                                                *
+                     *           DATE: 29-AUG,1991  15:34                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 29-AUG,1991 15:34 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * PROBLEM E90.
+             *
+             * IN THIS AND THE NEXT TWO PROBLEMS THERE ARE AGAIN THREE INHABITANTS
+             * A,B,C, EACH OF WHOM IS EITHER A KNIGHT OR A KNAVE. HOWEVER ONLY TWO
+             * OF THEM, A, B, MAKE STATEMENTS. BUT IN THESE STATEMENTS, THE WORD US
+             * REFERS TO THE THREE PEOPLE A,B,C NOT TO JUST A AND B. SUPPOSE A,B MAKE
+             * THE FOLLOWING STATEMENTS :
+             * A : AT LEAST ONE OF THE THREE OF US IS A KNIGHT.
+             * B : AT LEAST ONE OF THE THREE OF US IS A KNAVE.
+             * GIVEN THAT AT LEAST ONE OF THEM IS A WEREWOLF, AND THAT NONE OF THEM
+             * IS BOTH A KNIGHT AND A WEREWOLF, WHICH ONE ARE WEREWOLVES?
+             *
+             * WE DEFINE THE FOLLOWING PREDICATES :
+             *
+             * KNIGHT (X) -- MEANS THAT X IS A KNIGHT.
+             * KNAVE (X) -- MEANS THAT X IS A KNAVE.
+             * WEREWOLF (X) -- MEANS THAT X IS A WEREWOLF.
+             * TRUTH (X) -- MEANS THAT THE STATEMENT X IS TRUE.
+             * EXIST-KNIGHT (X Y Z) -- MEANS THAT AT LEAST ONE OF X,Y,Z IS A KNIGHT.
+             * EXIST-KNAVE (X Y Z) -- MEANS THAT AT LEAST ONE OF X,Y,Z IS A KNAVE.
+             * ST-EXIST-KNIGHT (U V W X) -- THE STATEMENT U MEANS THAT AT LEAST ONE OF V,W,X IS A KNIGHT.
+             *
+             * ST-EXIST-KNAVE (U V W X) -- THE STATEMENT U MEANS THAT AT LEAST
+             * ONE OF V,W,X IS A KNAVE.
+             *
+             * WE DEFINE THE FOLLOWING FUNCTION :
+             *
+             * STATE (X) -- ASSIGNS EACH PERSON A STATEMENT.
+             *
+             TYPE A,B,C : PERSON
+             TYPE KNAVE (PERSON)
+             TYPE KNIGHT (PERSON)
+             TYPE WEREWOLF (PERSON)
+             TYPE TRUTH (STMT)
+             TYPE EXIST-KNIGHT (PERSON PERSON PERSON)
+             TYPE EXIST-KNAVE (PERSON PERSON PERSON)
+             TYPE ST-EXIST-KNIGHT (STMT PERSON PERSON PERSON)
+             TYPE ST-EXIST-KNAVE (STMT PERSON PERSON PERSON)
+             TYPE STATE (PERSON) : STMT
+             *
+             * EVERY INHABITANT IS EITHER A KNIGHT OR A KNAVE :
+             ALL X : PERSON KNIGHT (X) OR KNAVE (X)
+             ALL X : PERSON NOT (KNIGHT (X) AND KNAVE (X))
+             *
+             * KNIGHTS ALWAYS TELL THE TRUTH AND KNAVES ALWAYS LIE :
+             ALL X : PERSON (KNIGHT (X) IMPL TRUTH (STATE (X))) AND (TRUTH (STATE (X)) IMPL KNIGHT (X))
+             ALL X : PERSON (KNAVE (X) IMPL NOT TRUTH (STATE (X))) AND (NOT TRUTH (STATE (X)) IMPL KNAVE (X))
+             *
+             * AT LEAST ONE OF THEM IS A WEREWOLF :
+             WEREWOLF (A) OR WEREWOLF (B) OR WEREWOLF (C)
+             *
+             * NONE OF THEM IS BOTH A KNIGHT AND A WEREWOLF :
+             ALL X : PERSON NOT (KNIGHT (X) AND WEREWOLF (X))
+             *
+             * EQUIVALENCES :
+             ALL X,Y,Z: PERSON (EXIST-KNIGHT (X Y Z) IMPL KNIGHT (X) OR KNIGHT (Y) OR KNIGHT (Z))
+                        AND (KNIGHT (X) OR KNIGHT (Y) OR KNIGHT (Z) IMPL EXIST-KNIGHT (X Y Z))
+             ALL X,Y,Z: PERSON (EXIST-KNAVE (X Y Z) IMPL KNAVE (X) OR KNAVE (Y) OR KNAVE (Z))
+                        AND (KNAVE (X) OR KNAVE (Y) OR KNAVE (Z) IMPL EXIST-KNAVE (X Y Z))
+             *
+             * IMPLICATIONS ABOUT STMTS :
+             ALL U : STMT ALL V,W,X : PERSON ST-EXIST-KNIGHT (U V W X) AND TRUTH (U) IMPL EXIST-KNIGHT (V W X)
+             ALL U : STMT ALL V,W,X : PERSON ST-EXIST-KNIGHT (U V W X) AND NOT TRUTH (U) IMPL NOT EXIST-KNIGHT (V W X)
+             ALL U : STMT ALL V,W,X : PERSON ST-EXIST-KNAVE (U V W X) AND TRUTH (U) IMPL EXIST-KNAVE (V W X)
+             ALL U : STMT ALL V,W,X : PERSON ST-EXIST-KNAVE (U V W X) AND NOT TRUTH (U) IMPL NOT EXIST-KNAVE (V W X)
+             *
+             * ACTUAL STMTS :
+             ST-EXIST-KNIGHT (STATE (A) A B C)
+             ST-EXIST-KNAVE (STATE (B) A B C)
+             
+   Theorems: WEREWOLF (C)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+           * A2:   + ST-EXIST-KNIGHT(state(a) a b c)
+           * A3:   + ST-EXIST-KNAVE(state(b) a b c)
+           * A4:   All x:Person + KNIGHT(x)  + KNAVE(x)
+             A5:   All x:Person - KNIGHT(x)  - KNAVE(x)
+             A6:   All x:Person - KNIGHT(x)  + TRUTH(state(x))
+           * A7:   All x:Person - TRUTH(state(x))  + KNIGHT(x)
+           * A8:   All x:Person - KNAVE(x)  - TRUTH(state(x))
+             A9:   All x:Person + TRUTH(state(x))  + KNAVE(x)
+           * A10:  All x:Person - KNIGHT(x)  - WEREWOLF(x)
+             A11:  All x,y,z:Person - KNIGHT(z)  + EXIST-KNIGHT(z y x)
+           * A12:  All x,y,z:Person - KNIGHT(z)  + EXIST-KNIGHT(y z x)
+           * A13:  All x,y,z:Person - KNIGHT(z)  + EXIST-KNIGHT(y x z)
+             A14:  All x,y,z:Person - KNAVE(z)  + EXIST-KNAVE(z y x)
+           * A15:  All x,y,z:Person - KNAVE(z)  + EXIST-KNAVE(y z x)
+           * A16:  All x,y,z:Person - KNAVE(z)  + EXIST-KNAVE(y x z)
+           * A17:  + WEREWOLF(a)  + WEREWOLF(b)  + WEREWOLF(c)
+             A18:  All x,y,z:Person u:Stmt - ST-EXIST-KNIGHT(u z y x)  - TRUTH(u)  + EXIST-KNIGHT(z y x)
+           * A19:  All x,y,z:Person u:Stmt - ST-EXIST-KNIGHT(u z y x)  + TRUTH(u)  - EXIST-KNIGHT(z y x)
+             A20:  All x,y,z:Person u:Stmt - ST-EXIST-KNAVE(u z y x)  - TRUTH(u)  + EXIST-KNAVE(z y x)
+           * A21:  All x,y,z:Person u:Stmt - ST-EXIST-KNAVE(u z y x)  + TRUTH(u)  - EXIST-KNAVE(z y x)
+             A22:  All x,y,z:Person - EXIST-KNIGHT(z y x)  + KNIGHT(z)  + KNIGHT(y)  + KNIGHT(x)
+             A23:  All x,y,z:Person - EXIST-KNAVE(z y x)  + KNAVE(z)  + KNAVE(y)  + KNAVE(x)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T24: - WEREWOLF(c)
+
+
+
+    Literals: ((T24 48) (A23 26 27 28 29) (A22 18 19 20 21) (A21 43 44 45) (A20 40 41 42) (A19 37 38 39) (A18 34 35 36) (A17 13 14 15) (A16 32 33) (A15 31 33) (A14 30 33) (A13 24 25) (A12 23 25) (A11 22 25) (A10 16 17) (A9 11 12) (A8 9 10) (A7 7 8) (A6 5 6) (A5 3 4) (A4 1 2) (A3 47) (A2 46) (A1 NIL))
+
+
+
+
+
+
+             Initial Operations on Theorems
+             ==============================
+
+
+          
+   A17,3 & T24,1  --> * R1: + WEREWOLF(a)  + WEREWOLF(b)
+   
+
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:     A1:   All x:Any + =(x x)
+                      * A2:   + ST-EXIST-KNIGHT(state(a) a b c)
+                      * A3:   + ST-EXIST-KNAVE(state(b) a b c)
+                      * A4:   All x:Person + KNIGHT(x)  + KNAVE(x)
+                        A5:   All x:Person - KNIGHT(x)  - KNAVE(x)
+                        A6:   All x:Person - KNIGHT(x)  + TRUTH(state(x))
+                      * A7:   All x:Person - TRUTH(state(x))  + KNIGHT(x)
+                      * A8:   All x:Person - KNAVE(x)  - TRUTH(state(x))
+                        A9:   All x:Person + TRUTH(state(x))  + KNAVE(x)
+                      * A10:  All x:Person - KNIGHT(x)  - WEREWOLF(x)
+                        A11:  All x,y,z:Person - KNIGHT(z)  + EXIST-KNIGHT(z y x)
+                      * A12:  All x,y,z:Person - KNIGHT(z)  + EXIST-KNIGHT(y z x)
+                      * A13:  All x,y,z:Person - KNIGHT(z)  + EXIST-KNIGHT(y x z)
+                        A14:  All x,y,z:Person - KNAVE(z)  + EXIST-KNAVE(z y x)
+                      * A15:  All x,y,z:Person - KNAVE(z)  + EXIST-KNAVE(y z x)
+                      * A16:  All x,y,z:Person - KNAVE(z)  + EXIST-KNAVE(y x z)
+                      * R1:   + WEREWOLF(a)  + WEREWOLF(b)
+                        A18:  All x,y,z:Person u:Stmt - ST-EXIST-KNIGHT(u z y x)  - TRUTH(u)  + EXIST-KNIGHT(z y x)
+                      * A19:  All x,y,z:Person u:Stmt - ST-EXIST-KNIGHT(u z y x)  + TRUTH(u)  - EXIST-KNIGHT(z y x)
+                        A20:  All x,y,z:Person u:Stmt - ST-EXIST-KNAVE(u z y x)  - TRUTH(u)  + EXIST-KNAVE(z y x)
+                      * A21:  All x,y,z:Person u:Stmt - ST-EXIST-KNAVE(u z y x)  + TRUTH(u)  - EXIST-KNAVE(z y x)
+                        A22:  All x,y,z:Person - EXIST-KNIGHT(z y x)  + KNIGHT(z)  + KNIGHT(y)  + KNIGHT(x)
+                        A23:  All x,y,z:Person - EXIST-KNAVE(z y x)  + KNAVE(z)  + KNAVE(y)  + KNAVE(x)
+                      
+
+   
+   A3,1 & A21,1   --> * R2:   + TRUTH(state(b))  - EXIST-KNAVE(a b c)
+   
+   A2,1 & A19,1   --> * R4:   + TRUTH(state(a))  - EXIST-KNIGHT(a b c)
+   
+   R1,2 & A10,2   --> * R6:   + WEREWOLF(a)  - KNIGHT(b)
+   
+   R6,1 & A10,2   --> * R7:   - KNIGHT(b)  - KNIGHT(a)
+   
+   A4,1 & R7,2    --> * R8:   + KNAVE(a)  - KNIGHT(b)
+   
+   A4,1 & R8,2    --> * R12:  + KNAVE(b)  + KNAVE(a)
+   
+   A7,2 & R8,2    --> * R13:  - TRUTH(state(b))  + KNAVE(a)
+   
+   R2,1 & R13,1   --> * R29:  - EXIST-KNAVE(a b c)  + KNAVE(a)
+   
+   R12,1 & A15,1  --> * R38:  All x,y:Person + KNAVE(a)  + EXIST-KNAVE(y b x)
+   
+   R38,2 & R29,1  --> * R39:  + KNAVE(a)  + KNAVE(a)
+   
+   R39 1=2        --> * D40:  + KNAVE(a)
+   
+   D40,1 & A8,1   --> * R41:  - TRUTH(state(a))
+   
+   R4,1 & R41,1   --> * R42:  - EXIST-KNIGHT(a b c)
+   
+   A13,2 & R42,1  --> * R44:  - KNIGHT(c)
+   
+   A12,2 & R42,1  --> * R45:  - KNIGHT(b)
+   
+   A4,1 & R44,1   --> * R47:  + KNAVE(c)
+   
+   A7,2 & R45,1   --> * R50:  - TRUTH(state(b))
+   
+   R2,1 & R50,1   --> * R51:  - EXIST-KNAVE(a b c)
+   
+   R51,1 & A16,2  --> * R52:  - KNAVE(c)
+   
+   R52,1 & R47,1  --> * R53:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 109 seconds

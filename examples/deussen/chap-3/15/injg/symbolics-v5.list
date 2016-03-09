@@ -1,0 +1,646 @@
+;;; -*- Package: MKRP; Base: 10. -*-
+
+
+
+                    ********************************************************************************
+                    *                                                                              *
+                    *     MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN                   *
+                    *                                                                              *
+                    *       09-SEP-85                                                              *
+                    *          09-SEP-85  10:25:39                                                 *
+                    *                                                                              *
+                    ********************************************************************************
+
+
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   09-SEP-85 10:23:13
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   D315>INJG1GG2G
+                                                                        
+************************************************************************
+                                                                        
+
+
+ADJUSTMENT OF THE OPTIONS : 
+============================
+
+
+
+TWO:RULES                             NIL                   TWO:RULES.MAXLEVEL                    1.
+TWO:SUPPRESS.NORULES                  NIL
+
+
+RED.I:CLAUSE.MULTIPLE.LITERALS        T                     RED.I:CLAUSE.PURITY                   T
+RED.I:CLAUSE.TAUTOLOGY                T                     RED.I:CLAUSE.TAUTOLOGY.RECHECK        PARTIAL
+RED.I:CLAUSE.SUBSUMPTION              T                     RED.I:CLAUSE.SUBSUMPTION.RECHECK      PARTIAL
+RED.I:CLAUSE.REPL.FACTORING           T                     RED.I:CLAUSE.REPL.FACTORING.RECHECK   T
+RED.I:CLAUSE.REPL.RESOLUTION          SIMPLE                RED.I:CLAUSE.REPL.RESOLUTION.RECHECK  T
+RED.I:CLAUSE.REWRITING                T                     RED.I:LINK.INCOMPATIBILITY            NIL
+RED.I:LINK.TAUTOLOGY                  REMOVE-INHIBIT        RED.I:LINK.TAUTOLOGY.RECHECK          NIL
+RED.I:LINK.SUBSUMPTION                REMOVE-INHIBIT        RED.I:LINK.SUBSUMPTION.RECHECK        NIL
+
+RED.D:CLAUSE.MULTIPLE.LITERALS        T                     RED.D:CLAUSE.PURITY                   T
+RED.D:CLAUSE.TAUTOLOGY                REMOVE-INHIBIT        RED.D:CLAUSE.TAUTOLOGY.RECHECK        NIL
+RED.D:CLAUSE.SUBSUMPTION.FORWARD      NIL                   RED.D:CLAUSE.SUBSUMPTION.BACKWARD     NIL
+RED.D:CLAUSE.SUBSUMPTION.RECHECK      NIL                   RED.D:CLAUSE.REPL.FACTORING           T
+RED.D:CLAUSE.REPL.FACTORING.RECHECK   NIL                   RED.D:CLAUSE.REPL.RESOLUTION          SIMPLE
+RED.D:CLAUSE.REPL.RESOLUTION.RECHECK  NIL                   RED.D:LINK.INCOMPATIBILITY            NIL
+RED.D:LINK.TAUTOLOGY                  NIL                   RED.D:LINK.TAUTOLOGY.RECHECK          NIL
+RED.D:LINK.SUBSUMPTION                NIL                   RED.D:LINK.SUBSUMPTION.RECHECK        NIL
+
+FAC:INITIAL                           NIL                   FAC:EACH.STEP                         NIL
+
+STR:RESOLUTION                        SET-OF-SUPPORT        STR:E-RESOLUTION                      NIL
+STR:PARAMODULATION                    UNIT-ANCESTRY         STR:LINK.DEPTH                        NIL
+STR:TERM.DEPTH                        6.                    STR:R.DEMODULATION                    T
+STR:P.DEMODULATION                    T                     STR:INDUCTION                         NIL
+
+TERM:UNITS                            T                     TERM:ITERATIONS                       1.
+TERM:SET.OF.SUPPORT                   NIL                   TERM:BREADTH.FIRST                    NIL
+
+GEN:SPLITTING                         0.                    GEN:MANUAL.CONTROL                    NIL
+GEN:MAXIMUM.STEPS                     50.                   GEN:GRAPH.SAVING                      NIL
+GEN:SAVE.FILE                         SAVE.DEFAULT
+
+
+TR:PREPROCESSING                      NIL                   TR:STEP.MODE                          LR
+TR:DUMP                               NIL                   TR:CLAUSE.MODE                        I
+TR:LINK.MODE                          I                     TR:TRACE.FILE                         NIL
+TR:TERMINAL                           T
+
+
+PR:INFIX.FORM                         T                     PR:PREFIX.FORM                        NIL
+PR:OPTIONS                            T                     PR:AXIOM.CLAUSES                      NIL
+PR:SYMBOLS                            NIL                   PR:STATISTICS                         NIL
+PR:PROTOCOL                           T                     PR:LEFT.MARGIN                        0.
+PR:LINELENGTH                         120.
+
+
+
+
+FORMULAE GIVEN TO THE EDITOR
+============================
+
+
+AXIOMS   : SORT MENGE,VERKN,ELEMENT,INDEX,INDEXMENGE:ANY
+           TYPE LIDEAL (MENGE MENGE VERKN)
+           TYPE RIDEAL (MENGE MENGE VERKN)
+           TYPE UHG (MENGE MENGE VERKN)
+           TYPE ME (MENGE MENGE)
+           TYPE NICHTLEER (MENGE)
+           TYPE HG (MENGE VERKN)
+           TYPE EL (ELEMENT MENGE)
+           TYPE MINIMAL (MENGE MENGE VERKN)
+           TYPE MPROD (MENGE MENGE VERKN) :MENGE
+           TYPE APPLYV (VERKN ELEMENT ELEMENT) :ELEMENT
+           TYPE F*X (MENGE ELEMENT VERKN) :MENGE
+           TYPE SM (MENGE MENGE) :MENGE
+           TYPE SET (ELEMENT) :MENGE
+           TYPE VER (MENGE MENGE) :MENGE
+           TYPE GR (MENGE VERKN ELEMENT)
+           TYPE INVERS (VERKN ELEMENT) :ELEMENT
+           TYPE MINIMAL-BED-L (MENGE VERKN)
+           TYPE MINIMAL-BED-R (MENGE VERKN)
+           TYPE EL-IND (INDEX INDEXMENGE)
+           TYPE U (INDEX) : MENGE
+           TYPE E (INDEX INDEX) : ELEMENT
+           TYPE NICHTLEER-IND (INDEXMENGE)
+           TYPE GLEICH (MENGE MENGE)
+           TYPE VER-IND (INDEXMENGE) : MENGE
+           TYPE SM-IND (INDEXMENGE) : MENGE
+           TYPE IDEAL (MENGE MENGE VERKN)
+           TYPE G (INDEX INDEX) :MENGE
+           TYPE GLEICH-E (ELEMENT ELEMENT)
+           * LEMMA 3.16 *
+           ALL F:MENGE  ALL MAL:VERKN  ALL I1,I2:INDEXMENGE  ALL X,X1,X2:ELEMENT  ALL J,RHO0,RHO1,RHO2:INDEX  
+           ALL Z1,Z2,Z:ELEMENT  
+               VORAUSSETZUNG315INJGLEICH (F MAL I1 I2 X X1 X2 J RHO0 RHO1 RHO2 Z1 Z2 Z)
+               IMPL  
+               GLEICH-E (APPLYV (MAL E (RHO1 J) APPLYV (MAL Z1 Z)) APPLYV (MAL E (RHO2 J) APPLYV (MAL Z2 Z)))
+           * MODIFIKATION EINER GLEICHUNG DURCH MUTLIPLIKATION UND UMKLAMMERN *
+           ALL MAL:VERKN  ALL A,B,C,D,E:ELEMENT  
+               GLEICH-E (APPLYV (MAL A B) APPLYV (MAL C D))
+               IMPL  
+               GLEICH-E (APPLYV (MAL APPLYV (MAL E A) B) APPLYV (MAL APPLYV (MAL E C) D))
+           * RECHENREGEL 3.12.2 *
+           ALL F:MENGE  ALL MAL:VERKN  ALL I1,I2:INDEXMENGE  ALL X,X1,X2:ELEMENT  ALL J,RHO0,RHO1,RHO2:INDEX  
+           ALL Z1,Z2,Z:ELEMENT  
+               VORAUSSETZUNG315INJGLEICH (F MAL I1 I2 X X1 X2 J RHO0 RHO1 RHO2 Z1 Z2 Z)
+               IMPL  
+               APPLYV (MAL E (RHO0 J) E (RHO1 J)) = E (RHO0 J) AND APPLYV (MAL E (RHO0 J) E (RHO2 J)) = E (RHO0 J)
+           * G (RHO0 J) IST GRUPPE *
+           ALL F:MENGE  ALL MAL:VERKN  ALL I1,I2:INDEXMENGE  ALL X,X1,X2:ELEMENT  ALL J,RHO0,RHO1,RHO2:INDEX  
+           ALL Z1,Z2,Z:ELEMENT  
+               VORAUSSETZUNG315INJGLEICH (F MAL I1 I2 X X1 X2 J RHO0 RHO1 RHO2 Z1 Z2 Z)
+               IMPL  
+               GR (G (RHO0 J) MAL E (RHO0 J))
+           * GRUPPENEIGENSCHAFT : EX = X *
+           ALL F:MENGE ALL MAL:VERKN ALL E,X:ELEMENT GR (F MAL E) AND EL (X F) IMPL APPLYV (MAL E X) = X
+           * Z1Z BZW Z2Z SIND G (RHO J) *
+           ALL F:MENGE  ALL MAL:VERKN  ALL I1,I2:INDEXMENGE  ALL X,X1,X2:ELEMENT  ALL J,RHO0,RHO1,RHO2:INDEX  
+           ALL Z1,Z2,Z:ELEMENT  
+               VORAUSSETZUNG315INJGLEICH (F MAL I1 I2 X X1 X2 J RHO0 RHO1 RHO2 Z1 Z2 Z)
+               IMPL  
+               EL (APPLYV (MAL Z1 Z) G (RHO0 J)) AND EL (APPLYV (MAL Z2 Z) G (RHO0 J))
+
+THEOREMS : ALL F:MENGE  ALL MAL:VERKN  ALL I1,I2:INDEXMENGE  ALL X,X1,X2:ELEMENT  ALL J,RHO0,RHO1,RHO2:INDEX  
+           ALL Z1,Z2,Z:ELEMENT  
+                 HG (F MAL)
+                 AND  
+                 MINIMAL-BED-L (F MAL)
+                 AND  
+                 MINIMAL-BED-R (F MAL)
+                 AND  
+                 (ALL J1:INDEX EL-IND (J1 I1) IMPL LIDEAL (U (J1) F MAL) AND MINIMAL (U (J1) F MAL))
+                 AND  
+                 (ALL J2:INDEX EL-IND (J2 I2) IMPL RIDEAL (U (J2) F MAL) AND MINIMAL (U (J2) F MAL))
+                 AND  
+                 EL-IND (J I1)
+                 AND  
+                 EL-IND (RHO0 I2)
+                 AND  
+                 EL-IND (RHO1 I2)
+                 AND  
+                 EL-IND (RHO2 I2)
+                 AND  
+                 EL (Z1 G (RHO0 J))
+                 AND  
+                 EL (Z2 G (RHO0 J))
+                 AND  
+                 APPLYV (MAL X1 X) = APPLYV (MAL X2 X)
+                 AND  
+                 X1 = APPLYV (MAL E (RHO1 J) Z1)
+                 AND  
+                 X2 = APPLYV (MAL E (RHO2 J) Z2)
+                 AND  
+                 GLEICH-E (Z APPLYV (MAL E (RHO0 J) X))
+                 AND  
+                 VORAUSSETZUNG315INJGLEICH (F MAL I1 I2 X X1 X2 J RHO0 RHO1 RHO2 Z1 Z2 Z)
+               IMPL  
+               GLEICH-E (APPLYV (MAL Z1 Z) APPLYV (MAL Z2 Z))
+
+
+
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+  A1   : ALL X:ANY  + =(X X)
+  A2   : ALL X,Y,Z,U,V,W:ELEMENT  XX,YY,ZZ,UU:INDEX  VV,WW:INDEXMENGE  XXX:VERKN  YYY:MENGE  
+              - VORAUSSETZUNG315INJGLEICH(YYY XXX WW VV W V U UU ZZ YY XX Z Y X)  + EL(APPLYV(XXX Y X) G(ZZ UU))
+  A3   : ALL X,Y,Z,U,V,W:ELEMENT  XX,YY,ZZ,UU:INDEX  VV,WW:INDEXMENGE  XXX:VERKN  YYY:MENGE  
+              - VORAUSSETZUNG315INJGLEICH(YYY XXX WW VV W V U UU ZZ YY XX Z Y X)  + EL(APPLYV(XXX Z X) G(ZZ UU))
+  A4   : ALL X,Y,Z,U,V,W:ELEMENT  XX,YY,ZZ,UU:INDEX  VV,WW:INDEXMENGE  XXX:VERKN  YYY:MENGE  
+              - VORAUSSETZUNG315INJGLEICH(YYY XXX WW VV W V U UU ZZ YY XX Z Y X)  + GR(G(ZZ UU) XXX E(ZZ UU))
+  A5   : ALL X,Y,Z,U,V,W:ELEMENT  XX,YY,ZZ,UU:INDEX  VV,WW:INDEXMENGE  XXX:VERKN  YYY:MENGE  
+              - VORAUSSETZUNG315INJGLEICH(YYY XXX WW VV W V U UU ZZ YY XX Z Y X)
+                + GLEICH-E(APPLYV(XXX E(YY UU) APPLYV(XXX Z X)) APPLYV(XXX E(XX UU) APPLYV(XXX Y X)))
+  A6   : ALL X,Y,Z,U,V,W:ELEMENT  XX,YY,ZZ,UU:INDEX  VV,WW:INDEXMENGE  XXX:VERKN  YYY:MENGE  
+              - VORAUSSETZUNG315INJGLEICH(YYY XXX WW VV W V U UU ZZ YY XX Z Y X)
+                + =(APPLYV(XXX E(ZZ UU) E(XX UU)) E(ZZ UU))
+  A7   : ALL X,Y,Z,U,V,W:ELEMENT  XX,YY,ZZ,UU:INDEX  VV,WW:INDEXMENGE  XXX:VERKN  YYY:MENGE  
+              - VORAUSSETZUNG315INJGLEICH(YYY XXX WW VV W V U UU ZZ YY XX Z Y X)
+                + =(APPLYV(XXX E(ZZ UU) E(YY UU)) E(ZZ UU))
+  A8   : ALL X,Y,Z,U,V:ELEMENT  W:VERKN  
+              - GLEICH-E(APPLYV(W V U) APPLYV(W Z Y))  + GLEICH-E(APPLYV(W APPLYV(W X V) U) APPLYV(W APPLYV(W X Z) Y))
+  A9   : ALL X,Y:ELEMENT  Z:VERKN  U:MENGE  - GR(U Z Y)  - EL(X U)  + =(APPLYV(Z Y X) X)
+
+
+
+
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+  T10  : + HG(C_10 C_13)
+  T11  : + MINIMAL-BED-L(C_10 C_13)
+  T12  : + MINIMAL-BED-R(C_10 C_13)
+  T13  : ALL X:INDEX  - EL-IND(X C_9)  + LIDEAL(U(X) C_10 C_13)
+  T14  : ALL X:INDEX  - EL-IND(X C_9)  + MINIMAL(U(X) C_10 C_13)
+  T15  : ALL X:INDEX  - EL-IND(X C_8)  + RIDEAL(U(X) C_10 C_13)
+  T16  : ALL X:INDEX  - EL-IND(X C_8)  + MINIMAL(U(X) C_10 C_13)
+  T17  : + EL-IND(C_7 C_9)
+  T18  : + EL-IND(C_6 C_8)
+  T19  : + EL-IND(C_5 C_8)
+  T20  : + EL-IND(C_4 C_8)
+  T21  : + EL(C_11 G(C_6 C_7))
+  T22  : + EL(C_12 G(C_6 C_7))
+  T23  : + =(APPLYV(C_13 C_2 C_1) APPLYV(C_13 C_3 C_1))
+  T24  : + =(C_2 APPLYV(C_13 E(C_5 C_7) C_11))
+  T25  : + =(C_3 APPLYV(C_13 E(C_4 C_7) C_12))
+  T26  : + GLEICH-E(C_14 APPLYV(C_13 E(C_6 C_7) C_1))
+  T27  : + VORAUSSETZUNG315INJGLEICH(C_10 C_13 C_9 C_8 C_1 C_2 C_3 C_7 C_6 C_5 C_4 C_11 C_12 C_14)
+  T28  : - GLEICH-E(APPLYV(C_13 C_11 C_14) APPLYV(C_13 C_12 C_14))
+
+
+
+
+
+
+INITIAL OPERATIONS ON THEOREMS
+==============================
+
+
+T23,1 & T24  -->    RW1 : + =(APPLYV(C_13 APPLYV(C_13 E(C_5 C_7) C_11) C_1) APPLYV(C_13 C_3 C_1))
+
+RW1,1 & T25  -->    RW2 : + =(APPLYV(C_13 APPLYV(C_13 E(C_5 C_7) C_11) C_1)
+                              APPLYV(C_13 APPLYV(C_13 E(C_4 C_7) C_12) C_1))
+
+
+T27,1 & T24  -->    RW3 : + VORAUSSETZUNG315INJGLEICH(C_10
+                                                      C_13
+                                                      C_9
+                                                      C_8
+                                                      C_1
+                                                      APPLYV(C_13 E(C_5 C_7) C_11)
+                                                      C_3
+                                                      C_7
+                                                      C_6
+                                                      C_5
+                                                      C_4
+                                                      C_11
+                                                      C_12
+                                                      C_14)
+
+
+RW3,1 & T25  -->    RW4 : + VORAUSSETZUNG315INJGLEICH(C_10
+                                                      C_13
+                                                      C_9
+                                                      C_8
+                                                      C_1
+                                                      APPLYV(C_13 E(C_5 C_7) C_11)
+                                                      APPLYV(C_13 E(C_4 C_7) C_12)
+                                                      C_7
+                                                      C_6
+                                                      C_5
+                                                      C_4
+                                                      C_11
+                                                      C_12
+                                                      C_14)
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+REFUTATION ( FAILURE : ABORTED.MAXSTEPS )
+
+INITIAL CLAUSES :      A1  : ALL X:ANY  + =(X X)
+                       A2  : ALL X,Y,Z,U,V,W:ELEMENT  XX,YY,ZZ,UU:INDEX  VV,WW:INDEXMENGE  XXX:VERKN  YYY:MENGE  
+                                  - VORAUSSETZUNG315INJGLEICH(YYY XXX WW VV W V U UU ZZ YY XX Z Y X)
+                                    + EL(APPLYV(XXX Y X) G(ZZ UU))
+                       A3  : ALL X,Y,Z,U,V,W:ELEMENT  XX,YY,ZZ,UU:INDEX  VV,WW:INDEXMENGE  XXX:VERKN  YYY:MENGE  
+                                  - VORAUSSETZUNG315INJGLEICH(YYY XXX WW VV W V U UU ZZ YY XX Z Y X)
+                                    + EL(APPLYV(XXX Z X) G(ZZ UU))
+                       A4  : ALL X,Y,Z,U,V,W:ELEMENT  XX,YY,ZZ,UU:INDEX  VV,WW:INDEXMENGE  XXX:VERKN  YYY:MENGE  
+                                  - VORAUSSETZUNG315INJGLEICH(YYY XXX WW VV W V U UU ZZ YY XX Z Y X)
+                                    + GR(G(ZZ UU) XXX E(ZZ UU))
+                       A5  : ALL X,Y,Z,U,V,W:ELEMENT  XX,YY,ZZ,UU:INDEX  VV,WW:INDEXMENGE  XXX:VERKN  YYY:MENGE  
+                                  - VORAUSSETZUNG315INJGLEICH(YYY XXX WW VV W V U UU ZZ YY XX Z Y X)
+                                  + GLEICH-E(APPLYV(XXX E(YY UU) APPLYV(XXX Z X)) APPLYV(XXX E(XX UU) APPLYV(XXX Y X)))
+                       A6  : ALL X,Y,Z,U,V,W:ELEMENT  XX,YY,ZZ,UU:INDEX  VV,WW:INDEXMENGE  XXX:VERKN  YYY:MENGE  
+                                  - VORAUSSETZUNG315INJGLEICH(YYY XXX WW VV W V U UU ZZ YY XX Z Y X)
+                                    + =(APPLYV(XXX E(ZZ UU) E(XX UU)) E(ZZ UU))
+                       A7  : ALL X,Y,Z,U,V,W:ELEMENT  XX,YY,ZZ,UU:INDEX  VV,WW:INDEXMENGE  XXX:VERKN  YYY:MENGE  
+                                  - VORAUSSETZUNG315INJGLEICH(YYY XXX WW VV W V U UU ZZ YY XX Z Y X)
+                                    + =(APPLYV(XXX E(ZZ UU) E(YY UU)) E(ZZ UU))
+                       A8  : ALL X,Y,Z,U,V:ELEMENT  W:VERKN  
+                                  - GLEICH-E(APPLYV(W V U) APPLYV(W Z Y))
+                                    + GLEICH-E(APPLYV(W APPLYV(W X V) U) APPLYV(W APPLYV(W X Z) Y))
+                       A9  : ALL X,Y:ELEMENT  Z:VERKN  U:MENGE  - GR(U Z Y)  - EL(X U)  + =(APPLYV(Z Y X) X)
+                       T21 : + EL(C_11 G(C_6 C_7))
+                       T22 : + EL(C_12 G(C_6 C_7))
+                       RW2 : + =(APPLYV(C_13 APPLYV(C_13 E(C_5 C_7) C_11) C_1)
+                                 APPLYV(C_13 APPLYV(C_13 E(C_4 C_7) C_12) C_1))
+                       T26 : + GLEICH-E(C_14 APPLYV(C_13 E(C_6 C_7) C_1))
+                       RW4 : + VORAUSSETZUNG315INJGLEICH(C_10
+                                                         C_13
+                                                         C_9
+                                                         C_8
+                                                         C_1
+                                                         APPLYV(C_13 E(C_5 C_7) C_11)
+                                                         APPLYV(C_13 E(C_4 C_7) C_12)
+                                                         C_7
+                                                         C_6
+                                                         C_5
+                                                         C_4
+                                                         C_11
+                                                         C_12
+                                                         C_14)
+                       T28 : - GLEICH-E(APPLYV(C_13 C_11 C_14) APPLYV(C_13 C_12 C_14))
+
+RW4,1 & A2,1    -->    R5  : + EL(APPLYV(C_13 C_12 C_14) G(C_6 C_7))
+
+RW4,1 & A3,1    -->    R6  : + EL(APPLYV(C_13 C_11 C_14) G(C_6 C_7))
+
+RW4,1 & A4,1    -->    R7  : + GR(G(C_6 C_7) C_13 E(C_6 C_7))
+
+R7,1 & A9,1     -->    R8  : ALL X:ELEMENT  - EL(X G(C_6 C_7))  + =(APPLYV(C_13 E(C_6 C_7) X) X)
+
+RW4,1 & A5,1    -->    R9  : + GLEICH-E(APPLYV(C_13 E(C_5 C_7) APPLYV(C_13 C_11 C_14))
+                                        APPLYV(C_13 E(C_4 C_7) APPLYV(C_13 C_12 C_14)))
+
+
+RW4,1 & A6,1    -->    R10 : + =(APPLYV(C_13 E(C_6 C_7) E(C_4 C_7)) E(C_6 C_7))
+
+RW4,1 & A7,1    -->    R11 : + =(APPLYV(C_13 E(C_6 C_7) E(C_5 C_7)) E(C_6 C_7))
+
+R9,1 & A8,1     -->    R12 : ALL X:ELEMENT  + GLEICH-E(APPLYV(C_13 APPLYV(C_13 X E(C_5 C_7)) APPLYV(C_13 C_11 C_14))
+                                                       APPLYV(C_13 APPLYV(C_13 X E(C_4 C_7)) APPLYV(C_13 C_12 C_14)))
+
+
+T21,1 & R8,1    -->    R13 : + =(APPLYV(C_13 E(C_6 C_7) C_11) C_11)
+
+T22,1 & R8,1    -->    R14 : + =(APPLYV(C_13 E(C_6 C_7) C_12) C_12)
+
+R5,1 & R8,1     -->    R15 : + =(APPLYV(C_13 E(C_6 C_7) APPLYV(C_13 C_12 C_14)) APPLYV(C_13 C_12 C_14))
+
+R6,1 & R8,1     -->    R16 : + =(APPLYV(C_13 E(C_6 C_7) APPLYV(C_13 C_11 C_14)) APPLYV(C_13 C_11 C_14))
+
+R10,1 & T26,1   -->    P17 : + GLEICH-E(C_14 APPLYV(C_13 APPLYV(C_13 E(C_6 C_7) E(C_4 C_7)) C_1))
+
+R10,1 & R7,1    -->    P18 : + GR(G(C_6 C_7) C_13 APPLYV(C_13 E(C_6 C_7) E(C_4 C_7)))
+
+R11,1 & T26,1   -->    P19 : + GLEICH-E(C_14 APPLYV(C_13 APPLYV(C_13 E(C_6 C_7) E(C_5 C_7)) C_1))
+
+R11,1 & R7,1    -->    P20 : + GR(G(C_6 C_7) C_13 APPLYV(C_13 E(C_6 C_7) E(C_5 C_7)))
+
+R11,1 & R10,1   -->    P21 : + =(APPLYV(C_13 APPLYV(C_13 E(C_6 C_7) E(C_5 C_7)) E(C_4 C_7)) E(C_6 C_7))
+
+R11,1 & R10,1   -->    P22 : + =(APPLYV(C_13 E(C_6 C_7) E(C_4 C_7)) APPLYV(C_13 E(C_6 C_7) E(C_5 C_7)))
+
+R10,1 & R11,1   -->    P23 : + =(APPLYV(C_13 APPLYV(C_13 E(C_6 C_7) E(C_4 C_7)) E(C_5 C_7)) E(C_6 C_7))
+
+R10,1 & R12,1   -->    P24 : + GLEICH-E(APPLYV(C_13 APPLYV(C_13 E(C_6 C_7) E(C_5 C_7)) APPLYV(C_13 C_11 C_14))
+                                        APPLYV(C_13 E(C_6 C_7) APPLYV(C_13 C_12 C_14)))
+
+
+P24,1 & A8,1    -->    R25 : ALL X:ELEMENT  + GLEICH-E(APPLYV(C_13
+                                                              APPLYV(C_13 X APPLYV(C_13 E(C_6 C_7) E(C_5 C_7)))
+                                                              APPLYV(C_13 C_11 C_14))
+                                                       APPLYV(C_13 APPLYV(C_13 X E(C_6 C_7)) APPLYV(C_13 C_12 C_14)))
+
+
+R11,1 & R12,1   -->    P26 : + GLEICH-E(APPLYV(C_13 E(C_6 C_7) APPLYV(C_13 C_11 C_14))
+                                        APPLYV(C_13 APPLYV(C_13 E(C_6 C_7) E(C_4 C_7)) APPLYV(C_13 C_12 C_14)))
+
+
+P26,1 & A8,1    -->    R27 : ALL X:ELEMENT  + GLEICH-E(APPLYV(C_13 APPLYV(C_13 X E(C_6 C_7)) APPLYV(C_13 C_11 C_14))
+                                                       APPLYV(C_13
+                                                              APPLYV(C_13 X APPLYV(C_13 E(C_6 C_7) E(C_4 C_7)))
+                                                              APPLYV(C_13 C_12 C_14)))
+
+
+R13,1 & T21,1   -->    P28 : + EL(APPLYV(C_13 E(C_6 C_7) C_11) G(C_6 C_7))
+
+R13,1 & RW2,1   -->    P29 : + =(APPLYV(C_13 APPLYV(C_13 E(C_5 C_7) APPLYV(C_13 E(C_6 C_7) C_11)) C_1)
+                                 APPLYV(C_13 APPLYV(C_13 E(C_4 C_7) C_12) C_1))
+
+
+R13,1 & RW4,1   -->    P30 : + VORAUSSETZUNG315INJGLEICH(C_10
+                                                         C_13
+                                                         C_9
+                                                         C_8
+                                                         C_1
+                                                         APPLYV(C_13 E(C_5 C_7) APPLYV(C_13 E(C_6 C_7) C_11))
+                                                         APPLYV(C_13 E(C_4 C_7) C_12)
+                                                         C_7
+                                                         C_6
+                                                         C_5
+                                                         C_4
+                                                         C_11
+                                                         C_12
+                                                         C_14)
+
+
+R13,1 & RW4,1   -->    P31 : + VORAUSSETZUNG315INJGLEICH(C_10
+                                                         C_13
+                                                         C_9
+                                                         C_8
+                                                         C_1
+                                                         APPLYV(C_13 E(C_5 C_7) C_11)
+                                                         APPLYV(C_13 E(C_4 C_7) C_12)
+                                                         C_7
+                                                         C_6
+                                                         C_5
+                                                         C_4
+                                                         APPLYV(C_13 E(C_6 C_7) C_11)
+                                                         C_12
+                                                         C_14)
+
+
+R13,1 & T28,1   -->    P32 : - GLEICH-E(APPLYV(C_13 APPLYV(C_13 E(C_6 C_7) C_11) C_14) APPLYV(C_13 C_12 C_14))
+
+R14,1 & T22,1   -->    P33 : + EL(APPLYV(C_13 E(C_6 C_7) C_12) G(C_6 C_7))
+
+R14,1 & RW2,1   -->    P34 : + =(APPLYV(C_13 APPLYV(C_13 E(C_5 C_7) C_11) C_1)
+                                 APPLYV(C_13 APPLYV(C_13 E(C_4 C_7) APPLYV(C_13 E(C_6 C_7) C_12)) C_1))
+
+
+R14,1 & RW4,1   -->    P35 : + VORAUSSETZUNG315INJGLEICH(C_10
+                                                         C_13
+                                                         C_9
+                                                         C_8
+                                                         C_1
+                                                         APPLYV(C_13 E(C_5 C_7) C_11)
+                                                         APPLYV(C_13 E(C_4 C_7) APPLYV(C_13 E(C_6 C_7) C_12))
+                                                         C_7
+                                                         C_6
+                                                         C_5
+                                                         C_4
+                                                         C_11
+                                                         C_12
+                                                         C_14)
+
+
+R14,1 & RW4,1   -->    P36 : + VORAUSSETZUNG315INJGLEICH(C_10
+                                                         C_13
+                                                         C_9
+                                                         C_8
+                                                         C_1
+                                                         APPLYV(C_13 E(C_5 C_7) C_11)
+                                                         APPLYV(C_13 E(C_4 C_7) C_12)
+                                                         C_7
+                                                         C_6
+                                                         C_5
+                                                         C_4
+                                                         C_11
+                                                         APPLYV(C_13 E(C_6 C_7) C_12)
+                                                         C_14)
+
+
+R14,1 & T28,1   -->    P37 : - GLEICH-E(APPLYV(C_13 C_11 C_14) APPLYV(C_13 APPLYV(C_13 E(C_6 C_7) C_12) C_14))
+
+R15,1 & T28,1   -->    P38 : - GLEICH-E(APPLYV(C_13 C_11 C_14) APPLYV(C_13 E(C_6 C_7) APPLYV(C_13 C_12 C_14)))
+
+R15,1 & R5,1    -->    P39 : + EL(APPLYV(C_13 E(C_6 C_7) APPLYV(C_13 C_12 C_14)) G(C_6 C_7))
+
+R15,1 & R9,1    -->    P40 : + GLEICH-E(APPLYV(C_13 E(C_5 C_7) APPLYV(C_13 C_11 C_14))
+                                        APPLYV(C_13 E(C_4 C_7) APPLYV(C_13 E(C_6 C_7) APPLYV(C_13 C_12 C_14))))
+
+
+P40,1 & A8,1    -->    R41 : ALL X:ELEMENT  + GLEICH-E(APPLYV(C_13 APPLYV(C_13 X E(C_5 C_7)) APPLYV(C_13 C_11 C_14))
+                                                       APPLYV(C_13
+                                                              APPLYV(C_13 X E(C_4 C_7))
+                                                              APPLYV(C_13 E(C_6 C_7) APPLYV(C_13 C_12 C_14))))
+
+
+R16,1 & T28,1   -->    P42 : - GLEICH-E(APPLYV(C_13 E(C_6 C_7) APPLYV(C_13 C_11 C_14)) APPLYV(C_13 C_12 C_14))
+
+R16,1 & R6,1    -->    P43 : + EL(APPLYV(C_13 E(C_6 C_7) APPLYV(C_13 C_11 C_14)) G(C_6 C_7))
+
+R16,1 & R9,1    -->    P44 : + GLEICH-E(APPLYV(C_13 E(C_5 C_7) APPLYV(C_13 E(C_6 C_7) APPLYV(C_13 C_11 C_14)))
+                                        APPLYV(C_13 E(C_4 C_7) APPLYV(C_13 C_12 C_14)))
+
+
+P44,1 & A8,1    -->    R45 : ALL X:ELEMENT  + GLEICH-E(APPLYV(C_13
+                                                              APPLYV(C_13 X E(C_5 C_7))
+                                                              APPLYV(C_13 E(C_6 C_7) APPLYV(C_13 C_11 C_14)))
+                                                       APPLYV(C_13 APPLYV(C_13 X E(C_4 C_7)) APPLYV(C_13 C_12 C_14)))
+
+
+R11,1 & P17,1   -->    P46 : + GLEICH-E(C_14
+                                        APPLYV(C_13 APPLYV(C_13 APPLYV(C_13 E(C_6 C_7) E(C_5 C_7)) E(C_4 C_7)) C_1))
+
+
+R11,1 & P18,1   -->    P47 : + GR(G(C_6 C_7) C_13 APPLYV(C_13 APPLYV(C_13 E(C_6 C_7) E(C_5 C_7)) E(C_4 C_7)))
+
+R10,1 & P19,1   -->    P48 : + GLEICH-E(C_14
+                                        APPLYV(C_13 APPLYV(C_13 APPLYV(C_13 E(C_6 C_7) E(C_4 C_7)) E(C_5 C_7)) C_1))
+
+
+R10,1 & P20,1   -->    P49 : + GR(G(C_6 C_7) C_13 APPLYV(C_13 APPLYV(C_13 E(C_6 C_7) E(C_4 C_7)) E(C_5 C_7)))
+
+P21,1 & R11,1   -->    P50 : + =(APPLYV(C_13 APPLYV(C_13 APPLYV(C_13 E(C_6 C_7) E(C_5 C_7)) E(C_4 C_7)) E(C_5 C_7))
+                                 E(C_6 C_7))
+
+
+P21,1 & R12,1   -->    P51 : + GLEICH-E(APPLYV(C_13
+                                               APPLYV(C_13 APPLYV(C_13 E(C_6 C_7) E(C_5 C_7)) E(C_5 C_7))
+                                               APPLYV(C_13 C_11 C_14))
+                                        APPLYV(C_13 E(C_6 C_7) APPLYV(C_13 C_12 C_14)))
+
+
+P51,1 & A8,1    -->    R52 : ALL X:ELEMENT  + GLEICH-E(APPLYV(C_13
+                                                              APPLYV(C_13
+                                                                     X
+                                                                     APPLYV(C_13
+                                                                            APPLYV(C_13 E(C_6 C_7) E(C_5 C_7))
+                                                                            E(C_5 C_7)))
+                                                              APPLYV(C_13 C_11 C_14))
+                                                       APPLYV(C_13 APPLYV(C_13 X E(C_6 C_7)) APPLYV(C_13 C_12 C_14)))
+
+
+P21,1 & P19,1   -->    P53 : + GLEICH-E(C_14
+                                        APPLYV(C_13
+                                               APPLYV(C_13
+                                                      APPLYV(C_13 APPLYV(C_13 E(C_6 C_7) E(C_5 C_7)) E(C_4 C_7))
+                                                      E(C_5 C_7))
+                                               C_1))
+
+
+P21,1 & P20,1   -->    P54 : + GR(G(C_6 C_7)
+                                  C_13
+                                  APPLYV(C_13 APPLYV(C_13 APPLYV(C_13 E(C_6 C_7) E(C_5 C_7)) E(C_4 C_7)) E(C_5 C_7)))
+
+
+P22,1 & R12,1   -->    P55 : + GLEICH-E(APPLYV(C_13 APPLYV(C_13 E(C_6 C_7) E(C_5 C_7)) APPLYV(C_13 C_11 C_14))
+                                        APPLYV(C_13 APPLYV(C_13 E(C_6 C_7) E(C_5 C_7)) APPLYV(C_13 C_12 C_14)))
+
+
+P55,1 & A8,1    -->    R56 : ALL X:ELEMENT  + GLEICH-E(APPLYV(C_13
+                                                              APPLYV(C_13 X APPLYV(C_13 E(C_6 C_7) E(C_5 C_7)))
+                                                              APPLYV(C_13 C_11 C_14))
+                                                       APPLYV(C_13
+                                                              APPLYV(C_13 X APPLYV(C_13 E(C_6 C_7) E(C_5 C_7)))
+                                                              APPLYV(C_13 C_12 C_14)))
+
+
+P22,1 & R12,1   -->    P57 : + GLEICH-E(APPLYV(C_13 APPLYV(C_13 E(C_6 C_7) E(C_4 C_7)) APPLYV(C_13 C_11 C_14))
+                                        APPLYV(C_13 APPLYV(C_13 E(C_6 C_7) E(C_4 C_7)) APPLYV(C_13 C_12 C_14)))
+
+
+P57,1 & A8,1    -->    R58 : ALL X:ELEMENT  + GLEICH-E(APPLYV(C_13
+                                                              APPLYV(C_13 X APPLYV(C_13 E(C_6 C_7) E(C_4 C_7)))
+                                                              APPLYV(C_13 C_11 C_14))
+                                                       APPLYV(C_13
+                                                              APPLYV(C_13 X APPLYV(C_13 E(C_6 C_7) E(C_4 C_7)))
+                                                              APPLYV(C_13 C_12 C_14)))
+
+
+P21,1 & P22,1   -->    P59 : + =(APPLYV(C_13 E(C_6 C_7) E(C_4 C_7))
+                                 APPLYV(C_13 APPLYV(C_13 APPLYV(C_13 E(C_6 C_7) E(C_5 C_7)) E(C_4 C_7)) E(C_5 C_7)))
+
+
+P23,1 & R12,1   -->    P60 : + GLEICH-E(APPLYV(C_13 E(C_6 C_7) APPLYV(C_13 C_11 C_14))
+                                        APPLYV(C_13
+                                               APPLYV(C_13 APPLYV(C_13 E(C_6 C_7) E(C_4 C_7)) E(C_4 C_7))
+                                               APPLYV(C_13 C_12 C_14)))
+
+
+P60,1 & A8,1    -->    R61 : ALL X:ELEMENT  + GLEICH-E(APPLYV(C_13 APPLYV(C_13 X E(C_6 C_7)) APPLYV(C_13 C_11 C_14))
+                                                       APPLYV(C_13
+                                                              APPLYV(C_13
+                                                                     X
+                                                                     APPLYV(C_13
+                                                                            APPLYV(C_13 E(C_6 C_7) E(C_4 C_7))
+                                                                            E(C_4 C_7)))
+                                                              APPLYV(C_13 C_12 C_14)))
+
+
+P23,1 & P17,1   -->    P62 : + GLEICH-E(C_14
+                                        APPLYV(C_13
+                                               APPLYV(C_13
+                                                      APPLYV(C_13 APPLYV(C_13 E(C_6 C_7) E(C_4 C_7)) E(C_5 C_7))
+                                                      E(C_4 C_7))
+                                               C_1))
+
+
+P23,1 & P18,1   -->    P63 : + GR(G(C_6 C_7)
+                                  C_13
+                                  APPLYV(C_13 APPLYV(C_13 APPLYV(C_13 E(C_6 C_7) E(C_4 C_7)) E(C_5 C_7)) E(C_4 C_7)))
+
+
+P23,1 & P21,1   -->    P64 : + =(APPLYV(C_13 APPLYV(C_13 E(C_6 C_7) E(C_5 C_7)) E(C_4 C_7))
+                                 APPLYV(C_13 APPLYV(C_13 E(C_6 C_7) E(C_4 C_7)) E(C_5 C_7)))
+
+
+R11,1 & P24,1   -->    P65 : + GLEICH-E(APPLYV(C_13 E(C_6 C_7) APPLYV(C_13 C_11 C_14))
+                                        APPLYV(C_13 E(C_6 C_7) APPLYV(C_13 C_12 C_14)))
+
+
+P65,1 & A8,1    -->    R66 : ALL X:ELEMENT  + GLEICH-E(APPLYV(C_13 APPLYV(C_13 X E(C_6 C_7)) APPLYV(C_13 C_11 C_14))
+                                                       APPLYV(C_13 APPLYV(C_13 X E(C_6 C_7)) APPLYV(C_13 C_12 C_14)))
+
+
+P22,1 & P24,1   -->    P67 : + GLEICH-E(APPLYV(C_13 APPLYV(C_13 E(C_6 C_7) E(C_4 C_7)) APPLYV(C_13 C_11 C_14))
+                                        APPLYV(C_13 E(C_6 C_7) APPLYV(C_13 C_12 C_14)))
+
+
+P67,1 & A8,1    -->    R68 : ALL X:ELEMENT  + GLEICH-E(APPLYV(C_13
+                                                              APPLYV(C_13 X APPLYV(C_13 E(C_6 C_7) E(C_4 C_7)))
+                                                              APPLYV(C_13 C_11 C_14))
+                                                       APPLYV(C_13 APPLYV(C_13 X E(C_6 C_7)) APPLYV(C_13 C_12 C_14)))
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+THE THEOREM(S) COULD NOT BE PROVED.
+

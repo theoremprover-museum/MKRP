@@ -1,0 +1,152 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 48.4                                                *
+                     *           DATE: 12-JUL,1991  21:22                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 12-JUL,1991 21:22 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * AXIOMS *
+             ALL X + (0 X) = X
+             ALL X,Y + (S (X) Y) = S (+ (X Y))
+             ALL X * (0 X) = 0
+             ALL X,Y * (S (X) Y) = + (Y * (X Y))
+             ALL X,Y + (X Y) = + (Y X)
+             ALL X,Y,Z + (+ (X Y) Z) = + (X + (Y Z))
+             ALL X,Y * (X Y) = * (Y X)
+             ALL X,Y,Z * (X + (Y Z)) = + (* (X Y) * (X Z))
+             ALL X,Y,Z * (+ (Y Z) X) = + (* (Y X) * (Z X))
+             
+   Theorems: * THEOREM *
+             ALL X,Y,Z * (* (0 Y) Z) = * (0 * (Y Z))
+             ALL X,Y,Z * (* (X Y) Z) = * (X * (Y Z)) IMPL * (* (S (X) Y) Z) = * (S (X) * (Y Z))
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+           * A1:   All x:Any + =(x x)
+             A2:   All x:Any + =(+(0 x) x)
+             A3:   All x,y:Any + =(+(s(y) x) s(+(y x)))
+           * A4:   All x:Any + =(*(0 x) 0)
+           * A5:   All x,y:Any + =(*(s(y) x) +(x *(y x)))
+             A6:   All x,y:Any + =(+(y x) +(x y))
+             A7:   All x,y,z:Any + =(+(+(z y) x) +(z +(y x)))
+           * A8:   All x,y:Any + =(*(y x) *(x y))
+             A9:   All x,y,z:Any + =(*(z +(y x)) +(*(z y) *(z x)))
+           * A10:  All x,y,z:Any + =(*(+(z y) x) +(*(z x) *(y x)))
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization and Splitting
+             =================================================================
+
+   Splitpart 1
+
+           * T11: - =(*(*(0 c_2) c_1) *(0 *(c_2 c_1)))
+
+   Splitpart 2
+
+           * T12: + =(*(*(c_5 c_4) c_3) *(c_5 *(c_4 c_3)))
+           * T13: - =(*(*(s(c_5) c_4) c_3) *(s(c_5) *(c_4 c_3)))
+
+
+   End of Splitparts
+
+
+
+
+
+             Initial Operations on Theorems
+             ==============================
+
+
+          
+   Splitpart 1:
+   
+   T11,1 & A4    -->* RW1: - =(*(0 c_1) *(0 *(c_2 c_1)))
+   
+   RW1,1 & A4    -->* RW2: - =(0 *(0 *(c_2 c_1)))
+   
+   RW2,1 & A4    -->* RW3: - =(0 0)
+   
+   RW3,1 & A1,1  -->* R4:  []
+   
+
+   
+   Splitpart 2:
+   
+   T12,1 & A8     -->* RW5:  + =(*(c_3 *(c_5 c_4)) *(c_5 *(c_4 c_3)))
+   
+   T13,1 & A5     -->* RW6:  - =(*(+(c_4 *(c_5 c_4)) c_3) *(s(c_5) *(c_4 c_3)))
+   
+   RW6,1 & A10    -->* RW7:  - =(+(*(c_4 c_3) *(*(c_5 c_4) c_3)) *(s(c_5) *(c_4 c_3)))
+   
+   RW7,1 & A5     -->* RW8:  - =(+(*(c_4 c_3) *(*(c_5 c_4) c_3)) +(*(c_4 c_3) *(c_5 *(c_4 c_3))))
+   
+   RW8,1 & A8     -->* RW9:  - =(+(*(c_4 c_3) *(c_3 *(c_5 c_4))) +(*(c_4 c_3) *(c_5 *(c_4 c_3))))
+   
+   RW9,1 & RW5    -->* RW10: - =(+(*(c_4 c_3) *(c_5 *(c_4 c_3))) +(*(c_4 c_3) *(c_5 *(c_4 c_3))))
+   
+   RW10,1 & A1,1  -->* R11:  []
+   
+
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation of Splitpart 1:
+   ==========================
+   
+   See operations on theorems of splitpart 1
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation of Splitpart 2:
+   ==========================
+   
+   See operations on theorems of splitpart 2
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation of Splitpart 1: 2 seconds
+   Time Used for Refutation of Splitpart 2: 2 seconds

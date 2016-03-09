@@ -1,0 +1,263 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 45.34 EQUALITY 16.1                                 *
+                     *           DATE: 16-AUG,1990  20:42                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 16-AUG,1990 20:41 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   EX X1,X2,X3,X5,X6 WOLF (X1) AND FOX (X2) AND BIRD (X3) AND SNAIL (X5) AND GRAIN (X6)
+             ALL X (WOLF (X) OR FOX (X) OR BIRD (X) OR SNAIL (X)) IMPL ANIMAL (X)
+             ALL X GRAIN (X) IMPL PLANT (X)
+             ALL X ANIMAL (X)
+                   IMPL (ALL Y PLANT (Y) IMPL EATS (X Y))
+                        OR (ALL Y ANIMAL (Y) AND SMALLER (Y X) AND (EX Z PLANT (Z) AND EATS (Y Z)) IMPL EATS (X Y))
+             ALL X,Y SNAIL (X) AND BIRD (Y) IMPL SMALLER (X Y)
+             ALL X,Y BIRD (X) AND FOX (Y) IMPL SMALLER (X Y)
+             ALL X,Y FOX (X) AND WOLF (Y) IMPL SMALLER (X Y)
+             ALL X,Y (FOX (X) OR GRAIN (X)) AND WOLF (Y) IMPL NOT EATS (Y X)
+             ALL X,Y BIRD (X) AND SNAIL (Y) IMPL NOT EATS (X Y)
+             ALL X SNAIL (X) IMPL (EX Y PLANT (Y) AND EATS (X Y))
+             
+   Theorems: EX X,Y,Z (ANIMAL (X) AND ANIMAL (Y) AND GRAIN (Z) AND EATS (X Y) AND EATS (Y Z))
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+           * A2:   + WOLF(c_1)
+           * A3:   + FOX(c_2)
+           * A4:   + BIRD(c_3)
+           * A5:   + SNAIL(c_4)
+           * A6:   + GRAIN(c_5)
+           * A7:   All x:Any - WOLF(x)  + ANIMAL(x)
+           * A8:   All x:Any - FOX(x)  + ANIMAL(x)
+           * A9:   All x:Any - BIRD(x)  + ANIMAL(x)
+           * A10:  All x:Any - SNAIL(x)  + ANIMAL(x)
+           * A11:  All x:Any - GRAIN(x)  + PLANT(x)
+           * A12:  All x:Any - SNAIL(x)  + PLANT(f_1(x))
+           * A13:  All x:Any - SNAIL(x)  + EATS(x f_1(x))
+           * A14:  All x,y:Any - SNAIL(y)  - BIRD(x)  + SMALLER(y x)
+           * A15:  All x,y:Any - BIRD(y)  - FOX(x)  + SMALLER(y x)
+           * A16:  All x,y:Any - FOX(y)  - WOLF(x)  + SMALLER(y x)
+           * A17:  All x,y:Any - FOX(y)  - WOLF(x)  - EATS(x y)
+           * A18:  All x,y:Any - GRAIN(y)  - WOLF(x)  - EATS(x y)
+           * A19:  All x,y:Any - BIRD(y)  - SNAIL(x)  - EATS(y x)
+           * A20:  All x,y,z,u:Any - ANIMAL(u)  - PLANT(z)  + EATS(u z)  - ANIMAL(y)  - SMALLER(y u)  - PLANT(x)
+                                   - EATS(y x)  + EATS(u y)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T21: All x,y,z:Any - ANIMAL(z)  - ANIMAL(y)  - GRAIN(x)  - EATS(z y)  - EATS(y x)
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:        A1:    All x:Any + =(x x)
+                         * A2:    + WOLF(c_1)
+                         * A3:    + FOX(c_2)
+                         * A4:    + BIRD(c_3)
+                         * A5:    + SNAIL(c_4)
+                         * A6:    + GRAIN(c_5)
+                         * A7:    All x:Any - WOLF(x)  + ANIMAL(x)
+                         * A8:    All x:Any - FOX(x)  + ANIMAL(x)
+                         * A9:    All x:Any - BIRD(x)  + ANIMAL(x)
+                         * A10:   All x:Any - SNAIL(x)  + ANIMAL(x)
+                         * A11:   All x:Any - GRAIN(x)  + PLANT(x)
+                         * A12:   All x:Any - SNAIL(x)  + PLANT(f_1(x))
+                         * A13:   All x:Any - SNAIL(x)  + EATS(x f_1(x))
+                         * A14:   All x,y:Any - SNAIL(y)  - BIRD(x)  + SMALLER(y x)
+                         * A15:   All x,y:Any - BIRD(y)  - FOX(x)  + SMALLER(y x)
+                         * A16:   All x,y:Any - FOX(y)  - WOLF(x)  + SMALLER(y x)
+                         * A17:   All x,y:Any - FOX(y)  - WOLF(x)  - EATS(x y)
+                         * A18:   All x,y:Any - GRAIN(y)  - WOLF(x)  - EATS(x y)
+                         * A19:   All x,y:Any - BIRD(y)  - SNAIL(x)  - EATS(y x)
+                         * A20:   All x,y,z,u:Any - ANIMAL(u)  - PLANT(z)  + EATS(u z)  - ANIMAL(y)  - SMALLER(y u)
+                                                  - PLANT(x)  - EATS(y x)  + EATS(u y)
+                         * T21:   All x,y,z:Any - ANIMAL(z)  - ANIMAL(y)  - GRAIN(x)  - EATS(z y)  - EATS(y x)
+                         
+
+   
+   A13,2 & A20,7    -->  * R14:   All x,y,z:Any - SNAIL(z)  - ANIMAL(y)  - PLANT(x)  + EATS(y x)  - ANIMAL(z)
+                                                - SMALLER(z y)  - PLANT(f_1(z))  + EATS(y z)
+   
+   R14,7 & A12,2    -->  * R15:   All x,y,z:Any - SNAIL(z)  - ANIMAL(y)  - PLANT(x)  + EATS(y x)  - ANIMAL(z)
+                                                - SMALLER(z y)  + EATS(y z)  - SNAIL(z)
+   
+   R15 1=8          -->  * D16:   All x,y,z:Any - SNAIL(z)  - ANIMAL(y)  - PLANT(x)  + EATS(y x)  - ANIMAL(z)
+                                                - SMALLER(z y)  + EATS(y z)
+   
+   D16,5 & A10,2    -->  * R17:   All x,y,z:Any - SNAIL(z)  - ANIMAL(y)  - PLANT(x)  + EATS(y x)  - SMALLER(z y)
+                                                + EATS(y z)  - SNAIL(z)
+   
+   R17 1=7          -->  * D18:   All x,y,z:Any - SNAIL(z)  - ANIMAL(y)  - PLANT(x)  + EATS(y x)  - SMALLER(z y)
+                                                + EATS(y z)
+   
+   A14,3 & D18,5    -->  * R19:   All x,y,z:Any - SNAIL(z)  - BIRD(y)  - SNAIL(z)  - ANIMAL(y)  - PLANT(x)
+                                                + EATS(y x)  + EATS(y z)
+   
+   R19 1=3          -->  * D20:   All x,y,z:Any - SNAIL(z)  - BIRD(x)  - ANIMAL(x)  - PLANT(y)  + EATS(x y)
+                                                + EATS(x z)
+   
+   D20,6 & A19,3    -->  * R21:   All x,y,z:Any - SNAIL(y)  - BIRD(z)  - ANIMAL(z)  - PLANT(x)  + EATS(z x)
+                                                - BIRD(z)  - SNAIL(y)
+   
+   R21 2=6          -->  * D22:   All x,y,z:Any - SNAIL(y)  - BIRD(z)  - ANIMAL(z)  - PLANT(x)  + EATS(z x)
+                                                - SNAIL(y)
+   
+   D22 1=6          -->  * D23:   All x,y,z:Any - SNAIL(y)  - BIRD(z)  - ANIMAL(z)  - PLANT(x)  + EATS(z x)
+   
+   D23,3 & A9,2     -->  * R24:   All x,y,z:Any - SNAIL(y)  - BIRD(z)  - PLANT(x)  + EATS(z x)  - BIRD(z)
+   
+   R24 2=5          -->  * D25:   All x,y,z:Any - SNAIL(y)  - BIRD(z)  - PLANT(x)  + EATS(z x)
+   
+   D25,1 & A5,1     -->  * R26:   All x,y:Any - BIRD(y)  - PLANT(x)  + EATS(y x)
+   
+   R26,3 & T21,5    -->  * R57:   All x,y,z:Any - BIRD(z)  - PLANT(y)  - ANIMAL(x)  - ANIMAL(z)  - GRAIN(y)
+                                                - EATS(x z)
+   
+   R57,4 & A9,2     -->  * R58:   All x,y,z:Any - BIRD(z)  - PLANT(y)  - ANIMAL(x)  - GRAIN(y)  - EATS(x z)
+                                                - BIRD(z)
+   
+   R58 1=6          -->  * D59:   All x,y,z:Any - BIRD(z)  - PLANT(y)  - ANIMAL(x)  - GRAIN(y)  - EATS(x z)
+   
+   D59,2 & A11,2    -->  * R60:   All x,y,z:Any - BIRD(y)  - ANIMAL(x)  - GRAIN(z)  - EATS(x y)  - GRAIN(z)
+   
+   R60 3=5          -->  * D61:   All x,y,z:Any - BIRD(y)  - ANIMAL(x)  - GRAIN(z)  - EATS(x y)
+   
+   D61,3 & A6,1     -->  * R62:   All x,y:Any - BIRD(y)  - ANIMAL(x)  - EATS(x y)
+   
+   A16,3 & A20,5    -->  * R98:   All x,y,z,u:Any - FOX(u)  - WOLF(z)  - ANIMAL(z)  - PLANT(y)  + EATS(z y)
+                                                  - ANIMAL(u)  - PLANT(x)  - EATS(u x)  + EATS(z u)
+   
+   R98,9 & A17,3    -->  * R99:   All x,y,z,u:Any - FOX(z)  - WOLF(u)  - ANIMAL(u)  - PLANT(y)  + EATS(u y)
+                                                  - ANIMAL(z)  - PLANT(x)  - EATS(z x)  - FOX(z)  - WOLF(u)
+   
+   R99 1=9          -->  * D100:  All x,y,z,u:Any - FOX(z)  - WOLF(u)  - ANIMAL(u)  - PLANT(y)  + EATS(u y)
+                                                  - ANIMAL(z)  - PLANT(x)  - EATS(z x)  - WOLF(u)
+   
+   D100 2=9         -->  * D101:  All x,y,z,u:Any - FOX(z)  - WOLF(u)  - ANIMAL(u)  - PLANT(y)  + EATS(u y)
+                                                  - ANIMAL(z)  - PLANT(x)  - EATS(z x)
+   
+   D101,6 & A8,2    -->  * R102:  All x,y,z,u:Any - FOX(u)  - WOLF(z)  - ANIMAL(z)  - PLANT(y)  + EATS(z y)
+                                                  - PLANT(x)  - EATS(u x)  - FOX(u)
+   
+   R102 1=8         -->  * D103:  All x,y,z,u:Any - FOX(u)  - WOLF(z)  - ANIMAL(z)  - PLANT(y)  + EATS(z y)
+                                                  - PLANT(x)  - EATS(u x)
+   
+   D103,3 & A7,2    -->  * R104:  All x,y,z,u:Any - FOX(z)  - WOLF(u)  - PLANT(y)  + EATS(u y)  - PLANT(x)
+                                                  - EATS(z x)  - WOLF(u)
+   
+   R104 2=7         -->  * D105:  All x,y,z,u:Any - FOX(z)  - WOLF(u)  - PLANT(y)  + EATS(u y)  - PLANT(x)
+                                                  - EATS(z x)
+   
+   D105,4 & A18,3   -->  * R123:  All x,y,z,u:Any - FOX(u)  - WOLF(z)  - PLANT(y)  - PLANT(x)  - EATS(u x)
+                                                  - GRAIN(y)  - WOLF(z)
+   
+   R123 2=7         -->  * D124:  All x,y,z,u:Any - FOX(u)  - WOLF(x)  - PLANT(z)  - PLANT(y)  - EATS(u y)
+                                                  - GRAIN(z)
+   
+   D124,3 & A11,2   -->  * R125:  All x,y,z,u:Any - FOX(z)  - WOLF(x)  - PLANT(y)  - EATS(z y)  - GRAIN(u)
+                                                  - GRAIN(u)
+   
+   R125 5=6         -->  * D126:  All x,y,z,u:Any - FOX(z)  - WOLF(x)  - PLANT(y)  - EATS(z y)  - GRAIN(u)
+   
+   D126,5 & A6,1    -->  * R127:  All x,y,z:Any - FOX(z)  - WOLF(x)  - PLANT(y)  - EATS(z y)
+   
+   R127,2 & A2,1    -->  * R128:  All x,y:Any - FOX(y)  - PLANT(x)  - EATS(y x)
+   
+   A15,3 & A20,5    -->  * R148:  All x,y,z,u:Any - BIRD(u)  - FOX(z)  - ANIMAL(z)  - PLANT(y)  + EATS(z y)
+                                                  - ANIMAL(u)  - PLANT(x)  - EATS(u x)  + EATS(z u)
+   
+   R148,9 & R62,3   -->  * R149:  All x,y,z,u:Any - BIRD(z)  - FOX(u)  - ANIMAL(u)  - PLANT(y)  + EATS(u y)
+                                                  - ANIMAL(z)  - PLANT(x)  - EATS(z x)  - BIRD(z)  - ANIMAL(u)
+   
+   R149 1=9         -->  * D150:  All x,y,z,u:Any - BIRD(z)  - FOX(u)  - ANIMAL(u)  - PLANT(y)  + EATS(u y)
+                                                  - ANIMAL(z)  - PLANT(x)  - EATS(z x)  - ANIMAL(u)
+   
+   D150 3=9         -->  * D151:  All x,y,z,u:Any - BIRD(z)  - FOX(u)  - ANIMAL(u)  - PLANT(y)  + EATS(u y)
+                                                  - ANIMAL(z)  - PLANT(x)  - EATS(z x)
+   
+   D151,8 & R26,3   -->  * R152:  All x,y,z,u:Any - BIRD(u)  - FOX(y)  - ANIMAL(y)  - PLANT(x)  + EATS(y x)
+                                                  - ANIMAL(u)  - PLANT(z)  - BIRD(u)  - PLANT(z)
+   
+   R152 1=8         -->  * D153:  All x,y,z,u:Any - BIRD(u)  - FOX(y)  - ANIMAL(y)  - PLANT(x)  + EATS(y x)
+                                                  - ANIMAL(u)  - PLANT(z)  - PLANT(z)
+   
+   D153 7=8         -->  * D154:  All x,y,z,u:Any - BIRD(u)  - FOX(y)  - ANIMAL(y)  - PLANT(x)  + EATS(y x)
+                                                  - ANIMAL(u)  - PLANT(z)
+   
+   D154,7 & A11,2   -->  * R155:  All x,y,z:Any - BIRD(z)  - FOX(y)  - ANIMAL(y)  - PLANT(x)  + EATS(y x)
+                                                - ANIMAL(z)  - GRAIN(c_5)
+   
+   R155,7 & A6,1    -->  * R156:  All x,y,z:Any - BIRD(z)  - FOX(y)  - ANIMAL(y)  - PLANT(x)  + EATS(y x)
+                                                - ANIMAL(z)
+   
+   R156,6 & A9,2    -->  * R157:  All x,y,z:Any - BIRD(z)  - FOX(y)  - ANIMAL(y)  - PLANT(x)  + EATS(y x)  - BIRD(z)
+   
+   R157 1=6         -->  * D158:  All x,y,z:Any - BIRD(z)  - FOX(y)  - ANIMAL(y)  - PLANT(x)  + EATS(y x)
+   
+   D158,5 & R128,3  -->  * R159:  All x,y,z:Any - BIRD(x)  - FOX(z)  - ANIMAL(z)  - PLANT(y)  - FOX(z)  - PLANT(y)
+   
+   R159 2=5         -->  * D160:  All x,y,z:Any - BIRD(x)  - FOX(z)  - ANIMAL(z)  - PLANT(y)  - PLANT(y)
+   
+   D160 4=5         -->  * D161:  All x,y,z:Any - BIRD(x)  - FOX(z)  - ANIMAL(z)  - PLANT(y)
+   
+   D161,4 & A11,2   -->  * R162:  All x,y:Any - BIRD(x)  - FOX(y)  - ANIMAL(y)  - GRAIN(c_5)
+   
+   R162,4 & A6,1    -->  * R163:  All x,y:Any - BIRD(x)  - FOX(y)  - ANIMAL(y)
+   
+   R163,3 & A8,2    -->  * R164:  All x,y:Any - BIRD(x)  - FOX(y)  - FOX(y)
+   
+   R164 2=3         -->  * D165:  All x,y:Any - BIRD(x)  - FOX(y)
+   
+   D165,2 & A3,1    -->  * R166:  All x:Any - BIRD(x)
+   
+   R166,1 & A4,1    -->  * R167:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 390 seconds

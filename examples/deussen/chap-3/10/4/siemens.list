@@ -1,0 +1,175 @@
+ 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 24-JAN-85                                                     *
+                    *         DATE : 24-APR-85  21:38:26                                           *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   24-APR-85 21:32:27
+*************************************************************************
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : SORT MENGE,VERKN,ELEMENT,INDEX,INDEXMENGE:ANY
+           TYPE LIDEAL(MENGE MENGE VERKN)
+           TYPE RIDEAL(MENGE MENGE VERKN)
+           TYPE UHG(MENGE MENGE VERKN)
+           TYPE ME(MENGE MENGE)
+           TYPE NICHTLEER(MENGE)
+           TYPE HG(MENGE VERKN)
+           TYPE NICHTLEER-IND(INDEXMENGE)
+           TYPE GLEICH(MENGE MENGE)
+           TYPE EL-IND(INDEX INDEXMENGE)
+           TYPE EL(ELEMENT MENGE)
+           TYPE MINIMAL(MENGE MENGE VERKN)
+           TYPE MINIMAL-BED-L(MENGE VERKN)
+           TYPE MINIMAL-BED-R(MENGE VERKN)
+           TYPE MPROD(MENGE MENGE VERKN) :MENGE
+           TYPE U(INDEX) :MENGE
+           TYPE VER-IND(INDEXMENGE) :MENGE
+           TYPE SM-IND(INDEXMENGE) :MENGE
+           TYPE APPLYV(VERKN ELEMENT ELEMENT) :ELEMENT
+           TYPE F*X(MENGE ELEMENT VERKN) :MENGE
+           TYPE SM(MENGE MENGE) :MENGE
+           TYPE T*(MENGE VERKN MENGE ELEMENT) :MENGE
+           TYPE G(INDEX INDEX) :MENGE
+           TYPE BIJEKTIV(ABB MENGE MENGE)
+           TYPE HOMOMORPH(ABB MENGE MENGE)
+           TYPE ISOMORPH(ABB MENGE MENGE)
+           TYPE ABBVOR(ABB ELEMENT ELEMENT)
+           * ABKUERZUNG *
+           ALL I,J :INDEX ALL MAL:VERKN G(I J) = MPROD(U(I) U(J) MAL)
+           * DEFINITION ISOMORPH *
+           ALL PHI:ABB ALL A,B:MENGE HOMOMORPH(PHI A B) AND BIJEKTIV(PHI A B) EQV ISOMORPH(PHI A B)
+           * VORAUSSTZUNG3104(F MAL PHI I1 I2 J1 J2 J3 E1 E2) BEDEUTET : *
+           * HG(F MAL) AND MINIMAL-BED-L(F MAL) AND MINIMAL-BED-R(F MAL) AND *
+           *  (ALL J1:INDEX EL-IND (J1 I1) IMPL RIDEAL (U (J1) F MAL) AND MINIMAL (U (J1) F MAL)) AND                   
+           *  (ALL J2:INDEX EL-IND (J2 I2) IMPL LIDEAL (U (J2) F MAL) AND MINIMAL (U (J2) F MAL)) AND                   
+           *  (ALL J1,J2:INDEX EL-IND (J1 I1) AND EL-IND (J2 I2) IMPL GLEICH (MPROD (U (J1) U (J2) MAL) SM (U (J1)
+U (J2))))                                                                                                               
+           *  AND EL-IND (J1 I1) AND EL-IND (J2 I2) AND EL-IND (J3 I2) AND GR (G (J1 J2) MAL E1) AND GR                 
+           *  (G (J1 J3) MAL E2) AND ABBILDUNG (PHI G (J1 J2) G (J1 J3)) AND                                            
+           *  (ALL X:ELEMENT EL (X G (J1 J2)) IMPL ABBVOR (PHI X APPLYV (MAL X E2)))                                    
+           * LEMMA 3.10.4.BIJ *
+           ALL PHI:ABB  ALL F:MENGE  ALL MAL:VERKN  ALL I1,I2:INDEXMENGE  ALL J1,J2,J3:INDEX  ALL E1,E2:ELEMENT  
+             VORAUSSETZUNG3104(F MAL PHI I1 I2 J1 J2 J3 E1 E2) IMPL BIJEKTIV(PHI G(J1 J2) G(J1 J3))
+           * LEMMA 3.10.4.HOM *
+           ALL PHI:ABB  ALL F:MENGE  ALL MAL:VERKN  ALL I1,I2:INDEXMENGE  ALL J1,J2,J3:INDEX  ALL E1,E2:ELEMENT  
+             VORAUSSETZUNG3104(F MAL PHI I1 I2 J1 J2 J3 E1 E2) IMPL HOMOMORPH(PHI G(J1 J2) G(J1 J3))
+ 
+THEOREMS : ALL PHI:ABB  ALL F:MENGE  ALL MAL:VERKN  ALL I1,I2:INDEXMENGE  ALL J1,J2,J3:INDEX  ALL E1,E2:ELEMENT  
+                      HG(F MAL)
+                  AND MINIMAL-BED-L(F MAL)
+                  AND MINIMAL-BED-R(F MAL)
+                  AND (ALL J1:INDEX EL-IND(J1 I1) IMPL RIDEAL(U(J1) F MAL) AND MINIMAL(U(J1) F MAL))
+                  AND (ALL J2:INDEX EL-IND(J2 I2) IMPL LIDEAL(U(J2) F MAL) AND MINIMAL(U(J2) F MAL))
+                  AND EL-IND(J1 I1)
+                  AND EL-IND(J2 I2)
+                  AND( ALL J1,J2:INDEX         EL-IND(J1 I1) AND EL-IND(J2 I2)
+                                          IMPL GLEICH(MPROD(U(J1) U(J2) MAL) SM(U(J1) U(J2))))
+                  AND EL-IND(J3 I2)
+                  AND GR(G(J1 J2) MAL E1)
+                  AND GR(G(J1 J3) MAL E2)
+                  AND ABBILDUNG(PHI G(J1 J2) G(J1 J3))
+                  AND (ALL X:ELEMENT EL(X G(J1 J2)) IMPL ABBVOR(PHI X APPLYV(MAL X E2)))
+                  AND VORAUSSETZUNG3104(F MAL PHI I1 I2 J1 J2 J3 E1 E2)
+             IMPL ISOMORPH(PHI G(J1 J2) G(J1 J3))
+ 
+ 
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+  A1   : ALL X:ANY  + =(X X)
+  A2   : ALL X:VERKN  Y,Z:INDEX  + =(G(Z Y) MPROD(U(Z) U(Y) X))
+* A3   : ALL X,Y:ELEMENT  Z,U,V:INDEX  W,XX:INDEXMENGE  YY:ABB  ZZ:VERKN  UU:MENGE  
+              - VORAUSSETZUNG3104(UU ZZ YY XX W V U Z Y X)  + BIJEKTIV(YY G(V U) G(V Z))
+* A4   : ALL X,Y:ELEMENT  Z,U,V:INDEX  W,XX:INDEXMENGE  YY:ABB  ZZ:VERKN  UU:MENGE  
+              - VORAUSSETZUNG3104(UU ZZ YY XX W V U Z Y X)  + HOMOMORPH(YY G(V U) G(V Z))
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+  T5   : + HG(C_5 C_6)
+  T6   : + MINIMAL-BED-L(C_5 C_6)
+  T7   : + MINIMAL-BED-R(C_5 C_6)
+  T8   : ALL X:INDEX  - EL-IND(X C_4)  + RIDEAL(U(X) C_5 C_6)
+  T9   : ALL X:INDEX  - EL-IND(X C_4)  + MINIMAL(U(X) C_5 C_6)
+  T10  : ALL X:INDEX  - EL-IND(X C_3)  + LIDEAL(U(X) C_5 C_6)
+  T11  : ALL X:INDEX  - EL-IND(X C_3)  + MINIMAL(U(X) C_5 C_6)
+  T12  : + EL-IND(C_7 C_4)
+  T13  : + EL-IND(C_8 C_3)
+  T14  : ALL X,Y:INDEX  - EL-IND(Y C_4)  - EL-IND(X C_3)  + GLEICH(MPROD(U(Y) U(X) C_6) SM(U(Y) U(X)))
+  T15  : + EL-IND(C_9 C_3)
+  T16  : + GR(G(C_7 C_8) C_6 C_2)
+  T17  : + GR(G(C_7 C_9) C_6 C_1)
+  T18  : + ABBILDUNG(C_10 G(C_7 C_8) G(C_7 C_9))
+  T19  : ALL X:ELEMENT  - EL(X G(C_7 C_8))  + ABBVOR(C_10 X APPLYV(C_6 X C_1))
+* T20  : + VORAUSSETZUNG3104(C_5 C_6 C_10 C_4 C_3 C_7 C_8 C_9 C_2 C_1)
+* T21  : - HOMOMORPH(C_10 G(C_7 C_8) G(C_7 C_9))  - BIJEKTIV(C_10 G(C_7 C_8) G(C_7 C_9))
+ 
+ 
+ 
+ 
+ 
+ 
+INITIAL OPERATIONS ON THEOREMS
+==============================
+ 
+ 
+T21,2 & A3,2   -->  * R1 : - HOMOMORPH(C_10 G(C_7 C_8) G(C_7 C_9))
+                             - VORAUSSETZUNG3104(C_5 C_6 C_10 C_4 C_3 C_7 C_8 C_9 C_2 C_1)
+ 
+R1,2 & T20,1   -->  * R2 : - HOMOMORPH(C_10 G(C_7 C_8) G(C_7 C_9))
+ 
+R2,1 & A4,2    -->  * R3 : - VORAUSSETZUNG3104(C_5 C_6 C_10 C_4 C_3 C_7 C_8 C_9 C_2 C_1)
+ 
+R3,1 & T20,1   -->  * R4 :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION
+ 
+INITIAL CLAUSES : 
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+STOP
+ 

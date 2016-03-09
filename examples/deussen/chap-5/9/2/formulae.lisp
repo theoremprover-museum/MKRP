@@ -1,0 +1,138 @@
+;;; -*- Package: MKRP; Base: 10.; Mode: LISP; Syntax: Common-lisp -*-
+
+
+;;;ADJUSTMENT OF THE OPTIONS : 
+;;;============================
+;;;
+;;;
+;;;
+;;;TWO:RULES                             NIL                   TWO:RULES.MAXLEVEL                    1.
+;;;TWO:SUPPRESS.NORULES                  NIL
+;;;
+;;;
+;;;RED.I:CLAUSE.MULTIPLE.LITERALS        T                     RED.I:CLAUSE.PURITY                   T
+;;;RED.I:CLAUSE.TAUTOLOGY                T                     RED.I:CLAUSE.TAUTOLOGY.RECHECK        PARTIAL
+;;;RED.I:CLAUSE.SUBSUMPTION              T                     RED.I:CLAUSE.SUBSUMPTION.RECHECK      PARTIAL
+;;;RED.I:CLAUSE.REPL.FACTORING           T                     RED.I:CLAUSE.REPL.FACTORING.RECHECK   T
+;;;RED.I:CLAUSE.REPL.RESOLUTION          SIMPLE                RED.I:CLAUSE.REPL.RESOLUTION.RECHECK  T
+;;;RED.I:CLAUSE.REWRITING                T                     RED.I:LINK.INCOMPATIBILITY            NIL
+;;;RED.I:LINK.TAUTOLOGY                  NIL                   RED.I:LINK.TAUTOLOGY.RECHECK          NIL
+;;;RED.I:LINK.SUBSUMPTION                NIL                   RED.I:LINK.SUBSUMPTION.RECHECK        NIL
+;;;
+;;;RED.D:CLAUSE.MULTIPLE.LITERALS        T                     RED.D:CLAUSE.PURITY                   T
+;;;RED.D:CLAUSE.TAUTOLOGY                REMOVE-INHIBIT        RED.D:CLAUSE.TAUTOLOGY.RECHECK        NIL
+;;;RED.D:CLAUSE.SUBSUMPTION.FORWARD      REMOVE-INHIBIT        RED.D:CLAUSE.SUBSUMPTION.BACKWARD     REMOVE
+;;;RED.D:CLAUSE.SUBSUMPTION.RECHECK      NIL                   RED.D:CLAUSE.REPL.FACTORING           T
+;;;RED.D:CLAUSE.REPL.FACTORING.RECHECK   NIL                   RED.D:CLAUSE.REPL.RESOLUTION          SIMPLE
+;;;RED.D:CLAUSE.REPL.RESOLUTION.RECHECK  T                     RED.D:LINK.INCOMPATIBILITY            NIL
+;;;RED.D:LINK.TAUTOLOGY                  NIL                   RED.D:LINK.TAUTOLOGY.RECHECK          NIL
+;;;RED.D:LINK.SUBSUMPTION                NIL                   RED.D:LINK.SUBSUMPTION.RECHECK        NIL
+;;;
+;;;FAC:INITIAL                           NIL                   FAC:EACH.STEP                         NIL
+;;;
+;;;STR:RESOLUTION                        SET-OF-SUPPORT        STR:E-RESOLUTION                      NIL
+;;;STR:PARAMODULATION                    UNIT-ANCESTRY         STR:LINK.DEPTH                        NIL
+;;;STR:TERM.DEPTH                        5.                    STR:R.DEMODULATION                    T
+;;;STR:P.DEMODULATION                    T                     STR:INDUCTION                         NIL
+;;;
+;;;TERM:UNITS                            T                     TERM:ITERATIONS                       2.
+;;;TERM:SET.OF.SUPPORT                   NIL                   TERM:BREADTH.FIRST                    NIL
+;;;
+;;;GEN:SPLITTING                         0.                    GEN:MANUAL.CONTROL                    NIL
+;;;GEN:MAXIMUM.STEPS                     NIL                   GEN:GRAPH.SAVING                      NIL
+;;;GEN:SAVE.FILE                         SAVE.DEFAULT
+;;;
+;;;
+;;;TR:PREPROCESSING                      NIL                   TR:STEP.MODE                          LR
+;;;TR:DUMP                               NIL                   TR:CLAUSE.MODE                        I
+;;;TR:LINK.MODE                          I                     TR:TRACE.FILE                         NIL
+;;;TR:TERMINAL                           T
+;;;
+;;;
+;;;PR:INFIX.FORM                         T                     PR:PREFIX.FORM                        NIL
+;;;PR:OPTIONS                            T                     PR:AXIOM.CLAUSES                      NIL
+;;;PR:SYMBOLS                            NIL                   PR:STATISTICS                         NIL
+;;;PR:PROTOCOL                           T                     PR:LEFT.MARGIN                        0.
+;;;PR:LINELENGTH                         120.
+;;;
+;;;
+;;;
+
+(SORT SET:ANY)
+(SORT FUNCTION:ANY)
+(SORT ELEMENT:SET)
+(SORT ELEMENT.F:ELEMENT)
+(SORT NAT:SET)
+(SORT REL:SET)
+(SORT UNARY.FUNC:FUNCTION)
+(SORT BINARY.FUNC:FUNCTION)
+(SORT EQU.REL-S:REL)
+(SORT L.CONGRUENCE-S:EQU.REL-S)
+(SORT R.CONGRUENCE-S:EQU.REL-S)
+(SORT CONGRUENCE-S:L.CONGRUENCE-S)
+(SORT CONGRUENCE-S:R.CONGRUENCE-S)
+(* CONSTANTS *)
+(TYPE F:SET)
+(TYPE CONN.F:BINARY.FUNC)
+(TYPE 1 :NAT)
+(TYPE CONN.F.RHO:BINARY.FUNC)
+(* PREDICATS *)
+(TYPE SEMIGROUP (SET BINARY.FUNC))
+(TYPE L.CONGRUENCE (REL))
+(TYPE R.CONGRUENCE (REL))
+(TYPE CONGRUENCE (EQU.REL-S))
+(TYPE IN.RELATION (REL ELEMENT.F ELEMENT.F))
+(TYPE INJECTIVE (UNARY.FUNC SET SET))
+(TYPE SURJECTIVE (UNARY.FUNC SET SET))
+(TYPE BIJECTIVE (UNARY.FUNC SET SET))
+(TYPE HOMOMORPH (UNARY.FUNC SET SET))
+(TYPE ISOMORPH (UNARY.FUNC SET SET))
+(TYPE EPIMORPH (UNARY.FUNC SET SET))
+(TYPE MAPPING (UNARY.FUNC SET SET))
+(TYPE MEMBER (ELEMENT SET))
+(TYPE SUBSET (SET SET))
+(* FUNCTIONS *)
+(TYPE INVERSE.EL (ELEMENT BINARY.FUNC ELEMENT) :ELEMENT)
+(TYPE APPLY1 (UNARY.FUNC SET) :SET)
+(TYPE APPLY1-EL (UNARY.FUNC ELEMENT) :ELEMENT)
+(TYPE APPLY2 (BINARY.FUNC SET SET) :SET)
+(TYPE APPLY2-EL (BINARY.FUNC ELEMENT ELEMENT) :ELEMENT)
+(TYPE APPLY2-EL.F (BINARY.FUNC ELEMENT.F ELEMENT.F) :ELEMENT.F)
+(TYPE PREIMAGE (REL ELEMENT) :SET)
+(TYPE POWER (REL NAT) :REL)
+(TYPE PLUS (NAT NAT) :NAT)
+(TYPE MODULO (EQU.REL-S) :SET)
+(TYPE COMP (REL REL) :REL)
+(TYPE TRANS.CLOS (REL) :REL)
+(TYPE UNION-REL (REL REL) :REL)
+(TYPE TRANS.UNION (EQU.REL-S EQU.REL-S) :EQU.REL-S)
+(TYPE CAN.PROJ (EQU.REL-S) :UNARY.FUNC)
+(TYPE IND.EQU.REL (UNARY.FUNC SET) :EQU.REL-S)
+(TYPE MOD.PHI (UNARY.FUNC SET) :UNARY.FUNC)
+(*)
+(* THEOREM 1.1 *)
+(ALL E:ELEMENT.F  ALL U:SET  
+     GROUP (F CONN.F E) AND SUBSET (U F)
+     IMPL  
+     (ALL X,Y:ELEMENT.F  
+	  MEMBER (X U) AND MEMBER (Y U) IMPL MEMBER (APPLY2-EL (CONN.F INVERSE.EL (Y CONN.F E) X) U))
+     IMPL  
+     SUBGROUP (U F CONN.F E))
+(* REPRESENTANTS OF A CONGRUENCE-CLASS CAN BE EXCHANGED *)
+(ALL RHO:REL ALL X,Y:ELEMENT.F MEMBER (X PREIMAGE (RHO Y)) IMPL PREIMAGE (RHO Y) := PREIMAGE (RHO X))
+(* THEOREM 5.9.1 *)
+(ALL E,X:ELEMENT.F  ALL RHO:L.CONGRUENCE-S  
+     GROUP (F CONN.F E) IMPL APPLY2 (CONN.F X PREIMAGE (RHO E)) = PREIMAGE (RHO X))
+(* PREIMAGE CONTAINED IN F *)
+(ALL RHO:REL ALL X:ELEMENT.F SUBSET (PREIMAGE (RHO X) F))
+(* *)
+(ALL E,X,Y:ELEMENT.F  ALL A:SET  
+     GROUP (F CONN.F E) AND SUBSET (A F)
+     IMPL  
+     (MEMBER (X APPLY2 (CONN.F Y A)) IMPL MEMBER (APPLY2-EL (CONN.F INVERSE.EL (Y CONN.F E) X) A)))
+
+(* THEOREM 5.9.2 *)
+(ALL E:ELEMENT.F ALL RHO:L.CONGRUENCE-S GROUP (F CONN.F E) IMPL SUBGROUP (PREIMAGE (RHO E) F CONN.F E))
+
+
+

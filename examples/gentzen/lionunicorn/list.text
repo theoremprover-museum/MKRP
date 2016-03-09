@@ -1,0 +1,251 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 48.7                                                *
+                     *           DATE: 30-AUG,1991  14:16                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 30-AUG,1991 14:15 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   MO (MONDAY)
+             AND TU (TUESDAY)
+             AND WE (WEDNESDAY)
+             AND TH (THURSDAY)
+             AND FR (FRIDAY)
+             AND SA (SATURDAY)
+             AND SU (SUNDAY)
+             (ALL X MO (X) IMPL LL (X)) AND (ALL X TU (X) IMPL LL (X)) AND (ALL X WE (X) IMPL LL (X))
+             (ALL X TH (X) IMPL NOT LL (X))
+             AND (ALL X FR (X) IMPL NOT LL (X))
+             AND (ALL X SA (X) IMPL NOT LL (X))
+             AND (ALL X SU (X) IMPL NOT LL (X))
+             (ALL X MO (X) IMPL NOT UL (X)) AND (ALL X TU (X) IMPL NOT UL (X)) AND (ALL X WE (X) IMPL NOT UL (X))
+             (ALL X TH (X) IMPL UL (X))
+             AND (ALL X FR (X) IMPL UL (X))
+             AND (ALL X SA (X) IMPL UL (X))
+             AND (ALL X SU (X) IMPL NOT UL (X))
+             (ALL X MO (X) IMPL DA (X)) AND (ALL X TU (X) IMPL DA (X)) AND (ALL X WE (X) IMPL DA (X))
+             (ALL X TH (X) IMPL DA (X))
+             AND (ALL X FR (X) IMPL DA (X))
+             AND (ALL X SA (X) IMPL DA (X))
+             AND (ALL X SU (X) IMPL DA (X))
+             (ALL X LL (X) IMPL DA (X)) AND (ALL X UL (X) IMPL DA (X))
+             SU (YESTERDAY (MONDAY))
+             AND MO (YESTERDAY (TUESDAY))
+             AND TU (YESTERDAY (WEDNESDAY))
+             AND WE (YESTERDAY (THURSDAY))
+             TH (YESTERDAY (FRIDAY)) AND FR (YESTERDAY (SATURDAY)) AND SA (YESTERDAY (SUNDAY))
+             ALL X,Y (DA (X) AND DA (Y) IMPL (NOT LL (X) AND LIES (LION X Y) IMPL LL (Y)))
+             ALL X,Y (DA (X) AND DA (Y) IMPL (NOT LL (X) AND NOT LIES (LION X Y) IMPL NOT LL (Y)))
+             ALL X,Y (DA (X) AND DA (Y) IMPL (LL (X) AND LIES (LION X Y) IMPL NOT LL (Y)))
+             ALL X,Y (DA (X) AND DA (Y) IMPL (LL (X) AND NOT LIES (LION X Y) IMPL LL (Y)))
+             ALL X,Y (DA (X) AND DA (Y) IMPL (NOT UL (X) AND LIES (UNICORN X Y) IMPL UL (Y)))
+             ALL X,Y (DA (X) AND DA (Y) IMPL (NOT UL (X) AND NOT LIES (UNICORN X Y) IMPL NOT UL (Y)))
+             ALL X,Y (DA (X) AND DA (Y) IMPL (UL (X) AND LIES (UNICORN X Y) IMPL NOT UL (Y)))
+             ALL X,Y (DA (X) AND DA (Y) IMPL (UL (X) AND NOT LIES (UNICORN X Y) IMPL UL (Y)))
+             
+   Theorems: EX X LIES (LION X YESTERDAY (X)) AND LIES (UNICORN X YESTERDAY (X))
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+             A2:   + MO(monday)
+             A3:   + TU(tuesday)
+             A4:   + WE(wednesday)
+           * A5:   + TH(thursday)
+             A6:   + FR(friday)
+             A7:   + SA(saturday)
+             A8:   + SU(sunday)
+             A9:   + SU(yesterday(monday))
+             A10:  + MO(yesterday(tuesday))
+             A11:  + TU(yesterday(wednesday))
+           * A12:  + WE(yesterday(thursday))
+             A13:  + TH(yesterday(friday))
+             A14:  + FR(yesterday(saturday))
+             A15:  + SA(yesterday(sunday))
+             A16:  All x:Any - MO(x)  + LL(x)
+             A17:  All x:Any - TU(x)  + LL(x)
+           * A18:  All x:Any - WE(x)  + LL(x)
+           * A19:  All x:Any - TH(x)  - LL(x)
+             A20:  All x:Any - FR(x)  - LL(x)
+             A21:  All x:Any - SA(x)  - LL(x)
+             A22:  All x:Any - SU(x)  - LL(x)
+             A23:  All x:Any - MO(x)  - UL(x)
+             A24:  All x:Any - TU(x)  - UL(x)
+           * A25:  All x:Any - WE(x)  - UL(x)
+           * A26:  All x:Any - TH(x)  + UL(x)
+             A27:  All x:Any - FR(x)  + UL(x)
+             A28:  All x:Any - SA(x)  + UL(x)
+             A29:  All x:Any - SU(x)  - UL(x)
+             A30:  All x:Any - MO(x)  + DA(x)
+             A31:  All x:Any - TU(x)  + DA(x)
+           * A32:  All x:Any - WE(x)  + DA(x)
+           * A33:  All x:Any - TH(x)  + DA(x)
+             A34:  All x:Any - FR(x)  + DA(x)
+             A35:  All x:Any - SA(x)  + DA(x)
+             A36:  All x:Any - SU(x)  + DA(x)
+           * A37:  All x:Any - LL(x)  + DA(x)
+           * A38:  All x:Any - UL(x)  + DA(x)
+             A39:  All x,y:Any - DA(y)  - DA(x)  + LL(y)  - LIES(lion y x)  + LL(x)
+           * A40:  All x,y:Any - DA(y)  - DA(x)  + LL(y)  + LIES(lion y x)  - LL(x)
+             A41:  All x,y:Any - DA(y)  - DA(x)  - LL(y)  - LIES(lion y x)  - LL(x)
+             A42:  All x,y:Any - DA(y)  - DA(x)  - LL(y)  + LIES(lion y x)  + LL(x)
+             A43:  All x,y:Any - DA(y)  - DA(x)  + UL(y)  - LIES(unicorn y x)  + UL(x)
+             A44:  All x,y:Any - DA(y)  - DA(x)  + UL(y)  + LIES(unicorn y x)  - UL(x)
+             A45:  All x,y:Any - DA(y)  - DA(x)  - UL(y)  - LIES(unicorn y x)  - UL(x)
+           * A46:  All x,y:Any - DA(y)  - DA(x)  - UL(y)  + LIES(unicorn y x)  + UL(x)
+           
+
+
+
+
+             Initial Operations on Axioms
+             ============================
+
+
+          
+   A40,2 & A37,2  --> * R1:  All x,y:Any - DA(x)  + LL(x)  + LIES(lion x y)  - LL(y)  - LL(y)
+   
+   R1 4=5         --> * D2:  All x,y:Any - DA(x)  + LL(x)  + LIES(lion x y)  - LL(y)
+   
+   A46,1 & A38,2  --> * R15: All x,y:Any - DA(x)  - UL(y)  + LIES(unicorn y x)  + UL(x)  - UL(y)
+   
+   R15 2=5        --> * D16: All x,y:Any - DA(x)  - UL(y)  + LIES(unicorn y x)  + UL(x)
+   
+
+   
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T47: All x:Any - LIES(lion x yesterday(x))  - LIES(unicorn x yesterday(x))
+
+
+
+    Literals: ((T47 101 102) (A46 96 97 98 99 100) (A45 91 92 93 94 95) (A44 86 87 88 89 90) (A43 81 82 83 84 85) (A42 76 77 78 79 80) (A41 71 72 73 74 75) (A40 66 67 68 69 70) (A39 61 62 63 64 65) (A38 52 53) (A37 50 51) (A36 48 49) (A35 46 47) (A34 44 45) (A33 42 43) (A32 40 41) (A31 38 39) (A30 36 37) (A29 34 35) (A28 32 33) (A27 30 31) (A26 28 29) (A25 26 27) (A24 24 25) (A23 22 23) (A22 20 21) (A21 18 19) (A20 16 17) (A19 14 15) (A18 12 13) (A17 10 11) (A16 8 9) (A15 60) (A14 59) (A13 58) (A12 57) (A11 56) (A10 55) (A9 54) (A8 7) (A7 6) (A6 5) (A5 4) (A4 3) (A3 2) (A2 1) (A1 NIL))
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:      A1:    All x:Any + =(x x)
+                         A2:    + MO(monday)
+                         A3:    + TU(tuesday)
+                         A4:    + WE(wednesday)
+                       * A5:    + TH(thursday)
+                         A6:    + FR(friday)
+                         A7:    + SA(saturday)
+                         A8:    + SU(sunday)
+                         A9:    + SU(yesterday(monday))
+                         A10:   + MO(yesterday(tuesday))
+                         A11:   + TU(yesterday(wednesday))
+                       * A12:   + WE(yesterday(thursday))
+                         A13:   + TH(yesterday(friday))
+                         A14:   + FR(yesterday(saturday))
+                         A15:   + SA(yesterday(sunday))
+                         A16:   All x:Any - MO(x)  + LL(x)
+                         A17:   All x:Any - TU(x)  + LL(x)
+                       * A18:   All x:Any - WE(x)  + LL(x)
+                       * A19:   All x:Any - TH(x)  - LL(x)
+                         A20:   All x:Any - FR(x)  - LL(x)
+                         A21:   All x:Any - SA(x)  - LL(x)
+                         A22:   All x:Any - SU(x)  - LL(x)
+                         A23:   All x:Any - MO(x)  - UL(x)
+                         A24:   All x:Any - TU(x)  - UL(x)
+                       * A25:   All x:Any - WE(x)  - UL(x)
+                       * A26:   All x:Any - TH(x)  + UL(x)
+                         A27:   All x:Any - FR(x)  + UL(x)
+                         A28:   All x:Any - SA(x)  + UL(x)
+                         A29:   All x:Any - SU(x)  - UL(x)
+                         A30:   All x:Any - MO(x)  + DA(x)
+                         A31:   All x:Any - TU(x)  + DA(x)
+                       * A32:   All x:Any - WE(x)  + DA(x)
+                       * A33:   All x:Any - TH(x)  + DA(x)
+                         A34:   All x:Any - FR(x)  + DA(x)
+                         A35:   All x:Any - SA(x)  + DA(x)
+                         A36:   All x:Any - SU(x)  + DA(x)
+                       * A37:   All x:Any - LL(x)  + DA(x)
+                       * D2:    All x,y:Any - DA(x)  + LL(x)  + LIES(lion x y)  - LL(y)
+                         D8:    All x,y:Any - DA(x)  - LL(y)  + LIES(lion y x)  + LL(x)
+                         A43:   All x,y:Any - DA(y)  - DA(x)  + UL(y)  - LIES(unicorn y x)  + UL(x)
+                         D10:   All x,y:Any - DA(x)  + UL(x)  + LIES(unicorn x y)  - UL(y)
+                         D14:   All x,y:Any - UL(y)  - LIES(unicorn y x)  - UL(x)
+                       * D16:   All x,y:Any - DA(x)  - UL(y)  + LIES(unicorn y x)  + UL(x)
+                       * T47:   All x:Any - LIES(lion x yesterday(x))  - LIES(unicorn x yesterday(x))
+                       
+
+   
+   D16,3 & T47,2   --> * R17:   All x:Any - DA(yesterday(x))  - UL(x)  + UL(yesterday(x))
+                                          - LIES(lion x yesterday(x))
+   
+   R17,3 & A25,2   --> * R33:   All x:Any - DA(yesterday(x))  - UL(x)  - LIES(lion x yesterday(x))
+                                          - WE(yesterday(x))
+   
+   R33,1 & A32,2   --> * R34:   All x:Any - UL(x)  - LIES(lion x yesterday(x))  - WE(yesterday(x))
+                                          - WE(yesterday(x))
+   
+   R34 3=4         --> * D35:   All x:Any - UL(x)  - LIES(lion x yesterday(x))  - WE(yesterday(x))
+   
+   A12,1 & D35,3   --> * R36:   - UL(thursday)  - LIES(lion thursday yesterday(thursday))
+   
+   R36,1 & A26,2   --> * R37:   - LIES(lion thursday yesterday(thursday))  - TH(thursday)
+   
+   R37,2 & A5,1    --> * R38:   - LIES(lion thursday yesterday(thursday))
+   
+   D2,3 & R38,1    --> * R105:  - DA(thursday)  + LL(thursday)  - LL(yesterday(thursday))
+   
+   R105,3 & A18,2  --> * R106:  - DA(thursday)  + LL(thursday)  - WE(yesterday(thursday))
+   
+   R106,3 & A12,1  --> * R107:  - DA(thursday)  + LL(thursday)
+   
+   R107,2 & A19,2  --> * R108:  - DA(thursday)  - TH(thursday)
+   
+   R108,2 & A5,1   --> * R109:  - DA(thursday)
+   
+   R109,1 & A33,2  --> * R110:  - TH(thursday)
+   
+   R110,1 & A5,1   --> * R111:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 227 seconds

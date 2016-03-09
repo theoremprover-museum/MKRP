@@ -1,0 +1,181 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: Genera 7.1 IP-TCP 52.16 Experimental MKRP 15.7           *
+                     *           DATE: 02-DEC-1987  15:53                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+                                                                            
+   
+   *************************************************************************
+   
+    EDIT:     Axioms and Theorems edited: 27-NOV-1987 00:45 
+   
+   *************************************************************************
+   
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   ALL X1,X2,X3,X4,X5,X6 R (X1 X2 X3 X4 X5 X6) IMPL R (X3 X2 X1 X4 X5 X6)
+             ALL X1,X2,X3,X4,X5,X6 R (X1 X2 X3 X4 X5 X6) IMPL R (X4 X5 X6 X1 X2 X3)
+             ALL X1,X2,X3,X4,X5,X6,X7,Y1,Y2,Y3,Y4,Y5 R (X1 X2 X3 X4 X5 X6) AND R (X7 Y1 Y2 Y3 Y4 Y5)
+                                                      IMPL R (X1 X2 X3 Y3 Y4 Y5)
+             ALL X,Y,Z,U R (X Y Z U Z U) IMPL R (X Y U X Y U)
+             ALL X,Y,Z,V,U R (X Y Z Y U V) IMPL (EX W R (X U W Z W V))
+             ALL X,Y,Z,V,U R (X Y Z U V Z) IMPL (EX W R (X W V U W Y))
+             
+   Theorems: ALL X,Y,Z R (Z X Z Z Y Z) IMPL (EX U R (X U X Y U Y))
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+           * A1:   All x,y,z,u,v,w:Any -R(w v u z y x)  +R(u v w z y x)
+           * A2:   All x,y,z,u,v,w:Any -R(w v u z y x)  +R(z y x w v u)
+           * A3:   All x,y,z,u:Any -R(u z y x y x)  +R(u z x u z x)
+             A4:   All x,y,z,u,v:Any -R(v u z u y x)  +R(v y f_1(y z x v) z f_1(y z x v) x)
+             A5:   All x,y,z,u,v:Any -R(v u z y x z)  +R(v f_2(y u x v) x y f_2(y u x v) u)
+           * A6:   All x,y,z,u,v,w,xx,yy,zz,uu,vv,ww:Any 
+                        -R(ww vv uu zz yy xx)  -R(w v u z y x)  +R(ww vv uu z y x)
+           
+
+
+
+
+             Initial Operations on Axioms
+             ============================
+
+
+          
+   
+   A1,2 & A1,1      -->   R1:  All x,y,z,u,v,w:Any -R(w v u z y x)  +R(w v u z y x)
+   
+   
+   A2 (factor) (A1) -->   F2:  All x,y:Any +R(y x y y x y)
+   
+   
+   A1,2 & A2,1      --> * R3:  All x,y,z,u,v,w:Any -R(w v u z y x)  +R(z y x u v w)
+   
+   
+   A2,2 & A1,1      -->   R4:  All x,y,z,u,v,w:Any -R(w v u z y x)  +R(x y z w v u)
+   
+   
+   A2,2 & A2,1      -->   R5:  All x,y,z,u,v,w:Any -R(w v u z y x)  +R(w v u z y x)
+   
+   
+   A3,1 & R3,2      --> * R6:  All x,y,z,u,v,w,xx,yy:Any +R(y x u y x u)  -R(u z u y x z)
+   
+   
+   R6,2 & R7,1 (A2) --> * R7:  All x_1,x_2,x_3,x_4,x_5,x_6,x_7,x_8,x_9,x_10,x_11,x_12,x_13,x_14,x_15,x_16,x_17,x_18,
+                                     x_19,x_20:Any 
+                                    +R(x_2 x_1 x_4 x_2 x_1 x_4)  -R(x_4 x_3 x_4 x_2 x_1 x_3)
+   
+   
+   A1,2 & A4,1      -->   R8:  All x,y,z,u,v:Any -R(v u z u y x)  +R(z y f_1(y v x z) v f_1(y v x z) x)
+   
+   
+   A4,2 & A1,1      -->   R9:  All x,y,z,u,v:Any -R(v u z u y x)  +R(f_1(y z x v) y v z f_1(y z x v) x)
+   
+   
+   A2,2 & A4,1      -->   R10: All x,y,z,u,v:Any -R(v u z y v x)  +R(y u f_1(u x z y) x f_1(u x z y) z)
+   
+   
+   A4,2 & A2,1      -->   R11: All x,y,z,u,v:Any -R(v u z u y x)  +R(z f_1(y z x v) x v y f_1(y z x v))
+   
+   
+   A4,2 & A4,1      -->   R12: All x,y,z,u:Any -R(u z y z y x)
+                                               +R(u
+                                                  f_1(y y x u)
+                                                  f_1(f_1(y y x u) f_1(y y x u) x u)
+                                                  f_1(y y x u)
+                                                  f_1(f_1(y y x u) f_1(y y x u) x u)
+                                                  x)
+   
+   
+   R4 (factor) (A4) -->   F13: All x,y:Any +R(y x f_1(x y y y) y f_1(x y y y) y)
+   
+   
+   R4 (factor) (A1) -->   F14: All x,y,z:Any +R(z y x x y z)
+   
+   
+   R4 (factor) (A2) -->   F15: All x,y,z,u,v:Any +R(v u v z y x)
+   
+   
+   R10,1 & R4,2     -->   R16: All x,y,z,u,v,w,xx,yy:Any +R(u x f_1(x z y u) z f_1(x z y u) y)  -R(u y z y x y)
+   
+   
+   R16 1=2 (A4)     -->   D17: All x,y,z,u,v,w,xx,yy:Any +R(u x f_1(x z y u) z f_1(x z y u) y)
+   
+   
+   R9,1 & R3,2      -->   R18: All x,y,z,u,v,w,xx,yy:Any +R(f_1(z x u y) z y x f_1(z x u y) u)
+                                                         -R(u z f_1(z y x u) y f_1(z y x u) x)
+   
+   
+   R18,2 & D17,1    -->   R19: All x,y,z,u,v,w,xx,yy,zz,uu,vv,ww:Any 
+                                    +R(f_1(z x u y) z y x f_1(z x u y) u)
+   
+   
+   A5,1 & F15,1     -->   R20: All x,y,z,u,v,w,xx,yy:Any +R(x f_2(z u y x) y z f_2(z u y x) u)
+   
+   
+   A6 (INSTANCE)    --> * I21: All x,y,z,u,v,w,xx,yy,zz,uu:Any 
+                                    -R(zz yy xx w v u)  -R(xx yy zz z y x)  +R(zz yy xx z y x)
+   
+   
+   I21 3=2 (A1)     --> * D22: All x,y,z,u,v,w,xx,yy,zz,uu:Any 
+                                    -R(zz yy xx w v u)  +R(zz yy xx z y x)
+   
+   
+   D22,1 & R7,1     --> * R23: All x_1,x_2,x_3,x_4,x_5,x_6,x_7,x_8,x_9,x_10,x_11,x_12,x_13,x_14,x_15,x_16,x_17,x_18,
+                                     x_19,x_20,x_21,x_22,x_23,x_24,x_25,x_26:Any 
+                                    +R(x_26 x_25 x_24 x_3 x_2 x_1)  -R(x_7 x_6 x_7 x_5 x_4 x_6)
+   
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+             T7: +R(c_1 c_2 c_1 c_1 c_3 c_1)
+           * T8: All x:Any -R(c_2 x c_2 c_3 x c_3)
+
+
+
+
+
+
+   Initial Operations on Theorems
+   ==============================
+
+
+   
+   
+   T8,1 & R23,1  --> * R24: All x_1,x_2,x_3,x_4,x_5,x_6,x_7,x_8,x_9,x_10,x_11,x_12,x_13,x_14,x_15,x_16,x_17,x_18,
+                                  x_19,x_20:Any 
+                                 -R(x_4 x_3 x_4 x_2 x_1 x_3)
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 

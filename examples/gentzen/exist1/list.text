@@ -1,0 +1,89 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 48.7                                                *
+                     *           DATE: 02-SEP,1991  14:18                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 02-SEP,1991 14:18 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   ALL X R (X) IMPL Q (X)
+             NOT R (A) IMPL P (A)
+             ALL X (Q (X) IMPL P (X)) AND (P (X) IMPL Q (X))
+             
+   Theorems: EX X Q (X)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+           * A2:   All x:Any - R(x)  + Q(x)
+           * A3:   + R(a)  + P(a)
+             A4:   All x:Any - Q(x)  + P(x)
+           * A5:   All x:Any - P(x)  + Q(x)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T6: All x:Any - Q(x)
+
+
+
+    Literals: ((T6 9) (A5 7 8) (A4 5 6) (A3 3 4) (A2 1 2) (A1 NIL))
+
+
+
+
+
+
+             Initial Operations on Theorems
+             ==============================
+
+
+          
+   A2,2 & T6,1  --> * R1: All x:Any - R(x)
+   
+   A5,2 & T6,1  --> * R2: All x:Any - P(x)
+   
+   R1,1 & A3,1  --> * R3: + P(a)
+   
+   R3,1 & R2,1  --> * R4: []
+   
+
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+

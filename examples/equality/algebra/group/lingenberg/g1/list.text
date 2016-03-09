@@ -1,0 +1,179 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+            ****************************************************
+            *                                                  *
+            *     ATP-SYSTEM: M K R P , UNI KAISERSLAUTERN     *
+            *                                                  *
+            *        VERSION: MKRP 45.31 EQUALITY 16.1         *
+            *           DATE: 09-AUG,1990  19:21               *
+            *                                                  *
+            ****************************************************
+
+
+--------------------------------------------------------------------------------
+
+Edit:     Axioms and Theorems edited: 09-AUG,1990 19:21 
+
+--------------------------------------------------------------------------------
+
+
+
+
+
+
+          Formulae given to the editor
+          ============================
+
+
+Axioms:   * AXIOMS *
+          * GROUP *
+          ALL X,Y,Z + (+ (X Y) Z) = + (X + (Y Z))
+          ALL X + (0 X) = X
+          ALL X + (X 0) = X
+          ALL X + (- (X) X) = 0
+          ALL X + (X - (X)) = 0
+          
+Theorems: * THEOREMS *
+          ALL X1,X2,A + (A X1) = + (A X2) IMPL X1 = X2
+          ALL Y1,Y2,B + (Y1 B) = + (Y2 B) IMPL Y1 = Y2
+          
+
+
+
+          Set of Axiom Clauses Resulting from Normalization
+          =================================================
+
+          A1:   All x:Any + =(x x)
+        * A2:   All x,y,z:Any + =(+(+(z y) x) +(z +(y x)))
+        * A3:   All x:Any + =(+(0 x) x)
+        * A4:   All x:Any + =(+(x 0) x)
+        * A5:   All x:Any + =(+(-(x) x) 0)
+        * A6:   All x:Any + =(+(x -(x)) 0)
+        
+
+
+
+
+          Set of Theorem Clauses Resulting from Normalization and Splitting
+          =================================================================
+
+Splitpart 1
+
+        * T7: + =(+(c_1 c_2) +(c_1 c_3))
+        * T8: - =(c_2 c_3)
+
+Splitpart 2
+
+        * T9: + =(+(c_5 c_4) +(c_6 c_4))
+        * T10: - =(c_5 c_6)
+
+
+End of Splitparts
+
+
+
+--------------------------------------------------------------------------------
+
+
+
+Refutation of Splitpart 1:
+==========================
+
+Initial Clauses:     A1:   All x:Any + =(x x)
+                   * A2:   All x,y,z:Any + =(+(+(z y) x) +(z +(y x)))
+                   * A3:   All x:Any + =(+(0 x) x)
+                     A4:   All x:Any + =(+(x 0) x)
+                   * A5:   All x:Any + =(+(-(x) x) 0)
+                     A6:   All x:Any + =(+(x -(x)) 0)
+                   * T7:   + =(+(c_1 c_2) +(c_1 c_3))
+                   * T8:   - =(c_2 c_3)
+                   
+
+
+A5,1 & A2,1   -->  * P2:   All x,y:Any + =(+(0 y) +(-(x) +(x y)))
+
+P2,1 & A3     -->  * RW3:  All x,y:Any + =(y +(-(x) +(x y)))
+
+T7,1 & RW3,1  -->  * P4:   + =(c_2 +(-(c_1) +(c_1 c_3)))
+
+P4,1 & RW3    -->  * RW5:  + =(c_2 c_3)
+
+RW5,1 & T8,1  -->  * R6:   []
+
+
+
+--------------------------------------------------------------------------------
+
+
+
+Refutation of Splitpart 2:
+==========================
+
+Initial Clauses: 
+
+        A1:    All x:Any + =(x x)
+      * A2:    All x,y,z:Any + =(+(+(z y) x) +(z +(y x)))
+      * A3:    All x:Any + =(+(0 x) x)
+      * A4:    All x:Any + =(+(x 0) x)
+      * A5:    All x:Any + =(+(-(x) x) 0)
+      * A6:    All x:Any + =(+(x -(x)) 0)
+      * T9:    + =(+(c_5 c_4) +(c_6 c_4))
+      * T10:   - =(c_5 c_6)
+      
+
+
+A5,1 & A2,1     --> 
+      * P8:    All x,y:Any + =(+(0 y) +(-(x) +(x y)))
+
+P8,1 & A3       --> 
+      * RW9:   All x,y:Any + =(y +(-(x) +(x y)))
+
+A5,1 & RW9,1    --> 
+      * P10:   All x:Any + =(x +(-(-(x)) 0))
+
+P10,1 & A4      --> 
+      * RW11:  All x:Any + =(x -(-(x)))
+
+T9,1 & RW9,1    --> 
+      * P14:   + =(c_4 +(-(c_5) +(c_6 c_4)))
+
+A6,1 & A2,1     --> 
+      * P15:   All x,y:Any + =(0 +(y +(x -(+(y x)))))
+
+P14,1 & P15,1   --> 
+      * P16:   + =(0 +(-(c_5) +(+(c_6 c_4) -(c_4))))
+
+P16,1 & A2      --> 
+      * RW17:  + =(0 +(-(c_5) +(c_6 +(c_4 -(c_4)))))
+
+RW17,1 & A6     --> 
+      * RW18:  + =(0 +(-(c_5) +(c_6 0)))
+
+RW18,1 & A4     --> 
+      * RW19:  + =(0 +(-(c_5) c_6))
+
+RW19,1 & RW9,1  --> 
+      * P20:   + =(c_6 +(-(-(c_5)) 0))
+
+P20,1 & RW11    --> 
+      * RW21:  + =(c_6 +(c_5 0))
+
+RW21,1 & A4     --> 
+      * RW22:  + =(c_6 c_5)
+
+RW22,1 & T10,1  --> 
+      * R23:   []
+
+
+
+--------------------------------------------------------------------------------
+
+
+
+  q.e.d. 
+
+
+Time Used for Refutation of Splitpart 1: 10 seconds
+Time Used for Refutation of Splitpart 2: 37 seconds

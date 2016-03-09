@@ -1,0 +1,136 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 48.7                                                *
+                     *           DATE: 13-AUG,1991  09:55                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 13-AUG,1991 09:54 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   ALL X,Y,Z P (X Y) AND P (Y Z) IMPL P (X Z)
+             ALL X,Y,Z Q (X Y) AND Q (Y Z) IMPL Q (X Z)
+             ALL X,Y Q (X Y) IMPL Q (Y X)
+             ALL X,Y P (X Y) OR Q (X Y)
+             
+   Theorems: (ALL X,Y P (X Y)) OR (ALL X,Y Q (X Y))
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+           * A2:   All x,y:Any - Q(y x)  + Q(x y)
+           * A3:   All x,y:Any + P(y x)  + Q(y x)
+           * A4:   All x,y,z:Any - P(z y)  - P(y x)  + P(z x)
+           * A5:   All x,y,z:Any - Q(z y)  - Q(y x)  + Q(z x)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T6: - P(c_2 c_1)
+           * T7: - Q(c_4 c_3)
+
+
+
+    Literals: ((T7 12) (T6 11) (A5 4 5 6) (A4 1 2 3) (A3 9 10) (A2 7 8) (A1 NIL))
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:     A1:   All x:Any + =(x x)
+                      * A2:   All x,y:Any - Q(y x)  + Q(x y)
+                      * A3:   All x,y:Any + P(y x)  + Q(y x)
+                      * A4:   All x,y,z:Any - P(z y)  - P(y x)  + P(z x)
+                      * A5:   All x,y,z:Any - Q(z y)  - Q(y x)  + Q(z x)
+                      * T6:   - P(c_2 c_1)
+                      * T7:   - Q(c_4 c_3)
+                      
+
+   
+   A3,1 & T6,1    --> * R1:   + Q(c_2 c_1)
+   
+   A3,2 & T7,1    --> * R2:   + P(c_4 c_3)
+   
+   A4,3 & T6,1    --> * R6:   All x:Any - P(c_2 x)  - P(x c_1)
+   
+   A5,3 & T7,1    --> * R7:   All x:Any - Q(c_4 x)  - Q(x c_3)
+   
+   R1,1 & A5,2    --> * R10:  All x:Any - Q(x c_2)  + Q(x c_1)
+   
+   R2,1 & A4,2    --> * R14:  All x:Any - P(x c_4)  + P(x c_3)
+   
+   A3,1 & R6,2    --> * R20:  All x:Any + Q(x c_1)  - P(c_2 x)
+   
+   A2,2 & R7,2    --> * R22:  All x:Any - Q(c_3 x)  - Q(c_4 x)
+   
+   A3,2 & R7,2    --> * R23:  All x:Any + P(x c_3)  - Q(c_4 x)
+   
+   R14,2 & R20,2  --> * R32:  - P(c_2 c_4)  + Q(c_3 c_1)
+   
+   R20,1 & R22,2  --> * R38:  - P(c_2 c_4)  - Q(c_3 c_1)
+   
+   R38,2 & R32,2  --> * R39:  - P(c_2 c_4)  - P(c_2 c_4)
+   
+   R39 1=2        --> * D40:  - P(c_2 c_4)
+   
+   A3,1 & D40,1   --> * R41:  + Q(c_2 c_4)
+   
+   R10,2 & R22,2  --> * R42:  - Q(c_4 c_2)  - Q(c_3 c_1)
+   
+   A2,2 & R42,1   --> * R43:  - Q(c_2 c_4)  - Q(c_3 c_1)
+   
+   R43,1 & A3,2   --> * R44:  - Q(c_3 c_1)  + P(c_2 c_4)
+   
+   R44,2 & D40,1  --> * R45:  - Q(c_3 c_1)
+   
+   R23,1 & R20,2  --> * R53:  - Q(c_4 c_2)  + Q(c_3 c_1)
+   
+   R53,2 & R45,1  --> * R54:  - Q(c_4 c_2)
+   
+   R41,1 & A2,1   --> * R55:  + Q(c_4 c_2)
+   
+   R55,1 & R54,1  --> * R56:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 120 seconds

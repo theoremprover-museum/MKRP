@@ -1,0 +1,579 @@
+\chapter{Introduction}
+
+The current state of development of the {\sc Markgraf Karl Refutation
+ Procedure} ({\sc Mkrp}), a theorem 
+proving system under development since 1977 at the Universit\"at Karlsruhe, 
+since 1985 at the Universit\"at Kaisers\-lautern, and since 1991 at 
+the Universit\"at des Saarlandes is 
+presented in the sequel. The goal of this project can be summarized by 
+the following 
+three claims: it is possible to build a theorem prover (TP) and augment 
+it by appropriate heuristics  and 
+domain-specific knowledge such that
+\begin{enumerate}
+	\item	it will display an {\em active\/} and directed behaviour 
+in its striving for a proof, 
+rather than the {\em passive\/} combinatorial search through very large search 
+spaces, which was the characteristic behaviour of the TPs of the past. 
+	\item	Consequently it will not generate a search space of many 
+thousands of irrelevant 	
+	clauses, but will find a proof with comparatively few redundant
+	derivation steps.
+	\item	Such a TP will establish an unprecedent 
+leap in performance over previous TPs expressed in terms of the difficulty 
+of the theorems it can prove.
+\end{enumerate}
+With about 30 man years invested up to now and a source code of almost 2000 
+K (bytes of Lispcode), 
+the system represents the largest single software development undertaken in 
+the history of the field and 
+the results obtained thus far corroborate the first two claims.
+
+The final (albeit essential) claim has not been achieved yet, although
+at present it performs substantially better than most other automatic
+theorem proving systems.  This statement is less comforting than it
+appears: the comparison is based on measures of the search space and
+it {\em totally\/} neglects the (enormous) resources needed in order
+to achieve the behaviour described. Within this frame of reference it
+would be possible to design the ``perfect'' proof procedure: The
+supervisor and the look-ahead heuristics would find the proof and then
+guide the system without any unnecessary steps through the search
+space.
+
+In summary, although there are good fundamental arguments supporting
+the hypothesis that the future of TP research is with the finely
+knowledge engineered systems as proposed here, there is at present no
+evidence that a traditional TP with its capacity to quickly generate
+many ten thousands of clauses is not just as capable. The situation is
+still (at the time of writing) reminiscent of today's chess playing
+programs, where the programs based on intellectually more interesting
+principles are outperformed by the brute force systems relying on
+advances in hardware technology.
+
+The following paragraph summarizes the basic notions and techniques
+for theorem proving as far as they are relevant here (and may be
+skipped by a reader already familiar with the field).
+
+
+\section{Basic Techniques and Terminology}
+\label {BasicTechniquesandTerminology}
+
+The language used in this report is that of sorted first-order predicate 
+logic including the equality predicate with which we assume the reader 
+to be familiar. From the primitive symbols of this logic we use:
+$u$,$x$,$y$,$z$ as variables; $a$, $b$, $c$, $d$ 
+as constants; $P$, $Q$, $R$ as {\em predicate constants\/}; $f$, $g$, $h$ as 
+{\em function\/} constants. The {\em equality predicate\/} 
+will be denoted by $\equiv$ and mostly written in infix notation to 
+improve readability. Constants and variables are {\em terms\/} as well as 
+{\em n\/}-place functions applied to $n$ terms. As metasymbols for 
+terms we use $r$, $s$, and $t$. The arity of functions and predicates 
+will be clear from the context. An {\em n\/}-place 
+predicate letter applied to {\em n\/} terms is called an {\em atom\/}. 
+A {\em literal\/} is an atom or the negation thereof. For literals we 
+use $L$ or $K$. The {\em absolute value\/} $|L|$ of a literal $L$ is 
+the atom $K$ such that either $L$ is $K$ or $L$ is $\neg K$.
+
+A {\em clause\/} \index{clause} is a finite set of literals for which
+the metasymbols $C$ and $D$ are used. A clause is interpreted as the
+disjunction of its literals, universally quantified (over the entire
+disjunction) on its variables. The empty clause is denoted as $\Box$.
+A {\em ground clause\/}, {\em ground literal\/}, or {\em ground
+term\/} is one that has no variables occurring in it. A
+\index{substitution} {\em substitution\/} $\delta$ is a mapping from
+variables to terms almost identical everywhere. Substitutions are
+extended to mappings from terms to terms by the usual morphism.
+Substitutions are also used to map literals (clauses) to literals
+(clauses) in the obvious way. A substitution is denoted as a set of
+pairs $\delta$ = \{$v_1 \leftarrow t_1$, $\dots$, $v_n \leftarrow
+t_n$\} where the $v_i$ are variables and the $t_i$ are terms. The term
+$\delta$($t$) (the literal $\delta$($L$), the clause $\delta$($C$)) is
+called an instance of $t$ (an instance of $L$, an instance of $C$). We
+use $\delta$, $\lambda$, and $\sigma$ for substitutions. A
+substitution $\sigma$ is called a {\em unifier\/} for two atoms $L$
+and $K$ iff $\sigma$($L$) = $\sigma$($K$); $\sigma$ is called a {\em
+most general unifier\/} (mgu) of $L$ and $K$, if for any other
+unifying substitution $\delta$ there exists a substitution $\lambda$
+such that $\delta$ = $\lambda$ $\circ$ $\sigma$, where $\circ$ denotes
+the functional composition of substitutions. A {\em matcher\/} (or
+{\em one-way unifier\/}) for two literals $L$ and $K$ relative to $L$
+is a substitution $\sigma$ such that $\sigma(L)$ = $K$.
+
+The {\em Herbrand Universe\/} $H(S)$ of a set $S$ of clauses is the
+set of all ground terms that can be constructed from the symbols
+occurring in $S$ (if no individual constant occurs in $S$ we add the
+single constant symbol $c$). A {\em Herbrand instance\/} $H(t)$ of a
+term $t$ is an instance $\delta(t)$, such that all terms in $\delta$
+are from $H(S)$; similarly we define a Herbrand instance of an atom, a
+literal, a clause. 
+
+An {\em interpretation\/} $T$ of $S$ is a set of
+ground literals, whose absolute values are all the Herbrand instances
+of atoms of $S$ such that for all Herbrand instances of atoms of $S$
+exactly $L$ or $\neg L$ is in $T$. An interpretation $T$ {\em
+satisfies\/} a ground clause $C$ iff $C \cap T$ $\neq$ $\emptyset$.
+$T$ satisfies the set of clauses $S$ if it satisfies every clause in
+$S$. A {\em model\/} $M$ of a set of clauses $S$ is an interpretation
+that satisfies $S$. If $S$ has no model it is {\em unsatisfiable\/}.
+For the equality predicate $\equiv$ and a set of clauses $S$, a model
+$M$ of $S$ is an $E${\em -model\/} if \nopagebreak[4]
+\begin{enumerate}
+	\item	$t \equiv  t$ $\in$ $M$  for all terms $t$,
+	\item	if $L$ $\in$ $M$ and $s \equiv t \in M$, and 
+\item if $L'$ is obtained from $L$ by 	
+	replacing an occurrence of $s$ in $L$ by $t$ then $L' \in M$.
+\end{enumerate}\nopagebreak
+If $S$ has no E-models then it is $E${\em -unsatisfiable\/}.
+
+\subsection{Resolution}
+\label{Resolution}
+
+Two literals are {\em complementary\/} if 
+they have opposite sign and the same predicate.
+
+If $C$ and $D$ are clauses with no variables in common and $L$ and $K$
+are complementary literals in $C$ and $D$, respectively, and if $|L|$
+and $|K|$ are unifiable with most general unifier $\sigma$, then $R=
+\sigma(C-\{L\}) \cup \sigma (D-\{K\})$ is a \index{resolution} {\em
+resolvent\/} of $C$ and of $D$ and each literal $L$ in $R$ {\em
+descends\/} from a literal $L'$ in $C$ or $D$.
+
+If $C$ is a clause with two literals $L$ and $K$ and if a most general 
+unifier $\sigma$ exists such that  $\sigma(L) = \sigma(K)$ 
+then  $F = \sigma(C-\{K\})$ is called a factor of $C$. 
+
+
+A {\em connection graph\/} $CG$ \index{connection graph}\index{clause
+graph} is
+\begin{enumerate}
+	\item	a set of clauses $S$
+	\item	a binary relation $R$ over literals in $S$, such that $(L, K) \in R$ if $|L|$ and $|K|$ are 
+unifiable and $L$ and $K$ have opposite sign. 
+Sometimes we write $<$$S$$>$ for the
+connection graph obtained from $S$. 
+\end{enumerate}
+
+A literal $L$ in $S$ is {\em pure\/} if it does not occur in any of
+the pairs of $R$, that is, it is not connected and the clause
+containing $L$ may then be {\em deleted\/} in $CG$. A connection graph
+is graphically represented by drawing a link between $L$ and $K$ for
+every $(L, K) \in R$. $L$ and $K$ are said to be {\em connected\/}.
+Instead of repeating the definition of the connection graph proof
+procedure \cite {Kowalski75} we give an example for the derivation
+step.  Consider the connection graph in figure \ref{ConnectionGraph}.
+
+\begin{figure}[ht]
+\caption{Connection Graph}
+\label{ConnectionGraph}
+\begin{center}
+\begin{picture}(56,40)
+% Oberste Zeile
+\put(0,33){\framebox(6,4){$\neg K$}}
+\put(6,33){\framebox(6,4){$\neg L$}}
+\put(13,35){$C$}
+\put(18,33){\framebox(6,4){$\neg L$}}
+\put(24,33){\framebox(6,4){$R$}}
+\put(30,33){\framebox(6,4){$S$}}
+\put(37,36){$E$}
+\put(42,33){\framebox(6,4){$\neg S$}}
+\put(48,33){\framebox(6,4){$T$}}
+\put(55,35){$F$}
+% Links zwischen erster und zweiter Zeile
+\put(3,33){\line(0,-1){6}}
+\put(4,29){$1$}
+\put(9,33){\line(0,-1){6}}
+\put(21,33){\line(-2,-1){12}}
+\put(27,33){\line(0,-1){6}}
+\put(36,35){\line(1,0){6}}
+\put(51,33){\line(-3,-1){18}}
+% 2. Zeile
+\put(0,23){\framebox(6,4){$K$}}
+\put(6,23){\framebox(6,4){$L$}}
+\put(12,23){\framebox(6,4){$\neg M$}}
+\put(19,25){$D$}
+\put(24,23){\framebox(6,4){$\neg R$}}
+\put(30,23){\framebox(6,4){$\neg T$}}
+\put(37,25){$G$}
+% Links zw 2. und 3. Zeile
+\put(15,23){\line(0,-1){6}}
+% 3. Zeile
+\put(0,13){\framebox(6,4){$P$}}
+\put(6,13){\framebox(6,4){$Q$}}
+\put(12,13){\framebox(6,4){$M$}}
+% Links zwischen 3. und 4. Zeile
+\put(3,13){\line(0,-1){6}}
+\put(9,13){\line(1,-1){6}}
+\put(15,13){\line(2,-1){12}}
+% Letzte Zeile
+\put(0,3){\framebox(6,4){$\neg P$}}
+\put(12,3){\framebox(6,4){$\neg Q$}}
+\put(24,3){\framebox(6,4){$\neg M$}}
+\end{picture}
+\end{center}
+\end{figure}
+
+
+Suppose we want to resolve on link (1) \index{link}to obtain a
+resolvent of clause $C$ and clause $D$.  This is done by adding the
+resolvent to the graph and by connecting the resolvent in the
+following way: if a literal $L$ in the resolvent descends from a
+literal $L'$ in one of the parent clauses and if $L'$ was connected to
+some literal $K$ and if $K$ and $L$ are unifiable, then $L$ and $K$
+are connected by a link. Finally the link resolved upon is deleted and
+all tautologies and all clauses containing pure literals are deleted.
+
+For the connection graph above, resolving upon link (1) leads to a
+tautology, which is deleted, hence $C$ and $D$ are deleted since $K$
+and $\neg K$ are now pure.
+
+Similarly clauses $E$, $F$, and $G$ are deleted; i.e.\ after one step
+the whole connection graph {\em shrinks\/} to that in figure
+\ref{ShrinkedConnectionGraph}.
+
+\begin{figure}[ht]
+\caption{Shrinked Connection Graph}
+\label{ShrinkedConnectionGraph}
+\begin{center}
+\begin{picture}(30,20)
+% Oberste Zeile
+\put(0,13){\framebox(6,4){$P$}}
+\put(6,13){\framebox(6,4){$Q$}}
+\put(12,13){\framebox(6,4){$M$}}
+% Links zwischen 1. und 2. Zeile
+\put(3,13){\line(0,-1){6}}
+\put(9,13){\line(1,-1){6}}
+\put(15,13){\line(2,-1){12}}
+% Letzte Zeile
+\put(0,3){\framebox(6,4){$\neg P$}}
+\put(12,3){\framebox(6,4){$\neg Q$}}
+\put(24,3){\framebox(6,4){$\neg M$}}
+\end{picture}
+\end{center}
+\end{figure}
+
+This potentially rapid reduction of the original graph causes the
+practical attraction as well as the theoretical problems of this proof
+procedure.
+
+Apart from the deletion of clauses containing pure literals there are
+additional deletion rules.  A clause $C$ is a tautology if it contains
+two complementary literals $L$ and $K$ such that $|L| = |K|$ or a
+literal of the form $t \equiv t$.  A clause $C$ subsumes a clause $D$
+if $C$ has less than or the same number of literals as
+$D$ and there exists a substitution
+$\delta$ such that $\delta C \subset D$. This is the definition of
+$\delta$-subsumption in \cite {Loveland78}.\index{subsumption}\index{tautology}
+
+These rules become particularily significant in the context of
+connection graphs: every deletion of a clause may cause further
+deletions of clauses (and links) and the resulting complex interplay
+is still not very well understood theoretically (see e.g.\ \cite
+{Bibel81a,Smolka82,Praecklein85,Eisinger89}).
+
+
+Now we have a look at the particulars of the clause graph calculus, a
+more formal treatment of the procedure is contained in
+\cite{Raph84,OhSi89,Eisinger89,EiOhPr89}.  A clause graph consists of
+a set of clauses, each of them a multiset of literals, and a set of
+links, which connect pairs of literals with unifiable atoms. A link
+connecting a positive and a negative literal is called an R-link
+(Resolution), while an S-link\index{S-link} (Subsumption) joins two
+literals with the same sign. If the literals incident with a link
+belong to two different clauses, it is an R2- or
+S2-link.\index{R2-link}\index{S2-link} If both literals belong to the
+same clause, the link is called an R1- or an
+S1-link.\index{R1-link}\index{S1-link} In case that the atoms of the
+literals are unifiable only after renaming their variables apart, then
+we speak of a weak link.
+
+The different kinds of links provide immediate access to different
+kinds of operations involving a given literal occurrence. Most
+notably, R2-links represent the possible applications of the
+resolution rule and S1-links indicate factoring. Sets of compatible
+S2-links represent subsumption possibilities. When applying such
+deduction rules, we have to add to the graph the new clause along with
+the links connecting the new literals to the existing graph. If the
+new literals are instances of ancestor literals already present in the
+graph, the new links can be obtained without search by a simple
+inheritance process. This inheritance was invented by R.\ Kowalski
+\cite{Kowalski75} and later extended to R1-links by M.\ Bruynooghe
+\cite{Bruynooghe75}. For a detailed explanation of the mechanism in
+the {\sc Mkrp}-system see H.\ J.\ Ohlbach \cite{Ohlbach87}, or H.\ J.\
+Ohlbach and J.\ Siekmann \cite{OhSi89}.  The transfer to S-links is
+trivial. For new literals that are not obtained by instantiating
+others, for example the paramodulated literal in a paramodulation
+step, this form of link inheritance unfortunately does not work
+\cite{Blaesius86}.
+
+In the case of paramodulation there have also been approaches based on
+links and inheritance, for example by J.\ Siekmann and G.\ Wrightson
+\cite{SiWr80}. Links to be paramodulated upon do not join literals,
+they join one side of a positive literal with equality predicate with
+an arbitrary unifiable term in another literal.  They are P2-links if
+the other literal is in another clause,
+P1-links\index{P-link}\index{P2-link}\index{P1-link} if they are in
+the same. An inheritence mechanism for such links was implemented in
+our system, but unfortunately P-link inheritance can not work as for
+R-links because after each resolution or paramodulation step unifiers
+are applied and therefore completely new terms are generated. The
+P-link mechanism can simply be repaired by newly generating all
+P-links and all problematic other links.
+
+
+Subsumed clauses and tautologeous clauses may be deleted from the
+graph, as discussed in \cite [sections 6.3.3 and 6.3.4]{Raph84}. The
+unrestriced use of these deletion rules is known to make the proof
+procedure incomplete.
+
+A traditional {\em refinement\/} restricts the search space by
+blocking certain possible resolutions steps. For example a \index{unit
+resolution} {\em UNIT refutation\/}, in which at least one parent
+clause of a resolvent must be a unit clause, is such a refinement.
+{\em SET-OF-SUPPORT\/} \index{set of support} is also a refinement:
+the set of clauses is partitioned into two subsets (usually the set of
+the axiom clauses $S$ and the set of the theorem clauses $T$) and
+resolution is only permitted if at least one parent clause is in $T$.
+The resolvents are put into $T$, that is, the effect of SET-OF-SUPPORT
+is most profitable at the beginning of the search, but it fades the
+more the deduction proceeds.
+
+A {\em LINEAR\/} \index{linear resolution} refinement selects a {\em top 
+clause\/} from the set of theorem clauses and uses this clause as one 
+of the parents for a resolution step. Then the resolvent becomes the top clause and so on either until the 
+empty clause has been derived or {\em backtracking\/} is necessary.
+
+In contrast to a refinement, which only restricts the number of possible steps (and often ``cuts off 
+garbage and gold alike''), a {\em strategy\/} gives active advice as to what to do next. The development and 
+integration of such strategies into one system was the main research problem of the {\sc Mkrp}-project and 
+the techniques developed so far are represented in the following sections. Strategic information 
+overrides any other information: even if a particular refinement was chosen, the resulting deduction 
+may be very different. Only if nothing better is known, the system does behave like a traditional 
+theorem prover.
+
+\subsection{Equality Reasoning}
+\label{EqualityReasoning}
+
+If $C$ and $D$ 
+are clauses with no variables in common, and $s \equiv t$ 
+is a literal in $C$, and $r$ is a term occurring in $D$ such that there 
+exists a unifier $\sigma$ with $\sigma(s) = \sigma(r)$, and $D'$ is 
+obtained from $D$ by replacing $r$ in $D$ by $t$ then $P = \sigma(D') \cup  
+\sigma(C-\{ s \equiv t\})$ is a paramodulant of $C$ and $D$. 
+This inference rule is called  \index{paramodulation} {\em paramodulation\/}.
+
+The observation that equations can be `applied'
+to terms led to a term replacement 
+approach for the treatment of the equality relation.
+To obtain an algorithm to prove the equality of two terms
+one can successively apply equations to the
+terms. Such an algorithm only decides the equality of the terms but
+can not make them equal by computing an instantiation of
+their variables as required for resolution based systems.
+The main idea is to consider the equations as rules that can only be
+applied in one direction. The direction is determined by a partial
+ordering on the set of terms.
+
+A method to decide the equality of two terms under
+special equality theories can then be obtained by ``reducing'' the
+terms to
+a unique normal form using the directed equations. The theory axioms
+must obey certain conditions, they must be 
+confluent and Noetherian,
+to ensure completeness
+and termination of the decision procedure.
+The equations defining the theory must be
+directable and must have the properties above or it must be
+possible to add other equations such that the new system
+is equivalent to the old one and has the desired properties.
+ This 
+procedure developed by D.\ Knuth and P.\ Bendix \cite{KnBe70}
+is called completion. 
+The new system of directed equations
+constitutes a set of rewriting 
+rules.\index{rewriting}\index{completion}\index{Knuth-Bendix} 
+
+When computing a normal form all situations where two rules can be 
+applied to derive different successors are potentially 
+dangerous, because it must be 
+ensured that both cases later 
+on lead to the same normal form. D.\ Knuth 
+and P.\ Bendix showed that it is enough to consider critical pairs just
+between the
+rules and to add corresponding equations to ensure this property.
+Critical pairs can be constructed from two rules or two instances of the
+same rule if the left hand sides of the rules overlap, that means that some
+subterm of the left hand side can be unified with the other left hand
+side. One term of the critical pair is the right hand side of the first
+rule with the unifier applied to it. For the other term the unifiable subterm
+in the one left hand side is replaced by the other right hand side and 
+again the unifier is applied to the result.
+
+In principle the Knuth-Bendix completion algorithm then works as follows
+\cite{KnBe70,HuOp80,Buchberger85,Dershowitz87,JoLe87}:
+Beginning with a set of undirected equations, an empty set of directed
+rules, and a reduction ordering it tries to derive a convergent set of rules
+from the equations. It applies the following steps
+until no equations remain: Take an
+equation, apply all rules to the equation, direct the equation according to
+the given reduction ordering, and put it
+into the set of rules. Generate all critical pairs, that is, terms for which
+rule applications overlap, between the new rule and
+the set of rules and put them into the set of equations. If this
+algorithm terminates, it produces a set of rules that can be used to decide
+the equality of arbitrary terms of the given theory.
+
+A rule is applicable to a term if the left hand side of the rule
+matches the term or a subterm of it. If a rule is applied to an object
+with subterms to which it is applicable, then these are replaced by
+the right hand side of the rule with the matcher applied to it. In the
+field of Automated Deduction the application of the rules is often
+called demodulation \cite{WoRoCaSh67,WoOvLuBo84} and we will use this
+term here, too. In the field of Automated Deduction the orientation is
+often selected heuristically, unless an immediately obvious ordering
+is possible.
+
+Some results of the research in term rewriting systems led to
+universal unification algorithms restricted to so called confluent or
+canonical theories.  F.\ Fages \cite{Fages83}, J.\ Hullot
+\cite{Hullot80}, J.-P.\ Jouannaud, C.\ Kirchner, H.\ Kirchner
+\cite{JoKiKi83}, J.\ You, P.\ Subramayou \cite{YoSu86}, A.\ Martelli, 
+C.\ Moiso, G.\ Rossi \cite{MaMoRo86}, and C.\ Kirchner
+\cite{Kirchner85} defined systems for this purpose.
+
+Sometimes special theory unification algorithms are used in completion
+systems.  Such a method was used for example by M.\ Stickel
+\cite{Stickel85} to prove ring commutativity from $x^3=x$. They can be
+a powerful instrument to handle unorientable equations (see page
+\pageref{Attributes}).
+
+Now we turn to the problem of conditional equations. In most cases they
+occur together with unit equations that can be handled by completion and
+rewriting. So one strategy would be to generate all ``good and necessary''
+rewrite rules and then to use heuristics when applying the conditional
+equations.
+
+All advanced equality 
+reasoning methods mentioned above are led
+astray when formulae like $A \Rightarrow x=y$ or $A \Rightarrow x=c$
+are among the axioms. Such conditional equations are typical for real
+situations and neither do they
+have any particular structure that can be exploited 
+nor are they directable, and there is no reason to 
+believe that the ``equality problem'' is solved 
+when a satisfactory procedure for handling the unit equations is 
+found. 
+
+Completion algorithms for conditional equations are based on a
+para\-mo\-du\-la\-tion calculus incorporating resolution as a special case of
+paramodulation, paramodulating $L=true$ into $L'=false$.
+
+G.\ Peterson \cite{Peterson83} was the first who developped a
+resolution and pa\-ra\-mo\-du\-la\-tion calculus which reduces to the
+Knuth-Bendix algorithm when only given unit equality axioms and
+theorems. M.\ Rusinowitch
+\cite{HsRu86,Rusinowitch87} extended this work such that only maximal
+\nopagebreak[4]
+literals of the clauses must be considered for paramodulation. G.\
+Peterson's as well as M.\ Rusinowitch's approaches only allow very
+restricted reduction orderings and only demodulations by unit reduction
+rules.
+H.\ Zhang and D.\ Kapur \cite{ZhKa88} extended it to more orderings and
+contextual rewriting. 
+
+In the definition of ordered paramodulation of Hsiang and Rusinowitch
+superpositions with the left and right hand side of an equation in a
+maximal literal are allowed. The problem of ordered paramodulation is
+that it does not reduce to Knuth-Bendix completion in the case when
+only unit equations are present. In this case ordered paramodulation
+is weaker, in the sense that it has a larger search space, than
+completion. The inference system of H.\ Zhang and D.\ Kapur is
+incorporated into {\sc Mkrp}.
+
+\section{Completeness}
+\label{Completenes}
+
+\index{completeness} The main option settings cause 
+the system to behave as described by Norbert Eisinger \cite
+{Eisinger89}. Of course the control mechanism disposed to the user in
+form of a lot of options described in chapter
+\ref{SettingtheMKRPParameters} is rich enough to force the system into 
+a mode, which is not as correct\footnote{It may be that it gives the answer 
+``graph collapsed'' when this is caused
+only by a special strategy.} and complete as 
+the inference system of Norbert Eisinger.
+                                                                       
+
+ \section{Overview of the System}
+\label{OverviewoftheSystem} 
+
+The working hypothesis of the {\sc Mkrp}-project first formulated in an early 
+proposal in 1975, reflects the dominating themes of artificial intelligence 
+research, namely that TPs have attained a certain level 
+of performance, which will not be significantly improved by:
+
+\begin{enumerate}
+\item developing more and more intricate refinements (like unit
+preference, linear resolution, {\sc toss}, or {\sc mtoss}), whose sole
+purpose is to reduce the search space, nor by
+
+\item using different logics (like natural deduction logics, 
+sequence logics, matrix reduction methods etc.)
+\end{enumerate}
+
+although this was the main focus of theorem proving deduction research in 
+the past and of course it is 
+not entirely without its merits even today. 
+
+The relative weakness of current TP-systems as compared to human 
+performance is due to a large 
+extent to their lack of the rich mathematical and extramathematical 
+knowledge that human 
+mathematicians have: in particular, knowledge about the subject and 
+knowledge of how to find proofs 
+in that subject.
+
+To a lesser, but still important extent, the relative weakness of
+current ATP-systems can be attributed to the insufficient emphasis
+which in the past has been laid onto the software engineering problems
+and - sometimes even minor - design issues that in their combination
+account more for the strength of a system than any single refinement
+or logical improvement.
+
+Hence the object of the {\sc Mkrp}-project is first to carefully
+design and develop a TP system comparative in strength to traditional
+systems and secondly to augment this system with the appropriate
+knowledge sources and heuristics methods. As a test case and for the
+final evaluation of the project's success or failure, the knowledge of
+an algebraic treatment of {\em automata theory\/} shall be made
+explicit and incorporated such that the theorems of a standard
+textbook \cite {Deussen71} can be proved mechanically.  These proofs
+are to be transformed into ordinary natural language mathematical
+proofs, thus generating the first mathematical standard textbook
+entirely written by a machine.
+
+The main algorithm of the system is depicted in figure 
+\ref{MainAlgorithmofMKRP}.\begin{figure}[bt]
+\caption{Main Algorithm of {\sc Mkrp} \index{MKRP}}
+\label{MainAlgorithmofMKRP}
+\begin{center}
+\fbox{\parbox{15cm}{\vspace{2mm}
+WHILE empty clause not found and graph not collapsed:
+\begin{enumerate}
+\item Select a chain of resolution, factoring, or paramodulation links.
+\item Derive the final (and some intermediate) clauses generated by the corresponding sequence of operations.
+\item Insert these clauses into the graph and generate the links connecting the new clauses with the old graph 
+using link inheritance.
+\item Remove the links operated upon.
+\item Perform any possible reduction on the graph.
+\end{enumerate}}}
+\end{center}
+\end{figure}
+In the following chapters we give a complete description of the
+system's user interface. Most commands will work for any version of
+the {\sc Mkrp}, but the starting procedure is described for the
+version without supported window system. \index{window}
+\index{dialogue window} The system also runs on a Symbolics Lisp
+Machine \index{Symbolics} under Genera (Common Lisp) with Symbolics
+windows and on Common Lisp with X-window system. The major differences
+to the standard version are mentioned at the end of each chapter.
+

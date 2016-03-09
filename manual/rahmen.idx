@@ -1,0 +1,539 @@
+\indexentry{clause}{4}
+\indexentry{substitution}{4}
+\indexentry{resolution}{5}
+\indexentry{connection graph}{5}
+\indexentry{clause graph}{5}
+\indexentry{link}{5}
+\indexentry{subsumption}{6}
+\indexentry{tautology}{6}
+\indexentry{S-link}{6}
+\indexentry{R2-link}{6}
+\indexentry{S2-link}{6}
+\indexentry{R1-link}{6}
+\indexentry{S1-link}{6}
+\indexentry{P-link}{6}
+\indexentry{P2-link}{6}
+\indexentry{P1-link}{6}
+\indexentry{unit resolution}{7}
+\indexentry{set of support}{7}
+\indexentry{linear resolution}{7}
+\indexentry{paramodulation}{7}
+\indexentry{rewriting}{7}
+\indexentry{completion}{7}
+\indexentry{Knuth-Bendix}{7}
+\indexentry{completeness}{9}
+\indexentry{MKRP}{10}
+\indexentry{window}{10}
+\indexentry{dialogue window}{10}
+\indexentry{Symbolics}{10}
+\indexentry{language}{11}
+\indexentry{dialogue language}{11}
+\indexentry{English}{11}
+\indexentry{German}{11}
+\indexentry{installation}{11}
+\indexentry{start MKRP}{12}
+\indexentry{subsystems}{12}
+\indexentry{edit subsystem}{12}
+\indexentry{theorem file}{12}
+\indexentry{axiom file}{12}
+\indexentry{formulae file}{12}
+\indexentry{problem file}{12}
+\indexentry{construct subsystem}{12}
+\indexentry{graph file}{12}
+\indexentry{code file}{12}
+\indexentry{refute subsystem}{12}
+\indexentry{protocol subsystem}{13}
+\indexentry{define directory}{13}
+\indexentry{command define directory}{13}
+\indexentry{define example name}{13}
+\indexentry{command define example name}{13}
+\indexentry{video control}{13}
+\indexentry{command video control}{13}
+\indexentry{help}{13}
+\indexentry{command help}{13}
+\indexentry{exit}{13}
+\indexentry{command exit}{13}
+\indexentry{options}{13}
+\indexentry{command options}{13}
+\indexentry{options file}{13}
+\indexentry{hardcopy}{13}
+\indexentry{command hardcopy}{13}
+\indexentry{print hardcopy}{13}
+\indexentry{logoff}{14}
+\indexentry{command logoff}{14}
+\indexentry{edit}{14}
+\indexentry{command edit}{14}
+\indexentry{formula}{14}
+\indexentry{command formula}{14}
+\indexentry{construct}{14}
+\indexentry{command construct}{14}
+\indexentry{refute}{14}
+\indexentry{command refute}{14}
+\indexentry{protocol}{14}
+\indexentry{command protocol}{14}
+\indexentry{command EP}{14}
+\indexentry{command FP}{14}
+\indexentry{command ER}{14}
+\indexentry{command CP}{14}
+\indexentry{command FR}{14}
+\indexentry{command EC}{14}
+\indexentry{command CR}{14}
+\indexentry{command RP}{14}
+\indexentry{command FC}{14}
+\indexentry{start MKRP}{15}
+\indexentry{predicate logic language}{16}
+\indexentry{PLL}{16}
+\indexentry{order-sorted}{16}
+\indexentry{sorted}{16}
+\indexentry{junctors}{16}
+\indexentry{quantors}{16}
+\indexentry{reflexive predicate}{19}
+\indexentry{irreflexive predicate}{19}
+\indexentry{symmetric predicate}{19}
+\indexentry{associative function}{19}
+\indexentry{commutative function}{19}
+\indexentry{theory unification}{19}
+\indexentry{grammar for PLL}{19}
+\indexentry{I[NSERT]}{28}
+\indexentry{editor command I[NSERT]}{28}
+\indexentry{D[ELETE]}{28}
+\indexentry{editor command D[ELETE]}{28}
+\indexentry{+[SHIFT]}{28}
+\indexentry{editor command +[SHIFT]}{28}
+\indexentry{--[SHIFT]}{29}
+\indexentry{editor command --[SHIFT]}{29}
+\indexentry{E[DIT]}{29}
+\indexentry{editor command E[DIT]}{29}
+\indexentry{C[HANGE]}{29}
+\indexentry{editor command C[HANGE]}{29}
+\indexentry{R[EAD]}{29}
+\indexentry{editor command R[EAD]}{29}
+\indexentry{W[RITE]}{29}
+\indexentry{editor command W[RITE]}{29}
+\indexentry{W[RITE]G[ET]}{29}
+\indexentry{editor command W[RITE]G[ET]}{29}
+\indexentry{G[ET]}{29}
+\indexentry{editor command G[ET]}{29}
+\indexentry{EXEC[UTE]}{29}
+\indexentry{editor command EXEC[UTE]}{29}
+\indexentry{SW[ITCH]}{30}
+\indexentry{editor command SW[ITCH]}{30}
+\indexentry{U[NDO]}{30}
+\indexentry{editor command U[NDO]}{30}
+\indexentry{REP[LACE]}{30}
+\indexentry{editor command REP[LACE]}{30}
+\indexentry{PP[RINT]}{30}
+\indexentry{editor command PP[RINT]}{30}
+\indexentry{S[HOW]}{30}
+\indexentry{editor command S[HOW]}{30}
+\indexentry{SS[HOW]}{30}
+\indexentry{editor command SS[HOW]}{30}
+\indexentry{PRE[FIX]}{30}
+\indexentry{editor command PRE[FIX]}{30}
+\indexentry{IN[FIX]}{31}
+\indexentry{editor command IN[FIX]}{31}
+\indexentry{ST[ATE]}{31}
+\indexentry{editor command ST[ATE]}{31}
+\indexentry{OK}{31}
+\indexentry{editor command OK}{31}
+\indexentry{!}{31}
+\indexentry{editor command !}{31}
+\indexentry{LISP}{31}
+\indexentry{editor command LISP}{31}
+\indexentry{V}{31}
+\indexentry{editor command V}{31}
+\indexentry{H[ELP]}{31}
+\indexentry{editor command H[ELP]}{31}
+\indexentry{HH[ELP]}{31}
+\indexentry{editor command HH[ELP]}{31}
+\indexentry{{\sc two\_rules}}{35}
+\indexentry{rules}{35}
+\indexentry{option rules}{35}
+\indexentry{two option rules}{35}
+\indexentry{{\sc two\_suppress.no.rules}}{36}
+\indexentry{suppress no rules}{36}
+\indexentry{option suppress no rules}{36}
+\indexentry{two option suppress no rules}{36}
+\indexentry{{\sc two\_rules.maxlevel}}{37}
+\indexentry{rules maxlevel}{37}
+\indexentry{option rules maxlevel}{37}
+\indexentry{two option rules maxlevel}{37}
+\indexentry{{\sc red.i\_clause.multiple.literals}}{37}
+\indexentry{clause multiple literals}{37}
+\indexentry{option clause multiple literals}{37}
+\indexentry{initial reduction option clause multiple literals}{37}
+\indexentry{{\sc red.i\_clause.purity}}{37}
+\indexentry{clause purity}{37}
+\indexentry{option clause purity}{37}
+\indexentry{initial reduction option clause purity}{37}
+\indexentry{snowball effect}{38}
+\indexentry{{\sc red.i\_clause.tautology}}{38}
+\indexentry{clause tautology}{38}
+\indexentry{option clause tautology}{38}
+\indexentry{initial reduction option clause tautology}{38}
+\indexentry{{\sc red.i\_clause.tautology.recheck}}{39}
+\indexentry{clause tautology recheck}{39}
+\indexentry{option clause tautology recheck}{39}
+\indexentry{initial reduction option clause tautology recheck}{39}
+\indexentry{link condition}{39}
+\indexentry{{\sc red.i\_clause.subsumption}}{40}
+\indexentry{clause subsumption}{40}
+\indexentry{option clause subsumption}{40}
+\indexentry{initial reduction option clause subsumption}{40}
+\indexentry{{\sc red.i\_clause.subsumption.recheck}}{40}
+\indexentry{clause subsumption recheck}{40}
+\indexentry{option clause subsumption recheck}{40}
+\indexentry{initial reduction option clause subsumption re\-check}{40}
+\indexentry{{\sc red.i\_repl.factoring}}{40}
+\indexentry{replacement factoring}{40}
+\indexentry{option replacement factoring}{40}
+\indexentry{initial reduction option replacement factoring}{40}
+\indexentry{{\sc red.i\_replacement.factoring.re\-check}}{41}
+\indexentry{replacement factoring recheck}{41}
+\indexentry{option replacement factoring recheck}{41}
+\indexentry{initial reduction option replacement factoring re\-check}{41}
+\indexentry{{\sc red.i\_clause.repl.resolution}}{41}
+\indexentry{clause replacement resolution}{41}
+\indexentry{option clause replacement resolution}{41}
+\indexentry{initial reduction option clause replacement resolution}{41}
+\indexentry{{\sc red.i\_clause.repl.resolution.re\-check}}{42}
+\indexentry{clause replacement resolution recheck}{42}
+\indexentry{option clause replacement resolution recheck}{42}
+\indexentry{initial reduction option clause replacement resolution recheck}{42}
+\indexentry{{\sc red.i\_clause.rewriting}}{42}
+\indexentry{clause rewriting}{42}
+\indexentry{option clause rewriting}{42}
+\indexentry{initial reduction option clause rewriting}{42}
+\indexentry{{\sc red.i\_link.incompatibility}}{43}
+\indexentry{link incompatibility}{43}
+\indexentry{option link incompatibility}{43}
+\indexentry{initial reduction option link incompatibility}{43}
+\indexentry{{\sc red.i\_link.tautology}}{43}
+\indexentry{link tautology}{43}
+\indexentry{option link tautology}{43}
+\indexentry{initial reduction option link tautology}{43}
+\indexentry{{\sc red.i\_link.tautology.recheck}}{44}
+\indexentry{link tautology recheck}{44}
+\indexentry{option link tautology recheck}{44}
+\indexentry{initial reduction option link tautology recheck}{44}
+\indexentry{{\sc red.i\_link.subsumption}}{44}
+\indexentry{link subsumption}{44}
+\indexentry{option link subsumption}{44}
+\indexentry{initial reduction option link subsumption}{44}
+\indexentry{{\sc red.i\_link.subsumption.recheck}}{44}
+\indexentry{link subsumption recheck}{44}
+\indexentry{option link subsumption recheck}{44}
+\indexentry{initial reduction option link subsumption recheck}{44}
+\indexentry{{\sc red.d\_clause.multiple.literals}}{44}
+\indexentry{clause multiple literals}{44}
+\indexentry{option clause multiple literals}{44}
+\indexentry{deduction reduction option clause multiple literals}{44}
+\indexentry{{\sc red.d\_clause.purity}}{45}
+\indexentry{clause purity}{45}
+\indexentry{option clause purity}{45}
+\indexentry{deduction reduction option clause purity}{45}
+\indexentry{{\sc red.d\_clause.tautology}}{45}
+\indexentry{clause tautology}{45}
+\indexentry{option clause tautology}{45}
+\indexentry{deduction reduction option clause tautology}{45}
+\indexentry{{\sc red.d\_clause.tautology.recheck}}{45}
+\indexentry{clause tautology recheck}{45}
+\indexentry{option clause tautology recheck}{45}
+\indexentry{deduction reduction option clause tautology re\-check}{45}
+\indexentry{{\sc red.d\_clause.subsumption.for\-ward}}{45}
+\indexentry{clause subsumption forward}{45}
+\indexentry{option clause subsumption forward}{45}
+\indexentry{deduction reduction option clause subsumption forward}{45}
+\indexentry{{\sc red.d\_clause.subsumption.back\-ward}}{46}
+\indexentry{clause subsumption backward}{46}
+\indexentry{option clause subsumption backward}{46}
+\indexentry{deduction reduction option clause subsumption backward}{46}
+\indexentry{{\sc red.d\_clause.subsumption.re\-check}}{46}
+\indexentry{clause subsumption recheck}{46}
+\indexentry{option clause subsumption recheck}{46}
+\indexentry{deduction reduction option clause subsumption re\-check}{46}
+\indexentry{{\sc red.d\_clause.repl.factoring}}{46}
+\indexentry{clause replacement factoring}{46}
+\indexentry{option clause replacement factoring}{46}
+\indexentry{deduction reduction option clause replacement factoring}{46}
+\indexentry{{\sc red.d\_clause.repl.factoring.re\-check}}{46}
+\indexentry{clause replacement factoring recheck}{46}
+\indexentry{option clause replacement factoring recheck}{46}
+\indexentry{deduction reduction option clause replacement factoring re\-check}{46}
+\indexentry{{\sc red.d\_clause.repl.resolution}}{46}
+\indexentry{clause replacement resolution}{46}
+\indexentry{option clause replacement resolution}{46}
+\indexentry{deduction reduction option clause replacement resolution}{46}
+\indexentry{{\sc red.d\_clause.repl.resolution.re\-check}}{47}
+\indexentry{clause replacement resolution recheck}{47}
+\indexentry{option clause replacement resolution recheck}{47}
+\indexentry{deduction reduction option clause replacement resolution recheck}{47}
+\indexentry{{\sc red.d\_clause.rewriting}}{47}
+\indexentry{clause rewriting}{47}
+\indexentry{option clause rewriting}{47}
+\indexentry{deduction reduction option clause rewriting}{47}
+\indexentry{{\sc red.d\_link.incompatibility}}{47}
+\indexentry{link incompatibility}{47}
+\indexentry{option link incompatibility}{47}
+\indexentry{deduction reduction option link incompatibility}{47}
+\indexentry{{\sc red.d\_link.tautology}}{47}
+\indexentry{link tautology}{47}
+\indexentry{option link tautology}{47}
+\indexentry{deduction reduction option link tautology}{47}
+\indexentry{{\sc red.d\_link.tautology.recheck}}{48}
+\indexentry{link tautology recheck}{48}
+\indexentry{option link tautology recheck}{48}
+\indexentry{deduction reduction option link tautology re\-check}{48}
+\indexentry{{\sc red.d\_link.subsumption}}{48}
+\indexentry{link subsumption}{48}
+\indexentry{option link subsumption}{48}
+\indexentry{deduction reduction option link subsumption}{48}
+\indexentry{{\sc red.d\_link.subsumption.recheck}}{48}
+\indexentry{link subsumption recheck}{48}
+\indexentry{option link subsumption recheck}{48}
+\indexentry{deduction reduction option link subsumption re\-check}{48}
+\indexentry{{\sc fac\_initial}}{49}
+\indexentry{initial}{49}
+\indexentry{option initial}{49}
+\indexentry{fac option initial}{49}
+\indexentry{{\sc fac\_each.step}}{49}
+\indexentry{each step}{49}
+\indexentry{option each step}{49}
+\indexentry{fac option each step}{49}
+\indexentry{{\sc str\_resolution}}{49}
+\indexentry{resolution}{49}
+\indexentry{option resolution}{49}
+\indexentry{strategy option resolution}{49}
+\indexentry{{\sc str\_link.depth}}{50}
+\indexentry{link depth}{50}
+\indexentry{option link depth}{50}
+\indexentry{strategy option link depth}{50}
+\indexentry{{\sc str\_r.selection}}{50}
+\indexentry{r selection}{50}
+\indexentry{option r selection}{50}
+\indexentry{strategy option r selection}{50}
+\indexentry{{\sc str\_term.depth}}{50}
+\indexentry{term depth}{50}
+\indexentry{option term depth}{50}
+\indexentry{strategy option term depth}{50}
+\indexentry{{\sc str\_finite.domain} \index{finite domain} }{51}
+\indexentry{option finite domain}{51}
+\indexentry{strategy option finite domain}{51}
+\indexentry{{\sc term\_units}}{51}
+\indexentry{units}{51}
+\indexentry{option units}{51}
+\indexentry{terminator option units}{51}
+\indexentry{{\sc term\_iterations}}{51}
+\indexentry{iterations}{51}
+\indexentry{option iterations}{51}
+\indexentry{terminator option iterations}{51}
+\indexentry{terminator situation}{51}
+\indexentry{{\sc term\_set.of.support}}{52}
+\indexentry{set of support}{52}
+\indexentry{option set of support}{52}
+\indexentry{terminator option set of support}{52}
+\indexentry{{\sc term\_breadth.first}}{52}
+\indexentry{breadth first}{52}
+\indexentry{option breadth first}{52}
+\indexentry{terminator option breadth first}{52}
+\indexentry{{\sc sort\_literals}}{52}
+\indexentry{literals}{52}
+\indexentry{option literals}{52}
+\indexentry{sort option literals}{52}
+\indexentry{{\sc sort\_max.unification.rule.steps}}{52}
+\indexentry{max unification rule steps}{52}
+\indexentry{option max unification rule steps}{52}
+\indexentry{sort option max unification rule steps}{52}
+\indexentry{{\sc sort\_max.unification.tree.depth}}{52}
+\indexentry{max unification tree depth}{52}
+\indexentry{option max unification tree depth}{52}
+\indexentry{sort option max unification tree depth}{52}
+\indexentry{{\sc sort\_max.unification.tree.open.nodes}}{53}
+\indexentry{max unification tree open nodes}{53}
+\indexentry{option max unification tree open nodes}{53}
+\indexentry{sort option max unification tree open nodes}{53}
+\indexentry{{\sc sort\_unifier.stop.number}}{53}
+\indexentry{unifier stop number}{53}
+\indexentry{option unifier stop number}{53}
+\indexentry{sort option unifier stop number}{53}
+\indexentry{{\sc sort\_show.variable.sorts}}{53}
+\indexentry{show variable sorts}{53}
+\indexentry{option show variable sorts}{53}
+\indexentry{sort option show variable sorts}{53}
+\indexentry{{\sc er\_paramodulation}}{53}
+\indexentry{paramodulation}{53}
+\indexentry{option paramodulation}{53}
+\indexentry{equality option paramodulation}{53}
+\indexentry{{\sc er\_completion }}{55}
+\indexentry{completion }{55}
+\indexentry{option completion }{55}
+\indexentry{equality option completion}{55}
+\indexentry{{\sc er\_weight.polynomials}}{55}
+\indexentry{weight polynomials}{55}
+\indexentry{option weight polynomials}{55}
+\indexentry{equality option weight polynomials}{55}
+\indexentry{{\sc er\_p.selection}}{55}
+\indexentry{p selection}{55}
+\indexentry{option p selection}{55}
+\indexentry{equality option p selection}{55}
+\indexentry{{\sc er\_cp.reduction}}{56}
+\indexentry{cp reduction}{56}
+\indexentry{option cp reduction}{56}
+\indexentry{equality option cp reduction}{56}
+\indexentry{{\sc er\_ordering}}{56}
+\indexentry{ordering}{56}
+\indexentry{option ordering}{56}
+\indexentry{equality option ordering}{56}
+\indexentry{{\sc er\_operator.ordering}}{57}
+\indexentry{operator ordering}{57}
+\indexentry{option operator ordering}{57}
+\indexentry{equality option operator ordering}{57}
+\indexentry{{\sc er\_knuth.bendix.weight}}{57}
+\indexentry{knuth bendix weight}{57}
+\indexentry{option knuth bendix weight}{57}
+\indexentry{equality option knuth bendix weight}{57}
+\indexentry{{\sc er\_polynomial.weight}}{57}
+\indexentry{polynomial weight}{57}
+\indexentry{option polynomial weight}{57}
+\indexentry{equality option polynomial weight}{57}
+\indexentry{{\sc er\_narrow.depth}}{57}
+\indexentry{narrow depth}{57}
+\indexentry{option narrow depth}{57}
+\indexentry{equality option narrow depth}{57}
+\indexentry{{\sc er\_narrow.next}}{58}
+\indexentry{narrow next}{58}
+\indexentry{option narrow next}{58}
+\indexentry{equality option narrow next}{58}
+\indexentry{{\sc er\_narrow.test}}{58}
+\indexentry{narrow test}{58}
+\indexentry{option narrow test}{58}
+\indexentry{equality option narrow test}{58}
+\indexentry{{\sc er\_compile}}{58}
+\indexentry{compile}{58}
+\indexentry{option compile}{58}
+\indexentry{equality option compile}{58}
+\indexentry{{\sc gen\_splitting}}{59}
+\indexentry{splitting}{59}
+\indexentry{option splitting}{59}
+\indexentry{general option splitting}{59}
+\indexentry{{\sc gen\_presimplification} }{59}
+\indexentry{presimplification}{59}
+\indexentry{option presimplification}{59}
+\indexentry{general option presimplification}{59}
+\indexentry{definitions}{59}
+\indexentry{expanding definitions}{59}
+\indexentry{{\sc gen\_min.expression.length.for.file}}{60}
+\indexentry{min expression length for file}{60}
+\indexentry{option min expression length for file}{60}
+\indexentry{general option min expression length for file}{60}
+\indexentry{{\sc gen\_min.expression.size.for.file}}{60}
+\indexentry{min expression size for file}{60}
+\indexentry{option min expression size for file}{60}
+\indexentry{general option min expression size for file}{60}
+\indexentry{{\sc gen\_manual.control}}{60}
+\indexentry{manual control}{60}
+\indexentry{option manual control}{60}
+\indexentry{option manual control}{60}
+\indexentry{{\sc gen\_maximum steps}}{61}
+\indexentry{maximum steps}{61}
+\indexentry{option maximum steps}{61}
+\indexentry{general option maximum steps}{61}
+\indexentry{{\sc gen\_graph.saving}}{61}
+\indexentry{graph saving}{61}
+\indexentry{option graph saving}{61}
+\indexentry{general option graph saving}{61}
+\indexentry{{\sc gen\_save.file}}{61}
+\indexentry{save file}{61}
+\indexentry{option save file}{61}
+\indexentry{general option save file}{61}
+\indexentry{{\sc gen\_lisp.garbage.collection}}{62}
+\indexentry{lisp garbage collection}{62}
+\indexentry{option lisp garbage collection}{62}
+\indexentry{general option lisp garbage collection}{62}
+\indexentry{{\sc gen\_common.lisp}}{62}
+\indexentry{common lisp}{62}
+\indexentry{option common lisp}{62}
+\indexentry{general option common lisp}{62}
+\indexentry{protocol}{63}
+\indexentry{protocol listing}{63}
+\indexentry{{\sc pr\_protocol}}{63}
+\indexentry{protocol}{63}
+\indexentry{option protocol}{63}
+\indexentry{protocol option protocol}{63}
+\indexentry{{\sc pr\_infix.form}}{63}
+\indexentry{infix form}{63}
+\indexentry{option infix form}{63}
+\indexentry{protocol option infix form}{63}
+\indexentry{{\sc pr\_prefix.form}}{64}
+\indexentry{prefix form}{64}
+\indexentry{option prefix form}{64}
+\indexentry{protocol option prefix form}{64}
+\indexentry{{\sc pr\_options}}{64}
+\indexentry{options}{64}
+\indexentry{option options}{64}
+\indexentry{protocol option options}{64}
+\indexentry{{\sc pr\_symbols}}{64}
+\indexentry{symbols}{64}
+\indexentry{option symbols}{64}
+\indexentry{protocol option symbols}{64}
+\indexentry{{\sc pr\_new.pnames}}{64}
+\indexentry{new pnames}{64}
+\indexentry{option new pnames}{64}
+\indexentry{protocol option new pnames}{64}
+\indexentry{{\sc pr\_different.variables}}{64}
+\indexentry{different variables}{64}
+\indexentry{option different variables}{64}
+\indexentry{protocol option different variables}{64}
+\indexentry{{\sc pr\_direct.proof}}{64}
+\indexentry{direct proof}{64}
+\indexentry{option direct proof}{64}
+\indexentry{protocol option direct proof}{64}
+\indexentry{{\sc pr\_left.margin}}{65}
+\indexentry{left margin}{65}
+\indexentry{option left margin}{65}
+\indexentry{protocol option left margin}{65}
+\indexentry{{\sc pr\_right.margin}}{65}
+\indexentry{right margin}{65}
+\indexentry{option right margin}{65}
+\indexentry{protocol option right margin}{65}
+\indexentry{{\sc pr\_linelength}}{65}
+\indexentry{linelength}{65}
+\indexentry{option linelength}{65}
+\indexentry{protocol option linelength}{65}
+\indexentry{{\sc pr\_latex}}{65}
+\indexentry{latex}{65}
+\indexentry{option latex}{65}
+\indexentry{protocol option latex}{65}
+\indexentry{{\sc pr\_literals}}{65}
+\indexentry{literals}{65}
+\indexentry{option literals}{65}
+\indexentry{protocol option literals}{65}
+\indexentry{{\sc tr\_preprocessing}}{66}
+\indexentry{preprocessing}{66}
+\indexentry{option preprocessing}{66}
+\indexentry{trace option preprocessing}{66}
+\indexentry{{\sc tr\_step.mode}}{66}
+\indexentry{step mode}{66}
+\indexentry{option step mode}{66}
+\indexentry{trace option step mode}{66}
+\indexentry{{\sc tr\_dump}}{66}
+\indexentry{dump}{66}
+\indexentry{option dump}{66}
+\indexentry{trace option dump}{66}
+\indexentry{{\sc tr\_clause.mode}}{66}
+\indexentry{clause mode}{66}
+\indexentry{option clause mode}{66}
+\indexentry{trace option clause mode}{66}
+\indexentry{{\sc tr\_link.mode}}{66}
+\indexentry{link mode}{66}
+\indexentry{option link mode}{66}
+\indexentry{trace option link mode}{66}
+\indexentry{{\sc tr\_trace.file}}{66}
+\indexentry{trace file}{66}
+\indexentry{option trace file}{66}
+\indexentry{trace option trace file}{66}
+\indexentry{{\sc tr\_terminal}}{67}
+\indexentry{terminal}{67}
+\indexentry{option terminal}{67}
+\indexentry{trace option terminal}{67}
+\indexentry{finite domain}{83}

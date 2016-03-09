@@ -1,0 +1,101 @@
+ 
+ 
+ 
+             ****************************************************
+             *                                                  *
+             *   ATP-SYSTEM :  M K R P , UNI KARLSRUHE          *
+             *                                                  *
+             *      VERSION : 3-FEB-84                          *
+             *         DATE : 15-AUG-84  11:54:40               *
+             *                                                  *
+             ****************************************************
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : SORT ELEMENT,MENGE,VERKN,INDEX:ANY
+           TYPE EHG (MENGE VERKN INDEX) :MENGE
+           TYPE PLUS (INDEX INDEX) :INDEX
+           TYPE APPLY (VERKN ELEMENT ELEMENT) :ELEMENT
+           TYPE 1,M:INDEX
+           ALL X,Y:ELEMENT  ALL E:MENGE  ALL N,NSTRICH:INDEX  ALL PHI:VERKN  
+                 KLEINERGLEICH (NSTRICH N)
+                 AND  
+                 EL (X EHG (E PHI M))
+                 AND  
+                 EL (Y EHG (E PHI NSTRICH))
+               IMPL  
+               EL (APPLY (PHI X Y) EHG (E PHI PLUS (M NSTRICH)))
+           ALL K:INDEX  ALL X,Y:ELEMENT  ALL PHI:VERKN  ALL E:MENGE  
+               EL (X EHG (E PHI K)) AND EL (Y EHG (E PHI 1))
+               IMPL  
+               EL (APPLY (PHI X Y) EHG (E PHI PLUS (K 1)))
+           ALL K:INDEX  ALL X:ELEMENT  ALL PHI:VERKN  ALL E:MENGE  
+               EL (X EHG (E PHI PLUS (K 1)))
+               IMPL  
+                EX Y,Z:ELEMENT  
+                    X = APPLY (PHI Y Z)
+                    AND  
+                    EL (Y EHG (E PHI K))
+                    AND  
+                    EL (Z EHG (E PHI 1))
+           ALL PHI  
+             :VERKN ALL  
+                X,Y,Z:ELEMENT  
+                APPLY  
+                PHI X APPLY (PHI Y Z)
+                =  
+                APPLY  
+                PHI APPLY (PHI X Y) Z
+ 
+THEOREMS : ALL E,F:MENGE  ALL X,Y:ELEMENT  ALL PHI:VERKN  ALL N,NSTRICH:INDEX  
+                 HG (F PHI)
+                 AND  
+                 ME (E F)
+                 AND  
+                 EL (X EHG (E PHI M))
+                 AND  
+                 EL (Y EHG (E PHI PLUS (NSTRICH 1)))
+                 AND  
+                 KLEINERGLEICH (NSTRICH N)
+               IMPL  
+               EL (APPLY (PHI X Y) EHG (E PHI PLUS (PLUS (M NSTRICH) 1)))
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+  A1   : ALL X,Y:INDEX  Z,U:ELEMENT  V:MENGE  W:VERKN  
+              -KLEINERGLEICH(X Y) -EL(Z EHG(V W M)) -EL(U EHG(V W X)) 
+              +EL(APPLY(W Z U) EHG(V W PLUS(M X))) 
+  R.=  : ALL X:ANY  +=(X X)
+  A2   : ALL X,Y:ELEMENT  Z:MENGE  U:VERKN  V:INDEX  
+              -EL(X EHG(Z U V)) -EL(Y EHG(Z U 1)) 
+              +EL(APPLY(U X Y) EHG(Z U PLUS(V 1))) 
+  A3   : ALL X:ELEMENT  Y:MENGE  Z:VERKN  U:INDEX  
+              -EL(X EHG(Y Z PLUS(U 1))) 
+              +=(X APPLY(Z F_2(U Z X Y) F_1(U Z X Y))) 
+  A4   : ALL X:ELEMENT  Y:MENGE  Z:VERKN  U:INDEX  
+              -EL(X EHG(Y Z PLUS(U 1))) +EL(F_2(U Z X Y) EHG(Y Z U)) 
+  A5   : ALL X:ELEMENT  Y:MENGE  Z:VERKN  U:INDEX  
+              -EL(X EHG(Y Z PLUS(U 1))) +EL(F_1(U Z X Y) EHG(Y Z 1)) 
+  A6   : ALL X:VERKN  Y,Z,U:ELEMENT  
+              +=(APPLY(X Y APPLY(X Z U)) APPLY(X APPLY(X Y Z) U)) 
+ 
+ 
+--------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+  Q. E. D. 
+ 

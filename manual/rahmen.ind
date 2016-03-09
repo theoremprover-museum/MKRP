@@ -1,0 +1,583 @@
+\begin{theindex}
+
+  \item !\hfill 31
+  \item +[SHIFT]\hfill 28
+  \item --[SHIFT]\hfill 29
+  \item {\sc er\_compile}\hfill 58
+  \item {\sc er\_completion }\hfill 55
+  \item {\sc er\_cp.reduction}\hfill 56
+  \item {\sc er\_knuth.bendix.weight}\hfill 57
+  \item {\sc er\_narrow.depth}\hfill 57
+  \item {\sc er\_narrow.next}\hfill 58
+  \item {\sc er\_narrow.test}\hfill 58
+  \item {\sc er\_operator.ordering}\hfill 57
+  \item {\sc er\_ordering}\hfill 56
+  \item {\sc er\_p.selection}\hfill 55
+  \item {\sc er\_paramodulation}\hfill 53
+  \item {\sc er\_polynomial.weight}\hfill 57
+  \item {\sc er\_weight.polynomials}\hfill 55
+  \item {\sc fac\_each.step}\hfill 49
+  \item {\sc fac\_initial}\hfill 49
+  \item {\sc gen\_common.lisp}\hfill 62
+  \item {\sc gen\_graph.saving}\hfill 61
+  \item {\sc gen\_lisp.garbage.collection}\hfill 62
+  \item {\sc gen\_manual.control}\hfill 60
+  \item {\sc gen\_maximum steps}\hfill 61
+  \item {\sc gen\_min.expression.length.for.file}\hfill 60
+  \item {\sc gen\_min.expression.size.for.file}\hfill 60
+  \item {\sc gen\_presimplification} \hfill 59
+  \item {\sc gen\_save.file}\hfill 61
+  \item {\sc gen\_splitting}\hfill 59
+  \item {\sc pr\_different.variables}\hfill 64
+  \item {\sc pr\_direct.proof}\hfill 64
+  \item {\sc pr\_infix.form}\hfill 63
+  \item {\sc pr\_latex}\hfill 65
+  \item {\sc pr\_left.margin}\hfill 65
+  \item {\sc pr\_linelength}\hfill 65
+  \item {\sc pr\_literals}\hfill 65
+  \item {\sc pr\_new.pnames}\hfill 64
+  \item {\sc pr\_options}\hfill 64
+  \item {\sc pr\_prefix.form}\hfill 64
+  \item {\sc pr\_protocol}\hfill 63
+  \item {\sc pr\_right.margin}\hfill 65
+  \item {\sc pr\_symbols}\hfill 64
+  \item {\sc red.d\_clause.multiple.literals}\hfill 44
+  \item {\sc red.d\_clause.purity}\hfill 45
+  \item {\sc red.d\_clause.repl.factoring.re\-check}\hfill 46
+  \item {\sc red.d\_clause.repl.factoring}\hfill 46
+  \item {\sc red.d\_clause.repl.resolution.re\-check}\hfill 47
+  \item {\sc red.d\_clause.repl.resolution}\hfill 46
+  \item {\sc red.d\_clause.rewriting}\hfill 47
+  \item {\sc red.d\_clause.subsumption.back\-ward}\hfill 46
+  \item {\sc red.d\_clause.subsumption.for\-ward}\hfill 45
+  \item {\sc red.d\_clause.subsumption.re\-check}\hfill 46
+  \item {\sc red.d\_clause.tautology.recheck}\hfill 45
+  \item {\sc red.d\_clause.tautology}\hfill 45
+  \item {\sc red.d\_link.incompatibility}\hfill 47
+  \item {\sc red.d\_link.subsumption.recheck}\hfill 48
+  \item {\sc red.d\_link.subsumption}\hfill 48
+  \item {\sc red.d\_link.tautology.recheck}\hfill 48
+  \item {\sc red.d\_link.tautology}\hfill 47
+  \item {\sc red.i\_clause.multiple.literals}\hfill 37
+  \item {\sc red.i\_clause.purity}\hfill 37
+  \item {\sc red.i\_clause.repl.resolution.re\-check}\hfill 42
+  \item {\sc red.i\_clause.repl.resolution}\hfill 41
+  \item {\sc red.i\_clause.rewriting}\hfill 42
+  \item {\sc red.i\_clause.subsumption.recheck}\hfill 40
+  \item {\sc red.i\_clause.subsumption}\hfill 40
+  \item {\sc red.i\_clause.tautology.recheck}\hfill 39
+  \item {\sc red.i\_clause.tautology}\hfill 38
+  \item {\sc red.i\_link.incompatibility}\hfill 43
+  \item {\sc red.i\_link.subsumption.recheck}\hfill 44
+  \item {\sc red.i\_link.subsumption}\hfill 44
+  \item {\sc red.i\_link.tautology.recheck}\hfill 44
+  \item {\sc red.i\_link.tautology}\hfill 43
+  \item {\sc red.i\_repl.factoring}\hfill 40
+  \item {\sc red.i\_replacement.factoring.re\-check}\hfill 41
+  \item {\sc sort\_literals}\hfill 52
+  \item {\sc sort\_max.unification.rule.steps}\hfill 52
+  \item {\sc sort\_max.unification.tree.depth}\hfill 52
+  \item {\sc sort\_max.unification.tree.open.nodes}\hfill 53
+  \item {\sc sort\_show.variable.sorts}\hfill 53
+  \item {\sc sort\_unifier.stop.number}\hfill 53
+  \item {\sc str\_finite.domain} \index{finite domain} \hfill 51
+  \item {\sc str\_link.depth}\hfill 50
+  \item {\sc str\_r.selection}\hfill 50
+  \item {\sc str\_resolution}\hfill 49
+  \item {\sc str\_term.depth}\hfill 50
+  \item {\sc term\_breadth.first}\hfill 52
+  \item {\sc term\_iterations}\hfill 51
+  \item {\sc term\_set.of.support}\hfill 52
+  \item {\sc term\_units}\hfill 51
+  \item {\sc tr\_clause.mode}\hfill 66
+  \item {\sc tr\_dump}\hfill 66
+  \item {\sc tr\_link.mode}\hfill 66
+  \item {\sc tr\_preprocessing}\hfill 66
+  \item {\sc tr\_step.mode}\hfill 66
+  \item {\sc tr\_terminal}\hfill 67
+  \item {\sc tr\_trace.file}\hfill 66
+  \item {\sc two\_rules.maxlevel}\hfill 37
+  \item {\sc two\_rules}\hfill 35
+  \item {\sc two\_suppress.no.rules}\hfill 36
+
+  \indexspace
+
+  \item associative function\hfill 19
+  \item axiom file\hfill 12
+
+  \indexspace
+
+  \item breadth first\hfill 52
+
+  \indexspace
+
+  \item C[HANGE]\hfill 29
+  \item clause\hfill 4
+  \item clause graph\hfill 5
+  \item clause mode\hfill 66
+  \item clause multiple literals\hfill 37, 44
+  \item clause purity\hfill 37, 45
+  \item clause replacement factoring\hfill 46
+  \item clause replacement factoring recheck\hfill 46
+  \item clause replacement resolution\hfill 41, 46
+  \item clause replacement resolution recheck\hfill 42, 47
+  \item clause rewriting\hfill 42, 47
+  \item clause subsumption\hfill 40
+  \item clause subsumption backward\hfill 46
+  \item clause subsumption forward\hfill 45
+  \item clause subsumption recheck\hfill 40, 46
+  \item clause tautology\hfill 38, 45
+  \item clause tautology recheck\hfill 39, 45
+  \item code file\hfill 12
+  \item command construct\hfill 14
+  \item command CP\hfill 14
+  \item command CR\hfill 14
+  \item command define directory\hfill 13
+  \item command define example name\hfill 13
+  \item command EC\hfill 14
+  \item command edit\hfill 14
+  \item command EP\hfill 14
+  \item command ER\hfill 14
+  \item command exit\hfill 13
+  \item command FC\hfill 14
+  \item command formula\hfill 14
+  \item command FP\hfill 14
+  \item command FR\hfill 14
+  \item command hardcopy\hfill 13
+  \item command help\hfill 13
+  \item command logoff\hfill 14
+  \item command options\hfill 13
+  \item command protocol\hfill 14
+  \item command refute\hfill 14
+  \item command RP\hfill 14
+  \item command video control\hfill 13
+  \item common lisp\hfill 62
+  \item commutative function\hfill 19
+  \item compile\hfill 58
+  \item completeness\hfill 9
+  \item completion\hfill 7
+  \item completion \hfill 55
+  \item connection graph\hfill 5
+  \item construct\hfill 14
+  \item construct subsystem\hfill 12
+  \item cp reduction\hfill 56
+
+  \indexspace
+
+  \item D[ELETE]\hfill 28
+  \item deduction reduction option clause multiple literals\hfill 44
+  \item deduction reduction option clause purity\hfill 45
+  \item deduction reduction option clause replacement factoring\hfill 
+		46
+  \item deduction reduction option clause replacement factoring re\-check
+    \subitem k\hfill 46
+  \item deduction reduction option clause replacement resolution\hfill 
+		46
+  \item deduction reduction option clause replacement resolution recheck\hfill 
+		47
+  \item deduction reduction option clause rewriting\hfill 47
+  \item deduction reduction option clause subsumption backward\hfill 46
+  \item deduction reduction option clause subsumption forward\hfill 45
+  \item deduction reduction option clause subsumption re\-check\hfill 
+		46
+  \item deduction reduction option clause tautology\hfill 45
+  \item deduction reduction option clause tautology re\-check\hfill 45
+  \item deduction reduction option link incompatibility\hfill 47
+  \item deduction reduction option link subsumption\hfill 48
+  \item deduction reduction option link subsumption re\-check\hfill 48
+  \item deduction reduction option link tautology\hfill 47
+  \item deduction reduction option link tautology re\-check\hfill 48
+  \item define directory\hfill 13
+  \item define example name\hfill 13
+  \item definitions\hfill 59
+  \item dialogue language\hfill 11
+  \item dialogue window\hfill 10
+  \item different variables\hfill 64
+  \item direct proof\hfill 64
+  \item dump\hfill 66
+
+  \indexspace
+
+  \item E[DIT]\hfill 29
+  \item each step\hfill 49
+  \item edit\hfill 14
+  \item edit subsystem\hfill 12
+  \item editor command !\hfill 31
+  \item editor command +[SHIFT]\hfill 28
+  \item editor command --[SHIFT]\hfill 29
+  \item editor command C[HANGE]\hfill 29
+  \item editor command D[ELETE]\hfill 28
+  \item editor command E[DIT]\hfill 29
+  \item editor command EXEC[UTE]\hfill 29
+  \item editor command G[ET]\hfill 29
+  \item editor command H[ELP]\hfill 31
+  \item editor command HH[ELP]\hfill 31
+  \item editor command I[NSERT]\hfill 28
+  \item editor command IN[FIX]\hfill 31
+  \item editor command LISP\hfill 31
+  \item editor command OK\hfill 31
+  \item editor command PP[RINT]\hfill 30
+  \item editor command PRE[FIX]\hfill 30
+  \item editor command R[EAD]\hfill 29
+  \item editor command REP[LACE]\hfill 30
+  \item editor command S[HOW]\hfill 30
+  \item editor command SS[HOW]\hfill 30
+  \item editor command ST[ATE]\hfill 31
+  \item editor command SW[ITCH]\hfill 30
+  \item editor command U[NDO]\hfill 30
+  \item editor command V\hfill 31
+  \item editor command W[RITE]\hfill 29
+  \item editor command W[RITE]G[ET]\hfill 29
+  \item English\hfill 11
+  \item equality option compile\hfill 58
+  \item equality option completion\hfill 55
+  \item equality option cp reduction\hfill 56
+  \item equality option knuth bendix weight\hfill 57
+  \item equality option narrow depth\hfill 57
+  \item equality option narrow next\hfill 58
+  \item equality option narrow test\hfill 58
+  \item equality option operator ordering\hfill 57
+  \item equality option ordering\hfill 56
+  \item equality option p selection\hfill 55
+  \item equality option paramodulation\hfill 53
+  \item equality option polynomial weight\hfill 57
+  \item equality option weight polynomials\hfill 55
+  \item EXEC[UTE]\hfill 29
+  \item exit\hfill 13
+  \item expanding definitions\hfill 59
+
+  \indexspace
+
+  \item fac option each step\hfill 49
+  \item fac option initial\hfill 49
+  \item finite domain\hfill 86
+  \item formula\hfill 14
+  \item formulae file\hfill 12
+
+  \indexspace
+
+  \item G[ET]\hfill 29
+  \item general option common lisp\hfill 62
+  \item general option graph saving\hfill 61
+  \item general option lisp garbage collection\hfill 62
+  \item general option maximum steps\hfill 61
+  \item general option min expression length for file\hfill 60
+  \item general option min expression size for file\hfill 60
+  \item general option presimplification\hfill 59
+  \item general option save file\hfill 61
+  \item general option splitting\hfill 59
+  \item German\hfill 11
+  \item grammar for PLL\hfill 19
+  \item graph file\hfill 12
+  \item graph saving\hfill 61
+
+  \indexspace
+
+  \item H[ELP]\hfill 31
+  \item hardcopy\hfill 13
+  \item help\hfill 13
+  \item HH[ELP]\hfill 31
+
+  \indexspace
+
+  \item I[NSERT]\hfill 28
+  \item IN[FIX]\hfill 31
+  \item infix form\hfill 63
+  \item initial\hfill 49
+  \item initial reduction option clause multiple literals\hfill 37
+  \item initial reduction option clause purity\hfill 37
+  \item initial reduction option clause replacement resolution\hfill 41
+  \item initial reduction option clause replacement resolution recheck\hfill 
+		42
+  \item initial reduction option clause rewriting\hfill 42
+  \item initial reduction option clause subsumption\hfill 40
+  \item initial reduction option clause subsumption re\-check\hfill 40
+  \item initial reduction option clause tautology\hfill 38
+  \item initial reduction option clause tautology recheck\hfill 39
+  \item initial reduction option link incompatibility\hfill 43
+  \item initial reduction option link subsumption\hfill 44
+  \item initial reduction option link subsumption recheck\hfill 44
+  \item initial reduction option link tautology\hfill 43
+  \item initial reduction option link tautology recheck\hfill 44
+  \item initial reduction option replacement factoring\hfill 40
+  \item initial reduction option replacement factoring re\-check\hfill 
+		41
+  \item installation\hfill 11
+  \item irreflexive predicate\hfill 19
+  \item iterations\hfill 51
+
+  \indexspace
+
+  \item junctors\hfill 16
+
+  \indexspace
+
+  \item knuth bendix weight\hfill 57
+  \item Knuth-Bendix\hfill 7
+
+  \indexspace
+
+  \item language\hfill 11
+  \item latex\hfill 65
+  \item left margin\hfill 65
+  \item linear resolution\hfill 7
+  \item linelength\hfill 65
+  \item link\hfill 5
+  \item link condition\hfill 39
+  \item link depth\hfill 50
+  \item link incompatibility\hfill 43, 47
+  \item link mode\hfill 66
+  \item link subsumption\hfill 44, 48
+  \item link subsumption recheck\hfill 44, 48
+  \item link tautology\hfill 43, 47
+  \item link tautology recheck\hfill 44, 48
+  \item LISP\hfill 31
+  \item lisp garbage collection\hfill 62
+  \item literals\hfill 52, 65
+  \item logoff\hfill 14
+
+  \indexspace
+
+  \item manual control\hfill 60
+  \item max unification rule steps\hfill 52
+  \item max unification tree depth\hfill 52
+  \item max unification tree open nodes\hfill 53
+  \item maximum steps\hfill 61
+  \item min expression length for file\hfill 60
+  \item min expression size for file\hfill 60
+  \item MKRP\hfill 10
+
+  \indexspace
+
+  \item narrow depth\hfill 57
+  \item narrow next\hfill 58
+  \item narrow test\hfill 58
+  \item new pnames\hfill 64
+
+  \indexspace
+
+  \item OK\hfill 31
+  \item operator ordering\hfill 57
+  \item option breadth first\hfill 52
+  \item option clause mode\hfill 66
+  \item option clause multiple literals\hfill 37, 44
+  \item option clause purity\hfill 37, 45
+  \item option clause replacement factoring\hfill 46
+  \item option clause replacement factoring recheck\hfill 46
+  \item option clause replacement resolution\hfill 41, 46
+  \item option clause replacement resolution recheck\hfill 42, 47
+  \item option clause rewriting\hfill 42, 47
+  \item option clause subsumption\hfill 40
+  \item option clause subsumption backward\hfill 46
+  \item option clause subsumption forward\hfill 45
+  \item option clause subsumption recheck\hfill 40, 46
+  \item option clause tautology\hfill 38, 45
+  \item option clause tautology recheck\hfill 39, 45
+  \item option common lisp\hfill 62
+  \item option compile\hfill 58
+  \item option completion \hfill 55
+  \item option cp reduction\hfill 56
+  \item option different variables\hfill 64
+  \item option direct proof\hfill 64
+  \item option dump\hfill 66
+  \item option each step\hfill 49
+  \item option finite domain\hfill 51
+  \item option graph saving\hfill 61
+  \item option infix form\hfill 63
+  \item option initial\hfill 49
+  \item option iterations\hfill 51
+  \item option knuth bendix weight\hfill 57
+  \item option latex\hfill 65
+  \item option left margin\hfill 65
+  \item option linelength\hfill 65
+  \item option link depth\hfill 50
+  \item option link incompatibility\hfill 43, 47
+  \item option link mode\hfill 66
+  \item option link subsumption\hfill 44, 48
+  \item option link subsumption recheck\hfill 44, 48
+  \item option link tautology\hfill 43, 47
+  \item option link tautology recheck\hfill 44, 48
+  \item option lisp garbage collection\hfill 62
+  \item option literals\hfill 52, 65
+  \item option manual control\hfill 60
+  \item option max unification rule steps\hfill 52
+  \item option max unification tree depth\hfill 52
+  \item option max unification tree open nodes\hfill 53
+  \item option maximum steps\hfill 61
+  \item option min expression length for file\hfill 60
+  \item option min expression size for file\hfill 60
+  \item option narrow depth\hfill 57
+  \item option narrow next\hfill 58
+  \item option narrow test\hfill 58
+  \item option new pnames\hfill 64
+  \item option operator ordering\hfill 57
+  \item option options\hfill 64
+  \item option ordering\hfill 56
+  \item option p selection\hfill 55
+  \item option paramodulation\hfill 53
+  \item option polynomial weight\hfill 57
+  \item option prefix form\hfill 64
+  \item option preprocessing\hfill 66
+  \item option presimplification\hfill 59
+  \item option protocol\hfill 63
+  \item option r selection\hfill 50
+  \item option replacement factoring\hfill 40
+  \item option replacement factoring recheck\hfill 41
+  \item option resolution\hfill 49
+  \item option right margin\hfill 65
+  \item option rules\hfill 35
+  \item option rules maxlevel\hfill 37
+  \item option save file\hfill 61
+  \item option set of support\hfill 52
+  \item option show variable sorts\hfill 53
+  \item option splitting\hfill 59
+  \item option step mode\hfill 66
+  \item option suppress no rules\hfill 36
+  \item option symbols\hfill 64
+  \item option term depth\hfill 50
+  \item option terminal\hfill 67
+  \item option trace file\hfill 66
+  \item option unifier stop number\hfill 53
+  \item option units\hfill 51
+  \item option weight polynomials\hfill 55
+  \item options\hfill 13, 64
+  \item options file\hfill 13
+  \item order-sorted\hfill 16
+  \item ordering\hfill 56
+
+  \indexspace
+
+  \item p selection\hfill 55
+  \item P-link\hfill 6
+  \item P1-link\hfill 6
+  \item P2-link\hfill 6
+  \item paramodulation\hfill 7, 53
+  \item PLL\hfill 16
+  \item polynomial weight\hfill 57
+  \item PP[RINT]\hfill 30
+  \item PRE[FIX]\hfill 30
+  \item predicate logic language\hfill 16
+  \item prefix form\hfill 64
+  \item preprocessing\hfill 66
+  \item presimplification\hfill 59
+  \item print hardcopy\hfill 13
+  \item problem file\hfill 12
+  \item protocol\hfill 14, 63
+  \item protocol listing\hfill 63
+  \item protocol option different variables\hfill 64
+  \item protocol option direct proof\hfill 64
+  \item protocol option infix form\hfill 63
+  \item protocol option latex\hfill 65
+  \item protocol option left margin\hfill 65
+  \item protocol option linelength\hfill 65
+  \item protocol option literals\hfill 65
+  \item protocol option new pnames\hfill 64
+  \item protocol option options\hfill 64
+  \item protocol option prefix form\hfill 64
+  \item protocol option protocol\hfill 63
+  \item protocol option right margin\hfill 65
+  \item protocol option symbols\hfill 64
+  \item protocol subsystem\hfill 13
+
+  \indexspace
+
+  \item quantors\hfill 16
+
+  \indexspace
+
+  \item r selection\hfill 50
+  \item R1-link\hfill 6
+  \item R2-link\hfill 6
+  \item R[EAD]\hfill 29
+  \item reflexive predicate\hfill 19
+  \item refute\hfill 14
+  \item refute subsystem\hfill 12
+  \item REP[LACE]\hfill 30
+  \item replacement factoring\hfill 40
+  \item replacement factoring recheck\hfill 41
+  \item resolution\hfill 5, 49
+  \item rewriting\hfill 7
+  \item right margin\hfill 65
+  \item rules\hfill 35
+  \item rules maxlevel\hfill 37
+
+  \indexspace
+
+  \item S-link\hfill 6
+  \item S1-link\hfill 6
+  \item S2-link\hfill 6
+  \item S[HOW]\hfill 30
+  \item save file\hfill 61
+  \item set of support\hfill 7, 52
+  \item show variable sorts\hfill 53
+  \item snowball effect\hfill 38
+  \item sort option literals\hfill 52
+  \item sort option max unification rule steps\hfill 52
+  \item sort option max unification tree depth\hfill 52
+  \item sort option max unification tree open nodes\hfill 53
+  \item sort option show variable sorts\hfill 53
+  \item sort option unifier stop number\hfill 53
+  \item sorted\hfill 16
+  \item splitting\hfill 59
+  \item SS[HOW]\hfill 30
+  \item ST[ATE]\hfill 31
+  \item start MKRP\hfill 12, 15
+  \item step mode\hfill 66
+  \item strategy option finite domain\hfill 51
+  \item strategy option link depth\hfill 50
+  \item strategy option r selection\hfill 50
+  \item strategy option resolution\hfill 49
+  \item strategy option term depth\hfill 50
+  \item substitution\hfill 4
+  \item subsumption\hfill 6
+  \item subsystems\hfill 12
+  \item suppress no rules\hfill 36
+  \item SW[ITCH]\hfill 30
+  \item Symbolics\hfill 10
+  \item symbols\hfill 64
+  \item symmetric predicate\hfill 19
+
+  \indexspace
+
+  \item tautology\hfill 6
+  \item term depth\hfill 50
+  \item terminal\hfill 67
+  \item terminator option breadth first\hfill 52
+  \item terminator option iterations\hfill 51
+  \item terminator option set of support\hfill 52
+  \item terminator option units\hfill 51
+  \item terminator situation\hfill 51
+  \item theorem file\hfill 12
+  \item theory unification\hfill 19
+  \item trace file\hfill 66
+  \item trace option clause mode\hfill 66
+  \item trace option dump\hfill 66
+  \item trace option link mode\hfill 66
+  \item trace option preprocessing\hfill 66
+  \item trace option step mode\hfill 66
+  \item trace option terminal\hfill 67
+  \item trace option trace file\hfill 66
+  \item two option rules\hfill 35
+  \item two option rules maxlevel\hfill 37
+  \item two option suppress no rules\hfill 36
+
+  \indexspace
+
+  \item U[NDO]\hfill 30
+  \item unifier stop number\hfill 53
+  \item unit resolution\hfill 7
+  \item units\hfill 51
+
+  \indexspace
+
+  \item V\hfill 31
+  \item video control\hfill 13
+
+  \indexspace
+
+  \item W[RITE]\hfill 29
+  \item W[RITE]G[ET]\hfill 29
+  \item weight polynomials\hfill 55
+  \item window\hfill 10
+
+\end{theindex}

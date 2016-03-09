@@ -1,0 +1,289 @@
+;;; -*- Package: MKRP; Base: 10. -*-
+
+
+
+                    ********************************************************************************
+                    *                                                                              *
+                    *     MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN                   *
+                    *                                                                              *
+                    *       19-JUN-85                                                              *
+                    *          19-JUN-85  11:25:07                                                 *
+                    *                                                                              *
+                    ********************************************************************************
+
+
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   19-JUN-85 11:24:11
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   D315A2
+                                                                        
+************************************************************************
+                                                                        
+
+
+
+
+
+FORMULAE GIVEN TO THE EDITOR
+============================
+
+
+AXIOMS   : SORT MENGE,VERKN,ELEMENT,INDEX,INDEXMENGE:ANY
+           TYPE LIDEAL (MENGE MENGE VERKN)
+           TYPE RIDEAL (MENGE MENGE VERKN)
+           TYPE UHG (MENGE MENGE VERKN)
+           TYPE ME (MENGE MENGE)
+           TYPE NICHTLEER (MENGE)
+           TYPE HG (MENGE VERKN)
+           TYPE EL (ELEMENT MENGE)
+           TYPE MINIMAL (MENGE MENGE VERKN)
+           TYPE MPROD (MENGE MENGE VERKN) :MENGE
+           TYPE APPLYV (VERKN ELEMENT ELEMENT) :ELEMENT
+           TYPE F*X (MENGE ELEMENT VERKN) :MENGE
+           TYPE SM (MENGE MENGE) :MENGE
+           TYPE SET (ELEMENT) :MENGE
+           TYPE VER (MENGE MENGE) :MENGE
+           TYPE GR (MENGE VERKN ELEMENT)
+           TYPE INVERS (VERKN ELEMENT) :ELEMENT
+           TYPE MINIMAL-BED-L (MENGE VERKN)
+           TYPE MINIMAL-BED-R (MENGE VERKN)
+           TYPE EL-IND (INDEX INDEXMENGE)
+           TYPE U (INDEX) : MENGE
+           TYPE E (INDEX INDEX) : ELEMENT
+           TYPE NICHTLEER-IND (INDEXMENGE)
+           TYPE GLEICH (MENGE MENGE)
+           TYPE VER-IND (INDEXMENGE) : MENGE
+           TYPE SM-IND (INDEXMENGE) : MENGE
+           TYPE IDEAL (MENGE MENGE VERKN)
+           TYPE VER-I (INDEX INDEXMENGE MENGE) : MENGE
+           * EIGENSCHAFT RECHTSIDEAL *
+           ALL L,F:MENGE  ALL MAL:VERKN  ALL X,Y:ELEMENT  
+             HG (F MAL) AND EL (X F) AND EL (Y L) AND RIDEAL (L F MAL) IMPL EL (APPLYV (MAL Y X) L)
+           * EIGENSCHAFT DER VEREINIGUNG VER-I *
+           ALL I:INDEXMENGE ALL J:INDEX ALL X:ELEMENT EL-IND (J I) AND EL (X U (J)) IMPL EL (X VER-I (J I U (J)))
+           * SATZ 3.10.1 *
+           ALL I1,I2:INDEXMENGE  ALL J1,J2:INDEX  ALL F:MENGE  ALL MAL:VERKN  
+             VORAUSSETZUNG (F MAL I1 I2) IMPL VER-I (J1 I1 U (J1)) = VER-I (J2 I2 U (J2))
+           * EIGENSCHAFT DER VEREINIGUNG VER-I *
+           ALL I:INDEXMENGE  ALL J:INDEX  ALL X:ELEMENT  
+             EL (X VER-I (J I U (J))) IMPL (EX K:INDEX EL (X U (K)) AND EL-IND (K I))
+           * EIGENSCHAFT VON E *
+           ALL F:MENGE  ALL MAL:VERKN  ALL I1,I2:INDEXMENGE  ALL J,K:INDEX  
+             VORAUSSETZUNG (F MAL I1 I2) AND EL-IND (J I2) AND EL-IND (K I1) IMPL EL (E (J K) U (J))
+
+THEOREMS :   * VORAUSSETZUNG (F MAL I1 I2) BEDEUTET : HG (F MAL)
+             AND  
+             MINIMAL-BED-L (F MAL)
+             AND  
+             MINIMAL-BED-R (F MAL)
+             AND  
+             (ALL L1:INDEX EL-IND (L1 I1) IMPL LIDEAL (U (L1) F MAL) AND MINIMAL (U (L1) F MAL))
+             AND  
+             (ALL L2:INDEX EL-IND (L2 I2) IMPL RIDEAL (U (L2) F MAL) AND MINIMAL (U (L2) F MAL)) *
+           ALL F:MENGE  ALL MAL:VERKN  ALL I1,I2:INDEXMENGE  ALL J1,J2:INDEX  ALL X:ELEMENT  
+                 HG (F MAL)
+                 AND  
+                 MINIMAL-BED-L (F MAL)
+                 AND  
+                 MINIMAL-BED-R (F MAL)
+                 AND  
+                 (ALL L1:INDEX EL-IND (L1 I1) IMPL LIDEAL (U (L1) F MAL) AND MINIMAL (U (L1) F MAL))
+                 AND  
+                 (ALL L2:INDEX EL-IND (L2 I2) IMPL RIDEAL (U (L2) F MAL) AND MINIMAL (U (L2) F MAL))
+                 AND  
+                 EL-IND (J1 I1)
+                 AND  
+                 EL-IND (J2 I2)
+                 AND  
+                 EL (X F)
+                 AND  
+                 F*X (U (J1) X MAL) = F*X (U (J1) APPLYV (MAL E (J2 J1) X) MAL)
+                 AND  
+                 VORAUSSETZUNG (F MAL I1 I2)
+               IMPL  
+               (EX K:INDEX EL-IND (K I1) AND EL (APPLYV (MAL E (J2 J1) X) U (K)))
+
+
+
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+  A1   : ALL X:ANY  + =(X X)
+* A2   : ALL X:INDEXMENGE  Y:INDEX  Z:ELEMENT  - EL(Z VER-I(Y X U(Y)))  + EL-IND(F_1(X Z) X)
+* A3   : ALL X:INDEXMENGE  Y:INDEX  Z:ELEMENT  - EL(Z VER-I(Y X U(Y)))  + EL(Z U(F_1(X Z)))
+* A4   : ALL X,Y:INDEX  Z,U:INDEXMENGE  V:VERKN  W:MENGE  - VORAUSSETZUNG(W V U Z)  + =(VER-I(Y U U(Y)) VER-I(X Z U(X)))
+* A5   : ALL X:ELEMENT  Y:INDEXMENGE  Z:INDEX  - EL-IND(Z Y)  - EL(X U(Z))  + EL(X VER-I(Z Y U(Z)))
+* A6   : ALL X,Y:INDEX  Z,U:INDEXMENGE  V:VERKN  W:MENGE  
+              - VORAUSSETZUNG(W V U Z)  - EL-IND(Y Z)  - EL-IND(X U)  + EL(E(Y X) U(Y))
+* A7   : ALL X,Y:MENGE  Z,U:ELEMENT  V:VERKN  - HG(Y V)  - EL(U Y)  - EL(Z X)  - RIDEAL(X Y V)  + EL(APPLYV(V Z U) X)
+
+
+
+
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+* T8   : + HG(C_2 C_6)
+  T9   : + MINIMAL-BED-L(C_2 C_6)
+  T10  : + MINIMAL-BED-R(C_2 C_6)
+  T11  : ALL X:INDEX  - EL-IND(X C_4)  + LIDEAL(U(X) C_2 C_6)
+  T12  : ALL X:INDEX  - EL-IND(X C_4)  + MINIMAL(U(X) C_2 C_6)
+* T13  : ALL X:INDEX  - EL-IND(X C_1)  + RIDEAL(U(X) C_2 C_6)
+  T14  : ALL X:INDEX  - EL-IND(X C_1)  + MINIMAL(U(X) C_2 C_6)
+* T15  : + EL-IND(C_5 C_4)
+* T16  : + EL-IND(C_7 C_1)
+* T17  : + EL(C_3 C_2)
+  T18  : + =(F*X(U(C_5) C_3 C_6) F*X(U(C_5) APPLYV(C_6 E(C_7 C_5) C_3) C_6))
+* T19  : + VORAUSSETZUNG(C_2 C_6 C_4 C_1)
+* T20  : ALL X:INDEX  - EL-IND(X C_4)  - EL(APPLYV(C_6 E(C_7 C_5) C_3) U(X))
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+REFUTATION
+
+INITIAL CLAUSES :      A1  : ALL X:ANY  + =(X X)
+                     * A2  : ALL X:INDEXMENGE  Y:INDEX  Z:ELEMENT  - EL(Z VER-I(Y X U(Y)))  + EL-IND(F_1(X Z) X)
+                     * A3  : ALL X:INDEXMENGE  Y:INDEX  Z:ELEMENT  - EL(Z VER-I(Y X U(Y)))  + EL(Z U(F_1(X Z)))
+                     * A4  : ALL X,Y:INDEX  Z,U:INDEXMENGE  V:VERKN  W:MENGE  
+                                  - VORAUSSETZUNG(W V U Z)  + =(VER-I(Y U U(Y)) VER-I(X Z U(X)))
+                     * A5  : ALL X:ELEMENT  Y:INDEXMENGE  Z:INDEX  - EL-IND(Z Y)  - EL(X U(Z))  + EL(X VER-I(Z Y U(Z)))
+                     * A6  : ALL X,Y:INDEX  Z,U:INDEXMENGE  V:VERKN  W:MENGE  
+                                  - VORAUSSETZUNG(W V U Z)  - EL-IND(Y Z)  - EL-IND(X U)  + EL(E(Y X) U(Y))
+                     * A7  : ALL X,Y:MENGE  Z,U:ELEMENT  V:VERKN  
+                                  - HG(Y V)  - EL(U Y)  - EL(Z X)  - RIDEAL(X Y V)  + EL(APPLYV(V Z U) X)
+                     * T8  : + HG(C_2 C_6)
+                     * T13 : ALL X:INDEX  - EL-IND(X C_1)  + RIDEAL(U(X) C_2 C_6)
+                     * T15 : + EL-IND(C_5 C_4)
+                     * T16 : + EL-IND(C_7 C_1)
+                     * T17 : + EL(C_3 C_2)
+                       T18 : + =(F*X(U(C_5) C_3 C_6) F*X(U(C_5) APPLYV(C_6 E(C_7 C_5) C_3) C_6))
+                     * T19 : + VORAUSSETZUNG(C_2 C_6 C_4 C_1)
+                     * T20 : ALL X:INDEX  - EL-IND(X C_4)  - EL(APPLYV(C_6 E(C_7 C_5) C_3) U(X))
+
+T16,1 & T13,1   -->  * R1  : + RIDEAL(U(C_7) C_2 C_6)
+
+T15,1 & A6,3    -->  * R2  : - VORAUSSETZUNG(C_2 C_6 C_4 C_1)  - EL-IND(C_7 C_1)  + EL(E(C_7 C_5) U(C_7))
+
+R2,2 & T16,1    -->  * R3  : - VORAUSSETZUNG(C_2 C_6 C_4 C_1)  + EL(E(C_7 C_5) U(C_7))
+
+R3,1 & T19,1    -->  * R4  : + EL(E(C_7 C_5) U(C_7))
+
+R4,1 & A7,3     -->  * R5  : - HG(C_2 C_6)  - EL(C_3 C_2)  - RIDEAL(U(C_7) C_2 C_6)
+                               + EL(APPLYV(C_6 E(C_7 C_5) C_3) U(C_7))
+
+R5,2 & T17,1    -->  * R6  : - HG(C_2 C_6)  - RIDEAL(U(C_7) C_2 C_6)  + EL(APPLYV(C_6 E(C_7 C_5) C_3) U(C_7))
+
+R6,1 & T8,1     -->  * R7  : - RIDEAL(U(C_7) C_2 C_6)  + EL(APPLYV(C_6 E(C_7 C_5) C_3) U(C_7))
+
+R7,1 & R1,1     -->  * R8  : + EL(APPLYV(C_6 E(C_7 C_5) C_3) U(C_7))
+
+T15,1 & T20,1   -->    R9  : - EL(APPLYV(C_6 E(C_7 C_5) C_3) U(C_5))
+
+T19,1 & A4,1    -->  * R10 : ALL X,Y:INDEX  + =(VER-I(Y C_4 U(Y)) VER-I(X C_1 U(X)))
+
+A2,2 & T13,1    -->    R11 : ALL X:INDEX  Y:ELEMENT  - EL(Y VER-I(X C_1 U(X)))  + RIDEAL(U(F_1(C_1 Y)) C_2 C_6)
+
+T15,1 & A5,1    -->    R12 : ALL X:ELEMENT  - EL(X U(C_5))  + EL(X VER-I(C_5 C_4 U(C_5)))
+
+T16,1 & A5,1    -->  * R13 : ALL X:ELEMENT  - EL(X U(C_7))  + EL(X VER-I(C_7 C_1 U(C_7)))
+
+R4,1 & R13,1    -->    R14 : + EL(E(C_7 C_5) VER-I(C_7 C_1 U(C_7)))
+
+R14,1 & R11,1   -->    R15 : + RIDEAL(U(F_1(C_1 E(C_7 C_5))) C_2 C_6)
+
+R8,1 & R13,1    -->  * R16 : + EL(APPLYV(C_6 E(C_7 C_5) C_3) VER-I(C_7 C_1 U(C_7)))
+
+R14,1 & A3,1    -->    R17 : + EL(E(C_7 C_5) U(F_1(C_1 E(C_7 C_5))))
+
+R14,1 & A2,1    -->    R18 : + EL-IND(F_1(C_1 E(C_7 C_5)) C_1)
+
+T15,1 & A6,3    -->    R19 : - VORAUSSETZUNG(C_2 C_6 C_4 C_1)  - EL-IND(F_1(C_1 E(C_7 C_5)) C_1)
+                               + EL(E(F_1(C_1 E(C_7 C_5)) C_5) U(F_1(C_1 E(C_7 C_5))))
+
+R19,2 & R18,1   -->    R20 : - VORAUSSETZUNG(C_2 C_6 C_4 C_1)  + EL(E(F_1(C_1 E(C_7 C_5)) C_5) U(F_1(C_1 E(C_7 C_5))))
+
+R20,1 & T19,1   -->    R21 : + EL(E(F_1(C_1 E(C_7 C_5)) C_5) U(F_1(C_1 E(C_7 C_5))))
+
+R17,1 & A7,3    -->    R22 : - HG(C_2 C_6)  - EL(C_3 C_2)  - RIDEAL(U(F_1(C_1 E(C_7 C_5))) C_2 C_6)
+                               + EL(APPLYV(C_6 E(C_7 C_5) C_3) U(F_1(C_1 E(C_7 C_5))))
+
+R22,2 & T17,1   -->    R23 : - HG(C_2 C_6)  - RIDEAL(U(F_1(C_1 E(C_7 C_5))) C_2 C_6)
+                               + EL(APPLYV(C_6 E(C_7 C_5) C_3) U(F_1(C_1 E(C_7 C_5))))
+
+R23,1 & T8,1    -->    R24 : - RIDEAL(U(F_1(C_1 E(C_7 C_5))) C_2 C_6)
+                               + EL(APPLYV(C_6 E(C_7 C_5) C_3) U(F_1(C_1 E(C_7 C_5))))
+
+R24,1 & R15,1   -->    R25 : + EL(APPLYV(C_6 E(C_7 C_5) C_3) U(F_1(C_1 E(C_7 C_5))))
+
+R16,1 & A2,1    -->    R26 : + EL-IND(F_1(C_1 APPLYV(C_6 E(C_7 C_5) C_3)) C_1)
+
+R10,1 & R14,1   -->    P27 : ALL X:INDEX  + EL(E(C_7 C_5) VER-I(X C_4 U(X)))
+
+P27,1 & A2,1    -->    R28 : + EL-IND(F_1(C_4 E(C_7 C_5)) C_4)
+
+R28,1 & T20,1   -->    R29 : - EL(APPLYV(C_6 E(C_7 C_5) C_3) U(F_1(C_4 E(C_7 C_5))))
+
+P27,1 & A3,1    -->    R30 : + EL(E(C_7 C_5) U(F_1(C_4 E(C_7 C_5))))
+
+R30,1 & A7,3    -->    R31 : - HG(C_2 C_6)  - EL(C_3 C_2)  - RIDEAL(U(F_1(C_4 E(C_7 C_5))) C_2 C_6)
+                               + EL(APPLYV(C_6 E(C_7 C_5) C_3) U(F_1(C_4 E(C_7 C_5))))
+
+R31,2 & T17,1   -->    R32 : - HG(C_2 C_6)  - RIDEAL(U(F_1(C_4 E(C_7 C_5))) C_2 C_6)
+                               + EL(APPLYV(C_6 E(C_7 C_5) C_3) U(F_1(C_4 E(C_7 C_5))))
+
+R32,1 & T8,1    -->    R33 : - RIDEAL(U(F_1(C_4 E(C_7 C_5))) C_2 C_6)
+                               + EL(APPLYV(C_6 E(C_7 C_5) C_3) U(F_1(C_4 E(C_7 C_5))))
+
+R33,2 & R29,1   -->    R34 : - RIDEAL(U(F_1(C_4 E(C_7 C_5))) C_2 C_6)
+
+R28,1 & A6,3    -->    R35 : - VORAUSSETZUNG(C_2 C_6 C_4 C_1)  - EL-IND(F_1(C_1 E(C_7 C_5)) C_1)
+                               + EL(E(F_1(C_1 E(C_7 C_5)) F_1(C_4 E(C_7 C_5))) U(F_1(C_1 E(C_7 C_5))))
+
+R35,2 & R18,1   -->    R36 : - VORAUSSETZUNG(C_2 C_6 C_4 C_1)
+                               + EL(E(F_1(C_1 E(C_7 C_5)) F_1(C_4 E(C_7 C_5))) U(F_1(C_1 E(C_7 C_5))))
+
+R36,1 & T19,1   -->    R37 : + EL(E(F_1(C_1 E(C_7 C_5)) F_1(C_4 E(C_7 C_5))) U(F_1(C_1 E(C_7 C_5))))
+
+R28,1 & A6,3    -->    R38 : - VORAUSSETZUNG(C_2 C_6 C_4 C_1)  - EL-IND(C_7 C_1)
+                               + EL(E(C_7 F_1(C_4 E(C_7 C_5))) U(C_7))
+
+R38,2 & T16,1   -->    R39 : - VORAUSSETZUNG(C_2 C_6 C_4 C_1)  + EL(E(C_7 F_1(C_4 E(C_7 C_5))) U(C_7))
+
+R39,1 & T19,1   -->    R40 : + EL(E(C_7 F_1(C_4 E(C_7 C_5))) U(C_7))
+
+R10,1 & R16,1   -->  * P41 : ALL X:INDEX  + EL(APPLYV(C_6 E(C_7 C_5) C_3) VER-I(X C_4 U(X)))
+
+P41,1 & A2,1    -->  * R42 : + EL-IND(F_1(C_4 APPLYV(C_6 E(C_7 C_5) C_3)) C_4)
+
+A3,2 & T20,2    -->  * R43 : ALL X:INDEXMENGE  Y:INDEX  
+                                  - EL(APPLYV(C_6 E(C_7 C_5) C_3) VER-I(Y X U(Y)))
+                                    - EL-IND(F_1(X APPLYV(C_6 E(C_7 C_5) C_3)) C_4)
+
+R43,2 & R42,1   -->  * R44 : ALL X:INDEX  - EL(APPLYV(C_6 E(C_7 C_5) C_3) VER-I(X C_4 U(X)))
+
+R44,1 & P41,1   -->  * R45 :  ce
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+  Q. E. D. 

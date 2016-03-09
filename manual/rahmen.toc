@@ -1,0 +1,161 @@
+\contentsline {chapter}{\numberline {1}Introduction}{3}
+\contentsline {section}{\numberline {1.1}Basic Techniques and Terminology}{4}
+\contentsline {subsection}{\numberline {1.1.1}Resolution}{5}
+\contentsline {subsection}{\numberline {1.1.2}Equality Reasoning}{7}
+\contentsline {section}{\numberline {1.2}Completeness}{9}
+\contentsline {section}{\numberline {1.3}Overview of the System}{9}
+\contentsline {chapter}{\numberline {2}The MKRP Operating System}{11}
+\contentsline {section}{\numberline {2.1}Installation Guide for MKRP}{11}
+\contentsline {subsection}{\numberline {2.1.1}Installation on Symbolics Lisp Machines}{11}
+\contentsline {subsection}{\numberline {2.1.2}Installation on Other Machines}{11}
+\contentsline {subsection}{\numberline {2.1.3}Starting MKRP}{12}
+\contentsline {section}{\numberline {2.2}Architecture of the System from a User's View}{12}
+\contentsline {subsection}{\numberline {2.2.1}Edit}{12}
+\contentsline {subsection}{\numberline {2.2.2}Construct}{12}
+\contentsline {subsection}{\numberline {2.2.3}Refute}{12}
+\contentsline {subsection}{\numberline {2.2.4}Protocol}{13}
+\contentsline {section}{\numberline {2.3}Explanation of the Operating System Commands}{13}
+\contentsline {section}{\numberline {2.4}Using MKRP Without User Dialogue}{15}
+\contentsline {chapter}{\numberline {3}The Input Language}{16}
+\contentsline {section}{\numberline {3.1}Basic Concepts}{16}
+\contentsline {section}{\numberline {3.2}The Order-Sorted Calculus}{17}
+\contentsline {section}{\numberline {3.3}Attributes of Functions and Predicates}{18}
+\contentsline {paragraph}{Remark}{19}
+\contentsline {section}{\numberline {3.4}The Syntax of PLL}{19}
+\contentsline {section}{\numberline {3.5}Semantic Constraints for PLL}{21}
+\contentsline {subsection}{\numberline {3.5.1}Sort Symbols}{22}
+\contentsline {subsection}{\numberline {3.5.2}Variable Symbols}{22}
+\contentsline {subsection}{\numberline {3.5.3}Constant Symbols}{23}
+\contentsline {subsection}{\numberline {3.5.4}Function Symbols}{23}
+\contentsline {subsection}{\numberline {3.5.5}Predicate Symbols}{24}
+\contentsline {subsection}{\numberline {3.5.6}Semantically Correct Sort Declarations}{24}
+\contentsline {subsection}{\numberline {3.5.7}Semantically Correct Type Declarations}{25}
+\contentsline {subsection}{\numberline {3.5.8}Semantically Correct Attribute Declarations}{25}
+\contentsline {subsection}{\numberline {3.5.9}Semantically Correct Terms, Atoms, and Quantifications}{26}
+\contentsline {section}{\numberline {3.6}Errors Detected by the Compiler}{26}
+\contentsline {section}{\numberline {3.7}Particularities of the Input Routines}{27}
+\contentsline {chapter}{\numberline {4}The MKRP-Editor}{28}
+\contentsline {chapter}{\numberline {5}Setting the MKRP Parameters}{33}
+\contentsline {section}{\numberline {5.1}Explanation of the Commands}{33}
+\contentsline {section}{\numberline {5.2}Explanation of the Options}{34}
+\contentsline {subsection}{\numberline {5.2.1}Options of the Category TWO}{35}
+\contentsline {subsubsection}{TWO\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}RULES}{35}
+\contentsline {paragraph}{Effects of the Special Handling of Two-Literal Clauses}{36}
+\contentsline {paragraph}{Remark}{36}
+\contentsline {subsubsection}{TWO\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}SUPPRESS.NO.RULES}{36}
+\contentsline {paragraph}{Remark}{36}
+\contentsline {subsubsection}{TWO\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}RULES.MAXLEVEL}{37}
+\contentsline {subsection}{\numberline {5.2.2}Options of the Category RED.I}{37}
+\contentsline {subsubsection}{RED.I\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}CLAUSE.MULTIPLE.LITERALS}{37}
+\contentsline {subsubsection}{RED.I\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}CLAUSE.PURITY}{37}
+\contentsline {subsubsection}{RED.I\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}CLAUSE.TAUTOLOGY}{38}
+\contentsline {subsubsection}{RED.I\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}CLAUSE.TAUTOLOGY.RECHECK}{39}
+\contentsline {subsubsection}{RED.I\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}CLAUSE.SUBSUMPTION}{40}
+\contentsline {subsubsection}{RED.I\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}CLAUSE.SUBSUMPTION.RECHECK}{40}
+\contentsline {subsubsection}{RED.I\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}REPL.FACTORING}{40}
+\contentsline {subsubsection}{RED.I\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}REPLACEMENT.FACTORING.RECHECK}{41}
+\contentsline {subsubsection}{RED.I\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}CLAUSE.REPL.RESOLUTION}{41}
+\contentsline {subsubsection}{RED.I\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}CLAUSE.REPL.RESOLUTION.RECHECK}{42}
+\contentsline {subsubsection}{RED.I\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}CLAUSE.REWRITING}{42}
+\contentsline {subsubsection}{RED.I\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}LINK.INCOMPATIBILITY}{43}
+\contentsline {paragraph}{Remark}{43}
+\contentsline {subsubsection}{RED.I\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}LINK.TAUTOLOGY}{43}
+\contentsline {subsubsection}{RED.I\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}LINK.TAUTOLOGY.RECHECK}{44}
+\contentsline {subsubsection}{RED.I\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}LINK.SUBSUMPTION}{44}
+\contentsline {subsubsection}{RED.I\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}LINK.SUBSUMPTION.RECHECK}{44}
+\contentsline {subsection}{\numberline {5.2.3}Options of the Category RED.D}{44}
+\contentsline {subsubsection}{RED.D\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}CLAUSE.MULTIPLE.LITERALS}{44}
+\contentsline {subsubsection}{RED.D\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}CLAUSE.PURITY}{45}
+\contentsline {subsubsection}{RED.D\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}CLAUSE.TAUTOLOGY}{45}
+\contentsline {subsubsection}{RED.D\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}CLAUSE.TAUTOLOGY.RECHECK}{45}
+\contentsline {subsubsection}{RED.D\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}CLAUSE.SUBSUMPTION.FORWARD}{45}
+\contentsline {subsubsection}{RED.D\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}CLAUSE.SUBSUMPTION.BACKWARD}{46}
+\contentsline {subsubsection}{RED.D\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}CLAUSE.SUBSUMPTION.RECHECK}{46}
+\contentsline {subsubsection}{RED.D\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}CLAUSE.REPL.FACTORING}{46}
+\contentsline {subsubsection}{RED.D\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}CLAUSE.REPL.FACTORING.RECHECK}{46}
+\contentsline {subsubsection}{RED.D\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}CLAUSE.REPL.RESOLUTION}{46}
+\contentsline {subsubsection}{RED.D\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}CLAUSE.REPL.RESOLUTION.RECHECK}{47}
+\contentsline {subsubsection}{RED.D\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}CLAUSE.REWRITING}{47}
+\contentsline {subsubsection}{RED.D\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}LINK.INCOMPATIBILITY}{47}
+\contentsline {subsubsection}{RED.D\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}LINK.TAUTOLOGY}{47}
+\contentsline {subsubsection}{RED.D\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}LINK.TAUTOLOGY.RECHECK}{48}
+\contentsline {subsubsection}{RED.D\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}LINK.SUBSUMPTION}{48}
+\contentsline {subsubsection}{RED.D\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}LINK.SUBSUMPTION.RECHECK}{48}
+\contentsline {subsection}{\numberline {5.2.4}Options of the Category STR}{48}
+\contentsline {subsubsection}{FAC\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}INITIAL}{49}
+\contentsline {subsubsection}{FAC\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}EACH.STEP}{49}
+\contentsline {subsubsection}{STR\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}RESOLUTION}{49}
+\contentsline {subsubsection}{STR\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}LINK.DEPTH}{50}
+\contentsline {subsubsection}{STR\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}R.SELECTION}{50}
+\contentsline {subsubsection}{STR\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}TERM.DEPTH}{50}
+\contentsline {subsubsection}{STR\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}FINITE.DOMAIN}{51}
+\contentsline {subsubsection}{TERM\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}UNITS}{51}
+\contentsline {subsubsection}{TERM\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}ITERATIONS}{51}
+\contentsline {paragraph}{Remark}{51}
+\contentsline {subsubsection}{TERM\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}SET.OF.SUPPORT}{52}
+\contentsline {subsubsection}{TERM\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}BREADTH.FIRST}{52}
+\contentsline {subsection}{\numberline {5.2.5}Options of the Category SORT}{52}
+\contentsline {subsubsection}{SORT\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}LITERALS}{52}
+\contentsline {subsubsection}{SORT\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}MAX.UNIFICATION.RULE.STEPS}{52}
+\contentsline {subsubsection}{SORT\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}MAX.UNIFICATION.TREE.DEPTH}{52}
+\contentsline {subsubsection}{SORT\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}MAX.UNIFICATION.TREE.OPEN.NODES}{53}
+\contentsline {subsubsection}{SORT\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}UNIFIER.STOP.NUMBER}{53}
+\contentsline {subsubsection}{SORT\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}SHOW.VARIABLE.SORTS}{53}
+\contentsline {subsection}{\numberline {5.2.6}Options of the Category ER}{53}
+\contentsline {subsubsection}{ER\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}PARAMODULATION}{53}
+\contentsline {subsubsection}{ER\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}COMPLETION }{55}
+\contentsline {subsubsection}{ER\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}WEIGHT.POLYNOMIALS}{55}
+\contentsline {subsubsection}{ER\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}P.SELECTION}{55}
+\contentsline {subsubsection}{ER\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}CP.REDUCTION}{56}
+\contentsline {subsubsection}{ER\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}ORDERING}{56}
+\contentsline {subsubsection}{ER\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}OPERATOR.ORDERING}{57}
+\contentsline {subsubsection}{ER\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}KNUTH.BENDIX.WEIGHT}{57}
+\contentsline {subsubsection}{ER\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}POLYNOMIAL.WEIGHT}{57}
+\contentsline {subsubsection}{ER\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}NARROW.DEPTH}{57}
+\contentsline {subsubsection}{ER\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}NARROW.NEXT}{58}
+\contentsline {subsubsection}{ER\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}NARROW.TEST}{58}
+\contentsline {subsubsection}{ER\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}COMPILE}{58}
+\contentsline {subsection}{\numberline {5.2.7}Options of the Category GEN}{59}
+\contentsline {subsubsection}{GEN\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}SPLITTING}{59}
+\contentsline {subsubsection}{GEN\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}PRESIMPLIFICATION}{59}
+\contentsline {subsubsection}{GEN\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}MIN.EXPRESSION.LENGTH.FOR.FILE}{60}
+\contentsline {paragraph}{Remark}{60}
+\contentsline {subsubsection}{GEN\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}MIN.EXPRESSION.SIZE.FOR.FILE}{60}
+\contentsline {paragraph}{Remark}{60}
+\contentsline {subsubsection}{GEN\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}MANUAL.CONTROL}{60}
+\contentsline {paragraph}{Remark}{61}
+\contentsline {subsubsection}{GEN\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}MAXIMUM.STEPS}{61}
+\contentsline {paragraph}{Remark}{61}
+\contentsline {subsubsection}{GEN\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}GRAPH.SAVING}{61}
+\contentsline {paragraph}{Remark}{61}
+\contentsline {subsubsection}{GEN\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}SAVE.FILE}{61}
+\contentsline {subsubsection}{GEN\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}LISP.GARBAGE.COLLECTION}{62}
+\contentsline {subsubsection}{GEN\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}COMMON.LISP}{62}
+\contentsline {subsubsection}{GEN\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}OTHER.PROVER}{62}
+\contentsline {chapter}{\numberline {6}The Output Facilities}{63}
+\contentsline {section}{\numberline {6.1}Protocol}{63}
+\contentsline {subsubsection}{PR\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}PROTOCOL}{63}
+\contentsline {subsubsection}{PR\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}INFIX.FORM}{63}
+\contentsline {subsubsection}{PR\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}PREFIX.FORM}{64}
+\contentsline {subsubsection}{PR\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}OPTIONS}{64}
+\contentsline {subsubsection}{PR\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}SYMBOLS}{64}
+\contentsline {subsubsection}{PR\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}NEW.PNAMES}{64}
+\contentsline {subsubsection}{PR\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}DIFFERENT.VARIABLES}{64}
+\contentsline {subsubsection}{PR\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}DIRECT.PROOF}{64}
+\contentsline {subsubsection}{PR\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}LEFT.MARGIN}{65}
+\contentsline {subsubsection}{PR\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}RIGHT.MARGIN}{65}
+\contentsline {subsubsection}{PR\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}LINELENGTH}{65}
+\contentsline {subsubsection}{PR\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}LATEX}{65}
+\contentsline {subsubsection}{PR\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}LITERALS}{65}
+\contentsline {section}{\numberline {6.2}Trace}{65}
+\contentsline {subsection}{\numberline {6.2.1}Options}{66}
+\contentsline {subsubsection}{TR\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}PREPROCESSING}{66}
+\contentsline {subsubsection}{TR\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}STEP.MODE}{66}
+\contentsline {subsubsection}{TR\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}DUMP}{66}
+\contentsline {subsubsection}{TR\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}CLAUSE.MODE}{66}
+\contentsline {subsubsection}{TR\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}LINK.MODE}{66}
+\contentsline {subsubsection}{TR\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}TRACE.FILE}{66}
+\contentsline {subsubsection}{TR\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}TERMINAL}{67}
+\contentsline {paragraph}{Remark}{67}
+\contentsline {subsection}{\numberline {6.2.2}Dump Function}{67}
+\contentsline {chapter}{\numberline {7}An Example Session}{68}

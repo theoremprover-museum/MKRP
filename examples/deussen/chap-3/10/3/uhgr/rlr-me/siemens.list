@@ -1,0 +1,210 @@
+ 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 4-APR-85                                                      *
+                    *         DATE : 21-MAY-85  21:42:00                                           *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   21-MAY-85 10:42:47
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   3.10.3.UHG.RLR.ME
+                                                                        
+************************************************************************
+                                                                        
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : SORT MENGE,VERKN,ELEMENT,INDEX,INDEXMENGE:ANY
+           TYPE LIDEAL(MENGE MENGE VERKN)
+           TYPE RIDEAL(MENGE MENGE VERKN)
+           TYPE UHG(MENGE MENGE VERKN)
+           TYPE ME(MENGE MENGE)
+           TYPE NICHTLEER(MENGE)
+           TYPE HG(MENGE VERKN)
+           TYPE NICHTLEER-IND(INDEXMENGE)
+           TYPE GLEICH(MENGE MENGE)
+           TYPE EL-IND(INDEX INDEXMENGE)
+           TYPE EL(ELEMENT MENGE)
+           TYPE MINIMAL(MENGE MENGE VERKN)
+           TYPE MINIMAL-BED-L(MENGE VERKN)
+           TYPE MINIMAL-BED-R(MENGE VERKN)
+           TYPE MPROD(MENGE MENGE VERKN) :MENGE
+           TYPE U(INDEX) :MENGE
+           TYPE VER-IND(INDEXMENGE) :MENGE
+           TYPE SM-IND(INDEXMENGE) :MENGE
+           TYPE APPLYV(VERKN ELEMENT ELEMENT) :ELEMENT
+           TYPE F*X(MENGE ELEMENT VERKN) :MENGE
+           TYPE SM(MENGE MENGE) :MENGE
+           TYPE T*(MENGE VERKN MENGE ELEMENT) :MENGE
+           * DEF. RIDEAL *
+           ALL R,F:MENGE  ALL MAL:VERKN  
+             RIDEAL(R F MAL) IMPL HG(F MAL) AND ME(R F) AND NICHTLEER(R) AND ME(MPROD(R F MAL) R)
+           * L#R ENTHALTEN IN F *
+           ALL R,L,F:MENGE ALL MAL:VERKN HG(F MAL) AND ME(R F) AND ME(L F) IMPL ME(MPROD(L R MAL) F)
+           * FOLGERUNG AUS DER TRANSITIVITAET VON TEILMENGEN *
+           ALL A,B,C,D,F:MENGE ALL MAL:VERKN ME(A B) AND ME(MPROD(C B MAL) D) AND HG(F MAL) IMPL ME(MPROD(C A MAL) D)
+           * FOLGERUNG AUS DER DEF. LIDEAL *
+           ALL L,F:MENGE ALL MAL:VERKN LIDEAL(L F MAL) IMPL ME(L F)
+ 
+THEOREMS : ALL F,R,L:MENGE  ALL MAL:VERKN  
+                  HG(F MAL) AND RIDEAL(R F MAL) AND MINIMAL(R F MAL) AND LIDEAL(L F MAL)
+             IMPL ME(MPROD(R MPROD(L R MAL) MAL) R)
+ 
+ 
+ 
+ 
+CONSTANTS : 
+=========== 
+ 
+| NAME          | SORT                        |            | ATTRIBUTES |
+-------------------------------------------------------------------------
+| C_1           | MENGE                       |            |            |
+| C_2           | VERKN                       |            |            |
+| C_3           | MENGE                       |            |            |
+| C_4           | MENGE                       |            |            |
+-------------------------------------------------------------------------
+ 
+ 
+ 
+FUNCTIONS : 
+=========== 
+ 
+| NAME          | DOMAIN                      | RANGE      | ATTRIBUTES |
+-------------------------------------------------------------------------
+| MPROD         | MENGE MENGE VERKN           | MENGE      |            |
+| U             | INDEX                       | MENGE      |            |
+| VER-IND       | INDEXMENGE                  | MENGE      |            |
+| SM-IND        | INDEXMENGE                  | MENGE      |            |
+| APPLYV        | VERKN ELEMENT ELEMENT       | ELEMENT    |            |
+| F*X           | MENGE ELEMENT VERKN         | MENGE      |            |
+| SM            | MENGE MENGE                 | MENGE      |            |
+| T*            | MENGE VERKN MENGE ELEMENT   | MENGE      |            |
+-------------------------------------------------------------------------
+ 
+ 
+ 
+PREDICATES : 
+============ 
+ 
+| NAME          | DOMAIN                      |            | ATTRIBUTES |
+-------------------------------------------------------------------------
+| TRUE          |                             |            | DEFINED    |
+| FALSE         |                             |            | DEFINED    |
+| LIDEAL        | MENGE MENGE VERKN           |            |            |
+| RIDEAL        | MENGE MENGE VERKN           |            |            |
+| UHG           | MENGE MENGE VERKN           |            |            |
+| ME            | MENGE MENGE                 |            |            |
+| NICHTLEER     | MENGE                       |            |            |
+| HG            | MENGE VERKN                 |            |            |
+| NICHTLEER-IND | INDEXMENGE                  |            |            |
+| GLEICH        | MENGE MENGE                 |            |            |
+| EL-IND        | INDEX INDEXMENGE            |            |            |
+| EL            | ELEMENT MENGE               |            |            |
+| MINIMAL       | MENGE MENGE VERKN           |            |            |
+| MINIMAL-BED-L | MENGE VERKN                 |            |            |
+| MINIMAL-BED-R | MENGE VERKN                 |            |            |
+-------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+  A1   : ALL X:VERKN  Y,Z:MENGE  - RIDEAL(Z Y X)  + HG(Y X)
+* A2   : ALL X:VERKN  Y,Z:MENGE  - RIDEAL(Z Y X)  + ME(Z Y)
+  A3   : ALL X:VERKN  Y,Z:MENGE  - RIDEAL(Z Y X)  + NICHTLEER(Z)
+* A4   : ALL X:VERKN  Y,Z:MENGE  - RIDEAL(Z Y X)  + ME(MPROD(Z Y X) Z)
+* A5   : ALL X:VERKN  Y,Z:MENGE  - LIDEAL(Z Y X)  + ME(Z Y)
+* A6   : ALL X,Y,Z:MENGE  U:VERKN  - HG(Z U)  - ME(Y Z)  - ME(X Z)  + ME(MPROD(X Y U) Z)
+* A7   : ALL X,Y,Z,U,V:MENGE  W:VERKN  - ME(V U)  - ME(MPROD(Z U W) Y)  - HG(X W)  + ME(MPROD(Z V W) Y)
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+* T8   : + HG(C_1 C_2)
+* T9   : + RIDEAL(C_3 C_1 C_2)
+  T10  : + MINIMAL(C_3 C_1 C_2)
+* T11  : + LIDEAL(C_4 C_1 C_2)
+* T12  : - ME(MPROD(C_3 MPROD(C_4 C_3 C_2) C_2) C_3)
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION
+ 
+INITIAL CLAUSES :      A1  : ALL X:VERKN  Y,Z:MENGE  - RIDEAL(Z Y X)  + HG(Y X)
+                     * A2  : ALL X:VERKN  Y,Z:MENGE  - RIDEAL(Z Y X)  + ME(Z Y)
+                     * A4  : ALL X:VERKN  Y,Z:MENGE  - RIDEAL(Z Y X)  + ME(MPROD(Z Y X) Z)
+                     * A5  : ALL X:VERKN  Y,Z:MENGE  - LIDEAL(Z Y X)  + ME(Z Y)
+                     * A6  : ALL X,Y,Z:MENGE  U:VERKN  - HG(Z U)  - ME(Y Z)  - ME(X Z)  + ME(MPROD(X Y U) Z)
+                     * A7  : ALL X,Y,Z,U,V:MENGE  W:VERKN  
+                                  - ME(V U)  - ME(MPROD(Z U W) Y)  - HG(X W)  + ME(MPROD(Z V W) Y)
+                     * T8  : + HG(C_1 C_2)
+                     * T9  : + RIDEAL(C_3 C_1 C_2)
+                     * T11 : + LIDEAL(C_4 C_1 C_2)
+                     * T12 : - ME(MPROD(C_3 MPROD(C_4 C_3 C_2) C_2) C_3)
+ 
+T11,1 & A5,1    -->  * R1  : + ME(C_4 C_1)
+ 
+T9,1 & A1,1     -->    R2  : + HG(C_1 C_2)
+ 
+T9,1 & A2,1     -->  * R3  : + ME(C_3 C_1)
+ 
+T9,1 & A4,1     -->  * R4  : + ME(MPROD(C_3 C_1 C_2) C_3)
+ 
+R1,1 & A6,3     -->  * R5  : - HG(C_1 C_2)  - ME(C_3 C_1)  + ME(MPROD(C_4 C_3 C_2) C_1)
+ 
+R5,2 & R3,1     -->  * R6  : - HG(C_1 C_2)  + ME(MPROD(C_4 C_3 C_2) C_1)
+ 
+R6,1 & T8,1     -->  * R7  : + ME(MPROD(C_4 C_3 C_2) C_1)
+ 
+R7,1 & A7,1     -->  * R8  : - ME(MPROD(C_3 C_1 C_2) C_3)  - HG(C_1 C_2)  + ME(MPROD(C_3 MPROD(C_4 C_3 C_2) C_2) C_3)
+ 
+R8,1 & R4,1     -->  * R9  : - HG(C_1 C_2)  + ME(MPROD(C_3 MPROD(C_4 C_3 C_2) C_2) C_3)
+ 
+R9,1 & T8,1     -->  * R10 : + ME(MPROD(C_3 MPROD(C_4 C_3 C_2) C_2) C_3)
+ 
+R10,1 & T12,1   -->  * R11 :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+STOP
+ 

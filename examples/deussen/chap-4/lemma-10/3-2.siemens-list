@@ -1,0 +1,293 @@
+ 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 4-APR-85                                                      *
+                    *         DATE : 19-SEP-85  09:12:12                                           *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   19-SEP-85 09:04:32
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   K.A.2.10.3.2.COMMENT
+                                                                        
+************************************************************************
+                                                                        
+ 
+ 
+ADJUSTMENT OF THE OPTIONS : 
+============================
+ 
+ 
+ 
+TWO:RULES                             NIL                   TWO:RULES.MAXLEVEL                    1
+TWO:SUPPRESS.NORULES                  NIL
+ 
+ 
+RED.I:CLAUSE.MULTIPLE.LITERALS        T                     RED.I:CLAUSE.PURITY                   T
+RED.I:CLAUSE.TAUTOLOGY                T                     RED.I:CLAUSE.TAUTOLOGY.RECHECK        PARTIAL
+RED.I:CLAUSE.SUBSUMPTION              T                     RED.I:CLAUSE.SUBSUMPTION.RECHECK      PARTIAL
+RED.I:CLAUSE.REPL.FACTORING           T                     RED.I:CLAUSE.REPL.FACTORING.RECHECK   T
+RED.I:CLAUSE.REPL.RESOLUTION          SIMPLE                RED.I:CLAUSE.REPL.RESOLUTION.RECHECK  T
+RED.I:CLAUSE.REWRITING                T                     RED.I:LINK.INCOMPATIBILITY            T
+RED.I:LINK.TAUTOLOGY                  T                     RED.I:LINK.TAUTOLOGY.RECHECK          T
+RED.I:LINK.SUBSUMPTION                T                     RED.I:LINK.SUBSUMPTION.RECHECK        T
+ 
+RED.D:CLAUSE.MULTIPLE.LITERALS        T                     RED.D:CLAUSE.PURITY                   T
+RED.D:CLAUSE.TAUTOLOGY                REMOVE-INHIBIT        RED.D:CLAUSE.TAUTOLOGY.RECHECK        NIL
+RED.D:CLAUSE.SUBSUMPTION.FORWARD      REMOVE-INHIBIT        RED.D:CLAUSE.SUBSUMPTION.BACKWARD     REMOVE
+RED.D:CLAUSE.SUBSUMPTION.RECHECK      NIL                   RED.D:CLAUSE.REPL.FACTORING           T
+RED.D:CLAUSE.REPL.FACTORING.RECHECK   T                     RED.D:CLAUSE.REPL.RESOLUTION          SIMPLE
+RED.D:CLAUSE.REPL.RESOLUTION.RECHECK  T                     RED.D:LINK.INCOMPATIBILITY            T
+RED.D:LINK.TAUTOLOGY                  T                     RED.D:LINK.TAUTOLOGY.RECHECK          T
+RED.D:LINK.SUBSUMPTION                T                     RED.D:LINK.SUBSUMPTION.RECHECK        T
+ 
+FAC:INITIAL                           NIL                   FAC:EACH.STEP                         NIL
+ 
+STR:RESOLUTION                        SET-OF-SUPPORT        STR:E-RESOLUTION                      NIL
+STR:PARAMODULATION                    UNIT-ANCESTRY         STR:LINK.DEPTH                        NIL
+STR:TERM.DEPTH                        5                     STR:R.DEMODULATION                    T
+STR:P.DEMODULATION                    T                     STR:INDUCTION                         NIL
+ 
+TERM:UNITS                            T                     TERM:ITERATIONS                       0
+TERM:SET.OF.SUPPORT                   NIL                   TERM:BREADTH.FIRST                    NIL
+ 
+GEN:SPLITTING                         0                     GEN:MANUAL.CONTROL                    NIL
+GEN:MAXIMUM.STEPS                     70                    GEN:GRAPH.SAVING                      69
+GEN:SAVE.FILE                         K.SAVE.DEFAULT
+ 
+ 
+TR:PREPROCESSING                      NIL                   TR:STEP.MODE                          LR
+TR:DUMP                               NIL                   TR:CLAUSE.MODE                        I
+TR:LINK.MODE                          I                     TR:TRACE.FILE                         NIL
+TR:TERMINAL                           T
+ 
+ 
+PR:INFIX.FORM                         T                     PR:PREFIX.FORM                        NIL
+PR:OPTIONS                            T                     PR:SYMBOLS                            T
+PR:PROTOCOL                           T                     PR:NEW.PNAMES                         T
+PR:DIFFERENT.VARIABLES                NIL                   PR:DIRECT.PROOF                       NIL
+PR:LEFT.MARGIN                        0                     PR:LINELENGTH                         120
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : * ***************************************************************************
+           * DEFINITIONEN DER MENGENLEHRE **********************************************
+           SORT SET:ANY
+           SORT ELEMENT:SET
+           TYPE EL(ELEMENT SET)
+           * DEFINITION 1.3: KARTESISCHES PRODUKT
+           TYPE CARTES(SET SET) :SET
+           TYPE PAIR(ELEMENT ELEMENT) :ELEMENT
+           * ***************************************************************************
+           * DEFINTIONEN VON RELATIONEN AUF EINER FESTEN MENGE S ***********************
+           SORT REL:SET
+           TYPE S:SET
+           SORT EL.OF.S:ELEMENT
+           * DEFINITION 1.4: VEREINIGUNG UND LEMMA. SORTENPROBLEM!!!!
+           TYPE UNION(REL REL) : REL
+           ALL X,Y:REL ALL A,B:EL.OF.S EL(PAIR(A B) UNION(X Y)) EQV EL(PAIR(A B) X) OR EL(PAIR(A B) Y)
+           * DEFINITION 2.4: KONVERSE RELATION
+           TYPE CONVERSE(REL) :REL
+           * SORTENPROBLEM!!!!!
+           ALL RHO:REL ALL A,B:EL.OF.S EL(PAIR(A B) CONVERSE(RHO)) EQV EL(PAIR(B A) RHO)
+           * DEFINITION 2.6: SYMMETRISCH
+           TYPE SYMMETRISCH(REL)
+           * LEMMA 2,5
+           ALL RHO:REL(ALL A,B:EL.OF.S EL(PAIR(A B) RHO) IMPL EL(PAIR(B A) RHO)) IMPL SYMMETRISCH(RHO)
+ 
+THEOREMS : ALL RHO: REL SYMMETRISCH(UNION(RHO CONVERSE(RHO)))
+ 
+ 
+ 
+ 
+CONSTANTS : 
+=========== 
+ 
+| NAME        | SORT              |            | ATTRIBUTES |
+-------------------------------------------------------------
+| S           | SET               |            |            |
+| C_1         | REL               |            |            |
+-------------------------------------------------------------
+ 
+ 
+ 
+FUNCTIONS : 
+=========== 
+ 
+| NAME        | DOMAIN            | RANGE      | ATTRIBUTES |
+-------------------------------------------------------------
+| CARTES      | SET SET           | SET        |            |
+| PAIR        | ELEMENT ELEMENT   | ELEMENT    |            |
+| UNION       | REL REL           | REL        |            |
+| CONVERSE    | REL               | REL        |            |
+| F_1         | REL               | EL.OF.S    |            |
+| F_2         | REL               | EL.OF.S    |            |
+-------------------------------------------------------------
+ 
+ 
+ 
+PREDICATES : 
+============ 
+ 
+| NAME        | DOMAIN            |            | ATTRIBUTES |
+-------------------------------------------------------------
+| TRUE        |                   |            | DEFINED    |
+| FALSE       |                   |            | DEFINED    |
+| EL          | ELEMENT SET       |            |            |
+| SYMMETRISCH | REL               |            |            |
+-------------------------------------------------------------
+ 
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+* A1   : ALL X,Y:REL  Z,U:EL.OF.S  + EL(PAIR(U Z) UNION(Y X))  - EL(PAIR(U Z) Y)
+* A2   : ALL X,Y:REL  Z,U:EL.OF.S  + EL(PAIR(U Z) UNION(Y X))  - EL(PAIR(U Z) X)
+* A3   : ALL X:REL  Y,Z:EL.OF.S  + EL(PAIR(Z Y) CONVERSE(X))  - EL(PAIR(Y Z) X)
+* A4   : ALL X:REL  Y,Z:EL.OF.S  - EL(PAIR(Z Y) CONVERSE(X))  + EL(PAIR(Y Z) X)
+* A5   : ALL X:REL  + EL(PAIR(F_2(X) F_1(X)) X)  + SYMMETRISCH(X)
+* A6   : ALL X:REL  - EL(PAIR(F_1(X) F_2(X)) X)  + SYMMETRISCH(X)
+* A7   : ALL X,Y:REL  Z,U:EL.OF.S  - EL(PAIR(U Z) UNION(Y X))  + EL(PAIR(U Z) Y)  + EL(PAIR(U Z) X)
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+* T8   : - SYMMETRISCH(UNION(C_1 CONVERSE(C_1)))
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION
+ 
+INITIAL CLAUSES :    * A1  : ALL X,Y:REL  Z,U:EL.OF.S  + EL(PAIR(U Z) UNION(Y X))  - EL(PAIR(U Z) Y)
+                     * A2  : ALL X,Y:REL  Z,U:EL.OF.S  + EL(PAIR(U Z) UNION(Y X))  - EL(PAIR(U Z) X)
+                     * A3  : ALL X:REL  Y,Z:EL.OF.S  + EL(PAIR(Z Y) CONVERSE(X))  - EL(PAIR(Y Z) X)
+                     * A4  : ALL X:REL  Y,Z:EL.OF.S  - EL(PAIR(Z Y) CONVERSE(X))  + EL(PAIR(Y Z) X)
+                     * A5  : ALL X:REL  + EL(PAIR(F_2(X) F_1(X)) X)  + SYMMETRISCH(X)
+                     * A6  : ALL X:REL  - EL(PAIR(F_1(X) F_2(X)) X)  + SYMMETRISCH(X)
+                     * A7  : ALL X,Y:REL  Z,U:EL.OF.S  - EL(PAIR(U Z) UNION(Y X))  + EL(PAIR(U Z) Y)  + EL(PAIR(U Z) X)
+                     * T8  : - SYMMETRISCH(UNION(C_1 CONVERSE(C_1)))
+ 
+A5,2 & T8,1     -->  * R1  : + EL(PAIR(F_2(UNION(C_1 CONVERSE(C_1))) F_1(UNION(C_1 CONVERSE(C_1))))
+                                  UNION(C_1 CONVERSE(C_1)))
+ 
+ 
+A6,2 & T8,1     -->  * R2  : - EL(PAIR(F_1(UNION(C_1 CONVERSE(C_1))) F_2(UNION(C_1 CONVERSE(C_1))))
+                                  UNION(C_1 CONVERSE(C_1)))
+ 
+ 
+R1,1 & A1,2     -->    R3  : ALL X:REL  + EL(PAIR(F_2(UNION(C_1 CONVERSE(C_1))) F_1(UNION(C_1 CONVERSE(C_1))))
+                                             UNION(UNION(C_1 CONVERSE(C_1)) X))
+ 
+ 
+R1,1 & A2,2     -->    R4  : ALL X:REL  + EL(PAIR(F_2(UNION(C_1 CONVERSE(C_1))) F_1(UNION(C_1 CONVERSE(C_1))))
+                                             UNION(X UNION(C_1 CONVERSE(C_1))))
+ 
+ 
+R1,1 & A3,2     -->    R5  : + EL(PAIR(F_1(UNION(C_1 CONVERSE(C_1))) F_2(UNION(C_1 CONVERSE(C_1))))
+                                  CONVERSE(UNION(C_1 CONVERSE(C_1))))
+ 
+ 
+A1,1 & R2,1     -->  * R6  : - EL(PAIR(F_1(UNION(C_1 CONVERSE(C_1))) F_2(UNION(C_1 CONVERSE(C_1)))) C_1)
+ 
+A2,1 & R2,1     -->  * R7  : - EL(PAIR(F_1(UNION(C_1 CONVERSE(C_1))) F_2(UNION(C_1 CONVERSE(C_1)))) CONVERSE(C_1))
+ 
+A4,2 & R2,1     -->    R8  : - EL(PAIR(F_2(UNION(C_1 CONVERSE(C_1))) F_1(UNION(C_1 CONVERSE(C_1))))
+                                  CONVERSE(UNION(C_1 CONVERSE(C_1))))
+ 
+ 
+R3,1 & A3,2     -->    R9  : ALL X:REL  + EL(PAIR(F_1(UNION(C_1 CONVERSE(C_1))) F_2(UNION(C_1 CONVERSE(C_1))))
+                                             CONVERSE(UNION(UNION(C_1 CONVERSE(C_1)) X)))
+ 
+ 
+R3,1 & A2,2     -->    R10 : ALL X,Y:REL  + EL(PAIR(F_2(UNION(C_1 CONVERSE(C_1))) F_1(UNION(C_1 CONVERSE(C_1))))
+                                               UNION(Y UNION(UNION(C_1 CONVERSE(C_1)) X)))
+ 
+ 
+R3,1 & A1,2     -->    R11 : ALL X,Y:REL  + EL(PAIR(F_2(UNION(C_1 CONVERSE(C_1))) F_1(UNION(C_1 CONVERSE(C_1))))
+                                               UNION(UNION(UNION(C_1 CONVERSE(C_1)) Y) X))
+ 
+ 
+R4,1 & A3,2     -->    R12 : ALL X:REL  + EL(PAIR(F_1(UNION(C_1 CONVERSE(C_1))) F_2(UNION(C_1 CONVERSE(C_1))))
+                                             CONVERSE(UNION(X UNION(C_1 CONVERSE(C_1)))))
+ 
+ 
+R4,1 & A1,2     -->    R13 : ALL X,Y:REL  + EL(PAIR(F_2(UNION(C_1 CONVERSE(C_1))) F_1(UNION(C_1 CONVERSE(C_1))))
+                                               UNION(UNION(Y UNION(C_1 CONVERSE(C_1))) X))
+ 
+ 
+R4,1 & A2,2     -->    R14 : ALL X,Y:REL  + EL(PAIR(F_2(UNION(C_1 CONVERSE(C_1))) F_1(UNION(C_1 CONVERSE(C_1))))
+                                               UNION(Y UNION(X UNION(C_1 CONVERSE(C_1)))))
+ 
+ 
+R5,1 & A1,2     -->    R15 : ALL X:REL  + EL(PAIR(F_1(UNION(C_1 CONVERSE(C_1))) F_2(UNION(C_1 CONVERSE(C_1))))
+                                             UNION(CONVERSE(UNION(C_1 CONVERSE(C_1))) X))
+ 
+ 
+R5,1 & A2,2     -->    R16 : ALL X:REL  + EL(PAIR(F_1(UNION(C_1 CONVERSE(C_1))) F_2(UNION(C_1 CONVERSE(C_1))))
+                                             UNION(X CONVERSE(UNION(C_1 CONVERSE(C_1)))))
+ 
+ 
+R5,1 & A3,2     -->    R17 : + EL(PAIR(F_2(UNION(C_1 CONVERSE(C_1))) F_1(UNION(C_1 CONVERSE(C_1))))
+                                  CONVERSE(CONVERSE(UNION(C_1 CONVERSE(C_1)))))
+ 
+ 
+A4,2 & R6,1     -->  * R18 : - EL(PAIR(F_2(UNION(C_1 CONVERSE(C_1))) F_1(UNION(C_1 CONVERSE(C_1)))) CONVERSE(C_1))
+ 
+A4,2 & R7,1     -->    R19 : - EL(PAIR(F_2(UNION(C_1 CONVERSE(C_1))) F_1(UNION(C_1 CONVERSE(C_1))))
+                                  CONVERSE(CONVERSE(C_1)))
+ 
+ 
+A3,1 & R7,1     -->  * R20 : - EL(PAIR(F_2(UNION(C_1 CONVERSE(C_1))) F_1(UNION(C_1 CONVERSE(C_1)))) C_1)
+ 
+A7,3 & R18,1    -->  * R21 : - EL(PAIR(F_2(UNION(C_1 CONVERSE(C_1))) F_1(UNION(C_1 CONVERSE(C_1))))
+                                  UNION(C_1 CONVERSE(C_1)))
+                               + EL(PAIR(F_2(UNION(C_1 CONVERSE(C_1))) F_1(UNION(C_1 CONVERSE(C_1)))) C_1)
+ 
+R21,2 & R20,1   -->  * R22 : - EL(PAIR(F_2(UNION(C_1 CONVERSE(C_1))) F_1(UNION(C_1 CONVERSE(C_1))))
+                                  UNION(C_1 CONVERSE(C_1)))
+ 
+ 
+R22,1 & R1,1    -->  * R23 :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+STOP
+ 

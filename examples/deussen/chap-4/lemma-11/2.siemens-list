@@ -1,0 +1,272 @@
+ 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 4-APR-85                                                      *
+                    *         DATE : 19-MAY-85  19:35:47                                           *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   19-MAY-85 19:13:09
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   K.A.COMMENT
+                                                                        
+************************************************************************
+                                                                        
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : * ***************************************************************************
+           * DEFINITIONEN DER MENGENLEHRE **********************************************
+           SORT SET:ANY
+           SORT ELEMENT:SET
+           TYPE EL(ELEMENT SET)
+           * DEFINITION 1.1: TEILMENGE
+           TYPE SUBSET(SET SET)
+           ALL X,Y:SET SUBSET(X Y) EQV(ALL A:ELEMENT EL(A X) IMPL EL(A Y))
+           * DEFINITION 1.2: MENGENGLEICHHEIT
+           TYPE SET.EQUAL(SET SET)
+           ALL X,Y:SET SET.EQUAL(X Y) EQV(ALL A:ELEMENT EL(A X) EQV EL(A Y))
+           * DEFINITION 1.3: KARTESISCHES PRODUKT
+           TYPE CARTES(SET SET) :SET
+           TYPE PAIR(ELEMENT ELEMENT) :ELEMENT
+           ALL X,Y:SET ALL A:ELEMENT EL(A CARTES(X Y)) EQV(EX B,C:ELEMENT A = PAIR(B C) AND EL(B X) AND EL(C Y))
+           ALL A,B,C,D:ELEMENT PAIR(A B) = PAIR(C D) EQV A = C AND B = D
+           * DEFINITION 1.6: NATUERLICHE ZAHLEN
+           SORT NAT:SET
+           TYPE 1:NAT
+           TYPE PLUS(NAT NAT) :NAT
+           ALL N:NAT N = 1 OR(EX M:NAT N = PLUS(M 1))
+           * ***************************************************************************
+           * DEFINTIONEN VON RELATIONEN AUF EINER FESTEN MENGE S ***********************
+           SORT REL:SET
+           TYPE S:SET
+           SORT EL.OF.S:ELEMENT
+           ALL A:EL.OF.S EL(A S)
+           * DEFINITION 2.1: RELATION *************************************************
+           ALL RHO:REL SUBSET(RHO CARTES(S S))
+           * DEFINITION 2.2: KOMPOSITION ZWEIER RELATIONEN ****************************
+           TYPE COMP(REL REL) :REL
+           ALL RHO,SIGMA:REL  ALL A:ELEMENT  
+             EL(A COMP(RHO SIGMA)) EQV(EX B,C,D:EL.OF.S A = PAIR(B D) AND EL(PAIR(B C) RHO) AND EL(PAIR(C D) SIGMA))
+           * DEFINITION 2.7: TRANSITIV
+           TYPE TRANSITIV(REL)
+           ALL RHO:REL TRANSITIV(RHO) EQV SUBSET(COMP(RHO RHO) RHO)
+           * DEFINITION 2.9: POTENZ EINER RELATION
+           TYPE POWER(REL NAT) :REL
+           ALL RHO:REL POWER(RHO 1) = RHO
+           ALL RHO:REL ALL N:NAT POWER(RHO PLUS(N 1)) = COMP(POWER(RHO N) RHO)
+           * DEFINITION2.11: TRANSITIVER ABSCHLUSS
+           TYPE TRANS.CLOS(REL) :SET
+           ALL RHO:REL ALL A:ELEMENT EL(A TRANS.CLOS(RHO)) EQV(EX N:NAT EL(A POWER(RHO N)))
+           ALL RHO:REL  ALL M:NAT        P(RHO M)
+                                     EQV( ALL N:NAT  ALL A,B,C:EL.OF.S  
+                                                 EL(PAIR(A B) POWER(RHO N)) AND EL(PAIR(B C) POWER(RHO M))
+                                            IMPL EL(PAIR(A C) POWER(RHO PLUS(N M))))
+ 
+THEOREMS : ALL RHO:REL P(RHO 1)
+ 
+ 
+ 
+ 
+CONSTANTS : 
+=========== 
+ 
+| NAME       | SORT              |            | ATTRIBUTES                                                           |
+----------------------------------------------------------------------------------------------------------------------
+| 1          | NAT               |            |                                                                      |
+| S          | SET               |            |                                                                      |
+| C_1        | REL               |            |                                                                      |
+----------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+FUNCTIONS : 
+=========== 
+ 
+| NAME       | DOMAIN            | RANGE      | ATTRIBUTES                                                           |
+----------------------------------------------------------------------------------------------------------------------
+| CARTES     | SET SET           | SET        |                                                                      |
+| PAIR       | ELEMENT ELEMENT   | ELEMENT    |                                                                      |
+| PLUS       | NAT NAT           | NAT        |                                                                      |
+| COMP       | REL REL           | REL        |                                                                      |
+| POWER      | REL NAT           | REL        |                                                                      |
+| TRANS.CLOS | REL               | SET        |                                                                      |
+| F_1        | SET ELEMENT SET   | ELEMENT    |                                                                      |
+| F_2        | SET ELEMENT SET   | ELEMENT    |                                                                      |
+| F_3        | NAT               | NAT        |                                                                      |
+| F_4        | REL ELEMENT REL   | EL.OF.S    |                                                                      |
+| F_5        | REL ELEMENT REL   | EL.OF.S    |                                                                      |
+| F_6        | REL ELEMENT REL   | EL.OF.S    |                                                                      |
+| F_7        | REL ELEMENT       | NAT        |                                                                      |
+| F_8        | REL NAT           | EL.OF.S    |                                                                      |
+| F_9        | REL NAT           | EL.OF.S    |                                                                      |
+| F_10       | REL NAT           | EL.OF.S    |                                                                      |
+| F_11       | REL NAT           | NAT        |                                                                      |
+----------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+PREDICATES : 
+============ 
+ 
+| NAME       | DOMAIN            |            | ATTRIBUTES                                                           |
+----------------------------------------------------------------------------------------------------------------------
+| TRUE       |                   |            | DEFINED                                                              |
+| FALSE      |                   |            | DEFINED                                                              |
+| EL         | ELEMENT SET       |            |                                                                      |
+| SUBSET     | SET SET           |            |                                                                      |
+| SET.EQUAL  | SET SET           |            |                                                                      |
+| =          | ANY ANY           |            | DEFINED SYMMETRIC REFLEXIVE SYMMETRIC REFLEXIVE SYMMETRIC REFLEXIVE  |
+| TRANSITIV  | REL               |            |                                                                      |
+| P          | ANY ANY           |            |                                                                      |
+----------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+* A1   : ALL X:ANY  + =(X X)
+  A2   : ALL X:EL.OF.S  + EL(X S)
+* A3   : ALL X:REL  + =(POWER(X 1) X)
+* A4   : ALL X:NAT  Y:REL  + =(POWER(Y PLUS(X 1)) COMP(POWER(Y X) Y))
+  A5   : ALL X,Y:SET  Z:ELEMENT  - EL(Z CARTES(Y X))  + =(Z PAIR(F_1(X Z Y) F_2(X Z Y)))
+  A6   : ALL X,Y:SET  Z:ELEMENT  - EL(Z CARTES(Y X))  + EL(F_1(X Z Y) Y)
+  A7   : ALL X,Y:SET  Z:ELEMENT  - EL(Z CARTES(Y X))  + EL(F_2(X Z Y) X)
+  A8   : ALL X,Y,Z,U:ELEMENT  - =(PAIR(U Z) PAIR(Y X))  + =(U Y)
+  A9   : ALL X,Y,Z,U:ELEMENT  - =(PAIR(U Z) PAIR(Y X))  + =(Z X)
+  A10  : ALL X:NAT  + =(X 1)  + =(X PLUS(F_3(X) 1))
+  A11  : ALL X:REL  Y:ELEMENT  - EL(Y X)  + EL(Y CARTES(S S))
+  A12  : ALL X,Y:REL  Z:ELEMENT  - EL(Z COMP(Y X))  + =(Z PAIR(F_5(X Z Y) F_6(X Z Y)))
+  A13  : ALL X,Y:REL  Z:ELEMENT  - EL(Z COMP(Y X))  + EL(PAIR(F_5(X Z Y) F_4(X Z Y)) Y)
+  A14  : ALL X,Y:REL  Z:ELEMENT  - EL(Z COMP(Y X))  + EL(PAIR(F_4(X Z Y) F_6(X Z Y)) X)
+  A15  : ALL X:NAT  Y:REL  Z:ELEMENT  + EL(Z TRANS.CLOS(Y))  - EL(Z POWER(Y X))
+  A16  : ALL X:REL  Y:ELEMENT  - EL(Y TRANS.CLOS(X))  + EL(Y POWER(X F_7(X Y)))
+* A17  : ALL X:NAT  Y:REL  + P(Y X)  + EL(PAIR(F_9(Y X) F_8(Y X)) POWER(Y F_11(Y X)))
+* A18  : ALL X:NAT  Y:REL  + P(Y X)  + EL(PAIR(F_8(Y X) F_10(Y X)) POWER(Y X))
+* A19  : ALL X:NAT  Y:REL  + P(Y X)  - EL(PAIR(F_9(Y X) F_10(Y X)) POWER(Y PLUS(F_11(Y X) X)))
+  A20  : ALL X,Y,Z,U:ELEMENT  + =(PAIR(U Z) PAIR(Y X))  - =(U Y)  - =(Z X)
+  A21  : ALL X,Y,Z:ELEMENT  U,V:SET  + EL(Z CARTES(V U))  - =(Z PAIR(Y X))  - EL(Y V)  - EL(X U)
+* A22  : ALL X,Y,Z:EL.OF.S  U,V:REL  W:ELEMENT  
+              + EL(W COMP(V U))  - =(W PAIR(Z Y))  - EL(PAIR(Z X) V)  - EL(PAIR(X Y) U)
+  A23  : ALL X,Y,Z:EL.OF.S  U,V:NAT  W:REL  
+              - P(W V)  - EL(PAIR(Z Y) POWER(W U))  - EL(PAIR(Y X) POWER(W V))  + EL(PAIR(Z X) POWER(W PLUS(U V)))
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+* T24  : - P(C_1 1)
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION
+ 
+INITIAL CLAUSES :    * A1  : ALL X:ANY  + =(X X)
+                       A2  : ALL X:EL.OF.S  + EL(X S)
+                     * A3  : ALL X:REL  + =(POWER(X 1) X)
+                     * A4  : ALL X:NAT  Y:REL  + =(POWER(Y PLUS(X 1)) COMP(POWER(Y X) Y))
+                       A5  : ALL X,Y:SET  Z:ELEMENT  - EL(Z CARTES(Y X))  + =(Z PAIR(F_1(X Z Y) F_2(X Z Y)))
+                       A6  : ALL X,Y:SET  Z:ELEMENT  - EL(Z CARTES(Y X))  + EL(F_1(X Z Y) Y)
+                       A7  : ALL X,Y:SET  Z:ELEMENT  - EL(Z CARTES(Y X))  + EL(F_2(X Z Y) X)
+                       A8  : ALL X,Y,Z,U:ELEMENT  - =(PAIR(U Z) PAIR(Y X))  + =(U Y)
+                       A9  : ALL X,Y,Z,U:ELEMENT  - =(PAIR(U Z) PAIR(Y X))  + =(Z X)
+                       A10 : ALL X:NAT  + =(X 1)  + =(X PLUS(F_3(X) 1))
+                       A11 : ALL X:REL  Y:ELEMENT  - EL(Y X)  + EL(Y CARTES(S S))
+                       A12 : ALL X,Y:REL  Z:ELEMENT  - EL(Z COMP(Y X))  + =(Z PAIR(F_5(X Z Y) F_6(X Z Y)))
+                       A13 : ALL X,Y:REL  Z:ELEMENT  - EL(Z COMP(Y X))  + EL(PAIR(F_5(X Z Y) F_4(X Z Y)) Y)
+                       A14 : ALL X,Y:REL  Z:ELEMENT  - EL(Z COMP(Y X))  + EL(PAIR(F_4(X Z Y) F_6(X Z Y)) X)
+                       A15 : ALL X:NAT  Y:REL  Z:ELEMENT  + EL(Z TRANS.CLOS(Y))  - EL(Z POWER(Y X))
+                       A16 : ALL X:REL  Y:ELEMENT  - EL(Y TRANS.CLOS(X))  + EL(Y POWER(X F_7(X Y)))
+                     * A17 : ALL X:NAT  Y:REL  + P(Y X)  + EL(PAIR(F_9(Y X) F_8(Y X)) POWER(Y F_11(Y X)))
+                     * A18 : ALL X:NAT  Y:REL  + P(Y X)  + EL(PAIR(F_8(Y X) F_10(Y X)) POWER(Y X))
+                     * A19 : ALL X:NAT  Y:REL  + P(Y X)  - EL(PAIR(F_9(Y X) F_10(Y X)) POWER(Y PLUS(F_11(Y X) X)))
+                       A20 : ALL X,Y,Z,U:ELEMENT  + =(PAIR(U Z) PAIR(Y X))  - =(U Y)  - =(Z X)
+                       A21 : ALL X,Y,Z:ELEMENT  U,V:SET  + EL(Z CARTES(V U))  - =(Z PAIR(Y X))  - EL(Y V)  - EL(X U)
+                     * A22 : ALL X,Y,Z:EL.OF.S  U,V:REL  W:ELEMENT  
+                                  + EL(W COMP(V U))  - =(W PAIR(Z Y))  - EL(PAIR(Z X) V)  - EL(PAIR(X Y) U)
+                       A23 : ALL X,Y,Z:EL.OF.S  U,V:NAT  W:REL  
+                                  - P(W V)  - EL(PAIR(Z Y) POWER(W U))  - EL(PAIR(Y X) POWER(W V))
+                                    + EL(PAIR(Z X) POWER(W PLUS(U V)))
+                     * T24 : - P(C_1 1)
+ 
+A17,1 & T24,1   -->  * R1  : + EL(PAIR(F_9(C_1 1) F_8(C_1 1)) POWER(C_1 F_11(C_1 1)))
+ 
+A18,1 & T24,1   -->  * R2  : + EL(PAIR(F_8(C_1 1) F_10(C_1 1)) POWER(C_1 1))
+ 
+A21             -->    F3  : ALL X:EL.OF.S  + EL(PAIR(X X) CARTES(S S))  - =(PAIR(X X) PAIR(X X))  - EL(X S)
+ 
+F3,3 & A2,1     -->    R4  : ALL X:EL.OF.S  + EL(PAIR(X X) CARTES(S S))  - =(PAIR(X X) PAIR(X X))
+ 
+R4,2 & A1,1     -->    R5  : ALL X:EL.OF.S  + EL(PAIR(X X) CARTES(S S))
+ 
+A2,1 & A21,4    -->    R6  : ALL X,Y:EL.OF.S  + EL(PAIR(Y X) CARTES(S S))  - =(PAIR(Y X) PAIR(Y X))  - EL(Y S)
+ 
+R6,3 & A2,1     -->    R7  : ALL X,Y:EL.OF.S  + EL(PAIR(Y X) CARTES(S S))  - =(PAIR(Y X) PAIR(Y X))
+ 
+R7,2 & A1,1     -->    R8  : ALL X,Y:EL.OF.S  + EL(PAIR(Y X) CARTES(S S))
+ 
+A19,1 & T24,1   -->  * R9  : - EL(PAIR(F_9(C_1 1) F_10(C_1 1)) POWER(C_1 PLUS(F_11(C_1 1) 1)))
+ 
+A4,1 & R9,1     -->  * P10 : - EL(PAIR(F_9(C_1 1) F_10(C_1 1)) COMP(POWER(C_1 F_11(C_1 1)) C_1))
+ 
+A3,1 & A4,1     -->    P11 : ALL X:REL  + =(POWER(X PLUS(1 1)) COMP(X X))
+ 
+A3,1 & R1,1     -->    P12 : + EL(PAIR(F_9(C_1 1) F_8(C_1 1)) POWER(POWER(C_1 F_11(C_1 1)) 1))
+ 
+P12,1 & A15,2   -->    R13 : + EL(PAIR(F_9(C_1 1) F_8(C_1 1)) TRANS.CLOS(POWER(C_1 F_11(C_1 1))))
+ 
+A3,1 & R2,1     -->  * P14 : + EL(PAIR(F_8(C_1 1) F_10(C_1 1)) C_1)
+ 
+P14,1 & A22,4   -->  * R15 : + EL(PAIR(F_9(C_1 1) F_10(C_1 1)) COMP(POWER(C_1 F_11(C_1 1)) C_1))
+                               - =(PAIR(F_9(C_1 1) F_10(C_1 1)) PAIR(F_9(C_1 1) F_10(C_1 1)))
+                               - EL(PAIR(F_9(C_1 1) F_8(C_1 1)) POWER(C_1 F_11(C_1 1)))
+ 
+R15,1 & P10,1   -->  * R16 : - =(PAIR(F_9(C_1 1) F_10(C_1 1)) PAIR(F_9(C_1 1) F_10(C_1 1)))
+                               - EL(PAIR(F_9(C_1 1) F_8(C_1 1)) POWER(C_1 F_11(C_1 1)))
+ 
+R16,1 & A1,1    -->  * R17 : - EL(PAIR(F_9(C_1 1) F_8(C_1 1)) POWER(C_1 F_11(C_1 1)))
+ 
+R17,1 & R1,1    -->  * R18 :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+STOP
+ 

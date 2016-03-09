@@ -1,0 +1,122 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 49.2 GENTRAFO 1.0, 1 private patch                  *
+                     *           DATE: 23-OCT,1991  22:54                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+                                                                                                                    
+      
+   
+   ******************************************************************************************************************
+   ***
+   
+                                                                                                                    
+      
+   
+    FORMULA:  Date: 23-OCT,1991 22:54
+   
+              Axioms und Theorems for this proof have been read from
+   
+                 Axiom-File: NIL
+   
+               Theorem-File: NIL
+   
+                                                                                                                    
+      
+   
+   ******************************************************************************************************************
+   ***
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   ALL X A (B (X)) = C (X)
+             ALL X B (C (X)) = D (X)
+             ALL X C (D (X)) = E (X)
+             ALL X D (E (X)) = F (X)
+             ALL X E (F (X)) = G (X)
+             ALL X F (G (X)) = A (X)
+             ALL X G (A (X)) = B (X)
+             ALL X A (A1 (X)) = X
+             ALL X B (B1 (X)) = X
+             ALL X C (C1 (X)) = X
+             ALL X D (D1 (X)) = X
+             ALL X E (E1 (X)) = X
+             ALL X F (F1 (X)) = X
+             ALL X G (G1 (X)) = X
+             ALL X A1 (A (X)) = X
+             ALL X B1 (B (X)) = X
+             ALL X C1 (C (X)) = X
+             ALL X D1 (D (X)) = X
+             ALL X E1 (E (X)) = X
+             ALL X F1 (F (X)) = X
+             ALL X G1 (G (X)) = X
+             
+   Theorems: ALL EPS F (EPS) = D1 (D1 (D1 (D1 (EPS))))
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+             A2:   All x:Any + =(a(b(x)) c(x))
+             A3:   All x:Any + =(b(c(x)) d(x))
+             A4:   All x:Any + =(c(d(x)) e(x))
+             A5:   All x:Any + =(d(e(x)) f(x))
+             A6:   All x:Any + =(e(f(x)) g(x))
+             A7:   All x:Any + =(f(g(x)) a(x))
+             A8:   All x:Any + =(g(a(x)) b(x))
+             A9:   All x:Any + =(a(a1(x)) x)
+             A10:  All x:Any + =(b(b1(x)) x)
+             A11:  All x:Any + =(c(c1(x)) x)
+             A12:  All x:Any + =(d(d1(x)) x)
+             A13:  All x:Any + =(e(e1(x)) x)
+             A14:  All x:Any + =(f(f1(x)) x)
+             A15:  All x:Any + =(g(g1(x)) x)
+             A16:  All x:Any + =(a1(a(x)) x)
+             A17:  All x:Any + =(b1(b(x)) x)
+             A18:  All x:Any + =(c1(c(x)) x)
+             A19:  All x:Any + =(d1(d(x)) x)
+             A20:  All x:Any + =(e1(e(x)) x)
+             A21:  All x:Any + =(f1(f(x)) x)
+             A22:  All x:Any + =(g1(g(x)) x)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+             T23: - =(f(c_1) d1(d1(d1(d1(c_1)))))
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+

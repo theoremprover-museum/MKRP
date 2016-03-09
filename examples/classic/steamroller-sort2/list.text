@@ -1,0 +1,160 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 52.4 Experimental GENTRAFO 2.0                      *
+                     *           DATE: 06-FEB,1992  21:09                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 25-OCT,1991 19:54 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   SORT WOLF,FOX,BIRD,CATERPILLAR,SNAIL : ANIMAL
+             SORT GRAIN : PLANT
+             ALL X: ANIMAL (ALL Y : PLANT EATS (X Y))
+                    OR (ALL Y : ANIMAL SMALLER (Y X) AND (EX Z : PLANT EATS (Y Z)) IMPL EATS (X Y))
+             ALL X : CATERPILLAR ALL Y : BIRD SMALLER (X Y)
+             ALL X : SNAIL ALL Y : BIRD SMALLER (X Y)
+             ALL X : BIRD ALL Y : FOX SMALLER (X Y)
+             ALL X : FOX ALL Y : WOLF SMALLER (X Y)
+             ALL X : FOX ALL Y : WOLF NOT EATS (Y X)
+             ALL X : GRAIN ALL Y : WOLF NOT EATS (Y X)
+             ALL X : BIRD ALL Y : CATERPILLAR EATS (X Y)
+             ALL X : BIRD ALL Y : SNAIL NOT EATS (X Y)
+             ALL X : CATERPILLAR EX Y : PLANT EATS (X Y)
+             ALL X : SNAIL EX Y : PLANT EATS (X Y)
+             
+   Theorems: * THEOREMS
+             EX X,Y : ANIMAL EX Z : GRAIN EATS (X Y) AND EATS (Y Z)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+             A2:   All x:Bird y:Caterpillar + SMALLER(y x)
+           * A3:   All x:Bird y:Snail + SMALLER(y x)
+           * A4:   All x:Fox y:Bird + SMALLER(y x)
+           * A5:   All x:Wolf y:Fox + SMALLER(y x)
+           * A6:   All x:Fox y:Wolf - EATS(y x)
+           * A7:   All x:Grain y:Wolf - EATS(y x)
+             A8:   All x:Caterpillar y:Bird + EATS(y x)
+           * A9:   All x:Snail y:Bird - EATS(y x)
+             A10:  All x:Caterpillar + EATS(x f_1(x))
+           * A11:  All x:Snail + EATS(x f_2(x))
+           * A12:  All x,y:Plant z,u:Animal + EATS(u y)  - SMALLER(z u)  - EATS(z x)  + EATS(u z)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T13: All x:Grain y,z:Animal - EATS(z y)  - EATS(y x)
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:     A1:   All x:Any + =(x x)
+                      * A3:   All x:Bird y:Snail + SMALLER(y x)
+                      * A4:   All x:Fox y:Bird + SMALLER(y x)
+                      * A5:   All x:Wolf y:Fox + SMALLER(y x)
+                      * A6:   All x:Fox y:Wolf - EATS(y x)
+                      * A7:   All x:Grain y:Wolf - EATS(y x)
+                        A8:   All x:Caterpillar y:Bird + EATS(y x)
+                      * A9:   All x:Snail y:Bird - EATS(y x)
+                        A10:  All x:Caterpillar + EATS(x f_1(x))
+                      * A11:  All x:Snail + EATS(x f_2(x))
+                      * A12:  All x,y:Plant z,u:Animal + EATS(u y)  - SMALLER(z u)  - EATS(z x)  + EATS(u z)
+                      * T13:  All x:Grain y,z:Animal - EATS(z y)  - EATS(y x)
+                      
+
+   
+   A8,1 & T13,1   -->   R1:   All x:Grain y:Caterpillar - EATS(y x)
+   
+   A12,1 & R1,1   -->   R2:   All x:Plant y:Caterpillar z:Animal 
+                                   - SMALLER(z y)  - EATS(z x)  + EATS(y z)
+   
+   A12,1 & T13,2  --> * R3:   All x,y,z:Animal u:Plant - SMALLER(z y)  - EATS(z u)  + EATS(y z)  - EATS(x y)
+   
+   R3,3 & A9,1    --> * R4:   All x:Animal y:Plant z:Bird u:Snail 
+                                   - SMALLER(u z)  - EATS(u y)  - EATS(x z)
+   
+   R4,2 & A11,1   --> * R5:   All x:Animal y:Bird z:Snail - SMALLER(z y)  - EATS(x y)
+   
+   R5,1 & A3,1    --> * R6:   All x:Animal y:Bird - EATS(x y)
+   
+   R3,3 & A6,1    -->   R7:   All x:Animal y:Plant z:Wolf u:Fox 
+                                   - SMALLER(u z)  - EATS(u y)  - EATS(x z)
+   
+   R7,1 & A5,1    -->   R8:   All x:Animal y:Plant z:Wolf u:Fox 
+                                   - EATS(u y)  - EATS(x z)
+   
+   A4,1 & R3,1    -->   R9:   All x:Animal y:Fox z:Plant u:Bird 
+                                   - EATS(u z)  + EATS(y u)  - EATS(x y)
+   
+   R9,2 & R6,1    -->   R10:  All x:Animal y:Plant z:Bird u:Fox 
+                                   - EATS(z y)  - EATS(x u)
+   
+   A12,4 & R6,1   --> * R11:  All x,y:Plant z:Bird u:Animal 
+                                   + EATS(u y)  - SMALLER(z u)  - EATS(z x)
+   
+   A4,1 & R11,2   --> * R12:  All x,y:Plant z:Bird u:Fox + EATS(u y)  - EATS(z x)
+   
+   R12,1 & A12,3  --> * R13:  All x:Plant y:Bird z:Grain u:Wolf v:Fox 
+                                   - EATS(y x)  + EATS(u z)  - SMALLER(v u)  + EATS(u v)
+   
+   R13,2 & A7,1   --> * R14:  All x:Plant y:Bird z:Wolf u:Fox 
+                                   - EATS(y x)  - SMALLER(u z)  + EATS(z u)
+   
+   R14,2 & A5,1   --> * R15:  All x:Plant y:Bird z:Wolf u:Fox 
+                                   - EATS(y x)  + EATS(z u)
+   
+   R15,2 & A6,1   --> * R16:  All x:Plant y:Bird - EATS(y x)
+   
+   A12,4 & A9,1   --> * R17:  All x:Snail y:Plant z:Bird + EATS(z y)  - SMALLER(x z)  - EATS(x f_2(x))
+   
+   R17,3 & A11,1  --> * R18:  All x:Snail y:Plant z:Bird + EATS(z y)  - SMALLER(x z)
+   
+   R18,2 & A3,1   --> * R19:  All x:Plant y:Bird + EATS(y x)
+   
+   R19,1 & R16,1  --> * R20:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 13 seconds

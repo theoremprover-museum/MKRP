@@ -1,0 +1,1725 @@
+;;; -*- Package: MKRP; Base: 10. -*-
+
+
+
+                    ********************************************************************************
+                    *                                                                              *
+                    *     MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN                   *
+                    *                                                                              *
+                    *       14-AUG-85                                                              *
+                    *          14-AUG-85  09:56:15                                                 *
+                    *                                                                              *
+                    ********************************************************************************
+
+
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   14-AUG-85 09:55:28
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   D3104>BIJ
+                                                                        
+************************************************************************
+                                                                        
+
+
+ADJUSTMENT OF THE OPTIONS : 
+============================
+
+
+
+TWO:RULES                             NIL                   TWO:RULES.MAXLEVEL                    1.
+TWO:SUPPRESS.NORULES                  NIL
+
+
+RED.I:CLAUSE.MULTIPLE.LITERALS        T                     RED.I:CLAUSE.PURITY                   T
+RED.I:CLAUSE.TAUTOLOGY                T                     RED.I:CLAUSE.TAUTOLOGY.RECHECK        NIL
+RED.I:CLAUSE.SUBSUMPTION              T                     RED.I:CLAUSE.SUBSUMPTION.RECHECK      NIL
+RED.I:CLAUSE.REPL.FACTORING           T                     RED.I:CLAUSE.REPL.FACTORING.RECHECK   NIL
+RED.I:CLAUSE.REPL.RESOLUTION          SIMPLE                RED.I:CLAUSE.REPL.RESOLUTION.RECHECK  NIL
+RED.I:CLAUSE.REWRITING                T                     RED.I:LINK.INCOMPATIBILITY            NIL
+RED.I:LINK.TAUTOLOGY                  REMOVE-INHIBIT        RED.I:LINK.TAUTOLOGY.RECHECK          NIL
+RED.I:LINK.SUBSUMPTION                REMOVE-INHIBIT        RED.I:LINK.SUBSUMPTION.RECHECK        NIL
+
+RED.D:CLAUSE.MULTIPLE.LITERALS        T                     RED.D:CLAUSE.PURITY                   T
+RED.D:CLAUSE.TAUTOLOGY                REMOVE-INHIBIT        RED.D:CLAUSE.TAUTOLOGY.RECHECK        NIL
+RED.D:CLAUSE.SUBSUMPTION.FORWARD      NIL                   RED.D:CLAUSE.SUBSUMPTION.BACKWARD     NIL
+RED.D:CLAUSE.SUBSUMPTION.RECHECK      NIL                   RED.D:CLAUSE.REPL.FACTORING           T
+RED.D:CLAUSE.REPL.FACTORING.RECHECK   NIL                   RED.D:CLAUSE.REPL.RESOLUTION          SIMPLE
+RED.D:CLAUSE.REPL.RESOLUTION.RECHECK  NIL                   RED.D:LINK.INCOMPATIBILITY            NIL
+RED.D:LINK.TAUTOLOGY                  REMOVE-INHIBIT        RED.D:LINK.TAUTOLOGY.RECHECK          NIL
+RED.D:LINK.SUBSUMPTION                REMOVE-INHIBIT        RED.D:LINK.SUBSUMPTION.RECHECK        NIL
+
+FAC:INITIAL                           NIL                   FAC:EACH.STEP                         NIL
+
+STR:RESOLUTION                        SET-OF-SUPPORT        STR:E-RESOLUTION                      NIL
+STR:PARAMODULATION                    UNIT-ANCESTRY         STR:LINK.DEPTH                        10.
+STR:TERM.DEPTH                        5.                    STR:R.DEMODULATION                    T
+STR:P.DEMODULATION                    T                     STR:INDUCTION                         NIL
+
+TERM:UNITS                            T                     TERM:ITERATIONS                       1.
+TERM:SET.OF.SUPPORT                   NIL                   TERM:BREADTH.FIRST                    NIL
+
+GEN:SPLITTING                         0.                    GEN:MANUAL.CONTROL                    NIL
+GEN:MAXIMUM.STEPS                     NIL                   GEN:GRAPH.SAVING                      NIL
+GEN:SAVE.FILE                         SAVE.DEFAULT
+
+
+TR:PREPROCESSING                      NIL                   TR:STEP.MODE                          LR
+TR:DUMP                               NIL                   TR:CLAUSE.MODE                        I
+TR:LINK.MODE                          I                     TR:TRACE.FILE                         NIL
+TR:TERMINAL                           NIL
+
+
+PR:INFIX.FORM                         T                     PR:PREFIX.FORM                        NIL
+PR:OPTIONS                            T                     PR:AXIOM.CLAUSES                      NIL
+PR:SYMBOLS                            NIL                   PR:STATISTICS                         NIL
+PR:PROTOCOL                           T                     PR:LEFT.MARGIN                        0.
+PR:LINELENGTH                         120.
+
+
+
+
+FORMULAE GIVEN TO THE EDITOR
+============================
+
+
+AXIOMS   : SORT MENGE,VERKN,ELEMENT,INDEX,INDEXMENGE:ANY
+           TYPE LIDEAL (MENGE MENGE VERKN)
+           TYPE RIDEAL (MENGE MENGE VERKN)
+           TYPE UHG (MENGE MENGE VERKN)
+           TYPE ME (MENGE MENGE)
+           TYPE NICHTLEER (MENGE)
+           TYPE HG (MENGE VERKN)
+           TYPE EL (ELEMENT MENGE)
+           TYPE MINIMAL (MENGE MENGE VERKN)
+           TYPE MPROD (MENGE MENGE VERKN) :MENGE
+           TYPE APPLYV (VERKN ELEMENT ELEMENT) :ELEMENT
+           TYPE F*X (MENGE ELEMENT VERKN) :MENGE
+           TYPE SM (MENGE MENGE) :MENGE
+           TYPE SET (ELEMENT) :MENGE
+           TYPE VER (MENGE MENGE) :MENGE
+           TYPE GR (MENGE VERKN ELEMENT)
+           TYPE INVERS (VERKN ELEMENT) :ELEMENT
+           TYPE MINIMAL-BED-L (MENGE VERKN)
+           TYPE MINIMAL-BED-R (MENGE VERKN)
+           TYPE EL-IND (INDEX INDEXMENGE)
+           TYPE U (INDEX) : MENGE
+           TYPE E (INDEX INDEX) : ELEMENT
+           TYPE NICHTLEER-IND (INDEXMENGE)
+           TYPE VER-IND (INDEXMENGE) : MENGE
+           TYPE SM-IND (INDEXMENGE) : MENGE
+           TYPE IDEAL (MENGE MENGE VERKN)
+           TYPE BIJEKTIV (ABB MENGE MENGE)
+           TYPE HOMOMORPH (ABB MENGE MENGE)
+           TYPE ISOMORPH (ABB MENGE MENGE)
+           TYPE ABBVOR (ABB ELEMENT ELEMENT)
+           TYPE G (INDEX INDEX) :MENGE
+           TYPE * (ELEMENT ELEMENT) :ELEMENT
+           * DEFINITION VON BIJEKTIV *
+           ALL A,B:MENGE ALL PHI:ABB INJEKTIV (PHI A B) AND SURJEKTIV (PHI A B) IMPL BIJEKTIV (PHI A B)
+           * DEFINITION VON SURJEKTIV *
+           ALL A,B:MENGE  ALL PHI:ABB  ALL E:ELEMENT  ALL MAL:VERKN  
+                 ABBILDUNG (PHI A B)
+                 AND  
+                 (ALL X:ELEMENT EL (X A) IMPL ABBVOR (PHI X APPLYV (MAL X E)))
+                 AND  
+                 GR (B MAL E)
+                 AND  
+                 (ALL Y:ELEMENT EL (Y B) IMPL (EX Z:ELEMENT EL (Z A) AND GLEICH (APPLYV (MAL Z E) Y)))
+               IMPL  
+               SURJEKTIV (PHI A B)
+           * LEMMA 3.11.A *
+             * VORAUSSETZUNG3.11.A (H MAL I1 I2 J1 J2 J3 F) BEDEUTET: HG (H MAL)
+             AND  
+             MINIMAL-BED-R (H MAL)
+             AND  
+             MINIMAL-BED-L (H MAL)
+             AND  
+             (ALL J1:INDEX EL-IND (J1 I1) IMPL RIDEAL (U (J1) H MAL) AND MINIMAL (U (J1) H MAL))
+             AND  
+             (ALL J2:INDEX EL-IND (J2 I2) IMPL LIDEAL (U (J2) H MAL) AND MINIMAL (U (J2) H MAL))
+             AND  
+             EL-IND (J1 I1)
+             AND  
+             EL-IND (J2 I2)
+             AND  
+             (ALL J1,J2:INDEX EL-IND (J1 I1) AND EL-IND (J2 I2) IMPL MPROD (U (J1) U (J2) MAL) = SM (U (J1) U (J2)))
+             AND  
+             EL (F SM (U (J1) U (J2)))
+             AND  
+             EL-IND (J3 I2) *
+           ALL H:MENGE  ALL MAL:VERKN  ALL I1,I2:INDEXMENGE  ALL J1,J2,J3,J4:INDEX  ALL F:ELEMENT  
+               VORAUSSETZUNG3.11.A (H MAL I1 I2 J1 J2 J3 F)
+               IMPL  
+               (ALL Y:ELEMENT EL (Y G (J1 J4)) IMPL GLEICH (F*X (G (J1 J2) Y MAL) G (J1 J4)))
+           * EINSELEMENT ENTHALTEN IN GRUPPE *
+           ALL A:MENGE ALL E:ELEMENT ALL MAL:VERKN GR (A MAL E) IMPL EL (E A)
+           * *
+           ALL A,B:MENGE  ALL MAL:VERKN  ALL X,Y:ELEMENT  
+             GLEICH (F*X (A X MAL) B) AND EL (Y B) IMPL (EX Z:ELEMENT EL (Z A) AND GLEICH (APPLYV (MAL Z X) Y))
+           * LEMMA 3.10.4.INJEKTIV *
+             * VORAUSSETZUNG-TH (H MAL I1 I2 J1 J2 J3 F E1 E2 PHI) BEDEUTET: HG (H MAL)
+             AND  
+             MINIMAL-BED-R (H MAL)
+             AND  
+             MINIMAL-BED-L (H MAL)
+             AND  
+             (ALL J1:INDEX EL-IND (J1 I1) IMPL RIDEAL (U (J1) H MAL) AND MINIMAL (U (J1) H MAL))
+             AND  
+             (ALL J2:INDEX EL-IND (J2 I2) IMPL LIDEAL (U (J2) H MAL) AND MINIMAL (U (J2) H MAL))
+             AND  
+             EL-IND (J1 I1)
+             AND  
+             EL-IND (J2 I2)
+             AND  
+             (ALL J1,J2:INDEX EL-IND (J1 I1) AND EL-IND (J2 I2) IMPL MPROD (U (J1) U (J2) MAL) = SM (U (J1) U (J2)))
+             AND  
+             EL (F SM (U (J1) U (J2)))
+             AND  
+             EL-IND (J3 I2)
+             AND  
+             GR (G (J1 J2) MAL E1)
+             AND  
+             GR (G (J1 J3) MAL E2)
+             AND  
+             ABBILDUNG (PHI G (J1 J2) G (J1 J3))
+             AND  
+             (ALL X:ELEMENT EL (X G (J1 J2)) IMPL ABBVOR (PHI X APPLYV (MAL X E2))) *
+           ALL H:MENGE  ALL I1,I2:INDEXMENGE  ALL J1,J2,J3:INDEX  ALL F,E1,E2:ELEMENT  ALL PHI:ABB  ALL MAL:VERKN  
+             VORAUSSETZUNG-TH (H MAL I1 I2 J1 J2 J3 F E1 E2 PHI) IMPL INJEKTIV (PHI G (J1 J2) G (J1 J3))
+
+THEOREMS : ALL F,E1,E2:ELEMENT  ALL PHI:ABB  ALL H:MENGE  ALL MAL:VERKN  ALL I1,I2:INDEXMENGE  ALL J1,J2,J3:INDEX  
+                 VORAUSSETZUNG-TH (H MAL I1 I2 J1 J2 J3 F E1 E2 PHI)
+                 AND  
+                 VORAUSSETZUNG3.11.A (H MAL I1 I2 J1 J2 J3 F)
+                 AND  
+                 HG (H MAL)
+                 AND  
+                 MINIMAL-BED-R (H MAL)
+                 AND  
+                 MINIMAL-BED-L (H MAL)
+                 AND  
+                 (ALL J1:INDEX EL-IND (J1 I1) IMPL RIDEAL (U (J1) H MAL) AND MINIMAL (U (J1) H MAL))
+                 AND  
+                 (ALL J2:INDEX EL-IND (J2 I2) IMPL LIDEAL (U (J2) H MAL) AND MINIMAL (U (J2) H MAL))
+                 AND  
+                 EL-IND (J1 I1)
+                 AND  
+                 EL-IND (J2 I2)
+                 AND  
+                 (ALL J1,J2:INDEX EL-IND (J1 I1) AND EL-IND (J2 I2) IMPL MPROD (U (J1) U (J2) MAL) = SM (U (J1) U (J2)))
+                 AND  
+                 EL (F SM (U (J1) U (J2)))
+                 AND  
+                 EL-IND (J3 I2)
+                 AND  
+                 GR (G (J1 J2) MAL E1)
+                 AND  
+                 GR (G (J1 J3) MAL E2)
+                 AND  
+                 ABBILDUNG (PHI G (J1 J2) G (J1 J3))
+                 AND  
+                 (ALL X:ELEMENT EL (X G (J1 J2)) IMPL ABBVOR (PHI X APPLYV (MAL X E2)))
+               IMPL  
+               BIJEKTIV (PHI G (J1 J2) G (J1 J3))
+
+
+
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+  A1   : ALL X:ANY  + =(X X)
+* A2   : ALL X:ABB  Y,Z,U:ELEMENT  V,W,XX:INDEX  YY,ZZ:INDEXMENGE  UU:VERKN  VV:MENGE  
+              - VORAUSSETZUNG-TH(VV UU ZZ YY XX W V U Z Y X)  + INJEKTIV(X G(XX W) G(XX V))
+* A3   : ALL X:ELEMENT  Y:VERKN  Z:MENGE  - GR(Z Y X)  + EL(X Z)
+* A4   : ALL X,Y:ELEMENT  Z,U:MENGE  V:VERKN  - GLEICH(F*X(U Y V) Z)  - EL(X Z)  + GLEICH(APPLYV(V F_3(X V U Y) Y) X)
+* A5   : ALL X,Y:ELEMENT  Z,U:MENGE  V:VERKN  - GLEICH(F*X(U Y V) Z)  - EL(X Z)  + EL(F_3(X V U Y) U)
+* A6   : ALL X,Y,Z,U:INDEX  V,W:ELEMENT  XX,YY:INDEXMENGE  ZZ:VERKN  UU:MENGE  
+              - VORAUSSETZUNG3.11.A(UU ZZ YY XX U Z Y W)  - EL(V G(U X))  + GLEICH(F*X(G(U Z) V ZZ) G(U X))
+* A7   : ALL X,Y:MENGE  Z:ABB  - INJEKTIV(Z Y X)  - SURJEKTIV(Z Y X)  + BIJEKTIV(Z Y X)
+* A8   : ALL X:ELEMENT  Y:VERKN  Z,U:MENGE  V:ABB  
+              - ABBILDUNG(V U Z)  - ABBVOR(V F_1(Y X Z U V) APPLYV(Y F_1(Y X Z U V) X))  - GR(Z Y X)
+                + EL(F_2(Y X Z U V) Z)  + SURJEKTIV(V U Z)
+* A9   : ALL X:ELEMENT  Y:VERKN  Z,U:MENGE  V:ABB  
+              - ABBILDUNG(V U Z)  + EL(F_1(Y X Z U V) U)  - GR(Z Y X)  + EL(F_2(Y X Z U V) Z)  + SURJEKTIV(V U Z)
+* A10  : ALL X,Y:ELEMENT  Z:VERKN  U,V:MENGE  W:ABB  
+              - ABBILDUNG(W V U)  - ABBVOR(W F_1(Z Y U V W) APPLYV(Z F_1(Z Y U V W) Y))  - GR(U Z Y)  - EL(X V)
+                - GLEICH(APPLYV(Z X Y) F_2(Z Y U V W))  + SURJEKTIV(W V U)
+* A11  : ALL X,Y:ELEMENT  Z:VERKN  U,V:MENGE  W:ABB  
+              - ABBILDUNG(W V U)  + EL(F_1(Z Y U V W) V)  - GR(U Z Y)  - EL(X V)
+                - GLEICH(APPLYV(Z X Y) F_2(Z Y U V W))  + SURJEKTIV(W V U)
+
+
+
+
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+* T12  : + VORAUSSETZUNG-TH(C_5 C_4 C_2 C_3 C_8 C_9 C_10 C_6 C_7 C_1 C_11)
+* T13  : + VORAUSSETZUNG3.11.A(C_5 C_4 C_2 C_3 C_8 C_9 C_10 C_6)
+  T14  : + HG(C_5 C_4)
+  T15  : + MINIMAL-BED-R(C_5 C_4)
+  T16  : + MINIMAL-BED-L(C_5 C_4)
+  T17  : ALL X:INDEX  - EL-IND(X C_2)  + RIDEAL(U(X) C_5 C_4)
+  T18  : ALL X:INDEX  - EL-IND(X C_2)  + MINIMAL(U(X) C_5 C_4)
+  T19  : ALL X:INDEX  - EL-IND(X C_3)  + LIDEAL(U(X) C_5 C_4)
+  T20  : ALL X:INDEX  - EL-IND(X C_3)  + MINIMAL(U(X) C_5 C_4)
+  T21  : + EL-IND(C_8 C_2)
+  T22  : + EL-IND(C_9 C_3)
+  T23  : ALL X,Y:INDEX  - EL-IND(Y C_2)  - EL-IND(X C_3)  + =(MPROD(U(Y) U(X) C_4) SM(U(Y) U(X)))
+  T24  : + EL(C_6 SM(U(C_8) U(C_9)))
+  T25  : + EL-IND(C_10 C_3)
+  T26  : + GR(G(C_8 C_9) C_4 C_7)
+* T27  : + GR(G(C_8 C_10) C_4 C_1)
+* T28  : + ABBILDUNG(C_11 G(C_8 C_9) G(C_8 C_10))
+* T29  : ALL X:ELEMENT  - EL(X G(C_8 C_9))  + ABBVOR(C_11 X APPLYV(C_4 X C_1))
+* T30  : - BIJEKTIV(C_11 G(C_8 C_9) G(C_8 C_10))
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+REFUTATION
+
+INITIAL CLAUSES :        A1   : ALL X:ANY  + =(X X)
+                       * A2   : ALL X:ABB  Y,Z,U:ELEMENT  V,W,XX:INDEX  YY,ZZ:INDEXMENGE  UU:VERKN  VV:MENGE  
+                                     - VORAUSSETZUNG-TH(VV UU ZZ YY XX W V U Z Y X)  + INJEKTIV(X G(XX W) G(XX V))
+                       * A3   : ALL X:ELEMENT  Y:VERKN  Z:MENGE  - GR(Z Y X)  + EL(X Z)
+                       * A4   : ALL X,Y:ELEMENT  Z,U:MENGE  V:VERKN  
+                                     - GLEICH(F*X(U Y V) Z)  - EL(X Z)  + GLEICH(APPLYV(V F_3(X V U Y) Y) X)
+                       * A5   : ALL X,Y:ELEMENT  Z,U:MENGE  V:VERKN  
+                                     - GLEICH(F*X(U Y V) Z)  - EL(X Z)  + EL(F_3(X V U Y) U)
+                       * A6   : ALL X,Y,Z,U:INDEX  V,W:ELEMENT  XX,YY:INDEXMENGE  ZZ:VERKN  UU:MENGE  
+                                     - VORAUSSETZUNG3.11.A(UU ZZ YY XX U Z Y W)  - EL(V G(U X))
+                                       + GLEICH(F*X(G(U Z) V ZZ) G(U X))
+                       * A7   : ALL X,Y:MENGE  Z:ABB  - INJEKTIV(Z Y X)  - SURJEKTIV(Z Y X)  + BIJEKTIV(Z Y X)
+                       * A8   : ALL X:ELEMENT  Y:VERKN  Z,U:MENGE  V:ABB  
+                                     - ABBILDUNG(V U Z)  - ABBVOR(V F_1(Y X Z U V) APPLYV(Y F_1(Y X Z U V) X))
+                                       - GR(Z Y X)  + EL(F_2(Y X Z U V) Z)  + SURJEKTIV(V U Z)
+                       * A9   : ALL X:ELEMENT  Y:VERKN  Z,U:MENGE  V:ABB  
+                                     - ABBILDUNG(V U Z)  + EL(F_1(Y X Z U V) U)  - GR(Z Y X)  + EL(F_2(Y X Z U V) Z)
+                                       + SURJEKTIV(V U Z)
+                       * A10  : ALL X,Y:ELEMENT  Z:VERKN  U,V:MENGE  W:ABB  
+                                     - ABBILDUNG(W V U)  - ABBVOR(W F_1(Z Y U V W) APPLYV(Z F_1(Z Y U V W) Y))
+                                       - GR(U Z Y)  - EL(X V)  - GLEICH(APPLYV(Z X Y) F_2(Z Y U V W))
+                                       + SURJEKTIV(W V U)
+                       * A11  : ALL X,Y:ELEMENT  Z:VERKN  U,V:MENGE  W:ABB  
+                                     - ABBILDUNG(W V U)  + EL(F_1(Z Y U V W) V)  - GR(U Z Y)  - EL(X V)
+                                       - GLEICH(APPLYV(Z X Y) F_2(Z Y U V W))  + SURJEKTIV(W V U)
+                       * T12  : + VORAUSSETZUNG-TH(C_5 C_4 C_2 C_3 C_8 C_9 C_10 C_6 C_7 C_1 C_11)
+                       * T13  : + VORAUSSETZUNG3.11.A(C_5 C_4 C_2 C_3 C_8 C_9 C_10 C_6)
+                         T21  : + EL-IND(C_8 C_2)
+                         T22  : + EL-IND(C_9 C_3)
+                         T23  : ALL X,Y:INDEX  - EL-IND(Y C_2)  - EL-IND(X C_3)  + =(MPROD(U(Y) U(X) C_4) SM(U(Y) U(X)))
+                         T24  : + EL(C_6 SM(U(C_8) U(C_9)))
+                         T25  : + EL-IND(C_10 C_3)
+                         T26  : + GR(G(C_8 C_9) C_4 C_7)
+                       * T27  : + GR(G(C_8 C_10) C_4 C_1)
+                       * T28  : + ABBILDUNG(C_11 G(C_8 C_9) G(C_8 C_10))
+                       * T29  : ALL X:ELEMENT  - EL(X G(C_8 C_9))  + ABBVOR(C_11 X APPLYV(C_4 X C_1))
+                       * T30  : - BIJEKTIV(C_11 G(C_8 C_9) G(C_8 C_10))
+
+A7,3 & T30,1      -->  * R1   : - INJEKTIV(C_11 G(C_8 C_9) G(C_8 C_10))  - SURJEKTIV(C_11 G(C_8 C_9) G(C_8 C_10))
+
+R1,1 & A2,2       -->  * R2   : - SURJEKTIV(C_11 G(C_8 C_9) G(C_8 C_10))
+                                  - VORAUSSETZUNG-TH(C_5 C_4 C_2 C_3 C_8 C_9 C_10 C_6 C_7 C_1 C_11)
+
+R2,2 & T12,1      -->  * R3   : - SURJEKTIV(C_11 G(C_8 C_9) G(C_8 C_10))
+
+A8,5 & R3,1       -->  * R4   : ALL X:ELEMENT  Y:VERKN  
+                                     - ABBILDUNG(C_11 G(C_8 C_9) G(C_8 C_10))
+                                     - ABBVOR(C_11
+                                              F_1(Y X G(C_8 C_10) G(C_8 C_9) C_11)
+                                              APPLYV(Y F_1(Y X G(C_8 C_10) G(C_8 C_9) C_11) X))
+                                       - GR(G(C_8 C_10) Y X)  + EL(F_2(Y X G(C_8 C_10) G(C_8 C_9) C_11) G(C_8 C_10))
+
+R4,1 & T28,1      -->  * R5   : ALL X:ELEMENT  Y:VERKN  
+                                     - ABBVOR(C_11
+                                              F_1(Y X G(C_8 C_10) G(C_8 C_9) C_11)
+                                              APPLYV(Y F_1(Y X G(C_8 C_10) G(C_8 C_9) C_11) X))
+                                       - GR(G(C_8 C_10) Y X)  + EL(F_2(Y X G(C_8 C_10) G(C_8 C_9) C_11) G(C_8 C_10))
+
+T27,1 & R5,2      -->  * R6   : - ABBVOR(C_11
+                                         F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11)
+                                         APPLYV(C_4 F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_1))
+                                  + EL(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) G(C_8 C_10))
+
+A9,5 & R3,1       -->  * R7   : ALL X:ELEMENT  Y:VERKN  
+                                     - ABBILDUNG(C_11 G(C_8 C_9) G(C_8 C_10))
+                                       + EL(F_1(Y X G(C_8 C_10) G(C_8 C_9) C_11) G(C_8 C_9))  - GR(G(C_8 C_10) Y X)
+                                       + EL(F_2(Y X G(C_8 C_10) G(C_8 C_9) C_11) G(C_8 C_10))
+
+R7,1 & T28,1      -->  * R8   : ALL X:ELEMENT  Y:VERKN  
+                                     + EL(F_1(Y X G(C_8 C_10) G(C_8 C_9) C_11) G(C_8 C_9))  - GR(G(C_8 C_10) Y X)
+                                       + EL(F_2(Y X G(C_8 C_10) G(C_8 C_9) C_11) G(C_8 C_10))
+
+T27,1 & R8,2      -->  * R9   : + EL(F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) G(C_8 C_9))
+                                  + EL(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) G(C_8 C_10))
+
+A10,6 & R3,1      -->  * R10  : ALL X,Y:ELEMENT  Z:VERKN  
+                                     - ABBILDUNG(C_11 G(C_8 C_9) G(C_8 C_10))
+                                     - ABBVOR(C_11
+                                              F_1(Z Y G(C_8 C_10) G(C_8 C_9) C_11)
+                                              APPLYV(Z F_1(Z Y G(C_8 C_10) G(C_8 C_9) C_11) Y))
+                                       - GR(G(C_8 C_10) Z Y)  - EL(X G(C_8 C_9))
+                                       - GLEICH(APPLYV(Z X Y) F_2(Z Y G(C_8 C_10) G(C_8 C_9) C_11))
+
+R10,1 & T28,1     -->  * R11  : ALL X,Y:ELEMENT  Z:VERKN  
+                                     - ABBVOR(C_11
+                                              F_1(Z Y G(C_8 C_10) G(C_8 C_9) C_11)
+                                              APPLYV(Z F_1(Z Y G(C_8 C_10) G(C_8 C_9) C_11) Y))
+                                       - GR(G(C_8 C_10) Z Y)  - EL(X G(C_8 C_9))
+                                       - GLEICH(APPLYV(Z X Y) F_2(Z Y G(C_8 C_10) G(C_8 C_9) C_11))
+
+T27,1 & R11,2     -->  * R12  : ALL X:ELEMENT  - ABBVOR(C_11
+                                                        F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11)
+                                                        APPLYV(C_4 F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_1))
+                                                 - EL(X G(C_8 C_9))
+                                                 - GLEICH(APPLYV(C_4 X C_1) F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+
+A11,6 & R3,1      -->  * R13  : ALL X,Y:ELEMENT  Z:VERKN  
+                                     - ABBILDUNG(C_11 G(C_8 C_9) G(C_8 C_10))
+                                       + EL(F_1(Z Y G(C_8 C_10) G(C_8 C_9) C_11) G(C_8 C_9))  - GR(G(C_8 C_10) Z Y)
+                                       - EL(X G(C_8 C_9))  - GLEICH(APPLYV(Z X Y) F_2(Z Y G(C_8 C_10) G(C_8 C_9) C_11))
+
+R13,1 & T28,1     -->  * R14  : ALL X,Y:ELEMENT  Z:VERKN  
+                                     + EL(F_1(Z Y G(C_8 C_10) G(C_8 C_9) C_11) G(C_8 C_9))  - GR(G(C_8 C_10) Z Y)
+                                       - EL(X G(C_8 C_9))  - GLEICH(APPLYV(Z X Y) F_2(Z Y G(C_8 C_10) G(C_8 C_9) C_11))
+
+T27,1 & R14,2     -->  * R15  : ALL X:ELEMENT  + EL(F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) G(C_8 C_9))
+                                                 - EL(X G(C_8 C_9))
+                                                 - GLEICH(APPLYV(C_4 X C_1) F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+
+T21,1 & T23,1     -->    R16  : ALL X:INDEX  - EL-IND(X C_3)  + =(MPROD(U(C_8) U(X) C_4) SM(U(C_8) U(X)))
+
+T13,1 & A6,1      -->  * R17  : ALL X:INDEX  Y:ELEMENT  - EL(Y G(C_8 X))  + GLEICH(F*X(G(C_8 C_9) Y C_4) G(C_8 X))
+
+T26,1 & A3,1      -->    R18  : + EL(C_7 G(C_8 C_9))
+
+R18,1 & R17,1     -->    R19  : + GLEICH(F*X(G(C_8 C_9) C_7 C_4) G(C_8 C_9))
+
+T27,1 & A3,1      -->  * R20  : + EL(C_1 G(C_8 C_10))
+
+R20,1 & R17,1     -->  * R21  : + GLEICH(F*X(G(C_8 C_9) C_1 C_4) G(C_8 C_10))
+
+R18,1 & T29,1     -->    R22  : + ABBVOR(C_11 C_7 APPLYV(C_4 C_7 C_1))
+
+T22,1 & R16,1     -->    R23  : + =(MPROD(U(C_8) U(C_9) C_4) SM(U(C_8) U(C_9)))
+
+T25,1 & R16,1     -->    R24  : + =(MPROD(U(C_8) U(C_10) C_4) SM(U(C_8) U(C_10)))
+
+R23,1 & T24,1     -->    P25  : + EL(C_6 MPROD(U(C_8) U(C_9) C_4))
+
+R18,1 & T29,1     -->    R26  : + ABBVOR(C_11 C_7 APPLYV(C_4 C_7 C_1))
+
+T24,1 & A5,2      -->    R27  : ALL X:VERKN  Y:ELEMENT  Z:MENGE  
+                                     - GLEICH(F*X(Z Y X) SM(U(C_8) U(C_9)))  + EL(F_3(C_6 X Z Y) Z)
+
+T24,1 & A4,2      -->    R28  : ALL X:VERKN  Y:ELEMENT  Z:MENGE  
+                                     - GLEICH(F*X(Z Y X) SM(U(C_8) U(C_9)))  + GLEICH(APPLYV(X F_3(C_6 X Z Y) Y) C_6)
+
+R18,1 & A5,2      -->    R29  : ALL X:VERKN  Y:ELEMENT  Z:MENGE  - GLEICH(F*X(Z Y X) G(C_8 C_9))  + EL(F_3(C_7 X Z Y) Z)
+
+R19,1 & R29,1     -->    R30  : + EL(F_3(C_7 C_4 G(C_8 C_9) C_7) G(C_8 C_9))
+
+R18,1 & A4,2      -->    R31  : ALL X:VERKN  Y:ELEMENT  Z:MENGE  
+                                     - GLEICH(F*X(Z Y X) G(C_8 C_9))  + GLEICH(APPLYV(X F_3(C_7 X Z Y) Y) C_7)
+
+R20,1 & A5,2      -->    R32  : ALL X:VERKN  Y:ELEMENT  Z:MENGE  
+                                     - GLEICH(F*X(Z Y X) G(C_8 C_10))  + EL(F_3(C_1 X Z Y) Z)
+
+R21,1 & R32,1     -->    R33  : + EL(F_3(C_1 C_4 G(C_8 C_9) C_1) G(C_8 C_9))
+
+R33,1 & A5,2      -->    R34  : - GLEICH(F*X(G(C_8 C_9) C_7 C_4) G(C_8 C_9))
+                                  + EL(F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) C_7) G(C_8 C_9))
+
+R34,1 & R19,1     -->    R35  : + EL(F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) C_7) G(C_8 C_9))
+
+R35,1 & T29,1     -->    R36  : + ABBVOR(C_11
+                                         F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) C_7)
+                                         APPLYV(C_4 F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) C_7) C_1))
+
+
+R33,1 & T29,1     -->    R37  : + ABBVOR(C_11 F_3(C_1 C_4 G(C_8 C_9) C_1) APPLYV(C_4 F_3(C_1 C_4 G(C_8 C_9) C_1) C_1))
+
+R33,1 & A4,2      -->    R38  : - GLEICH(F*X(G(C_8 C_9) C_7 C_4) G(C_8 C_9))
+                                + GLEICH(APPLYV(C_4 F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) C_7) C_7)
+                                         F_3(C_1 C_4 G(C_8 C_9) C_1))
+
+
+R38,1 & R19,1     -->    R39  : + GLEICH(APPLYV(C_4 F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) C_7) C_7)
+                                         F_3(C_1 C_4 G(C_8 C_9) C_1))
+
+
+R35,1 & R17,1     -->    R40  : + GLEICH(F*X(G(C_8 C_9) F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) C_7) C_4)
+                                         G(C_8 C_9))
+
+
+R33,1 & R17,1     -->    R41  : + GLEICH(F*X(G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1) C_4) G(C_8 C_9))
+
+R40,1 & R29,1     -->    R42  : + EL(F_3(C_7 C_4 G(C_8 C_9) F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) C_7))
+                                     G(C_8 C_9))
+
+
+R41,1 & R29,1     -->    R43  : + EL(F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1)) G(C_8 C_9))
+
+R20,1 & A4,2      -->    R44  : ALL X:VERKN  Y:ELEMENT  Z:MENGE  
+                                     - GLEICH(F*X(Z Y X) G(C_8 C_10))  + GLEICH(APPLYV(X F_3(C_1 X Z Y) Y) C_1)
+
+A5,3 & T29,1      -->    R45  : ALL X,Y:ELEMENT  Z:MENGE  U:VERKN  
+                                     - GLEICH(F*X(G(C_8 C_9) Y U) Z)  - EL(X Z)
+                                       + ABBVOR(C_11 F_3(X U G(C_8 C_9) Y) APPLYV(C_4 F_3(X U G(C_8 C_9) Y) C_1))
+
+R30,1 & T29,1     -->    R46  : + ABBVOR(C_11 F_3(C_7 C_4 G(C_8 C_9) C_7) APPLYV(C_4 F_3(C_7 C_4 G(C_8 C_9) C_7) C_1))
+
+R30,1 & R17,1     -->    R47  : + GLEICH(F*X(G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7) C_4) G(C_8 C_9))
+
+R33,1 & A4,2      -->    R48  : - GLEICH(F*X(G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7) C_4) G(C_8 C_9))
+                                + GLEICH(APPLYV(C_4
+                                                F_3(F_3(C_1 C_4 G(C_8 C_9) C_1)
+                                                    C_4
+                                                    G(C_8 C_9)
+                                                    F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                                F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                         F_3(C_1 C_4 G(C_8 C_9) C_1))
+
+
+R48,1 & R47,1     -->    R49  : + GLEICH(APPLYV(C_4
+                                                F_3(F_3(C_1 C_4 G(C_8 C_9) C_1)
+                                                    C_4
+                                                    G(C_8 C_9)
+                                                    F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                                F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                         F_3(C_1 C_4 G(C_8 C_9) C_1))
+
+
+R30,1 & A4,2      -->    R50  : - GLEICH(F*X(G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7) C_4) G(C_8 C_9))
+                                + GLEICH(APPLYV(C_4
+                                                F_3(F_3(C_7 C_4 G(C_8 C_9) C_7)
+                                                    C_4
+                                                    G(C_8 C_9)
+                                                    F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                                F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                         F_3(C_7 C_4 G(C_8 C_9) C_7))
+
+
+R50,1 & R47,1     -->    R51  : + GLEICH(APPLYV(C_4
+                                                F_3(F_3(C_7 C_4 G(C_8 C_9) C_7)
+                                                    C_4
+                                                    G(C_8 C_9)
+                                                    F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                                F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                         F_3(C_7 C_4 G(C_8 C_9) C_7))
+
+
+R33,1 & A5,2      -->    R52  : - GLEICH(F*X(G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7) C_4) G(C_8 C_9))
+                                + EL(F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                     G(C_8 C_9))
+
+
+R52,1 & R47,1     -->    R53  : + EL(F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                     G(C_8 C_9))
+
+
+R53,1 & R17,1     -->    R54  : + GLEICH(F*X(G(C_8 C_9)
+                                             F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                             C_4)
+                                         G(C_8 C_9))
+
+
+R30,1 & A5,2      -->    R55  : - GLEICH(F*X(G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7) C_4) G(C_8 C_9))
+                                + EL(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                     G(C_8 C_9))
+
+
+R55,1 & R47,1     -->    R56  : + EL(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                     G(C_8 C_9))
+
+
+R56,1 & R17,1     -->    R57  : + GLEICH(F*X(G(C_8 C_9)
+                                             F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                             C_4)
+                                         G(C_8 C_9))
+
+
+R43,1 & A5,2      -->    R58  : - GLEICH(F*X(G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7) C_4) G(C_8 C_9))
+                                + EL(F_3(F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                     G(C_8 C_9))
+
+
+R58,1 & R47,1     -->    R59  : + EL(F_3(F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                     G(C_8 C_9))
+
+
+R35,1 & A5,2      -->    R60  : - GLEICH(F*X(G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7) C_4) G(C_8 C_9))
+                                + EL(F_3(F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) C_7)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                     G(C_8 C_9))
+
+
+R60,1 & R47,1     -->    R61  : + EL(F_3(F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) C_7)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                     G(C_8 C_9))
+
+
+R54,1 & R29,1     -->    R62  : + EL(F_3(C_7
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)))
+                                     G(C_8 C_9))
+
+
+R57,1 & R29,1     -->    R63  : + EL(F_3(C_7
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)))
+                                     G(C_8 C_9))
+
+
+R47,1 & R29,1     -->    R64  : + EL(F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)) G(C_8 C_9))
+
+R19,1 & A5,1      -->    R65  : ALL X:ELEMENT  - EL(X G(C_8 C_9))  + EL(F_3(X C_4 G(C_8 C_9) C_7) G(C_8 C_9))
+
+R30,1 & R65,1     -->    R66  : + EL(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) C_7) G(C_8 C_9))
+
+R66,1 & R17,1     -->    R67  : + GLEICH(F*X(G(C_8 C_9) F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) C_7) C_4)
+                                         G(C_8 C_9))
+
+
+R66,1 & A5,2      -->    R68  : - GLEICH(F*X(G(C_8 C_9) F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) C_7) C_4)
+                                         G(C_8 C_9))
+                                + EL(F_3(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) C_7)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) C_7))
+                                     G(C_8 C_9))
+
+
+R68,1 & R40,1     -->    R69  : + EL(F_3(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) C_7)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) C_7))
+                                     G(C_8 C_9))
+
+
+R66,1 & A5,2      -->    R70  : - GLEICH(F*X(G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1) C_4) G(C_8 C_9))
+                                + EL(F_3(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) C_7)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_1 C_4 G(C_8 C_9) C_1))
+                                     G(C_8 C_9))
+
+
+R70,1 & R41,1     -->    R71  : + EL(F_3(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) C_7)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_1 C_4 G(C_8 C_9) C_1))
+                                     G(C_8 C_9))
+
+
+R66,1 & A5,2      -->    R72  : - GLEICH(F*X(G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7) C_4) G(C_8 C_9))
+                                + EL(F_3(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) C_7)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                     G(C_8 C_9))
+
+
+R72,1 & R47,1     -->    R73  : + EL(F_3(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) C_7)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                     G(C_8 C_9))
+
+
+R66,1 & A5,2      -->    R74  : - GLEICH(F*X(G(C_8 C_9)
+                                             F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                             C_4)
+                                         G(C_8 C_9))
+                                + EL(F_3(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) C_7)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)))
+                                     G(C_8 C_9))
+
+
+R74,1 & R54,1     -->    R75  : + EL(F_3(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) C_7)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)))
+                                     G(C_8 C_9))
+
+
+R66,1 & A5,2      -->    R76  : - GLEICH(F*X(G(C_8 C_9)
+                                             F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                             C_4)
+                                         G(C_8 C_9))
+                                + EL(F_3(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) C_7)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)))
+                                     G(C_8 C_9))
+
+
+R76,1 & R57,1     -->    R77  : + EL(F_3(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) C_7)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)))
+                                     G(C_8 C_9))
+
+
+R35,1 & R65,1     -->    R78  : + EL(F_3(F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) C_7)
+                                     G(C_8 C_9))
+
+
+R43,1 & R65,1     -->    R79  : + EL(F_3(F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1)) C_4 G(C_8 C_9) C_7)
+                                     G(C_8 C_9))
+
+
+R53,1 & R65,1     -->    R80  : + EL(F_3(F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                         C_4
+                                         G(C_8 C_9)
+                                         C_7)
+                                     G(C_8 C_9))
+
+
+R56,1 & R65,1     -->    R81  : + EL(F_3(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                         C_4
+                                         G(C_8 C_9)
+                                         C_7)
+                                     G(C_8 C_9))
+
+
+R64,1 & R65,1     -->    R82  : + EL(F_3(F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)) C_4 G(C_8 C_9) C_7)
+                                     G(C_8 C_9))
+
+
+R66,1 & R65,1     -->    R83  : + EL(F_3(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) C_7)
+                                     G(C_8 C_9))
+
+
+R67,1 & R29,1     -->    R84  : + EL(F_3(C_7 C_4 G(C_8 C_9) F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) C_7))
+                                     G(C_8 C_9))
+
+
+R19,1 & A4,1      -->    R85  : ALL X:ELEMENT  - EL(X G(C_8 C_9))  + GLEICH(APPLYV(C_4 F_3(X C_4 G(C_8 C_9) C_7) C_7) X)
+
+R21,1 & A5,1      -->  * R86  : ALL X:ELEMENT  - EL(X G(C_8 C_10))  + EL(F_3(X C_4 G(C_8 C_9) C_1) G(C_8 C_9))
+
+R21,1 & A4,1      -->  * R87  : ALL X:ELEMENT  - EL(X G(C_8 C_10))
+                                                 + GLEICH(APPLYV(C_4 F_3(X C_4 G(C_8 C_9) C_1) C_1) X)
+
+R29,2 & R17,1     -->    R88  : ALL X:VERKN  Y:ELEMENT  Z:INDEX  
+                                     - GLEICH(F*X(G(C_8 Z) Y X) G(C_8 C_9))
+                                       + GLEICH(F*X(G(C_8 C_9) F_3(C_7 X G(C_8 Z) Y) C_4) G(C_8 Z))
+
+R29,2 & T29,1     -->    R89  : ALL X:VERKN  Y:ELEMENT  
+                                     - GLEICH(F*X(G(C_8 C_9) Y X) G(C_8 C_9))
+                                       + ABBVOR(C_11 F_3(C_7 X G(C_8 C_9) Y) APPLYV(C_4 F_3(C_7 X G(C_8 C_9) Y) C_1))
+
+R17,2 & R29,1     -->    R90  : ALL X:ELEMENT  - EL(X G(C_8 C_9))  + EL(F_3(C_7 C_4 G(C_8 C_9) X) G(C_8 C_9))
+
+R43,1 & R90,1     -->    R91  : + EL(F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1)))
+                                     G(C_8 C_9))
+
+
+R64,1 & R90,1     -->    R92  : + EL(F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)))
+                                     G(C_8 C_9))
+
+
+R32,2 & R17,1     -->    R93  : ALL X:VERKN  Y:ELEMENT  Z:INDEX  
+                                     - GLEICH(F*X(G(C_8 Z) Y X) G(C_8 C_10))
+                                       + GLEICH(F*X(G(C_8 C_9) F_3(C_1 X G(C_8 Z) Y) C_4) G(C_8 Z))
+
+R32,2 & T29,1     -->    R94  : ALL X:VERKN  Y:ELEMENT  
+                                     - GLEICH(F*X(G(C_8 C_9) Y X) G(C_8 C_10))
+                                       + ABBVOR(C_11 F_3(C_1 X G(C_8 C_9) Y) APPLYV(C_4 F_3(C_1 X G(C_8 C_9) Y) C_1))
+
+R17,2 & R32,1     -->    R95  : ALL X:ELEMENT  - EL(X G(C_8 C_10))  + EL(F_3(C_1 C_4 G(C_8 C_9) X) G(C_8 C_9))
+
+R17,2 & A4,1      -->    R96  : ALL X,Y:ELEMENT  Z:INDEX  
+                                     - EL(Y G(C_8 Z))  - EL(X G(C_8 Z))
+                                       + GLEICH(APPLYV(C_4 F_3(X C_4 G(C_8 C_9) Y) Y) X)
+
+R33,1 & R96,2     -->    R97  : - EL(F_3(C_1 C_4 G(C_8 C_9) C_1) G(C_8 C_9))
+                                + GLEICH(APPLYV(C_4
+                                                F_3(F_3(C_1 C_4 G(C_8 C_9) C_1)
+                                                    C_4
+                                                    G(C_8 C_9)
+                                                    F_3(C_1 C_4 G(C_8 C_9) C_1))
+                                                F_3(C_1 C_4 G(C_8 C_9) C_1))
+                                         F_3(C_1 C_4 G(C_8 C_9) C_1))
+
+
+A8                --> 
+
+R30,1 & R96,2     -->    R98  : - EL(F_3(C_7 C_4 G(C_8 C_9) C_7) G(C_8 C_9))
+                                + GLEICH(APPLYV(C_4
+                                                F_3(F_3(C_7 C_4 G(C_8 C_9) C_7)
+                                                    C_4
+                                                    G(C_8 C_9)
+                                                    F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                                F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                         F_3(C_7 C_4 G(C_8 C_9) C_7))
+
+
+A8                --> 
+
+R17,2 & A5,1      -->    R99  : ALL X,Y:ELEMENT  Z:INDEX  
+                                     - EL(Y G(C_8 Z))  - EL(X G(C_8 Z))  + EL(F_3(X C_4 G(C_8 C_9) Y) G(C_8 C_9))
+
+A5,3 & R17,1      -->    R100 : ALL X,Y:ELEMENT  Z:MENGE  U:VERKN  V:INDEX  
+                                     - GLEICH(F*X(G(C_8 V) Y U) Z)  - EL(X Z)
+                                       + GLEICH(F*X(G(C_8 C_9) F_3(X U G(C_8 V) Y) C_4) G(C_8 V))
+
+R35,1 & T29,1     -->    R101 : + ABBVOR(C_11
+                                         F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) C_7)
+                                         APPLYV(C_4 F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) C_7) C_1))
+
+
+T29,2 & R6,1      -->  * R102 : - EL(F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) G(C_8 C_9))
+                                  + EL(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) G(C_8 C_10))
+
+R102,1 & R9,1     -->  * R103 : + EL(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) G(C_8 C_10))
+                                  + EL(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) G(C_8 C_10))
+
+R103 1=2          -->  * D104 : + EL(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) G(C_8 C_10))
+
+D104,1 & R87,1    -->  * R105 : + GLEICH(APPLYV(C_4
+                                                F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1)
+                                                C_1)
+                                         F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+
+
+D104,1 & R86,1    -->  * R106 : + EL(F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1) G(C_8 C_9))
+
+R106,1 & R12,2    -->  * R107 : - ABBVOR(C_11
+                                         F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11)
+                                         APPLYV(C_4 F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_1))
+                                - GLEICH(APPLYV(C_4
+                                                F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1)
+                                                C_1)
+                                         F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+
+
+R107,2 & R105,1   -->  * R108 : - ABBVOR(C_11
+                                         F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11)
+                                         APPLYV(C_4 F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_1))
+
+
+R106,1 & R17,1    -->    R109 : + GLEICH(F*X(G(C_8 C_9)
+                                             F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1)
+                                             C_4)
+                                         G(C_8 C_9))
+
+
+D104,1 & R17,1    -->    R110 : + GLEICH(F*X(G(C_8 C_9) F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4) G(C_8 C_10))
+
+R110,1 & R93,1    -->    R111 : + GLEICH(F*X(G(C_8 C_9)
+                                             F_3(C_1 C_4 G(C_8 C_9) F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                             C_4)
+                                         G(C_8 C_9))
+
+
+R106,1 & R15,2    -->  * R112 : + EL(F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) G(C_8 C_9))
+                                - GLEICH(APPLYV(C_4
+                                                F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1)
+                                                C_1)
+                                         F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+
+
+R112,2 & R105,1   -->  * R113 : + EL(F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) G(C_8 C_9))
+
+R113,1 & R96,2    -->    R114 : - EL(F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) G(C_8 C_9))
+                                + GLEICH(APPLYV(C_4
+                                                F_3(F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11)
+                                                    C_4
+                                                    G(C_8 C_9)
+                                                    F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                                F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                         F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+
+
+A8                --> 
+
+D104,1 & R96,2    -->    R115 : - EL(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) G(C_8 C_10))
+                                + GLEICH(APPLYV(C_4
+                                                F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11)
+                                                    C_4
+                                                    G(C_8 C_9)
+                                                    F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                                F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                         F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+
+
+A8                --> 
+
+R33,1 & R96,2     -->    R116 : - EL(F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) G(C_8 C_9))
+                                + GLEICH(APPLYV(C_4
+                                                F_3(F_3(C_1 C_4 G(C_8 C_9) C_1)
+                                                    C_4
+                                                    G(C_8 C_9)
+                                                    F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                                F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                         F_3(C_1 C_4 G(C_8 C_9) C_1))
+
+
+R116,1 & R113,1   -->    R117 : + GLEICH(APPLYV(C_4
+                                                F_3(F_3(C_1 C_4 G(C_8 C_9) C_1)
+                                                    C_4
+                                                    G(C_8 C_9)
+                                                    F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                                F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                         F_3(C_1 C_4 G(C_8 C_9) C_1))
+
+
+R30,1 & R96,2     -->    R118 : - EL(F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) G(C_8 C_9))
+                                + GLEICH(APPLYV(C_4
+                                                F_3(F_3(C_7 C_4 G(C_8 C_9) C_7)
+                                                    C_4
+                                                    G(C_8 C_9)
+                                                    F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                                F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                         F_3(C_7 C_4 G(C_8 C_9) C_7))
+
+
+R118,1 & R113,1   -->    R119 : + GLEICH(APPLYV(C_4
+                                                F_3(F_3(C_7 C_4 G(C_8 C_9) C_7)
+                                                    C_4
+                                                    G(C_8 C_9)
+                                                    F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                                F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                         F_3(C_7 C_4 G(C_8 C_9) C_7))
+
+
+R33,1 & R100,2    -->    R120 : - GLEICH(F*X(G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1) C_4) G(C_8 C_9))
+                                + GLEICH(F*X(G(C_8 C_9)
+                                             F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1))
+                                             C_4)
+                                         G(C_8 C_9))
+
+
+R120,1 & R41,1    -->    R121 : + GLEICH(F*X(G(C_8 C_9)
+                                             F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1))
+                                             C_4)
+                                         G(C_8 C_9))
+
+
+R30,1 & R100,2    -->    R122 : - GLEICH(F*X(G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1) C_4) G(C_8 C_9))
+                                + GLEICH(F*X(G(C_8 C_9)
+                                             F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1))
+                                             C_4)
+                                         G(C_8 C_9))
+
+
+R122,1 & R41,1    -->    R123 : + GLEICH(F*X(G(C_8 C_9)
+                                             F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1))
+                                             C_4)
+                                         G(C_8 C_9))
+
+
+R113,1 & R100,2   -->    R124 : - GLEICH(F*X(G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1) C_4) G(C_8 C_9))
+                                + GLEICH(F*X(G(C_8 C_9)
+                                             F_3(F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11)
+                                                 C_4
+                                                 G(C_8 C_9)
+                                                 F_3(C_1 C_4 G(C_8 C_9) C_1))
+                                             C_4)
+                                         G(C_8 C_9))
+
+
+R124,1 & R41,1    -->    R125 : + GLEICH(F*X(G(C_8 C_9)
+                                             F_3(F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11)
+                                                 C_4
+                                                 G(C_8 C_9)
+                                                 F_3(C_1 C_4 G(C_8 C_9) C_1))
+                                             C_4)
+                                         G(C_8 C_9))
+
+
+R113,1 & R100,2   -->    R126 : - GLEICH(F*X(G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7) C_4) G(C_8 C_9))
+                                + GLEICH(F*X(G(C_8 C_9)
+                                             F_3(F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11)
+                                                 C_4
+                                                 G(C_8 C_9)
+                                                 F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                             C_4)
+                                         G(C_8 C_9))
+
+
+R126,1 & R47,1    -->    R127 : + GLEICH(F*X(G(C_8 C_9)
+                                             F_3(F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11)
+                                                 C_4
+                                                 G(C_8 C_9)
+                                                 F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                             C_4)
+                                         G(C_8 C_9))
+
+
+D104,1 & R95,1    -->    R128 : + EL(F_3(C_1 C_4 G(C_8 C_9) F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11)) G(C_8 C_9))
+
+R128,1 & R90,1    -->    R129 : + EL(F_3(C_7
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_1 C_4 G(C_8 C_9) F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11)))
+                                     G(C_8 C_9))
+
+
+R106,1 & R65,1    -->    R130 : + EL(F_3(F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1)
+                                         C_4
+                                         G(C_8 C_9)
+                                         C_7)
+                                     G(C_8 C_9))
+
+
+R128,1 & R65,1    -->    R131 : + EL(F_3(F_3(C_1 C_4 G(C_8 C_9) F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                         C_4
+                                         G(C_8 C_9)
+                                         C_7)
+                                     G(C_8 C_9))
+
+
+R66,1 & R99,2     -->    R132 : - EL(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) C_7) G(C_8 C_9))
+                                + EL(F_3(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) C_7)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) C_7))
+                                     G(C_8 C_9))
+
+
+A8                --> 
+
+R64,1 & R99,2     -->    R133 : - EL(F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)) G(C_8 C_9))
+                                + EL(F_3(F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)))
+                                     G(C_8 C_9))
+
+
+A8                --> 
+
+R56,1 & R99,2     -->    R134 : - EL(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                     G(C_8 C_9))
+                                + EL(F_3(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)))
+                                     G(C_8 C_9))
+
+
+A8                --> 
+
+R53,1 & R99,2     -->    R135 : - EL(F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                     G(C_8 C_9))
+                                + EL(F_3(F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)))
+                                     G(C_8 C_9))
+
+
+A8                --> 
+
+R43,1 & R99,2     -->    R136 : - EL(F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1)) G(C_8 C_9))
+                                + EL(F_3(F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1)))
+                                     G(C_8 C_9))
+
+
+A8                --> 
+
+R35,1 & R99,2     -->    R137 : - EL(F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) C_7) G(C_8 C_9))
+                                + EL(F_3(F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) C_7)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) C_7))
+                                     G(C_8 C_9))
+
+
+A8                --> 
+
+R33,1 & R99,2     -->    R138 : - EL(F_3(C_1 C_4 G(C_8 C_9) C_1) G(C_8 C_9))
+                                + EL(F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1))
+                                     G(C_8 C_9))
+
+
+A8                --> 
+
+R128,1 & R99,2    -->    R139 : - EL(F_3(C_1 C_4 G(C_8 C_9) F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11)) G(C_8 C_9))
+                                + EL(F_3(F_3(C_1 C_4 G(C_8 C_9) F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_1 C_4 G(C_8 C_9) F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11)))
+                                     G(C_8 C_9))
+
+
+A8                --> 
+
+R106,1 & R99,2    -->    R140 : - EL(F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1) G(C_8 C_9))
+                                + EL(F_3(F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1))
+                                     G(C_8 C_9))
+
+
+A8                --> 
+
+R113,1 & R99,2    -->    R141 : - EL(F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) G(C_8 C_9))
+                                + EL(F_3(F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                     G(C_8 C_9))
+
+
+A8                --> 
+
+D104,1 & R99,2    -->    R142 : - EL(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) G(C_8 C_10))
+                                + EL(F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                     G(C_8 C_9))
+
+
+A8                --> 
+
+R66,1 & R99,2     -->    R143 : - EL(F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) G(C_8 C_9))
+                                + EL(F_3(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) C_7)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                     G(C_8 C_9))
+
+
+R143,1 & R113,1   -->    R144 : + EL(F_3(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) C_7)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                     G(C_8 C_9))
+
+
+R64,1 & R99,2     -->    R145 : - EL(F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) G(C_8 C_9))
+                                + EL(F_3(F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                     G(C_8 C_9))
+
+
+R145,1 & R113,1   -->    R146 : + EL(F_3(F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                     G(C_8 C_9))
+
+
+R56,1 & R99,2     -->    R147 : - EL(F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) G(C_8 C_9))
+                                + EL(F_3(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                     G(C_8 C_9))
+
+
+R147,1 & R113,1   -->    R148 : + EL(F_3(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                     G(C_8 C_9))
+
+
+R53,1 & R99,2     -->    R149 : - EL(F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) G(C_8 C_9))
+                                + EL(F_3(F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                     G(C_8 C_9))
+
+
+R149,1 & R113,1   -->    R150 : + EL(F_3(F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                     G(C_8 C_9))
+
+
+R43,1 & R99,2     -->    R151 : - EL(F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) G(C_8 C_9))
+                                + EL(F_3(F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                     G(C_8 C_9))
+
+
+R151,1 & R113,1   -->    R152 : + EL(F_3(F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                     G(C_8 C_9))
+
+
+R35,1 & R99,2     -->    R153 : - EL(F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) G(C_8 C_9))
+                                + EL(F_3(F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) C_7)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                     G(C_8 C_9))
+
+
+R153,1 & R113,1   -->    R154 : + EL(F_3(F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) C_7)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                     G(C_8 C_9))
+
+
+R33,1 & R99,2     -->    R155 : - EL(F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) G(C_8 C_9))
+                                + EL(F_3(F_3(C_1 C_4 G(C_8 C_9) C_1)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                     G(C_8 C_9))
+
+
+R155,1 & R113,1   -->    R156 : + EL(F_3(F_3(C_1 C_4 G(C_8 C_9) C_1)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                     G(C_8 C_9))
+
+
+R30,1 & R99,2     -->    R157 : - EL(F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) G(C_8 C_9))
+                                + EL(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                     G(C_8 C_9))
+
+
+R157,1 & R113,1   -->    R158 : + EL(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                     G(C_8 C_9))
+
+
+R128,1 & R99,2    -->    R159 : - EL(F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) G(C_8 C_9))
+                                + EL(F_3(F_3(C_1 C_4 G(C_8 C_9) F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                     G(C_8 C_9))
+
+
+R159,1 & R113,1   -->    R160 : + EL(F_3(F_3(C_1 C_4 G(C_8 C_9) F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                     G(C_8 C_9))
+
+
+R106,1 & R99,2    -->    R161 : - EL(F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) G(C_8 C_9))
+                                + EL(F_3(F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                     G(C_8 C_9))
+
+
+R161,1 & R113,1   -->    R162 : + EL(F_3(F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                     G(C_8 C_9))
+
+
+R66,1 & R99,2     -->    R163 : - EL(F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1) G(C_8 C_9))
+                                + EL(F_3(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) C_7)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1))
+                                     G(C_8 C_9))
+
+
+R163,1 & R106,1   -->    R164 : + EL(F_3(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) C_7)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1))
+                                     G(C_8 C_9))
+
+
+R64,1 & R99,2     -->    R165 : - EL(F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1) G(C_8 C_9))
+                                + EL(F_3(F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1))
+                                     G(C_8 C_9))
+
+
+R165,1 & R106,1   -->    R166 : + EL(F_3(F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1))
+                                     G(C_8 C_9))
+
+
+R56,1 & R99,2     -->    R167 : - EL(F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1) G(C_8 C_9))
+                                + EL(F_3(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1))
+                                     G(C_8 C_9))
+
+
+R167,1 & R106,1   -->    R168 : + EL(F_3(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1))
+                                     G(C_8 C_9))
+
+
+R53,1 & R99,2     -->    R169 : - EL(F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1) G(C_8 C_9))
+                                + EL(F_3(F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1))
+                                     G(C_8 C_9))
+
+
+R169,1 & R106,1   -->    R170 : + EL(F_3(F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1))
+                                     G(C_8 C_9))
+
+
+R43,1 & R99,2     -->    R171 : - EL(F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1) G(C_8 C_9))
+                                + EL(F_3(F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1))
+                                     G(C_8 C_9))
+
+
+R171,1 & R106,1   -->    R172 : + EL(F_3(F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1))
+                                     G(C_8 C_9))
+
+
+R35,1 & R99,2     -->    R173 : - EL(F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1) G(C_8 C_9))
+                                + EL(F_3(F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) C_7)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1))
+                                     G(C_8 C_9))
+
+
+R173,1 & R106,1   -->    R174 : + EL(F_3(F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) C_7)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1))
+                                     G(C_8 C_9))
+
+
+R33,1 & R99,2     -->    R175 : - EL(F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1) G(C_8 C_9))
+                                + EL(F_3(F_3(C_1 C_4 G(C_8 C_9) C_1)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1))
+                                     G(C_8 C_9))
+
+
+R175,1 & R106,1   -->    R176 : + EL(F_3(F_3(C_1 C_4 G(C_8 C_9) C_1)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1))
+                                     G(C_8 C_9))
+
+
+R30,1 & R99,2     -->    R177 : - EL(F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1) G(C_8 C_9))
+                                + EL(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1))
+                                     G(C_8 C_9))
+
+
+R177,1 & R106,1   -->    R178 : + EL(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1))
+                                     G(C_8 C_9))
+
+
+R128,1 & R99,2    -->    R179 : - EL(F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1) G(C_8 C_9))
+                                + EL(F_3(F_3(C_1 C_4 G(C_8 C_9) F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1))
+                                     G(C_8 C_9))
+
+
+R179,1 & R106,1   -->    R180 : + EL(F_3(F_3(C_1 C_4 G(C_8 C_9) F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1))
+                                     G(C_8 C_9))
+
+
+R113,1 & R99,2    -->    R181 : - EL(F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1) G(C_8 C_9))
+                                + EL(F_3(F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1))
+                                     G(C_8 C_9))
+
+
+R181,1 & R106,1   -->    R182 : + EL(F_3(F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1))
+                                     G(C_8 C_9))
+
+
+R66,1 & R99,2     -->    R183 : - EL(F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1)) G(C_8 C_9))
+                                + EL(F_3(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) C_7)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1)))
+                                     G(C_8 C_9))
+
+
+R183,1 & R43,1    -->    R184 : + EL(F_3(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) C_7)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1)))
+                                     G(C_8 C_9))
+
+
+R64,1 & R99,2     -->    R185 : - EL(F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1)) G(C_8 C_9))
+                                + EL(F_3(F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1)))
+                                     G(C_8 C_9))
+
+
+R185,1 & R43,1    -->    R186 : + EL(F_3(F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1)))
+                                     G(C_8 C_9))
+
+
+R56,1 & R99,2     -->    R187 : - EL(F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1)) G(C_8 C_9))
+                                + EL(F_3(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1)))
+                                     G(C_8 C_9))
+
+
+R187,1 & R43,1    -->    R188 : + EL(F_3(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1)))
+                                     G(C_8 C_9))
+
+
+R53,1 & R99,2     -->    R189 : - EL(F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1)) G(C_8 C_9))
+                                + EL(F_3(F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1)))
+                                     G(C_8 C_9))
+
+
+R189,1 & R43,1    -->    R190 : + EL(F_3(F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1)))
+                                     G(C_8 C_9))
+
+
+R35,1 & R99,2     -->    R191 : - EL(F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1)) G(C_8 C_9))
+                                + EL(F_3(F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) C_7)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1)))
+                                     G(C_8 C_9))
+
+
+R191,1 & R43,1    -->    R192 : + EL(F_3(F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) C_7)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1)))
+                                     G(C_8 C_9))
+
+
+R33,1 & R99,2     -->    R193 : - EL(F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1)) G(C_8 C_9))
+                                + EL(F_3(F_3(C_1 C_4 G(C_8 C_9) C_1)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1)))
+                                     G(C_8 C_9))
+
+
+R193,1 & R43,1    -->    R194 : + EL(F_3(F_3(C_1 C_4 G(C_8 C_9) C_1)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1)))
+                                     G(C_8 C_9))
+
+
+R30,1 & R99,2     -->    R195 : - EL(F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1)) G(C_8 C_9))
+                                + EL(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1)))
+                                     G(C_8 C_9))
+
+
+R195,1 & R43,1    -->    R196 : + EL(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1)))
+                                     G(C_8 C_9))
+
+
+R128,1 & R99,2    -->    R197 : - EL(F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1)) G(C_8 C_9))
+                                + EL(F_3(F_3(C_1 C_4 G(C_8 C_9) F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1)))
+                                     G(C_8 C_9))
+
+
+R197,1 & R43,1    -->    R198 : + EL(F_3(F_3(C_1 C_4 G(C_8 C_9) F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1)))
+                                     G(C_8 C_9))
+
+
+R106,1 & R99,2    -->    R199 : - EL(F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1)) G(C_8 C_9))
+                                + EL(F_3(F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1)))
+                                     G(C_8 C_9))
+
+
+R199,1 & R43,1    -->    R200 : + EL(F_3(F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1)))
+                                     G(C_8 C_9))
+
+
+R113,1 & R99,2    -->    R201 : - EL(F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1)) G(C_8 C_9))
+                                + EL(F_3(F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1)))
+                                     G(C_8 C_9))
+
+
+R201,1 & R43,1    -->    R202 : + EL(F_3(F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1)))
+                                     G(C_8 C_9))
+
+
+R66,1 & R99,2     -->    R203 : - EL(F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)) G(C_8 C_9))
+                                + EL(F_3(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) C_7)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)))
+                                     G(C_8 C_9))
+
+
+R203,1 & R64,1    -->    R204 : + EL(F_3(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) C_7)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)))
+                                     G(C_8 C_9))
+
+
+R56,1 & R99,2     -->    R205 : - EL(F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)) G(C_8 C_9))
+                                + EL(F_3(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)))
+                                     G(C_8 C_9))
+
+
+R205,1 & R64,1    -->    R206 : + EL(F_3(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7) C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)))
+                                     G(C_8 C_9))
+
+
+R53,1 & R99,2     -->    R207 : - EL(F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)) G(C_8 C_9))
+                                + EL(F_3(F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)))
+                                     G(C_8 C_9))
+
+
+R207,1 & R64,1    -->    R208 : + EL(F_3(F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)))
+                                     G(C_8 C_9))
+
+
+R43,1 & R99,2     -->    R209 : - EL(F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)) G(C_8 C_9))
+                                + EL(F_3(F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)))
+                                     G(C_8 C_9))
+
+
+R209,1 & R64,1    -->    R210 : + EL(F_3(F_3(C_7 C_4 G(C_8 C_9) F_3(C_1 C_4 G(C_8 C_9) C_1))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)))
+                                     G(C_8 C_9))
+
+
+R35,1 & R99,2     -->    R211 : - EL(F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)) G(C_8 C_9))
+                                + EL(F_3(F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) C_7)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)))
+                                     G(C_8 C_9))
+
+
+R211,1 & R64,1    -->    R212 : + EL(F_3(F_3(F_3(C_1 C_4 G(C_8 C_9) C_1) C_4 G(C_8 C_9) C_7)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)))
+                                     G(C_8 C_9))
+
+
+R33,1 & R99,2     -->    R213 : - EL(F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)) G(C_8 C_9))
+                                + EL(F_3(F_3(C_1 C_4 G(C_8 C_9) C_1)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)))
+                                     G(C_8 C_9))
+
+
+R213,1 & R64,1    -->    R214 : + EL(F_3(F_3(C_1 C_4 G(C_8 C_9) C_1)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)))
+                                     G(C_8 C_9))
+
+
+R30,1 & R99,2     -->    R215 : - EL(F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)) G(C_8 C_9))
+                                + EL(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)))
+                                     G(C_8 C_9))
+
+
+R215,1 & R64,1    -->    R216 : + EL(F_3(F_3(C_7 C_4 G(C_8 C_9) C_7)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)))
+                                     G(C_8 C_9))
+
+
+R128,1 & R99,2    -->    R217 : - EL(F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)) G(C_8 C_9))
+                                + EL(F_3(F_3(C_1 C_4 G(C_8 C_9) F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)))
+                                     G(C_8 C_9))
+
+
+R217,1 & R64,1    -->    R218 : + EL(F_3(F_3(C_1 C_4 G(C_8 C_9) F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11))
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)))
+                                     G(C_8 C_9))
+
+
+R106,1 & R99,2    -->    R219 : - EL(F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)) G(C_8 C_9))
+                                + EL(F_3(F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)))
+                                     G(C_8 C_9))
+
+
+R219,1 & R64,1    -->    R220 : + EL(F_3(F_3(F_2(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) C_4 G(C_8 C_9) C_1)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)))
+                                     G(C_8 C_9))
+
+
+R113,1 & R99,2    -->    R221 : - EL(F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)) G(C_8 C_9))
+                                + EL(F_3(F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)))
+                                     G(C_8 C_9))
+
+
+R221,1 & R64,1    -->    R222 : + EL(F_3(F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11)
+                                         C_4
+                                         G(C_8 C_9)
+                                         F_3(C_7 C_4 G(C_8 C_9) F_3(C_7 C_4 G(C_8 C_9) C_7)))
+                                     G(C_8 C_9))
+
+
+R108,1 & T29,2    -->  * R223 : - EL(F_1(C_4 C_1 G(C_8 C_10) G(C_8 C_9) C_11) G(C_8 C_9))
+
+R223,1 & R113,1   -->  * R224 :  ce
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+  Q. E. D. 

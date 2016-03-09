@@ -1,0 +1,242 @@
+ 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 4-APR-85                                                      *
+                    *         DATE : 15-JUN-85  00:31:45                                           *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   14-JUN-85 14:08:00
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   K.COMMENT.2.11.3.01
+                                                                        
+************************************************************************
+                                                                        
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : * ***************************************************************************
+           * DEFINITIONEN DER MENGENLEHRE **********************************************
+           SORT SET:ANY
+           SORT ELEMENT:SET
+           TYPE EL(ELEMENT SET)
+           * DEFINITION 1.3: KARTESISCHES PRODUKT
+           TYPE PAIR(ELEMENT ELEMENT) :ELEMENT
+           * DEFINITION 1.6: NATUERLICHE ZAHLEN
+           SORT NAT:SET
+           TYPE 1:NAT
+           TYPE PLUS(NAT NAT) :NAT
+           * OHNE BEWEIS
+           ASSOCIATIVE(PLUS)
+           * ***************************************************************************
+           * DEFINTIONEN VON RELATIONEN AUF EINER FESTEN MENGE S ***********************
+           SORT REL:SET
+           TYPE S:SET
+           SORT EL.OF.S:ELEMENT
+           * DEFINITION 2.1: RELATION *************************************************
+           * DEFINITION 2.2: KOMPOSITION ZWEIER RELATIONEN ****************************
+           TYPE COMP(REL REL) :REL
+           *  ALL RHO,SIGMA:REL ALL A:ELEMENT EL (A COMP (RHO SIGMA)) EQV                                               
+           *  (EX B,C,D:EL.OF.S A = PAIR (B D) AND EL (PAIR (B C) RHO) AND EL (PAIR (C D) SIGMA))                       
+           * LEMMA 2,2
+           ALL RHO,SIGMA:REL  ALL A,B:EL.OF.S  
+             EL(PAIR(A B) COMP(RHO SIGMA)) EQV(EX C: EL.OF.S EL(PAIR(A C) RHO) AND EL(PAIR(C B) SIGMA))
+           * DEFINITION 2.9: POTENZ EINER RELATION
+           TYPE POWER(REL NAT) :REL
+           * ALL RHO:REL POWER(RHO 1) = RHO
+           ALL RHO:REL ALL N:NAT POWER(RHO PLUS(N 1)) = COMP(POWER(RHO N) RHO)
+           * DEFINITION DES INDUKTIONSPRAEDIKATES
+           TYPE P(REL NAT)
+           ALL RHO:REL  ALL M:NAT        P(RHO M)
+                                     EQV( ALL N:NAT  ALL A,B,C:EL.OF.S  
+                                                 EL(PAIR(A B) POWER(RHO N)) AND EL(PAIR(B C) POWER(RHO M))
+                                            IMPL EL(PAIR(A C) POWER(RHO PLUS(N M))))
+ 
+THEOREMS : ALL RHO:REL ALL N:NAT P(RHO N) IMPL P(RHO PLUS(N 1))
+ 
+ 
+ 
+ 
+CONSTANTS : 
+=========== 
+ 
+| NAME  | SORT                      |            | ATTRIBUTES                                                           
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+| 1     | NAT                       |            |                                                                      
+|
+| S     | SET                       |            |                                                                      
+|
+| C_1   | EL.OF.S                   |            |                                                                      
+|
+| C_2   | EL.OF.S                   |            |                                                                      
+|
+| C_3   | EL.OF.S                   |            |                                                                      
+|
+| C_4   | NAT                       |            |                                                                      
+|
+| C_5   | NAT                       |            |                                                                      
+|
+| C_6   | REL                       |            |                                                                      
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+ 
+ 
+ 
+FUNCTIONS : 
+=========== 
+ 
+| NAME  | DOMAIN                    | RANGE      | ATTRIBUTES                                                           
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+| PAIR  | ELEMENT ELEMENT           | ELEMENT    |                                                                      
+|
+| PLUS  | NAT NAT                   | NAT        | ASSOCIATIVE                                                          
+|
+| COMP  | REL REL                   | REL        |                                                                      
+|
+| POWER | REL NAT                   | REL        |                                                                      
+|
+| F_1   | REL EL.OF.S EL.OF.S REL   | EL.OF.S    |                                                                      
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+ 
+ 
+ 
+PREDICATES : 
+============ 
+ 
+| NAME  | DOMAIN                    |            | ATTRIBUTES                                                           
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+| TRUE  |                           |            | DEFINED                                                              
+|
+| FALSE |                           |            | DEFINED                                                              
+|
+| EL    | ELEMENT SET               |            |                                                                      
+|
+| =     | ANY ANY                   |            | DEFINED SYMMETRIC REFLEXIVE SYMMETRIC REFLEXIVE SYMMETRIC REFLEXIVE  
+|
+| P     | REL NAT                   |            |                                                                      
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+ 
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+  A1   : ALL X:ANY  + =(X X)
+* A2   : ALL X:NAT  Y:REL  + =(POWER(Y PLUS(X 1)) COMP(POWER(Y X) Y))
+* A3   : ALL X,Y:REL  Z,U:EL.OF.S  - EL(PAIR(U Z) COMP(Y X))  + EL(PAIR(U F_1(X U Z Y)) Y)
+* A4   : ALL X,Y:REL  Z,U:EL.OF.S  - EL(PAIR(U Z) COMP(Y X))  + EL(PAIR(F_1(X U Z Y) Z) X)
+* A5   : ALL X,Y,Z:EL.OF.S  U,V:REL  + EL(PAIR(Z Y) COMP(V U))  - EL(PAIR(Z X) V)  - EL(PAIR(X Y) U)
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+* T6   : ALL X,Y,Z:EL.OF.S  U:NAT  
+              - EL(PAIR(Z Y) POWER(C_6 U))  - EL(PAIR(Y X) POWER(C_6 C_5))  + EL(PAIR(Z X) POWER(C_6 PLUS(U C_5)))
+* T7   : + EL(PAIR(C_2 C_1) POWER(C_6 C_4))
+* T8   : + EL(PAIR(C_1 C_3) POWER(C_6 PLUS(C_5 1)))
+* T9   : - EL(PAIR(C_2 C_3) POWER(C_6 PLUS(C_4 PLUS(C_5 1))))
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION
+ 
+INITIAL CLAUSES :     A1  : ALL X:ANY  + =(X X)
+                    * A2  : ALL X:NAT  Y:REL  + =(POWER(Y PLUS(X 1)) COMP(POWER(Y X) Y))
+                    * A3  : ALL X,Y:REL  Z,U:EL.OF.S  - EL(PAIR(U Z) COMP(Y X))  + EL(PAIR(U F_1(X U Z Y)) Y)
+                    * A4  : ALL X,Y:REL  Z,U:EL.OF.S  - EL(PAIR(U Z) COMP(Y X))  + EL(PAIR(F_1(X U Z Y) Z) X)
+                    * A5  : ALL X,Y,Z:EL.OF.S  U,V:REL  + EL(PAIR(Z Y) COMP(V U))  - EL(PAIR(Z X) V)  - EL(PAIR(X Y) U)
+                    * T6  : ALL X,Y,Z:EL.OF.S  U:NAT  
+                                 - EL(PAIR(Z Y) POWER(C_6 U))  - EL(PAIR(Y X) POWER(C_6 C_5))
+                                   + EL(PAIR(Z X) POWER(C_6 PLUS(U C_5)))
+                    * T7  : + EL(PAIR(C_2 C_1) POWER(C_6 C_4))
+                    * T8  : + EL(PAIR(C_1 C_3) POWER(C_6 PLUS(C_5 1)))
+                    * T9  : - EL(PAIR(C_2 C_3) POWER(C_6 PLUS(C_4 PLUS(C_5 1))))
+ 
+T8,1 & A5,3    -->    R1  : + EL(PAIR(C_2 C_3) COMP(POWER(C_6 C_4) POWER(C_6 PLUS(C_5 1))))
+                              - EL(PAIR(C_2 C_1) POWER(C_6 C_4))
+ 
+R1,2 & T7,1    -->    R2  : + EL(PAIR(C_2 C_3) COMP(POWER(C_6 C_4) POWER(C_6 PLUS(C_5 1))))
+ 
+A2,1 & T8,1    -->  * P3  : + EL(PAIR(C_1 C_3) COMP(POWER(C_6 C_5) C_6))
+ 
+P3,1 & A3,1    -->  * R4  : + EL(PAIR(C_1 F_1(C_6 C_1 C_3 POWER(C_6 C_5))) POWER(C_6 C_5))
+ 
+T7,1 & T6,1    -->  * R5  : - EL(PAIR(C_1 F_1(C_6 C_1 C_3 POWER(C_6 C_5))) POWER(C_6 C_5))
+                              + EL(PAIR(C_2 F_1(C_6 C_1 C_3 POWER(C_6 C_5))) POWER(C_6 PLUS(C_4 C_5)))
+ 
+R5,1 & R4,1    -->  * R6  : + EL(PAIR(C_2 F_1(C_6 C_1 C_3 POWER(C_6 C_5))) POWER(C_6 PLUS(C_4 C_5)))
+ 
+P3,1 & A4,1    -->  * R7  : + EL(PAIR(F_1(C_6 C_1 C_3 POWER(C_6 C_5)) C_3) C_6)
+ 
+R7,1 & A5,3    -->  * R8  : + EL(PAIR(C_2 C_3) COMP(POWER(C_6 PLUS(C_4 C_5)) C_6))
+                              - EL(PAIR(C_2 F_1(C_6 C_1 C_3 POWER(C_6 C_5))) POWER(C_6 PLUS(C_4 C_5)))
+ 
+R8,2 & R6,1    -->  * R9  : + EL(PAIR(C_2 C_3) COMP(POWER(C_6 PLUS(C_4 C_5)) C_6))
+ 
+P3,1 & A5,3    -->    R10 : + EL(PAIR(C_2 C_3) COMP(POWER(C_6 C_4) COMP(POWER(C_6 C_5) C_6)))
+                              - EL(PAIR(C_2 C_1) POWER(C_6 C_4))
+ 
+R10,2 & T7,1   -->    R11 : + EL(PAIR(C_2 C_3) COMP(POWER(C_6 C_4) COMP(POWER(C_6 C_5) C_6)))
+ 
+R4,1 & A5,3    -->    R12 : + EL(PAIR(C_2 F_1(C_6 C_1 C_3 POWER(C_6 C_5))) COMP(POWER(C_6 C_4) POWER(C_6 C_5)))
+                              - EL(PAIR(C_2 C_1) POWER(C_6 C_4))
+ 
+R12,2 & T7,1   -->    R13 : + EL(PAIR(C_2 F_1(C_6 C_1 C_3 POWER(C_6 C_5))) COMP(POWER(C_6 C_4) POWER(C_6 C_5)))
+ 
+A2,1 & R9,1    -->  * P14 : + EL(PAIR(C_2 C_3) POWER(C_6 PLUS(PLUS(C_4 C_5) 1)))
+ 
+P14,1 & T9,1   -->  * R15 :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+STOP
+ 

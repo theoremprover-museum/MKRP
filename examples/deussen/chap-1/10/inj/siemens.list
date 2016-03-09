@@ -1,0 +1,257 @@
+ 
+ 
+ 
+             ****************************************************
+             *                                                  *
+             *   ATP-SYSTEM :  M K R P , UNI KARLSRUHE          *
+             *                                                  *
+             *      VERSION : 3-FEB-84                          *
+             *         DATE : 23-JUL-84  10:27:25               *
+             *                                                  *
+             ****************************************************
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : SORT ELEMENT,MENGE,VERKN,ABB:ANY
+           TYPE APPLYA (ABB ELEMENT) :ELEMENT
+           TYPE APPLYV (VERKN ELEMENT ELEMENT) :ELEMENT
+           TYPE INVERS (ELEMENT VERKN) :ELEMENT
+           TYPE C:ELEMENT
+           ALL M:MENGE  ALL CHI:ABB  
+                ALL X,XSTRICH,Y:ELEMENT  
+                      EL (X M)
+                      AND  
+                      EL (Y M)
+                      AND  
+                      EL (XSTRICH M)
+                      AND  
+                      APPLYA (CHI X) = Y
+                      AND  
+                      APPLYA (CHI XSTRICH) = Y
+                    IMPL  
+                    X = XSTRICH
+               IMPL  
+               INJEKTIV (CHI M M)
+           ALL X,Y,Z,U,E:ELEMENT  ALL F:MENGE  ALL PHI:VERKN  
+               EL (X F) AND EL (Y F) AND EL (U F) AND G (F PHI E)
+               IMPL  
+               (APPLYV (PHI X U) = Y IMPL APPLYV (PHI Y INVERS (U PHI))
+= X)
+           ALL U,F:MENGE ALL PHI:VERKN UHG (U F PHI) IMPL ME (U F)
+           ALL M1,M2:MENGE ALL X:ELEMENT EL (X M1) AND ME (M1 M2) IMPL EL (X
+M2)
+ 
+THEOREMS : ALL E:ELEMENT  ALL U,F:MENGE  ALL PHI:VERKN  ALL CHI:ABB  
+                 (ALL V:ELEMENT APPLYV (PHI V C) = APPLYA (CHI V))
+                 AND  
+                 UHG (U F PHI)
+                 AND  
+                 G (F PHI E)
+                 AND  
+                 EL (C U)
+               IMPL  
+               INJEKTIV (CHI U U)
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+* A1   : ALL X:MENGE  Y:ABB  +EL(F_2(X Y) X) +INJEKTIV(Y X X)
+* A2   : ALL X:MENGE  Y:ABB  +EL(F_3(X Y) X) +INJEKTIV(Y X X)
+* A3   : ALL X:MENGE  Y:ABB  +EL(F_1(X Y) X) +INJEKTIV(Y X X)
+* A4   : ALL X:ABB  Y:MENGE  +=(APPLYA(X F_2(Y X)) F_3(Y X)) +INJEKTIV(X Y Y)
+* A5   : ALL X:ABB  Y:MENGE  +=(APPLYA(X F_1(Y X)) F_3(Y X)) +INJEKTIV(X Y Y)
+* A6   : ALL X:MENGE  Y:ABB  -=(F_2(X Y) F_1(X Y)) +INJEKTIV(Y X X)
+  R.:=:: ALL X:ANY  +:=:(X X)
+* A7   : ALL X,Y,Z,U:ELEMENT  V:MENGE  W:VERKN  
+              -EL(X V) -EL(Y V) -EL(Z V) -G(V W U) -=(APPLYV(W X Z) Y) 
+              +=(APPLYV(W Y INVERS(Z W)) X) 
+* A8   : ALL X,Y:MENGE  Z:VERKN  -UHG(X Y Z) +ME(X Y)
+* A9   : ALL X:ELEMENT  Y,Z:MENGE  -EL(X Y) -ME(Y Z) +EL(X Z)
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+* T10  : ALL X:ELEMENT  +=(APPLYV(C_3 X C) APPLYA(C_2 X))
+* T11  : +UHG(C_1 C_4 C_3)
+* T12  : +G(C_4 C_3 C_5)
+* T13  : +EL(C C_1)
+* T14  : -INJEKTIV(C_2 C_1 C_1)
+ 
+ 
+ 
+ 
+--------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION
+ 
+INITIAL CLAUSES :         R.:=: : ALL X:ANY  +:=:(X X)
+                        * A1    : ALL X:MENGE  Y:ABB  
+                                       +EL(F_2(X Y) X) +INJEKTIV(Y X X) 
+                        * A2    : ALL X:MENGE  Y:ABB  
+                                       +EL(F_3(X Y) X) +INJEKTIV(Y X X) 
+                        * A3    : ALL X:MENGE  Y:ABB  
+                                       +EL(F_1(X Y) X) +INJEKTIV(Y X X) 
+                        * A4    : ALL X:ABB  Y:MENGE  
+                                       +=(APPLYA(X F_2(Y X)) F_3(Y X)) 
+                                       +INJEKTIV(X Y Y) 
+                        * A5    : ALL X:ABB  Y:MENGE  
+                                       +=(APPLYA(X F_1(Y X)) F_3(Y X)) 
+                                       +INJEKTIV(X Y Y) 
+                        * A6    : ALL X:MENGE  Y:ABB  
+                                       -=(F_2(X Y) F_1(X Y)) +INJEKTIV(Y X X) 
+                        * A7    : ALL X,Y,Z,U:ELEMENT  V:MENGE  W:VERKN  
+                                       -EL(X V) -EL(Y V) -EL(Z V) -G(V W U) 
+                                       -=(APPLYV(W X Z) Y) 
+                                       +=(APPLYV(W Y INVERS(Z W)) X) 
+                        * A8    : ALL X,Y:MENGE  Z:VERKN  -UHG(X Y Z) +ME(X Y)
+                        * A9    : ALL X:ELEMENT  Y,Z:MENGE  
+                                       -EL(X Y) -ME(Y Z) +EL(X Z) 
+                        * T10   : ALL X:ELEMENT  
+                                       +=(APPLYV(C_3 X C) APPLYA(C_2 X)) 
+                        * T11   : +UHG(C_1 C_4 C_3)
+                        * T12   : +G(C_4 C_3 C_5)
+                        * T13   : +EL(C C_1)
+                        * T14   : -INJEKTIV(C_2 C_1 C_1)
+ 
+A1,2  +  T14,1     -->  * R1    : +EL(F_2(C_1 C_2) C_1)
+A2,2  +  T14,1     -->  * R2    : +EL(F_3(C_1 C_2) C_1)
+A3,2  +  T14,1     -->  * R3    : +EL(F_1(C_1 C_2) C_1)
+A4,2  +  T14,1     -->  * R4    : +=(APPLYA(C_2 F_2(C_1 C_2)) F_3(C_1 C_2))
+A5,2  +  T14,1     -->  * R5    : +=(APPLYA(C_2 F_1(C_1 C_2)) F_3(C_1 C_2))
+A6,2  +  T14,1     -->  * R6    : -=(F_2(C_1 C_2) F_1(C_1 C_2))
+T12,1  +  A7,4     -->  * R7    : ALL X,Y,Z:ELEMENT  
+                                       -EL(X C_4) -EL(Y C_4) -EL(Z C_4) 
+                                       -=(APPLYV(C_3 X Z) Y) 
+                                       +=(APPLYV(C_3 Y INVERS(Z C_3)) X) 
+T11,1  +  A8,1     -->  * R8    : +ME(C_1 C_4)
+R8,1  +  A9,2      -->  * R9    : ALL X:ELEMENT  -EL(X C_1) +EL(X C_4)
+T10,1  +  R4,1     -->  * P1    : +=(APPLYV(C_3 F_2(C_1 C_2) C) F_3(C_1 C_2))
+R4,1  +  R2,1      -->    P2    : +EL(APPLYA(C_2 F_2(C_1 C_2)) C_1)
+T10,1  +  R5,1     -->  * P3    : +=(APPLYV(C_3 F_1(C_1 C_2) C) F_3(C_1 C_2))
+R5,1  +  R2,1      -->    P4    : +EL(APPLYA(C_2 F_1(C_1 C_2)) C_1)
+R5,1  +  R4,1      -->    P5    : +=(APPLYA(C_2 F_2(C_1 C_2))
+                                     APPLYA(C_2 F_1(C_1 C_2)))
+ 
+P1,1  +  R2,1      -->    P6    : +EL(APPLYV(C_3 F_2(C_1 C_2) C) C_1)
+R5,1  +  P1,1      -->    P7    : +=(APPLYV(C_3 F_2(C_1 C_2) C)
+                                     APPLYA(C_2 F_1(C_1 C_2)))
+ 
+P3,1  +  R2,1      -->    P8    : +EL(APPLYV(C_3 F_1(C_1 C_2) C) C_1)
+P3,1  +  R4,1      -->    P9    : +=(APPLYA(C_2 F_2(C_1 C_2))
+                                     APPLYV(C_3 F_1(C_1 C_2) C))
+ 
+P3,1  +  P1,1      -->    P10   : +=(APPLYV(C_3 F_2(C_1 C_2) C)
+                                     APPLYV(C_3 F_1(C_1 C_2) C))
+ 
+T10,1  +  R7,4     -->    R10   : ALL X:ELEMENT  
+                                       -EL(X C_4) -EL(APPLYA(C_2 X) C_4) 
+                                       -EL(C C_4) 
+                                       +=(APPLYV(C_3
+                                                 APPLYA(C_2 X)
+                                                 INVERS(C C_3))
+                                          X)
+ 
+R.:=:,1  +  R7,4   -->    R11   : ALL X,Y:ELEMENT  
+                                       -EL(X C_4) -EL(APPLYV(C_3 X Y) C_4) 
+                                       -EL(Y C_4) 
+                                       +=(APPLYV(C_3
+                                                 APPLYV(C_3 X Y)
+                                                 INVERS(Y C_3))
+                                          X)
+ 
+R3,1  +  R9,1      -->  * R12   : +EL(F_1(C_1 C_2) C_4)
+R2,1  +  R9,1      -->  * R13   : +EL(F_3(C_1 C_2) C_4)
+R1,1  +  R9,1      -->  * R14   : +EL(F_2(C_1 C_2) C_4)
+T13,1  +  R9,1     -->  * R15   : +EL(C C_4)
+R15,1  +  R10,3    -->    R16   : ALL X:ELEMENT  
+                                       -EL(X C_4) -EL(APPLYA(C_2 X) C_4) 
+                                       +=(APPLYV(C_3
+                                                 APPLYA(C_2 X)
+                                                 INVERS(C C_3))
+                                          X)
+ 
+P2,1  +  R9,1      -->    R17   : +EL(APPLYA(C_2 F_2(C_1 C_2)) C_4)
+P4,1  +  R9,1      -->    R18   : +EL(APPLYA(C_2 F_1(C_1 C_2)) C_4)
+P1,1  +  R7,4      -->  * R19   : -EL(F_2(C_1 C_2) C_4) -EL(F_3(C_1 C_2) C_4) 
+                                  -EL(C C_4) 
+                                  +=(APPLYV(C_3 F_3(C_1 C_2) INVERS(C C_3))
+                                     F_2(C_1 C_2))
+ 
+R14,1  +  R19,1    -->  * R20   : -EL(F_3(C_1 C_2) C_4) -EL(C C_4) 
+                                  +=(APPLYV(C_3 F_3(C_1 C_2) INVERS(C C_3))
+                                     F_2(C_1 C_2))
+ 
+R13,1  +  R20,1    -->  * R21   : -EL(C C_4) 
+                                  +=(APPLYV(C_3 F_3(C_1 C_2) INVERS(C C_3))
+                                     F_2(C_1 C_2))
+ 
+R15,1  +  R21,1    -->  * R22   : +=(APPLYV(C_3 F_3(C_1 C_2) INVERS(C C_3))
+                                     F_2(C_1 C_2))
+ 
+R22,1  +  R1,1     -->    P11   : +EL(APPLYV(C_3 F_3(C_1 C_2) INVERS(C C_3))
+                                      C_1)
+ 
+R22,1  +  R4,1     -->    P12   : +=(APPLYA(C_2
+                                            APPLYV(C_3
+                                                   F_3(C_1 C_2)
+                                                   INVERS(C C_3)))
+                                     F_3(C_1 C_2))
+ 
+R22,1  +  R6,1     -->  * P13   : -=(APPLYV(C_3 F_3(C_1 C_2) INVERS(C C_3))
+                                     F_1(C_1 C_2))
+ 
+R22,1  +  P2,1     -->    P14   : +EL(APPLYA(C_2
+                                             APPLYV(C_3
+                                                    F_3(C_1 C_2)
+                                                    INVERS(C C_3)))
+                                      C_1)
+ 
+R13,1  +  R7,2     -->  * R23   : -EL(F_1(C_1 C_2) C_4) -EL(C C_4) 
+                                  -=(APPLYV(C_3 F_1(C_1 C_2) C) F_3(C_1 C_2)) 
+                                  +=(APPLYV(C_3 F_3(C_1 C_2) INVERS(C C_3))
+                                     F_1(C_1 C_2))
+ 
+R12,1  +  R23,1    -->  * R24   : -EL(C C_4) 
+                                  -=(APPLYV(C_3 F_1(C_1 C_2) C) F_3(C_1 C_2)) 
+                                  +=(APPLYV(C_3 F_3(C_1 C_2) INVERS(C C_3))
+                                     F_1(C_1 C_2))
+ 
+R15,1  +  R24,1    -->  * R25   : -=(APPLYV(C_3 F_1(C_1 C_2) C) F_3(C_1 C_2)) 
+                                  +=(APPLYV(C_3 F_3(C_1 C_2) INVERS(C C_3))
+                                     F_1(C_1 C_2))
+ 
+P3,1  +  R25,1     -->  * R26   : +=(APPLYV(C_3 F_3(C_1 C_2) INVERS(C C_3))
+                                     F_1(C_1 C_2))
+ 
+R26,1  +  P13,1    -->  * R27   : 
+ 
+ 
+ 
+--------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+ 

@@ -1,0 +1,107 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                  ******************************************************************************
+                  *                                                                            *
+                  *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN     *
+                  *                                                                            *
+                  *        VERSION: MKRP 53.9 GENTRAFO 3.0                                     *
+                  *           DATE: 05-MAY,1992  20:25                                         *
+                  *                                                                            *
+                  ******************************************************************************
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+Edit:     Axioms and Theorems edited: 29-JUN,1990 00:34 
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+          Formulae given to the editor
+          ============================
+
+
+Axioms:   * AXIOMS *
+          ALL X,Y,Z F (X F (Y Z)) = F (F (X Y) Z)
+          ALL X F (A X) = X
+          ALL X (EX Y F (Y X) = A)
+          
+Theorems: * THEOREMS *
+          ALL X,Y F (Y X) = A IMPL F (X Y) = A
+          
+
+
+
+          Set of Axiom Clauses Resulting from Normalization
+          =================================================
+
+          A1:   All x:Any + =(x x)
+        * A2:   All x,y,z:Any + =(f(z f(y x)) f(f(z y) x))
+        * A3:   All x:Any + =(f(a x) x)
+        * A4:   All x:Any + =(f(f_1(x) x) a)
+        
+
+
+
+
+          Set of Theorem Clauses Resulting from Normalization
+          ===================================================
+
+        * T5: + =(f(c_1 c_2) a)
+        * T6: - =(f(c_2 c_1) a)
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+Refutation:
+===========
+
+Initial Clauses:     A1:   All x:Any + =(x x)
+                   * A2:   All x,y,z:Any + =(f(z f(y x)) f(f(z y) x))
+                   * A3:   All x:Any + =(f(a x) x)
+                   * A4:   All x:Any + =(f(f_1(x) x) a)
+                   * T5:   + =(f(c_1 c_2) a)
+                   * T6:   - =(f(c_2 c_1) a)
+                   
+
+
+T5,1 & A2,1    --> * P1:   All x:Any + =(f(c_1 f(c_2 x)) f(a x))
+
+P1,1 & A3      --> * RW2:  All x:Any + =(f(c_1 f(c_2 x)) x)
+
+A4,1 & A2,1    --> * P3:   All x,y:Any + =(f(f_1(y) f(y x)) f(a x))
+
+P3,1 & A3      --> * RW4:  All x,y:Any + =(f(f_1(y) f(y x)) x)
+
+T5,1 & RW4,1   -->   P5:   + =(f(f_1(c_1) a) c_2)
+
+P5,1 & RW4,1   -->   P6:   + =(f(f_1(f_1(c_1)) c_2) a)
+
+RW2,1 & RW4,1  --> * P7:   All x:Any + =(f(f_1(c_1) x) f(c_2 x))
+
+P5,1 & P7      -->   RW8:  + =(f(c_2 a) c_2)
+
+P7,1 & A4,1    --> * P9:   + =(f(c_2 c_1) a)
+
+P9,1 & T6,1    --> * R10:  []
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+  q.e.d. 
+
+
+Time Used for Refutation: 6 seconds

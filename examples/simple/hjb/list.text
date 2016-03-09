@@ -1,0 +1,318 @@
+;;; -*- Package: MKRP; Base: 10; Mode: text; Syntax: Common-lisp -*-
+
+
+
+                  ******************************************************************************
+                  *                                                                            *
+                  *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN     *
+                  *                                                                            *
+                  *        VERSION: Unix                                                       *
+                  *           DATE: 20-MAY,1992  23:11                                         *
+                  *                                                                            *
+                  ******************************************************************************
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+                                                                       
+
+***********************************************************************
+
+                                                                       
+
+ FORMULA:  Date: 20-MAY,1992 23:06
+
+           Axioms und Theorems for this proof have been read from
+
+              Axiom-File: NIL
+
+            Theorem-File: NIL
+
+                                                                       
+
+***********************************************************************
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+          Formulae given to the editor
+          ============================
+
+
+Axioms:   ALL X,Y,Z (LEQ (X Y) AND LEQ (Y Z)) IMPL LEQ (X Z)
+          ALL X LEQ (X X)
+          ALL X,Y (LEQ (X Y) AND LEQ (Y X)) EQV (NOT NEQ (X Y))
+          ALL X,Y NEQ (X Y) IMPL NEQ (Y X)
+          ALL X NOT NEQ (X X)
+          ALL X,Y EQ (X Y) EQV (NOT NEQ (X Y))
+          ALL X,Y LESS (X Y) EQV (LEQ (X Y) AND NEQ (X Y))
+          EQV-EQ
+          EQV ((ALL X,Y,Z EQ (X Y) AND EQ (Y Z) IMPL EQ (X Z)) AND (ALL X,Y EQ (X Y) IMPL EQ (Y X)) AND (ALL X EQ (X X)))
+          PROP-LESS EQV ((ALL X,Y,Z LESS (X Y) AND LESS (Y Z) IMPL LESS (X Z)) AND (ALL X NOT LESS (X X)))
+          
+Theorems: EQV-EQ AND PROP-LESS
+          
+
+
+
+          Set of Axiom Clauses Resulting from Normalization
+          =================================================
+
+          A1:   All x:Any + =(x x)
+          A2:   All x:Any + LEQ(x x)
+        * A3:   All x:Any - NEQ(x x)
+        * A4:   All x,y:Any + LEQ(y x)  + NEQ(y x)
+        * A5:   All x,y:Any + LEQ(y x)  + NEQ(x y)
+        * A6:   All x,y:Any - NEQ(y x)  + NEQ(x y)
+        * A7:   All x,y,z:Any - LEQ(z y)  - LEQ(y x)  + LEQ(z x)
+        * A8:   All x,y:Any - LEQ(y x)  - LEQ(x y)  - NEQ(y x)
+        
+
+
+
+
+          Set of Theorem Clauses Resulting from Normalization and Splitting
+          =================================================================
+
+Splitpart 1
+
+        * T9: - NEQ(c_2 c_3)
+        * T10: - NEQ(c_3 c_1)
+        * T11: + NEQ(c_2 c_1)
+
+Splitpart 2
+
+        * T12: - NEQ(c_5 c_4)
+        * T13: + NEQ(c_4 c_5)
+
+Splitpart 3
+
+        * T14: + NEQ(c_6 c_6)
+
+Splitpart 4
+
+        * T15: + LEQ(c_8 c_9)
+          T16: + NEQ(c_8 c_9)
+        * T17: + LEQ(c_9 c_7)
+          T18: + NEQ(c_9 c_7)
+        * T19: - LEQ(c_8 c_7)
+
+Splitpart 5
+
+        * T20: + LEQ(c_8 c_9)
+        * T21: + NEQ(c_8 c_9)
+        * T22: + LEQ(c_9 c_7)
+          T23: + NEQ(c_9 c_7)
+        * T24: - NEQ(c_8 c_7)
+
+Splitpart 6
+
+          T25: + LEQ(c_10 c_10)
+        * T26: + NEQ(c_10 c_10)
+
+
+End of Splitparts
+
+
+
+
+
+          Initial Operations on Theorems
+          ==============================
+
+
+       
+Splitpart 3:
+
+T14,1 & A3,1  --> * R1: []
+
+
+
+Splitpart 6:
+
+T26,1 & A3,1  --> * R2: []
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+Refutation of Splitpart 1:
+==========================
+
+Initial Clauses:     A1:   All x:Any + =(x x)
+                     A2:   All x:Any + LEQ(x x)
+                     A3:   All x:Any - NEQ(x x)
+                   * A4:   All x,y:Any + LEQ(y x)  + NEQ(y x)
+                   * A5:   All x,y:Any + LEQ(y x)  + NEQ(x y)
+                   * A6:   All x,y:Any - NEQ(y x)  + NEQ(x y)
+                   * A7:   All x,y,z:Any - LEQ(z y)  - LEQ(y x)  + LEQ(z x)
+                   * A8:   All x,y:Any - LEQ(y x)  - LEQ(x y)  - NEQ(y x)
+                   * T9:   - NEQ(c_2 c_3)
+                   * T10:  - NEQ(c_3 c_1)
+                   * T11:  + NEQ(c_2 c_1)
+                   
+
+
+A5,2 & T9,1    --> * R3:   + LEQ(c_3 c_2)
+
+A5,2 & T10,1   --> * R4:   + LEQ(c_1 c_3)
+
+R4,1 & A7,1    --> * R5:   - LEQ(c_3 c_2)  + LEQ(c_1 c_2)
+
+R5,1 & R3,1    --> * R6:   + LEQ(c_1 c_2)
+
+A4,2 & T10,1   --> * R7:   + LEQ(c_3 c_1)
+
+A4,2 & T9,1    --> * R8:   + LEQ(c_2 c_3)
+
+R8,1 & A7,1    --> * R9:   - LEQ(c_3 c_1)  + LEQ(c_2 c_1)
+
+R9,1 & R7,1    --> * R10:  + LEQ(c_2 c_1)
+
+T11,1 & A6,1   --> * R11:  + NEQ(c_1 c_2)
+
+R11,1 & A8,3   --> * R12:  - LEQ(c_1 c_2)  - LEQ(c_2 c_1)
+
+R12,2 & R10,1  --> * R13:  - LEQ(c_1 c_2)
+
+R13,1 & R6,1   --> * R14:  []
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+Refutation of Splitpart 2:
+==========================
+
+Initial Clauses:     A1:   All x:Any + =(x x)
+                     A2:   All x:Any + LEQ(x x)
+                     A3:   All x:Any - NEQ(x x)
+                     A4:   All x,y:Any + LEQ(y x)  + NEQ(y x)
+                     A5:   All x,y:Any + LEQ(y x)  + NEQ(x y)
+                   * A6:   All x,y:Any - NEQ(y x)  + NEQ(x y)
+                     A7:   All x,y,z:Any - LEQ(z y)  - LEQ(y x)  + LEQ(z x)
+                     A8:   All x,y:Any - LEQ(y x)  - LEQ(x y)  - NEQ(y x)
+                   * T12:  - NEQ(c_5 c_4)
+                   * T13:  + NEQ(c_4 c_5)
+                   
+
+
+A6,2 & T12,1   --> * R15:  - NEQ(c_4 c_5)
+
+R15,1 & T13,1  --> * R16:  []
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+Refutation of Splitpart 3:
+==========================
+
+See operations on theorems of splitpart 3
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+Refutation of Splitpart 4:
+==========================
+
+Initial Clauses:     A1:   All x:Any + =(x x)
+                     A2:   All x:Any + LEQ(x x)
+                     A3:   All x:Any - NEQ(x x)
+                     A4:   All x,y:Any + LEQ(y x)  + NEQ(y x)
+                     A5:   All x,y:Any + LEQ(y x)  + NEQ(x y)
+                     A6:   All x,y:Any - NEQ(y x)  + NEQ(x y)
+                   * A7:   All x,y,z:Any - LEQ(z y)  - LEQ(y x)  + LEQ(z x)
+                     A8:   All x,y:Any - LEQ(y x)  - LEQ(x y)  - NEQ(y x)
+                   * T15:  + LEQ(c_8 c_9)
+                     T16:  + NEQ(c_8 c_9)
+                   * T17:  + LEQ(c_9 c_7)
+                     T18:  + NEQ(c_9 c_7)
+                   * T19:  - LEQ(c_8 c_7)
+                   
+
+
+T17,1 & A7,2   --> * R17:  - LEQ(c_8 c_9)  + LEQ(c_8 c_7)
+
+R17,1 & T15,1  --> * R18:  + LEQ(c_8 c_7)
+
+R18,1 & T19,1  --> * R19:  []
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+Refutation of Splitpart 5:
+==========================
+
+Initial Clauses:     A1:   All x:Any + =(x x)
+                     A2:   All x:Any + LEQ(x x)
+                     A3:   All x:Any - NEQ(x x)
+                     A4:   All x,y:Any + LEQ(y x)  + NEQ(y x)
+                   * A5:   All x,y:Any + LEQ(y x)  + NEQ(x y)
+                     A6:   All x,y:Any - NEQ(y x)  + NEQ(x y)
+                   * A7:   All x,y,z:Any - LEQ(z y)  - LEQ(y x)  + LEQ(z x)
+                   * A8:   All x,y:Any - LEQ(y x)  - LEQ(x y)  - NEQ(y x)
+                   * T20:  + LEQ(c_8 c_9)
+                   * T21:  + NEQ(c_8 c_9)
+                   * T22:  + LEQ(c_9 c_7)
+                     T23:  + NEQ(c_9 c_7)
+                   * T24:  - NEQ(c_8 c_7)
+                   
+
+
+T21,1 & A8,3   --> * R23:  - LEQ(c_8 c_9)  - LEQ(c_9 c_8)
+
+R23,1 & T20,1  --> * R24:  - LEQ(c_9 c_8)
+
+A5,2 & T24,1   --> * R25:  + LEQ(c_7 c_8)
+
+R25,1 & A7,2   --> * R26:  - LEQ(c_9 c_7)  + LEQ(c_9 c_8)
+
+R26,1 & T22,1  --> * R27:  + LEQ(c_9 c_8)
+
+R27,1 & R24,1  --> * R28:  []
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+Refutation of Splitpart 6:
+==========================
+
+See operations on theorems of splitpart 6
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+  q.e.d. 
+
+
+Time Used for Refutation of Splitpart 1: 4 seconds
+Time Used for Refutation of Splitpart 2: 2 seconds
+Time Used for Refutation of Splitpart 3: 1 seconds
+Time Used for Refutation of Splitpart 4: 2 seconds
+Time Used for Refutation of Splitpart 5: 6 seconds
+Time Used for Refutation of Splitpart 6: 1 seconds

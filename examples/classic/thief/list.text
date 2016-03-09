@@ -1,0 +1,133 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 48.7                                                *
+                     *           DATE: 20-AUG,1991  16:00                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 20-AUG,1991 16:00 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   THIEF (BILLIE) OR THIEF (LUCKY) OR THIEF (JACKY)
+             NOT ((THIEF (BILLIE) AND THIEF (LUCKY))
+                  OR (THIEF (BILLIE) AND THIEF (JACKY))
+                  OR (THIEF (LUCKY) AND THIEF (JACKY)))
+             ALL X THIEF (X) IMPL HOTEL (X)
+             NOT (NOT THIEF (LUCKY) AND NOT HOTEL (LUCKY) AND THIEF (BILLIE))
+             NOT (NOT THIEF (BILLIE) AND (THIEF (LUCKY) AND HOTEL (LUCKY) AND NOT THIEF (BILLIE)) AND NOT THIEF (JACKY))
+             NOT (NOT THIEF (JACKY) AND HOTEL (LUCKY) AND NOT (THIEF (LUCKY) AND HOTEL (LUCKY) AND NOT THIEF (BILLIE)))
+             
+   Theorems: THIEF (JACKY)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+           * A2:   - THIEF(billie)  - THIEF(lucky)
+           * A3:   - THIEF(billie)  - THIEF(jacky)
+           * A4:   - THIEF(lucky)  - THIEF(jacky)
+           * A5:   All x:Any - THIEF(x)  + HOTEL(x)
+           * A6:   + THIEF(billie)  + THIEF(lucky)  + THIEF(jacky)
+           * A7:   + THIEF(lucky)  + HOTEL(lucky)  - THIEF(billie)
+             A8:   + THIEF(jacky)  - HOTEL(lucky)  + THIEF(lucky)
+             A9:   + THIEF(jacky)  - HOTEL(lucky)  + HOTEL(lucky)
+           * A10:  + THIEF(jacky)  - HOTEL(lucky)  - THIEF(billie)
+           * A11:  + THIEF(billie)  - THIEF(lucky)  - HOTEL(lucky)  + THIEF(billie)  + THIEF(jacky)
+           
+
+
+
+
+             Initial Operations on Axioms
+             ============================
+
+
+          
+   A7,1 & A2,2   --> * R1:  + HOTEL(lucky)  - THIEF(billie)  - THIEF(billie)
+   
+   R1 2=3        --> * D2:  + HOTEL(lucky)  - THIEF(billie)
+   
+   A10,2 & D2,1  --> * R3:  + THIEF(jacky)  - THIEF(billie)  - THIEF(billie)
+   
+   R3 2=3        --> * D4:  + THIEF(jacky)  - THIEF(billie)
+   
+   D4,1 & A3,2   --> * R5:  - THIEF(billie)  - THIEF(billie)
+   
+   R5 1=2        --> * D6:  - THIEF(billie)
+   
+   A6,1 & D6,1   --> * R7:  + THIEF(lucky)  + THIEF(jacky)
+   
+   A11 1=4       --> * D8:  + THIEF(billie)  - THIEF(lucky)  - HOTEL(lucky)  + THIEF(jacky)
+   
+   D8,4 & A4,2   --> * R9:  + THIEF(billie)  - THIEF(lucky)  - HOTEL(lucky)  - THIEF(lucky)
+   
+   R9 2=4        --> * D10: + THIEF(billie)  - THIEF(lucky)  - HOTEL(lucky)
+   
+   D10,3 & A5,2  --> * R11: + THIEF(billie)  - THIEF(lucky)  - THIEF(lucky)
+   
+   R11 2=3       --> * D12: + THIEF(billie)  - THIEF(lucky)
+   
+   D12,1 & D6,1  --> * R13: - THIEF(lucky)
+   
+   R7,1 & R13,1  --> * R14: + THIEF(jacky)
+   
+
+   
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T12: - THIEF(jacky)
+
+
+
+    Literals: ((T12 25) (A11 15 16 17 18 19) (A10 20 21 24) (A9 20 21 23) (A8 20 21 22) (A7 12 13 14) (A6 1 2 3) (A5 10 11) (A4 8 9) (A3 6 7) (A2 4 5) (A1 NIL))
+
+
+
+
+
+
+             Initial Operations on Theorems
+             ==============================
+
+
+          
+   T12,1 & R14,1  --> * R15: []
+   
+
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+

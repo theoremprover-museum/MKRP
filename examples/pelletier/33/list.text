@@ -1,0 +1,129 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 34.1 EQUALITY 16.1                                  *
+                     *           DATE: 31-OCT,1989  23:15                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 31-OCT,1989 23:15 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   NIL  
+             
+   Theorems: * THEOREMS *
+             (ALL X P (A) AND (P (X) IMPL P (B)) IMPL P (C))
+             EQV (ALL X (NOT P (A) OR (P (X) OR P (C))) AND (NOT P (A) OR (NOT P (B) OR P (C))))
+             
+   
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T1: + P(a)  + P(a)  + P(a)
+             T2: + P(a)  + P(a)  + P(b)
+             T3: + P(a)  + P(a)  - P(c)
+             T4: + P(a)  - P(c_2)  + P(a)
+             T5: + P(a)  - P(c_2)  + P(b)
+             T6: + P(a)  - P(c_2)  - P(c)
+             T7: + P(a)  - P(c)  + P(a)
+             T8: + P(a)  - P(c)  + P(b)
+             T9: + P(a)  - P(c)  - P(c)
+             T10: - P(c)  + P(a)  + P(a)
+             T11: - P(c)  + P(a)  + P(b)
+             T12: - P(c)  + P(a)  - P(c)
+             T13: - P(c)  - P(c_2)  + P(a)
+             T14: - P(c)  - P(c_2)  + P(b)
+             T15: - P(c)  - P(c_2)  - P(c)
+             T16: - P(c)  - P(c)  + P(a)
+             T17: - P(c)  - P(c)  + P(b)
+           * T18: - P(c)  - P(c)  - P(c)
+             T19: - P(c_1)  + P(b)  + P(a)  + P(a)
+             T20: - P(c_1)  + P(b)  + P(a)  + P(b)
+             T21: - P(c_1)  + P(b)  + P(a)  - P(c)
+             T22: - P(c_1)  + P(b)  - P(c_2)  + P(a)
+             T23: - P(c_1)  + P(b)  - P(c_2)  + P(b)
+             T24: - P(c_1)  + P(b)  - P(c_2)  - P(c)
+             T25: - P(c_1)  + P(b)  - P(c)  + P(a)
+             T26: - P(c_1)  + P(b)  - P(c)  + P(b)
+             T27: - P(c_1)  + P(b)  - P(c)  - P(c)
+           * T28: All x,y:Any - P(a)  + P(y)  + P(c)  - P(a)  + P(x)  + P(c)
+
+
+
+
+
+
+             Initial Operations on Theorems
+             ==============================
+
+
+          
+   T1 2=3         --> * D1:  + P(a)  + P(a)
+   
+   D1 1=2         --> * D2:  + P(a)
+   
+   T18 2=3        --> * D13: - P(c)  - P(c)
+   
+   D13 1=2        --> * D14: - P(c)
+   
+   T28 3=6        --> * D20: All x,y:Any - P(a)  + P(x)  + P(c)  - P(a)  + P(y)
+   
+   D20 1=4        --> * D21: All x,y:Any - P(a)  + P(x)  + P(c)  + P(y)
+   
+   D21 (INSTANCE) --> * I22: All x:Any - P(a)  + P(x)  + P(c)  + P(c)
+   
+   I22 3=4        --> * D23: All x:Any - P(a)  + P(x)  + P(c)
+   
+   D23 (INSTANCE) --> * I24: - P(a)  + P(c)  + P(c)
+   
+   I24 3=2        --> * D25: - P(a)  + P(c)
+   
+   D25,2 & D14,1  --> * R26: - P(a)
+   
+   R26,1 & D2,1   --> * R27: []
+   
+
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   See operations on theorems of splitpart 1
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 1 seconds

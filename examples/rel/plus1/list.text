@@ -1,0 +1,122 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 28.5 EQUALITY 15.2                                  *
+                     *           DATE: 25-JUL,1989  14:41                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+                                                                                                                    
+      
+   
+   ******************************************************************************************************************
+   ***
+   
+    EDIT:     Axioms and Theorems edited: 25-JUL,1989 14:41 
+   
+   ******************************************************************************************************************
+   ***
+   
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   (ALL X,Y (NOT(ALL
+                           Z,U,V(NOT(P (X X X X X Z U)
+                                     AND
+                                     P (X U V V V V V)
+                                     OR
+                                     Q (Y U U U U U U U U U U U U U U U U U U U U U U U U U UU U U U U U))))))
+             
+   Theorems: NIL  
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x,y:Any + P(y y y y y f_1(y) f_3(y))
+                               + Q(x
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   uu
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x))
+             A2:   All x,y:Any + P(y f_3(y) f_2(y) f_2(y) f_2(y) f_2(y) f_2(y))
+                               + Q(x
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   uu
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x)
+                                   f_4(x))
+           
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 

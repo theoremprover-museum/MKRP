@@ -1,0 +1,192 @@
+;;; -*- Package: MKRP; Base: 10. -*- 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 5-NOV-84                                                      *
+                    *         DATE : 16-NOV-84  17:12:42                                           *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+                                                                         
+*************************************************************************
+ EDIT:     AXIOME UND THEOREME EDITIERT AM:  16-NOV-84 14:50:20
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:    2.6.RL.SURJ.IA 
+                                                                        
+************************************************************************
+                                                                        
+ 
+ 
+ADJUSTMENT OF THE OPTIONS : 
+============================
+ 
+ 
+ 
+TWO:RULES                             NIL                   TWO:RULES.MAXLEVEL                    1
+TWO:SUPPRESS.NORULES                  NIL
+ 
+ 
+RED.I:CLAUSE.MULTIPLE.LITERALS        T                     RED.I:CLAUSE.PURITY                   T
+RED.I:CLAUSE.TAUTOLOGY                T                     RED.I:CLAUSE.TAUTOLOGY.RECHECK        PARTIAL
+RED.I:CLAUSE.SUBSUMPTION              T                     RED.I:CLAUSE.SUBSUMPTION.RECHECK      PARTIAL
+RED.I:CLAUSE.REPL.FACTORING           T                     RED.I:CLAUSE.REPL.FACTORING.RECHECK   T
+RED.I:CLAUSE.REPL.RESOLUTION          SIMPLE                RED.I:CLAUSE.REPL.RESOLUTION.RECHECK  T
+RED.I:CLAUSE.REWRITING                T                     RED.I:LINK.INCOMPATIBILITY            T
+RED.I:LINK.TAUTOLOGY                  REMOVE-INHIBIT        RED.I:LINK.TAUTOLOGY.RECHECK          NIL
+RED.I:LINK.SUBSUMPTION                REMOVE-INHIBIT        RED.I:LINK.SUBSUMPTION.RECHECK        NIL
+ 
+RED.D:CLAUSE.MULTIPLE.LITERALS        T                     RED.D:CLAUSE.PURITY                   T
+RED.D:CLAUSE.TAUTOLOGY                REMOVE-INHIBIT        RED.D:CLAUSE.TAUTOLOGY.RECHECK        NIL
+RED.D:CLAUSE.SUBSUMPTION.FORWARD      REMOVE-INHIBIT        RED.D:CLAUSE.SUBSUMPTION.BACKWARD     REMOVE
+RED.D:CLAUSE.SUBSUMPTION.RECHECK      NIL                   RED.D:CLAUSE.REPL.FACTORING           T
+RED.D:CLAUSE.REPL.FACTORING.RECHECK   T                     RED.D:CLAUSE.REPL.RESOLUTION          SIMPLE
+RED.D:CLAUSE.REPL.RESOLUTION.RECHECK  T                     RED.D:LINK.INCOMPATIBILITY            T
+RED.D:LINK.TAUTOLOGY                  REMOVE-INHIBIT        RED.D:LINK.TAUTOLOGY.RECHECK          NIL
+RED.D:LINK.SUBSUMPTION                REMOVE-INHIBIT        RED.D:LINK.SUBSUMPTION.RECHECK        NIL
+ 
+FAC:INITIAL                           NIL                   FAC:EACH.STEP                         NIL
+ 
+STR:RESOLUTION                        SET-OF-SUPPORT        STR:E-RESOLUTION                      NIL
+STR:PARAMODULATION                    UNIT-ANCESTRY         STR:LINK.DEPTH                        NIL
+STR:TERM.DEPTH                        NIL                   STR:R.DEMODULATION                    T
+STR:P.DEMODULATION                    T                     STR:INDUCTION                         NIL
+ 
+TERM:UNITS                            T                     TERM:ITERATIONS                       0
+TERM:SET.OF.SUPPORT                   NIL                   TERM:BREADTH.FIRST                    NIL
+ 
+GEN:SPLITTING                         0                     GEN:MANUAL.CONTROL                    NIL
+GEN:MAXIMUM.STEPS                     NIL                   GEN:GRAPH.SAVING                      NIL
+GEN:SAVE.FILE                         SAVE.DEFAULT
+ 
+ 
+TR:PREPROCESSING                      NIL                   TR:STEP.MODE                          LR
+TR:DUMP                               NIL                   TR:CLAUSE.MODE                        I
+TR:LINK.MODE                          I                     TR:TRACE.FILE                         NIL
+TR:TERMINAL                           NIL
+ 
+ 
+PR:INFIX.FORM                         T                     PR:PREFIX.FORM                        NIL
+PR:OPTIONS                            T                     PR:AXIOM.CLAUSES                      NIL
+PR:SYMBOLS                            NIL                   PR:STATISTICS                         NIL
+PR:PROTOCOL                           T                     PR:LEFT.MARGIN                        0
+PR:LINELENGTH                         120
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : SORT ELEMENT,MENGE,VERKN,ABB,NAT:ANY
+           TYPE W(MENGE) : MENGE
+           TYPE APPLYA(ABB ELEMENT) : ELEMENT
+           TYPE LENGTH(ELEMENT) : NAT
+           TYPE CARD(MENGE) : NAT
+           TYPE 1 : NAT
+           TYPE PHI:ABB
+           ALL X:ELEMENT ALL Y:MENGE EL(X W(Y)) AND GLEICH(LENGTH(X) 1) IMPL EL(X Y)
+           ALL PSI:ABB  ALL M1,M2:MENGE  ALL X  
+             : ELEMENT BIJEKTIV(PSI M1 M2) AND EL(X M2) IMPL(EX Y : ELEMENT EL(Y M1) AND APPLYA(PSI Y) = X)
+           ALL X:ELEMENT ALL Y: MENGE EL(X Y) IMPL EL(X W(Y))
+ 
+THEOREMS : ALL A,B:MENGE  ALL X,Y:ELEMENT  
+                  EL(X W(B)) AND GLEICH(LENGTH(X) 1) AND CARD(A) = CARD(B) AND BIJEKTIV(PHI A B)
+             IMPL (EX Y:ELEMENT EL(Y W(A)) AND APPLYA(PHI Y) = X)
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+  A1   : ALL X:ANY  + =(X X)
+* A2   : ALL X:MENGE  Y:ELEMENT  - EL(Y X)  + EL(Y W(X))
+* A3   : ALL X:MENGE  Y:ELEMENT  - EL(Y W(X))  - GLEICH(LENGTH(Y) 1)  + EL(Y X)
+* A4   : ALL X:ELEMENT  Y,Z:MENGE  U:ABB  - BIJEKTIV(U Z Y)  - EL(X Y)  + EL(F_1(U Z X) Z)
+* A5   : ALL X:ELEMENT  Y,Z:MENGE  U:ABB  - BIJEKTIV(U Z Y)  - EL(X Y)  + =(APPLYA(U F_1(U Z X)) X)
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+* T6   : + EL(C_2 W(C_1))
+* T7   : + GLEICH(LENGTH(C_2) 1)
+  T8   : + =(CARD(C_3) CARD(C_1))
+* T9   : + BIJEKTIV(PHI C_3 C_1)
+* T10  : ALL X:ELEMENT  - EL(X W(C_3))  - =(APPLYA(PHI X) C_2)
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION
+ 
+INITIAL CLAUSES :     A1  : ALL X:ANY  + =(X X)
+                    * A2  : ALL X:MENGE  Y:ELEMENT  - EL(Y X)  + EL(Y W(X))
+                    * A3  : ALL X:MENGE  Y:ELEMENT  - EL(Y W(X))  - GLEICH(LENGTH(Y) 1)  + EL(Y X)
+                    * A4  : ALL X:ELEMENT  Y,Z:MENGE  U:ABB  - BIJEKTIV(U Z Y)  - EL(X Y)  + EL(F_1(U Z X) Z)
+                    * A5  : ALL X:ELEMENT  Y,Z:MENGE  U:ABB  - BIJEKTIV(U Z Y)  - EL(X Y)  + =(APPLYA(U F_1(U Z X)) X)
+                    * T6  : + EL(C_2 W(C_1))
+                    * T7  : + GLEICH(LENGTH(C_2) 1)
+                    * T9  : + BIJEKTIV(PHI C_3 C_1)
+                    * T10 : ALL X:ELEMENT  - EL(X W(C_3))  - =(APPLYA(PHI X) C_2)
+ 
+T9,1 & A4,1    -->  * R1  : ALL X:ELEMENT  - EL(X C_1)  + EL(F_1(PHI C_3 X) C_3)
+ 
+T9,1 & A5,1    -->  * R2  : ALL X:ELEMENT  - EL(X C_1)  + =(APPLYA(PHI F_1(PHI C_3 X)) X)
+ 
+T7,1 & A3,2    -->  * R3  : ALL X:MENGE  - EL(C_2 W(X))  + EL(C_2 X)
+ 
+R3,2 & R1,1    -->  * R4  : - EL(C_2 W(C_1))  + EL(F_1(PHI C_3 C_2) C_3)
+ 
+R4,1 & T6,1    -->  * R5  : + EL(F_1(PHI C_3 C_2) C_3)
+ 
+R3,2 & R2,1    -->  * R6  : - EL(C_2 W(C_1))  + =(APPLYA(PHI F_1(PHI C_3 C_2)) C_2)
+ 
+R6,1 & T6,1    -->  * R7  : + =(APPLYA(PHI F_1(PHI C_3 C_2)) C_2)
+ 
+R7,1 & T6,1    -->    P8  : + EL(APPLYA(PHI F_1(PHI C_3 C_2)) W(C_1))
+ 
+R7,1 & T7,1    -->    P9  : + GLEICH(LENGTH(APPLYA(PHI F_1(PHI C_3 C_2))) 1)
+ 
+T6,1 & A2,1    -->    R10 : + EL(C_2 W(W(C_1)))
+ 
+T6,1 & R3,1    -->    R11 : + EL(C_2 C_1)
+ 
+R10,1 & A2,1   -->    R12 : + EL(C_2 W(W(W(C_1))))
+ 
+A2,2 & T10,1   -->  * R13 : ALL X:ELEMENT  - EL(X C_3)  - =(APPLYA(PHI X) C_2)
+ 
+R13,2 & R7,1   -->  * R14 : - EL(F_1(PHI C_3 C_2) C_3)
+ 
+R14,1 & R5,1   -->  * R15 :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+STOP
+ 

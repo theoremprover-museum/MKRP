@@ -1,0 +1,2836 @@
+;;; -*- Package: MKRP; Base: 10. -*-
+
+
+
+                    ********************************************************************************
+                    *                                                                              *
+                    *     MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN                   *
+                    *                                                                              *
+                    *       09-SEP-85                                                              *
+                    *          09-SEP-85  09:42:00                                                 *
+                    *                                                                              *
+                    ********************************************************************************
+
+
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   09-SEP-85 09:39:32
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   D315>INJB
+                                                                        
+************************************************************************
+                                                                        
+
+
+ADJUSTMENT OF THE OPTIONS : 
+============================
+
+
+
+TWO:RULES                             NIL                   TWO:RULES.MAXLEVEL                    1.
+TWO:SUPPRESS.NORULES                  NIL
+
+
+RED.I:CLAUSE.MULTIPLE.LITERALS        T                     RED.I:CLAUSE.PURITY                   T
+RED.I:CLAUSE.TAUTOLOGY                T                     RED.I:CLAUSE.TAUTOLOGY.RECHECK        PARTIAL
+RED.I:CLAUSE.SUBSUMPTION              T                     RED.I:CLAUSE.SUBSUMPTION.RECHECK      PARTIAL
+RED.I:CLAUSE.REPL.FACTORING           T                     RED.I:CLAUSE.REPL.FACTORING.RECHECK   T
+RED.I:CLAUSE.REPL.RESOLUTION          SIMPLE                RED.I:CLAUSE.REPL.RESOLUTION.RECHECK  T
+RED.I:CLAUSE.REWRITING                T                     RED.I:LINK.INCOMPATIBILITY            NIL
+RED.I:LINK.TAUTOLOGY                  REMOVE-INHIBIT        RED.I:LINK.TAUTOLOGY.RECHECK          NIL
+RED.I:LINK.SUBSUMPTION                REMOVE-INHIBIT        RED.I:LINK.SUBSUMPTION.RECHECK        NIL
+
+RED.D:CLAUSE.MULTIPLE.LITERALS        T                     RED.D:CLAUSE.PURITY                   T
+RED.D:CLAUSE.TAUTOLOGY                REMOVE-INHIBIT        RED.D:CLAUSE.TAUTOLOGY.RECHECK        NIL
+RED.D:CLAUSE.SUBSUMPTION.FORWARD      NIL                   RED.D:CLAUSE.SUBSUMPTION.BACKWARD     NIL
+RED.D:CLAUSE.SUBSUMPTION.RECHECK      NIL                   RED.D:CLAUSE.REPL.FACTORING           T
+RED.D:CLAUSE.REPL.FACTORING.RECHECK   NIL                   RED.D:CLAUSE.REPL.RESOLUTION          SIMPLE
+RED.D:CLAUSE.REPL.RESOLUTION.RECHECK  NIL                   RED.D:LINK.INCOMPATIBILITY            NIL
+RED.D:LINK.TAUTOLOGY                  NIL                   RED.D:LINK.TAUTOLOGY.RECHECK          NIL
+RED.D:LINK.SUBSUMPTION                NIL                   RED.D:LINK.SUBSUMPTION.RECHECK        NIL
+
+FAC:INITIAL                           NIL                   FAC:EACH.STEP                         NIL
+
+STR:RESOLUTION                        SET-OF-SUPPORT        STR:E-RESOLUTION                      NIL
+STR:PARAMODULATION                    UNIT-ANCESTRY         STR:LINK.DEPTH                        NIL
+STR:TERM.DEPTH                        6.                    STR:R.DEMODULATION                    T
+STR:P.DEMODULATION                    T                     STR:INDUCTION                         NIL
+
+TERM:UNITS                            T                     TERM:ITERATIONS                       1.
+TERM:SET.OF.SUPPORT                   NIL                   TERM:BREADTH.FIRST                    NIL
+
+GEN:SPLITTING                         0.                    GEN:MANUAL.CONTROL                    NIL
+GEN:MAXIMUM.STEPS                     40.                   GEN:GRAPH.SAVING                      NIL
+GEN:SAVE.FILE                         SAVE.DEFAULT
+
+
+TR:PREPROCESSING                      NIL                   TR:STEP.MODE                          LR
+TR:DUMP                               NIL                   TR:CLAUSE.MODE                        I
+TR:LINK.MODE                          I                     TR:TRACE.FILE                         NIL
+TR:TERMINAL                           T
+
+
+PR:INFIX.FORM                         T                     PR:PREFIX.FORM                        NIL
+PR:OPTIONS                            T                     PR:AXIOM.CLAUSES                      NIL
+PR:SYMBOLS                            NIL                   PR:STATISTICS                         NIL
+PR:PROTOCOL                           T                     PR:LEFT.MARGIN                        0.
+PR:LINELENGTH                         120.
+
+
+
+
+FORMULAE GIVEN TO THE EDITOR
+============================
+
+
+AXIOMS   : SORT MENGE,VERKN,ELEMENT,INDEX,INDEXMENGE:ANY
+           TYPE LIDEAL (MENGE MENGE VERKN)
+           TYPE RIDEAL (MENGE MENGE VERKN)
+           TYPE UHG (MENGE MENGE VERKN)
+           TYPE ME (MENGE MENGE)
+           TYPE NICHTLEER (MENGE)
+           TYPE HG (MENGE VERKN)
+           TYPE EL (ELEMENT MENGE)
+           TYPE MINIMAL (MENGE MENGE VERKN)
+           TYPE MPROD (MENGE MENGE VERKN) :MENGE
+           TYPE APPLYV (VERKN ELEMENT ELEMENT) :ELEMENT
+           TYPE F*X (MENGE ELEMENT VERKN) :MENGE
+           TYPE SM (MENGE MENGE) :MENGE
+           TYPE SET (ELEMENT) :MENGE
+           TYPE VER (MENGE MENGE) :MENGE
+           TYPE GR (MENGE VERKN ELEMENT)
+           TYPE INVERS (VERKN ELEMENT) :ELEMENT
+           TYPE MINIMAL-BED-L (MENGE VERKN)
+           TYPE MINIMAL-BED-R (MENGE VERKN)
+           TYPE EL-IND (INDEX INDEXMENGE)
+           TYPE U (INDEX) : MENGE
+           TYPE E (INDEX INDEX) : ELEMENT
+           TYPE NICHTLEER-IND (INDEXMENGE)
+           TYPE GLEICH (MENGE MENGE)
+           TYPE VER-IND (INDEXMENGE) : MENGE
+           TYPE SM-IND (INDEXMENGE) : MENGE
+           TYPE IDEAL (MENGE MENGE VERKN)
+           TYPE G (INDEX INDEX) :MENGE
+           TYPE GLEICH-E (ELEMENT ELEMENT)
+           * LEMMA 3.15.INJA *
+           ALL F:MENGE  ALL MAL:VERKN  ALL I1,I2:INDEXMENGE  ALL J,K,RHO0,RHO1,RHO2:INDEX  ALL X,X1,X2,Z1,Z2,Z:ELEMENT  
+             VORAUSSETZUNG315INJB (F MAL I1 I2 X J RHO0 RHO1 RHO2 K X1 X2 Z1 Z2 Z) IMPL Z2 := Z1
+           * LEMMA 3.16 *
+           ALL F:MENGE  ALL MAL:VERKN  ALL I1,I2:INDEXMENGE  ALL J,K,RHO0,RHO1,RHO2:INDEX  ALL X,X1,X2,Z1,Z2,Z:ELEMENT  
+               VORAUSSETZUNG315INJB (F MAL I1 I2 X J RHO0 RHO1 RHO2 K X1 X2 Z1 Z2 Z)
+               IMPL  
+               GLEICH-E (APPLYV (MAL E (RHO1 J) APPLYV (MAL Z1 Z)) APPLYV (MAL E (RHO2 J) APPLYV (MAL Z2 Z)))
+           * G (RHO0 K) UND G (RHO0 J) SIND GRUPPEN *
+           ALL F:MENGE  ALL MAL:VERKN  ALL I1,I2:INDEXMENGE  ALL J,K,RHO0,RHO1,RHO2:INDEX  ALL X,X1,X2,Z1,Z2,Z:ELEMENT  
+               VORAUSSETZUNG315INJB (F MAL I1 I2 X J RHO0 RHO1 RHO2 K X1 X2 Z1 Z2 Z)
+               IMPL  
+               GR (G (RHO0 K) MAL E (RHO0 K)) AND GR (G (RHO0 J) MAL E (RHO0 J))
+           * FOLGERUNG AUS SATZ 3.11 *
+           ALL F:MENGE  ALL MAL:VERKN  ALL I1,I2:INDEXMENGE  ALL J,K,RHO0,RHO1,RHO2:INDEX  ALL X,X1,X2,Z1,Z2,Z:ELEMENT  
+               VORAUSSETZUNG315INJB (F MAL I1 I2 X J RHO0 RHO1 RHO2 K X1 X2 Z1 Z2 Z)
+               IMPL  
+               EL (APPLYV (MAL Z1 Z) G (RHO0 K))
+           * GRUPPENEIGENSCHAFT : EXISTENZ INVERSER ELEMENTE *
+           ALL F:MENGE  ALL MAL:VERKN  ALL E,X:ELEMENT  
+             GR (F MAL E) AND EL (X F) IMPL (EX Y:ELEMENT EL (Y F) AND APPLYV (MAL X Y) = E)
+           * MULTIPLIKATION EINER GLEICHUNG UND ASSOZIATIVES UMKLAMMERN *
+           ALL F:MENGE  ALL MAL:VERKN  ALL A,B,C,D,E,H:ELEMENT  
+               GR (F MAL E) AND EL (H F) AND GLEICH-E (APPLYV (MAL A B) APPLYV (MAL C D))
+               IMPL  
+               GLEICH-E (APPLYV (MAL A APPLYV (MAL B H)) APPLYV (MAL C APPLYV (MAL D H)))
+           * SATZ3.12 *
+           ALL F:MENGE  ALL MAL:VERKN  ALL I1,I2:INDEXMENGE  ALL J,K,RHO0,RHO1,RHO2:INDEX  ALL X,X1,X2,Z1,Z2,Z:ELEMENT  
+               VORAUSSETZUNG315INJB (F MAL I1 I2 X J RHO0 RHO1 RHO2 K X1 X2 Z1 Z2 Z)
+               IMPL  
+                  APPLYV (MAL E (RHO0 K) E (RHO0 J)) = E (RHO0 J)
+                  AND  
+                  APPLYV (MAL E (RHO1 J) E (RHO0 J)) = E (RHO1 J)
+                  AND  
+                  APPLYV (MAL E (RHO2 J) E (RHO0 J)) = E (RHO2 J)
+           * EINSELEMENT IN GRUPPE ENTHALTEN *
+           ALL F:MENGE ALL MAL:VERKN ALL E:ELEMENT GR (F MAL E) IMPL EL (E F)
+
+THEOREMS : ALL F:MENGE  ALL MAL:VERKN  ALL I1,I2:INDEXMENGE  ALL X,Y,X1,X2:ELEMENT  ALL J,RHO0,K,RHO1,RHO2:INDEX  
+           ALL PHI:ABB  ALL Z1,Z2,Z:ELEMENT  
+                 HG (F MAL)
+                 AND  
+                 MINIMAL-BED-L (F MAL)
+                 AND  
+                 MINIMAL-BED-R (F MAL)
+                 AND  
+                 (ALL J1:INDEX EL-IND (J1 I1) IMPL LIDEAL (U (J1) F MAL) AND MINIMAL (U (J1) F MAL))
+                 AND  
+                 (ALL J2:INDEX EL-IND (J2 I2) IMPL RIDEAL (U (J2) F MAL) AND MINIMAL (U (J2) F MAL))
+                 AND  
+                 EL-IND (J I1)
+                 AND  
+                 EL (X F)
+                 AND  
+                 EL-IND (RHO0 I2)
+                 AND  
+                 (EL-IND (K I1) IMPL GLEICH (F*X (U (J) X MAL) U (K)))
+                 AND  
+                 EL (X1 U (J))
+                 AND  
+                 EL (X2 U (J))
+                 AND  
+                 X1 = APPLYV (MAL E (RHO1 J) Z1)
+                 AND  
+                 X2 = APPLYV (MAL E (RHO2 J) Z2)
+                 AND  
+                 EL (Z1 G (RHO0 J))
+                 AND  
+                 EL (Z2 G (RHO0 J))
+                 AND  
+                 EL (Z G (RHO0 K))
+                 AND  
+                 APPLYV (MAL X1 X) = APPLYV (MAL X2 X)
+                 AND  
+                 Z = APPLYV (MAL E (RHO0 J) X)
+                 AND  
+                 VORAUSSETZUNG315INJB (F MAL I1 I2 X J RHO0 RHO1 RHO2 K X1 X2 Z1 Z2 Z)
+               IMPL  
+               GLEICH-E (E (RHO1 J) E (RHO2 J))
+
+
+
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+  A1   : ALL X:ANY  + =(X X)
+  A2   : ALL X:ELEMENT  Y:VERKN  Z:MENGE  - GR(Z Y X)  + EL(X Z)
+  A3   : ALL X,Y,Z,U,V,W:ELEMENT  XX,YY,ZZ,UU,VV:INDEX  WW,XXX:INDEXMENGE  YYY:VERKN  ZZZ:MENGE  
+              - VORAUSSETZUNG315INJB(ZZZ YYY XXX WW W VV UU ZZ YY XX V U Z Y X)
+                + =(APPLYV(YYY E(YY VV) E(UU VV)) E(YY VV))
+  A4   : ALL X,Y,Z,U,V,W:ELEMENT  XX,YY,ZZ,UU,VV:INDEX  WW,XXX:INDEXMENGE  YYY:VERKN  ZZZ:MENGE  
+              - VORAUSSETZUNG315INJB(ZZZ YYY XXX WW W VV UU ZZ YY XX V U Z Y X)
+                + =(APPLYV(YYY E(ZZ VV) E(UU VV)) E(ZZ VV))
+  A5   : ALL X,Y,Z,U,V,W:ELEMENT  XX,YY,ZZ,UU,VV:INDEX  WW,XXX:INDEXMENGE  YYY:VERKN  ZZZ:MENGE  
+              - VORAUSSETZUNG315INJB(ZZZ YYY XXX WW W VV UU ZZ YY XX V U Z Y X)
+                + =(APPLYV(YYY E(UU XX) E(UU VV)) E(UU VV))
+  A6   : ALL X,Y,Z,U,V,W:ELEMENT  XX,YY,ZZ,UU,VV:INDEX  WW,XXX:INDEXMENGE  YYY:VERKN  ZZZ:MENGE  
+              - VORAUSSETZUNG315INJB(ZZZ YYY XXX WW W VV UU ZZ YY XX V U Z Y X)  + EL(APPLYV(YYY Z X) G(UU XX))
+  A7   : ALL X,Y,Z,U,V,W:ELEMENT  XX,YY,ZZ,UU,VV:INDEX  WW,XXX:INDEXMENGE  YYY:VERKN  ZZZ:MENGE  
+              - VORAUSSETZUNG315INJB(ZZZ YYY XXX WW W VV UU ZZ YY XX V U Z Y X)  + GR(G(UU VV) YYY E(UU VV))
+  A8   : ALL X,Y,Z,U,V,W:ELEMENT  XX,YY,ZZ,UU,VV:INDEX  WW,XXX:INDEXMENGE  YYY:VERKN  ZZZ:MENGE  
+              - VORAUSSETZUNG315INJB(ZZZ YYY XXX WW W VV UU ZZ YY XX V U Z Y X)  + =(Y Z)
+  A9   : ALL X,Y,Z,U,V,W:ELEMENT  XX,YY,ZZ,UU,VV:INDEX  WW,XXX:INDEXMENGE  YYY:VERKN  ZZZ:MENGE  
+              - VORAUSSETZUNG315INJB(ZZZ YYY XXX WW W VV UU ZZ YY XX V U Z Y X)  + GR(G(UU XX) YYY E(UU XX))
+  A10  : ALL X,Y,Z,U,V,W:ELEMENT  XX,YY,ZZ,UU,VV:INDEX  WW,XXX:INDEXMENGE  YYY:VERKN  ZZZ:MENGE  
+              - VORAUSSETZUNG315INJB(ZZZ YYY XXX WW W VV UU ZZ YY XX V U Z Y X)
+                + GLEICH-E(APPLYV(YYY E(ZZ VV) APPLYV(YYY Z X)) APPLYV(YYY E(YY VV) APPLYV(YYY Y X)))
+  A11  : ALL X,Y:ELEMENT  Z:VERKN  U:MENGE  - GR(U Z Y)  - EL(X U)  + =(APPLYV(Z X F_1(U X Z Y)) Y)
+  A12  : ALL X,Y:ELEMENT  Z:VERKN  U:MENGE  - GR(U Z Y)  - EL(X U)  + EL(F_1(U X Z Y) U)
+  A13  : ALL X,Y,Z,U,V,W:ELEMENT  XX:VERKN  YY:MENGE  
+              - GR(YY XX W)  - EL(V YY)  - GLEICH-E(APPLYV(XX U Z) APPLYV(XX Y X))
+                + GLEICH-E(APPLYV(XX U APPLYV(XX Z V)) APPLYV(XX Y APPLYV(XX X V)))
+
+
+
+
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+  T14  : + HG(C_11 C_12)
+  T15  : + MINIMAL-BED-L(C_11 C_12)
+  T16  : + MINIMAL-BED-R(C_11 C_12)
+  T17  : ALL X:INDEX  - EL-IND(X C_10)  + LIDEAL(U(X) C_11 C_12)
+  T18  : ALL X:INDEX  - EL-IND(X C_10)  + MINIMAL(U(X) C_11 C_12)
+  T19  : ALL X:INDEX  - EL-IND(X C_9)  + RIDEAL(U(X) C_11 C_12)
+  T20  : ALL X:INDEX  - EL-IND(X C_9)  + MINIMAL(U(X) C_11 C_12)
+  T21  : + EL-IND(C_13 C_10)
+  T22  : + EL(C_8 C_11)
+  T23  : + EL-IND(C_7 C_9)
+  T24  : - EL-IND(C_6 C_10)  + GLEICH(F*X(U(C_13) C_8 C_12) U(C_6))
+  T25  : + EL(C_5 U(C_13))
+  T26  : + EL(C_4 U(C_13))
+  T27  : + =(C_5 APPLYV(C_12 E(C_14 C_13) C_3))
+  T28  : + =(C_4 APPLYV(C_12 E(C_15 C_13) C_2))
+  T29  : + EL(C_3 G(C_7 C_13))
+  T30  : + EL(C_2 G(C_7 C_13))
+  T31  : + EL(C_1 G(C_7 C_6))
+  T32  : + =(APPLYV(C_12 C_5 C_8) APPLYV(C_12 C_4 C_8))
+  T33  : + =(C_1 APPLYV(C_12 E(C_7 C_13) C_8))
+  T34  : + VORAUSSETZUNG315INJB(C_11 C_12 C_10 C_9 C_8 C_13 C_7 C_14 C_15 C_6 C_5 C_4 C_3 C_2 C_1)
+  T35  : - GLEICH-E(E(C_14 C_13) E(C_15 C_13))
+
+
+
+
+
+
+INITIAL OPERATIONS ON THEOREMS
+==============================
+
+
+T25,1 & T27  -->    RW1 : + EL(APPLYV(C_12 E(C_14 C_13) C_3) U(C_13))
+
+T26,1 & T28  -->    RW2 : + EL(APPLYV(C_12 E(C_15 C_13) C_2) U(C_13))
+
+T32,1 & T27  -->    RW3 : + =(APPLYV(C_12 APPLYV(C_12 E(C_14 C_13) C_3) C_8) APPLYV(C_12 C_4 C_8))
+
+RW3,1 & T28  -->    RW4 : + =(APPLYV(C_12 APPLYV(C_12 E(C_14 C_13) C_3) C_8)
+                              APPLYV(C_12 APPLYV(C_12 E(C_15 C_13) C_2) C_8))
+
+
+T31,1 & T33  -->    RW5 : + EL(APPLYV(C_12 E(C_7 C_13) C_8) G(C_7 C_6))
+
+T34,1 & T27  -->    RW6 : + VORAUSSETZUNG315INJB(C_11
+                                                 C_12
+                                                 C_10
+                                                 C_9
+                                                 C_8
+                                                 C_13
+                                                 C_7
+                                                 C_14
+                                                 C_15
+                                                 C_6
+                                                 APPLYV(C_12 E(C_14 C_13) C_3)
+                                                 C_4
+                                                 C_3
+                                                 C_2
+                                                 C_1)
+
+
+RW6,1 & T28  -->    RW7 : + VORAUSSETZUNG315INJB(C_11
+                                                 C_12
+                                                 C_10
+                                                 C_9
+                                                 C_8
+                                                 C_13
+                                                 C_7
+                                                 C_14
+                                                 C_15
+                                                 C_6
+                                                 APPLYV(C_12 E(C_14 C_13) C_3)
+                                                 APPLYV(C_12 E(C_15 C_13) C_2)
+                                                 C_3
+                                                 C_2
+                                                 C_1)
+
+
+RW7,1 & T33  -->    RW8 : + VORAUSSETZUNG315INJB(C_11
+                                                 C_12
+                                                 C_10
+                                                 C_9
+                                                 C_8
+                                                 C_13
+                                                 C_7
+                                                 C_14
+                                                 C_15
+                                                 C_6
+                                                 APPLYV(C_12 E(C_14 C_13) C_3)
+                                                 APPLYV(C_12 E(C_15 C_13) C_2)
+                                                 C_3
+                                                 C_2
+                                                 APPLYV(C_12 E(C_7 C_13) C_8))
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+REFUTATION ( FAILURE : ABORTED.MAXSTEPS )
+
+INITIAL CLAUSES :        A1   : ALL X:ANY  + =(X X)
+                         A2   : ALL X:ELEMENT  Y:VERKN  Z:MENGE  - GR(Z Y X)  + EL(X Z)
+                         A3   : ALL X,Y,Z,U,V,W:ELEMENT  XX,YY,ZZ,UU,VV:INDEX  WW,XXX:INDEXMENGE  YYY:VERKN  ZZZ:MENGE  
+                                     - VORAUSSETZUNG315INJB(ZZZ YYY XXX WW W VV UU ZZ YY XX V U Z Y X)
+                                       + =(APPLYV(YYY E(YY VV) E(UU VV)) E(YY VV))
+                         A4   : ALL X,Y,Z,U,V,W:ELEMENT  XX,YY,ZZ,UU,VV:INDEX  WW,XXX:INDEXMENGE  YYY:VERKN  ZZZ:MENGE  
+                                     - VORAUSSETZUNG315INJB(ZZZ YYY XXX WW W VV UU ZZ YY XX V U Z Y X)
+                                       + =(APPLYV(YYY E(ZZ VV) E(UU VV)) E(ZZ VV))
+                         A5   : ALL X,Y,Z,U,V,W:ELEMENT  XX,YY,ZZ,UU,VV:INDEX  WW,XXX:INDEXMENGE  YYY:VERKN  ZZZ:MENGE  
+                                     - VORAUSSETZUNG315INJB(ZZZ YYY XXX WW W VV UU ZZ YY XX V U Z Y X)
+                                       + =(APPLYV(YYY E(UU XX) E(UU VV)) E(UU VV))
+                         A6   : ALL X,Y,Z,U,V,W:ELEMENT  XX,YY,ZZ,UU,VV:INDEX  WW,XXX:INDEXMENGE  YYY:VERKN  ZZZ:MENGE  
+                                     - VORAUSSETZUNG315INJB(ZZZ YYY XXX WW W VV UU ZZ YY XX V U Z Y X)
+                                       + EL(APPLYV(YYY Z X) G(UU XX))
+                         A7   : ALL X,Y,Z,U,V,W:ELEMENT  XX,YY,ZZ,UU,VV:INDEX  WW,XXX:INDEXMENGE  YYY:VERKN  ZZZ:MENGE  
+                                     - VORAUSSETZUNG315INJB(ZZZ YYY XXX WW W VV UU ZZ YY XX V U Z Y X)
+                                       + GR(G(UU VV) YYY E(UU VV))
+                         A8   : ALL X,Y,Z,U,V,W:ELEMENT  XX,YY,ZZ,UU,VV:INDEX  WW,XXX:INDEXMENGE  YYY:VERKN  ZZZ:MENGE  
+                                     - VORAUSSETZUNG315INJB(ZZZ YYY XXX WW W VV UU ZZ YY XX V U Z Y X)  + =(Y Z)
+                         A9   : ALL X,Y,Z,U,V,W:ELEMENT  XX,YY,ZZ,UU,VV:INDEX  WW,XXX:INDEXMENGE  YYY:VERKN  ZZZ:MENGE  
+                                     - VORAUSSETZUNG315INJB(ZZZ YYY XXX WW W VV UU ZZ YY XX V U Z Y X)
+                                       + GR(G(UU XX) YYY E(UU XX))
+                         A10  : ALL X,Y,Z,U,V,W:ELEMENT  XX,YY,ZZ,UU,VV:INDEX  WW,XXX:INDEXMENGE  YYY:VERKN  ZZZ:MENGE  
+                                     - VORAUSSETZUNG315INJB(ZZZ YYY XXX WW W VV UU ZZ YY XX V U Z Y X)
+                                     + GLEICH-E(APPLYV(YYY E(ZZ VV) APPLYV(YYY Z X))
+                                                APPLYV(YYY E(YY VV) APPLYV(YYY Y X)))
+                         A11  : ALL X,Y:ELEMENT  Z:VERKN  U:MENGE  
+                                     - GR(U Z Y)  - EL(X U)  + =(APPLYV(Z X F_1(U X Z Y)) Y)
+                         A12  : ALL X,Y:ELEMENT  Z:VERKN  U:MENGE  - GR(U Z Y)  - EL(X U)  + EL(F_1(U X Z Y) U)
+                         A13  : ALL X,Y,Z,U,V,W:ELEMENT  XX:VERKN  YY:MENGE  
+                                     - GR(YY XX W)  - EL(V YY)  - GLEICH-E(APPLYV(XX U Z) APPLYV(XX Y X))
+                                       + GLEICH-E(APPLYV(XX U APPLYV(XX Z V)) APPLYV(XX Y APPLYV(XX X V)))
+                         T22  : + EL(C_8 C_11)
+                         RW1  : + EL(APPLYV(C_12 E(C_14 C_13) C_3) U(C_13))
+                         RW2  : + EL(APPLYV(C_12 E(C_15 C_13) C_2) U(C_13))
+                         T29  : + EL(C_3 G(C_7 C_13))
+                         T30  : + EL(C_2 G(C_7 C_13))
+                         RW5  : + EL(APPLYV(C_12 E(C_7 C_13) C_8) G(C_7 C_6))
+                         RW4  : + =(APPLYV(C_12 APPLYV(C_12 E(C_14 C_13) C_3) C_8)
+                                    APPLYV(C_12 APPLYV(C_12 E(C_15 C_13) C_2) C_8))
+                         RW8  : + VORAUSSETZUNG315INJB(C_11
+                                                       C_12
+                                                       C_10
+                                                       C_9
+                                                       C_8
+                                                       C_13
+                                                       C_7
+                                                       C_14
+                                                       C_15
+                                                       C_6
+                                                       APPLYV(C_12 E(C_14 C_13) C_3)
+                                                       APPLYV(C_12 E(C_15 C_13) C_2)
+                                                       C_3
+                                                       C_2
+                                                       APPLYV(C_12 E(C_7 C_13) C_8))
+                         T35  : - GLEICH-E(E(C_14 C_13) E(C_15 C_13))
+
+RW8,1 & A3,1      -->    R9   : + =(APPLYV(C_12 E(C_15 C_13) E(C_7 C_13)) E(C_15 C_13))
+
+RW8,1 & A4,1      -->    R10  : + =(APPLYV(C_12 E(C_14 C_13) E(C_7 C_13)) E(C_14 C_13))
+
+RW8,1 & A5,1      -->    R11  : + =(APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)) E(C_7 C_13))
+
+RW8,1 & A6,1      -->    R12  : + EL(APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)) G(C_7 C_6))
+
+RW8,1 & A7,1      -->    R13  : + GR(G(C_7 C_13) C_12 E(C_7 C_13))
+
+RW8,1 & A8,1      -->    R14  : + =(C_2 C_3)
+
+RW8,1 & A9,1      -->    R15  : + GR(G(C_7 C_6) C_12 E(C_7 C_6))
+
+RW8,1 & A10,1     -->    R16  : + GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12 E(C_15 C_13) APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+
+
+R14,1 & RW8,1     -->    P17  : + VORAUSSETZUNG315INJB(C_11
+                                                       C_12
+                                                       C_10
+                                                       C_9
+                                                       C_8
+                                                       C_13
+                                                       C_7
+                                                       C_14
+                                                       C_15
+                                                       C_6
+                                                       APPLYV(C_12 E(C_14 C_13) C_3)
+                                                       APPLYV(C_12 E(C_15 C_13) C_2)
+                                                       C_3
+                                                       C_3
+                                                       APPLYV(C_12 E(C_7 C_13) C_8))
+
+
+R14,1 & P17,1     -->    P18  : + VORAUSSETZUNG315INJB(C_11
+                                                       C_12
+                                                       C_10
+                                                       C_9
+                                                       C_8
+                                                       C_13
+                                                       C_7
+                                                       C_14
+                                                       C_15
+                                                       C_6
+                                                       APPLYV(C_12 E(C_14 C_13) C_3)
+                                                       APPLYV(C_12 E(C_15 C_13) C_3)
+                                                       C_3
+                                                       C_3
+                                                       APPLYV(C_12 E(C_7 C_13) C_8))
+
+
+R14,1 & RW4,1     -->    P19  : + =(APPLYV(C_12 APPLYV(C_12 E(C_14 C_13) C_3) C_8)
+                                    APPLYV(C_12 APPLYV(C_12 E(C_15 C_13) C_3) C_8))
+
+
+R14,1 & T30,1     -->    P20  : + EL(C_3 G(C_7 C_13))
+
+R14,1 & RW2,1     -->    P21  : + EL(APPLYV(C_12 E(C_15 C_13) C_3) U(C_13))
+
+RW5,1 & A12,2     -->    R22  : - GR(G(C_7 C_6) C_12 E(C_7 C_6))
+                                  + EL(F_1(G(C_7 C_6) APPLYV(C_12 E(C_7 C_13) C_8) C_12 E(C_7 C_6)) G(C_7 C_6))
+
+R22,1 & R15,1     -->    R23  : + EL(F_1(G(C_7 C_6) APPLYV(C_12 E(C_7 C_13) C_8) C_12 E(C_7 C_6)) G(C_7 C_6))
+
+R23,1 & A13,2     -->    R24  : - GR(G(C_7 C_6) C_12 E(C_7 C_6))
+                                - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12 E(C_15 C_13) APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_6) APPLYV(C_12 E(C_7 C_13) C_8) C_12 E(C_7 C_6))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_6) APPLYV(C_12 E(C_7 C_13) C_8) C_12 E(C_7 C_6)))))
+
+
+R24,1 & R15,1     -->    R25  : - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12 E(C_15 C_13) APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_6) APPLYV(C_12 E(C_7 C_13) C_8) C_12 E(C_7 C_6))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_6) APPLYV(C_12 E(C_7 C_13) C_8) C_12 E(C_7 C_6)))))
+
+
+R25,1 & R16,1     -->    R26  : + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_6) APPLYV(C_12 E(C_7 C_13) C_8) C_12 E(C_7 C_6))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_6) APPLYV(C_12 E(C_7 C_13) C_8) C_12 E(C_7 C_6)))))
+
+
+R15,1 & A2,1      -->    R27  : + EL(E(C_7 C_6) G(C_7 C_6))
+
+R27,1 & A12,2     -->    R28  : - GR(G(C_7 C_6) C_12 E(C_7 C_6))
+                                  + EL(F_1(G(C_7 C_6) E(C_7 C_6) C_12 E(C_7 C_6)) G(C_7 C_6))
+
+R28,1 & R15,1     -->    R29  : + EL(F_1(G(C_7 C_6) E(C_7 C_6) C_12 E(C_7 C_6)) G(C_7 C_6))
+
+R29,1 & A13,2     -->    R30  : - GR(G(C_7 C_6) C_12 E(C_7 C_6))
+                                - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12 E(C_15 C_13) APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_6) E(C_7 C_6) C_12 E(C_7 C_6))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_6) E(C_7 C_6) C_12 E(C_7 C_6)))))
+
+
+R30,1 & R15,1     -->    R31  : - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12 E(C_15 C_13) APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_6) E(C_7 C_6) C_12 E(C_7 C_6))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_6) E(C_7 C_6) C_12 E(C_7 C_6)))))
+
+
+R31,1 & R16,1     -->    R32  : + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_6) E(C_7 C_6) C_12 E(C_7 C_6))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_6) E(C_7 C_6) C_12 E(C_7 C_6)))))
+
+
+R27,1 & A13,2     -->    R33  : - GR(G(C_7 C_6) C_12 E(C_7 C_6))
+                                - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12 E(C_15 C_13) APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12 APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)) E(C_7 C_6)))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12 APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8)) E(C_7 C_6))))
+
+
+R33,1 & R15,1     -->    R34  : - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12 E(C_15 C_13) APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12 APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)) E(C_7 C_6)))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12 APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8)) E(C_7 C_6))))
+
+
+R34,1 & R16,1     -->    R35  : + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12 APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)) E(C_7 C_6)))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12 APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8)) E(C_7 C_6))))
+
+
+RW5,1 & A13,2     -->    R36  : - GR(G(C_7 C_6) C_12 E(C_7 C_6))
+                                - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12 E(C_15 C_13) APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 E(C_7 C_13) C_8))))
+
+
+R36,1 & R15,1     -->    R37  : - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12 E(C_15 C_13) APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 E(C_7 C_13) C_8))))
+
+
+R37,1 & R16,1     -->    R38  : + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 E(C_7 C_13) C_8))))
+
+
+R12,1 & A13,2     -->    R39  : - GR(G(C_7 C_6) C_12 E(C_7 C_6))
+                                - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12 E(C_15 C_13) APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))))
+
+
+R39,1 & R15,1     -->    R40  : - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12 E(C_15 C_13) APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))))
+
+
+R40,1 & R16,1     -->    R41  : + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))))
+
+
+P20,1 & A12,2     -->    R42  : - GR(G(C_7 C_13) C_12 E(C_7 C_13))
+                                  + EL(F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13)) G(C_7 C_13))
+
+R42,1 & R13,1     -->    R43  : + EL(F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13)) G(C_7 C_13))
+
+R43,1 & A13,2     -->    R44  : - GR(G(C_7 C_13) C_12 E(C_7 C_13))
+                                - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12 E(C_15 C_13) APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13)))))
+
+
+R44,1 & R13,1     -->    R45  : - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12 E(C_15 C_13) APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13)))))
+
+
+R45,1 & R16,1     -->    R46  : + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13)))))
+
+
+R13,1 & A2,1      -->    R47  : + EL(E(C_7 C_13) G(C_7 C_13))
+
+R47,1 & A12,2     -->    R48  : - GR(G(C_7 C_13) C_12 E(C_7 C_13))
+                                  + EL(F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13)) G(C_7 C_13))
+
+R48,1 & R13,1     -->    R49  : + EL(F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13)) G(C_7 C_13))
+
+R49,1 & A13,2     -->    R50  : - GR(G(C_7 C_13) C_12 E(C_7 C_13))
+                                - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12 E(C_15 C_13) APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13)))))
+
+
+R50,1 & R13,1     -->    R51  : - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12 E(C_15 C_13) APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13)))))
+
+
+R51,1 & R16,1     -->    R52  : + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13)))))
+
+
+R47,1 & A13,2     -->    R53  : - GR(G(C_7 C_13) C_12 E(C_7 C_13))
+                                - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12 E(C_15 C_13) APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12 APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)) E(C_7 C_13)))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12 APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8)) E(C_7 C_13))))
+
+
+R53,1 & R13,1     -->    R54  : - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12 E(C_15 C_13) APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12 APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)) E(C_7 C_13)))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12 APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8)) E(C_7 C_13))))
+
+
+R54,1 & R16,1     -->    R55  : + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12 APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)) E(C_7 C_13)))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12 APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8)) E(C_7 C_13))))
+
+
+T29,1 & A13,2     -->    R56  : - GR(G(C_7 C_13) C_12 E(C_7 C_13))
+                                - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12 E(C_15 C_13) APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12 APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)) C_3))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12 APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8)) C_3)))
+
+
+R56,1 & R13,1     -->    R57  : - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12 E(C_15 C_13) APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12 APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)) C_3))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12 APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8)) C_3)))
+
+
+R57,1 & R16,1     -->    R58  : + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12 APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)) C_3))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12 APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8)) C_3)))
+
+
+R12,1 & A12,2     -->    R59  : - GR(G(C_7 C_6) C_12 E(C_7 C_6))
+                                + EL(F_1(G(C_7 C_6) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)) C_12 E(C_7 C_6))
+                                     G(C_7 C_6))
+
+
+R59,1 & R15,1     -->    R60  : + EL(F_1(G(C_7 C_6) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)) C_12 E(C_7 C_6))
+                                     G(C_7 C_6))
+
+
+P20,1 & A11,2     -->    R61  : - GR(G(C_7 C_13) C_12 E(C_7 C_13))
+                                  + =(APPLYV(C_12 C_3 F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))) E(C_7 C_13))
+
+R61,1 & R13,1     -->    R62  : + =(APPLYV(C_12 C_3 F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))) E(C_7 C_13))
+
+R47,1 & A11,2     -->    R63  : - GR(G(C_7 C_13) C_12 E(C_7 C_13))
+                                + =(APPLYV(C_12 E(C_7 C_13) F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))) E(C_7 C_13))
+
+
+R63,1 & R13,1     -->    R64  : + =(APPLYV(C_12 E(C_7 C_13) F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))) E(C_7 C_13))
+
+R49,1 & A11,2     -->    R65  : - GR(G(C_7 C_13) C_12 E(C_7 C_13))
+                                + =(APPLYV(C_12
+                                           F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))
+                                           F_1(G(C_7 C_13)
+                                               F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))
+                                               C_12
+                                               E(C_7 C_13)))
+                                    E(C_7 C_13))
+
+
+R65,1 & R13,1     -->    R66  : + =(APPLYV(C_12
+                                           F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))
+                                           F_1(G(C_7 C_13)
+                                               F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))
+                                               C_12
+                                               E(C_7 C_13)))
+                                    E(C_7 C_13))
+
+
+R43,1 & A11,2     -->    R67  : - GR(G(C_7 C_13) C_12 E(C_7 C_13))
+                                + =(APPLYV(C_12
+                                           F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))
+                                           F_1(G(C_7 C_13) F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13)) C_12 E(C_7 C_13)))
+                                    E(C_7 C_13))
+
+
+R67,1 & R13,1     -->    R68  : + =(APPLYV(C_12
+                                           F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))
+                                           F_1(G(C_7 C_13) F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13)) C_12 E(C_7 C_13)))
+                                    E(C_7 C_13))
+
+
+R12,1 & A11,2     -->    R69  : - GR(G(C_7 C_6) C_12 E(C_7 C_6))
+                                + =(APPLYV(C_12
+                                           APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                           F_1(G(C_7 C_6) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)) C_12 E(C_7 C_6)))
+                                    E(C_7 C_6))
+
+
+R69,1 & R15,1     -->    R70  : + =(APPLYV(C_12
+                                           APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                           F_1(G(C_7 C_6) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)) C_12 E(C_7 C_6)))
+                                    E(C_7 C_6))
+
+
+RW5,1 & A11,2     -->    R71  : - GR(G(C_7 C_6) C_12 E(C_7 C_6))
+                                + =(APPLYV(C_12
+                                           APPLYV(C_12 E(C_7 C_13) C_8)
+                                           F_1(G(C_7 C_6) APPLYV(C_12 E(C_7 C_13) C_8) C_12 E(C_7 C_6)))
+                                    E(C_7 C_6))
+
+
+R71,1 & R15,1     -->    R72  : + =(APPLYV(C_12
+                                           APPLYV(C_12 E(C_7 C_13) C_8)
+                                           F_1(G(C_7 C_6) APPLYV(C_12 E(C_7 C_13) C_8) C_12 E(C_7 C_6)))
+                                    E(C_7 C_6))
+
+
+R27,1 & A11,2     -->    R73  : - GR(G(C_7 C_6) C_12 E(C_7 C_6))
+                                  + =(APPLYV(C_12 E(C_7 C_6) F_1(G(C_7 C_6) E(C_7 C_6) C_12 E(C_7 C_6))) E(C_7 C_6))
+
+R73,1 & R15,1     -->    R74  : + =(APPLYV(C_12 E(C_7 C_6) F_1(G(C_7 C_6) E(C_7 C_6) C_12 E(C_7 C_6))) E(C_7 C_6))
+
+R29,1 & A11,2     -->    R75  : - GR(G(C_7 C_6) C_12 E(C_7 C_6))
+                                + =(APPLYV(C_12
+                                           F_1(G(C_7 C_6) E(C_7 C_6) C_12 E(C_7 C_6))
+                                           F_1(G(C_7 C_6) F_1(G(C_7 C_6) E(C_7 C_6) C_12 E(C_7 C_6)) C_12 E(C_7 C_6)))
+                                    E(C_7 C_6))
+
+
+R75,1 & R15,1     -->    R76  : + =(APPLYV(C_12
+                                           F_1(G(C_7 C_6) E(C_7 C_6) C_12 E(C_7 C_6))
+                                           F_1(G(C_7 C_6) F_1(G(C_7 C_6) E(C_7 C_6) C_12 E(C_7 C_6)) C_12 E(C_7 C_6)))
+                                    E(C_7 C_6))
+
+
+R23,1 & A11,2     -->    R77  : - GR(G(C_7 C_6) C_12 E(C_7 C_6))
+                                + =(APPLYV(C_12
+                                           F_1(G(C_7 C_6) APPLYV(C_12 E(C_7 C_13) C_8) C_12 E(C_7 C_6))
+                                           F_1(G(C_7 C_6)
+                                               F_1(G(C_7 C_6) APPLYV(C_12 E(C_7 C_13) C_8) C_12 E(C_7 C_6))
+                                               C_12
+                                               E(C_7 C_6)))
+                                    E(C_7 C_6))
+
+
+R77,1 & R15,1     -->    R78  : + =(APPLYV(C_12
+                                           F_1(G(C_7 C_6) APPLYV(C_12 E(C_7 C_13) C_8) C_12 E(C_7 C_6))
+                                           F_1(G(C_7 C_6)
+                                               F_1(G(C_7 C_6) APPLYV(C_12 E(C_7 C_13) C_8) C_12 E(C_7 C_6))
+                                               C_12
+                                               E(C_7 C_6)))
+                                    E(C_7 C_6))
+
+
+R9,1 & T35,1      -->    P79  : - GLEICH-E(E(C_14 C_13) APPLYV(C_12 E(C_15 C_13) E(C_7 C_13)))
+
+R10,1 & RW1,1     -->    P80  : + EL(APPLYV(C_12 APPLYV(C_12 E(C_14 C_13) E(C_7 C_13)) C_3) U(C_13))
+
+R10,1 & T35,1     -->    P81  : - GLEICH-E(APPLYV(C_12 E(C_14 C_13) E(C_7 C_13)) E(C_15 C_13))
+
+R11,1 & RW5,1     -->    P82  : + EL(APPLYV(C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)) C_8) G(C_7 C_6))
+
+P82,1 & A13,2     -->    R83  : - GR(G(C_7 C_6) C_12 E(C_7 C_6))
+                                - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12 E(C_15 C_13) APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)) C_8)))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)) C_8))))
+
+
+R83,1 & R15,1     -->    R84  : - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12 E(C_15 C_13) APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)) C_8)))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)) C_8))))
+
+
+R84,1 & R16,1     -->    R85  : + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)) C_8)))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)) C_8))))
+
+
+P82,1 & A12,2     -->    R86  : - GR(G(C_7 C_6) C_12 E(C_7 C_6))
+                                + EL(F_1(G(C_7 C_6)
+                                         APPLYV(C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)) C_8)
+                                         C_12
+                                         E(C_7 C_6))
+                                     G(C_7 C_6))
+
+
+R86,1 & R15,1     -->    R87  : + EL(F_1(G(C_7 C_6)
+                                         APPLYV(C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)) C_8)
+                                         C_12
+                                         E(C_7 C_6))
+                                     G(C_7 C_6))
+
+
+P82,1 & A11,2     -->    R88  : - GR(G(C_7 C_6) C_12 E(C_7 C_6))
+                                + =(APPLYV(C_12
+                                           APPLYV(C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)) C_8)
+                                           F_1(G(C_7 C_6)
+                                               APPLYV(C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)) C_8)
+                                               C_12
+                                               E(C_7 C_6)))
+                                    E(C_7 C_6))
+
+
+R88,1 & R15,1     -->    R89  : + =(APPLYV(C_12
+                                           APPLYV(C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)) C_8)
+                                           F_1(G(C_7 C_6)
+                                               APPLYV(C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)) C_8)
+                                               C_12
+                                               E(C_7 C_6)))
+                                    E(C_7 C_6))
+
+
+R11,1 & R9,1      -->    P90  : + =(APPLYV(C_12 E(C_15 C_13) APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))) E(C_15 C_13))
+
+R11,1 & R10,1     -->    P91  : + =(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))) E(C_14 C_13))
+
+R11,1 & R13,1     -->    P92  : + GR(G(C_7 C_13) C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+
+R49,1 & A12,2     -->    R93  : - GR(G(C_7 C_13) C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                + EL(F_1(G(C_7 C_13)
+                                         F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))
+                                         C_12
+                                         APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                     G(C_7 C_13))
+
+
+R93,1 & P92,1     -->    R94  : + EL(F_1(G(C_7 C_13)
+                                         F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))
+                                         C_12
+                                         APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                     G(C_7 C_13))
+
+
+R94,1 & A13,2     -->    R95  : - GR(G(C_7 C_13) C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12 E(C_15 C_13) APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))))
+
+
+R95,1 & P92,1     -->    R96  : - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12 E(C_15 C_13) APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))))
+
+
+R96,1 & R16,1     -->    R97  : + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))))
+
+
+R47,1 & A12,2     -->    R98  : - GR(G(C_7 C_13) C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                + EL(F_1(G(C_7 C_13) E(C_7 C_13) C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))) G(C_7 C_13))
+
+
+R98,1 & P92,1     -->    R99  : + EL(F_1(G(C_7 C_13) E(C_7 C_13) C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))) G(C_7 C_13))
+
+R99,1 & A13,2     -->    R100 : - GR(G(C_7 C_13) C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12 E(C_15 C_13) APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             E(C_7 C_13)
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             E(C_7 C_13)
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))))
+
+
+R100,1 & P92,1    -->    R101 : - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12 E(C_15 C_13) APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             E(C_7 C_13)
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             E(C_7 C_13)
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))))
+
+
+R101,1 & R16,1    -->    R102 : + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             E(C_7 C_13)
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             E(C_7 C_13)
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))))
+
+
+R43,1 & A12,2     -->    R103 : - GR(G(C_7 C_13) C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                + EL(F_1(G(C_7 C_13)
+                                         F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))
+                                         C_12
+                                         APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                     G(C_7 C_13))
+
+
+R103,1 & P92,1    -->    R104 : + EL(F_1(G(C_7 C_13)
+                                         F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))
+                                         C_12
+                                         APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                     G(C_7 C_13))
+
+
+R104,1 & A13,2    -->    R105 : - GR(G(C_7 C_13) C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12 E(C_15 C_13) APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))))
+
+
+R105,1 & P92,1    -->    R106 : - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12 E(C_15 C_13) APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))))
+
+
+R106,1 & R16,1    -->    R107 : + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))))
+
+
+P20,1 & A12,2     -->    R108 : - GR(G(C_7 C_13) C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                  + EL(F_1(G(C_7 C_13) C_3 C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))) G(C_7 C_13))
+
+R108,1 & P92,1    -->    R109 : + EL(F_1(G(C_7 C_13) C_3 C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))) G(C_7 C_13))
+
+R109,1 & A13,2    -->    R110 : - GR(G(C_7 C_13) C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12 E(C_15 C_13) APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) C_3 C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) C_3 C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))))
+
+
+R110,1 & P92,1    -->    R111 : - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12 E(C_15 C_13) APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) C_3 C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) C_3 C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))))
+
+
+R111,1 & R16,1    -->    R112 : + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) C_3 C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) C_3 C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))))
+
+
+R109,1 & A11,2    -->    R113 : - GR(G(C_7 C_13) C_12 E(C_7 C_13))
+                                + =(APPLYV(C_12
+                                           F_1(G(C_7 C_13) C_3 C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                           F_1(G(C_7 C_13)
+                                               F_1(G(C_7 C_13) C_3 C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                               C_12
+                                               E(C_7 C_13)))
+                                    E(C_7 C_13))
+
+
+R113,1 & R13,1    -->    R114 : + =(APPLYV(C_12
+                                           F_1(G(C_7 C_13) C_3 C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                           F_1(G(C_7 C_13)
+                                               F_1(G(C_7 C_13) C_3 C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                               C_12
+                                               E(C_7 C_13)))
+                                    E(C_7 C_13))
+
+
+R104,1 & A11,2    -->    R115 : - GR(G(C_7 C_13) C_12 E(C_7 C_13))
+                                + =(APPLYV(C_12
+                                           F_1(G(C_7 C_13)
+                                               F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))
+                                               C_12
+                                               APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                           F_1(G(C_7 C_13)
+                                               F_1(G(C_7 C_13)
+                                                   F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))
+                                                   C_12
+                                                   APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                               C_12
+                                               E(C_7 C_13)))
+                                    E(C_7 C_13))
+
+
+R115,1 & R13,1    -->    R116 : + =(APPLYV(C_12
+                                           F_1(G(C_7 C_13)
+                                               F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))
+                                               C_12
+                                               APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                           F_1(G(C_7 C_13)
+                                               F_1(G(C_7 C_13)
+                                                   F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))
+                                                   C_12
+                                                   APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                               C_12
+                                               E(C_7 C_13)))
+                                    E(C_7 C_13))
+
+
+R99,1 & A11,2     -->    R117 : - GR(G(C_7 C_13) C_12 E(C_7 C_13))
+                                + =(APPLYV(C_12
+                                           F_1(G(C_7 C_13) E(C_7 C_13) C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                           F_1(G(C_7 C_13)
+                                               F_1(G(C_7 C_13) E(C_7 C_13) C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                               C_12
+                                               E(C_7 C_13)))
+                                    E(C_7 C_13))
+
+
+R117,1 & R13,1    -->    R118 : + =(APPLYV(C_12
+                                           F_1(G(C_7 C_13) E(C_7 C_13) C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                           F_1(G(C_7 C_13)
+                                               F_1(G(C_7 C_13) E(C_7 C_13) C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                               C_12
+                                               E(C_7 C_13)))
+                                    E(C_7 C_13))
+
+
+R94,1 & A11,2     -->    R119 : - GR(G(C_7 C_13) C_12 E(C_7 C_13))
+                                + =(APPLYV(C_12
+                                           F_1(G(C_7 C_13)
+                                               F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))
+                                               C_12
+                                               APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                           F_1(G(C_7 C_13)
+                                               F_1(G(C_7 C_13)
+                                                   F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))
+                                                   C_12
+                                                   APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                               C_12
+                                               E(C_7 C_13)))
+                                    E(C_7 C_13))
+
+
+R119,1 & R13,1    -->    R120 : + =(APPLYV(C_12
+                                           F_1(G(C_7 C_13)
+                                               F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))
+                                               C_12
+                                               APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                           F_1(G(C_7 C_13)
+                                               F_1(G(C_7 C_13)
+                                                   F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))
+                                                   C_12
+                                                   APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                               C_12
+                                               E(C_7 C_13)))
+                                    E(C_7 C_13))
+
+
+R49,1 & A11,2     -->    R121 : - GR(G(C_7 C_13) C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                + =(APPLYV(C_12
+                                           F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))
+                                           F_1(G(C_7 C_13)
+                                               F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))
+                                               C_12
+                                               APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))
+                                    APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+
+
+R121,1 & P92,1    -->    R122 : + =(APPLYV(C_12
+                                           F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))
+                                           F_1(G(C_7 C_13)
+                                               F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))
+                                               C_12
+                                               APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))
+                                    APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+
+
+R47,1 & A11,2     -->    R123 : - GR(G(C_7 C_13) C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                + =(APPLYV(C_12
+                                           E(C_7 C_13)
+                                           F_1(G(C_7 C_13) E(C_7 C_13) C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))
+                                    APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+
+
+R123,1 & P92,1    -->    R124 : + =(APPLYV(C_12
+                                           E(C_7 C_13)
+                                           F_1(G(C_7 C_13) E(C_7 C_13) C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))
+                                    APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+
+
+R43,1 & A11,2     -->    R125 : - GR(G(C_7 C_13) C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                + =(APPLYV(C_12
+                                           F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))
+                                           F_1(G(C_7 C_13)
+                                               F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))
+                                               C_12
+                                               APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))
+                                    APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+
+
+R125,1 & P92,1    -->    R126 : + =(APPLYV(C_12
+                                           F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))
+                                           F_1(G(C_7 C_13)
+                                               F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))
+                                               C_12
+                                               APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))
+                                    APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+
+
+P20,1 & A11,2     -->    R127 : - GR(G(C_7 C_13) C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                + =(APPLYV(C_12 C_3 F_1(G(C_7 C_13) C_3 C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))
+                                    APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+
+
+R127,1 & P92,1    -->    R128 : + =(APPLYV(C_12 C_3 F_1(G(C_7 C_13) C_3 C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))
+                                    APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+
+
+R109,1 & A11,2    -->    R129 : - GR(G(C_7 C_13) C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                + =(APPLYV(C_12
+                                           F_1(G(C_7 C_13) C_3 C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                           F_1(G(C_7 C_13)
+                                               F_1(G(C_7 C_13) C_3 C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                               C_12
+                                               APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))
+                                    APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+
+
+R129,1 & P92,1    -->    R130 : + =(APPLYV(C_12
+                                           F_1(G(C_7 C_13) C_3 C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                           F_1(G(C_7 C_13)
+                                               F_1(G(C_7 C_13) C_3 C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                               C_12
+                                               APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))
+                                    APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+
+
+R104,1 & A11,2    -->    R131 : - GR(G(C_7 C_13) C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                + =(APPLYV(C_12
+                                           F_1(G(C_7 C_13)
+                                               F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))
+                                               C_12
+                                               APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                           F_1(G(C_7 C_13)
+                                               F_1(G(C_7 C_13)
+                                                   F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))
+                                                   C_12
+                                                   APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                               C_12
+                                               APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))
+                                    APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+
+
+R131,1 & P92,1    -->    R132 : + =(APPLYV(C_12
+                                           F_1(G(C_7 C_13)
+                                               F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))
+                                               C_12
+                                               APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                           F_1(G(C_7 C_13)
+                                               F_1(G(C_7 C_13)
+                                                   F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))
+                                                   C_12
+                                                   APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                               C_12
+                                               APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))
+                                    APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+
+
+R99,1 & A11,2     -->    R133 : - GR(G(C_7 C_13) C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                + =(APPLYV(C_12
+                                           F_1(G(C_7 C_13) E(C_7 C_13) C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                           F_1(G(C_7 C_13)
+                                               F_1(G(C_7 C_13) E(C_7 C_13) C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                               C_12
+                                               APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))
+                                    APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+
+
+R133,1 & P92,1    -->    R134 : + =(APPLYV(C_12
+                                           F_1(G(C_7 C_13) E(C_7 C_13) C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                           F_1(G(C_7 C_13)
+                                               F_1(G(C_7 C_13) E(C_7 C_13) C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                               C_12
+                                               APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))
+                                    APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+
+
+R94,1 & A11,2     -->    R135 : - GR(G(C_7 C_13) C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                + =(APPLYV(C_12
+                                           F_1(G(C_7 C_13)
+                                               F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))
+                                               C_12
+                                               APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                           F_1(G(C_7 C_13)
+                                               F_1(G(C_7 C_13)
+                                                   F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))
+                                                   C_12
+                                                   APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                               C_12
+                                               APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))
+                                    APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+
+
+R135,1 & P92,1    -->    R136 : + =(APPLYV(C_12
+                                           F_1(G(C_7 C_13)
+                                               F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))
+                                               C_12
+                                               APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                           F_1(G(C_7 C_13)
+                                               F_1(G(C_7 C_13)
+                                                   F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))
+                                                   C_12
+                                                   APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                               C_12
+                                               APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))
+                                    APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+
+
+R9,1 & R16,1      -->    P137 : + GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+
+
+T29,1 & A13,2     -->    R138 : - GR(G(C_7 C_13) C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12 APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)) C_3))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8)) C_3)))
+
+
+R138,1 & P92,1    -->    R139 : - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12 APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)) C_3))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8)) C_3)))
+
+
+R139,1 & P137,1   -->    R140 : + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12 APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)) C_3))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8)) C_3)))
+
+
+R43,1 & A13,2     -->    R141 : - GR(G(C_7 C_13) C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13)))))
+
+
+R141,1 & P92,1    -->    R142 : - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13)))))
+
+
+R142,1 & P137,1   -->    R143 : + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13)))))
+
+
+R47,1 & A13,2     -->    R144 : - GR(G(C_7 C_13) C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12 APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)) E(C_7 C_13)))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8)) E(C_7 C_13))))
+
+
+R144,1 & P92,1    -->    R145 : - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12 APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)) E(C_7 C_13)))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8)) E(C_7 C_13))))
+
+
+R145,1 & P137,1   -->    R146 : + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12 APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)) E(C_7 C_13)))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8)) E(C_7 C_13))))
+
+
+R49,1 & A13,2     -->    R147 : - GR(G(C_7 C_13) C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13)))))
+
+
+R147,1 & P92,1    -->    R148 : - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13)))))
+
+
+R148,1 & P137,1   -->    R149 : + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13)))))
+
+
+R94,1 & A13,2     -->    R150 : - GR(G(C_7 C_13) C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))))
+
+
+R150,1 & P92,1    -->    R151 : - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))))
+
+
+R151,1 & P137,1   -->    R152 : + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))))
+
+
+R99,1 & A13,2     -->    R153 : - GR(G(C_7 C_13) C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             E(C_7 C_13)
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             E(C_7 C_13)
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))))
+
+
+R153,1 & P92,1    -->    R154 : - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             E(C_7 C_13)
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             E(C_7 C_13)
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))))
+
+
+R154,1 & P137,1   -->    R155 : + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             E(C_7 C_13)
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             E(C_7 C_13)
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))))
+
+
+R104,1 & A13,2    -->    R156 : - GR(G(C_7 C_13) C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))))
+
+
+R156,1 & P92,1    -->    R157 : - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))))
+
+
+R157,1 & P137,1   -->    R158 : + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))))
+
+
+R109,1 & A13,2    -->    R159 : - GR(G(C_7 C_13) C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) C_3 C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) C_3 C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))))
+
+
+R159,1 & P92,1    -->    R160 : - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) C_3 C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) C_3 C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))))
+
+
+R160,1 & P137,1   -->    R161 : + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) C_3 C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) C_3 C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))))
+
+
+RW5,1 & A13,2     -->    R162 : - GR(G(C_7 C_6) C_12 E(C_7 C_6))
+                                - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 E(C_7 C_13) C_8))))
+
+
+R162,1 & R15,1    -->    R163 : - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 E(C_7 C_13) C_8))))
+
+
+R163,1 & P137,1   -->    R164 : + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 E(C_7 C_13) C_8))))
+
+
+R12,1 & A13,2     -->    R165 : - GR(G(C_7 C_6) C_12 E(C_7 C_6))
+                                - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))))
+
+
+R165,1 & R15,1    -->    R166 : - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))))
+
+
+R166,1 & P137,1   -->    R167 : + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))))
+
+
+R23,1 & A13,2     -->    R168 : - GR(G(C_7 C_6) C_12 E(C_7 C_6))
+                                - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_6) APPLYV(C_12 E(C_7 C_13) C_8) C_12 E(C_7 C_6))))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_6) APPLYV(C_12 E(C_7 C_13) C_8) C_12 E(C_7 C_6)))))
+
+
+R168,1 & R15,1    -->    R169 : - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_6) APPLYV(C_12 E(C_7 C_13) C_8) C_12 E(C_7 C_6))))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_6) APPLYV(C_12 E(C_7 C_13) C_8) C_12 E(C_7 C_6)))))
+
+
+R169,1 & P137,1   -->    R170 : + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_6) APPLYV(C_12 E(C_7 C_13) C_8) C_12 E(C_7 C_6))))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_6) APPLYV(C_12 E(C_7 C_13) C_8) C_12 E(C_7 C_6)))))
+
+
+R27,1 & A13,2     -->    R171 : - GR(G(C_7 C_6) C_12 E(C_7 C_6))
+                                - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12 APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)) E(C_7 C_6)))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8)) E(C_7 C_6))))
+
+
+R171,1 & R15,1    -->    R172 : - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12 APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)) E(C_7 C_6)))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8)) E(C_7 C_6))))
+
+
+R172,1 & P137,1   -->    R173 : + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12 APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)) E(C_7 C_6)))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8)) E(C_7 C_6))))
+
+
+R29,1 & A13,2     -->    R174 : - GR(G(C_7 C_6) C_12 E(C_7 C_6))
+                                - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_6) E(C_7 C_6) C_12 E(C_7 C_6))))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_6) E(C_7 C_6) C_12 E(C_7 C_6)))))
+
+
+R174,1 & R15,1    -->    R175 : - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_6) E(C_7 C_6) C_12 E(C_7 C_6))))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_6) E(C_7 C_6) C_12 E(C_7 C_6)))))
+
+
+R175,1 & P137,1   -->    R176 : + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_6) E(C_7 C_6) C_12 E(C_7 C_6))))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_6) E(C_7 C_6) C_12 E(C_7 C_6)))))
+
+
+P82,1 & A13,2     -->    R177 : - GR(G(C_7 C_6) C_12 E(C_7 C_6))
+                                - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)) C_8)))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)) C_8))))
+
+
+R177,1 & R15,1    -->    R178 : - GLEICH-E(APPLYV(C_12 E(C_14 C_13) APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)) C_8)))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)) C_8))))
+
+
+R178,1 & P137,1   -->    R179 : + GLEICH-E(APPLYV(C_12
+                                                  E(C_14 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)) C_8)))
+                                           APPLYV(C_12
+                                                  APPLYV(C_12 E(C_15 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)) C_8))))
+
+
+R10,1 & R16,1     -->    P180 : + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12 E(C_15 C_13) APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))))
+
+
+P180,1 & A13,3    -->    R181 : - GR(G(C_7 C_13) C_12 E(C_7 C_13))
+                                  - EL(F_1(G(C_7 C_13) C_3 C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))) G(C_7 C_13))
+                                + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) C_3 C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) C_3 C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))))
+
+
+R181,2 & R109,1   -->    R182 : - GR(G(C_7 C_13) C_12 E(C_7 C_13))
+                                + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) C_3 C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) C_3 C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))))
+
+
+R182,1 & R13,1    -->    R183 : + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) C_3 C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) C_3 C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))))
+
+
+P180,1 & A13,3    -->    R184 : - GR(G(C_7 C_13) C_12 E(C_7 C_13))
+                                - EL(F_1(G(C_7 C_13)
+                                         F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))
+                                         C_12
+                                         APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                     G(C_7 C_13))
+                                + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))))
+
+
+R184,2 & R104,1   -->    R185 : - GR(G(C_7 C_13) C_12 E(C_7 C_13))
+                                + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))))
+
+
+R185,1 & R13,1    -->    R186 : + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))))
+
+
+P180,1 & A13,3    -->    R187 : - GR(G(C_7 C_13) C_12 E(C_7 C_13))
+                                - EL(F_1(G(C_7 C_13) E(C_7 C_13) C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))) G(C_7 C_13))
+                                + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             E(C_7 C_13)
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             E(C_7 C_13)
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))))
+
+
+R187,2 & R99,1    -->    R188 : - GR(G(C_7 C_13) C_12 E(C_7 C_13))
+                                + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             E(C_7 C_13)
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             E(C_7 C_13)
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))))
+
+
+R188,1 & R13,1    -->    R189 : + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             E(C_7 C_13)
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             E(C_7 C_13)
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))))
+
+
+P180,1 & A13,3    -->    R190 : - GR(G(C_7 C_13) C_12 E(C_7 C_13))
+                                - EL(F_1(G(C_7 C_13)
+                                         F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))
+                                         C_12
+                                         APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))
+                                     G(C_7 C_13))
+                                + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))))
+
+
+R190,2 & R94,1    -->    R191 : - GR(G(C_7 C_13) C_12 E(C_7 C_13))
+                                + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))))
+
+
+R191,1 & R13,1    -->    R192 : + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13)
+                                                             F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))
+                                                             C_12
+                                                             APPLYV(C_12 E(C_7 C_6) E(C_7 C_13))))))
+
+
+P180,1 & A13,3    -->    R193 : - GR(G(C_7 C_13) C_12 E(C_7 C_13))
+                                  - EL(F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13)) G(C_7 C_13))
+                                + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13)))))
+
+
+R193,2 & R49,1    -->    R194 : - GR(G(C_7 C_13) C_12 E(C_7 C_13))
+                                + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13)))))
+
+
+R194,1 & R13,1    -->    R195 : + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) E(C_7 C_13) C_12 E(C_7 C_13)))))
+
+
+P180,1 & A13,3    -->    R196 : - GR(G(C_7 C_13) C_12 E(C_7 C_13))  - EL(E(C_7 C_13) G(C_7 C_13))
+                                + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)) E(C_7 C_13)))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12 APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8)) E(C_7 C_13))))
+
+
+R196,2 & R47,1    -->    R197 : - GR(G(C_7 C_13) C_12 E(C_7 C_13))
+                                + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)) E(C_7 C_13)))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12 APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8)) E(C_7 C_13))))
+
+
+R197,1 & R13,1    -->    R198 : + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)) E(C_7 C_13)))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12 APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8)) E(C_7 C_13))))
+
+
+P180,1 & A13,3    -->    R199 : - GR(G(C_7 C_13) C_12 E(C_7 C_13))
+                                  - EL(F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13)) G(C_7 C_13))
+                                + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13)))))
+
+
+R199,2 & R43,1    -->    R200 : - GR(G(C_7 C_13) C_12 E(C_7 C_13))
+                                + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13)))))
+
+
+R200,1 & R13,1    -->    R201 : + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_13) C_3 C_12 E(C_7 C_13)))))
+
+
+P180,1 & A13,3    -->    R202 : - GR(G(C_7 C_13) C_12 E(C_7 C_13))  - EL(C_3 G(C_7 C_13))
+                                + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)) C_3))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12 APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8)) C_3)))
+
+
+R202,2 & P20,1    -->    R203 : - GR(G(C_7 C_13) C_12 E(C_7 C_13))
+                                + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)) C_3))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12 APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8)) C_3)))
+
+
+R203,1 & R13,1    -->    R204 : + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)) C_3))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12 APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8)) C_3)))
+
+
+P180,1 & A13,3    -->    R205 : - GR(G(C_7 C_6) C_12 E(C_7 C_6))
+                                  - EL(APPLYV(C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)) C_8) G(C_7 C_6))
+                                + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)) C_8)))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)) C_8))))
+
+
+R205,2 & P82,1    -->    R206 : - GR(G(C_7 C_6) C_12 E(C_7 C_6))
+                                + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)) C_8)))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)) C_8))))
+
+
+R206,1 & R15,1    -->    R207 : + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)) C_8)))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)) C_8))))
+
+
+P180,1 & A13,3    -->    R208 : - GR(G(C_7 C_6) C_12 E(C_7 C_6))
+                                  - EL(F_1(G(C_7 C_6) E(C_7 C_6) C_12 E(C_7 C_6)) G(C_7 C_6))
+                                + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_6) E(C_7 C_6) C_12 E(C_7 C_6))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_6) E(C_7 C_6) C_12 E(C_7 C_6)))))
+
+
+R208,2 & R29,1    -->    R209 : - GR(G(C_7 C_6) C_12 E(C_7 C_6))
+                                + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_6) E(C_7 C_6) C_12 E(C_7 C_6))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_6) E(C_7 C_6) C_12 E(C_7 C_6)))))
+
+
+R209,1 & R15,1    -->    R210 : + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_6) E(C_7 C_6) C_12 E(C_7 C_6))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_6) E(C_7 C_6) C_12 E(C_7 C_6)))))
+
+
+P180,1 & A13,3    -->    R211 : - GR(G(C_7 C_6) C_12 E(C_7 C_6))  - EL(E(C_7 C_6) G(C_7 C_6))
+                                + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)) E(C_7 C_6)))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12 APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8)) E(C_7 C_6))))
+
+
+R211,2 & R27,1    -->    R212 : - GR(G(C_7 C_6) C_12 E(C_7 C_6))
+                                + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)) E(C_7 C_6)))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12 APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8)) E(C_7 C_6))))
+
+
+R212,1 & R15,1    -->    R213 : + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12 APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)) E(C_7 C_6)))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12 APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8)) E(C_7 C_6))))
+
+
+P180,1 & A13,3    -->    R214 : - GR(G(C_7 C_6) C_12 E(C_7 C_6))
+                                  - EL(F_1(G(C_7 C_6) APPLYV(C_12 E(C_7 C_13) C_8) C_12 E(C_7 C_6)) G(C_7 C_6))
+                                + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_6) APPLYV(C_12 E(C_7 C_13) C_8) C_12 E(C_7 C_6))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_6) APPLYV(C_12 E(C_7 C_13) C_8) C_12 E(C_7 C_6)))))
+
+
+R214,2 & R23,1    -->    R215 : - GR(G(C_7 C_6) C_12 E(C_7 C_6))
+                                + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_6) APPLYV(C_12 E(C_7 C_13) C_8) C_12 E(C_7 C_6))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_6) APPLYV(C_12 E(C_7 C_13) C_8) C_12 E(C_7 C_6)))))
+
+
+R215,1 & R15,1    -->    R216 : + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_6) APPLYV(C_12 E(C_7 C_13) C_8) C_12 E(C_7 C_6))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         F_1(G(C_7 C_6) APPLYV(C_12 E(C_7 C_13) C_8) C_12 E(C_7 C_6)))))
+
+
+P180,1 & A13,3    -->    R217 : - GR(G(C_7 C_6) C_12 E(C_7 C_6))
+                                  - EL(APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)) G(C_7 C_6))
+                                + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))))
+
+
+R217,2 & R12,1    -->    R218 : - GR(G(C_7 C_6) C_12 E(C_7 C_6))
+                                + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))))
+
+
+R218,1 & R15,1    -->    R219 : + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8)))))
+
+
+P180,1 & A13,3    -->    R220 : - GR(G(C_7 C_6) C_12 E(C_7 C_6))  - EL(APPLYV(C_12 E(C_7 C_13) C_8) G(C_7 C_6))
+                                + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 E(C_7 C_13) C_8))))
+
+
+R220,2 & RW5,1    -->    R221 : - GR(G(C_7 C_6) C_12 E(C_7 C_6))
+                                + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 E(C_7 C_13) C_8))))
+
+
+R221,1 & R15,1    -->    R222 : + GLEICH-E(APPLYV(C_12
+                                                  APPLYV(C_12 E(C_14 C_13) E(C_7 C_13))
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_3 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 E(C_7 C_13) C_8)))
+                                           APPLYV(C_12
+                                                  E(C_15 C_13)
+                                                  APPLYV(C_12
+                                                         APPLYV(C_12 C_2 APPLYV(C_12 E(C_7 C_13) C_8))
+                                                         APPLYV(C_12 E(C_7 C_13) C_8))))
+
+
+R9,1 & P18,1      -->    P223 : + VORAUSSETZUNG315INJB(C_11
+                                                       C_12
+                                                       C_10
+                                                       C_9
+                                                       C_8
+                                                       C_13
+                                                       C_7
+                                                       C_14
+                                                       C_15
+                                                       C_6
+                                                       APPLYV(C_12 E(C_14 C_13) C_3)
+                                                       APPLYV(C_12 APPLYV(C_12 E(C_15 C_13) E(C_7 C_13)) C_3)
+                                                       C_3
+                                                       C_3
+                                                       APPLYV(C_12 E(C_7 C_13) C_8))
+
+
+R10,1 & P18,1     -->    P224 : + VORAUSSETZUNG315INJB(C_11
+                                                       C_12
+                                                       C_10
+                                                       C_9
+                                                       C_8
+                                                       C_13
+                                                       C_7
+                                                       C_14
+                                                       C_15
+                                                       C_6
+                                                       APPLYV(C_12 APPLYV(C_12 E(C_14 C_13) E(C_7 C_13)) C_3)
+                                                       APPLYV(C_12 E(C_15 C_13) C_3)
+                                                       C_3
+                                                       C_3
+                                                       APPLYV(C_12 E(C_7 C_13) C_8))
+
+
+R11,1 & P18,1     -->    P225 : + VORAUSSETZUNG315INJB(C_11
+                                                       C_12
+                                                       C_10
+                                                       C_9
+                                                       C_8
+                                                       C_13
+                                                       C_7
+                                                       C_14
+                                                       C_15
+                                                       C_6
+                                                       APPLYV(C_12 E(C_14 C_13) C_3)
+                                                       APPLYV(C_12 E(C_15 C_13) C_3)
+                                                       C_3
+                                                       C_3
+                                                       APPLYV(C_12 APPLYV(C_12 E(C_7 C_6) E(C_7 C_13)) C_8))
+
+
+R9,1 & P19,1      -->    P226 : + =(APPLYV(C_12 APPLYV(C_12 E(C_14 C_13) C_3) C_8)
+                                    APPLYV(C_12 APPLYV(C_12 APPLYV(C_12 E(C_15 C_13) E(C_7 C_13)) C_3) C_8))
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+THE THEOREM(S) COULD NOT BE PROVED.
+

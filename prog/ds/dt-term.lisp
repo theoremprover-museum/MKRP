@@ -1,0 +1,221 @@
+;;; -*- Mode: LISP; Syntax: Common-lisp; Package: MARKGRAF-KARL; Base: 10 -*-
+
+(IN-PACKAGE "MARKGRAF-KARL" :use '("CL") :nicknames '("MKRP"))
+
+
+(defun dt-term_topsymbol (term)
+						; Edited:  22-JAN-1990 20:14
+						; Authors: PRCKLN
+						; Input:   A term
+						; Effect:  -
+						; Value:   The function symbol if TERM is composite,
+						;          the term itself else.
+  (cond ((consp term) (first term))
+	((or (dt-constant.is term) (dt-variable.is term) (dt-predicate.is term)) term)
+	(t (error "~A is not a term!" (dt-pname term)))))
+
+(defun dt-term_equal (term1 term2)
+  (equal term1 term2))
+
+(defun dt-term_create (top terms)
+  (cons top terms))
+
+(defun dt-term_arguments (term)
+						; Edited:  22-JAN-1990 20:14
+						; Authors: PRCKLN
+						; Input:   A term
+						; Effect:  -
+						; Value:   The argument list of TERM if TERM is composite,
+						;          NIL else.
+  (cond ((or (dt-constant.is term) (dt-variable.is term)) nil)
+	((consp term) (rest term))))
+
+(defun dt-term_c.term.is (term)
+						; Edited:  22-JAN-1990 20:14
+						; Authors: PRCKLN
+						; Input:   A term
+						; Effect:  -
+						; Value:   TRUE iff TERM is composite.
+  (consp term))
+
+(defun dt-term_in (term1 term2)
+						; Edited:  22-JAN-1990 20:17
+						; Authors: PRCKLN
+						; Input:   Two terms
+						; Effect:  -
+						; Value:   TRUE if TERM1 at any pos occurs in TERM2
+  (or (equal term1 term2)
+      (and (dt-term_c.term.is term2)
+	   (member-if #'(lambda (subterm) (dt-term_in term1 subterm)) (dt-term_arguments term2)))))
+
+(DEFUN DT-TERM.IS.WEAKENABLE (TERM SORT)
+  (AND (DT-FUNCTION.IS.POLYMORPHIC (CAR TERM))
+       (MEMBER-IF #'(LAMBDA (MIN.SORT) (DT-SORT.IS.SUBSORT MIN.SORT SORT))
+		  (DT-FUNCTION.MIN.RANGES (CAR TERM)))
+       (DT=TERM.IS.WEAKENABLE TERM)))
+
+(DEFUN DT=TERM.IS.WEAKENABLE (TERM)
+  (let (SORT)
+    (MEMBER-IF #'(LAMBDA (SUBTERM)
+		   (OR (DT-VARIABLE.IS SUBTERM)
+		       (AND (CONSP SUBTERM) (DT-FUNCTION.IS.POLYMORPHIC (CAR SUBTERM)) (SETQ SORT (DT-TERM.SORT SUBTERM))
+			    (MEMBER-IF #'(LAMBDA (MIN.SORT) (AND (DT-SORT.IS.SUBSORT MIN.SORT SORT) (NEQ MIN.SORT SORT)))
+				       (DT-FUNCTION.MIN.RANGES (CAR SUBTERM)))
+			    (DT=TERM.IS.WEAKENABLE SUBTERM))))
+	       (CDR TERM))))
+
+(DEFUN DT-TERM.RENAMED (TERM &optional VARIABLES)
+						; EDITED:  3. 5. 1982   HJO
+						; INPUT:   TERM IS AN ARBITRARY S-EXPRESSION
+						;          VARIABLES IS A LIST OF VARIABLES WHICH
+						;          SHALL NOT BE RENAMED.
+						; EFFECT:  EVERY VARIABLE IN TERM NOT OCCURING IN
+						;          VARIABLES.TO.BE.IGNORED IS RENAMED.
+						; VALUE:   A DOTTED PAIR
+						;          CAR:  A LIST OF NEWLY CREATED VARIABLES
+						;          CDR:  A COPY OF THE RENAMED TERM.
+  (let (NEW.VARIABLES)
+    (SETQ VARIABLES (NSET-DIFFERENCE (DT-TERMLIST.VARIABLES TERM) VARIABLES))
+    (SETQ NEW.VARIABLES (MAPCAR #'(LAMBDA (VARIABLE) (DT-VARIABLE.CREATE (DT=VARIABLE.GETSORT VARIABLE))) VARIABLES))
+    (CONS NEW.VARIABLES (SUBlIS (mapcar #'cons NEW.VARIABLES VARIABLES) TERM))))
+
+(DEFUN DT-TERM.SORT (TERM)
+						; EDITED AT 12-DEC-83 |17:05
+						; EDITED: 11-FEB-83 16:25:07
+						; INPUT:  A TERM, I.E A CONSTANT, VARIABLE,
+						;         ABBREVIATION OR (FUNCTION TERM ...)
+						; VALUE:  THE SORT RESP. RANGESORT OF THE TERM.
+  (if (CONSP TERM)
+      (if (DT-FUNCTION.MIN.RANGES (CAR TERM))
+	  (DT-FUNCTION.SORT (CAR TERM) (MAPCAR (FUNCTION DT-TERM.SORT) (CDR TERM)))
+	  (DT-FUNCTION.MAX.RANGE.SORT (CAR TERM)))
+      (if (opt-get.option sort_literals)
+	  'any
+	  (DT-GROUND.TERM.SORT TERM))))
+
+(DEFUN DT-TERM.MINIMAL.SORTS (TERM SORT.SUBST)
+						; EDITED AT 12-DEC-83 |17:05| 
+						; EDITED: 11-FEB-83 16:25:07
+						; INPUT:  A TERM, I.E A CONSTANT, VARIABLE,
+						;         ABBREVIATION OR (FUNCTION TERM ...)
+						;       AND A SUBSTITUTION OF THE FORM
+						;       (VAR1 SORT1 VAR2 SORT2   ....  )
+						; VALUE: A LIST OF POSSIBLE MINIMAL SORTS OF TERM
+						;       WITH RESPECT TO THE WEAKENING SUBSTITUTION
+  (if TERM
+      (CASE (DT-TYPE TERM)
+	(CONSTANT (LIST (DT-CONSTANT.SORT TERM)))
+	(VARIABLE
+	  (MAXIMA
+	    (COPY-TREE
+	      (OR (DT-SORT.TRANSITIVE.CLOSURE (CADR (MEMBER TERM SORT.SUBST :TEST (FUNCTION EQUAL))))
+		  (DT-SORT.TRANSITIVE.CLOSURE (DT-VARIABLE.SORT TERM))))
+	    #'(LAMBDA (SORT1 SORT2) (DT-SORT.IS.SUBSORT SORT2 SORT1))))
+	(ABBREVIATION (LIST (DT-ABBREVIATION.SORT TERM)))
+	(OTHERWISE
+	  (if (DT-FUNCTION.MIN.RANGES (CAR TERM))
+	      (DT=FUNCTION.MINIMAL.SORTS (CAR TERM)
+					 (MAPCAR #'(LAMBDA (SUBTERM) (DT-TERM.MINIMAL.SORTS SUBTERM SORT.SUBST))
+						 (CDR TERM)))
+	      (LIST (DT-FUNCTION.MAX.RANGE.SORT (CAR TERM))))))
+      NIL))
+
+(DEFUN DT-TERMLIST.MAXDEPTH (TERMLIST)
+						; EDITED: 9. 6. 1982   HJO
+						; INPUT:  AN ARBITRARY TERMLIST
+						; VALUE:  THE MAXIMUM TERM DEPTH IN TERMLIST
+  (COND
+    ((CONSP TERMLIST)
+     (PROG (ACTUALDEPTH (LASTDEPTH 0))
+	   (MAPC
+	     #'(LAMBDA (ELEMENT) (SETQ ACTUALDEPTH (DT-TERMLIST.MAXDEPTH ELEMENT))
+		       (COND ((> ACTUALDEPTH LASTDEPTH) (SETQ LASTDEPTH ACTUALDEPTH))))
+	     TERMLIST)
+	   (RETURN (1+ LASTDEPTH))))
+    ((DT-ABBREVIATION.IS TERMLIST) (DT=ABBREVIATION.GETDEPTH TERMLIST)) (0)))
+
+(DEFMACRO DT-TERMLIST.VARIABLES (TERMLIST)
+						; EDITED:   30-MAY-83 14:11:20        MW
+						; INPUT: AN ARBITRARY TERM LIST OR A SINGLE TERM .
+						; VALUE: LIST OF ALL VARIABLES OCCURING IN TERMLIST.
+  `(COPY-TREE (PROG1 (BUFFER.CONTENTS (DT=FIND.VARIABLES ,TERMLIST DT*VARIABLE.BUFFER)) (BUFFER.RESET DT*VARIABLE.BUFFER))))
+
+(DEFun DT-termlist.cf (TERMlist)
+						; EDITED:  15-NOV-1989 01:08
+						; INPUT: AN ARBITRARY TERMlist.
+						; VALUE: LIST OF ALL consts and funs OCCURrING IN TERMLIST.
+  (if (null termlist)
+      nil
+      (nunion (dt-term.cf (first termlist)) (dt-termlist.cf (rest termlist)))))
+
+(defmacro dt-term.variables (term)
+  `(COPY-TREE (PROG1 (BUFFER.CONTENTS (DT=FIND.VARIABLES (list ,TERM) DT*VARIABLE.BUFFER))
+		     (BUFFER.RESET DT*VARIABLE.BUFFER))))
+
+(DEFun DT-term.cf (TERM)
+  ; EDITED:  15-NOV-1989 01:08
+  ; INPUT: AN ARBITRARY TERM .
+  ; VALUE: LIST OF ALL consts and funs OCCURrING IN TERMLIST.
+  (cond ((dt-constant.is term) (list term))
+	((dt-variable.is term) nil)
+	(t (adjoin (first term) (DT-termlist.cf (rest term))))))
+
+(DEFMACRO DT-FIND.VARIABLES (TERMLIST VARIABLE.BUFFER)
+  ; INPUT:  A TERM OR TERMLIST AND AN EMPTY BUFFER
+  ; VALUE:  THE BUFFER WITH ALL VARIABLES OF TERMLIST AS
+  ;         CONTENTS.
+  `(DT=FIND.VARIABLES ,TERMLIST ,VARIABLE.BUFFER))
+
+
+
+(DEFUN DT=FIND.VARIABLES (OBJECT VARIABLE.BUFFER)
+  ; INPUT:  S-EXPRESSION AND BUFFER CONTAINING VARIABLES
+  ; VALUE:  THE BUFFER, WHERE ALL VARIABLES OF THE
+  ;         S-EXPRESSION ARE INSERTED BY RESPECTING THE
+  ;         BINDINGS OF S-EXPRESSION.
+  (COND
+    ((DT=VARIABLE.IS OBJECT)
+     (let ((BINDING (DT=VARIABLE.GETBINDING OBJECT)))
+       (if BINDING
+	   (DT=FIND.VARIABLES BINDING VARIABLE.BUFFER)
+	   (progn (BUFFER.INS OBJECT VARIABLE.BUFFER)
+		  (when (opt-get.option sort_literals)
+		    (DT=FIND.VARIABLES (dt-variable.sort object) VARIABLE.BUFFER))))))
+    ((CONSP OBJECT)
+     (MAPC #'(LAMBDA (SUBOBJECT) (DT=FIND.VARIABLES SUBOBJECT VARIABLE.BUFFER)) OBJECT)))
+  VARIABLE.BUFFER)
+
+(DEFUN DT=TERM.FUNCTIONSYMBOL (TERM)
+  ; EDITED: 26-OCT-83 11:13:15
+  ; INPUT:  A TERM
+  ; VALUE:  FUNCTION SYMBOL OF TERM.
+  (if (CONSP TERM)
+      (CAR TERM)
+      (ERROR "ILLEGAL ARGUMENT IN DT=TERM.FUNCTIONSYMBOL~A" TERM)))
+
+(DEFUN DT=TERM.VAR.OCCUR (VARIABLE TERM TAF)
+  ; EDITED:  5-MAY-83 18:03:25
+  ; INPUT:   A VARIABLE, A TERM AND A TERM ACCESS FUNC-
+  ;          TION (TAF). TERM MAY BE THE SUBTERM OF SOME
+  ;          SUPERTERM OR TERMLIST S DENOTED BY TAF.
+  ; VALUE:   A LIST OF TERM ACCESS FUNCTIONS DENOTING
+  ;          THE OCCURRENCES OF VARIABLE IN TERM. THE
+  ;          TAFS IN THE RESULTING LIST REFER TO THE
+  ;          SUPERTERM (OR TERMLIST) S.
+  (COND ((EQL VARIABLE TERM) (LIST TAF))
+    ((CONSP TERM) (SETQ TERM (CDR TERM)) (SETQ TAF (DT-TAF.CREATE.FIRST TAF))
+      (MAPCAN
+        #'(LAMBDA (SUBTERM) (PROG1 (DT=TERM.VAR.OCCUR VARIABLE SUBTERM TAF) (SETQ TAF (DT-TAF.CREATE.NEXT TAF))))
+        TERM))))
+
+(DEFMACRO DT-TERM.IS.CONSTANT (TERM)
+  `(let ((TERM ,term))
+     (AND (NUMBERP TERM) (EQ 'CONSTANT (MEM-GET.TYPE TERM)))))
+
+(DEFMACRO DT-TERM.IS.VARIABLE (TERM)
+  `(let ((TERM ,term))
+     (AND (NUMBERP TERM) (EQ 'variable (MEM-GET.TYPE TERM)))))
+
+(DEFMACRO DT-TERM.IS.ABBREVIATION (TERM)
+  `(let ((TERM ,term))
+     (AND (NUMBERP TERM) (EQ 'abbreviation (MEM-GET.TYPE TERM)))))

@@ -1,0 +1,12 @@
+(problem grpinv-problem proved
+ ((type-variables aa) (type-variables bb) (type-constants o) (type-constants i) (constants (sk1594 i)) (constants (= (o aa aa)))
+  (constants (false o)) (constants (true o)) (constants (and (o o o))) (constants (or (o o o))) (constants (implies (o o o)))
+  (constants (equiv (o o o))) (constants (not (o o))) (constants (forall (o (o aa)))) (constants (exists (o (o aa))))
+  (constants (subset (o (o aa) (o aa)))) (constants (superset (o (o aa) (o aa)))) (constants (union (o aa (o aa) (o aa))))
+  (constants (intersection (o aa (o aa) (o aa)))) (constants (ifthen (aa o aa))) (constants (powerset (o (o aa) (o aa))))
+  (constants (image (o aa (o bb) (aa bb)))) (constants (defn (o aa aa))) (constants (- (i i))) (constants (+ (i i i)))
+  (constants (zero i)) (constants (sk1008 i))
+  (assumption ass-associative (forall (lam (x i) (forall (lam (y i) (forall (lam (z i) (= (+ x (+ y z)) (+ (+ x y) z)))))))))
+  (assumption ass-neutral (forall (lam (x i) (= (+ zero x) x))))
+  (assumption ass-inverse (forall (lam (x i) (= (+ (- x) x) zero))))
+  (conclusion conc-grpinv (forall (lam (x i) (= (- (- x)) x))))))

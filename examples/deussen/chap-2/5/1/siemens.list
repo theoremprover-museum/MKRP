@@ -1,0 +1,256 @@
+;;; -*- Package: MKRP; Syntax: Common-lisp; Mode: LISP -*-
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 6-SEP-84                                                      *
+                    *         DATE : 13-SEP-84  10:47:45                                           *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+                                                                         
+*************************************************************************
+ EDIT:     AXIOME UND THEOREME EDITIERT AM:  13-SEP-84 10:37:10
+*************************************************************************
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : SORT ELEMENT,MENGE,VERKN:ANY
+           TYPE W (MENGE) :MENGE
+           TYPE EHG (MENGE VERKN) :MENGE
+           TYPE RESTRICTION (MENGE MENGE) :MENGE
+           TYPE CONC:VERKN
+           * DEFINITION 2.200000 *
+           ALL F,E:MENGE  ALL MAL1:VERKN  
+               HG (F MAL1) AND ME (E F)
+               IMPL  
+                  FERZSYS (E F MAL1)
+                  EQV  
+                     EHG (E MAL1) = F
+                     AND  
+                      (ALL H:MENGE  ALL MAL2:VERKN  ALL PHINULL:MENGE  
+                           HG (H MAL2) AND ABB (PHINULL E H)
+                           IMPL  
+                           (EX PHI:MENGE HOMOMORPH (PHI F H) AND RESTRICTION (PHI E) = PHINULL))
+           * EIGENSCHAFT VON W (X) *
+           ALL X:MENGE HG (W (X) CONC)
+           ALL X:MENGE ME (X W (X))
+           * LEMMA 2.5.1.1 *
+           ALL X:MENGE EHG (X CONC) = W (X)
+           * LEMMA 2.5.1.2 *
+           ALL X:MENGE  ALL H:MENGE  ALL MAL:VERKN  ALL PHINULL:MENGE  
+               HG (H MAL) AND ABB (PHINULL X H)
+               IMPL  
+               (EX PHI:MENGE HOMOMORPH (PHI W (X) H) AND RESTRICTION (PHI X) = PHINULL)
+ 
+THEOREMS : ALL X:MENGE FERZSYS (X W (X) CONC)
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+* A1   : ALL X:ANY  + =(X X)
+* A2   : ALL X:MENGE  + HG(W(X) CONC)
+* A3   : ALL X:MENGE  + ME(X W(X))
+* A4   : ALL X:MENGE  + =(EHG(X CONC) W(X))
+* A5   : ALL X,Y,Z:MENGE  U:VERKN  - HG(Z U)  - ABB(Y X Z)  + HOMOMORPH(F_5(X Z Y) W(X) Z)
+* A6   : ALL X,Y,Z:MENGE  U:VERKN  - HG(Z U)  - ABB(Y X Z)  + =(RESTRICTION(F_5(X Z Y) X) Y)
+  A7   : ALL X,Y:MENGE  Z:VERKN  - HG(Y Z)  - ME(X Y)  - FERZSYS(X Y Z)  + =(EHG(X Z) Y)
+* A8   : ALL X,Y:MENGE  Z:VERKN  - HG(Y Z)  - ME(X Y)  + FERZSYS(X Y Z)  - =(EHG(X Z) Y)  + HG(F_3(X Y Z) F_1(X Y Z))
+* A9   : ALL X,Y:MENGE  Z:VERKN  - HG(Y Z)  - ME(X Y)  + FERZSYS(X Y Z)  - =(EHG(X Z) Y)  + ABB(F_2(X Y Z) X F_3(X Y Z))
+* A10  : ALL X,Y,Z:MENGE  U:VERKN  
+              - HG(Z U)  - ME(Y Z)  + FERZSYS(Y Z U)  - =(EHG(Y U) Z)  - HOMOMORPH(X Z F_3(Y Z U))
+                - =(RESTRICTION(X Y) F_2(Y Z U))
+  A11  : ALL X,Y,Z,U:MENGE  V,W:VERKN  
+              - HG(U W)  - ME(Z U)  - FERZSYS(Z U W)  - HG(Y V)  - ABB(X Z Y)  + HOMOMORPH(F_4(X Y Z U W) U Y)
+  A12  : ALL X,Y,Z,U:MENGE  V,W:VERKN  
+              - HG(U W)  - ME(Z U)  - FERZSYS(Z U W)  - HG(Y V)  - ABB(X Z Y)  + =(RESTRICTION(F_4(X Y Z U W) Z) X)
+ 
+ 
+ 
+ 
+OPERATIONS ON AXIOMS
+====================
+ 
+ 
+A4          -->  * RS1 : ALL X:MENGE  + =(W(X) EHG(X CONC))
+ 
+A2,1 & RS1  -->  * RW2 : ALL X:MENGE  + HG(EHG(X CONC) CONC)
+ 
+A3,1 & RS1  -->  * RW3 : ALL X:MENGE  + ME(X EHG(X CONC))
+ 
+A5,3 & RS1  -->  * RW4 : ALL X:VERKN  Y,Z,U:MENGE  - HG(Z X)  - ABB(Y U Z)  + HOMOMORPH(F_5(U Z Y) EHG(U CONC) Z)
+ 
+ 
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+* T13  : - FERZSYS(C_1 W(C_1) CONC)
+ 
+ 
+ 
+ 
+ 
+ 
+INITIAL OPERATIONS ON THEOREMS
+==============================
+ 
+ 
+T13,1 & RS1  -->  * RW5 : - FERZSYS(C_1 EHG(C_1 CONC) CONC)
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION
+ 
+INITIAL CLAUSES :    * A1  : ALL X:ANY  + =(X X)
+                     * RW2 : ALL X:MENGE  + HG(EHG(X CONC) CONC)
+                     * RW3 : ALL X:MENGE  + ME(X EHG(X CONC))
+                     * RW4 : ALL X:VERKN  Y,Z,U:MENGE  - HG(Z X)  - ABB(Y U Z)  + HOMOMORPH(F_5(U Z Y) EHG(U CONC) Z)
+                     * A6  : ALL X,Y,Z:MENGE  U:VERKN  - HG(Z U)  - ABB(Y X Z)  + =(RESTRICTION(F_5(X Z Y) X) Y)
+                     * A8  : ALL X,Y:MENGE  Z:VERKN  
+                                  - HG(Y Z)  - ME(X Y)  + FERZSYS(X Y Z)  - =(EHG(X Z) Y)  + HG(F_3(X Y Z) F_1(X Y Z))
+                     * A9  : ALL X,Y:MENGE  Z:VERKN  
+                                  - HG(Y Z)  - ME(X Y)  + FERZSYS(X Y Z)  - =(EHG(X Z) Y)
+                                    + ABB(F_2(X Y Z) X F_3(X Y Z))
+                     * A10 : ALL X,Y,Z:MENGE  U:VERKN  
+                                  - HG(Z U)  - ME(Y Z)  + FERZSYS(Y Z U)  - =(EHG(Y U) Z)  - HOMOMORPH(X Z F_3(Y Z U))
+                                    - =(RESTRICTION(X Y) F_2(Y Z U))
+                       A11 : ALL X,Y,Z,U:MENGE  V,W:VERKN  
+                                  - HG(U W)  - ME(Z U)  - FERZSYS(Z U W)  - HG(Y V)  - ABB(X Z Y)
+                                    + HOMOMORPH(F_4(X Y Z U W) U Y)
+                       A12 : ALL X,Y,Z,U:MENGE  V,W:VERKN  
+                                  - HG(U W)  - ME(Z U)  - FERZSYS(Z U W)  - HG(Y V)  - ABB(X Z Y)
+                                    + =(RESTRICTION(F_4(X Y Z U W) Z) X)
+                     * RW5 : - FERZSYS(C_1 EHG(C_1 CONC) CONC)
+ 
+RW2,1 & A12,1   -->    R6  : ALL X,Y,Z,U:MENGE  V:VERKN  
+                                  - ME(U EHG(Z CONC))  - FERZSYS(U EHG(Z CONC) CONC)  - HG(Y V)  - ABB(X U Y)
+                                    + =(RESTRICTION(F_4(X Y U EHG(Z CONC) CONC) U) X)
+ 
+RW3,1 & R6,1    -->    R7  : ALL X,Y,Z:MENGE  U:VERKN  
+                                  - FERZSYS(Z EHG(Z CONC) CONC)  - HG(Y U)  - ABB(X Z Y)
+                                    + =(RESTRICTION(F_4(X Y Z EHG(Z CONC) CONC) Z) X)
+ 
+RW2,1 & A11,1   -->    R8  : ALL X,Y,Z,U:MENGE  V:VERKN  
+                                  - ME(U EHG(Z CONC))  - FERZSYS(U EHG(Z CONC) CONC)  - HG(Y V)  - ABB(X U Y)
+                                    + HOMOMORPH(F_4(X Y U EHG(Z CONC) CONC) EHG(Z CONC) Y)
+ 
+RW3,1 & R8,1    -->    R9  : ALL X,Y,Z:MENGE  U:VERKN  
+                                  - FERZSYS(Z EHG(Z CONC) CONC)  - HG(Y U)  - ABB(X Z Y)
+                                    + HOMOMORPH(F_4(X Y Z EHG(Z CONC) CONC) EHG(Z CONC) Y)
+ 
+RW2,1 & A10,1   -->  * R10 : ALL X,Y,Z:MENGE  - ME(Z EHG(Y CONC))  + FERZSYS(Z EHG(Y CONC) CONC)
+                                                - =(EHG(Z CONC) EHG(Y CONC))
+                                                - HOMOMORPH(X EHG(Y CONC) F_3(Z EHG(Y CONC) CONC))
+                                                - =(RESTRICTION(X Z) F_2(Z EHG(Y CONC) CONC))
+ 
+RW3,1 & R10,1   -->  * R11 : ALL X,Y:MENGE  + FERZSYS(Y EHG(Y CONC) CONC)  - =(EHG(Y CONC) EHG(Y CONC))
+                                              - HOMOMORPH(X EHG(Y CONC) F_3(Y EHG(Y CONC) CONC))
+                                              - =(RESTRICTION(X Y) F_2(Y EHG(Y CONC) CONC))
+ 
+R11,2 & A1,1    -->  * R12 : ALL X,Y:MENGE  + FERZSYS(Y EHG(Y CONC) CONC)
+                                              - HOMOMORPH(X EHG(Y CONC) F_3(Y EHG(Y CONC) CONC))
+                                              - =(RESTRICTION(X Y) F_2(Y EHG(Y CONC) CONC))
+ 
+RW4,3 & R12,2   -->  * R13 : ALL X,Y:MENGE  Z:VERKN  
+                                  - HG(F_3(Y EHG(Y CONC) CONC) Z)  - ABB(X Y F_3(Y EHG(Y CONC) CONC))
+                                    + FERZSYS(Y EHG(Y CONC) CONC)
+                                    - =(RESTRICTION(F_5(Y F_3(Y EHG(Y CONC) CONC) X) Y) F_2(Y EHG(Y CONC) CONC))
+ 
+R13,1 & A8,5    -->  * R14 : ALL X,Y:MENGE  - ABB(X Y F_3(Y EHG(Y CONC) CONC))  + FERZSYS(Y EHG(Y CONC) CONC)
+                                            - =(RESTRICTION(F_5(Y F_3(Y EHG(Y CONC) CONC) X) Y) F_2(Y EHG(Y CONC) CONC))
+                                              - HG(EHG(Y CONC) CONC)  - ME(Y EHG(Y CONC))
+                                              + FERZSYS(Y EHG(Y CONC) CONC)  - =(EHG(Y CONC) EHG(Y CONC))
+ 
+R14 2=6         -->  * D15 : ALL X,Y:MENGE  - ABB(X Y F_3(Y EHG(Y CONC) CONC))  + FERZSYS(Y EHG(Y CONC) CONC)
+                                            - =(RESTRICTION(F_5(Y F_3(Y EHG(Y CONC) CONC) X) Y) F_2(Y EHG(Y CONC) CONC))
+                                              - HG(EHG(Y CONC) CONC)  - ME(Y EHG(Y CONC))  - =(EHG(Y CONC) EHG(Y CONC))
+ 
+D15,4 & RW2,1   -->  * R16 : ALL X,Y:MENGE  - ABB(X Y F_3(Y EHG(Y CONC) CONC))  + FERZSYS(Y EHG(Y CONC) CONC)
+                                            - =(RESTRICTION(F_5(Y F_3(Y EHG(Y CONC) CONC) X) Y) F_2(Y EHG(Y CONC) CONC))
+                                              - ME(Y EHG(Y CONC))  - =(EHG(Y CONC) EHG(Y CONC))
+ 
+R16,4 & RW3,1   -->  * R17 : ALL X,Y:MENGE  - ABB(X Y F_3(Y EHG(Y CONC) CONC))  + FERZSYS(Y EHG(Y CONC) CONC)
+                                            - =(RESTRICTION(F_5(Y F_3(Y EHG(Y CONC) CONC) X) Y) F_2(Y EHG(Y CONC) CONC))
+                                              - =(EHG(Y CONC) EHG(Y CONC))
+ 
+R17,4 & A1,1    -->  * R18 : ALL X,Y:MENGE  - ABB(X Y F_3(Y EHG(Y CONC) CONC))  + FERZSYS(Y EHG(Y CONC) CONC)
+                                            - =(RESTRICTION(F_5(Y F_3(Y EHG(Y CONC) CONC) X) Y) F_2(Y EHG(Y CONC) CONC))
+ 
+ 
+RW2,1 & A9,1    -->  * R19 : ALL X,Y:MENGE  - ME(Y EHG(X CONC))  + FERZSYS(Y EHG(X CONC) CONC)
+                                              - =(EHG(Y CONC) EHG(X CONC))
+                                              + ABB(F_2(Y EHG(X CONC) CONC) Y F_3(Y EHG(X CONC) CONC))
+ 
+RW3,1 & R19,1   -->  * R20 : ALL X:MENGE  + FERZSYS(X EHG(X CONC) CONC)  - =(EHG(X CONC) EHG(X CONC))
+                                            + ABB(F_2(X EHG(X CONC) CONC) X F_3(X EHG(X CONC) CONC))
+ 
+R20,2 & A1,1    -->  * R21 : ALL X:MENGE  + FERZSYS(X EHG(X CONC) CONC)
+                                            + ABB(F_2(X EHG(X CONC) CONC) X F_3(X EHG(X CONC) CONC))
+ 
+R21,1 & RW5,1   -->  * R22 : + ABB(F_2(C_1 EHG(C_1 CONC) CONC) C_1 F_3(C_1 EHG(C_1 CONC) CONC))
+ 
+R22,1 & A6,2    -->  * R23 : ALL X:VERKN  - HG(F_3(C_1 EHG(C_1 CONC) CONC) X)
+                                          + =(RESTRICTION(F_5(C_1
+                                                              F_3(C_1 EHG(C_1 CONC) CONC)
+                                                              F_2(C_1 EHG(C_1 CONC) CONC))
+                                                          C_1)
+                                              F_2(C_1 EHG(C_1 CONC) CONC))
+ 
+ 
+R23,2 & R18,3   -->  * R24 : ALL X:VERKN  Y:MENGE  
+                                  - HG(F_3(C_1 EHG(C_1 CONC) CONC) X)
+                                    - ABB(F_2(C_1 EHG(C_1 CONC) CONC) Y F_3(Y EHG(Y CONC) CONC))
+                                    + FERZSYS(Y EHG(Y CONC) CONC)
+ 
+R24,2 & R22,1   -->  * R25 : ALL X:VERKN  Y:MENGE  - HG(F_3(C_1 EHG(C_1 CONC) CONC) X)  + FERZSYS(Y EHG(Y CONC) CONC)
+ 
+R25,2 & RW5,1   -->  * R26 : ALL X:VERKN  - HG(F_3(C_1 EHG(C_1 CONC) CONC) X)
+ 
+R26,1 & A8,5    -->  * R27 : - HG(EHG(C_1 CONC) CONC)  - ME(C_1 EHG(C_1 CONC))  + FERZSYS(C_1 EHG(C_1 CONC) CONC)
+                               - =(EHG(C_1 CONC) EHG(C_1 CONC))
+ 
+R27,1 & RW2,1   -->  * R28 : - ME(C_1 EHG(C_1 CONC))  + FERZSYS(C_1 EHG(C_1 CONC) CONC)
+                               - =(EHG(C_1 CONC) EHG(C_1 CONC))
+ 
+R28,1 & RW3,1   -->  * R29 : + FERZSYS(C_1 EHG(C_1 CONC) CONC)  - =(EHG(C_1 CONC) EHG(C_1 CONC))
+ 
+R29,1 & RW5,1   -->  * R30 : - =(EHG(C_1 CONC) EHG(C_1 CONC))
+ 
+R30,1 & A1,1    -->  * R31 :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+ 

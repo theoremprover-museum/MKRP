@@ -1,0 +1,328 @@
+;;; -*- Package: MKRP; Base: 10. -*-
+
+
+
+                    ********************************************************************************
+                    *                                                                              *
+                    *     MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN                   *
+                    *                                                                              *
+                    *       18-NOV-85                                                              *
+                    *          18-NOV-85  14:20:28                                                 *
+                    *                                                                              *
+                    ********************************************************************************
+
+
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   18-NOV-85 14:19:28
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   D53>2
+                                                                        
+************************************************************************
+                                                                        
+
+
+ADJUSTMENT OF THE OPTIONS : 
+============================
+
+
+
+TWO:RULES                             NIL                   TWO:RULES.MAXLEVEL                    1.
+TWO:SUPPRESS.NORULES                  NIL
+
+
+RED.I:CLAUSE.MULTIPLE.LITERALS        T                     RED.I:CLAUSE.PURITY                   T
+RED.I:CLAUSE.TAUTOLOGY                T                     RED.I:CLAUSE.TAUTOLOGY.RECHECK        PARTIAL
+RED.I:CLAUSE.SUBSUMPTION              T                     RED.I:CLAUSE.SUBSUMPTION.RECHECK      PARTIAL
+RED.I:CLAUSE.REPL.FACTORING           T                     RED.I:CLAUSE.REPL.FACTORING.RECHECK   T
+RED.I:CLAUSE.REPL.RESOLUTION          SIMPLE                RED.I:CLAUSE.REPL.RESOLUTION.RECHECK  T
+RED.I:CLAUSE.REWRITING                T                     RED.I:LINK.INCOMPATIBILITY            NIL
+RED.I:LINK.TAUTOLOGY                  NIL                   RED.I:LINK.TAUTOLOGY.RECHECK          NIL
+RED.I:LINK.SUBSUMPTION                NIL                   RED.I:LINK.SUBSUMPTION.RECHECK        NIL
+
+RED.D:CLAUSE.MULTIPLE.LITERALS        T                     RED.D:CLAUSE.PURITY                   T
+RED.D:CLAUSE.TAUTOLOGY                REMOVE-INHIBIT        RED.D:CLAUSE.TAUTOLOGY.RECHECK        NIL
+RED.D:CLAUSE.SUBSUMPTION.FORWARD      REMOVE-INHIBIT        RED.D:CLAUSE.SUBSUMPTION.BACKWARD     REMOVE
+RED.D:CLAUSE.SUBSUMPTION.RECHECK      NIL                   RED.D:CLAUSE.REPL.FACTORING           T
+RED.D:CLAUSE.REPL.FACTORING.RECHECK   NIL                   RED.D:CLAUSE.REPL.RESOLUTION          SIMPLE
+RED.D:CLAUSE.REPL.RESOLUTION.RECHECK  NIL                   RED.D:LINK.INCOMPATIBILITY            NIL
+RED.D:LINK.TAUTOLOGY                  NIL                   RED.D:LINK.TAUTOLOGY.RECHECK          NIL
+RED.D:LINK.SUBSUMPTION                NIL                   RED.D:LINK.SUBSUMPTION.RECHECK        NIL
+
+FAC:INITIAL                           NIL                   FAC:EACH.STEP                         NIL
+
+STR:RESOLUTION                        SET-OF-SUPPORT        STR:E-RESOLUTION                      NIL
+STR:PARAMODULATION                    UNIT-ANCESTRY         STR:LINK.DEPTH                        NIL
+STR:TERM.DEPTH                        5.                    STR:R.DEMODULATION                    T
+STR:P.DEMODULATION                    T                     STR:INDUCTION                         NIL
+
+TERM:UNITS                            T                     TERM:ITERATIONS                       1.
+TERM:SET.OF.SUPPORT                   NIL                   TERM:BREADTH.FIRST                    NIL
+
+GEN:SPLITTING                         0.                    GEN:MANUAL.CONTROL                    NIL
+GEN:MAXIMUM.STEPS                     NIL                   GEN:GRAPH.SAVING                      NIL
+GEN:SAVE.FILE                         SAVE.DEFAULT
+
+
+TR:PREPROCESSING                      NIL                   TR:STEP.MODE                          LR
+TR:DUMP                               NIL                   TR:CLAUSE.MODE                        I
+TR:LINK.MODE                          I                     TR:TRACE.FILE                         NIL
+TR:TERMINAL                           T
+
+
+PR:INFIX.FORM                         T                     PR:PREFIX.FORM                        NIL
+PR:OPTIONS                            T                     PR:AXIOM.CLAUSES                      NIL
+PR:SYMBOLS                            NIL                   PR:STATISTICS                         NIL
+PR:PROTOCOL                           T                     PR:LEFT.MARGIN                        0.
+PR:LINELENGTH                         120.
+
+
+
+
+FORMULAE GIVEN TO THE EDITOR
+============================
+
+
+AXIOMS   : SORT SET:ANY
+           SORT FUNCTION:ANY
+           SORT ELEMENT:SET
+           SORT ELEMENT.F:ELEMENT
+           SORT NAT:SET
+           SORT REL:SET
+           SORT UNARY.FUNC:FUNCTION
+           SORT BINARY.FUNC:FUNCTION
+           SORT EQU.REL-S:REL
+           SORT L.CONGRUENCE-S:EQU.REL-S
+           SORT R.CONGRUENCE-S:EQU.REL-S
+           SORT CONGRUENCE-S:L.CONGRUENCE-S
+           SORT CONGRUENCE-S:R.CONGRUENCE-S
+           * CONSTANTS *
+           TYPE F:SET
+           TYPE CONN.F:BINARY.FUNC
+           TYPE 1:NAT
+           TYPE CONN.F.RHO:BINARY.FUNCTION
+           * PREDICATS *
+           TYPE SEMIGROUP (SET BINARY.FUNC)
+           TYPE L.CONGRUENCE (REL)
+           TYPE R.CONGRUENCE (REL)
+           TYPE CONGRUENCE (EQU.REL-S)
+           TYPE IN.RELATION (REL ELEMENT.F ELEMENT.F)
+           * FUNCTIONS *
+           TYPE APPLY2 (BINARY.FUNC SET SET) :SET
+           TYPE APPLY2-EL (BINARY.FUNC ELEMENT ELEMENT) :ELEMENT
+           TYPE APPLY2-EL.F (BINARY.FUNC ELEMENT.F ELEMENT.F) :ELEMENT.F
+           TYPE PREIMAGE (REL ELEMENT.F) :SET
+           TYPE POWER (REL NAT) :REL
+           TYPE PLUS (NAT NAT) :NAT
+           TYPE COMP (REL REL) :REL
+           TYPE TRANS.CLOS (REL) :REL
+           TYPE UNION-REL (REL REL) :REL
+           TYPE TRANS.UNION (EQU.REL-S EQU.REL-S) :EQU.REL-S
+           *
+           * DEFINITION LEFT-CONGRUENCE *
+           ALL RHO:EQU.REL-S  
+               SEMIGROUP (F CONN.F)
+               IMPL  
+                  L.CONGRUENCE (RHO)
+                  EQV  
+                   ALL F1,F2,G:ELEMENT.F  
+                       IN.RELATION (RHO F1 F2)
+                       IMPL  
+                       IN.RELATION (RHO APPLY2-EL.F (CONN.F G F1) APPLY2-EL.F (CONN.F G F2))
+           *
+           * DEFINITION TRANS.UNION
+           ALL RHO,SIGMA:EQU.REL-S  ALL A,B:ELEMENT.F  
+             IN.RELATION (TRANS.UNION (RHO SIGMA) A B) EQV IN.RELATION (TRANS.CLOS (UNION-REL (RHO SIGMA)) A B)
+           *
+           * DEFINITION TRANS.CLOS
+           *
+           ALL RHO:REL  ALL A,B:ELEMENT.F  
+             IN.RELATION (TRANS.CLOS (RHO) A B) EQV (EX N:NAT IN.RELATION (POWER (RHO N) A B))
+           *
+           ALL RHO,SIGMA:EQU.REL-S  
+               SEMIGROUP (F CONN.F) AND L.CONGRUENCE (RHO) AND L.CONGRUENCE (SIGMA)
+               IMPL  
+                ALL N:NAT  ALL F1,F2,G:ELEMENT.F  
+                    IN.RELATION (POWER (UNION-REL (RHO SIGMA) N) F1 F2)
+                    IMPL  
+                    IN.RELATION (POWER (UNION-REL (RHO SIGMA) N) APPLY2-EL.F (CONN.F G F1) APPLY2-EL.F (CONN.F G F2))
+
+THEOREMS : * THEOREM 5.3.2
+           ALL RHO,SIGMA:EQU.REL-S  
+               SEMIGROUP (F CONN.F) AND L.CONGRUENCE (RHO) AND L.CONGRUENCE (SIGMA)
+               IMPL  
+               L.CONGRUENCE (TRANS.UNION (RHO SIGMA))
+
+
+
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+* A1   : ALL X,Y:ELEMENT.F  Z:REL  - IN.RELATION(TRANS.CLOS(Z) Y X)  + IN.RELATION(POWER(Z F_4(Z Y X)) Y X)
+* A2   : ALL X:NAT  Y,Z:ELEMENT.F  U:REL  + IN.RELATION(TRANS.CLOS(U) Z Y)  - IN.RELATION(POWER(U X) Z Y)
+* A3   : ALL X,Y:ELEMENT.F  Z,U:EQU.REL-S  
+              - IN.RELATION(TRANS.UNION(U Z) Y X)  + IN.RELATION(TRANS.CLOS(UNION-REL(U Z)) Y X)
+* A4   : ALL X,Y:ELEMENT.F  Z,U:EQU.REL-S  
+              + IN.RELATION(TRANS.UNION(U Z) Y X)  - IN.RELATION(TRANS.CLOS(UNION-REL(U Z)) Y X)
+* A5   : ALL X:EQU.REL-S  - SEMIGROUP(F CONN.F)  + L.CONGRUENCE(X)
+                            - IN.RELATION(X APPLY2-EL.F(CONN.F F_1(X) F_3(X)) APPLY2-EL.F(CONN.F F_1(X) F_2(X)))
+* A6   : ALL X:EQU.REL-S  - SEMIGROUP(F CONN.F)  + L.CONGRUENCE(X)  + IN.RELATION(X F_3(X) F_2(X))
+  A7   : ALL X,Y,Z:ELEMENT.F  U:EQU.REL-S  
+              - SEMIGROUP(F CONN.F)  - L.CONGRUENCE(U)  - IN.RELATION(U Z Y)
+                + IN.RELATION(U APPLY2-EL.F(CONN.F X Z) APPLY2-EL.F(CONN.F X Y))
+* A8   : ALL X,Y,Z:ELEMENT.F  U:NAT  V,W:EQU.REL-S  
+              - SEMIGROUP(F CONN.F)  - L.CONGRUENCE(W)  - L.CONGRUENCE(V)  - IN.RELATION(POWER(UNION-REL(W V) U) Z Y)
+                + IN.RELATION(POWER(UNION-REL(W V) U) APPLY2-EL.F(CONN.F X Z) APPLY2-EL.F(CONN.F X Y))
+
+
+
+
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+* T9   : + SEMIGROUP(F CONN.F)
+* T10  : + L.CONGRUENCE(C_1)
+* T11  : + L.CONGRUENCE(C_2)
+* T12  : - L.CONGRUENCE(TRANS.UNION(C_1 C_2))
+
+
+
+
+
+
+INITIAL OPERATIONS ON THEOREMS
+==============================
+
+
+A5,1 & T9,1   -->  * R1 : ALL X:EQU.REL-S  + L.CONGRUENCE(X)
+                                           - IN.RELATION(X
+                                                         APPLY2-EL.F(CONN.F F_1(X) F_3(X))
+                                                         APPLY2-EL.F(CONN.F F_1(X) F_2(X)))
+
+
+A6,1 & T9,1   -->  * R2 : ALL X:EQU.REL-S  + L.CONGRUENCE(X)  + IN.RELATION(X F_3(X) F_2(X))
+
+A7,1 & T9,1   -->    R3 : ALL X,Y,Z:ELEMENT.F  U:EQU.REL-S  
+                               - L.CONGRUENCE(U)  - IN.RELATION(U Z Y)
+                                 + IN.RELATION(U APPLY2-EL.F(CONN.F X Z) APPLY2-EL.F(CONN.F X Y))
+
+A8,1 & T9,1   -->  * R4 : ALL X,Y,Z:ELEMENT.F  U:NAT  V,W:EQU.REL-S  
+                               - L.CONGRUENCE(W)  - L.CONGRUENCE(V)  - IN.RELATION(POWER(UNION-REL(W V) U) Z Y)
+                                 + IN.RELATION(POWER(UNION-REL(W V) U) APPLY2-EL.F(CONN.F X Z) APPLY2-EL.F(CONN.F X Y))
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+REFUTATION
+
+INITIAL CLAUSES :    * A1  : ALL X,Y:ELEMENT.F  Z:REL  
+                                  - IN.RELATION(TRANS.CLOS(Z) Y X)  + IN.RELATION(POWER(Z F_4(Z Y X)) Y X)
+                     * A2  : ALL X:NAT  Y,Z:ELEMENT.F  U:REL  
+                                  + IN.RELATION(TRANS.CLOS(U) Z Y)  - IN.RELATION(POWER(U X) Z Y)
+                     * A3  : ALL X,Y:ELEMENT.F  Z,U:EQU.REL-S  
+                                  - IN.RELATION(TRANS.UNION(U Z) Y X)  + IN.RELATION(TRANS.CLOS(UNION-REL(U Z)) Y X)
+                     * A4  : ALL X,Y:ELEMENT.F  Z,U:EQU.REL-S  
+                                  + IN.RELATION(TRANS.UNION(U Z) Y X)  - IN.RELATION(TRANS.CLOS(UNION-REL(U Z)) Y X)
+                     * R1  : ALL X:EQU.REL-S  + L.CONGRUENCE(X)
+                                              - IN.RELATION(X
+                                                            APPLY2-EL.F(CONN.F F_1(X) F_3(X))
+                                                            APPLY2-EL.F(CONN.F F_1(X) F_2(X)))
+                     * R2  : ALL X:EQU.REL-S  + L.CONGRUENCE(X)  + IN.RELATION(X F_3(X) F_2(X))
+                       R3  : ALL X,Y,Z:ELEMENT.F  U:EQU.REL-S  
+                                  - L.CONGRUENCE(U)  - IN.RELATION(U Z Y)
+                                    + IN.RELATION(U APPLY2-EL.F(CONN.F X Z) APPLY2-EL.F(CONN.F X Y))
+                     * R4  : ALL X,Y,Z:ELEMENT.F  U:NAT  V,W:EQU.REL-S  
+                                  - L.CONGRUENCE(W)  - L.CONGRUENCE(V)  - IN.RELATION(POWER(UNION-REL(W V) U) Z Y)
+                                  + IN.RELATION(POWER(UNION-REL(W V) U) APPLY2-EL.F(CONN.F X Z) APPLY2-EL.F(CONN.F X Y))
+                     * T10 : + L.CONGRUENCE(C_1)
+                     * T11 : + L.CONGRUENCE(C_2)
+                     * T12 : - L.CONGRUENCE(TRANS.UNION(C_1 C_2))
+
+R2,1 & T12,1    -->  * R5  : + IN.RELATION(TRANS.UNION(C_1 C_2) F_3(TRANS.UNION(C_1 C_2)) F_2(TRANS.UNION(C_1 C_2)))
+
+R5,1 & A3,1     -->  * R6  : + IN.RELATION(TRANS.CLOS(UNION-REL(C_1 C_2))
+                                           F_3(TRANS.UNION(C_1 C_2))
+                                           F_2(TRANS.UNION(C_1 C_2)))
+
+
+R1,1 & T12,1    -->  * R7  : - IN.RELATION(TRANS.UNION(C_1 C_2)
+                                           APPLY2-EL.F(CONN.F F_1(TRANS.UNION(C_1 C_2)) F_3(TRANS.UNION(C_1 C_2)))
+                                           APPLY2-EL.F(CONN.F F_1(TRANS.UNION(C_1 C_2)) F_2(TRANS.UNION(C_1 C_2))))
+
+
+A4,1 & R7,1     -->  * R8  : - IN.RELATION(TRANS.CLOS(UNION-REL(C_1 C_2))
+                                           APPLY2-EL.F(CONN.F F_1(TRANS.UNION(C_1 C_2)) F_3(TRANS.UNION(C_1 C_2)))
+                                           APPLY2-EL.F(CONN.F F_1(TRANS.UNION(C_1 C_2)) F_2(TRANS.UNION(C_1 C_2))))
+
+
+A2,1 & R8,1     -->  * R9  : ALL X:NAT  - IN.RELATION(POWER(UNION-REL(C_1 C_2) X)
+                                                      APPLY2-EL.F(CONN.F
+                                                                  F_1(TRANS.UNION(C_1 C_2))
+                                                                  F_3(TRANS.UNION(C_1 C_2)))
+                                                      APPLY2-EL.F(CONN.F
+                                                                  F_1(TRANS.UNION(C_1 C_2))
+                                                                  F_2(TRANS.UNION(C_1 C_2))))
+
+
+T11,1 & R4,2    -->  * R10 : ALL X:NAT  - L.CONGRUENCE(C_1)
+                                        - IN.RELATION(POWER(UNION-REL(C_1 C_2) X)
+                                                      F_3(TRANS.UNION(C_1 C_2))
+                                                      F_2(TRANS.UNION(C_1 C_2)))
+                                        + IN.RELATION(POWER(UNION-REL(C_1 C_2) X)
+                                                      APPLY2-EL.F(CONN.F
+                                                                  F_1(TRANS.UNION(C_1 C_2))
+                                                                  F_3(TRANS.UNION(C_1 C_2)))
+                                                      APPLY2-EL.F(CONN.F
+                                                                  F_1(TRANS.UNION(C_1 C_2))
+                                                                  F_2(TRANS.UNION(C_1 C_2))))
+
+
+R10,1 & T10,1   -->  * R11 : ALL X:NAT  - IN.RELATION(POWER(UNION-REL(C_1 C_2) X)
+                                                      F_3(TRANS.UNION(C_1 C_2))
+                                                      F_2(TRANS.UNION(C_1 C_2)))
+                                        + IN.RELATION(POWER(UNION-REL(C_1 C_2) X)
+                                                      APPLY2-EL.F(CONN.F
+                                                                  F_1(TRANS.UNION(C_1 C_2))
+                                                                  F_3(TRANS.UNION(C_1 C_2)))
+                                                      APPLY2-EL.F(CONN.F
+                                                                  F_1(TRANS.UNION(C_1 C_2))
+                                                                  F_2(TRANS.UNION(C_1 C_2))))
+
+
+R11,2 & R9,1    -->  * R12 : ALL X:NAT  - IN.RELATION(POWER(UNION-REL(C_1 C_2) X)
+                                                      F_3(TRANS.UNION(C_1 C_2))
+                                                      F_2(TRANS.UNION(C_1 C_2)))
+
+
+R6,1 & A1,1     -->  * R13 : + IN.RELATION(POWER(UNION-REL(C_1 C_2)
+                                                 F_4(UNION-REL(C_1 C_2)
+                                                     F_3(TRANS.UNION(C_1 C_2))
+                                                     F_2(TRANS.UNION(C_1 C_2))))
+                                           F_3(TRANS.UNION(C_1 C_2))
+                                           F_2(TRANS.UNION(C_1 C_2)))
+
+
+R13,1 & R12,1   -->  * R14 :  ce
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+  Q. E. D. 

@@ -1,0 +1,107 @@
+;;; -*- Package: MKRP; Base: 10; Mode: text; Syntax: Common-lisp -*-
+
+
+
+                  ******************************************************************************
+                  *                                                                            *
+                  *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN     *
+                  *                                                                            *
+                  *        VERSION: Unix                                                       *
+                  *           DATE: 09-JUL,1992  01:36                                         *
+                  *                                                                            *
+                  ******************************************************************************
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+Edit:     Axioms and Theorems edited: 05-NOV,1991 21:24 
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+          Formulae given to the editor
+          ============================
+
+
+Axioms:   * AXIOMS *
+          A = B OR C = D
+          A = C OR B = D
+          
+Theorems: * THEOREMS *
+          A = D OR B = C
+          
+
+
+
+          Set of Axiom Clauses Resulting from Normalization
+          =================================================
+
+          A1:   All x:Any + =(x x)
+        * A2:   + =(a b)  + =(c d)
+        * A3:   + =(a c)  + =(b d)
+        
+
+
+
+
+          Set of Theorem Clauses Resulting from Normalization
+          ===================================================
+
+        * T4: - =(a d)
+        * T5: - =(b c)
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+Refutation:
+===========
+  The following Options have been Changed:
+
+PR_OPTIONS   NIL
+PR_DIRECT.PROOF   T
+
+
+Initial Clauses:     A1:   All x:Any + =(x x)
+                   * A2:   + =(a b)  + =(c d)
+                   * A3:   + =(a c)  + =(b d)
+                   * T4:   - =(a d)
+                   * T5:   - =(b c)
+                   
+
+
+A3,2 & A2,1    --> * P1:   + =(a d)  + =(a c)  + =(c d)
+
+P1,1 & T4,1    --> * R2:   + =(a c)  + =(c d)
+
+A3,2 & T5,1    --> * P3:   - =(d c)  + =(a c)
+
+P3,1 & R2,2    --> * R4:   + =(a c)  + =(a c)
+
+R4 1=2         --> * D5:   + =(a c)
+
+A2,1 & D5      --> * RW6:  + =(c b)  + =(c d)
+
+T4,1 & D5      --> * RW7:  - =(c d)
+
+RW6,2 & RW7,1  --> * R8:   + =(c b)
+
+R8,1 & T5,1    --> * R9:   []
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+  q.e.d. 
+
+
+Time Used for Refutation: 17 seconds

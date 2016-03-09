@@ -1,0 +1,745 @@
+;;; -*- Package: MKRP; Base: 10. -*-
+
+
+
+                    ********************************************************************************
+                    *                                                                              *
+                    *     MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN                   *
+                    *                                                                              *
+                    *       07-NOV-85                                                              *
+                    *          07-NOV-85  13:56:53                                                 *
+                    *                                                                              *
+                    ********************************************************************************
+
+
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   12-SEP-85 11:47:09
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   5.3.2.INDUKTIONSSCHRITT
+                                                                        
+************************************************************************
+                                                                        
+
+
+ADJUSTMENT OF THE OPTIONS : 
+============================
+
+
+
+TWO:RULES                             NIL                   TWO:RULES.MAXLEVEL                    1.
+TWO:SUPPRESS.NORULES                  NIL
+
+
+RED.I:CLAUSE.MULTIPLE.LITERALS        T                     RED.I:CLAUSE.PURITY                   T
+RED.I:CLAUSE.TAUTOLOGY                T                     RED.I:CLAUSE.TAUTOLOGY.RECHECK        PARTIAL
+RED.I:CLAUSE.SUBSUMPTION              T                     RED.I:CLAUSE.SUBSUMPTION.RECHECK      PARTIAL
+RED.I:CLAUSE.REPL.FACTORING           T                     RED.I:CLAUSE.REPL.FACTORING.RECHECK   T
+RED.I:CLAUSE.REPL.RESOLUTION          SIMPLE                RED.I:CLAUSE.REPL.RESOLUTION.RECHECK  T
+RED.I:CLAUSE.REWRITING                T                     RED.I:LINK.INCOMPATIBILITY            NIL
+RED.I:LINK.TAUTOLOGY                  NIL                   RED.I:LINK.TAUTOLOGY.RECHECK          NIL
+RED.I:LINK.SUBSUMPTION                NIL                   RED.I:LINK.SUBSUMPTION.RECHECK        NIL
+
+RED.D:CLAUSE.MULTIPLE.LITERALS        T                     RED.D:CLAUSE.PURITY                   T
+RED.D:CLAUSE.TAUTOLOGY                REMOVE-INHIBIT        RED.D:CLAUSE.TAUTOLOGY.RECHECK        NIL
+RED.D:CLAUSE.SUBSUMPTION.FORWARD      REMOVE-INHIBIT        RED.D:CLAUSE.SUBSUMPTION.BACKWARD     REMOVE
+RED.D:CLAUSE.SUBSUMPTION.RECHECK      NIL                   RED.D:CLAUSE.REPL.FACTORING           T
+RED.D:CLAUSE.REPL.FACTORING.RECHECK   T                     RED.D:CLAUSE.REPL.RESOLUTION          SIMPLE
+RED.D:CLAUSE.REPL.RESOLUTION.RECHECK  T                     RED.D:LINK.INCOMPATIBILITY            NIL
+RED.D:LINK.TAUTOLOGY                  NIL                   RED.D:LINK.TAUTOLOGY.RECHECK          NIL
+RED.D:LINK.SUBSUMPTION                NIL                   RED.D:LINK.SUBSUMPTION.RECHECK        NIL
+
+FAC:INITIAL                           NIL                   FAC:EACH.STEP                         NIL
+
+STR:RESOLUTION                        SET-OF-SUPPORT        STR:E-RESOLUTION                      NIL
+STR:PARAMODULATION                    UNIT-ANCESTRY         STR:LINK.DEPTH                        NIL
+STR:TERM.DEPTH                        4.                    STR:R.DEMODULATION                    T
+STR:P.DEMODULATION                    T                     STR:INDUCTION                         NIL
+
+TERM:UNITS                            T                     TERM:ITERATIONS                       3.
+TERM:SET.OF.SUPPORT                   NIL                   TERM:BREADTH.FIRST                    NIL
+
+GEN:SPLITTING                         0.                    GEN:MANUAL.CONTROL                    NIL
+GEN:MAXIMUM.STEPS                     200.                  GEN:GRAPH.SAVING                      NIL
+GEN:SAVE.FILE                         SAVE.DEFAULT
+
+
+TR:PREPROCESSING                      NIL                   TR:STEP.MODE                          LR
+TR:DUMP                               NIL                   TR:CLAUSE.MODE                        I
+TR:LINK.MODE                          I                     TR:TRACE.FILE                         NIL
+TR:TERMINAL                           T
+
+
+PR:INFIX.FORM                         T                     PR:PREFIX.FORM                        NIL
+PR:OPTIONS                            T                     PR:AXIOM.CLAUSES                      NIL
+PR:SYMBOLS                            NIL                   PR:STATISTICS                         NIL
+PR:PROTOCOL                           T                     PR:LEFT.MARGIN                        0.
+PR:LINELENGTH                         120.
+
+
+
+
+FORMULAE GIVEN TO THE EDITOR
+============================
+
+
+AXIOMS   : SORT SET:ANY
+           SORT REL:SET
+           SORT EQU.RELATION:REL
+           SORT ELEMENT:SET
+           SORT EL.F:ELEMENT
+           SORT SYMB.FUNCTION2:ANY
+           SORT NAT:SET
+           TYPE 1:NAT
+           TYPE PLUS (NAT NAT) :NAT
+           TYPE F:SET
+           TYPE MAL.F:SYMB.FUNCTION2
+           TYPE SEMIGROUP (SET SYMB.FUNCTION2)
+           TYPE IN.RELATION (REL EL.F EL.F)
+           TYPE L.CONGRUENCE (REL)
+           TYPE R.CONGRUENCE (REL)
+           TYPE CONGRUENCE (REL)
+           TYPE APPLY2.F (SYMB.FUNCTION2 EL.F EL.F) :EL.F
+           TYPE EL*SUBSET.F (SYMB.FUNCTION2 ELEMENT SET) :SET
+           TYPE PREIMAGE (REL EL.F) :SET
+           TYPE COMP (REL REL) :REL
+           TYPE UNION.REL (REL REL) :REL
+           TYPE POWER (REL NAT) :REL
+           TYPE TRANS.CLOS (REL) :REL
+           TYPE TRANS.UNION (EQU.RELATION EQU.RELATION) :EQU.RELATION
+           * DEFINITION P
+           ALL RHO,SIGMA:EQU.RELATION  ALL N:NAT  
+               L.CONGRUENCE (RHO) AND L.CONGRUENCE (SIGMA)
+               IMPL  
+                  P (RHO SIGMA N)
+                  EQV  
+                   ALL F1,F2,G:EL.F  
+                       IN.RELATION (POWER (UNION.REL (RHO SIGMA) N) F1 F2)
+                       IMPL  
+                       IN.RELATION (POWER (UNION.REL (RHO SIGMA) N) APPLY2.F (MAL.F G F1) APPLY2.F (MAL.F G F2))
+           * DEFINITION POWER
+           ALL RHO:REL POWER (RHO 1.) = RHO
+           ALL RHO:REL ALL N:NAT POWER (RHO PLUS (N 1.)) = COMP (POWER (RHO N) RHO)
+           * DEFINITION COMP
+           ALL RHO,SIGMA:REL  ALL A,B:EL.F  
+             IN.RELATION (COMP (RHO SIGMA) A B) EQV (EX C:EL.F IN.RELATION (RHO A C) AND IN.RELATION (SIGMA C B))
+
+THEOREMS : * THEOREM 5.3.2 INDUKTIONSSCHRITT
+           ALL RHO,SIGMA:EQU.RELATION  
+               SEMIGROUP (F MAL.F) AND L.CONGRUENCE (RHO) AND L.CONGRUENCE (SIGMA)
+               IMPL  
+               (ALL N:NAT P (RHO SIGMA 1.) AND P (RHO SIGMA N) IMPL P (RHO SIGMA PLUS (N 1.)))
+
+
+
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+  A1   : ALL X:ANY  + =(X X)
+  A2   : ALL X:NAT  Y:REL  + =(POWER(Y PLUS(X 1)) COMP(POWER(Y X) Y))
+  A3   : ALL X:REL  + =(POWER(X 1) X)
+  A4   : ALL X,Y:EL.F  Z,U:REL  - IN.RELATION(COMP(U Z) Y X)  + IN.RELATION(Z F_4(Z Y X U) X)
+  A5   : ALL X,Y:EL.F  Z,U:REL  - IN.RELATION(COMP(U Z) Y X)  + IN.RELATION(U Y F_4(Z Y X U))
+  A6   : ALL X,Y,Z:EL.F  U,V:REL  + IN.RELATION(COMP(V U) Z Y)  - IN.RELATION(V Z X)  - IN.RELATION(U X Y)
+  A7   : ALL X:NAT  Y,Z:EQU.RELATION  
+              - L.CONGRUENCE(Z)  - L.CONGRUENCE(Y)  + P(Z Y X)
+              - IN.RELATION(POWER(UNION.REL(Z Y) X)
+                            APPLY2.F(MAL.F F_1(X Y Z) F_2(X Y Z))
+                            APPLY2.F(MAL.F F_1(X Y Z) F_3(X Y Z)))
+  A8   : ALL X:NAT  Y,Z:EQU.RELATION  
+              - L.CONGRUENCE(Z)  - L.CONGRUENCE(Y)  + P(Z Y X)
+                + IN.RELATION(POWER(UNION.REL(Z Y) X) F_2(X Y Z) F_3(X Y Z))
+  A9   : ALL X,Y,Z:EL.F  U:NAT  V,W:EQU.RELATION  
+              - L.CONGRUENCE(W)  - L.CONGRUENCE(V)  - P(W V U)  - IN.RELATION(POWER(UNION.REL(W V) U) Z Y)
+                + IN.RELATION(POWER(UNION.REL(W V) U) APPLY2.F(MAL.F X Z) APPLY2.F(MAL.F X Y))
+
+
+
+
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+  T10  : + SEMIGROUP(F MAL.F)
+  T11  : + L.CONGRUENCE(C_2)
+  T12  : + L.CONGRUENCE(C_3)
+  T13  : + P(C_2 C_3 1)
+  T14  : + P(C_2 C_3 C_1)
+  T15  : - P(C_2 C_3 PLUS(C_1 1))
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+REFUTATION ( FAILURE : ABORTED.MAXSTEPS )
+
+INITIAL CLAUSES :      A1  : ALL X:ANY  + =(X X)
+                       A2  : ALL X:NAT  Y:REL  + =(POWER(Y PLUS(X 1)) COMP(POWER(Y X) Y))
+                       A3  : ALL X:REL  + =(POWER(X 1) X)
+                       A4  : ALL X,Y:EL.F  Z,U:REL  - IN.RELATION(COMP(U Z) Y X)  + IN.RELATION(Z F_4(Z Y X U) X)
+                       A5  : ALL X,Y:EL.F  Z,U:REL  - IN.RELATION(COMP(U Z) Y X)  + IN.RELATION(U Y F_4(Z Y X U))
+                       A6  : ALL X,Y,Z:EL.F  U,V:REL  
+                                  + IN.RELATION(COMP(V U) Z Y)  - IN.RELATION(V Z X)  - IN.RELATION(U X Y)
+                       A7  : ALL X:NAT  Y,Z:EQU.RELATION  
+                                  - L.CONGRUENCE(Z)  - L.CONGRUENCE(Y)  + P(Z Y X)
+                                  - IN.RELATION(POWER(UNION.REL(Z Y) X)
+                                                APPLY2.F(MAL.F F_1(X Y Z) F_2(X Y Z))
+                                                APPLY2.F(MAL.F F_1(X Y Z) F_3(X Y Z)))
+                       A8  : ALL X:NAT  Y,Z:EQU.RELATION  
+                                  - L.CONGRUENCE(Z)  - L.CONGRUENCE(Y)  + P(Z Y X)
+                                    + IN.RELATION(POWER(UNION.REL(Z Y) X) F_2(X Y Z) F_3(X Y Z))
+                       A9  : ALL X,Y,Z:EL.F  U:NAT  V,W:EQU.RELATION  
+                                  - L.CONGRUENCE(W)  - L.CONGRUENCE(V)  - P(W V U)
+                                    - IN.RELATION(POWER(UNION.REL(W V) U) Z Y)
+                                    + IN.RELATION(POWER(UNION.REL(W V) U) APPLY2.F(MAL.F X Z) APPLY2.F(MAL.F X Y))
+                       T11 : + L.CONGRUENCE(C_2)
+                       T12 : + L.CONGRUENCE(C_3)
+                       T13 : + P(C_2 C_3 1)
+                       T14 : + P(C_2 C_3 C_1)
+                       T15 : - P(C_2 C_3 PLUS(C_1 1))
+
+A7,3 & T15,1    -->    R1  : - L.CONGRUENCE(C_2)  - L.CONGRUENCE(C_3)
+                             - IN.RELATION(POWER(UNION.REL(C_2 C_3) PLUS(C_1 1))
+                                           APPLY2.F(MAL.F F_1(PLUS(C_1 1) C_3 C_2) F_2(PLUS(C_1 1) C_3 C_2))
+                                           APPLY2.F(MAL.F F_1(PLUS(C_1 1) C_3 C_2) F_3(PLUS(C_1 1) C_3 C_2)))
+
+
+R1,2 & T12,1    -->    R2  : - L.CONGRUENCE(C_2)
+                             - IN.RELATION(POWER(UNION.REL(C_2 C_3) PLUS(C_1 1))
+                                           APPLY2.F(MAL.F F_1(PLUS(C_1 1) C_3 C_2) F_2(PLUS(C_1 1) C_3 C_2))
+                                           APPLY2.F(MAL.F F_1(PLUS(C_1 1) C_3 C_2) F_3(PLUS(C_1 1) C_3 C_2)))
+
+
+R2,1 & T11,1    -->    R3  : - IN.RELATION(POWER(UNION.REL(C_2 C_3) PLUS(C_1 1))
+                                           APPLY2.F(MAL.F F_1(PLUS(C_1 1) C_3 C_2) F_2(PLUS(C_1 1) C_3 C_2))
+                                           APPLY2.F(MAL.F F_1(PLUS(C_1 1) C_3 C_2) F_3(PLUS(C_1 1) C_3 C_2)))
+
+
+A8,3 & T15,1    -->    R4  : - L.CONGRUENCE(C_2)  - L.CONGRUENCE(C_3)
+                             + IN.RELATION(POWER(UNION.REL(C_2 C_3) PLUS(C_1 1))
+                                           F_2(PLUS(C_1 1) C_3 C_2)
+                                           F_3(PLUS(C_1 1) C_3 C_2))
+
+
+R4,2 & T12,1    -->    R5  : - L.CONGRUENCE(C_2)
+                             + IN.RELATION(POWER(UNION.REL(C_2 C_3) PLUS(C_1 1))
+                                           F_2(PLUS(C_1 1) C_3 C_2)
+                                           F_3(PLUS(C_1 1) C_3 C_2))
+
+
+R5,1 & T11,1    -->    R6  : + IN.RELATION(POWER(UNION.REL(C_2 C_3) PLUS(C_1 1))
+                                           F_2(PLUS(C_1 1) C_3 C_2)
+                                           F_3(PLUS(C_1 1) C_3 C_2))
+
+
+A3,1 & A2,1     -->    P7  : ALL X:REL  + =(POWER(X PLUS(1 1)) COMP(X X))
+
+A2,1 & R3,1     -->    P8  : - IN.RELATION(COMP(POWER(UNION.REL(C_2 C_3) C_1) UNION.REL(C_2 C_3))
+                                           APPLY2.F(MAL.F F_1(PLUS(C_1 1) C_3 C_2) F_2(PLUS(C_1 1) C_3 C_2))
+                                           APPLY2.F(MAL.F F_1(PLUS(C_1 1) C_3 C_2) F_3(PLUS(C_1 1) C_3 C_2)))
+
+
+A2,1 & R6,1     -->    P9  : + IN.RELATION(COMP(POWER(UNION.REL(C_2 C_3) C_1) UNION.REL(C_2 C_3))
+                                           F_2(PLUS(C_1 1) C_3 C_2)
+                                           F_3(PLUS(C_1 1) C_3 C_2))
+
+
+P9,1 & A5,1     -->    R10 : + IN.RELATION(POWER(UNION.REL(C_2 C_3) C_1)
+                                           F_2(PLUS(C_1 1) C_3 C_2)
+                                           F_4(UNION.REL(C_2 C_3)
+                                               F_2(PLUS(C_1 1) C_3 C_2)
+                                               F_3(PLUS(C_1 1) C_3 C_2)
+                                               POWER(UNION.REL(C_2 C_3) C_1)))
+
+
+P9,1 & A4,1     -->    R11 : + IN.RELATION(UNION.REL(C_2 C_3)
+                                           F_4(UNION.REL(C_2 C_3)
+                                               F_2(PLUS(C_1 1) C_3 C_2)
+                                               F_3(PLUS(C_1 1) C_3 C_2)
+                                               POWER(UNION.REL(C_2 C_3) C_1))
+                                           F_3(PLUS(C_1 1) C_3 C_2))
+
+
+T13,1 & A9,3    -->    R12 : ALL X,Y,Z:EL.F  - L.CONGRUENCE(C_2)  - L.CONGRUENCE(C_3)
+                                               - IN.RELATION(POWER(UNION.REL(C_2 C_3) 1) Z Y)
+                                             + IN.RELATION(POWER(UNION.REL(C_2 C_3) 1)
+                                                           APPLY2.F(MAL.F X Z)
+                                                           APPLY2.F(MAL.F X Y))
+
+
+R12,2 & T12,1   -->    R13 : ALL X,Y,Z:EL.F  - L.CONGRUENCE(C_2)  - IN.RELATION(POWER(UNION.REL(C_2 C_3) 1) Z Y)
+                                             + IN.RELATION(POWER(UNION.REL(C_2 C_3) 1)
+                                                           APPLY2.F(MAL.F X Z)
+                                                           APPLY2.F(MAL.F X Y))
+
+
+R13,1 & T11,1   -->    R14 : ALL X,Y,Z:EL.F  - IN.RELATION(POWER(UNION.REL(C_2 C_3) 1) Z Y)
+                                             + IN.RELATION(POWER(UNION.REL(C_2 C_3) 1)
+                                                           APPLY2.F(MAL.F X Z)
+                                                           APPLY2.F(MAL.F X Y))
+
+
+T14,1 & A9,3    -->    R15 : ALL X,Y,Z:EL.F  - L.CONGRUENCE(C_2)  - L.CONGRUENCE(C_3)
+                                               - IN.RELATION(POWER(UNION.REL(C_2 C_3) C_1) Z Y)
+                                             + IN.RELATION(POWER(UNION.REL(C_2 C_3) C_1)
+                                                           APPLY2.F(MAL.F X Z)
+                                                           APPLY2.F(MAL.F X Y))
+
+
+R15,2 & T12,1   -->    R16 : ALL X,Y,Z:EL.F  - L.CONGRUENCE(C_2)  - IN.RELATION(POWER(UNION.REL(C_2 C_3) C_1) Z Y)
+                                             + IN.RELATION(POWER(UNION.REL(C_2 C_3) C_1)
+                                                           APPLY2.F(MAL.F X Z)
+                                                           APPLY2.F(MAL.F X Y))
+
+
+R16,1 & T11,1   -->    R17 : ALL X,Y,Z:EL.F  - IN.RELATION(POWER(UNION.REL(C_2 C_3) C_1) Z Y)
+                                             + IN.RELATION(POWER(UNION.REL(C_2 C_3) C_1)
+                                                           APPLY2.F(MAL.F X Z)
+                                                           APPLY2.F(MAL.F X Y))
+
+
+A9,5 & R3,1     -->    R18 : - L.CONGRUENCE(C_2)  - L.CONGRUENCE(C_3)  - P(C_2 C_3 PLUS(C_1 1))
+                             - IN.RELATION(POWER(UNION.REL(C_2 C_3) PLUS(C_1 1))
+                                           F_2(PLUS(C_1 1) C_3 C_2)
+                                           F_3(PLUS(C_1 1) C_3 C_2))
+
+
+R6,1 & A9,4     -->    R19 : ALL X:EL.F  - L.CONGRUENCE(C_2)  - L.CONGRUENCE(C_3)  - P(C_2 C_3 PLUS(C_1 1))
+                                         + IN.RELATION(POWER(UNION.REL(C_2 C_3) PLUS(C_1 1))
+                                                       APPLY2.F(MAL.F X F_2(PLUS(C_1 1) C_3 C_2))
+                                                       APPLY2.F(MAL.F X F_3(PLUS(C_1 1) C_3 C_2)))
+
+
+R6,1 & A6,3     -->    R20 : ALL X:EL.F  Y:REL  
+                                  + IN.RELATION(COMP(Y POWER(UNION.REL(C_2 C_3) PLUS(C_1 1)))
+                                                X
+                                                F_3(PLUS(C_1 1) C_3 C_2))
+                                    - IN.RELATION(Y X F_2(PLUS(C_1 1) C_3 C_2))
+
+R6,1 & A6,2     -->    R21 : ALL X:EL.F  Y:REL  
+                                  + IN.RELATION(COMP(POWER(UNION.REL(C_2 C_3) PLUS(C_1 1)) Y)
+                                                F_2(PLUS(C_1 1) C_3 C_2)
+                                                X)
+                                    - IN.RELATION(Y F_3(PLUS(C_1 1) C_3 C_2) X)
+
+R14,2 & A7,4    -->    R22 : - IN.RELATION(POWER(UNION.REL(C_2 C_3) 1) F_2(1 C_3 C_2) F_3(1 C_3 C_2))
+                               - L.CONGRUENCE(C_2)  - L.CONGRUENCE(C_3)  + P(C_2 C_3 1)
+
+R14,2 & A9,4    -->    R23 : ALL X,Y,Z,U:EL.F  - IN.RELATION(POWER(UNION.REL(C_2 C_3) 1) U Z)  - L.CONGRUENCE(C_2)
+                                                 - L.CONGRUENCE(C_3)  - P(C_2 C_3 1)
+                                               + IN.RELATION(POWER(UNION.REL(C_2 C_3) 1)
+                                                             APPLY2.F(MAL.F Y APPLY2.F(MAL.F X U))
+                                                             APPLY2.F(MAL.F Y APPLY2.F(MAL.F X Z)))
+
+
+R23,4 & T13,1   -->    R24 : ALL X,Y,Z,U:EL.F  - IN.RELATION(POWER(UNION.REL(C_2 C_3) 1) U Z)  - L.CONGRUENCE(C_2)
+                                                 - L.CONGRUENCE(C_3)
+                                               + IN.RELATION(POWER(UNION.REL(C_2 C_3) 1)
+                                                             APPLY2.F(MAL.F Y APPLY2.F(MAL.F X U))
+                                                             APPLY2.F(MAL.F Y APPLY2.F(MAL.F X Z)))
+
+
+R24,3 & T12,1   -->    R25 : ALL X,Y,Z,U:EL.F  - IN.RELATION(POWER(UNION.REL(C_2 C_3) 1) U Z)  - L.CONGRUENCE(C_2)
+                                               + IN.RELATION(POWER(UNION.REL(C_2 C_3) 1)
+                                                             APPLY2.F(MAL.F Y APPLY2.F(MAL.F X U))
+                                                             APPLY2.F(MAL.F Y APPLY2.F(MAL.F X Z)))
+
+
+R25,2 & T11,1   -->    R26 : ALL X,Y,Z,U:EL.F  - IN.RELATION(POWER(UNION.REL(C_2 C_3) 1) U Z)
+                                               + IN.RELATION(POWER(UNION.REL(C_2 C_3) 1)
+                                                             APPLY2.F(MAL.F Y APPLY2.F(MAL.F X U))
+                                                             APPLY2.F(MAL.F Y APPLY2.F(MAL.F X Z)))
+
+
+A9,5 & R14,1    -->    R27 : ALL X,Y,Z,U:EL.F  - L.CONGRUENCE(C_2)  - L.CONGRUENCE(C_3)  - P(C_2 C_3 1)
+                                                 - IN.RELATION(POWER(UNION.REL(C_2 C_3) 1) U Z)
+                                               + IN.RELATION(POWER(UNION.REL(C_2 C_3) 1)
+                                                             APPLY2.F(MAL.F Y APPLY2.F(MAL.F X U))
+                                                             APPLY2.F(MAL.F Y APPLY2.F(MAL.F X Z)))
+
+
+A8,4 & R14,1    -->    R28 : ALL X:EL.F  - L.CONGRUENCE(C_2)  - L.CONGRUENCE(C_3)  + P(C_2 C_3 1)
+                                         + IN.RELATION(POWER(UNION.REL(C_2 C_3) 1)
+                                                       APPLY2.F(MAL.F X F_2(1 C_3 C_2))
+                                                       APPLY2.F(MAL.F X F_3(1 C_3 C_2)))
+
+
+R17,2 & A7,4    -->    R29 : - IN.RELATION(POWER(UNION.REL(C_2 C_3) C_1) F_2(C_1 C_3 C_2) F_3(C_1 C_3 C_2))
+                               - L.CONGRUENCE(C_2)  - L.CONGRUENCE(C_3)  + P(C_2 C_3 C_1)
+
+R17,2 & A9,4    -->    R30 : ALL X,Y,Z,U:EL.F  - IN.RELATION(POWER(UNION.REL(C_2 C_3) C_1) U Z)  - L.CONGRUENCE(C_2)
+                                                 - L.CONGRUENCE(C_3)  - P(C_2 C_3 C_1)
+                                               + IN.RELATION(POWER(UNION.REL(C_2 C_3) C_1)
+                                                             APPLY2.F(MAL.F Y APPLY2.F(MAL.F X U))
+                                                             APPLY2.F(MAL.F Y APPLY2.F(MAL.F X Z)))
+
+
+R30,4 & T14,1   -->    R31 : ALL X,Y,Z,U:EL.F  - IN.RELATION(POWER(UNION.REL(C_2 C_3) C_1) U Z)  - L.CONGRUENCE(C_2)
+                                                 - L.CONGRUENCE(C_3)
+                                               + IN.RELATION(POWER(UNION.REL(C_2 C_3) C_1)
+                                                             APPLY2.F(MAL.F Y APPLY2.F(MAL.F X U))
+                                                             APPLY2.F(MAL.F Y APPLY2.F(MAL.F X Z)))
+
+
+R31,3 & T12,1   -->    R32 : ALL X,Y,Z,U:EL.F  - IN.RELATION(POWER(UNION.REL(C_2 C_3) C_1) U Z)  - L.CONGRUENCE(C_2)
+                                               + IN.RELATION(POWER(UNION.REL(C_2 C_3) C_1)
+                                                             APPLY2.F(MAL.F Y APPLY2.F(MAL.F X U))
+                                                             APPLY2.F(MAL.F Y APPLY2.F(MAL.F X Z)))
+
+
+R32,2 & T11,1   -->    R33 : ALL X,Y,Z,U:EL.F  - IN.RELATION(POWER(UNION.REL(C_2 C_3) C_1) U Z)
+                                               + IN.RELATION(POWER(UNION.REL(C_2 C_3) C_1)
+                                                             APPLY2.F(MAL.F Y APPLY2.F(MAL.F X U))
+                                                             APPLY2.F(MAL.F Y APPLY2.F(MAL.F X Z)))
+
+
+A9,5 & R17,1    -->    R34 : ALL X,Y,Z,U:EL.F  - L.CONGRUENCE(C_2)  - L.CONGRUENCE(C_3)  - P(C_2 C_3 C_1)
+                                                 - IN.RELATION(POWER(UNION.REL(C_2 C_3) C_1) U Z)
+                                               + IN.RELATION(POWER(UNION.REL(C_2 C_3) C_1)
+                                                             APPLY2.F(MAL.F Y APPLY2.F(MAL.F X U))
+                                                             APPLY2.F(MAL.F Y APPLY2.F(MAL.F X Z)))
+
+
+A8,4 & R17,1    -->    R35 : ALL X:EL.F  - L.CONGRUENCE(C_2)  - L.CONGRUENCE(C_3)  + P(C_2 C_3 C_1)
+                                         + IN.RELATION(POWER(UNION.REL(C_2 C_3) C_1)
+                                                       APPLY2.F(MAL.F X F_2(C_1 C_3 C_2))
+                                                       APPLY2.F(MAL.F X F_3(C_1 C_3 C_2)))
+
+
+T11,1 & A8,1    -->    R36 : ALL X:NAT  Y:EQU.RELATION  
+                                  - L.CONGRUENCE(Y)  + P(C_2 Y X)
+                                    + IN.RELATION(POWER(UNION.REL(C_2 Y) X) F_2(X Y C_2) F_3(X Y C_2))
+
+R36,3 & R17,1   -->    R37 : ALL X:EL.F  - L.CONGRUENCE(C_3)  + P(C_2 C_3 C_1)
+                                         + IN.RELATION(POWER(UNION.REL(C_2 C_3) C_1)
+                                                       APPLY2.F(MAL.F X F_2(C_1 C_3 C_2))
+                                                       APPLY2.F(MAL.F X F_3(C_1 C_3 C_2)))
+
+
+R36,3 & R14,1   -->    R38 : ALL X:EL.F  - L.CONGRUENCE(C_3)  + P(C_2 C_3 1)
+                                         + IN.RELATION(POWER(UNION.REL(C_2 C_3) 1)
+                                                       APPLY2.F(MAL.F X F_2(1 C_3 C_2))
+                                                       APPLY2.F(MAL.F X F_3(1 C_3 C_2)))
+
+
+T12,1 & R36,1   -->    R39 : ALL X:NAT  + P(C_2 C_3 X)
+                                          + IN.RELATION(POWER(UNION.REL(C_2 C_3) X) F_2(X C_3 C_2) F_3(X C_3 C_2))
+
+T11,1 & R36,1   -->    R40 : ALL X:NAT  + P(C_2 C_2 X)
+                                          + IN.RELATION(POWER(UNION.REL(C_2 C_2) X) F_2(X C_2 C_2) F_3(X C_2 C_2))
+
+T11,1 & A8,2    -->    R41 : ALL X:NAT  Y:EQU.RELATION  
+                                  - L.CONGRUENCE(Y)  + P(Y C_2 X)
+                                    + IN.RELATION(POWER(UNION.REL(Y C_2) X) F_2(X C_2 Y) F_3(X C_2 Y))
+
+T12,1 & R41,1   -->    R42 : ALL X:NAT  + P(C_3 C_2 X)
+                                          + IN.RELATION(POWER(UNION.REL(C_3 C_2) X) F_2(X C_2 C_3) F_3(X C_2 C_3))
+
+T11,1 & A7,1    -->    R43 : ALL X:NAT  Y:EQU.RELATION  
+                                  - L.CONGRUENCE(Y)  + P(C_2 Y X)
+                                  - IN.RELATION(POWER(UNION.REL(C_2 Y) X)
+                                                APPLY2.F(MAL.F F_1(X Y C_2) F_2(X Y C_2))
+                                                APPLY2.F(MAL.F F_1(X Y C_2) F_3(X Y C_2)))
+
+
+R17,2 & R43,3   -->    R44 : - IN.RELATION(POWER(UNION.REL(C_2 C_3) C_1) F_2(C_1 C_3 C_2) F_3(C_1 C_3 C_2))
+                               - L.CONGRUENCE(C_3)  + P(C_2 C_3 C_1)
+
+R14,2 & R43,3   -->    R45 : - IN.RELATION(POWER(UNION.REL(C_2 C_3) 1) F_2(1 C_3 C_2) F_3(1 C_3 C_2))
+                               - L.CONGRUENCE(C_3)  + P(C_2 C_3 1)
+
+T12,1 & R43,1   -->    R46 : ALL X:NAT  + P(C_2 C_3 X)
+                                        - IN.RELATION(POWER(UNION.REL(C_2 C_3) X)
+                                                      APPLY2.F(MAL.F F_1(X C_3 C_2) F_2(X C_3 C_2))
+                                                      APPLY2.F(MAL.F F_1(X C_3 C_2) F_3(X C_3 C_2)))
+
+
+T11,1 & R43,1   -->    R47 : ALL X:NAT  + P(C_2 C_2 X)
+                                        - IN.RELATION(POWER(UNION.REL(C_2 C_2) X)
+                                                      APPLY2.F(MAL.F F_1(X C_2 C_2) F_2(X C_2 C_2))
+                                                      APPLY2.F(MAL.F F_1(X C_2 C_2) F_3(X C_2 C_2)))
+
+
+T11,1 & A7,2    -->    R48 : ALL X:NAT  Y:EQU.RELATION  
+                                  - L.CONGRUENCE(Y)  + P(Y C_2 X)
+                                  - IN.RELATION(POWER(UNION.REL(Y C_2) X)
+                                                APPLY2.F(MAL.F F_1(X C_2 Y) F_2(X C_2 Y))
+                                                APPLY2.F(MAL.F F_1(X C_2 Y) F_3(X C_2 Y)))
+
+
+T12,1 & R48,1   -->    R49 : ALL X:NAT  + P(C_3 C_2 X)
+                                        - IN.RELATION(POWER(UNION.REL(C_3 C_2) X)
+                                                      APPLY2.F(MAL.F F_1(X C_2 C_3) F_2(X C_2 C_3))
+                                                      APPLY2.F(MAL.F F_1(X C_2 C_3) F_3(X C_2 C_3)))
+
+
+T12,1 & A8,1    -->    R50 : ALL X:NAT  Y:EQU.RELATION  
+                                  - L.CONGRUENCE(Y)  + P(C_3 Y X)
+                                    + IN.RELATION(POWER(UNION.REL(C_3 Y) X) F_2(X Y C_3) F_3(X Y C_3))
+
+T12,1 & R50,1   -->    R51 : ALL X:NAT  + P(C_3 C_3 X)
+                                          + IN.RELATION(POWER(UNION.REL(C_3 C_3) X) F_2(X C_3 C_3) F_3(X C_3 C_3))
+
+T12,1 & A7,1    -->    R52 : ALL X:NAT  Y:EQU.RELATION  
+                                  - L.CONGRUENCE(Y)  + P(C_3 Y X)
+                                  - IN.RELATION(POWER(UNION.REL(C_3 Y) X)
+                                                APPLY2.F(MAL.F F_1(X Y C_3) F_2(X Y C_3))
+                                                APPLY2.F(MAL.F F_1(X Y C_3) F_3(X Y C_3)))
+
+
+T12,1 & R52,1   -->    R53 : ALL X:NAT  + P(C_3 C_3 X)
+                                        - IN.RELATION(POWER(UNION.REL(C_3 C_3) X)
+                                                      APPLY2.F(MAL.F F_1(X C_3 C_3) F_2(X C_3 C_3))
+                                                      APPLY2.F(MAL.F F_1(X C_3 C_3) F_3(X C_3 C_3)))
+
+
+A6,1 & P8,1     -->    R54 : ALL X:EL.F  - IN.RELATION(POWER(UNION.REL(C_2 C_3) C_1)
+                                                       APPLY2.F(MAL.F F_1(PLUS(C_1 1) C_3 C_2) F_2(PLUS(C_1 1) C_3 C_2))
+                                                       X)
+                                         - IN.RELATION(UNION.REL(C_2 C_3)
+                                                       X
+                                                       APPLY2.F(MAL.F F_1(PLUS(C_1 1) C_3 C_2) F_3(PLUS(C_1 1) C_3 C_2)))
+
+
+A4,2 & R20,2    -->    R55 : ALL X:EL.F  Y,Z:REL  
+                                  - IN.RELATION(COMP(Z Y) X F_2(PLUS(C_1 1) C_3 C_2))
+                                  + IN.RELATION(COMP(Y POWER(UNION.REL(C_2 C_3) PLUS(C_1 1)))
+                                                F_4(Y X F_2(PLUS(C_1 1) C_3 C_2) Z)
+                                                F_3(PLUS(C_1 1) C_3 C_2))
+
+
+R20,1 & A4,1    -->    R56 : ALL X:EL.F  Y:REL  
+                                  - IN.RELATION(Y X F_2(PLUS(C_1 1) C_3 C_2))
+                                  + IN.RELATION(POWER(UNION.REL(C_2 C_3) PLUS(C_1 1))
+                                                F_4(POWER(UNION.REL(C_2 C_3) PLUS(C_1 1)) X F_3(PLUS(C_1 1) C_3 C_2) Y)
+                                                F_3(PLUS(C_1 1) C_3 C_2))
+
+
+R20,1 & A5,1    -->    R57 : ALL X:EL.F  Y:REL  
+                                  - IN.RELATION(Y X F_2(PLUS(C_1 1) C_3 C_2))
+                                  + IN.RELATION(Y
+                                                X
+                                                F_4(POWER(UNION.REL(C_2 C_3) PLUS(C_1 1)) X F_3(PLUS(C_1 1) C_3 C_2) Y))
+
+
+A5,2 & R21,2    -->    R58 : ALL X:EL.F  Y,Z:REL  
+                                  - IN.RELATION(COMP(Z Y) F_3(PLUS(C_1 1) C_3 C_2) X)
+                                  + IN.RELATION(COMP(POWER(UNION.REL(C_2 C_3) PLUS(C_1 1)) Z)
+                                                F_2(PLUS(C_1 1) C_3 C_2)
+                                                F_4(Y F_3(PLUS(C_1 1) C_3 C_2) X Z))
+
+
+R21,1 & A4,1    -->    R59 : ALL X:EL.F  Y:REL  
+                                  - IN.RELATION(Y F_3(PLUS(C_1 1) C_3 C_2) X)
+                                  + IN.RELATION(Y
+                                                F_4(Y F_2(PLUS(C_1 1) C_3 C_2) X POWER(UNION.REL(C_2 C_3) PLUS(C_1 1)))
+                                                X)
+
+
+R21,1 & A5,1    -->    R60 : ALL X:EL.F  Y:REL  
+                                  - IN.RELATION(Y F_3(PLUS(C_1 1) C_3 C_2) X)
+                                  + IN.RELATION(POWER(UNION.REL(C_2 C_3) PLUS(C_1 1))
+                                                F_2(PLUS(C_1 1) C_3 C_2)
+                                                F_4(Y F_2(PLUS(C_1 1) C_3 C_2) X POWER(UNION.REL(C_2 C_3) PLUS(C_1 1))))
+
+
+R26,2 & R14,1   -->    R61 : ALL X,Y,Z,U,V:EL.F  
+                                  - IN.RELATION(POWER(UNION.REL(C_2 C_3) 1) V U)
+                                  + IN.RELATION(POWER(UNION.REL(C_2 C_3) 1)
+                                                APPLY2.F(MAL.F Z APPLY2.F(MAL.F Y APPLY2.F(MAL.F X V)))
+                                                APPLY2.F(MAL.F Z APPLY2.F(MAL.F Y APPLY2.F(MAL.F X U))))
+
+
+A9,5 & R26,1    -->    R62 : ALL X,Y,Z,U,V:EL.F  
+                                  - L.CONGRUENCE(C_2)  - L.CONGRUENCE(C_3)  - P(C_2 C_3 1)
+                                    - IN.RELATION(POWER(UNION.REL(C_2 C_3) 1) V U)
+                                  + IN.RELATION(POWER(UNION.REL(C_2 C_3) 1)
+                                                APPLY2.F(MAL.F Z APPLY2.F(MAL.F Y APPLY2.F(MAL.F X V)))
+                                                APPLY2.F(MAL.F Z APPLY2.F(MAL.F Y APPLY2.F(MAL.F X U))))
+
+
+R26,2 & A9,4    -->    R63 : ALL X,Y,Z,U,V:EL.F  
+                                  - IN.RELATION(POWER(UNION.REL(C_2 C_3) 1) V U)  - L.CONGRUENCE(C_2)
+                                    - L.CONGRUENCE(C_3)  - P(C_2 C_3 1)
+                                  + IN.RELATION(POWER(UNION.REL(C_2 C_3) 1)
+                                                APPLY2.F(MAL.F Z APPLY2.F(MAL.F Y APPLY2.F(MAL.F X V)))
+                                                APPLY2.F(MAL.F Z APPLY2.F(MAL.F Y APPLY2.F(MAL.F X U))))
+
+
+R14,2 & R26,1   -->    R64 : ALL X,Y,Z,U,V:EL.F  
+                                  - IN.RELATION(POWER(UNION.REL(C_2 C_3) 1) V U)
+                                  + IN.RELATION(POWER(UNION.REL(C_2 C_3) 1)
+                                                APPLY2.F(MAL.F Z APPLY2.F(MAL.F Y APPLY2.F(MAL.F X V)))
+                                                APPLY2.F(MAL.F Z APPLY2.F(MAL.F Y APPLY2.F(MAL.F X U))))
+
+
+R33,2 & R17,1   -->    R65 : ALL X,Y,Z,U,V:EL.F  
+                                  - IN.RELATION(POWER(UNION.REL(C_2 C_3) C_1) V U)
+                                  + IN.RELATION(POWER(UNION.REL(C_2 C_3) C_1)
+                                                APPLY2.F(MAL.F Z APPLY2.F(MAL.F Y APPLY2.F(MAL.F X V)))
+                                                APPLY2.F(MAL.F Z APPLY2.F(MAL.F Y APPLY2.F(MAL.F X U))))
+
+
+A9,5 & R33,1    -->    R66 : ALL X,Y,Z,U,V:EL.F  
+                                  - L.CONGRUENCE(C_2)  - L.CONGRUENCE(C_3)  - P(C_2 C_3 C_1)
+                                    - IN.RELATION(POWER(UNION.REL(C_2 C_3) C_1) V U)
+                                  + IN.RELATION(POWER(UNION.REL(C_2 C_3) C_1)
+                                                APPLY2.F(MAL.F Z APPLY2.F(MAL.F Y APPLY2.F(MAL.F X V)))
+                                                APPLY2.F(MAL.F Z APPLY2.F(MAL.F Y APPLY2.F(MAL.F X U))))
+
+
+R33,2 & A9,4    -->    R67 : ALL X,Y,Z,U,V:EL.F  
+                                  - IN.RELATION(POWER(UNION.REL(C_2 C_3) C_1) V U)  - L.CONGRUENCE(C_2)
+                                    - L.CONGRUENCE(C_3)  - P(C_2 C_3 C_1)
+                                  + IN.RELATION(POWER(UNION.REL(C_2 C_3) C_1)
+                                                APPLY2.F(MAL.F Z APPLY2.F(MAL.F Y APPLY2.F(MAL.F X V)))
+                                                APPLY2.F(MAL.F Z APPLY2.F(MAL.F Y APPLY2.F(MAL.F X U))))
+
+
+R17,2 & R33,1   -->    R68 : ALL X,Y,Z,U,V:EL.F  
+                                  - IN.RELATION(POWER(UNION.REL(C_2 C_3) C_1) V U)
+                                  + IN.RELATION(POWER(UNION.REL(C_2 C_3) C_1)
+                                                APPLY2.F(MAL.F Z APPLY2.F(MAL.F Y APPLY2.F(MAL.F X V)))
+                                                APPLY2.F(MAL.F Z APPLY2.F(MAL.F Y APPLY2.F(MAL.F X U))))
+
+
+R39,2 & R14,1   -->    R69 : ALL X:EL.F  + P(C_2 C_3 1)
+                                         + IN.RELATION(POWER(UNION.REL(C_2 C_3) 1)
+                                                       APPLY2.F(MAL.F X F_2(1 C_3 C_2))
+                                                       APPLY2.F(MAL.F X F_3(1 C_3 C_2)))
+
+
+R39,2 & R17,1   -->    R70 : ALL X:EL.F  + P(C_2 C_3 C_1)
+                                         + IN.RELATION(POWER(UNION.REL(C_2 C_3) C_1)
+                                                       APPLY2.F(MAL.F X F_2(C_1 C_3 C_2))
+                                                       APPLY2.F(MAL.F X F_3(C_1 C_3 C_2)))
+
+
+R39,2 & R26,1   -->    R71 : ALL X,Y:EL.F  + P(C_2 C_3 1)
+                                           + IN.RELATION(POWER(UNION.REL(C_2 C_3) 1)
+                                                         APPLY2.F(MAL.F Y APPLY2.F(MAL.F X F_2(1 C_3 C_2)))
+                                                         APPLY2.F(MAL.F Y APPLY2.F(MAL.F X F_3(1 C_3 C_2))))
+
+
+R39,2 & R33,1   -->    R72 : ALL X,Y:EL.F  + P(C_2 C_3 C_1)
+                                           + IN.RELATION(POWER(UNION.REL(C_2 C_3) C_1)
+                                                         APPLY2.F(MAL.F Y APPLY2.F(MAL.F X F_2(C_1 C_3 C_2)))
+                                                         APPLY2.F(MAL.F Y APPLY2.F(MAL.F X F_3(C_1 C_3 C_2))))
+
+
+R14,2 & R46,2   -->    R73 : - IN.RELATION(POWER(UNION.REL(C_2 C_3) 1) F_2(1 C_3 C_2) F_3(1 C_3 C_2))  + P(C_2 C_3 1)
+
+R17,2 & R46,2   -->    R74 : - IN.RELATION(POWER(UNION.REL(C_2 C_3) C_1) F_2(C_1 C_3 C_2) F_3(C_1 C_3 C_2))
+                               + P(C_2 C_3 C_1)
+
+R14,2 & A6,3    -->    R75 : ALL X,Y,Z,U:EL.F  V:REL  
+                                  - IN.RELATION(POWER(UNION.REL(C_2 C_3) 1) U Z)
+                                    + IN.RELATION(COMP(V POWER(UNION.REL(C_2 C_3) 1)) Y APPLY2.F(MAL.F X Z))
+                                    - IN.RELATION(V Y APPLY2.F(MAL.F X U))
+
+R14,2 & A6,2    -->    R76 : ALL X,Y,Z,U:EL.F  V:REL  
+                                  - IN.RELATION(POWER(UNION.REL(C_2 C_3) 1) U Z)
+                                    + IN.RELATION(COMP(POWER(UNION.REL(C_2 C_3) 1) V) APPLY2.F(MAL.F Y U) X)
+                                    - IN.RELATION(V APPLY2.F(MAL.F Y Z) X)
+
+R17,2 & A6,3    -->    R77 : ALL X,Y,Z,U:EL.F  V:REL  
+                                  - IN.RELATION(POWER(UNION.REL(C_2 C_3) C_1) U Z)
+                                    + IN.RELATION(COMP(V POWER(UNION.REL(C_2 C_3) C_1)) Y APPLY2.F(MAL.F X Z))
+                                    - IN.RELATION(V Y APPLY2.F(MAL.F X U))
+
+R17,2 & A6,2    -->    R78 : ALL X,Y,Z,U:EL.F  V:REL  
+                                  - IN.RELATION(POWER(UNION.REL(C_2 C_3) C_1) U Z)
+                                    + IN.RELATION(COMP(POWER(UNION.REL(C_2 C_3) C_1) V) APPLY2.F(MAL.F Y U) X)
+                                    - IN.RELATION(V APPLY2.F(MAL.F Y Z) X)
+
+T11,1 & A9,1    -->    R79 : ALL X,Y,Z:EL.F  U:NAT  V:EQU.RELATION  
+                                  - L.CONGRUENCE(V)  - P(C_2 V U)  - IN.RELATION(POWER(UNION.REL(C_2 V) U) Z Y)
+                                    + IN.RELATION(POWER(UNION.REL(C_2 V) U) APPLY2.F(MAL.F X Z) APPLY2.F(MAL.F X Y))
+
+R79,4 & R3,1    -->    R80 : - L.CONGRUENCE(C_3)  - P(C_2 C_3 PLUS(C_1 1))
+                             - IN.RELATION(POWER(UNION.REL(C_2 C_3) PLUS(C_1 1))
+                                           F_2(PLUS(C_1 1) C_3 C_2)
+                                           F_3(PLUS(C_1 1) C_3 C_2))
+
+
+R6,1 & R79,3    -->    R81 : ALL X:EL.F  - L.CONGRUENCE(C_3)  - P(C_2 C_3 PLUS(C_1 1))
+                                         + IN.RELATION(POWER(UNION.REL(C_2 C_3) PLUS(C_1 1))
+                                                       APPLY2.F(MAL.F X F_2(PLUS(C_1 1) C_3 C_2))
+                                                       APPLY2.F(MAL.F X F_3(PLUS(C_1 1) C_3 C_2)))
+
+
+R79,4 & R33,1   -->    R82 : ALL X,Y,Z,U,V:EL.F  
+                                  - L.CONGRUENCE(C_3)  - P(C_2 C_3 C_1)
+                                    - IN.RELATION(POWER(UNION.REL(C_2 C_3) C_1) V U)
+                                  + IN.RELATION(POWER(UNION.REL(C_2 C_3) C_1)
+                                                APPLY2.F(MAL.F Z APPLY2.F(MAL.F Y APPLY2.F(MAL.F X V)))
+                                                APPLY2.F(MAL.F Z APPLY2.F(MAL.F Y APPLY2.F(MAL.F X U))))
+
+
+R79,4 & R26,1   -->    R83 : ALL X,Y,Z,U,V:EL.F  
+                                  - L.CONGRUENCE(C_3)  - P(C_2 C_3 1)  - IN.RELATION(POWER(UNION.REL(C_2 C_3) 1) V U)
+                                  + IN.RELATION(POWER(UNION.REL(C_2 C_3) 1)
+                                                APPLY2.F(MAL.F Z APPLY2.F(MAL.F Y APPLY2.F(MAL.F X V)))
+                                                APPLY2.F(MAL.F Z APPLY2.F(MAL.F Y APPLY2.F(MAL.F X U))))
+
+
+R33,2 & R79,3   -->    R84 : ALL X,Y,Z,U,V:EL.F  
+                                  - IN.RELATION(POWER(UNION.REL(C_2 C_3) C_1) V U)  - L.CONGRUENCE(C_3)
+                                    - P(C_2 C_3 C_1)
+                                  + IN.RELATION(POWER(UNION.REL(C_2 C_3) C_1)
+                                                APPLY2.F(MAL.F Z APPLY2.F(MAL.F Y APPLY2.F(MAL.F X V)))
+                                                APPLY2.F(MAL.F Z APPLY2.F(MAL.F Y APPLY2.F(MAL.F X U))))
+
+
+R26,2 & R79,3   -->    R85 : ALL X,Y,Z,U,V:EL.F  
+                                  - IN.RELATION(POWER(UNION.REL(C_2 C_3) 1) V U)  - L.CONGRUENCE(C_3)  - P(C_2 C_3 1)
+                                  + IN.RELATION(POWER(UNION.REL(C_2 C_3) 1)
+                                                APPLY2.F(MAL.F Z APPLY2.F(MAL.F Y APPLY2.F(MAL.F X V)))
+                                                APPLY2.F(MAL.F Z APPLY2.F(MAL.F Y APPLY2.F(MAL.F X U))))
+
+
+T12,1 & R79,1   -->    R86 : ALL X,Y,Z:EL.F  U:NAT  
+                                  - P(C_2 C_3 U)  - IN.RELATION(POWER(UNION.REL(C_2 C_3) U) Z Y)
+                                    + IN.RELATION(POWER(UNION.REL(C_2 C_3) U) APPLY2.F(MAL.F X Z) APPLY2.F(MAL.F X Y))
+
+R86,3 & R3,1    -->    R87 : - P(C_2 C_3 PLUS(C_1 1))
+                             - IN.RELATION(POWER(UNION.REL(C_2 C_3) PLUS(C_1 1))
+                                           F_2(PLUS(C_1 1) C_3 C_2)
+                                           F_3(PLUS(C_1 1) C_3 C_2))
+
+
+R86,3 & R26,1   -->    R88 : ALL X,Y,Z,U,V:EL.F  
+                                  - P(C_2 C_3 1)  - IN.RELATION(POWER(UNION.REL(C_2 C_3) 1) V U)
+                                  + IN.RELATION(POWER(UNION.REL(C_2 C_3) 1)
+                                                APPLY2.F(MAL.F Z APPLY2.F(MAL.F Y APPLY2.F(MAL.F X V)))
+                                                APPLY2.F(MAL.F Z APPLY2.F(MAL.F Y APPLY2.F(MAL.F X U))))
+
+
+R86,3 & R33,1   -->    R89 : ALL X,Y,Z,U,V:EL.F  
+                                  - P(C_2 C_3 C_1)  - IN.RELATION(POWER(UNION.REL(C_2 C_3) C_1) V U)
+                                  + IN.RELATION(POWER(UNION.REL(C_2 C_3) C_1)
+                                                APPLY2.F(MAL.F Z APPLY2.F(MAL.F Y APPLY2.F(MAL.F X V)))
+                                                APPLY2.F(MAL.F Z APPLY2.F(MAL.F Y APPLY2.F(MAL.F X U))))
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+THE THEOREM(S) COULD NOT BE PROVED.
+

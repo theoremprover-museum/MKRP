@@ -1,0 +1,100 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 49.2 GENTRAFO 1.0                                   *
+                     *           DATE: 24-OCT,1991  18:59                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 24-OCT,1991 18:58 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   SORT ELEMENT,MENGE,VERKN,ABB : ANY
+             ALL A,B : MENGE A = B IMPL GLEICHMAECHTIG (A B)
+             ALL CHI: ABB ALL A,B : MENGE INJEKTIV (CHI A B) AND GLEICHMAECHTIG (A B) AND ENDLICH (A) AND ENDLICH (B)
+                              IMPL BIJEKTIV (CHI A B)
+             
+   Theorems: ALL CHI : ABB ALL U : MENGE INJEKTIV (CHI U U) AND ENDLICH (U) IMPL BIJEKTIV (CHI U U)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+           * A1:   All x:Any + =(x x)
+           * A2:   All x,y:Menge - =(y x)  + GLEICHMAECHTIG(y x)
+           * A3:   All x,y:Menge z:Abb - INJEKTIV(z y x)  - GLEICHMAECHTIG(y x)  - ENDLICH(y)  - ENDLICH(x)
+                                       + BIJEKTIV(z y x)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T4: + INJEKTIV(c_1 c_2 c_2)
+           * T5: + ENDLICH(c_2)
+           * T6: - BIJEKTIV(c_1 c_2 c_2)
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses: * A1:  All x:Any + =(x x)
+                    * A2:  All x,y:Menge - =(y x)  + GLEICHMAECHTIG(y x)
+                    * A3:  All x,y:Menge z:Abb - INJEKTIV(z y x)  - GLEICHMAECHTIG(y x)  - ENDLICH(y)  - ENDLICH(x)
+                                               + BIJEKTIV(z y x)
+                    * T4:  + INJEKTIV(c_1 c_2 c_2)
+                    * T5:  + ENDLICH(c_2)
+                    * T6:  - BIJEKTIV(c_1 c_2 c_2)
+                    
+
+   
+   A3,5 & T6,1  --> * R1:  - INJEKTIV(c_1 c_2 c_2)  - GLEICHMAECHTIG(c_2 c_2)  - ENDLICH(c_2)  - ENDLICH(c_2)
+   
+   R1 3=4       --> * D2:  - INJEKTIV(c_1 c_2 c_2)  - GLEICHMAECHTIG(c_2 c_2)  - ENDLICH(c_2)
+   
+   D2,3 & T5,1  --> * R3:  - INJEKTIV(c_1 c_2 c_2)  - GLEICHMAECHTIG(c_2 c_2)
+   
+   R3,2 & A2,2  --> * R4:  - INJEKTIV(c_1 c_2 c_2)  - =(c_2 c_2)
+   
+   R4,2 & A1,1  --> * R5:  - INJEKTIV(c_1 c_2 c_2)
+   
+   R5,1 & T4,1  --> * R6:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 6 seconds

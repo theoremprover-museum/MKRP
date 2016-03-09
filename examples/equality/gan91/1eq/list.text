@@ -1,0 +1,88 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                  ******************************************************************************
+                  *                                                                            *
+                  *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN     *
+                  *                                                                            *
+                  *        VERSION: MKRP 53.8 GENTRAFO 3.0                                     *
+                  *           DATE: 29-APR,1992  22:50                                         *
+                  *                                                                            *
+                  ******************************************************************************
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+Edit:     Axioms and Theorems edited: 29-APR,1992 22:50 
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+          Formulae given to the editor
+          ============================
+
+
+Axioms:   SM (0 0) = FF
+          SM (0 S (0)) = TT
+          ALL X,Y SM (S (X) Y) = SM (X P (Y))
+          ALL X,Y SM (P (X) Y) = SM (X S (Y))
+          ALL X,Y SM (Y X) = TT IMPL SM (Y S (X)) = TT
+          ALL X,Y SM (Y X) = FF IMPL SM (Y P (X)) = FF
+          ALL X S (P (X)) = X
+          ALL X P (S (X)) = X
+          
+Theorems: NIL  
+          
+
+
+
+          Set of Axiom Clauses Resulting from Normalization
+          =================================================
+
+          A1:   All x:Any + =(x x)
+          A2:   + =(sm(0 0) ff)
+          A3:   + =(sm(0 s(0)) tt)
+          A4:   All x,y:Any + =(sm(s(y) x) sm(y p(x)))
+          A5:   All x,y:Any + =(sm(p(y) x) sm(y s(x)))
+          A6:   All x:Any + =(s(p(x)) x)
+          A7:   All x:Any + =(p(s(x)) x)
+          A8:   All x,y:Any - =(sm(y x) tt)  + =(sm(y s(x)) tt)
+          A9:   All x,y:Any - =(sm(y x) ff)  + =(sm(y p(x)) ff)
+        
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+Refutation: (Failure: GRAPH.COLLAPSED)
+======================================
+
+Initial Clauses:   A1:  All x:Any + =(x x)
+                   A2:  + =(sm(0 0) ff)
+                   A3:  + =(sm(0 s(0)) tt)
+                   A4:  All x,y:Any + =(sm(s(y) x) sm(y p(x)))
+                   A5:  All x,y:Any + =(sm(p(y) x) sm(y s(x)))
+                   A6:  All x:Any + =(s(p(x)) x)
+                   A7:  All x:Any + =(p(s(x)) x)
+                   A8:  All x,y:Any - =(sm(y x) tt)  + =(sm(y s(x)) tt)
+                   A9:  All x,y:Any - =(sm(y x) ff)  + =(sm(y p(x)) ff)
+                 
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+The theorem(s) could not be proved.
+
+
+
+Time Used for Refutation: 2 seconds

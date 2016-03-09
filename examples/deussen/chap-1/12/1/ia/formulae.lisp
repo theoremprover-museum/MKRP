@@ -1,0 +1,35 @@
+;;; -*- Package: MKRP; Mode: LISP; Syntax: Common-lisp -*-
+
+(SORT ELEMENT,MENGE,VERKN : ANY)
+(TYPE SM (MENGE MENGE) :MENGE)
+(TYPE APPLY (VERKN ELEMENT ELEMENT) :ELEMENT)
+(ALL X:ELEMENT  ALL M1,M2  
+     : MENGE EL (X SM (M1 M2)) EQV EL (X M1) AND EL (X M2))
+(ALL U,F:MENGE  ALL PHI:VERKN  ALL E:ELEMENT  
+     UG (U F PHI E) IMPL EINS (E PHI U))
+(ALL X,E  
+     :ELEMENT ALL  
+     M:MENGE ALL  
+     PHI:VERKN EL (X M) AND EINS (E PHI M)
+     IMPL  
+     GLEICH (APPLY (PHI X E) X) AND GLEICH (APPLY (PHI E X)
+						  X))
+(ALL X,E  
+     :ELEMENT ALL  
+     PHI :VERKN  ALL M:MENGE  
+     EL (X M)
+     AND  
+     GLEICH (APPLY (PHI X E) X)
+     AND  
+     GLEICH (APPLY (PHI E X) X)
+     IMPL  
+     EINS (E PHI M))
+
+(ALL E:ELEMENT  ALL U1,U2,F:MENGE  ALL PHI:VERKN  
+     UG (U1 F PHI E)
+     AND  
+     UG (U2 F PHI E)
+     AND  
+     (EX X: ELEMENT EL (X SM (U1 U2)))
+     IMPL  
+     EINS (E PHI SM (U1 U2)))

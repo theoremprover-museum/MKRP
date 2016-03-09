@@ -1,0 +1,28 @@
+;;; -*- Package: MKRP; Mode: LISP; Syntax: Common-lisp -*-
+ 
+(SORT ELEM,MENGE,VERKN:ANY)
+(TYPE APPLY (VERKN ELEM ELEM) :ELEM)
+(TYPE INVERS (VERKN ELEM) :ELEM)
+(* ABGESCHLOSSENHEIT VON GR BEZGL PHI *)
+(ALL PHI:VERKN  ALL GR:MENGE  ALL X,Y,E:ELEM 
+     G (GR PHI E) AND EL (X GR) AND EL (Y GR)
+     IMPL  
+     EL (APPLY (PHI X Y) GR))
+(* EXISTENZ DES INVERSEN INNERHALB GR *)
+(ALL PHI:VERKN  ALL X:ELEM  ALL GR:MENGE  ALL E:ELEM  
+     G (GR PHI E) AND EL (X GR) IMPL EL (INVERS (PHI X) GR))
+(ALL U,F:MENGE  ALL PHI:VERKN  ALL E:ELEM  
+     UG (U F PHI E) IMPL G (U PHI E))
+
+
+(* Theorem *)
+(ALL PHI:VERKN  (ALL F,U:MENGE  (ALL E:ELEM  
+				     G (F PHI E) AND ME (U F)
+				     IMPL  
+				     UG (U F PHI E)
+				     IMPL  
+				     (ALL X,Y:ELEM  
+					  EL (X U) AND EL (Y U)
+					  IMPL  
+					  EL (APPLY (PHI INVERS (PHI Y) X) U)))))
+

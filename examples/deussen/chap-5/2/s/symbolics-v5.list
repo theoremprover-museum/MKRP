@@ -1,0 +1,604 @@
+;;; -*- Package: MKRP; Base: 10. -*-
+
+
+
+                    ********************************************************************************
+                    *                                                                              *
+                    *     MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN                   *
+                    *                                                                              *
+                    *       18-NOV-85                                                              *
+                    *          18-NOV-85  13:09:23                                                 *
+                    *                                                                              *
+                    ********************************************************************************
+
+
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   18-NOV-85 13:07:13
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   D52
+                                                                        
+************************************************************************
+                                                                        
+
+
+ADJUSTMENT OF THE OPTIONS : 
+============================
+
+
+
+TWO:RULES                             NIL                   TWO:RULES.MAXLEVEL                    1.
+TWO:SUPPRESS.NORULES                  NIL
+
+
+RED.I:CLAUSE.MULTIPLE.LITERALS        T                     RED.I:CLAUSE.PURITY                   T
+RED.I:CLAUSE.TAUTOLOGY                T                     RED.I:CLAUSE.TAUTOLOGY.RECHECK        PARTIAL
+RED.I:CLAUSE.SUBSUMPTION              T                     RED.I:CLAUSE.SUBSUMPTION.RECHECK      PARTIAL
+RED.I:CLAUSE.REPL.FACTORING           T                     RED.I:CLAUSE.REPL.FACTORING.RECHECK   T
+RED.I:CLAUSE.REPL.RESOLUTION          SIMPLE                RED.I:CLAUSE.REPL.RESOLUTION.RECHECK  T
+RED.I:CLAUSE.REWRITING                T                     RED.I:LINK.INCOMPATIBILITY            NIL
+RED.I:LINK.TAUTOLOGY                  NIL                   RED.I:LINK.TAUTOLOGY.RECHECK          NIL
+RED.I:LINK.SUBSUMPTION                NIL                   RED.I:LINK.SUBSUMPTION.RECHECK        NIL
+
+RED.D:CLAUSE.MULTIPLE.LITERALS        T                     RED.D:CLAUSE.PURITY                   T
+RED.D:CLAUSE.TAUTOLOGY                REMOVE-INHIBIT        RED.D:CLAUSE.TAUTOLOGY.RECHECK        NIL
+RED.D:CLAUSE.SUBSUMPTION.FORWARD      REMOVE-INHIBIT        RED.D:CLAUSE.SUBSUMPTION.BACKWARD     REMOVE
+RED.D:CLAUSE.SUBSUMPTION.RECHECK      NIL                   RED.D:CLAUSE.REPL.FACTORING           T
+RED.D:CLAUSE.REPL.FACTORING.RECHECK   NIL                   RED.D:CLAUSE.REPL.RESOLUTION          SIMPLE
+RED.D:CLAUSE.REPL.RESOLUTION.RECHECK  NIL                   RED.D:LINK.INCOMPATIBILITY            NIL
+RED.D:LINK.TAUTOLOGY                  NIL                   RED.D:LINK.TAUTOLOGY.RECHECK          NIL
+RED.D:LINK.SUBSUMPTION                NIL                   RED.D:LINK.SUBSUMPTION.RECHECK        NIL
+
+FAC:INITIAL                           NIL                   FAC:EACH.STEP                         NIL
+
+STR:RESOLUTION                        SET-OF-SUPPORT        STR:E-RESOLUTION                      NIL
+STR:PARAMODULATION                    UNIT-ANCESTRY         STR:LINK.DEPTH                        NIL
+STR:TERM.DEPTH                        7.                    STR:R.DEMODULATION                    T
+STR:P.DEMODULATION                    T                     STR:INDUCTION                         NIL
+
+TERM:UNITS                            T                     TERM:ITERATIONS                       1.
+TERM:SET.OF.SUPPORT                   NIL                   TERM:BREADTH.FIRST                    NIL
+
+GEN:SPLITTING                         0.                    GEN:MANUAL.CONTROL                    NIL
+GEN:MAXIMUM.STEPS                     NIL                   GEN:GRAPH.SAVING                      NIL
+GEN:SAVE.FILE                         SAVE.DEFAULT
+
+
+TR:PREPROCESSING                      NIL                   TR:STEP.MODE                          LR
+TR:DUMP                               NIL                   TR:CLAUSE.MODE                        I
+TR:LINK.MODE                          I                     TR:TRACE.FILE                         NIL
+TR:TERMINAL                           T
+
+
+PR:INFIX.FORM                         T                     PR:PREFIX.FORM                        NIL
+PR:OPTIONS                            T                     PR:AXIOM.CLAUSES                      NIL
+PR:SYMBOLS                            NIL                   PR:STATISTICS                         NIL
+PR:PROTOCOL                           T                     PR:LEFT.MARGIN                        0.
+PR:LINELENGTH                         120.
+
+
+
+
+FORMULAE GIVEN TO THE EDITOR
+============================
+
+
+AXIOMS   : SORT SET:ANY
+           SORT FUNCTION:ANY
+           SORT ELEMENT:SET
+           SORT ELEMENT.F:ELEMENT
+           SORT NAT:SET
+           SORT REL:SET
+           SORT UNARY.FUNC:FUNCTION
+           SORT BINARY.FUNC:FUNCTION
+           SORT EQU.REL-S:REL
+           SORT L.CONGRUENCE-S:EQU.REL-S
+           SORT R.CONGRUENCE-S:EQU.REL-S
+           SORT CONGRUENCE-S:L.CONGRUENCE-S
+           SORT CONGRUENCE-S:R.CONGRUENCE-S
+           * CONSTANTS *
+           TYPE F:SET
+           TYPE CONN.F:BINARY.FUNC
+           * PREDICATS *
+           TYPE SEMIGROUP (SET BINARY.FUNC)
+           TYPE L.CONGRUENCE (REL)
+           TYPE R.CONGRUENCE (REL)
+           TYPE IN.RELATION (REL ELEMENT.F ELEMENT.F)
+           * FUNCTIONS *
+           TYPE APPLY2 (BINARY.FUNC SET SET) :SET
+           TYPE APPLY2-EL (BINARY.FUNC ELEMENT ELEMENT) :ELEMENT
+           TYPE APPLY2-EL.F (BINARY.FUNC ELEMENT.F ELEMENT.F) :ELEMENT.F
+           TYPE PREIMAGE (REL ELEMENT.F) :SET
+           *
+           * DEFINTION SUBSET
+           ALL A,B:SET SUBSET (A B) EQV (ALL X:ELEMENT EL (X A) IMPL EL (X B))
+           *
+           * DEFINITION OF LEFT-CONGRUENCE *
+           ALL RHO:EQU.REL-S  
+               SEMIGROUP (F CONN.F)
+               IMPL  
+                  L.CONGRUENCE (RHO)
+                  EQV  
+                   ALL G,F1,F2:ELEMENT.F  
+                       IN.RELATION (RHO F1 F2)
+                       IMPL  
+                       IN.RELATION (RHO APPLY2-EL.F (CONN.F G F1) APPLY2-EL.F (CONN.F G F2))
+           *
+           * DEFINTION PREIMAGE
+           ALL RHO:REL ALL A,B:ELEMENT.F EL (B PREIMAGE (RHO A)) EQV IN.RELATION (RHO B A)
+           *
+           * DIRECT CONCLUSION OF DEFINITION OF PREIMAGE *
+           ALL RHO:REL ALL A:ELEMENT.F SUBSET (PREIMAGE (RHO A) F)
+           *
+           * PROPERTY OF APPLY2 *
+           ALL T:SET  ALL X:ELEMENT.F  
+               SEMIGROUP (F CONN.F) AND SUBSET (T F)
+               IMPL  
+               (ALL Y:ELEMENT EL (Y APPLY2 (CONN.F X T)) EQV (EX Z:ELEMENT.F EL (Z T) AND Y = APPLY2-EL.F (CONN.F X Z)))
+
+THEOREMS : * THEOREM 5.2
+           ALL RHO:EQU.REL-S  
+               SEMIGROUP (F CONN.F)
+               IMPL  
+                  L.CONGRUENCE (RHO)
+                  EQV  
+                   ALL G,H:ELEMENT.F  
+                     SUBSET (APPLY2 (CONN.F H PREIMAGE (RHO G)) PREIMAGE (RHO APPLY2-EL.F (CONN.F H G)))
+
+
+
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+* A1   : ALL X:ANY  + =(X X)
+* A2   : ALL X:ELEMENT.F  Y:REL  + SUBSET(PREIMAGE(Y X) F)
+* A3   : ALL X,Y:SET  + SUBSET(Y X)  - EL(F_1(X Y) X)
+* A4   : ALL X,Y:SET  + SUBSET(Y X)  + EL(F_1(X Y) Y)
+* A5   : ALL X:EQU.REL-S  - SEMIGROUP(F CONN.F)  + L.CONGRUENCE(X)
+                            - EL(APPLY2-EL.F(CONN.F F_2(X) F_4(X)) PREIMAGE(X APPLY2-EL.F(CONN.F F_2(X) F_3(X))))
+* A6   : ALL X:EQU.REL-S  - SEMIGROUP(F CONN.F)  + L.CONGRUENCE(X)  + EL(F_4(X) PREIMAGE(X F_3(X)))
+* A7   : ALL X:ELEMENT  Y,Z:SET  - SUBSET(Z Y)  - EL(X Z)  + EL(X Y)
+* A8   : ALL X:ELEMENT.F  Y:ELEMENT  Z:SET  
+              - SEMIGROUP(F CONN.F)  - SUBSET(Z F)  - EL(Y APPLY2(CONN.F X Z))  + =(Y APPLY2-EL.F(CONN.F X F_5(X Y Z)))
+* A9   : ALL X:ELEMENT.F  Y:ELEMENT  Z:SET  
+              - SEMIGROUP(F CONN.F)  - SUBSET(Z F)  - EL(Y APPLY2(CONN.F X Z))  + EL(F_5(X Y Z) Z)
+* A10  : ALL X,Y,Z:ELEMENT.F  U:EQU.REL-S  
+              - SEMIGROUP(F CONN.F)  - L.CONGRUENCE(U)  - EL(Z PREIMAGE(U Y))
+                + EL(APPLY2-EL.F(CONN.F X Z) PREIMAGE(U APPLY2-EL.F(CONN.F X Y)))
+* A11  : ALL X,Y:ELEMENT.F  Z:ELEMENT  U:SET  
+              - SEMIGROUP(F CONN.F)  - SUBSET(U F)  + EL(Z APPLY2(CONN.F Y U))  - EL(X U)
+                - =(Z APPLY2-EL.F(CONN.F Y X))
+
+
+
+
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+
+
+* T12  : + SEMIGROUP(F CONN.F)
+* T13  : - L.CONGRUENCE(C_3)  - SUBSET(APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)) PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)))
+* T14  : ALL X,Y:ELEMENT.F  + L.CONGRUENCE(C_3)
+                              + SUBSET(APPLY2(CONN.F Y PREIMAGE(C_3 X)) PREIMAGE(C_3 APPLY2-EL.F(CONN.F Y X)))
+
+
+
+
+
+
+INITIAL OPERATIONS ON THEOREMS
+==============================
+
+
+A5,1 & T12,1    -->  * R1 : ALL X:EQU.REL-S  + L.CONGRUENCE(X)
+                                             - EL(APPLY2-EL.F(CONN.F F_2(X) F_4(X))
+                                                  PREIMAGE(X APPLY2-EL.F(CONN.F F_2(X) F_3(X))))
+
+
+A6,1 & T12,1    -->  * R2 : ALL X:EQU.REL-S  + L.CONGRUENCE(X)  + EL(F_4(X) PREIMAGE(X F_3(X)))
+
+A8,1 & T12,1    -->  * R3 : ALL X:ELEMENT.F  Y:ELEMENT  Z:SET  
+                                 - SUBSET(Z F)  - EL(Y APPLY2(CONN.F X Z))  + =(Y APPLY2-EL.F(CONN.F X F_5(X Y Z)))
+
+A9,1 & T12,1    -->  * R4 : ALL X:ELEMENT.F  Y:ELEMENT  Z:SET  
+                                 - SUBSET(Z F)  - EL(Y APPLY2(CONN.F X Z))  + EL(F_5(X Y Z) Z)
+
+A10,1 & T12,1   -->  * R5 : ALL X,Y,Z:ELEMENT.F  U:EQU.REL-S  
+                                 - L.CONGRUENCE(U)  - EL(Z PREIMAGE(U Y))
+                                   + EL(APPLY2-EL.F(CONN.F X Z) PREIMAGE(U APPLY2-EL.F(CONN.F X Y)))
+
+A11,1 & T12,1   -->  * R6 : ALL X,Y:ELEMENT.F  Z:ELEMENT  U:SET  
+                                 - SUBSET(U F)  + EL(Z APPLY2(CONN.F Y U))  - EL(X U)  - =(Z APPLY2-EL.F(CONN.F Y X))
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+REFUTATION
+
+INITIAL CLAUSES :    * A1  : ALL X:ANY  + =(X X)
+                     * A2  : ALL X:ELEMENT.F  Y:REL  + SUBSET(PREIMAGE(Y X) F)
+                     * A3  : ALL X,Y:SET  + SUBSET(Y X)  - EL(F_1(X Y) X)
+                     * A4  : ALL X,Y:SET  + SUBSET(Y X)  + EL(F_1(X Y) Y)
+                     * R1  : ALL X:EQU.REL-S  + L.CONGRUENCE(X)
+                                              - EL(APPLY2-EL.F(CONN.F F_2(X) F_4(X))
+                                                   PREIMAGE(X APPLY2-EL.F(CONN.F F_2(X) F_3(X))))
+                     * R2  : ALL X:EQU.REL-S  + L.CONGRUENCE(X)  + EL(F_4(X) PREIMAGE(X F_3(X)))
+                     * A7  : ALL X:ELEMENT  Y,Z:SET  - SUBSET(Z Y)  - EL(X Z)  + EL(X Y)
+                     * R3  : ALL X:ELEMENT.F  Y:ELEMENT  Z:SET  
+                                  - SUBSET(Z F)  - EL(Y APPLY2(CONN.F X Z))  + =(Y APPLY2-EL.F(CONN.F X F_5(X Y Z)))
+                     * R4  : ALL X:ELEMENT.F  Y:ELEMENT  Z:SET  
+                                  - SUBSET(Z F)  - EL(Y APPLY2(CONN.F X Z))  + EL(F_5(X Y Z) Z)
+                     * R5  : ALL X,Y,Z:ELEMENT.F  U:EQU.REL-S  
+                                  - L.CONGRUENCE(U)  - EL(Z PREIMAGE(U Y))
+                                    + EL(APPLY2-EL.F(CONN.F X Z) PREIMAGE(U APPLY2-EL.F(CONN.F X Y)))
+                     * R6  : ALL X,Y:ELEMENT.F  Z:ELEMENT  U:SET  
+                                  - SUBSET(U F)  + EL(Z APPLY2(CONN.F Y U))  - EL(X U)  - =(Z APPLY2-EL.F(CONN.F Y X))
+                     * T13 : - L.CONGRUENCE(C_3)
+                               - SUBSET(APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)) PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)))
+                     * T14 : ALL X,Y:ELEMENT.F  
+                                  + L.CONGRUENCE(C_3)
+                                    + SUBSET(APPLY2(CONN.F Y PREIMAGE(C_3 X)) PREIMAGE(C_3 APPLY2-EL.F(CONN.F Y X)))
+
+A4,2 & A3,2     -->    R7  : ALL X:SET  + SUBSET(X X)  + SUBSET(X X)
+
+R7 2=1          -->    D8  : ALL X:SET  + SUBSET(X X)
+
+A4,1 & T13,2    -->  * R9  : + EL(F_1(PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)) APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+                                  APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+                               - L.CONGRUENCE(C_3)
+
+A3,1 & T13,2    -->  * R10 : - EL(F_1(PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)) APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+                                  PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)))
+                               - L.CONGRUENCE(C_3)
+
+R2,1 & T13,1    -->  * R11 : + EL(F_4(C_3) PREIMAGE(C_3 F_3(C_3)))
+                               - SUBSET(APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)) PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)))
+
+R1,1 & T13,1    -->  * R12 : - EL(APPLY2-EL.F(CONN.F F_2(C_3) F_4(C_3))
+                                  PREIMAGE(C_3 APPLY2-EL.F(CONN.F F_2(C_3) F_3(C_3))))
+                               - SUBSET(APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)) PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)))
+
+T14,2 & T13,2   -->    R13 : + L.CONGRUENCE(C_3)  - L.CONGRUENCE(C_3)
+
+T14,1 & T13,1   -->    R14 : ALL X,Y:ELEMENT.F  
+                                  + SUBSET(APPLY2(CONN.F Y PREIMAGE(C_3 X)) PREIMAGE(C_3 APPLY2-EL.F(CONN.F Y X)))
+                                  - SUBSET(APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2))
+                                           PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)))
+
+
+T14,1 & R9,2    -->  * R15 : ALL X,Y:ELEMENT.F  
+                                  + SUBSET(APPLY2(CONN.F Y PREIMAGE(C_3 X)) PREIMAGE(C_3 APPLY2-EL.F(CONN.F Y X)))
+                                  + EL(F_1(PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2))
+                                           APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+                                       APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+
+
+R1,1 & R9,2     -->    R16 : - EL(APPLY2-EL.F(CONN.F F_2(C_3) F_4(C_3))
+                                  PREIMAGE(C_3 APPLY2-EL.F(CONN.F F_2(C_3) F_3(C_3))))
+                             + EL(F_1(PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)) APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+                                  APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+
+
+R2,1 & R9,2     -->    R17 : + EL(F_4(C_3) PREIMAGE(C_3 F_3(C_3)))
+                             + EL(F_1(PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)) APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+                                  APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+
+
+T14,1 & R10,2   -->  * R18 : ALL X,Y:ELEMENT.F  
+                                  + SUBSET(APPLY2(CONN.F Y PREIMAGE(C_3 X)) PREIMAGE(C_3 APPLY2-EL.F(CONN.F Y X)))
+                                  - EL(F_1(PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2))
+                                           APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+                                       PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)))
+
+
+R1,1 & R10,2    -->    R19 : - EL(APPLY2-EL.F(CONN.F F_2(C_3) F_4(C_3))
+                                  PREIMAGE(C_3 APPLY2-EL.F(CONN.F F_2(C_3) F_3(C_3))))
+                             - EL(F_1(PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)) APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+                                  PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)))
+
+
+R2,1 & R10,2    -->    R20 : + EL(F_4(C_3) PREIMAGE(C_3 F_3(C_3)))
+                             - EL(F_1(PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)) APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+                                  PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)))
+
+
+T14,2 & R11,2   -->    R21 : + L.CONGRUENCE(C_3)  + EL(F_4(C_3) PREIMAGE(C_3 F_3(C_3)))
+
+T14,2 & R12,2   -->    R22 : + L.CONGRUENCE(C_3)
+                             - EL(APPLY2-EL.F(CONN.F F_2(C_3) F_4(C_3))
+                                  PREIMAGE(C_3 APPLY2-EL.F(CONN.F F_2(C_3) F_3(C_3))))
+
+
+R14,1 & R12,2   -->    R23 : - SUBSET(APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)) PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)))
+                             - EL(APPLY2-EL.F(CONN.F F_2(C_3) F_4(C_3))
+                                  PREIMAGE(C_3 APPLY2-EL.F(CONN.F F_2(C_3) F_3(C_3))))
+
+
+R14,1 & R11,2   -->    R24 : - SUBSET(APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)) PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)))
+                               + EL(F_4(C_3) PREIMAGE(C_3 F_3(C_3)))
+
+T14,2 & A7,1    -->  * R25 : ALL X,Y:ELEMENT.F  Z:ELEMENT  
+                                  + L.CONGRUENCE(C_3)  - EL(Z APPLY2(CONN.F Y PREIMAGE(C_3 X)))
+                                    + EL(Z PREIMAGE(C_3 APPLY2-EL.F(CONN.F Y X)))
+
+R25,3 & R1,2    -->  * R26 : + L.CONGRUENCE(C_3)
+                             - EL(APPLY2-EL.F(CONN.F F_2(C_3) F_4(C_3)) APPLY2(CONN.F F_2(C_3) PREIMAGE(C_3 F_3(C_3))))
+                               + L.CONGRUENCE(C_3)
+
+R26 3=1         -->  * D27 : - EL(APPLY2-EL.F(CONN.F F_2(C_3) F_4(C_3)) APPLY2(CONN.F F_2(C_3) PREIMAGE(C_3 F_3(C_3))))
+                               + L.CONGRUENCE(C_3)
+
+T14,1 & R5,1    -->    R28 : ALL X,Y,Z,U,V:ELEMENT.F  
+                                  + SUBSET(APPLY2(CONN.F V PREIMAGE(C_3 U)) PREIMAGE(C_3 APPLY2-EL.F(CONN.F V U)))
+                                    - EL(Z PREIMAGE(C_3 Y))
+                                    + EL(APPLY2-EL.F(CONN.F X Z) PREIMAGE(C_3 APPLY2-EL.F(CONN.F X Y)))
+
+R15,2 & R3,2    -->  * R29 : ALL X,Y:ELEMENT.F  
+                                  + SUBSET(APPLY2(CONN.F Y PREIMAGE(C_3 X)) PREIMAGE(C_3 APPLY2-EL.F(CONN.F Y X)))
+                                    - SUBSET(PREIMAGE(C_3 C_2) F)
+                                  + =(F_1(PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2))
+                                          APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+                                      APPLY2-EL.F(CONN.F
+                                                  C_1
+                                                  F_5(C_1
+                                                      F_1(PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2))
+                                                          APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+                                                      PREIMAGE(C_3 C_2))))
+
+
+R29,2 & A2,1    -->  * R30 : ALL X,Y:ELEMENT.F  
+                                  + SUBSET(APPLY2(CONN.F Y PREIMAGE(C_3 X)) PREIMAGE(C_3 APPLY2-EL.F(CONN.F Y X)))
+                                  + =(F_1(PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2))
+                                          APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+                                      APPLY2-EL.F(CONN.F
+                                                  C_1
+                                                  F_5(C_1
+                                                      F_1(PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2))
+                                                          APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+                                                      PREIMAGE(C_3 C_2))))
+
+
+R15,2 & R4,2    -->  * R31 : ALL X,Y:ELEMENT.F  
+                                  + SUBSET(APPLY2(CONN.F Y PREIMAGE(C_3 X)) PREIMAGE(C_3 APPLY2-EL.F(CONN.F Y X)))
+                                    - SUBSET(PREIMAGE(C_3 C_2) F)
+                                  + EL(F_5(C_1
+                                           F_1(PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2))
+                                               APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+                                           PREIMAGE(C_3 C_2))
+                                       PREIMAGE(C_3 C_2))
+
+
+R31,2 & A2,1    -->  * R32 : ALL X,Y:ELEMENT.F  
+                                  + SUBSET(APPLY2(CONN.F Y PREIMAGE(C_3 X)) PREIMAGE(C_3 APPLY2-EL.F(CONN.F Y X)))
+                                  + EL(F_5(C_1
+                                           F_1(PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2))
+                                               APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+                                           PREIMAGE(C_3 C_2))
+                                       PREIMAGE(C_3 C_2))
+
+
+R15,1 & R12,2   -->    R33 : + EL(F_1(PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)) APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+                                  APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+                             - EL(APPLY2-EL.F(CONN.F F_2(C_3) F_4(C_3))
+                                  PREIMAGE(C_3 APPLY2-EL.F(CONN.F F_2(C_3) F_3(C_3))))
+
+
+R15,1 & R11,2   -->    R34 : + EL(F_1(PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)) APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+                                  APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+                               + EL(F_4(C_3) PREIMAGE(C_3 F_3(C_3)))
+
+R16,2 & R3,2    -->    R35 : - EL(APPLY2-EL.F(CONN.F F_2(C_3) F_4(C_3))
+                                  PREIMAGE(C_3 APPLY2-EL.F(CONN.F F_2(C_3) F_3(C_3))))
+                               - SUBSET(PREIMAGE(C_3 C_2) F)
+                             + =(F_1(PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)) APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+                                 APPLY2-EL.F(CONN.F
+                                             C_1
+                                             F_5(C_1
+                                                 F_1(PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2))
+                                                     APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+                                                 PREIMAGE(C_3 C_2))))
+
+
+R35,2 & A2,1    -->    R36 : - EL(APPLY2-EL.F(CONN.F F_2(C_3) F_4(C_3))
+                                  PREIMAGE(C_3 APPLY2-EL.F(CONN.F F_2(C_3) F_3(C_3))))
+                             + =(F_1(PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)) APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+                                 APPLY2-EL.F(CONN.F
+                                             C_1
+                                             F_5(C_1
+                                                 F_1(PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2))
+                                                     APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+                                                 PREIMAGE(C_3 C_2))))
+
+
+R16,2 & R4,2    -->    R37 : - EL(APPLY2-EL.F(CONN.F F_2(C_3) F_4(C_3))
+                                  PREIMAGE(C_3 APPLY2-EL.F(CONN.F F_2(C_3) F_3(C_3))))
+                               - SUBSET(PREIMAGE(C_3 C_2) F)
+                             + EL(F_5(C_1
+                                      F_1(PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2))
+                                          APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+                                      PREIMAGE(C_3 C_2))
+                                  PREIMAGE(C_3 C_2))
+
+
+R37,2 & A2,1    -->    R38 : - EL(APPLY2-EL.F(CONN.F F_2(C_3) F_4(C_3))
+                                  PREIMAGE(C_3 APPLY2-EL.F(CONN.F F_2(C_3) F_3(C_3))))
+                             + EL(F_5(C_1
+                                      F_1(PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2))
+                                          APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+                                      PREIMAGE(C_3 C_2))
+                                  PREIMAGE(C_3 C_2))
+
+
+R17,2 & R3,2    -->    R39 : + EL(F_4(C_3) PREIMAGE(C_3 F_3(C_3)))  - SUBSET(PREIMAGE(C_3 C_2) F)
+                             + =(F_1(PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)) APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+                                 APPLY2-EL.F(CONN.F
+                                             C_1
+                                             F_5(C_1
+                                                 F_1(PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2))
+                                                     APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+                                                 PREIMAGE(C_3 C_2))))
+
+
+R39,2 & A2,1    -->    R40 : + EL(F_4(C_3) PREIMAGE(C_3 F_3(C_3)))
+                             + =(F_1(PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)) APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+                                 APPLY2-EL.F(CONN.F
+                                             C_1
+                                             F_5(C_1
+                                                 F_1(PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2))
+                                                     APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+                                                 PREIMAGE(C_3 C_2))))
+
+
+R17,2 & R4,2    -->    R41 : + EL(F_4(C_3) PREIMAGE(C_3 F_3(C_3)))  - SUBSET(PREIMAGE(C_3 C_2) F)
+                             + EL(F_5(C_1
+                                      F_1(PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2))
+                                          APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+                                      PREIMAGE(C_3 C_2))
+                                  PREIMAGE(C_3 C_2))
+
+
+R41,2 & A2,1    -->    R42 : + EL(F_4(C_3) PREIMAGE(C_3 F_3(C_3)))
+                             + EL(F_5(C_1
+                                      F_1(PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2))
+                                          APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+                                      PREIMAGE(C_3 C_2))
+                                  PREIMAGE(C_3 C_2))
+
+
+R18,1 & R12,2   -->    R43 : - EL(F_1(PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)) APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+                                  PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)))
+                             - EL(APPLY2-EL.F(CONN.F F_2(C_3) F_4(C_3))
+                                  PREIMAGE(C_3 APPLY2-EL.F(CONN.F F_2(C_3) F_3(C_3))))
+
+
+R18,1 & R11,2   -->    R44 : - EL(F_1(PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)) APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+                                  PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)))
+                               + EL(F_4(C_3) PREIMAGE(C_3 F_3(C_3)))
+
+R11,1 & R6,3    -->  * R45 : ALL X:ELEMENT.F  Y:ELEMENT  
+                                  - SUBSET(APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2))
+                                           PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)))
+                                    - SUBSET(PREIMAGE(C_3 F_3(C_3)) F)  + EL(Y APPLY2(CONN.F X PREIMAGE(C_3 F_3(C_3))))
+                                    - =(Y APPLY2-EL.F(CONN.F X F_4(C_3)))
+
+R45,2 & A2,1    -->  * R46 : ALL X:ELEMENT.F  Y:ELEMENT  
+                                  - SUBSET(APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2))
+                                           PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)))
+                                    + EL(Y APPLY2(CONN.F X PREIMAGE(C_3 F_3(C_3))))
+                                    - =(Y APPLY2-EL.F(CONN.F X F_4(C_3)))
+
+A1,1 & R46,3    -->    R47 : ALL X:ELEMENT.F  - SUBSET(APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2))
+                                                       PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)))
+                                              + EL(APPLY2-EL.F(CONN.F X F_4(C_3))
+                                                   APPLY2(CONN.F X PREIMAGE(C_3 F_3(C_3))))
+
+
+R46,2 & D27,1   -->  * R48 : - SUBSET(APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)) PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)))
+                               - =(APPLY2-EL.F(CONN.F F_2(C_3) F_4(C_3)) APPLY2-EL.F(CONN.F F_2(C_3) F_4(C_3)))
+                               + L.CONGRUENCE(C_3)
+
+R48,2 & A1,1    -->  * R49 : - SUBSET(APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)) PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)))
+                               + L.CONGRUENCE(C_3)
+
+R11,1 & R5,2    -->  * R50 : ALL X:ELEMENT.F  - SUBSET(APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2))
+                                                       PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)))
+                                                - L.CONGRUENCE(C_3)
+                                              + EL(APPLY2-EL.F(CONN.F X F_4(C_3))
+                                                   PREIMAGE(C_3 APPLY2-EL.F(CONN.F X F_3(C_3))))
+
+
+R50,3 & R12,1   -->  * R51 : - SUBSET(APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)) PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)))
+                               - L.CONGRUENCE(C_3)
+                               - SUBSET(APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)) PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)))
+
+R51 1=3         -->  * D52 : - SUBSET(APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)) PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)))
+                               - L.CONGRUENCE(C_3)
+
+D52,2 & R49,2   -->  * R53 : - SUBSET(APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)) PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)))
+                               - SUBSET(APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)) PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)))
+
+R53 1=2         -->  * D54 : - SUBSET(APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)) PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)))
+
+R30,1 & D54,1   -->  * R55 : + =(F_1(PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)) APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+                                 APPLY2-EL.F(CONN.F
+                                             C_1
+                                             F_5(C_1
+                                                 F_1(PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2))
+                                                     APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+                                                 PREIMAGE(C_3 C_2))))
+
+
+R32,1 & D54,1   -->  * R56 : + EL(F_5(C_1
+                                      F_1(PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2))
+                                          APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+                                      PREIMAGE(C_3 C_2))
+                                  PREIMAGE(C_3 C_2))
+
+
+R28,1 & D54,1   -->    R57 : ALL X,Y,Z:ELEMENT.F  
+                                  - EL(Z PREIMAGE(C_3 Y))
+                                    + EL(APPLY2-EL.F(CONN.F X Z) PREIMAGE(C_3 APPLY2-EL.F(CONN.F X Y)))
+
+R15,1 & D54,1   -->  * R58 : + EL(F_1(PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)) APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+                                  APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+
+
+R18,1 & D54,1   -->  * R59 : - EL(F_1(PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)) APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+                                  PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)))
+
+
+R25,2 & R58,1   -->  * R60 : + L.CONGRUENCE(C_3)
+                             + EL(F_1(PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)) APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+                                  PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)))
+
+
+R60,2 & R59,1   -->  * R61 : + L.CONGRUENCE(C_3)
+
+R56,1 & R5,2    -->  * R62 : ALL X:ELEMENT.F  - L.CONGRUENCE(C_3)
+                                              + EL(APPLY2-EL.F(CONN.F
+                                                               X
+                                                               F_5(C_1
+                                                                   F_1(PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2))
+                                                                       APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+                                                                   PREIMAGE(C_3 C_2)))
+                                                   PREIMAGE(C_3 APPLY2-EL.F(CONN.F X C_2)))
+
+
+R62,1 & R61,1   -->  * R63 : ALL X:ELEMENT.F  + EL(APPLY2-EL.F(CONN.F
+                                                               X
+                                                               F_5(C_1
+                                                                   F_1(PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2))
+                                                                       APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+                                                                   PREIMAGE(C_3 C_2)))
+                                                   PREIMAGE(C_3 APPLY2-EL.F(CONN.F X C_2)))
+
+
+R55,1 & R63,1   -->  * P64 : + EL(F_1(PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)) APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)))
+                                  PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)))
+
+
+P64,1 & A3,2    -->  * R65 : + SUBSET(APPLY2(CONN.F C_1 PREIMAGE(C_3 C_2)) PREIMAGE(C_3 APPLY2-EL.F(CONN.F C_1 C_2)))
+
+R65,1 & D54,1   -->  * R66 :  ce
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+  Q. E. D. 

@@ -1,0 +1,22 @@
+;;; -*- Syntax: Common-Lisp; Package: MKRP; Base: 10; Mode: LISP -*-
+
+(Mo(monday) and Tu(tuesday) and We(wednesday) and Th(thursday) and Fr(friday) and Sa(saturday) and Su(sunday))
+((ALL x Mo(x) impl LL(x)) and (ALL x Tu(x) impl LL(x)) and (ALL x We(x) impl LL(x)))
+((ALL x Th(x) impl not LL(x)) and (ALL x Fr(x) impl not LL(x)) and (ALL x Sa(x) impl not LL(x)) and (ALL x Su(x) impl not LL(x)))
+((ALL x Mo(x) impl not UL(x)) and (ALL x Tu(x) impl not UL(x)) and (ALL x We(x) impl not UL(x)))
+((ALL x Th(x) impl UL(x)) and (ALL x Fr(x) impl UL(x)) and (ALL x Sa(x) impl UL(x)) and (ALL x Su(x) impl not UL(x)))
+((ALL x Mo(x) impl  Da(x)) and (ALL x Tu(x) impl  Da(x)) and (ALL x We(x) impl  Da(x)))
+((ALL x Th(x) impl Da(x)) and (ALL x Fr(x) impl Da(x)) and (ALL x Sa(x) impl Da(x)) and (ALL x Su(x) impl  Da(x)))
+((ALL x LL(x) impl Da(x)) and (ALL x UL(x) impl Da(x)))
+(Su(yesterday(monday)) and Mo(yesterday(tuesday)) and Tu(yesterday(wednesday)) and We(yesterday(thursday)))
+(Th(yesterday(friday)) and Fr(yesterday(saturday)) and Sa(yesterday(sunday)))
+(ALL x,y (Da(x) and Da(y) impl (not LL(x) and Lies(lion x y) impl LL(y))))
+(ALL x,y (Da(x) and Da(y) impl (not LL(x) and not Lies(lion x y) impl  not LL(y))))
+(ALL x,y (Da(x) and Da(y) impl (LL(x) and Lies(lion x y) impl not LL(y))))
+(ALL x,y (Da(x) and Da(y) impl (LL(x) and not Lies(lion x y) impl LL(y))))
+(ALL x,y (Da(x) and Da(y) impl (not UL(x) and Lies(unicorn x y) impl UL(y))))
+(ALL x,y (Da(x) and Da(y) impl (not UL(x) and not Lies(unicorn x y) impl  not UL(y))))
+(ALL x,y (Da(x) and Da(y) impl (UL(x) and Lies(unicorn x y) impl not UL(y))))
+(ALL x,y (Da(x) and Da(y) impl (UL(x) and not Lies(unicorn x y) impl UL(y))))
+
+(EX x Lies(lion x yesterday(x)) and Lies(unicorn x yesterday(x)))

@@ -1,0 +1,172 @@
+;;; -*- Package: MKRP; Base: 10. -*- 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 5-NOV-84                                                      *
+                    *         DATE : 7-DEC-84  18:54:00                                            *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+                                                                         
+*************************************************************************
+ EDIT:     AXIOME UND THEOREME EDITIERT AM:   7-DEC-84 14:55:06
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:    2.6.LR.1 
+                                                                        
+************************************************************************
+                                                                        
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : SORT MENGE,ELEMENT:ANY
+           TYPE W(MENGE) :MENGE
+           TYPE APPLYA(MENGE ELEMENT) :ELEMENT
+           TYPE INV(MENGE) :MENGE
+           * ISOMORPHIE VON TEILMENGEN *
+           ALL A1,B1,PHI:MENGE  (       ALL A,B:MENGE  ALL X,Y:ELEMENT  
+                                               ISOMORPH(PHI A B) AND ME(A1 A) AND ME(B1 B) AND EL(X A1) AND EL(Y B1)
+                                          IMPL EL(APPLYA(PHI X) B1) AND EL(APPLYA(INV(PHI) Y) A1))
+                                  IMPL ISOMORPH(PHI A1 B1)
+           * LEMMA 2.6.LR.1.1 *
+           ALL A,B,PHI:MENGE ISOMORPH(PHI W(A) W(B)) IMPL(ALL X:ELEMENT EL(X A) IMPL EL(APPLYA(PHI X) B))
+           * LEMMA 2.6.LR.1.2 *
+           ALL A,B,PHI:MENGE ISOMORPH(PHI W(A) W(B)) IMPL(ALL X:ELEMENT EL(X B) IMPL EL(APPLYA(INV(PHI) X) A))
+           * EIGENSCHAFT VON W(X) *
+           ALL X:MENGE ME(X W(X))
+ 
+THEOREMS : ALL X,Y,PHI:MENGE ISOMORPH(PHI W(X) W(Y)) IMPL(EX PSI:MENGE ISOMORPH(PSI X Y))
+ 
+ 
+ 
+ 
+CONSTANTS : 
+=========== 
+ 
+| NAME     | SORT                |            | ATTRIBUTES |
+------------------------------------------------------------
+| C_1      | MENGE               |            |            |
+| C_2      | MENGE               |            |            |
+| C_3      | MENGE               |            |            |
+------------------------------------------------------------
+ 
+ 
+ 
+FUNCTIONS : 
+=========== 
+ 
+| NAME     | DOMAIN              | RANGE      | ATTRIBUTES |
+------------------------------------------------------------
+| W        | MENGE               | MENGE      |            |
+| APPLYA   | MENGE ELEMENT       | ELEMENT    |            |
+| INV      | MENGE               | MENGE      |            |
+| F_1      | MENGE MENGE MENGE   | MENGE      |            |
+| F_2      | MENGE MENGE MENGE   | MENGE      |            |
+| F_3      | MENGE MENGE MENGE   | ELEMENT    |            |
+| F_4      | MENGE MENGE MENGE   | ELEMENT    |            |
+------------------------------------------------------------
+ 
+ 
+ 
+PREDICATES : 
+============ 
+ 
+| NAME     | DOMAIN              |            | ATTRIBUTES |
+------------------------------------------------------------
+| TRUE     |                     |            | DEFINED    |
+| FALSE    |                     |            | DEFINED    |
+| ISOMORPH | ANY ANY ANY         |            |            |
+| ME       | ANY ANY             |            |            |
+| EL       | ANY ANY             |            |            |
+------------------------------------------------------------
+ 
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+  A1   : ALL X:MENGE  + ME(X W(X))
+  A2   : ALL X,Y,Z:MENGE  + ISOMORPH(Z F_2(Z Y X) F_1(Z Y X))  + ISOMORPH(Z X Y)
+  A3   : ALL X,Y,Z:MENGE  + ME(Z F_2(Y X Z))  + ISOMORPH(Y Z X)
+  A4   : ALL X,Y,Z:MENGE  + ME(Z F_1(Y Z X))  + ISOMORPH(Y X Z)
+* A5   : ALL X,Y,Z:MENGE  + EL(F_3(Z Y X) X)  + ISOMORPH(Z X Y)
+* A6   : ALL X,Y,Z:MENGE  + EL(F_4(Z Y X) Y)  + ISOMORPH(Z X Y)
+* A7   : ALL X,Y,Z:MENGE  - EL(APPLYA(Z F_3(Z Y X)) Y)  - EL(APPLYA(INV(Z) F_4(Z Y X)) X)  + ISOMORPH(Z X Y)
+* A8   : ALL X:ELEMENT  Y,Z,U:MENGE  - ISOMORPH(U W(Z) W(Y))  - EL(X Z)  + EL(APPLYA(U X) Y)
+* A9   : ALL X:ELEMENT  Y,Z,U:MENGE  - ISOMORPH(U W(Z) W(Y))  - EL(X Y)  + EL(APPLYA(INV(U) X) Z)
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+* T10  : + ISOMORPH(C_1 W(C_2) W(C_3))
+* T11  : ALL X:MENGE  - ISOMORPH(X C_2 C_3)
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION
+ 
+INITIAL CLAUSES :   * A5  : ALL X,Y,Z:MENGE  + EL(F_3(Z Y X) X)  + ISOMORPH(Z X Y)
+                    * A6  : ALL X,Y,Z:MENGE  + EL(F_4(Z Y X) Y)  + ISOMORPH(Z X Y)
+                    * A7  : ALL X,Y,Z:MENGE  - EL(APPLYA(Z F_3(Z Y X)) Y)  - EL(APPLYA(INV(Z) F_4(Z Y X)) X)
+                                               + ISOMORPH(Z X Y)
+                    * A8  : ALL X:ELEMENT  Y,Z,U:MENGE  - ISOMORPH(U W(Z) W(Y))  - EL(X Z)  + EL(APPLYA(U X) Y)
+                    * A9  : ALL X:ELEMENT  Y,Z,U:MENGE  - ISOMORPH(U W(Z) W(Y))  - EL(X Y)  + EL(APPLYA(INV(U) X) Z)
+                    * T10 : + ISOMORPH(C_1 W(C_2) W(C_3))
+                    * T11 : ALL X:MENGE  - ISOMORPH(X C_2 C_3)
+ 
+A6,2 & T11,1   -->  * R1  : ALL X:MENGE  + EL(F_4(X C_3 C_2) C_3)
+ 
+A5,2 & T11,1   -->  * R2  : ALL X:MENGE  + EL(F_3(X C_3 C_2) C_2)
+ 
+T10,1 & A9,1   -->  * R3  : ALL X:ELEMENT  - EL(X C_3)  + EL(APPLYA(INV(C_1) X) C_2)
+ 
+R1,1 & R3,1    -->  * R4  : ALL X:MENGE  + EL(APPLYA(INV(C_1) F_4(X C_3 C_2)) C_2)
+ 
+R4,1 & A7,2    -->  * R5  : - EL(APPLYA(C_1 F_3(C_1 C_3 C_2)) C_3)  + ISOMORPH(C_1 C_2 C_3)
+ 
+R5,2 & T11,1   -->  * R6  : - EL(APPLYA(C_1 F_3(C_1 C_3 C_2)) C_3)
+ 
+T10,1 & A8,1   -->  * R7  : ALL X:ELEMENT  - EL(X C_2)  + EL(APPLYA(C_1 X) C_3)
+ 
+R6,1 & R7,2    -->  * R8  : - EL(F_3(C_1 C_3 C_2) C_2)
+ 
+R8,1 & R2,1    -->  * R9  :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+STOP
+ 

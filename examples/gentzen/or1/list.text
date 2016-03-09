@@ -1,0 +1,150 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 48.7                                                *
+                     *           DATE: 03-SEP,1991  11:08                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 03-SEP,1991 11:07 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   ALL X (SCHURKE (X) IMPL NOT RITTER (X)) AND (NOT RITTER (X) IMPL SCHURKE (X))
+             ALL X,Y (S2 (X Y) IMPL NOT R2 (X Y)) AND (NOT R2 (X Y) IMPL S2 (X Y))
+             ALL X,Y (S2 (X Y) IMPL NOT R2 (X Y)) AND (NOT R2 (X Y) IMPL S2 (X Y))
+             ALL X,Y RITTER (X) AND R2 (X Y) IMPL RITTER (Y)
+             ALL X,Y RITTER (X) AND S2 (X Y) IMPL SCHURKE (Y)
+             ALL X,Y SCHURKE (X) AND R2 (X Y) IMPL SCHURKE (Y)
+             ALL X,Y SCHURKE (X) AND S2 (X Y) IMPL RITTER (Y)
+             ALL X,Y,Z (S3 (X Y Z) IMPL NOT R3 (X Y Z)) AND (NOT R3 (X Y Z) IMPL S3 (X Y Z))
+             ALL X,Y,Z RITTER (X) AND R3 (X Y Z) IMPL R2 (Y Z)
+             ALL X,Y,Z RITTER (X) AND S3 (X Y Z) IMPL S2 (Y Z)
+             ALL X,Y,Z SCHURKE (X) AND R3 (X Y Z) IMPL S2 (Y Z)
+             ALL X,Y,Z SCHURKE (X) AND S3 (X Y Z) IMPL R2 (Y Z)
+             S3 (B A A)
+             S2 (C B)
+             
+   Theorems: SCHURKE (B) OR SCHURKE (D)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+           * A2:   + S3(b a a)
+             A3:   + S2(c b)
+           * A4:   All x:Any - SCHURKE(x)  - RITTER(x)
+           * A5:   All x:Any + RITTER(x)  + SCHURKE(x)
+             A6:   All x,y:Any - S2(y x)  - R2(y x)
+             A7:   All x,y:Any + R2(y x)  + S2(y x)
+             A8:   All x,y:Any - S2(y x)  - R2(y x)
+             A9:   All x,y:Any + R2(y x)  + S2(y x)
+             A10:  All x,y,z:Any - S3(z y x)  - R3(z y x)
+             A11:  All x,y,z:Any + R3(z y x)  + S3(z y x)
+             A12:  All x,y:Any - RITTER(y)  - R2(y x)  + RITTER(x)
+           * A13:  All x,y:Any - RITTER(y)  - S2(y x)  + SCHURKE(x)
+             A14:  All x,y:Any - SCHURKE(y)  - R2(y x)  + SCHURKE(x)
+           * A15:  All x,y:Any - SCHURKE(y)  - S2(y x)  + RITTER(x)
+             A16:  All x,y,z:Any - RITTER(z)  - R3(z y x)  + R2(y x)
+           * A17:  All x,y,z:Any - RITTER(z)  - S3(z y x)  + S2(y x)
+             A18:  All x,y,z:Any - SCHURKE(z)  - R3(z y x)  + S2(y x)
+             A19:  All x,y,z:Any - SCHURKE(z)  - S3(z y x)  + R2(y x)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T20: - SCHURKE(b)
+             T21: - SCHURKE(d)
+
+
+
+    Literals: ((T21 44) (T20 43) (A19 38 39 40) (A18 35 36 37) (A17 32 33 34) (A16 29 30 31) (A15 22 23 24) (A14 19 20 21) (A13 16 17 18) (A12 13 14 15) (A11 27 28) (A10 25 26) (A9 11 12) (A8 9 10) (A7 7 8) (A6 5 6) (A5 3 4) (A4 1 2) (A3 42) (A2 41) (A1 NIL))
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:       A1:    All x:Any + =(x x)
+                        * A2:    + S3(b a a)
+                          A3:    + S2(c b)
+                        * A4:    All x:Any - SCHURKE(x)  - RITTER(x)
+                        * A5:    All x:Any + RITTER(x)  + SCHURKE(x)
+                          A6:    All x,y:Any - S2(y x)  - R2(y x)
+                          A7:    All x,y:Any + R2(y x)  + S2(y x)
+                          A8:    All x,y:Any - S2(y x)  - R2(y x)
+                          A9:    All x,y:Any + R2(y x)  + S2(y x)
+                          A10:   All x,y,z:Any - S3(z y x)  - R3(z y x)
+                          A11:   All x,y,z:Any + R3(z y x)  + S3(z y x)
+                          A12:   All x,y:Any - RITTER(y)  - R2(y x)  + RITTER(x)
+                        * A13:   All x,y:Any - RITTER(y)  - S2(y x)  + SCHURKE(x)
+                          A14:   All x,y:Any - SCHURKE(y)  - R2(y x)  + SCHURKE(x)
+                        * A15:   All x,y:Any - SCHURKE(y)  - S2(y x)  + RITTER(x)
+                          A16:   All x,y,z:Any - RITTER(z)  - R3(z y x)  + R2(y x)
+                        * A17:   All x,y,z:Any - RITTER(z)  - S3(z y x)  + S2(y x)
+                          A18:   All x,y,z:Any - SCHURKE(z)  - R3(z y x)  + S2(y x)
+                          A19:   All x,y,z:Any - SCHURKE(z)  - S3(z y x)  + R2(y x)
+                        * T20:   - SCHURKE(b)
+                          T21:   - SCHURKE(d)
+                        
+
+   
+   A5,2 & T20,1     --> * R10:   + RITTER(b)
+   
+   R10,1 & A17,1    --> * R66:   - S3(b a a)  + S2(a a)
+   
+   R66,1 & A2,1     --> * R67:   + S2(a a)
+   
+   R67,1 & A13,2    --> * R170:  - RITTER(a)  + SCHURKE(a)
+   
+   R170,2 & A4,1    --> * R171:  - RITTER(a)  - RITTER(a)
+   
+   R171 1=2         --> * D172:  - RITTER(a)
+   
+   A5,1 & D172,1    --> * R173:  + SCHURKE(a)
+   
+   A15,3 & D172,1   --> * R174:  - SCHURKE(a)  - S2(a a)
+   
+   R174,2 & R67,1   --> * R175:  - SCHURKE(a)
+   
+   R175,1 & R173,1  --> * R176:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 236 seconds

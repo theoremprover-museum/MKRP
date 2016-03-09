@@ -1,0 +1,761 @@
+\chapter{The Input Language}
+\label{TheInputLanguage}
+
+
+An overview on PREDICATE LOGIC LANGUAGE (PLL), a formal language in
+which sorted \index{predicate logic language} \index{PLL} first-order
+predicate logic formulae can be formulated, is given.  An exact
+description is given in \cite{Walther82}. Axioms and theorems, which
+are given to {\sc Markgraf Karl}, are written in PLL. The language
+constructs of PLL which reflect the special facilities of this system
+are
+
+\begin{itemize}
+\item 	an inference mechanism based on an order-sorted calculus, 
+\index{order-sorted} \index{sorted}
+\item	the incorporation of special axioms into the inference mechanism, and
+\item	the control of the inference mechanism using special derivation 
+	strategies. 
+\end{itemize}
+
+\section{Basic Concepts}
+\label{BasicConcepts}
+
+In PLL the usual junctors, denoted by {\tt OR}, {\tt AND}, {\tt IMPL}, 
+{\tt EQV}, and {\tt NOT}, the\index{junctors}\index{quantors}
+universal quantifier {\tt ALL} and the existential quantifier {\tt EX} are present. 
+Junctors and quantifiers have the following priorities when used in a 
+formula without parentheses:
+
+{\tt NOT} $>$ {\tt AND} $>$ {\tt OR} $>$ {\tt IMPL} $>$ {\tt EQV} $>$ 
+{\tt ALL}, {\tt EX}
+
+
+In a formula without parentheses, the rightmost junctor has precedence 
+over all junctors of the same priority to its left.
+
+\Ex
+
+{\tt NOT A OR B AND C} is equivalent to {\tt (NOT A) OR (B AND C)} and {\tt A IMPL B IMPL 
+C} is equivalent to {\tt A IMPL (B IMPL C)}. 
+
+In PLL the sign {\tt =} denotes the equality symbol, that is, we use a first-order 
+predicate calculus with equality. The equality sign is written infix in contrast to all other 
+predicates. As an example for using PLL, we 
+axiomatize a group:
+
+\begin{verbatim}
+* AXIOMATIZATION OF A GROUP WITH EQUALITY
+* F IS A GROUP OPERATOR, I THE INVERSE, AND 1 IS THE IDENTITY ELEMENT 
+ALL X          F(I(X) X) = 1
+ALL X,Y,Z      F(X F(Y Z)) = F(F(X Y) Z)
+ALL X          F(1 X) = X 
+\end{verbatim}
+A theorem given to the {\sc Mkrp}-system could be for instance: 
+
+\begin{verbatim}
+* IDEMPOTENCY IMPLIES COMMUTATIVITY
+ALL X F(X X) = 1 IMPL (ALL X,Y F(X Y) = F(Y X))
+\end{verbatim}
+
+The lines starting with asterisks are PLL-comments. We give another 
+axiomatization of a group:
+
+\pagebreak[3]
+\begin{verbatim}
+* AXIOMATIZATION OF A GROUP WITHOUT EQUALITY
+* P(X Y Z) DENOTES F(X Y) = Z WHERE F IS THE 
+* GROUP OPERATOR, I IS THE INVERSE, AND 1 IS THE LEFTIDENTITY.
+ALL X             P(I(X) X 1) 
+ALL X,Y,Z,U,V,W   P(X Y U) AND P(Y Z V) IMPL (P(X V W) EQV P(U Z W))
+ALL X             P(1 X X) 
+\end{verbatim}
+
+Now a theorem could be for instance:
+\begin{verbatim}
+* LEFTIDENTITY IS RIGHTIDENTITY
+ALL X P(X 1 X)
+\end{verbatim}
+
+\section{The Order-Sorted Calculus}
+\label{TheMany-SortedCalculus}
+
+Assume we have a set of symbols ordered by the subsort ordering, a
+partial ordering relation which is reflexive, antisymmetric, and
+transitive. The subsort ordering has a predefined upper bound named top
+sort ({\tt Any}). Variable, constant, and function symbols are
+associated with a certain sort symbol.  The sort of a variable or
+constant symbol is its rangesort and the sort of a term which is
+different from a variable or constant symbol is determined by the
+rangesort of its outermost function symbol.
+
+All argument positions of a function or predicate symbol are
+associated with certain sort symbols, called the domainsorts. In the
+construction of the formulae of the order-sorted calculus, only those
+terms may fill an argument position of a function or predicate symbol,
+whose sorts are subsorts of the domainsorts given for the argument
+position of the respective function or predicate symbol.
+
+Besides the increase of readability of axiomatizations, the usage of
+the information given by the range- and domainsorts and by the subsort
+ordering prevents the inference mechanism of the theorem prover to do
+useless derivations. The theoretical foundation of the order-sorted
+calculus implemented in the {\sc Markgraf Karl Refutation Procedure}
+can be found in \cite{Walther84}. 
+
+As an example for an application of a order-sorted calculus we axiomatize 
+sets of letters and digits and some basic operations for these sets.
+ 
+\Ex
+\begin{verbatim}
+* LETTER AND DIGIT ARE SUBSORTS OF SORT SIGN
+SORT SIGN: ANY
+SORT LETTER,DIGIT: SIGN
+\end{verbatim}
+
+\begin{verbatim}
+* DEFINITION OF THE SORTS LETTER AND DIGIT; I.E.
+* A, B, ... , Z ARE CONSTANTS OF SORT LETTER AND  
+* 0, 1, ... , 9 ARE CONSTANTS OF SORT DIGIT
+TYPE A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z: LETTER
+TYPE 9,8,7,6,5,4,3,2,1,0: DIGIT
+\end{verbatim}
+
+\begin{verbatim}
+* DEFINITION OF THE EMPTY SET AND SET-MEMBERSHIP,
+* I.E. EMPTY IS A CONSTANT OF SORT SET AND MEMBER
+* IS A BINARY PREDICATE DEFINED ON (SIGN SET)
+SORT SET: ANY
+TYPE EMPTY: SET
+TYPE MEMBER(SIGN SET)
+ALL X:SIGN NOT MEMBER(X EMPTY)
+ALL U,V:SET U = V EQV (ALL X:SIGN MEMBER(X U) EQV MEMBER(X V))
+\end{verbatim}
+
+\begin{verbatim}
+* DEFINITION OF SINGLETONS, I.E.
+* SINGLETON IS A FUNCTION MAPPING SIGN TO SET
+TYPE SINGLETON(SIGN):SET
+ALL X,U:SIGN MEMBER(U SINGLETON(X)) IMPL U=X
+\end{verbatim}
+
+\begin{verbatim}
+* DEFINITION OF UNION, I.E.
+* UNION IS A FUNCTION MAPPING (SET X SET) TO SET
+TYPE UNION(SET SET):SET
+ALL X:SIGN ALL U,V:SET (MEMBER(X U) OR MEMBER(X V)) EQV MEMBER(X UNION(U V))
+\end{verbatim}
+Theorems to be proved by the ATP system could be for instance:
+\begin{verbatim}
+* UNION IS IDEMPOTENT AND EMPTY IS AN IDENTITY ELEMENT
+ALL X:SET UNION(X X) = X AND UNION(EMPTY X) = X
+\end{verbatim}
+
+\begin{verbatim}
+* SINGLETON IS INJECTIVE
+ALL X,Y:SIGN SINGLETON(X) = SINGLETON(Y)  IMPL X = Y
+\end{verbatim}
+
+\begin{verbatim}
+* EACH LETTER IS A SIGN
+ALL Y:SET (EX U:LETTER MEMBER(U Y)) IMPL (EX X:SIGN MEMBER(X Y))
+\end{verbatim}
+
+\section{Attributes of Functions and Predicates}
+\label{AttributesofFunctionsandPredicates}
+
+Attributes are abbreviations for their defining axioms, i.e.\ first-order 
+axioms which axiomatize certain properties of functions or predicates. 
+
+The effect in stating a certain attribute of a function or predicate using an 
+attribute declaration is formally the same as giving the defining axiom to 
+the ATP. At the moment the following properties can be declared. 
+
+\index{reflexive predicate} \index{irreflexive predicate} \index{symmetric 
+predicate} \index{associative function} \index{commutative function}
+\index{theory unification}
+\begin{tabular}{lll}
+Attribute Declaration &	Defining Axioms\\
+{\tt REFLEXIVE(P)}&		{\tt ALL X}&	{\tt P(X X)}\\
+{\tt IRREFLEXIVE(P)}&		{\tt ALL X}&	{\tt NOT P(X X)}\\
+{\tt SYMMETRIC(P)}&		{\tt ALL X,Y}&	{\tt P(X Y) IMPL P(Y X)}\\
+{\tt ASSOCIATIVE(F)}&		{\tt ALL X,Y,Z}&   {\tt F(X F(Y Z)) = F(F(X Y) Z)}\\
+{\tt AC(F)}&		{\tt ALL X,Y,Z}&	{\tt F(X F(Y Z)) = F(F(X Y) Z)}\\
+	&		{\tt ALL X,Y}&   	{\tt F(X Y) = F(Y X)}\\
+{\tt AC1(F F1)}&		{\tt ALL X,Y,Z}&	{\tt F(X F(Y Z)) = F(F(X Y) Z)}\\
+	&		{\tt ALL X,Y}&   {\tt F(X Y) = F(Y X)}\\
+	&		{\tt ALL X}&   	 {\tt F(X F1) = X}\\
+{\tt AG(F F- F1)}&	{\tt ALL X,Y,Z}& {\tt F(X F(Y Z)) = F(F(X Y) Z)}\\
+	&		{\tt ALL X,Y}&   {\tt F(X Y) = F(Y X)}\\
+	&		{\tt ALL X}&   	 {\tt F(X F1) = X}\\
+	&		{\tt ALL X}&   	 {\tt F(X (F- X)) = F1}
+\end{tabular}
+
+The theory unification facility is not realized inside {\sc Mkrp} itself, the 
+HADES-system must be loaded to use {\tt ASSOCIATIVE}, {\tt AC}, {\tt
+AC1}, and {\tt AG}.
+\label{Attributes}
+
+
+\Ex
+
+The associativity of the group operator F 
+could be stated by: \verb!ASSOCIATIVE(F)!.
+
+\paragraph{Remark}
+It is not advisable to use attribute declarations for function symbols 
+because they slow down the system remarkably.
+
+
+\section{The Syntax of PLL}
+\label{TheSyntaxofPLL}
+
+The syntax of PLL is defined by the following context free grammar:
+\index{grammar for PLL}
+
+{\em Terminal Alphabet\/}
+
+{\tt SORT TYPE ANY TRUE FALSE = =:}{\tt \ }{\tt := :=:
+
+ASSOCIATIVE AC AC1 AG REFLEXIVE IRREFLEXIVE SYMMETRIC
+
+ALL   EX   EQV   :EQV   EQV:   :EQV:   IMPL   :IMPL   IMPL:  :IMPL:
+
+OR   :OR   OR:   :OR:   AND   :AND   AND:   :AND:   NOT
+
+A  B  C  D  E  F  G  H  I  J  K  L  M  N  O  P  Q  R  S  T  U  V  W  X  Y  Z
+
+0  1  2  3  4  5  6  7  8  9
+
+: ; * ! \# \$ \& - @ + , / . ( ) ? " + $>$ $<$ [ ]}
+
+{\em Non-terminal Alphabet\/}
+
+Every string enclosed in angle brackets, e.g.\ $<$term$>$.
+$<$$>$ denotes the empty word.
+
+{\em Start Symbol\/}:\quad
+$<$expression$>$
+
+\def \prule#1#2{\parbox[t]{4cm}{#1}\hfill $\rightarrow$\hfill\parbox[t]{11cm}{#2}}
+
+\pagebreak
+{\em Production Rules\/}
+
+\prule{$<$expression$>$}%	
+{$<$$>$   {\tt |}   $<$comment$>$   $<$expression$>$ {\tt |} \\
+$<$sort  de\-cla\-ra\-tion$>$   $<$ex\-pres\-sion$>$   {\tt |}\\
+$<$type  declaration$>$   $<$expression$>$   {\tt |}\\
+   $<$attribute  declaration$>$   
+$<$expression$>$   {\tt |}\\
+$<$quantification$>$   $<$expression$>$  }
+
+\prule{$<$comment$>$}%
+{{\tt *} `any sequence of symbols'}
+
+\prule{$<$sort declaration$>$}%
+{{\tt SORT }$<$sort list$>$ {\tt :} $<$sort list$>$}
+
+\prule{$<$type declaration$>$}%
+{{\tt TYPE } $<$constant  list$>$ {\tt :} $<$sort symbol$>$ {\tt |}\\
+ {\tt TYPE } $<$function symbol$>$  ($<$sort symbols$>$) {\tt :} $<$sort symbol$>$ {\tt |}\\
+{\tt TYPE } $<$predicate symbol$>$  ($<$sort symbols$>$)}
+
+\prule{$<$attribute declaration$>$}%
+{{\tt ASSOCIATIVE} ($<$function symbol$>$) {\tt |}\\
+{\tt AC} ($<$function symbol$>$) {\tt |}\\
+{\tt AC1} ($<$function symbol$>$ $<$constant symbol$>$) {\tt |}\\
+{\tt AG} ($<$function symbol$>$ $<$function symbol$>$
+$<$constant symbol$>$) {\tt |}\\
+{\tt REFLEXIVE} ($<$predicate symbol$>$)  {\tt |}\\
+{\tt IRREFLEXIVE} ($<$predicate symbol$>$) {\tt |}\\
+{\tt SYMMETRIC} ($<$predicate symbol$>$)}
+
+\prule{$<$quantification$>$}%
+{$<$equivalence$>$ {\tt |}\\
+{\tt ALL } $<$variable declaration$>$ $<$quantification$>$ {\tt |}\\
+{\tt EX } $<$variable declaration$>$ $<$quantification$>$}
+
+\prule{$<$equivalence$>$}%
+{$<$implication$>$ {\tt |}
+$<$implication$>$ $<$eqv$>$ $<$equivalence$>$}
+
+\prule{$<$implication$>$}%
+{$<$disjunction$>$  {\tt |}
+$<$disjunction$>$  $<$impl$>$ $<$equivalence$>$} 
+
+\prule{$<$disjunction$>$}%
+{$<$conjunction$>$  {\tt |}
+$<$conjunction$>$ $<$or$>$ $<$disjunction$>$}
+
+\prule{$<$conjunction$>$}%
+{$<$negation$>$  {\tt |}
+$<$negation$>$ $<$and$>$ $<$conjunction$>$}
+
+\prule{$<$negation$>$}%
+{$<$atomic formula$>$  {\tt |}
+{\tt NOT} $<$atomic formula$>$}
+
+\prule{$<$atomic formula$>$}%
+{ ($<$quantification$>$) {\tt |} $<$atom$>$}
+
+\prule{$<$eqv$>$}%
+{{\tt EQV  {\tt |}  :EQV  {\tt |}  EQV:  {\tt |}  :EQV: }}
+
+\prule{$<$impl$>$}%
+{{\tt IMPL  {\tt |}  :IMPL  {\tt |}  IMPL:  {\tt |}  :IMPL: }}
+
+\prule{$<$or$>$}%
+{{\tt OR  {\tt |}  :OR  {\tt |}  OR:  {\tt |}  :OR: }}
+
+\prule{$<$and$>$}%
+{{\tt AND  {\tt |}  :AND  {\tt |}  AND:  {\tt |}  :AND: }}
+
+\prule{$<$atom$>$}%
+{$<$predicate symbol$>$  {\tt |}\\
+$<$predicate symbol$>$ ($<$terms$>$)  {\tt |}\\
+$<$term$>$ $<$equality symbol$>$ $<$term$>$}
+
+\prule{$<$variable declaration$>$}%
+{$<$variable list$>$  $<$variable sort$>$}
+
+\prule{$<$variable sort$>$}%
+{$<>$  {\tt |}  :  $<$sort symbol$>$}
+
+\prule{$<$term$>$}%
+{$<$constant symbol$>$  {\tt |}\\  $<$variable symbol$>$  {\tt |}\\ $<$function symbol$>$ 
+($<$terms$>$)}
+
+\prule{$<$terms$>$}%
+{$<$term$>$  {\tt |}  $<$term$>$  $<$terms$>$}
+
+\prule{$<$sort list$>$}%
+{$<$sort symbol$>$  {\tt |} $<$sort symbol$>$,  $<$sort list$>$}
+
+\prule{$<$sort symbols$>$}%
+{$<$sort symbol$>$  {\tt |} $<$sort symbol$>$  $<$sort symbols$>$}
+
+\prule{$<$constant list$>$}%
+{$<$constant symbol$>$  {\tt |} $<$constant symbol$>$, $<$constant list$>$}
+
+\prule{$<$variable list$>$}%
+{$<$variable symbol$>$  {\tt |}  $<$variable symbol$>$, $<$variable list$>$}
+
+\prule{$<$sort symbol$>$}%
+{{\tt ANY} {\tt |}  $<$identifier$>$}
+
+\prule{$<$constant symbol$>$}%
+{$<$identifier$>$ {\tt |} $<$number$>$  {\tt |}  $<$name$>$}
+
+\prule{$<$function symbol$>$}%
+{$<$identifier$>$  {\tt |}  $<$name$>$}
+
+\prule{$<$predicate symbol$>$}%
+{{\tt TRUE}  {\tt |}  {\tt FALSE} {\tt |}$<$identifier$>$  {\tt |}  $<$name$>$}
+
+\prule{$<$equality symbol$>$}%
+{{\tt =  {\tt |}  :=  {\tt |}  =: {\tt |}  :=: }}
+
+\prule{$<$variable symbol$>$}%
+{$<$identifier$>$}
+
+\prule{$<$identifier$>$}%
+{$<$letter$>$  {\tt |}\\ $<$identifier$>$$<$letter$>$  {\tt |}\\
+$<$identifier$>$$<$digit$>$  {\tt |}  \\
+$<$iden\-ti\-fier$>$$<$spe\-cial sign$>$} 
+
+\prule{$<$number$>$}%
+{$<$digit$>$  {\tt |}  $<$number$>$ $<$digit$>$}
+
+\prule{$<$name$>$}%
+{$<$special sign$>$  {\tt |}\\ $<$name$>$$<$letter$>$ {\tt |} \\
+$<$name$>$$<$digit$>$ {\tt |}\\ $<$na\-me$>$$<$spe\-cial sign$>$}
+
+\prule{$<$letter$>$}%
+{{\tt  A} {\tt  |} {\tt  B} {\tt  |} {\tt  C} {\tt |} {\tt  D} {\tt  |} {\tt  E}
+{\tt  |} {\tt  F} {\tt  |} {\tt  G}
+{\tt  |} {\tt  H} {\tt   |} {\tt  I} {\tt   |} {\tt  J} {\tt   |} {\tt  K} {\tt  |}
+{\tt  L} {\tt  |} {\tt  M} {\tt  |} {\tt  N} {\tt  |} {\tt O} {\tt  |}
+{\tt P} {\tt |} {\tt  Q} {\tt  |} {\tt  R} {\tt  |} {\tt  S} {\tt  
+|} {\tt  T} {\tt  |} {\tt  U} {\tt  |} {\tt  V} {\tt  |} {\tt  W} {\tt  |} {\tt X} {\tt  |} {\tt  Y} {\tt  |} {\tt  Z }  {\tt  |} {\tt  [} {\tt  |} {\tt  ]}}
+
+\prule{$<$digit$>$}%  
+{{\tt 0 | 1 | 2 |  3 | 4 | 5 | 6 | 7 | 8 | 9 }}
+
+\prule{$<$special sign$>$}%
+{{\tt !} {\tt  |} {\tt \#} {\tt  |} {\tt  \$} {\tt  |} {\tt  \&} {\tt  |}
+{\tt  *} {\tt  |} {\tt  -} {\tt  |} {\tt  +} {\tt  |} {\tt  ;} {\tt  |} 
+{\tt  ?} {\tt  |} {\tt  /} {\tt  |} {\tt  .} {\tt  |} {\tt  @} {\tt  |} 
+{\tt  "} {\tt  |} {\tt  +} {\tt  |} {\tt  =} {\tt  |} {\tt  $>$} {\tt  |} 
+{\tt  $<$}}
+
+
+The keywords {\tt SORT}, {\tt TYPE}, {\tt ANY} etc.\ are members of
+the terminal alphabet and hence never accepted as $<$identifier$>$.
+
+The {\sc Mkrp} input routine makes no difference between upper and
+lower case letters, it converts all lower case letters to upper case.
+ 
+
+\section{Semantic Constraints for PLL} 
+\label{SemanticConstraintsforPLL}
+
+In the sequel we state the semantic constraints (i.e.\ the context
+dependent language features) for PLL. The strings in angle brackets,
+e.g.\ $<$term$>$, refer to the production rules of the PLL-grammar as
+defined in section \ref{TheSyntaxofPLL}.
+
+\subsection{Sort Symbols}
+\label{SortSymbols} 
+
+Sort symbols are introduced with their first usage in 
+\begin{itemize}
+\item a $<$sort declaration$>$, e.g. {\tt SORT LETTER,DIGIT: SIGN,ALPHABET}
+\item a $<$type declaration$>$, e.g. {\tt TYPE A,B: BOOL } 
+\item a $<$variable declaration$>$, e.g. {\tt ALL Z:INT EX N:NAT ABS(Z) = N}
+\end{itemize}
+
+The direct subsort relation imposed on the set of sort symbols is a partial, 
+irreflexive, and non-transitive relation such that the predefined sort 
+symbol {\tt ANY} is no direct subsort of each sort symbol and each sort symbol 
+different from {\tt ANY} is a direct subsort of at least one other sort symbol. 
+
+The subsort order imposed on the set of sort symbols is the reflexive and 
+transitive closure of the direct subsort relation. 
+
+The subsort symbols left of the colon in a $<$sort declaration$>$ are direct 
+subsorts of each sort symbol to the right of the colon in the $<$sort 
+declaration$>$. 
+
+The sort symbols right of the colon in a $<$sort declaration$>$ are
+direct subsorts of {\tt ANY}, provided these sort symbols are
+introduced by this $<$sort declaration$>$ and not by a previous one.
+
+\Ex
+
+For the $<$sort declaration$>$ given above {\tt LETTER} and {\tt
+DIGIT} are subsorts of {\tt SIGN} and of {\tt ALPHABET}, and {\tt
+SIGN} and {\tt ALPHABET} are direct subsorts of {\tt ANY}.  Hence {\tt
+LETTER}, {\tt DIGIT}, and {\tt SIGN} are subsorts of {\tt SIGN} and
+{\tt ANY}. {\tt SIGN}, {\tt ALPHABET}, {\tt LETTER}, and {\tt DIGIT}
+are subsorts of {\tt ANY}.
+
+\subsection{Variable Symbols}
+\label{VariableSymbols} 
+
+Variable symbols are introduced by a $<$variable declaration$>$ in a 
+$<$quantification$>$. 
+
+\Ex
+
+{\tt ALL X,Y EX Z:S P(X Y Z)}
+
+The scope of a $<$variable declaration$>$ is the  $<$quantification$>$ following the 
+$<$variable declaration$>$ in a $<$quantification$>$.
+
+In its scope each $<$variable symbol$>$ has as rangesort the sort
+given by the $<$sort symbol$>$ following the colon in its $<$variable
+sort$>$ of the $<$variable declaration$>$. If no $<$variable sort$>$
+is present, the rangesort of the $<$variable symbol$>$ is the
+predefined sort symbol {\tt ANY}.
+
+\Ex
+
+The expression given in the above example has the following sorts:
+rangesort({\tt X}) = rangesort({\tt Y}) = {\tt ANY} and rangesort({\tt
+Z}) = {\tt S}.
+
+In each $<$quantification$>$ variable symbols are consistently renamed from 
+left to right to resolve conflicts on multiple introductions of variable 
+symbols.  
+
+\Ex
+
+{\tt ALL Y,X P(Y)} is the same as {\tt ALL X,Y P(Y)} 
+
+and {\tt ALL X (EX X P(X)) IMPL Q(X)} is the same as {\tt ALL X (EX Y
+P(Y)) IMPL Q(X)}.
+
+\subsection{Constant Symbols}
+\label{ConstantSymbols} 
+
+Constant symbols are introduced with their first usage 
+\begin{itemize}
+\item in a $<$type declaration$>$, e.g.\ {\tt TYPE -1,+1:INT}
+\item as $<$term$>$, e.g.\ {\tt ALL X P(X A) OR F(C) = D}
+\end{itemize}
+
+Each constant symbol has a rangesort: the $<$sort symbol$>$ following the 
+colon in the $<$type declaration$>$ which introduces the $<$constant symbol$>$. 
+
+\Ex
+
+For the expressions given above we find
+rangesort({\tt -1}) = rangesort({\tt +1}) = {\tt INT}.
+
+The rangesort for a constant symbol which is introduced with its first 
+usage as a $<$term$>$ is {\tt ANY}.
+
+Note that in PLL variable symbols are always preceded by a quantifier and 
+thereby can always be distinguished from constant symbols. As a 
+consequence there is no concept of free variables in PLL. 
+
+\subsection{Function Symbols}
+\label{Function Symbols} 
+
+Function symbols are introduced with their first usage in 
+\begin{itemize}
+\item a $<$type declaration$>$, e.g.\ {\tt TYPE ABS(INT):NAT}
+\item an $<$attribute declaration$>$, e.g.\ {\tt ASSOCIATIVE(PLUS)}
+\item a $<$term$>$, e.g.\  {\tt ALL X P(F(X)) OR G(X) = A}
+\end{itemize}
+
+Each function symbol is associated with a sort symbol for each argument 
+position $i$, called its $i$th domainsort, with a natural number, called its 
+arity, and with a sort symbol, called its rangesort. 
+
+Function symbols which are introduced by $<$type declaration$>$ have as their 
+domainsorts the $<$sort symbol$>$s given on the appropriate positions in the 
+list of $<$sort symbol$>$s following the $<$function symbol$>$ in the $<$type 
+declaration$>$.
+
+\Ex
+
+For the expression {\tt TYPE PRODUCT(SCALAR VECTOR):VECTOR} we get 
+domainsort({\tt PRODUCT}, 1) = {\tt SCALAR} and domainsort({\tt PRODUCT},
+2) = {\tt VECTOR}. 
+
+A $<$function symbol$>$ which is introduced by an $<$attribute
+declaration$>$ or by its first usage in a $<$term$>$ has {\tt ANY} as
+$i$th domainsort for each argument position $i$.
+
+The
+rangesort of a $<$function symbol$>$ is defined by the $<$sort
+symbol$>$ following the colon in a $<$type declaration$>$. Its
+rangesort is {\tt ANY} if the $<$function symbol$>$ is introduced by
+an $<$attribute declaration$>$ or by its first usage in a $<$term$>$.
+
+\Ex
+
+For the examples given in the above expressions we get 
+rangesort({\tt ABS}) = {\tt NAT},
+rangesort({\tt PRODUCT}) = {\tt VECTOR}, and 
+rangesort({\tt PLUS}) = rangesort({\tt F}) = rangesort({\tt G}) = {\tt ANY}.
+
+The arity of a function symbol is defined as 
+\begin{itemize}
+\item the number of sort symbols in the list of $<$sort symbols$>$ 
+following the 
+$<$function symbol$>$ in the $<$type declaration$>$ which introduces the 
+$<$function symbol$>$,
+\item as defined in the corresponding attribute declaration for a $<$function symbol$>$ introduced by an $<$attribute 
+declaration$>$, or else
+\item the number of arguments as its first usage in a $<$term$>$.
+\end{itemize}
+
+\Ex
+
+For the expressions given above we get arity({\tt ABS}) = 1,
+arity({\tt PLUS}) = 2, and arity({\tt F}) = arity({\tt G}) = 1. 
+
+
+\subsection{Predicate Symbols} 
+\label{PredicateSymbols}
+A predicate symbol is introduced with its first usage in 
+\begin{itemize}
+\item a $<$type declaration$>$, e.g. {\tt TYPE MEMBER(SIGN SET)} 
+\item an $<$atom$>$ in a formula, e.g. {\tt EX X,Y P(X Y) AND Q} 
+\end{itemize}
+
+Each predicate symbol is associated with a natural number, called its 
+arity, and with a sort symbol for each argument position $i$, called its $i$th 
+domainsort. 
+
+The arity and domainsort of predicate symbols are determined in the way 
+arity and domainsorts are determined for function symbols.
+
+The $<$equality symbol$>$ is a predefined predicate symbol with arity 2 and 
+first and second domainsort {\tt ANY}. It is the only predicate symbol which is 
+written in infix notation. 
+
+{\tt TRUE} and {\tt FALSE} are predefined predicate symbols with arity
+0, which have the obvious meaning.  The phrase unknown symbol in the
+subsequent text denotes a string of the terminal alphabet of the
+PLL-grammar, which was not used before, that is a new symbol.
+
+\subsection{Semantically Correct Sort Declarations}
+\label{SemanticallycorrectSortDeclarations} 
+
+A $<$sort declaration$>$ {\tt SORT S1,...,Sm: T1,...,Tn} is
+semantically correct, if 
+\begin{itemize}
+\item all {\tt Si} and all {\tt Tj} (for all $i=1\ldots m$, $j=1\ldots n$) 
+are sort symbols or else are unknown 
+symbols and {\tt Si} is a direct subsort of {\tt Tj} or else at least 
+one of the symbols {\tt Si} and {\tt Tj} is an unknown symbol.
+\end{itemize}
+
+
+\subsection{Semantically Correct Type Declarations}
+\label{SemanticallyCorrectTypeDeclarations} 
+
+A $<$type declaration$>$ T is semantically correct if 
+\begin{itemize}
+\item T is {\tt TYPE C1,...,Cn:S} and {\tt S} is a sort symbol or else is an unknown 
+symbol and for all $i=1\ldots n$ {\tt Ci} is a 
+constant symbol with rangesort({\tt Ci}) = {\tt S} or {\tt Ci} is an unknown symbol,
+\item T is {\tt TYPE P(S1...Sn)}  and for all $i=1\ldots n$ {\tt Si} is a sort symbol or else is 
+an unknown symbol  and {\tt P} is a predicate symbol with arity({\tt
+P}) = $n$  and 
+domainsort({\tt P}, $i$) = {\tt Si} or else is an unknown symbol, or
+\item T is {\tt TYPE F(S1...Sn):S} and for all $i=1\ldots n$ {\tt S} and {\tt Si} are sort symbols or 
+else are unknown symbols  and {\tt F} 
+is a function symbol with arity({\tt F}) = $n$ , rangesort({\tt F}) = 
+{\tt S}  and 
+domainsort({\tt Fi}, $i$) = {\tt Si}  or an unknown symbol.
+\end{itemize}
+
+
+\subsection{Semantically Correct Attribute Declarations}
+\label{SemanticallyCorrectAttributeDeclarations} 
+
+
+The $<$attribute declaration$>$s {\tt ASSOCIATIVE(F)} and {\tt AC(F)} are semantically correct if 
+\begin{itemize}
+\item {\tt F} is a function symbol with arity({\tt F}) = 2, rangesort({\tt F}) = 
+domainsort({\tt F}, 1) = domainsort({\tt F}, 2) or else is an unknown 
+symbol.
+\end{itemize}
+
+The $<$attribute declaration$>$ {\tt AC1(F F1)} is semantically correct if 
+\begin{itemize}
+\item {\tt F} is a function symbol with arity({\tt F}) = 2, rangesort({\tt F}) = 
+domainsort({\tt F}, 1) = domainsort({\tt F}, 2) 
+and \item {\tt F1} is  a constant symbol with sort equal to the rangesort
+of {\tt F} or both are unknown symbols.
+\end{itemize}
+
+The $<$attribute declaration$>$ {\tt AG(F F- F1)} is semantically correct if 
+\begin{itemize}
+\item {\tt F} is a function symbol with arity({\tt F}) = 2,
+rangesort({\tt F}) = domainsort({\tt F}, 1) = domainsort({\tt F}, 2),
+\item {\tt F-} is a function symbol with arity({\tt F-}) = 1,
+rangesort({\tt F}) = domainsort({\tt F-}, 1) = rangesort({\tt F-}), and
+\item {\tt F1} is  a constant symbol with sort equal to the rangesort
+of {\tt F} or all three are unknown symbols.
+\end{itemize}
+
+
+
+The $<$attribute declarations$>$s {\tt REFLEXIVE(P)}, {\tt
+IRREFLEXIVE(P)}, and {\tt SYMMETRIC(P)} are semantically correct if
+
+\begin{itemize}
+\item {\tt P} is a predicate symbol with arity({\tt P}) = 2 and 
+domainsort({\tt P}, 1) = domainsort({\tt P}, 2)  or else {\tt P} is an unknown symbol.
+\end{itemize}
+
+
+
+\subsection{Semantically Correct Terms, Atoms, and Quantifications}
+\label{SemanticallyCorrectTermsAtomsandQuantifications}
+
+
+The sort of a term T, denoted sort(T), is the rangesort of T, if T is a 
+variable or constant symbol, and else is the rangesort of the outermost 
+function symbol of T. 
+A $<$term$>$ T is semantically correct if 
+\begin{itemize}
+\item T is a constant symbol, a variable symbol, or an unknown symbol
+or
+\item T is {\tt F(T1...Tn)} and for all $i=1\ldots n$, {\tt Ti} is a semantically correct term,
+{\tt F} is a 	function symbol with arity({\tt F}) = $n$  and 
+sort({\tt Ti}) is a subsort of domainsort({\tt F}, $i$)  or else {\tt F} is an 
+unknown symbol.
+\end{itemize}
+
+
+An $<$atom$>$ A is semantically correct if 
+\begin{itemize}
+\item A is a predicate symbol with arity(A)=0  or A is an unknown 
+symbol,
+\item A is {\tt P(T1...Tn)} and for all $i=1\ldots n$, {\tt Ti} is a semantically correct term, {\tt P}
+is a predicate symbol with arity({\tt P}) = $n$  and 
+sort({\tt Ti}) is a subsort of domainsort({\tt P}, $i$)  or else {\tt P} is an 
+unknown symbol , or
+\item A is {\tt T1 = T2} and {\tt T1} and {\tt T2} are semantically 
+correct terms and {\tt =} is an $<$equality symbol$>$. 
+\end{itemize}
+
+
+
+A $<$quantification$>$ Q is semantically correct if
+\begin{itemize}
+\item Q is {\tt ALL X I} or {\tt EX X I} and {\tt X} is a variable symbol or an unknown 
+symbol and each atom in Q is semantically correct. 
+\end{itemize}
+
+
+\section{Errors Detected by the Compiler}
+\label{ErrorsdetectedbytheCompiler}
+
+The PLL compiler of the ATP system checks each input for syntactical
+and semantical correctness. An input containing signs which are not
+member of the terminal alphabet is responded by a message {\tt Symbol}
+{\tt error:} {\tt $<$xxx$>$} {\tt is} {\tt no} {\tt admissible} {\tt
+symbol}, where {\tt $<$xxx$>$} is a sign which is not member of the terminal
+alphabet.
+
+For a syntactically incorrect input, the compiler will respond {\tt
+Syntax} {\tt error:} {\tt $<$xxx$>$} {\tt not} {\tt accepted,} {\tt
+unexamined} {\tt remainder} {\tt of} {\tt the} {\tt input:} {\tt
+$<$zzz$>$}, where $<${\tt xxx}$>$ is the sign which causes the
+syntactical incorrectness and {\tt $<$zzz$>$} is the not analysed
+remainder of the given input.
+
+For a syntactically correct but semantically incorrect input, the
+compiler responds {\tt Semantic error:} {\tt $<$message$>$,} {\tt
+unexamined} {\tt remainder} {\tt of} {\tt the} {\tt input:} {\tt
+$<$zzz$>$}, where {\tt $<$message$>$} is an error message explaining
+the kind of the semantic error and {\tt $<$zzz$>$} is the not analysed
+remainder of the given input.
+
+
+\section{Particularities of the Input Routines} 
+\label{ParticularitiesoftheInputRoutines}
+
+Since the whole ATP system is a Lisp program, the special features 
+of the Lisp input routines have to be taken into account, i.e.
+
+\begin{itemize}
+\item {\tt ()} is read as {\tt NIL}
+\item {\tt 'X} is read as {\tt (QUOTE X)}
+\item each input has to contain an even number of the string indicators {\tt "}
+\item a sequence of blanks is read as one blank (except in a string) 
+\item {\tt +} is read as a blank if it is followed by a sequence of
+digits, e.g. {\tt +4711} is read as {\tt 4711}
+\item a sequence of zeroes is read as a zero, unless the sequence is preceded 
+by non-zero sign, e.g. {\tt 007} is read as {\tt 7}
+\end{itemize}
+
+
+In Lisp each of the following characters separates expressions: 
+
+\begin{itemize}
+\item a blank
+\item a  paranthesis,  {\tt )} or {\tt (}
+\item the quote sign, {\tt '}
+\item the string indicator, {\tt "}
+\end{itemize}
+
+Signs acting as separators in PLL are 
+
+\begin{itemize}
+\item all Lisp separators 
+\item the colon, i.e.\ {\tt  X:Y} is the same as {\tt X : Y}
+\item the comma, i.e.\ {\tt X,Y} is the same as {\tt X , Y}
+\end{itemize}
+
+No other signs than those mentioned here are separating, that is,
+they can not be detected inside a symbol. {\tt X=Y}, for example, denotes
+the symbol {\tt X=Y} and not the equational atom {\tt X = Y}.

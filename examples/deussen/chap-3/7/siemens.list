@@ -1,0 +1,694 @@
+ 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 4-APR-85                                                      *
+                    *         DATE : 23-MAY-85  03:13:29                                           *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   22-MAY-85 11:01:02
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   3.7
+                                                                        
+************************************************************************
+                                                                        
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : SORT MENGE,VERKN,ELEMENT,INDEX,INDEXMENGE:ANY
+           TYPE LIDEAL(MENGE MENGE VERKN)
+           TYPE RIDEAL(MENGE MENGE VERKN)
+           TYPE UHG(MENGE MENGE VERKN)
+           TYPE ME(MENGE MENGE)
+           TYPE NICHTLEER(MENGE)
+           TYPE HG(MENGE VERKN)
+           TYPE NICHTLEER-IND(INDEXMENGE)
+           TYPE EL-IND(INDEX INDEXMENGE)
+           TYPE EL(ELEMENT MENGE)
+           TYPE MINIMAL(MENGE MENGE VERKN)
+           TYPE MPROD(MENGE MENGE VERKN) :MENGE
+           TYPE U(INDEX) :MENGE
+           TYPE VER-IND(INDEXMENGE) :MENGE
+           TYPE SM-IND(INDEXMENGE) :MENGE
+           TYPE APPLYV(VERKN ELEMENT ELEMENT) :ELEMENT
+           TYPE F*X(MENGE ELEMENT VERKN) :MENGE
+           TYPE SM(MENGE MENGE) :MENGE
+           * SET MACHT AUS EINEM ELEMENT EINE MENGE MIT EINEM ELEMENT *
+           TYPE SET(ELEMENT) :MENGE
+           TYPE VER(MENGE MENGE) :MENGE
+           TYPE GR(MENGE VERKN ELEMENT)
+           TYPE INVERS(VERKN ELEMENT) :ELEMENT
+           REFLEXIVE(ME)
+           * BEWEISTECHNIK: ZEIGE GLEICHHEIT VON MENGEN DURCH 2 MENGENINKLUSIONEN *
+           ALL A,B:MENGE ME(A B) AND ME(B A) IMPL GLEICH(A B)
+           * ABSPALTEN EINER EINELEMENTIGEN MENGE UND BEZIEHUNG ZUR URSPRUNGSMENGE *
+           ALL F:MENGE ALL X:ELEMENT EL(X F) IMPL(EX T:MENGE VER(SET(X) T) = F)
+           * DISTRIBUTIVGESETZ FUER MPROD *
+           ALL A,B,C,F:MENGE ALL MAL:VERKN HG(F MAL) IMPL MPROD(A VER(B C) MAL) := VER(MPROD(A B MAL) MPROD(A C MAL))
+           * BEZIEHUNG TEILMENGE-VEREINIGUNG *
+           ALL A,B:MENGE ME(A VER(A B)) AND ME(B VER(A B))
+           * TRANSITIVITAET VON TEILMENGEN *
+           ALL A,B,C:MENGE ME(A B) AND ME(B C) IMPL ME(A C)
+           * MULTIPLIKATION VON F*X MIT EINER MENGE DIE NUR DAS NEUTRALE ELEMENT ENTHAELT*
+           ALL F:MENGE ALL MAL:VERKN ALL E:ELEMENT GR(F MAL E) IMPL MPROD(F SET(E) MAL) := F
+           * TEIL DER DEFINITION LIDEAL *
+           ALL L,F:MENGE ALL MAL:VERKN LIDEAL(L F MAL) IMPL ME(L F)
+           * LEMMA 3.7.EINS *
+           ALL F,L:MENGE ALL MAL:VERKN ALL E:ELEMENT GR(F MAL E) AND LIDEAL(L F MAL) IMPL EL(E L)
+ 
+THEOREMS : ALL F,L:MENGE ALL MAL:VERKN ALL E:ELEMENT GR(F MAL E) AND LIDEAL(L F MAL) IMPL GLEICH(L F)
+ 
+ 
+ 
+ 
+CONSTANTS : 
+=========== 
+ 
+| NAME          | SORT                    |            | ATTRIBUTES                                                     
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+| C_1           | ELEMENT                 |            |                                                                
+|
+| C_2           | VERKN                   |            |                                                                
+|
+| C_3           | MENGE                   |            |                                                                
+|
+| C_4           | MENGE                   |            |                                                                
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+ 
+ 
+ 
+FUNCTIONS : 
+=========== 
+ 
+| NAME          | DOMAIN                  | RANGE      | ATTRIBUTES                                                     
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+| MPROD         | MENGE MENGE VERKN       | MENGE      |                                                                
+|
+| U             | INDEX                   | MENGE      |                                                                
+|
+| VER-IND       | INDEXMENGE              | MENGE      |                                                                
+|
+| SM-IND        | INDEXMENGE              | MENGE      |                                                                
+|
+| APPLYV        | VERKN ELEMENT ELEMENT   | ELEMENT    |                                                                
+|
+| F*X           | MENGE ELEMENT VERKN     | MENGE      |                                                                
+|
+| SM            | MENGE MENGE             | MENGE      |                                                                
+|
+| SET           | ELEMENT                 | MENGE      |                                                                
+|
+| VER           | MENGE MENGE             | MENGE      |                                                                
+|
+| INVERS        | VERKN ELEMENT           | ELEMENT    |                                                                
+|
+| F_1           | MENGE ELEMENT           | MENGE      |                                                                
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+ 
+ 
+ 
+PREDICATES : 
+============ 
+ 
+| NAME          | DOMAIN                  |            | ATTRIBUTES                                                     
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+| TRUE          |                         |            | DEFINED                                                        
+|
+| FALSE         |                         |            | DEFINED                                                        
+|
+| LIDEAL        | MENGE MENGE VERKN       |            |                                                                
+|
+| RIDEAL        | MENGE MENGE VERKN       |            |                                                                
+|
+| UHG           | MENGE MENGE VERKN       |            |                                                                
+|
+| ME            | MENGE MENGE             |            | REFLEXIVE                                                      
+|
+| NICHTLEER     | MENGE                   |            |                                                                
+|
+| HG            | MENGE VERKN             |            |                                                                
+|
+| NICHTLEER-IND | INDEXMENGE              |            |                                                                
+|
+| EL-IND        | INDEX INDEXMENGE        |            |                                                                
+|
+| EL            | ELEMENT MENGE           |            |                                                                
+|
+| MINIMAL       | MENGE MENGE VERKN       |            |                                                                
+|
+| GR            | MENGE VERKN ELEMENT     |            |                                                                
+|
+| GLEICH        | ANY ANY                 |            |                                                                
+|
+| =             | ANY ANY                 |            | DEFINED SYMMETRIC REFLEXIVE SYMMETRIC REFLEXIVE SYMMETRIC      
+|
+|               |                         |            | REFLEXIVE                                                      
+|
+------------------------------------------------------------------------------------------------------------------------
+-
+ 
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+  A1   : ALL X:ANY  + =(X X)
+  A2   : ALL X:MENGE  + ME(X X)
+  A3   : ALL X,Y:MENGE  + ME(Y VER(Y X))
+  A4   : ALL X,Y:MENGE  + ME(Y VER(X Y))
+  A5   : ALL X:MENGE  Y:ELEMENT  - EL(Y X)  + =(VER(SET(Y) F_1(X Y)) X)
+  A6   : ALL X,Y,Z,U:MENGE  V:VERKN  - HG(U V)  + =(MPROD(Z VER(Y X) V) VER(MPROD(Z Y V) MPROD(Z X V)))
+  A7   : ALL X:ELEMENT  Y:VERKN  Z:MENGE  - GR(Z Y X)  + =(MPROD(Z SET(X) Y) Z)
+  A8   : ALL X:VERKN  Y,Z:MENGE  - LIDEAL(Z Y X)  + ME(Z Y)
+  A9   : ALL X,Y:MENGE  - ME(Y X)  - ME(X Y)  + GLEICH(Y X)
+  A10  : ALL X,Y,Z:MENGE  - ME(Z Y)  - ME(Y X)  + ME(Z X)
+  A11  : ALL X,Y:MENGE  Z:ELEMENT  U:VERKN  - GR(Y U Z)  - LIDEAL(X Y U)  + EL(Z X)
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+  T12  : + GR(C_3 C_2 C_1)
+  T13  : + LIDEAL(C_4 C_3 C_2)
+  T14  : - GLEICH(C_4 C_3)
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION ( FAILURE : ABORTED.MAXSTEPS )
+ 
+INITIAL CLAUSES :        A1   : ALL X:ANY  + =(X X)
+                         A2   : ALL X:MENGE  + ME(X X)
+                         A3   : ALL X,Y:MENGE  + ME(Y VER(Y X))
+                         A4   : ALL X,Y:MENGE  + ME(Y VER(X Y))
+                         A5   : ALL X:MENGE  Y:ELEMENT  - EL(Y X)  + =(VER(SET(Y) F_1(X Y)) X)
+                         A7   : ALL X:ELEMENT  Y:VERKN  Z:MENGE  - GR(Z Y X)  + =(MPROD(Z SET(X) Y) Z)
+                         A8   : ALL X:VERKN  Y,Z:MENGE  - LIDEAL(Z Y X)  + ME(Z Y)
+                         A9   : ALL X,Y:MENGE  - ME(Y X)  - ME(X Y)  + GLEICH(Y X)
+                         A10  : ALL X,Y,Z:MENGE  - ME(Z Y)  - ME(Y X)  + ME(Z X)
+                         A11  : ALL X,Y:MENGE  Z:ELEMENT  U:VERKN  - GR(Y U Z)  - LIDEAL(X Y U)  + EL(Z X)
+                         T12  : + GR(C_3 C_2 C_1)
+                         T13  : + LIDEAL(C_4 C_3 C_2)
+                         T14  : - GLEICH(C_4 C_3)
+ 
+A9,3 & T14,1      -->    R1   : - ME(C_4 C_3)  - ME(C_3 C_4)
+ 
+R1,1 & A8,2       -->    R2   : - ME(C_3 C_4)  - LIDEAL(C_4 C_3 C_2)
+ 
+R2,2 & T13,1      -->    R3   : - ME(C_3 C_4)
+ 
+T13,1 & A8,1      -->    R4   : + ME(C_4 C_3)
+ 
+T13,1 & A11,2     -->    R5   : ALL X:ELEMENT  - GR(C_3 C_2 X)  + EL(X C_4)
+ 
+T12,1 & R5,1      -->    R6   : + EL(C_1 C_4)
+ 
+R6,1 & A5,1       -->    R7   : + =(VER(SET(C_1) F_1(C_4 C_1)) C_4)
+ 
+T12,1 & A7,1      -->    R8   : + =(MPROD(C_3 SET(C_1) C_2) C_3)
+ 
+A4,1 & A10,2      -->    R9   : ALL X:MENGE  - ME(C_4 C_3)  + ME(C_4 VER(X C_3))
+ 
+R9,1 & R4,1       -->    R10  : ALL X:MENGE  + ME(C_4 VER(X C_3))
+ 
+A3,1 & A10,2      -->    R11  : ALL X:MENGE  - ME(C_4 C_3)  + ME(C_4 VER(C_3 X))
+ 
+R11,1 & R4,1      -->    R12  : ALL X:MENGE  + ME(C_4 VER(C_3 X))
+ 
+A4,1 & A10,2      -->    R13  : ALL X,Y,Z:MENGE  - ME(Z VER(Z Y))  + ME(Z VER(X VER(Z Y)))
+ 
+R13,1 & A3,1      -->    R14  : ALL X,Y,Z:MENGE  + ME(Z VER(X VER(Z Y)))
+ 
+A3,1 & A10,2      -->    R15  : ALL X,Y,Z:MENGE  - ME(Z VER(Z Y))  + ME(Z VER(VER(Z Y) X))
+ 
+R15,1 & A3,1      -->    R16  : ALL X,Y,Z:MENGE  + ME(Z VER(VER(Z Y) X))
+ 
+A4,1 & A10,2      -->    R17  : ALL X,Y,Z:MENGE  - ME(Z VER(Y Z))  + ME(Z VER(X VER(Y Z)))
+ 
+R17,1 & A4,1      -->    R18  : ALL X,Y,Z:MENGE  + ME(Z VER(X VER(Y Z)))
+ 
+A3,1 & A10,2      -->    R19  : ALL X,Y,Z:MENGE  - ME(Z VER(Y Z))  + ME(Z VER(VER(Y Z) X))
+ 
+R19,1 & A4,1      -->    R20  : ALL X,Y,Z:MENGE  + ME(Z VER(VER(Y Z) X))
+ 
+A4,1 & A10,1      -->    R21  : ALL X:MENGE  - ME(VER(X C_3) C_4)  + ME(C_3 C_4)
+ 
+R21,2 & R3,1      -->    R22  : ALL X:MENGE  - ME(VER(X C_3) C_4)
+ 
+A3,1 & A10,1      -->    R23  : ALL X:MENGE  - ME(VER(C_3 X) C_4)  + ME(C_3 C_4)
+ 
+R23,2 & R3,1      -->    R24  : ALL X:MENGE  - ME(VER(C_3 X) C_4)
+ 
+R7,1 & A3,1       -->    P25  : + ME(SET(C_1) C_4)
+ 
+R20,1 & A10,2     -->    R26  : ALL X,Y:MENGE  - ME(SET(C_1) C_4)  + ME(SET(C_1) VER(VER(Y C_4) X))
+ 
+R26,1 & P25,1     -->    R27  : ALL X,Y:MENGE  + ME(SET(C_1) VER(VER(Y C_4) X))
+ 
+R18,1 & A10,2     -->    R28  : ALL X,Y:MENGE  - ME(SET(C_1) C_4)  + ME(SET(C_1) VER(Y VER(X C_4)))
+ 
+R28,1 & P25,1     -->    R29  : ALL X,Y:MENGE  + ME(SET(C_1) VER(Y VER(X C_4)))
+ 
+R16,1 & A10,2     -->    R30  : ALL X,Y:MENGE  - ME(SET(C_1) C_4)  + ME(SET(C_1) VER(VER(C_4 Y) X))
+ 
+R30,1 & P25,1     -->    R31  : ALL X,Y:MENGE  + ME(SET(C_1) VER(VER(C_4 Y) X))
+ 
+R14,1 & A10,2     -->    R32  : ALL X,Y:MENGE  - ME(SET(C_1) C_4)  + ME(SET(C_1) VER(Y VER(C_4 X)))
+ 
+R32,1 & P25,1     -->    R33  : ALL X,Y:MENGE  + ME(SET(C_1) VER(Y VER(C_4 X)))
+ 
+A4,1 & A10,2      -->    R34  : ALL X:MENGE  - ME(SET(C_1) C_4)  + ME(SET(C_1) VER(X C_4))
+ 
+R34,1 & P25,1     -->    R35  : ALL X:MENGE  + ME(SET(C_1) VER(X C_4))
+ 
+A3,1 & A10,2      -->    R36  : ALL X:MENGE  - ME(SET(C_1) C_4)  + ME(SET(C_1) VER(C_4 X))
+ 
+R36,1 & P25,1     -->    R37  : ALL X:MENGE  + ME(SET(C_1) VER(C_4 X))
+ 
+R12,1 & A10,2     -->    R38  : ALL X:MENGE  - ME(SET(C_1) C_4)  + ME(SET(C_1) VER(C_3 X))
+ 
+R38,1 & P25,1     -->    R39  : ALL X:MENGE  + ME(SET(C_1) VER(C_3 X))
+ 
+R10,1 & A10,2     -->    R40  : ALL X:MENGE  - ME(SET(C_1) C_4)  + ME(SET(C_1) VER(X C_3))
+ 
+R40,1 & P25,1     -->    R41  : ALL X:MENGE  + ME(SET(C_1) VER(X C_3))
+ 
+R4,1 & A10,2      -->    R42  : - ME(SET(C_1) C_4)  + ME(SET(C_1) C_3)
+ 
+R42,1 & P25,1     -->    R43  : + ME(SET(C_1) C_3)
+ 
+P25,1 & A10,2     -->    R44  : - ME(C_3 SET(C_1))  + ME(C_3 C_4)
+ 
+R44,2 & R3,1      -->    R45  : - ME(C_3 SET(C_1))
+ 
+P25,1 & A10,2     -->    R46  : ALL X:MENGE  - ME(VER(X C_3) SET(C_1))  + ME(VER(X C_3) C_4)
+ 
+R46,2 & R22,1     -->    R47  : ALL X:MENGE  - ME(VER(X C_3) SET(C_1))
+ 
+P25,1 & A10,2     -->    R48  : ALL X:MENGE  - ME(VER(C_3 X) SET(C_1))  + ME(VER(C_3 X) C_4)
+ 
+R48,2 & R24,1     -->    R49  : ALL X:MENGE  - ME(VER(C_3 X) SET(C_1))
+ 
+R7,1 & A4,1       -->    P50  : + ME(F_1(C_4 C_1) C_4)
+ 
+R20,1 & A10,2     -->    R51  : ALL X,Y:MENGE  - ME(F_1(C_4 C_1) C_4)  + ME(F_1(C_4 C_1) VER(VER(Y C_4) X))
+ 
+R51,1 & P50,1     -->    R52  : ALL X,Y:MENGE  + ME(F_1(C_4 C_1) VER(VER(Y C_4) X))
+ 
+R18,1 & A10,2     -->    R53  : ALL X,Y:MENGE  - ME(F_1(C_4 C_1) C_4)  + ME(F_1(C_4 C_1) VER(Y VER(X C_4)))
+ 
+R53,1 & P50,1     -->    R54  : ALL X,Y:MENGE  + ME(F_1(C_4 C_1) VER(Y VER(X C_4)))
+ 
+R16,1 & A10,2     -->    R55  : ALL X,Y:MENGE  - ME(F_1(C_4 C_1) C_4)  + ME(F_1(C_4 C_1) VER(VER(C_4 Y) X))
+ 
+R55,1 & P50,1     -->    R56  : ALL X,Y:MENGE  + ME(F_1(C_4 C_1) VER(VER(C_4 Y) X))
+ 
+R14,1 & A10,2     -->    R57  : ALL X,Y:MENGE  - ME(F_1(C_4 C_1) C_4)  + ME(F_1(C_4 C_1) VER(Y VER(C_4 X)))
+ 
+R57,1 & P50,1     -->    R58  : ALL X,Y:MENGE  + ME(F_1(C_4 C_1) VER(Y VER(C_4 X)))
+ 
+A4,1 & A10,2      -->    R59  : ALL X:MENGE  - ME(F_1(C_4 C_1) C_4)  + ME(F_1(C_4 C_1) VER(X C_4))
+ 
+R59,1 & P50,1     -->    R60  : ALL X:MENGE  + ME(F_1(C_4 C_1) VER(X C_4))
+ 
+A3,1 & A10,2      -->    R61  : ALL X:MENGE  - ME(F_1(C_4 C_1) C_4)  + ME(F_1(C_4 C_1) VER(C_4 X))
+ 
+R61,1 & P50,1     -->    R62  : ALL X:MENGE  + ME(F_1(C_4 C_1) VER(C_4 X))
+ 
+R12,1 & A10,2     -->    R63  : ALL X:MENGE  - ME(F_1(C_4 C_1) C_4)  + ME(F_1(C_4 C_1) VER(C_3 X))
+ 
+R63,1 & P50,1     -->    R64  : ALL X:MENGE  + ME(F_1(C_4 C_1) VER(C_3 X))
+ 
+R10,1 & A10,2     -->    R65  : ALL X:MENGE  - ME(F_1(C_4 C_1) C_4)  + ME(F_1(C_4 C_1) VER(X C_3))
+ 
+R65,1 & P50,1     -->    R66  : ALL X:MENGE  + ME(F_1(C_4 C_1) VER(X C_3))
+ 
+R4,1 & A10,2      -->    R67  : - ME(F_1(C_4 C_1) C_4)  + ME(F_1(C_4 C_1) C_3)
+ 
+R67,1 & P50,1     -->    R68  : + ME(F_1(C_4 C_1) C_3)
+ 
+P50,1 & A10,2     -->    R69  : - ME(C_3 F_1(C_4 C_1))  + ME(C_3 C_4)
+ 
+R69,2 & R3,1      -->    R70  : - ME(C_3 F_1(C_4 C_1))
+ 
+P50,1 & A10,2     -->    R71  : ALL X:MENGE  - ME(VER(X C_3) F_1(C_4 C_1))  + ME(VER(X C_3) C_4)
+ 
+R71,2 & R22,1     -->    R72  : ALL X:MENGE  - ME(VER(X C_3) F_1(C_4 C_1))
+ 
+P50,1 & A10,2     -->    R73  : ALL X:MENGE  - ME(VER(C_3 X) F_1(C_4 C_1))  + ME(VER(C_3 X) C_4)
+ 
+R73,2 & R24,1     -->    R74  : ALL X:MENGE  - ME(VER(C_3 X) F_1(C_4 C_1))
+ 
+R7,1 & T13,1      -->    P75  : + LIDEAL(VER(SET(C_1) F_1(C_4 C_1)) C_3 C_2)
+ 
+R7,1 & T14,1      -->    P76  : - GLEICH(VER(SET(C_1) F_1(C_4 C_1)) C_3)
+ 
+R8,1 & T12,1      -->    P77  : + GR(MPROD(C_3 SET(C_1) C_2) C_2 C_1)
+ 
+R8,1 & T13,1      -->    P78  : + LIDEAL(C_4 MPROD(C_3 SET(C_1) C_2) C_2)
+ 
+R8,1 & T14,1      -->    P79  : - GLEICH(C_4 MPROD(C_3 SET(C_1) C_2))
+ 
+R8,1 & P75,1      -->    P80  : + LIDEAL(VER(SET(C_1) F_1(C_4 C_1)) MPROD(C_3 SET(C_1) C_2) C_2)
+ 
+R8,1 & P76,1      -->    P81  : - GLEICH(VER(SET(C_1) F_1(C_4 C_1)) MPROD(C_3 SET(C_1) C_2))
+ 
+A10,3 & R3,1      -->    R82  : ALL X:MENGE  - ME(C_3 X)  - ME(X C_4)
+ 
+A2,1 & R82,2      -->    R83  : - ME(C_3 C_4)
+ 
+R14,1 & R82,1     -->    R84  : ALL X,Y:MENGE  - ME(VER(Y VER(C_3 X)) C_4)
+ 
+R16,1 & R82,1     -->    R85  : ALL X,Y:MENGE  - ME(VER(VER(C_3 Y) X) C_4)
+ 
+R18,1 & R82,1     -->    R86  : ALL X,Y:MENGE  - ME(VER(Y VER(X C_3)) C_4)
+ 
+R20,1 & R82,1     -->    R87  : ALL X,Y:MENGE  - ME(VER(VER(Y C_3) X) C_4)
+ 
+R20,1 & A10,1     -->    R88  : ALL X,Y,Z,U:MENGE  
+                                     - ME(VER(VER(U VER(Z VER(C_3 Y))) X) C_4)  + ME(VER(Z VER(C_3 Y)) C_4)
+ 
+R88,2 & R84,1     -->    R89  : ALL X,Y,Z,U:MENGE  - ME(VER(VER(U VER(Z VER(C_3 Y))) X) C_4)
+ 
+R18,1 & A10,1     -->    R90  : ALL X,Y,Z,U:MENGE  
+                                     - ME(VER(U VER(Z VER(Y VER(C_3 X)))) C_4)  + ME(VER(Y VER(C_3 X)) C_4)
+ 
+R90,2 & R84,1     -->    R91  : ALL X,Y,Z,U:MENGE  - ME(VER(U VER(Z VER(Y VER(C_3 X)))) C_4)
+ 
+R16,1 & A10,1     -->    R92  : ALL X,Y,Z,U:MENGE  
+                                     - ME(VER(VER(VER(U VER(C_3 Z)) Y) X) C_4)  + ME(VER(U VER(C_3 Z)) C_4)
+ 
+R92,2 & R84,1     -->    R93  : ALL X,Y,Z,U:MENGE  - ME(VER(VER(VER(U VER(C_3 Z)) Y) X) C_4)
+ 
+R14,1 & A10,1     -->    R94  : ALL X,Y,Z,U:MENGE  
+                                     - ME(VER(U VER(VER(Z VER(C_3 Y)) X)) C_4)  + ME(VER(Z VER(C_3 Y)) C_4)
+ 
+R94,2 & R84,1     -->    R95  : ALL X,Y,Z,U:MENGE  - ME(VER(U VER(VER(Z VER(C_3 Y)) X)) C_4)
+ 
+A4,1 & A10,1      -->    R96  : ALL X,Y,Z:MENGE  - ME(VER(Z VER(Y VER(C_3 X))) C_4)  + ME(VER(Y VER(C_3 X)) C_4)
+ 
+R96,2 & R84,1     -->    R97  : ALL X,Y,Z:MENGE  - ME(VER(Z VER(Y VER(C_3 X))) C_4)
+ 
+A3,1 & A10,1      -->    R98  : ALL X,Y,Z:MENGE  - ME(VER(VER(Z VER(C_3 Y)) X) C_4)  + ME(VER(Z VER(C_3 Y)) C_4)
+ 
+R98,2 & R84,1     -->    R99  : ALL X,Y,Z:MENGE  - ME(VER(VER(Z VER(C_3 Y)) X) C_4)
+ 
+R20,1 & A10,1     -->    R100 : ALL X,Y,Z,U:MENGE  
+                                     - ME(VER(VER(U VER(VER(C_3 Z) Y)) X) C_4)  + ME(VER(VER(C_3 Z) Y) C_4)
+ 
+R100,2 & R85,1    -->    R101 : ALL X,Y,Z,U:MENGE  - ME(VER(VER(U VER(VER(C_3 Z) Y)) X) C_4)
+ 
+R18,1 & A10,1     -->    R102 : ALL X,Y,Z,U:MENGE  
+                                     - ME(VER(U VER(Z VER(VER(C_3 Y) X))) C_4)  + ME(VER(VER(C_3 Y) X) C_4)
+ 
+R102,2 & R85,1    -->    R103 : ALL X,Y,Z,U:MENGE  - ME(VER(U VER(Z VER(VER(C_3 Y) X))) C_4)
+ 
+R16,1 & A10,1     -->    R104 : ALL X,Y,Z,U:MENGE  
+                                     - ME(VER(VER(VER(VER(C_3 U) Z) Y) X) C_4)  + ME(VER(VER(C_3 U) Z) C_4)
+ 
+R104,2 & R85,1    -->    R105 : ALL X,Y,Z,U:MENGE  - ME(VER(VER(VER(VER(C_3 U) Z) Y) X) C_4)
+ 
+R14,1 & A10,1     -->    R106 : ALL X,Y,Z,U:MENGE  
+                                     - ME(VER(U VER(VER(VER(C_3 Z) Y) X)) C_4)  + ME(VER(VER(C_3 Z) Y) C_4)
+ 
+R106,2 & R85,1    -->    R107 : ALL X,Y,Z,U:MENGE  - ME(VER(U VER(VER(VER(C_3 Z) Y) X)) C_4)
+ 
+A4,1 & A10,1      -->    R108 : ALL X,Y,Z:MENGE  - ME(VER(Z VER(VER(C_3 Y) X)) C_4)  + ME(VER(VER(C_3 Y) X) C_4)
+ 
+R108,2 & R85,1    -->    R109 : ALL X,Y,Z:MENGE  - ME(VER(Z VER(VER(C_3 Y) X)) C_4)
+ 
+A3,1 & A10,1      -->    R110 : ALL X,Y,Z:MENGE  - ME(VER(VER(VER(C_3 Z) Y) X) C_4)  + ME(VER(VER(C_3 Z) Y) C_4)
+ 
+R110,2 & R85,1    -->    R111 : ALL X,Y,Z:MENGE  - ME(VER(VER(VER(C_3 Z) Y) X) C_4)
+ 
+R20,1 & A10,1     -->    R112 : ALL X,Y,Z,U:MENGE  
+                                     - ME(VER(VER(U VER(Z VER(Y C_3))) X) C_4)  + ME(VER(Z VER(Y C_3)) C_4)
+ 
+R112,2 & R86,1    -->    R113 : ALL X,Y,Z,U:MENGE  - ME(VER(VER(U VER(Z VER(Y C_3))) X) C_4)
+ 
+R18,1 & A10,1     -->    R114 : ALL X,Y,Z,U:MENGE  
+                                     - ME(VER(U VER(Z VER(Y VER(X C_3)))) C_4)  + ME(VER(Y VER(X C_3)) C_4)
+ 
+R114,2 & R86,1    -->    R115 : ALL X,Y,Z,U:MENGE  - ME(VER(U VER(Z VER(Y VER(X C_3)))) C_4)
+ 
+R16,1 & A10,1     -->    R116 : ALL X,Y,Z,U:MENGE  
+                                     - ME(VER(VER(VER(U VER(Z C_3)) Y) X) C_4)  + ME(VER(U VER(Z C_3)) C_4)
+ 
+R116,2 & R86,1    -->    R117 : ALL X,Y,Z,U:MENGE  - ME(VER(VER(VER(U VER(Z C_3)) Y) X) C_4)
+ 
+R14,1 & A10,1     -->    R118 : ALL X,Y,Z,U:MENGE  
+                                     - ME(VER(U VER(VER(Z VER(Y C_3)) X)) C_4)  + ME(VER(Z VER(Y C_3)) C_4)
+ 
+R118,2 & R86,1    -->    R119 : ALL X,Y,Z,U:MENGE  - ME(VER(U VER(VER(Z VER(Y C_3)) X)) C_4)
+ 
+A4,1 & A10,1      -->    R120 : ALL X,Y,Z:MENGE  - ME(VER(Z VER(Y VER(X C_3))) C_4)  + ME(VER(Y VER(X C_3)) C_4)
+ 
+R120,2 & R86,1    -->    R121 : ALL X,Y,Z:MENGE  - ME(VER(Z VER(Y VER(X C_3))) C_4)
+ 
+A3,1 & A10,1      -->    R122 : ALL X,Y,Z:MENGE  - ME(VER(VER(Z VER(Y C_3)) X) C_4)  + ME(VER(Z VER(Y C_3)) C_4)
+ 
+R122,2 & R86,1    -->    R123 : ALL X,Y,Z:MENGE  - ME(VER(VER(Z VER(Y C_3)) X) C_4)
+ 
+R20,1 & A10,1     -->    R124 : ALL X,Y,Z,U:MENGE  
+                                     - ME(VER(VER(U VER(VER(Z C_3) Y)) X) C_4)  + ME(VER(VER(Z C_3) Y) C_4)
+ 
+R124,2 & R87,1    -->    R125 : ALL X,Y,Z,U:MENGE  - ME(VER(VER(U VER(VER(Z C_3) Y)) X) C_4)
+ 
+R18,1 & A10,1     -->    R126 : ALL X,Y,Z,U:MENGE  
+                                     - ME(VER(U VER(Z VER(VER(Y C_3) X))) C_4)  + ME(VER(VER(Y C_3) X) C_4)
+ 
+R126,2 & R87,1    -->    R127 : ALL X,Y,Z,U:MENGE  - ME(VER(U VER(Z VER(VER(Y C_3) X))) C_4)
+ 
+R16,1 & A10,1     -->    R128 : ALL X,Y,Z,U:MENGE  
+                                     - ME(VER(VER(VER(VER(U C_3) Z) Y) X) C_4)  + ME(VER(VER(U C_3) Z) C_4)
+ 
+R128,2 & R87,1    -->    R129 : ALL X,Y,Z,U:MENGE  - ME(VER(VER(VER(VER(U C_3) Z) Y) X) C_4)
+ 
+R14,1 & A10,1     -->    R130 : ALL X,Y,Z,U:MENGE  
+                                     - ME(VER(U VER(VER(VER(Z C_3) Y) X)) C_4)  + ME(VER(VER(Z C_3) Y) C_4)
+ 
+R130,2 & R87,1    -->    R131 : ALL X,Y,Z,U:MENGE  - ME(VER(U VER(VER(VER(Z C_3) Y) X)) C_4)
+ 
+A4,1 & A10,1      -->    R132 : ALL X,Y,Z:MENGE  - ME(VER(Z VER(VER(Y C_3) X)) C_4)  + ME(VER(VER(Y C_3) X) C_4)
+ 
+R132,2 & R87,1    -->    R133 : ALL X,Y,Z:MENGE  - ME(VER(Z VER(VER(Y C_3) X)) C_4)
+ 
+A3,1 & A10,1      -->    R134 : ALL X,Y,Z:MENGE  - ME(VER(VER(VER(Z C_3) Y) X) C_4)  + ME(VER(VER(Z C_3) Y) C_4)
+ 
+R134,2 & R87,1    -->    R135 : ALL X,Y,Z:MENGE  - ME(VER(VER(VER(Z C_3) Y) X) C_4)
+ 
+P50,1 & A10,2     -->    R136 : ALL X,Y:MENGE  - ME(VER(Y VER(C_3 X)) F_1(C_4 C_1))  + ME(VER(Y VER(C_3 X)) C_4)
+ 
+R136,2 & R84,1    -->    R137 : ALL X,Y:MENGE  - ME(VER(Y VER(C_3 X)) F_1(C_4 C_1))
+ 
+P25,1 & A10,2     -->    R138 : ALL X,Y:MENGE  - ME(VER(Y VER(C_3 X)) SET(C_1))  + ME(VER(Y VER(C_3 X)) C_4)
+ 
+R138,2 & R84,1    -->    R139 : ALL X,Y:MENGE  - ME(VER(Y VER(C_3 X)) SET(C_1))
+ 
+P50,1 & A10,2     -->    R140 : ALL X,Y:MENGE  - ME(VER(VER(C_3 Y) X) F_1(C_4 C_1))  + ME(VER(VER(C_3 Y) X) C_4)
+ 
+R140,2 & R85,1    -->    R141 : ALL X,Y:MENGE  - ME(VER(VER(C_3 Y) X) F_1(C_4 C_1))
+ 
+P25,1 & A10,2     -->    R142 : ALL X,Y:MENGE  - ME(VER(VER(C_3 Y) X) SET(C_1))  + ME(VER(VER(C_3 Y) X) C_4)
+ 
+R142,2 & R85,1    -->    R143 : ALL X,Y:MENGE  - ME(VER(VER(C_3 Y) X) SET(C_1))
+ 
+P50,1 & A10,2     -->    R144 : ALL X,Y:MENGE  - ME(VER(Y VER(X C_3)) F_1(C_4 C_1))  + ME(VER(Y VER(X C_3)) C_4)
+ 
+R144,2 & R86,1    -->    R145 : ALL X,Y:MENGE  - ME(VER(Y VER(X C_3)) F_1(C_4 C_1))
+ 
+P25,1 & A10,2     -->    R146 : ALL X,Y:MENGE  - ME(VER(Y VER(X C_3)) SET(C_1))  + ME(VER(Y VER(X C_3)) C_4)
+ 
+R146,2 & R86,1    -->    R147 : ALL X,Y:MENGE  - ME(VER(Y VER(X C_3)) SET(C_1))
+ 
+P50,1 & A10,2     -->    R148 : ALL X,Y:MENGE  - ME(VER(VER(Y C_3) X) F_1(C_4 C_1))  + ME(VER(VER(Y C_3) X) C_4)
+ 
+R148,2 & R87,1    -->    R149 : ALL X,Y:MENGE  - ME(VER(VER(Y C_3) X) F_1(C_4 C_1))
+ 
+P25,1 & A10,2     -->    R150 : ALL X,Y:MENGE  - ME(VER(VER(Y C_3) X) SET(C_1))  + ME(VER(VER(Y C_3) X) C_4)
+ 
+R150,2 & R87,1    -->    R151 : ALL X,Y:MENGE  - ME(VER(VER(Y C_3) X) SET(C_1))
+ 
+A2,1 & R82,1      -->    R152 : - ME(C_3 C_4)
+ 
+A3,1 & R82,1      -->    R153 : ALL X:MENGE  - ME(VER(C_3 X) C_4)
+ 
+A4,1 & R82,1      -->    R154 : ALL X:MENGE  - ME(VER(X C_3) C_4)
+ 
+R4,1 & A10,1      -->    R155 : ALL X:MENGE  - ME(C_3 X)  + ME(C_4 X)
+ 
+R155,2 & R82,2    -->    R156 : - ME(C_3 C_4)  - ME(C_3 C_4)
+ 
+R156 2=1          -->    D157 : - ME(C_3 C_4)
+ 
+R20,1 & R155,1    -->    R158 : ALL X,Y:MENGE  + ME(C_4 VER(VER(Y C_3) X))
+ 
+R158,1 & A10,2    -->    R159 : ALL X,Y:MENGE  - ME(SET(C_1) C_4)  + ME(SET(C_1) VER(VER(Y C_3) X))
+ 
+R159,1 & P25,1    -->    R160 : ALL X,Y:MENGE  + ME(SET(C_1) VER(VER(Y C_3) X))
+ 
+R158,1 & A10,2    -->    R161 : ALL X,Y:MENGE  - ME(F_1(C_4 C_1) C_4)  + ME(F_1(C_4 C_1) VER(VER(Y C_3) X))
+ 
+R161,1 & P50,1    -->    R162 : ALL X,Y:MENGE  + ME(F_1(C_4 C_1) VER(VER(Y C_3) X))
+ 
+R20,1 & A10,2     -->    R163 : ALL X,Y,Z,U:MENGE  
+                                     - ME(C_4 VER(VER(U C_3) Z))  + ME(C_4 VER(VER(Y VER(VER(U C_3) Z)) X))
+ 
+R163,1 & R158,1   -->    R164 : ALL X,Y,Z,U:MENGE  + ME(C_4 VER(VER(Y VER(VER(U C_3) Z)) X))
+ 
+R18,1 & A10,2     -->    R165 : ALL X,Y,Z,U:MENGE  
+                                     - ME(C_4 VER(VER(U C_3) Z))  + ME(C_4 VER(Y VER(X VER(VER(U C_3) Z))))
+ 
+R165,1 & R158,1   -->    R166 : ALL X,Y,Z,U:MENGE  + ME(C_4 VER(Y VER(X VER(VER(U C_3) Z))))
+ 
+R16,1 & A10,2     -->    R167 : ALL X,Y,Z,U:MENGE  
+                                     - ME(C_4 VER(VER(U C_3) Z))  + ME(C_4 VER(VER(VER(VER(U C_3) Z) Y) X))
+ 
+R167,1 & R158,1   -->    R168 : ALL X,Y,Z,U:MENGE  + ME(C_4 VER(VER(VER(VER(U C_3) Z) Y) X))
+ 
+R14,1 & A10,2     -->    R169 : ALL X,Y,Z,U:MENGE  
+                                     - ME(C_4 VER(VER(U C_3) Z))  + ME(C_4 VER(Y VER(VER(VER(U C_3) Z) X)))
+ 
+R169,1 & R158,1   -->    R170 : ALL X,Y,Z,U:MENGE  + ME(C_4 VER(Y VER(VER(VER(U C_3) Z) X)))
+ 
+A4,1 & A10,2      -->    R171 : ALL X,Y,Z:MENGE  - ME(C_4 VER(VER(Z C_3) Y))  + ME(C_4 VER(X VER(VER(Z C_3) Y)))
+ 
+R171,1 & R158,1   -->    R172 : ALL X,Y,Z:MENGE  + ME(C_4 VER(X VER(VER(Z C_3) Y)))
+ 
+A3,1 & A10,2      -->    R173 : ALL X,Y,Z:MENGE  - ME(C_4 VER(VER(Z C_3) Y))  + ME(C_4 VER(VER(VER(Z C_3) Y) X))
+ 
+R173,1 & R158,1   -->    R174 : ALL X,Y,Z:MENGE  + ME(C_4 VER(VER(VER(Z C_3) Y) X))
+ 
+R14,1 & R155,1    -->    R175 : ALL X,Y:MENGE  + ME(C_4 VER(Y VER(C_3 X)))
+ 
+R16,1 & R155,1    -->    R176 : ALL X,Y:MENGE  + ME(C_4 VER(VER(C_3 Y) X))
+ 
+R18,1 & R155,1    -->    R177 : ALL X,Y:MENGE  + ME(C_4 VER(Y VER(X C_3)))
+ 
+A2,1 & R155,1     -->    R178 : + ME(C_4 C_3)
+ 
+A3,1 & R155,1     -->    R179 : ALL X:MENGE  + ME(C_4 VER(C_3 X))
+ 
+A4,1 & R155,1     -->    R180 : ALL X:MENGE  + ME(C_4 VER(X C_3))
+ 
+R4,1 & A10,2      -->    R181 : ALL X:MENGE  - ME(X C_4)  + ME(X C_3)
+ 
+R181,2 & R82,1    -->    R182 : - ME(C_3 C_4)  - ME(C_3 C_4)
+ 
+R182 1=2          -->    D183 : - ME(C_3 C_4)
+ 
+A2,1 & R181,1     -->    R184 : + ME(C_4 C_3)
+ 
+R10,1 & A10,2     -->    R185 : ALL X,Y:MENGE  - ME(Y C_4)  + ME(Y VER(X C_3))
+ 
+A2,1 & R185,1     -->    R186 : ALL X:MENGE  + ME(C_4 VER(X C_3))
+ 
+R10,1 & A10,1     -->    R187 : ALL X,Y:MENGE  - ME(VER(Y C_3) X)  + ME(C_4 X)
+ 
+A4,1 & A10,2      -->    R188 : ALL X:MENGE  - ME(C_4 C_3)  + ME(C_4 VER(X C_3))
+ 
+R188,1 & R184,1   -->    R189 : ALL X:MENGE  + ME(C_4 VER(X C_3))
+ 
+R18,1 & R187,1    -->    R190 : ALL X,Y,Z:MENGE  + ME(C_4 VER(Z VER(Y VER(X C_3))))
+ 
+R20,1 & R187,1    -->    R191 : ALL X,Y,Z:MENGE  + ME(C_4 VER(VER(Z VER(Y C_3)) X))
+ 
+R16,1 & R187,1    -->    R192 : ALL X,Y,Z:MENGE  + ME(C_4 VER(VER(VER(Z C_3) Y) X))
+ 
+R14,1 & R187,1    -->    R193 : ALL X,Y,Z:MENGE  + ME(C_4 VER(Z VER(VER(Y C_3) X)))
+ 
+A2,1 & R187,1     -->    R194 : ALL X:MENGE  + ME(C_4 VER(X C_3))
+ 
+A3,1 & R187,1     -->    R195 : ALL X,Y:MENGE  + ME(C_4 VER(VER(Y C_3) X))
+ 
+A4,1 & R187,1     -->    R196 : ALL X,Y:MENGE  + ME(C_4 VER(Y VER(X C_3)))
+ 
+R12,1 & A10,2     -->    R197 : ALL X,Y:MENGE  - ME(Y C_4)  + ME(Y VER(C_3 X))
+ 
+A2,1 & R197,1     -->    R198 : ALL X:MENGE  + ME(C_4 VER(C_3 X))
+ 
+R12,1 & A10,1     -->    R199 : ALL X,Y:MENGE  - ME(VER(C_3 Y) X)  + ME(C_4 X)
+ 
+R20,1 & R199,1    -->    R200 : ALL X,Y,Z:MENGE  + ME(C_4 VER(VER(Z VER(C_3 Y)) X))
+ 
+R200,1 & A10,2    -->    R201 : ALL X,Y,Z:MENGE  - ME(SET(C_1) C_4)  + ME(SET(C_1) VER(VER(Z VER(C_3 Y)) X))
+ 
+R201,1 & P25,1    -->    R202 : ALL X,Y,Z:MENGE  + ME(SET(C_1) VER(VER(Z VER(C_3 Y)) X))
+ 
+R200,1 & A10,2    -->    R203 : ALL X,Y,Z:MENGE  - ME(F_1(C_4 C_1) C_4)  + ME(F_1(C_4 C_1) VER(VER(Z VER(C_3 Y)) X))
+ 
+R203,1 & P50,1    -->    R204 : ALL X,Y,Z:MENGE  + ME(F_1(C_4 C_1) VER(VER(Z VER(C_3 Y)) X))
+ 
+A4,1 & A10,2      -->    R205 : ALL X,Y,Z,U:MENGE  
+                                     - ME(C_4 VER(VER(U VER(C_3 Z)) Y))  + ME(C_4 VER(X VER(VER(U VER(C_3 Z)) Y)))
+ 
+R205,1 & R200,1   -->    R206 : ALL X,Y,Z,U:MENGE  + ME(C_4 VER(X VER(VER(U VER(C_3 Z)) Y)))
+ 
+A3,1 & A10,2      -->    R207 : ALL X,Y,Z,U:MENGE  
+                                     - ME(C_4 VER(VER(U VER(C_3 Z)) Y))  + ME(C_4 VER(VER(VER(U VER(C_3 Z)) Y) X))
+ 
+R207,1 & R200,1   -->    R208 : ALL X,Y,Z,U:MENGE  + ME(C_4 VER(VER(VER(U VER(C_3 Z)) Y) X))
+ 
+A2,1 & R199,1     -->    R209 : ALL X:MENGE  + ME(C_4 VER(C_3 X))
+ 
+R14,1 & R199,1    -->    R210 : ALL X,Y,Z:MENGE  + ME(C_4 VER(Z VER(VER(C_3 Y) X)))
+ 
+R16,1 & R199,1    -->    R211 : ALL X,Y,Z:MENGE  + ME(C_4 VER(VER(VER(C_3 Z) Y) X))
+ 
+R18,1 & R199,1    -->    R212 : ALL X,Y,Z:MENGE  + ME(C_4 VER(Z VER(Y VER(C_3 X))))
+ 
+A3,1 & R199,1     -->    R213 : ALL X,Y:MENGE  + ME(C_4 VER(VER(C_3 Y) X))
+ 
+A4,1 & R199,1     -->    R214 : ALL X,Y:MENGE  + ME(C_4 VER(Y VER(C_3 X)))
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+THE THEOREM(S) COULD NOT BE PROVED.
+ 
+STOP
+ 

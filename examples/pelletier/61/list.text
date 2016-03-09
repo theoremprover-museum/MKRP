@@ -1,0 +1,80 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                  ******************************************************************************
+                  *                                                                            *
+                  *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN     *
+                  *                                                                            *
+                  *        VERSION: MKRP 53.9 GENTRAFO 3.0                                     *
+                  *           DATE: 05-MAY,1992  20:29                                         *
+                  *                                                                            *
+                  ******************************************************************************
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+Edit:     Axioms and Theorems edited: 29-JUN,1990 00:26 
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+          Formulae given to the editor
+          ============================
+
+
+Axioms:   * AXIOMS *
+          ALL X,Y,Z F (X F (Y Z)) = F (F (X Y) Z)
+          
+Theorems: * THEOREMS *
+          ALL X,Y,Z,W F (X F (Y F (Z W))) = F (F (F (X Y) Z) W)
+          
+
+
+
+          Set of Axiom Clauses Resulting from Normalization
+          =================================================
+
+        * A1:   All x:Any + =(x x)
+        * A2:   All x,y,z:Any + =(f(z f(y x)) f(f(z y) x))
+        
+
+
+
+
+          Set of Theorem Clauses Resulting from Normalization
+          ===================================================
+
+        * T3: - =(f(c_4 f(c_3 f(c_2 c_1))) f(f(f(c_4 c_3) c_2) c_1))
+
+
+
+
+
+
+          Initial Operations on Theorems
+          ==============================
+
+
+       
+T3,1 & A2     --> * RW1: - =(f(c_4 f(c_3 f(c_2 c_1))) f(f(c_4 c_3) f(c_2 c_1)))
+
+RW1,1 & A2    --> * RW2: - =(f(c_4 f(c_3 f(c_2 c_1))) f(c_4 f(c_3 f(c_2 c_1))))
+
+RW2,1 & A1,1  --> * R3:  []
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+
+  q.e.d. 
+
+

@@ -1,0 +1,570 @@
+ 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 4-APR-85                                                      *
+                    *         DATE : 10-MAR-86  19:26:40                                           *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   10-MAR-86 19:16:01
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   K.481.COMMENT
+                                                                        
+************************************************************************
+                                                                        
+ 
+ 
+ADJUSTMENT OF THE OPTIONS : 
+============================
+ 
+ 
+ 
+TWO:RULES                             NIL                   TWO:RULES.MAXLEVEL                    1
+TWO:SUPPRESS.NORULES                  NIL
+ 
+ 
+RED.I:CLAUSE.MULTIPLE.LITERALS        T                     RED.I:CLAUSE.PURITY                   T
+RED.I:CLAUSE.TAUTOLOGY                T                     RED.I:CLAUSE.TAUTOLOGY.RECHECK        PARTIAL
+RED.I:CLAUSE.SUBSUMPTION              T                     RED.I:CLAUSE.SUBSUMPTION.RECHECK      PARTIAL
+RED.I:CLAUSE.REPL.FACTORING           T                     RED.I:CLAUSE.REPL.FACTORING.RECHECK   T
+RED.I:CLAUSE.REPL.RESOLUTION          SIMPLE                RED.I:CLAUSE.REPL.RESOLUTION.RECHECK  T
+RED.I:CLAUSE.REWRITING                T                     RED.I:LINK.INCOMPATIBILITY            PARTIAL
+RED.I:LINK.TAUTOLOGY                  REMOVE-INHIBIT        RED.I:LINK.TAUTOLOGY.RECHECK          NIL
+RED.I:LINK.SUBSUMPTION                REMOVE-INHIBIT        RED.I:LINK.SUBSUMPTION.RECHECK        NIL
+ 
+RED.D:CLAUSE.MULTIPLE.LITERALS        T                     RED.D:CLAUSE.PURITY                   T
+RED.D:CLAUSE.TAUTOLOGY                REMOVE-INHIBIT        RED.D:CLAUSE.TAUTOLOGY.RECHECK        NIL
+RED.D:CLAUSE.SUBSUMPTION.FORWARD      REMOVE-INHIBIT        RED.D:CLAUSE.SUBSUMPTION.BACKWARD     REMOVE
+RED.D:CLAUSE.SUBSUMPTION.RECHECK      NIL                   RED.D:CLAUSE.REPL.FACTORING           T
+RED.D:CLAUSE.REPL.FACTORING.RECHECK   T                     RED.D:CLAUSE.REPL.RESOLUTION          SIMPLE
+RED.D:CLAUSE.REPL.RESOLUTION.RECHECK  T                     RED.D:LINK.INCOMPATIBILITY            PARTIAL
+RED.D:LINK.TAUTOLOGY                  REMOVE-INHIBIT        RED.D:LINK.TAUTOLOGY.RECHECK          NIL
+RED.D:LINK.SUBSUMPTION                REMOVE-INHIBIT        RED.D:LINK.SUBSUMPTION.RECHECK        NIL
+ 
+FAC:INITIAL                           NIL                   FAC:EACH.STEP                         NIL
+ 
+STR:RESOLUTION                        SET-OF-SUPPORT        STR:E-RESOLUTION                      NIL
+STR:PARAMODULATION                    UNIT-ANCESTRY         STR:LINK.DEPTH                        NIL
+STR:TERM.DEPTH                        NIL                   STR:R.DEMODULATION                    T
+STR:P.DEMODULATION                    T                     STR:INDUCTION                         NIL
+ 
+TERM:UNITS                            T                     TERM:ITERATIONS                       0
+TERM:SET.OF.SUPPORT                   NIL                   TERM:BREADTH.FIRST                    NIL
+ 
+GEN:SPLITTING                         0                     GEN:MANUAL.CONTROL                    NIL
+GEN:MAXIMUM.STEPS                     NIL                   GEN:GRAPH.SAVING                      NIL
+GEN:SAVE.FILE                         SAVE.DEFAULT
+ 
+ 
+TR:PREPROCESSING                      NIL                   TR:STEP.MODE                          LR
+TR:DUMP                               NIL                   TR:CLAUSE.MODE                        I
+TR:LINK.MODE                          I                     TR:TRACE.FILE                         NIL
+TR:TERMINAL                           NIL
+ 
+ 
+PR:INFIX.FORM                         T                     PR:PREFIX.FORM                        NIL
+PR:OPTIONS                            T                     PR:SYMBOLS                            T
+PR:PROTOCOL                           T                     PR:NEW.PNAMES                         T
+PR:DIFFERENT.VARIABLES                NIL                   PR:DIRECT.PROOF                       NIL
+PR:LEFT.MARGIN                        0                     PR:LINELENGTH                         120
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : * ***************************************************************************
+           * DEFINITIONEN DER MENGENLEHRE **********************************************
+           SORT SET:ANY
+           SORT ELEMENT:SET
+           TYPE EL(ELEMENT SET)
+           SORT REL:SET
+           * DEFINITION 1.3: KARTESISCHES PRODUKT
+           TYPE CARTES(SET SET) :SET
+           TYPE PAIR(ELEMENT ELEMENT) :ELEMENT
+           * DEFINITION 1.5: DURCHSCHNITT
+           TYPE INTERSECTION(REL REL) :REL
+           ALL X,Y:REL ALL A:ELEMENT EL(A INTERSECTION(X Y)) EQV EL(A X) AND EL(A Y)
+           * DEFINTIONEN VON RELATIONEN AUF EINER FESTEN MENGE S ***********************
+           TYPE S:SET
+           SORT EL.OF.S:ELEMENT
+           * DEFINITION 2.1: RELATION *************************************************
+           * DEFINITION 2.5: REFLEXIV
+           TYPE REFLEXIV(REL)
+           ALL RHO:REL REFLEXIV(RHO) EQV(ALL A:EL.OF.S EL(PAIR(A A) RHO))
+           * DEFINITION 2.6: SYMMETRISCH
+           TYPE SYMMETRISCH(REL)
+           ALL RHO:REL SYMMETRISCH(RHO) EQV(ALL A,B:EL.OF.S EL(PAIR(A B) RHO) IMPL EL(PAIR(B A) RHO))
+           * DEFINITION 2.7: TRANSITIV
+           TYPE TRANSITIV(REL)
+           ALL RHO:REL        TRANSITIV(RHO)
+                          EQV (ALL A,B,C:EL.OF.S EL(PAIR(A B) RHO) AND EL(PAIR(B C) RHO) IMPL EL(PAIR(A C) RHO))
+           * DEFINITION 2.8: AEQUIVALENZRELATION
+           TYPE EQU.REL(REL)
+           ALL RHO:REL EQU.REL(RHO) EQV REFLEXIV(RHO) AND SYMMETRISCH(RHO) AND TRANSITIV(RHO)
+           SORT EQU.RELATION:REL
+           ALL RHO:EQU.RELATION REFLEXIV(RHO) AND SYMMETRISCH(RHO) AND TRANSITIV(RHO)
+ 
+THEOREMS : ALL RHO,SIGMA:EQU.RELATION EQU.REL(INTERSECTION(RHO SIGMA))
+ 
+ 
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+* A1   : ALL X:EQU.RELATION  Y:EL.OF.S  + EL(PAIR(Y Y) X)
+* A2   : ALL X,Y:REL  Z:ELEMENT  - EL(Z INTERSECTION(Y X))  + EL(Z Y)
+* A3   : ALL X,Y:REL  Z:ELEMENT  - EL(Z INTERSECTION(Y X))  + EL(Z X)
+* A4   : ALL X:EQU.RELATION  Y,Z:EL.OF.S  - EL(PAIR(Z Y) X)  + EL(PAIR(Y Z) X)
+* A5   : ALL X,Y:REL  Z:ELEMENT  + EL(Z INTERSECTION(Y X))  - EL(Z Y)  - EL(Z X)
+* A6   : ALL X,Y,Z:EL.OF.S  U:EQU.RELATION  - EL(PAIR(Z Y) U)  - EL(PAIR(Y X) U)  + EL(PAIR(Z X) U)
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION AND SPLITTING
+=================================================================
+ 
+ 
+SPLITPART 1
+ 
+* T7   : - EL(PAIR(C_1 C_1) INTERSECTION(C_7 C_8))
+ 
+ 
+ 
+SPLITPART 2
+ 
+* T8   : + EL(PAIR(C_2 C_3) INTERSECTION(C_7 C_8))
+* T9   : - EL(PAIR(C_3 C_2) INTERSECTION(C_7 C_8))
+ 
+ 
+ 
+SPLITPART 3
+ 
+* T10  : + EL(PAIR(C_5 C_4) INTERSECTION(C_7 C_8))
+* T11  : + EL(PAIR(C_4 C_6) INTERSECTION(C_7 C_8))
+* T12  : - EL(PAIR(C_5 C_6) INTERSECTION(C_7 C_8))
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+INITIAL OPERATIONS ON THEOREMS
+==============================
+ 
+ 
+ 
+SPLITPART  1 :
+ 
+T7,1 & A5,1   -->  * R1 : - EL(PAIR(C_1 C_1) C_7)  - EL(PAIR(C_1 C_1) C_8)
+ 
+R1,1 & A1,1   -->  * R2 : - EL(PAIR(C_1 C_1) C_8)
+ 
+R2,1 & A1,1   -->  * R3 :  []
+ 
+ 
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION OF SPLITPART 1
+ 
+INITIAL CLAUSES : 
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+REFUTATION OF SPLITPART 2
+ 
+INITIAL CLAUSES :     A1  : ALL X:EQU.RELATION  Y:EL.OF.S  + EL(PAIR(Y Y) X)
+                    * A2  : ALL X,Y:REL  Z:ELEMENT  - EL(Z INTERSECTION(Y X))  + EL(Z Y)
+                    * A3  : ALL X,Y:REL  Z:ELEMENT  - EL(Z INTERSECTION(Y X))  + EL(Z X)
+                    * A4  : ALL X:EQU.RELATION  Y,Z:EL.OF.S  - EL(PAIR(Z Y) X)  + EL(PAIR(Y Z) X)
+                    * A5  : ALL X,Y:REL  Z:ELEMENT  + EL(Z INTERSECTION(Y X))  - EL(Z Y)  - EL(Z X)
+                      A6  : ALL X,Y,Z:EL.OF.S  U:EQU.RELATION  - EL(PAIR(Z Y) U)  - EL(PAIR(Y X) U)  + EL(PAIR(Z X) U)
+                    * T8  : + EL(PAIR(C_2 C_3) INTERSECTION(C_7 C_8))
+                    * T9  : - EL(PAIR(C_3 C_2) INTERSECTION(C_7 C_8))
+ 
+T8,1 & A3,1    -->  * R4  : + EL(PAIR(C_2 C_3) C_8)
+ 
+T8,1 & A2,1    -->  * R5  : + EL(PAIR(C_2 C_3) C_7)
+ 
+A3,2 & T9,1    -->    R6  : ALL X:REL  - EL(PAIR(C_3 C_2) INTERSECTION(X INTERSECTION(C_7 C_8)))
+ 
+A2,2 & T9,1    -->    R7  : ALL X:REL  - EL(PAIR(C_3 C_2) INTERSECTION(INTERSECTION(C_7 C_8) X))
+ 
+A5,1 & R7,1    -->    R8  : ALL X:REL  - EL(PAIR(C_3 C_2) INTERSECTION(C_7 C_8))  - EL(PAIR(C_3 C_2) X)
+ 
+R4,1 & A4,1    -->  * R9  : + EL(PAIR(C_3 C_2) C_8)
+ 
+R5,1 & A4,1    -->  * R10 : + EL(PAIR(C_3 C_2) C_7)
+ 
+R10,1 & A5,2   -->  * R11 : + EL(PAIR(C_3 C_2) INTERSECTION(C_7 C_8))  - EL(PAIR(C_3 C_2) C_8)
+ 
+R11,1 & T9,1   -->  * R12 : - EL(PAIR(C_3 C_2) C_8)
+ 
+R12,1 & R9,1   -->  * R13 :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+REFUTATION OF SPLITPART 3
+ 
+INITIAL CLAUSES :       A1   : ALL X:EQU.RELATION  Y:EL.OF.S  + EL(PAIR(Y Y) X)
+                      * A2   : ALL X,Y:REL  Z:ELEMENT  - EL(Z INTERSECTION(Y X))  + EL(Z Y)
+                      * A3   : ALL X,Y:REL  Z:ELEMENT  - EL(Z INTERSECTION(Y X))  + EL(Z X)
+                        A4   : ALL X:EQU.RELATION  Y,Z:EL.OF.S  - EL(PAIR(Z Y) X)  + EL(PAIR(Y Z) X)
+                      * A5   : ALL X,Y:REL  Z:ELEMENT  + EL(Z INTERSECTION(Y X))  - EL(Z Y)  - EL(Z X)
+                      * A6   : ALL X,Y,Z:EL.OF.S  U:EQU.RELATION  
+                                    - EL(PAIR(Z Y) U)  - EL(PAIR(Y X) U)  + EL(PAIR(Z X) U)
+                      * T10  : + EL(PAIR(C_5 C_4) INTERSECTION(C_7 C_8))
+                      * T11  : + EL(PAIR(C_4 C_6) INTERSECTION(C_7 C_8))
+                      * T12  : - EL(PAIR(C_5 C_6) INTERSECTION(C_7 C_8))
+ 
+T10,1 & A3,1     -->  * R14  : + EL(PAIR(C_5 C_4) C_8)
+ 
+T10,1 & A2,1     -->  * R15  : + EL(PAIR(C_5 C_4) C_7)
+ 
+T11,1 & A3,1     -->  * R16  : + EL(PAIR(C_4 C_6) C_8)
+ 
+T11,1 & A2,1     -->  * R17  : + EL(PAIR(C_4 C_6) C_7)
+ 
+A3,2 & T12,1     -->    R18  : ALL X:REL  - EL(PAIR(C_5 C_6) INTERSECTION(X INTERSECTION(C_7 C_8)))
+ 
+A2,2 & T12,1     -->    R19  : ALL X:REL  - EL(PAIR(C_5 C_6) INTERSECTION(INTERSECTION(C_7 C_8) X))
+ 
+A5,1 & R19,1     -->    R20  : ALL X:REL  - EL(PAIR(C_5 C_6) INTERSECTION(C_7 C_8))  - EL(PAIR(C_5 C_6) X)
+ 
+R14,1 & A4,1     -->    R21  : + EL(PAIR(C_4 C_5) C_8)
+ 
+R15,1 & A4,1     -->    R22  : + EL(PAIR(C_4 C_5) C_7)
+ 
+R16,1 & A4,1     -->    R23  : + EL(PAIR(C_6 C_4) C_8)
+ 
+R17,1 & A4,1     -->    R24  : + EL(PAIR(C_6 C_4) C_7)
+ 
+A2,2 & R18,1     -->    R25  : ALL X,Y:REL  - EL(PAIR(C_5 C_6) INTERSECTION(INTERSECTION(Y INTERSECTION(C_7 C_8)) X))
+ 
+A5,1 & R25,1     -->    R26  : ALL X,Y:REL  - EL(PAIR(C_5 C_6) INTERSECTION(Y INTERSECTION(C_7 C_8)))
+                                              - EL(PAIR(C_5 C_6) X)
+ 
+A3,2 & R18,1     -->    R27  : ALL X,Y:REL  - EL(PAIR(C_5 C_6) INTERSECTION(Y INTERSECTION(X INTERSECTION(C_7 C_8))))
+ 
+A3,2 & R19,1     -->    R28  : ALL X,Y:REL  - EL(PAIR(C_5 C_6) INTERSECTION(Y INTERSECTION(INTERSECTION(C_7 C_8) X)))
+ 
+A2,2 & R19,1     -->    R29  : ALL X,Y:REL  - EL(PAIR(C_5 C_6) INTERSECTION(INTERSECTION(INTERSECTION(C_7 C_8) Y) X))
+ 
+A5,1 & R29,1     -->    R30  : ALL X,Y:REL  - EL(PAIR(C_5 C_6) INTERSECTION(INTERSECTION(C_7 C_8) Y))
+                                              - EL(PAIR(C_5 C_6) X)
+ 
+T10,1 & A5,2     -->    R31  : ALL X:REL  + EL(PAIR(C_5 C_4) INTERSECTION(INTERSECTION(C_7 C_8) X))
+                                            - EL(PAIR(C_5 C_4) X)
+ 
+R15,1 & R31,2    -->    R32  : + EL(PAIR(C_5 C_4) INTERSECTION(INTERSECTION(C_7 C_8) C_7))
+ 
+R14,1 & R31,2    -->    R33  : + EL(PAIR(C_5 C_4) INTERSECTION(INTERSECTION(C_7 C_8) C_8))
+ 
+T10,1 & R31,2    -->    R34  : + EL(PAIR(C_5 C_4) INTERSECTION(INTERSECTION(C_7 C_8) INTERSECTION(C_7 C_8)))
+ 
+T10,1 & A5,3     -->    R35  : ALL X:REL  + EL(PAIR(C_5 C_4) INTERSECTION(X INTERSECTION(C_7 C_8)))
+                                            - EL(PAIR(C_5 C_4) X)
+ 
+R15,1 & R35,2    -->    R36  : + EL(PAIR(C_5 C_4) INTERSECTION(C_7 INTERSECTION(C_7 C_8)))
+ 
+R14,1 & R35,2    -->    R37  : + EL(PAIR(C_5 C_4) INTERSECTION(C_8 INTERSECTION(C_7 C_8)))
+ 
+T11,1 & A5,2     -->  * R38  : ALL X:REL  + EL(PAIR(C_4 C_6) INTERSECTION(INTERSECTION(C_7 C_8) X))
+                                            - EL(PAIR(C_4 C_6) X)
+ 
+R17,1 & R38,2    -->  * R39  : + EL(PAIR(C_4 C_6) INTERSECTION(INTERSECTION(C_7 C_8) C_7))
+ 
+R16,1 & R38,2    -->    R40  : + EL(PAIR(C_4 C_6) INTERSECTION(INTERSECTION(C_7 C_8) C_8))
+ 
+T11,1 & R38,2    -->    R41  : + EL(PAIR(C_4 C_6) INTERSECTION(INTERSECTION(C_7 C_8) INTERSECTION(C_7 C_8)))
+ 
+T11,1 & A5,3     -->    R42  : ALL X:REL  + EL(PAIR(C_4 C_6) INTERSECTION(X INTERSECTION(C_7 C_8)))
+                                            - EL(PAIR(C_4 C_6) X)
+ 
+R17,1 & R42,2    -->    R43  : + EL(PAIR(C_4 C_6) INTERSECTION(C_7 INTERSECTION(C_7 C_8)))
+ 
+R16,1 & R42,2    -->    R44  : + EL(PAIR(C_4 C_6) INTERSECTION(C_8 INTERSECTION(C_7 C_8)))
+ 
+A5,1 & T12,1     -->  * R45  : - EL(PAIR(C_5 C_6) C_7)  - EL(PAIR(C_5 C_6) C_8)
+ 
+A3,2 & R25,1     -->    R46  : ALL X,Y,Z:REL  - EL(PAIR(C_5 C_6)
+                                                   INTERSECTION(Z INTERSECTION(INTERSECTION(Y INTERSECTION(C_7 C_8)) X))
+)
+ 
+ 
+A2,2 & R25,1     -->    R47  : ALL X,Y,Z:REL  - EL(PAIR(C_5 C_6)
+                                                   INTERSECTION(INTERSECTION(INTERSECTION(Z INTERSECTION(C_7 C_8)) Y) X)
+)
+ 
+ 
+A5,1 & R47,1     -->    R48  : ALL X,Y,Z:REL  - EL(PAIR(C_5 C_6) INTERSECTION(INTERSECTION(Z INTERSECTION(C_7 C_8)) Y))
+                                                - EL(PAIR(C_5 C_6) X)
+ 
+A2,2 & R27,1     -->    R49  : ALL X,Y,Z:REL  - EL(PAIR(C_5 C_6)
+                                                   INTERSECTION(INTERSECTION(Z INTERSECTION(Y INTERSECTION(C_7 C_8))) X)
+)
+ 
+ 
+A5,1 & R49,1     -->    R50  : ALL X,Y,Z:REL  - EL(PAIR(C_5 C_6) INTERSECTION(Z INTERSECTION(Y INTERSECTION(C_7 C_8))))
+                                                - EL(PAIR(C_5 C_6) X)
+ 
+A3,2 & R27,1     -->    R51  : ALL X,Y,Z:REL  - EL(PAIR(C_5 C_6)
+                                                   INTERSECTION(Z INTERSECTION(Y INTERSECTION(X INTERSECTION(C_7 C_8))))
+)
+ 
+ 
+A2,2 & R28,1     -->    R52  : ALL X,Y,Z:REL  - EL(PAIR(C_5 C_6)
+                                                   INTERSECTION(INTERSECTION(Z INTERSECTION(INTERSECTION(C_7 C_8) Y)) X)
+)
+ 
+ 
+A5,1 & R52,1     -->    R53  : ALL X,Y,Z:REL  - EL(PAIR(C_5 C_6) INTERSECTION(Z INTERSECTION(INTERSECTION(C_7 C_8) Y)))
+                                                - EL(PAIR(C_5 C_6) X)
+ 
+A3,2 & R28,1     -->    R54  : ALL X,Y,Z:REL  - EL(PAIR(C_5 C_6)
+                                                   INTERSECTION(Z INTERSECTION(Y INTERSECTION(INTERSECTION(C_7 C_8) X)))
+)
+ 
+ 
+A3,2 & R29,1     -->    R55  : ALL X,Y,Z:REL  - EL(PAIR(C_5 C_6)
+                                                   INTERSECTION(Z INTERSECTION(INTERSECTION(INTERSECTION(C_7 C_8) Y) X))
+)
+ 
+ 
+A2,2 & R29,1     -->    R56  : ALL X,Y,Z:REL  - EL(PAIR(C_5 C_6)
+                                                   INTERSECTION(INTERSECTION(INTERSECTION(INTERSECTION(C_7 C_8) Z) Y) X)
+)
+ 
+ 
+A5,1 & R56,1     -->    R57  : ALL X,Y,Z:REL  - EL(PAIR(C_5 C_6) INTERSECTION(INTERSECTION(INTERSECTION(C_7 C_8) Z) Y))
+                                                - EL(PAIR(C_5 C_6) X)
+ 
+R32,1 & R31,2    -->    R58  : + EL(PAIR(C_5 C_4)
+                                    INTERSECTION(INTERSECTION(C_7 C_8) INTERSECTION(INTERSECTION(C_7 C_8) C_7)))
+ 
+ 
+R33,1 & R31,2    -->    R59  : + EL(PAIR(C_5 C_4)
+                                    INTERSECTION(INTERSECTION(C_7 C_8) INTERSECTION(INTERSECTION(C_7 C_8) C_8)))
+ 
+ 
+R34,1 & R31,2    -->    R60  : + EL(PAIR(C_5 C_4)
+                                    INTERSECTION(INTERSECTION(C_7 C_8)
+                                                 INTERSECTION(INTERSECTION(C_7 C_8) INTERSECTION(C_7 C_8))))
+ 
+ 
+R34,1 & R35,2    -->    R61  : + EL(PAIR(C_5 C_4)
+                                    INTERSECTION(INTERSECTION(INTERSECTION(C_7 C_8) INTERSECTION(C_7 C_8))
+                                                 INTERSECTION(C_7 C_8)))
+ 
+ 
+R33,1 & R35,2    -->    R62  : + EL(PAIR(C_5 C_4)
+                                    INTERSECTION(INTERSECTION(INTERSECTION(C_7 C_8) C_8) INTERSECTION(C_7 C_8)))
+ 
+ 
+R32,1 & R35,2    -->    R63  : + EL(PAIR(C_5 C_4)
+                                    INTERSECTION(INTERSECTION(INTERSECTION(C_7 C_8) C_7) INTERSECTION(C_7 C_8)))
+ 
+ 
+R36,1 & A3,1     -->    R64  : + EL(PAIR(C_5 C_4) INTERSECTION(C_7 C_8))
+ 
+R36,1 & R31,2    -->    R65  : + EL(PAIR(C_5 C_4)
+                                    INTERSECTION(INTERSECTION(C_7 C_8) INTERSECTION(C_7 INTERSECTION(C_7 C_8))))
+ 
+ 
+R36,1 & R35,2    -->    R66  : + EL(PAIR(C_5 C_4)
+                                    INTERSECTION(INTERSECTION(C_7 INTERSECTION(C_7 C_8)) INTERSECTION(C_7 C_8)))
+ 
+ 
+R37,1 & A3,1     -->    R67  : + EL(PAIR(C_5 C_4) INTERSECTION(C_7 C_8))
+ 
+R37,1 & R31,2    -->    R68  : + EL(PAIR(C_5 C_4)
+                                    INTERSECTION(INTERSECTION(C_7 C_8) INTERSECTION(C_8 INTERSECTION(C_7 C_8))))
+ 
+ 
+R37,1 & R35,2    -->    R69  : + EL(PAIR(C_5 C_4)
+                                    INTERSECTION(INTERSECTION(C_8 INTERSECTION(C_7 C_8)) INTERSECTION(C_7 C_8)))
+ 
+ 
+R39,1 & R38,2    -->    R70  : + EL(PAIR(C_4 C_6)
+                                    INTERSECTION(INTERSECTION(C_7 C_8) INTERSECTION(INTERSECTION(C_7 C_8) C_7)))
+ 
+ 
+R40,1 & R38,2    -->    R71  : + EL(PAIR(C_4 C_6)
+                                    INTERSECTION(INTERSECTION(C_7 C_8) INTERSECTION(INTERSECTION(C_7 C_8) C_8)))
+ 
+ 
+R41,1 & R38,2    -->    R72  : + EL(PAIR(C_4 C_6)
+                                    INTERSECTION(INTERSECTION(C_7 C_8)
+                                                 INTERSECTION(INTERSECTION(C_7 C_8) INTERSECTION(C_7 C_8))))
+ 
+ 
+R41,1 & R42,2    -->    R73  : + EL(PAIR(C_4 C_6)
+                                    INTERSECTION(INTERSECTION(INTERSECTION(C_7 C_8) INTERSECTION(C_7 C_8))
+                                                 INTERSECTION(C_7 C_8)))
+ 
+ 
+R40,1 & R42,2    -->    R74  : + EL(PAIR(C_4 C_6)
+                                    INTERSECTION(INTERSECTION(INTERSECTION(C_7 C_8) C_8) INTERSECTION(C_7 C_8)))
+ 
+ 
+R39,1 & R42,2    -->    R75  : + EL(PAIR(C_4 C_6)
+                                    INTERSECTION(INTERSECTION(INTERSECTION(C_7 C_8) C_7) INTERSECTION(C_7 C_8)))
+ 
+ 
+R43,1 & A3,1     -->    R76  : + EL(PAIR(C_4 C_6) INTERSECTION(C_7 C_8))
+ 
+R43,1 & R38,2    -->    R77  : + EL(PAIR(C_4 C_6)
+                                    INTERSECTION(INTERSECTION(C_7 C_8) INTERSECTION(C_7 INTERSECTION(C_7 C_8))))
+ 
+ 
+R43,1 & R42,2    -->    R78  : + EL(PAIR(C_4 C_6)
+                                    INTERSECTION(INTERSECTION(C_7 INTERSECTION(C_7 C_8)) INTERSECTION(C_7 C_8)))
+ 
+ 
+R44,1 & A3,1     -->    R79  : + EL(PAIR(C_4 C_6) INTERSECTION(C_7 C_8))
+ 
+R44,1 & R38,2    -->    R80  : + EL(PAIR(C_4 C_6)
+                                    INTERSECTION(INTERSECTION(C_7 C_8) INTERSECTION(C_8 INTERSECTION(C_7 C_8))))
+ 
+ 
+R44,1 & R42,2    -->    R81  : + EL(PAIR(C_4 C_6)
+                                    INTERSECTION(INTERSECTION(C_8 INTERSECTION(C_7 C_8)) INTERSECTION(C_7 C_8)))
+ 
+ 
+R14,1 & A6,1     -->  * R82  : ALL X:EL.OF.S  - EL(PAIR(C_4 X) C_8)  + EL(PAIR(C_5 X) C_8)
+ 
+R45,2 & R82,2    -->  * R83  : - EL(PAIR(C_5 C_6) C_7)  - EL(PAIR(C_4 C_6) C_8)
+ 
+R83,2 & R16,1    -->  * R84  : - EL(PAIR(C_5 C_6) C_7)
+ 
+A2,2 & R84,1     -->    R85  : ALL X:REL  - EL(PAIR(C_5 C_6) INTERSECTION(C_7 X))
+ 
+A3,2 & R84,1     -->    R86  : ALL X:REL  - EL(PAIR(C_5 C_6) INTERSECTION(X C_7))
+ 
+A5,1 & R86,1     -->    R87  : ALL X:REL  - EL(PAIR(C_5 C_6) X)  - EL(PAIR(C_5 C_6) C_7)
+ 
+A4,2 & R84,1     -->    R88  : - EL(PAIR(C_6 C_5) C_7)
+ 
+R16,1 & R82,1    -->    R89  : + EL(PAIR(C_5 C_6) C_8)
+ 
+A3,2 & R85,1     -->    R90  : ALL X,Y:REL  - EL(PAIR(C_5 C_6) INTERSECTION(Y INTERSECTION(C_7 X)))
+ 
+A2,2 & R85,1     -->    R91  : ALL X,Y:REL  - EL(PAIR(C_5 C_6) INTERSECTION(INTERSECTION(C_7 Y) X))
+ 
+A5,1 & R91,1     -->    R92  : ALL X,Y:REL  - EL(PAIR(C_5 C_6) INTERSECTION(C_7 Y))  - EL(PAIR(C_5 C_6) X)
+ 
+A2,2 & R86,1     -->    R93  : ALL X,Y:REL  - EL(PAIR(C_5 C_6) INTERSECTION(INTERSECTION(Y C_7) X))
+ 
+A5,1 & R93,1     -->    R94  : ALL X,Y:REL  - EL(PAIR(C_5 C_6) INTERSECTION(Y C_7))  - EL(PAIR(C_5 C_6) X)
+ 
+A3,2 & R86,1     -->    R95  : ALL X,Y:REL  - EL(PAIR(C_5 C_6) INTERSECTION(Y INTERSECTION(X C_7)))
+ 
+A2,2 & R88,1     -->    R96  : ALL X:REL  - EL(PAIR(C_6 C_5) INTERSECTION(C_7 X))
+ 
+A5,1 & R96,1     -->    R97  : ALL X:REL  - EL(PAIR(C_6 C_5) C_7)  - EL(PAIR(C_6 C_5) X)
+ 
+A3,2 & R88,1     -->    R98  : ALL X:REL  - EL(PAIR(C_6 C_5) INTERSECTION(X C_7))
+ 
+R14,1 & A6,2     -->    R99  : ALL X:EL.OF.S  - EL(PAIR(X C_5) C_8)  + EL(PAIR(X C_4) C_8)
+ 
+R14,1 & A5,2     -->    R100 : ALL X:REL  + EL(PAIR(C_5 C_4) INTERSECTION(C_8 X))  - EL(PAIR(C_5 C_4) X)
+ 
+R82,2 & R100,2   -->    R101 : - EL(PAIR(C_4 C_4) C_8)  + EL(PAIR(C_5 C_4) INTERSECTION(C_8 C_8))
+ 
+R101,1 & A1,1    -->    R102 : + EL(PAIR(C_5 C_4) INTERSECTION(C_8 C_8))
+ 
+R99,2 & R100,2   -->    R103 : - EL(PAIR(C_5 C_5) C_8)  + EL(PAIR(C_5 C_4) INTERSECTION(C_8 C_8))
+ 
+R37,1 & R100,2   -->    R104 : + EL(PAIR(C_5 C_4) INTERSECTION(C_8 INTERSECTION(C_8 INTERSECTION(C_7 C_8))))
+ 
+R36,1 & R100,2   -->    R105 : + EL(PAIR(C_5 C_4) INTERSECTION(C_8 INTERSECTION(C_7 INTERSECTION(C_7 C_8))))
+ 
+R34,1 & R100,2   -->    R106 : + EL(PAIR(C_5 C_4)
+                                    INTERSECTION(C_8 INTERSECTION(INTERSECTION(C_7 C_8) INTERSECTION(C_7 C_8))))
+ 
+ 
+R33,1 & R100,2   -->    R107 : + EL(PAIR(C_5 C_4) INTERSECTION(C_8 INTERSECTION(INTERSECTION(C_7 C_8) C_8)))
+ 
+R32,1 & R100,2   -->    R108 : + EL(PAIR(C_5 C_4) INTERSECTION(C_8 INTERSECTION(INTERSECTION(C_7 C_8) C_7)))
+ 
+R15,1 & R100,2   -->    R109 : + EL(PAIR(C_5 C_4) INTERSECTION(C_8 C_7))
+ 
+R14,1 & A5,3     -->    R110 : ALL X:REL  + EL(PAIR(C_5 C_4) INTERSECTION(X C_8))  - EL(PAIR(C_5 C_4) X)
+ 
+R37,1 & R110,2   -->    R111 : + EL(PAIR(C_5 C_4) INTERSECTION(INTERSECTION(C_8 INTERSECTION(C_7 C_8)) C_8))
+ 
+R36,1 & R110,2   -->    R112 : + EL(PAIR(C_5 C_4) INTERSECTION(INTERSECTION(C_7 INTERSECTION(C_7 C_8)) C_8))
+ 
+R34,1 & R110,2   -->    R113 : + EL(PAIR(C_5 C_4)
+                                    INTERSECTION(INTERSECTION(INTERSECTION(C_7 C_8) INTERSECTION(C_7 C_8)) C_8))
+ 
+ 
+R33,1 & R110,2   -->    R114 : + EL(PAIR(C_5 C_4) INTERSECTION(INTERSECTION(INTERSECTION(C_7 C_8) C_8) C_8))
+ 
+R32,1 & R110,2   -->    R115 : + EL(PAIR(C_5 C_4) INTERSECTION(INTERSECTION(INTERSECTION(C_7 C_8) C_7) C_8))
+ 
+R15,1 & A6,1     -->  * R116 : ALL X:EL.OF.S  - EL(PAIR(C_4 X) C_7)  + EL(PAIR(C_5 X) C_7)
+ 
+R116,1 & A3,2    -->  * R117 : + EL(PAIR(C_5 C_6) C_7)  - EL(PAIR(C_4 C_6) INTERSECTION(INTERSECTION(C_7 C_8) C_7))
+ 
+R117,1 & R84,1   -->  * R118 : - EL(PAIR(C_4 C_6) INTERSECTION(INTERSECTION(C_7 C_8) C_7))
+ 
+R118,1 & R39,1   -->  * R119 :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+STOP
+ 

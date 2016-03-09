@@ -1,0 +1,212 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 42.3 EQUALITY 16.1                                  *
+                     *           DATE: 16-MAY,1990  21:06                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 16-MAY,1990 21:02 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * AXIOMS *
+             * CONSTRUCTORS PRED AND SUCC *
+             ALL X S (P (X)) = X
+             ALL X P (S (X)) = X
+             * DEF + *
+             ALL X + (0 X) = X
+             ALL X,Y + (S (X) Y) = S (+ (X Y))
+             ALL X,Y + (P (X) Y) = P (+ (X Y))
+             ALL X,Y,Z + (+ (X Y) Z) = + (X + (Y Z))
+             * DEF - *
+             - (0) = 0
+             ALL X - (S (X)) = P (- (X))
+             ALL X - (P (X)) = S (- (X))
+             * DEF * *
+             ALL X * (0 X) = 0
+             ALL X,Y * (S (X) Y) = + (Y * (X Y))
+             ALL X,Y * (P (X) Y) = + (- (Y) * (X Y))
+             
+   Theorems: * THEOREM *
+             EX X S (S (+ (* (X X) + (X + (X X))))) = 0
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+           * A1:   All x:Any + =(x x)
+           * A2:   All x:Any + =(s(p(x)) x)
+             A3:   All x:Any + =(p(s(x)) x)
+           * A4:   All x:Any + =(+(0 x) x)
+           * A5:   All x,y:Any + =(+(s(y) x) s(+(y x)))
+           * A6:   All x,y:Any + =(+(p(y) x) p(+(y x)))
+           * A7:   All x,y,z:Any + =(+(+(z y) x) +(z +(y x)))
+           * A8:   + =(-(0) 0)
+           * A9:   All x:Any + =(-(s(x)) p(-(x)))
+           * A10:  All x:Any + =(-(p(x)) s(-(x)))
+           * A11:  All x:Any + =(*(0 x) 0)
+           * A12:  All x,y:Any + =(*(s(y) x) +(x *(y x)))
+           * A13:  All x,y:Any + =(*(p(y) x) +(-(x) *(y x)))
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T14: All x:Any - =(s(s(+(*(x x) +(x +(x x))))) 0)
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:     * A1:     All x:Any + =(x x)
+                        * A2:     All x:Any + =(s(p(x)) x)
+                          A3:     All x:Any + =(p(s(x)) x)
+                        * A4:     All x:Any + =(+(0 x) x)
+                        * A5:     All x,y:Any + =(+(s(y) x) s(+(y x)))
+                        * A6:     All x,y:Any + =(+(p(y) x) p(+(y x)))
+                        * A7:     All x,y,z:Any + =(+(+(z y) x) +(z +(y x)))
+                        * A8:     + =(-(0) 0)
+                        * A9:     All x:Any + =(-(s(x)) p(-(x)))
+                        * A10:    All x:Any + =(-(p(x)) s(-(x)))
+                        * A11:    All x:Any + =(*(0 x) 0)
+                        * A12:    All x,y:Any + =(*(s(y) x) +(x *(y x)))
+                        * A13:    All x,y:Any + =(*(p(y) x) +(-(x) *(y x)))
+                        * T14:    All x:Any - =(s(s(+(*(x x) +(x +(x x))))) 0)
+                        
+
+   
+   A2,1 & A12,1    -->  * P1:     All x,y:Any + =(*(y x) +(x *(p(y) x)))
+   
+   P1,1 & A13      -->  * RW2:    All x,y:Any + =(*(y x) +(x +(-(x) *(y x))))
+   
+   A11,1 & RW2,1   -->  * P3:     All x:Any + =(*(0 x) +(x +(-(x) 0)))
+   
+   P3,1 & A11      -->  * RW4:    All x:Any + =(0 +(x +(-(x) 0)))
+   
+   RW4,1 & A7,1    -->  * P5:     All x,y:Any + =(+(0 y) +(x +(+(-(x) 0) y)))
+   
+   P5,1 & A7       -->  * RW6:    All x,y:Any + =(+(0 y) +(x +(-(x) +(0 y))))
+   
+   RW6,1 & A4      -->  * RW7:    All x,y:Any + =(y +(x +(-(x) +(0 y))))
+   
+   RW7,1 & A4      -->  * RW8:    All x,y:Any + =(y +(x +(-(x) y)))
+   
+   A6,1 & RW8,1    -->  * P9:     All x,y:Any + =(y p(+(x +(-(p(x)) y))))
+   
+   P9,1 & A10      -->  * RW10:   All x,y:Any + =(y p(+(x +(s(-(x)) y))))
+   
+   RW10,1 & A5     -->  * RW11:   All x,y:Any + =(y p(+(x s(+(-(x) y)))))
+   
+   A5,1 & RW8,1    -->  * P12:    All x,y:Any + =(y s(+(x +(-(s(x)) y))))
+   
+   P12,1 & A9      -->  * RW13:   All x,y:Any + =(y s(+(x +(p(-(x)) y))))
+   
+   RW13,1 & A6     -->  * RW14:   All x,y:Any + =(y s(+(x p(+(-(x) y)))))
+   
+   RW11,1 & A2,1   -->  * P15:    All x,y:Any + =(s(y) +(x s(+(-(x) y))))
+   
+   RW14,1 & P15,1  -->  * P17:    All x,y:Any + =(s(p(+(-(-(y)) x))) +(y x))
+   
+   P17,1 & A2      -->  * RW18:   All x,y:Any + =(+(-(-(y)) x) +(y x))
+   
+   RW8,1 & RW14,1  -->  * P20:    All x,y:Any + =(+(-(-(y)) x) s(+(y p(x))))
+   
+   RW18,1 & P20    -->  * RW21:   All x,y:Any + =(s(+(y p(x))) +(y x))
+   
+   A6,1 & RW21,1   -->  * P24:    All x,y:Any + =(s(p(+(y p(x)))) +(p(y) x))
+   
+   P24,1 & A6      -->  * RW25:   All x,y:Any + =(s(p(+(y p(x)))) p(+(y x)))
+   
+   RW25,1 & A2     -->  * RW26:   All x,y:Any + =(+(y p(x)) p(+(y x)))
+   
+   A13,1 & T14,1   -->  * P98:    All x:Any - =(s(s(+(+(-(p(x)) *(x p(x))) +(p(x) +(p(x) p(x)))))) 0)
+   
+   P98,1 & A6      -->  * RW99:   All x:Any - =(s(s(+(+(-(p(x)) *(x p(x))) +(p(x) p(+(x p(x))))))) 0)
+   
+   RW99,1 & RW26   -->  * RW100:  All x:Any - =(s(s(+(+(-(p(x)) *(x p(x))) +(p(x) p(p(+(x x))))))) 0)
+   
+   RW100,1 & A6    -->  * RW101:  All x:Any - =(s(s(+(+(-(p(x)) *(x p(x))) p(+(x p(p(+(x x)))))))) 0)
+   
+   RW101,1 & RW26  -->  * RW102:  All x:Any - =(s(s(+(+(-(p(x)) *(x p(x))) p(p(+(x p(+(x x)))))))) 0)
+   
+   RW102,1 & RW26  -->  * RW103:  All x:Any - =(s(s(+(+(-(p(x)) *(x p(x))) p(p(p(+(x +(x x)))))))) 0)
+   
+   RW103,1 & A10   -->  * RW104:  All x:Any - =(s(s(+(+(s(-(x)) *(x p(x))) p(p(p(+(x +(x x)))))))) 0)
+   
+   RW104,1 & A5    -->  * RW105:  All x:Any - =(s(s(+(s(+(-(x) *(x p(x)))) p(p(p(+(x +(x x)))))))) 0)
+   
+   RW105,1 & A5    -->  * RW106:  All x:Any - =(s(s(s(+(+(-(x) *(x p(x))) p(p(p(+(x +(x x))))))))) 0)
+   
+   RW106,1 & A7    -->  * RW107:  All x:Any - =(s(s(s(+(-(x) +(*(x p(x)) p(p(p(+(x +(x x)))))))))) 0)
+   
+   RW107,1 & RW26  -->  * RW108:  All x:Any - =(s(s(s(+(-(x) p(+(*(x p(x)) p(p(+(x +(x x)))))))))) 0)
+   
+   RW108,1 & RW26  -->  * RW109:  All x:Any - =(s(s(s(+(-(x) p(p(+(*(x p(x)) p(+(x +(x x)))))))))) 0)
+   
+   RW109,1 & RW26  -->  * RW110:  All x:Any - =(s(s(s(+(-(x) p(p(p(+(*(x p(x)) +(x +(x x)))))))))) 0)
+   
+   RW110,1 & RW26  -->  * RW111:  All x:Any - =(s(s(s(p(+(-(x) p(p(+(*(x p(x)) +(x +(x x)))))))))) 0)
+   
+   RW111,1 & RW26  -->  * RW112:  All x:Any - =(s(s(s(p(p(+(-(x) p(+(*(x p(x)) +(x +(x x)))))))))) 0)
+   
+   RW112,1 & RW26  -->  * RW113:  All x:Any - =(s(s(s(p(p(p(+(-(x) +(*(x p(x)) +(x +(x x)))))))))) 0)
+   
+   RW113,1 & A2    -->  * RW114:  All x:Any - =(s(s(p(p(+(-(x) +(*(x p(x)) +(x +(x x)))))))) 0)
+   
+   RW114,1 & A2    -->  * RW115:  All x:Any - =(s(p(+(-(x) +(*(x p(x)) +(x +(x x)))))) 0)
+   
+   RW115,1 & A2    -->  * RW116:  All x:Any - =(+(-(x) +(*(x p(x)) +(x +(x x)))) 0)
+   
+   A8,1 & RW116,1  -->  * P117:   - =(+(0 +(*(0 p(0)) +(0 +(0 0)))) 0)
+   
+   P117,1 & A4     -->  * RW118:  - =(+(0 +(*(0 p(0)) +(0 0))) 0)
+   
+   RW118,1 & A4    -->  * RW119:  - =(+(0 +(*(0 p(0)) 0)) 0)
+   
+   RW119,1 & A11   -->  * RW120:  - =(+(0 +(0 0)) 0)
+   
+   RW120,1 & A4    -->  * RW121:  - =(+(0 0) 0)
+   
+   RW121,1 & A4    -->  * RW122:  - =(0 0)
+   
+   RW122,1 & A1,1  -->  * R123:   []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 1987 seconds

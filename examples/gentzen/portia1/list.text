@@ -1,0 +1,178 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 48.4                                                *
+                     *           DATE: 09-JUL,1991  10:53                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 09-JUL,1991 10:53 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * IN SHAKESPEARE^S MERCHANT OF VENICE PORTIA HAD THREE CASKETS
+             * HE WAS LUCKY ENOUGH (OR WISE ENOUGH) TO CHOOSE THE ONE WITH
+             * THE PORTRAIT, THEN HE COULD CLAIM PORTIA AS HIS BRIDE.
+             * ON THE LID OF EACH CASKET WAS AN INSCRIPTION TO HELP THE SUITOR
+             * CHOOSE WISELY.
+             * NOW SUPPOSE PORTIA WANTED TO CHOOSE HER HUSBAND NOT ON THE BASIS
+             * OF VIRTUE, BUT SIMPLY ON THE BASIS OF INTELLIGENCE. SHE HAD THE
+             * FOLLOWING INSCRIPTIONS PUT ON THE CASKETS :
+             *
+             * GOLD : THE PORTRAIT IS IN THIS CASKET.
+             * SILVER : THE PORTRAIT IS NOT IN THIS CASKET.
+             * LEAD : THE PORTRAIT IS NOT IN THE GOLD CASKET.
+             *
+             * PORTIA EXPLAINED TO THE SUITOR THAT OF THE THREE STATEMENTS AT
+             * MOST ONE WAS TRUE.
+             * WHICH CASKET SHOULD THE SUITOR CHOOSE ?
+             *
+             * WE DEFINE THE FOLLOWING PREDICATES :
+             * PORTRAIT (X) --- THE PORTRAIT IS IN CASKET X
+             * TRUTH (X) --- THE INSCRIPTION X IS TRUE
+             * INSCR.PORTRAIT (X Y) --- THE INSCRIPTION X TELLS THAT
+             * THE PORTRAIT IS IN CASKET Y
+             * NEG.INSCR.PORTRAIT (X Y) --- THE INSCRIPTION X TELLS THAT
+             * THE PORTRAIT IS NOT IN CASKET Y
+             *
+             * DECLARATIONS :
+             TYPE GOLD,SILVER,LEAD : CASKET
+             TYPE INSCRIPTION (CASKET) : INSCRIPT
+             TYPE PORTRAIT (CASKET)
+             TYPE TRUTH (INSCRIPT)
+             TYPE INSCR.PORTRAIT (INSCRIPT CASKET)
+             TYPE NEG.INSCR.PORTRAIT (INSCRIPT CASKET)
+             *
+             * THEN THE FOLLOWING PROPOSITIONS HOLD.
+             *
+             * THERE IS EXACTLY ONE PORTRAIT :
+             PORTRAIT (GOLD) OR PORTRAIT (SILVER) OR PORTRAIT (LEAD)
+             NOT (PORTRAIT (GOLD) AND PORTRAIT (SILVER)
+                  OR PORTRAIT (SILVER) AND PORTRAIT (LEAD)
+                  OR PORTRAIT (LEAD) AND PORTRAIT (GOLD))
+             *
+             * AT MOST ONE INSCRIPTION TELLS THE TRUTH :
+             NOT (TRUTH (INSCRIPTION (GOLD)) AND TRUTH (INSCRIPTION (SILVER))
+                  OR TRUTH (INSCRIPTION (SILVER)) AND TRUTH (INSCRIPTION (LEAD))
+                  OR TRUTH (INSCRIPTION (LEAD)) AND TRUTH (INSCRIPTION (GOLD)))
+             *
+             * IMPLICATIONS TO BE DRAWN FROM INSCRIPTION :
+             ALL X : INSCRIPT ALL Y : CASKET INSCR.PORTRAIT (X Y) AND TRUTH (X) IMPL PORTRAIT (Y)
+             ALL X : INSCRIPT ALL Y : CASKET INSCR.PORTRAIT (X Y) AND NOT TRUTH (X) IMPL NOT PORTRAIT (Y)
+             ALL X : INSCRIPT ALL Y : CASKET NEG.INSCR.PORTRAIT (X Y) AND TRUTH (X) IMPL NOT PORTRAIT (Y)
+             ALL X : INSCRIPT ALL Y : CASKET NEG.INSCR.PORTRAIT (X Y) AND NOT TRUTH (X) IMPL PORTRAIT (Y)
+             *
+             * ACTUAL INSCRIPTIONS :
+             INSCR.PORTRAIT (INSCRIPTION (GOLD) GOLD)
+             NEG.INSCR.PORTRAIT (INSCRIPTION (SILVER) SILVER)
+             NEG.INSCR.PORTRAIT (INSCRIPTION (LEAD) GOLD)
+             
+   Theorems: PORTRAIT (SILVER)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+           * A2:   + INSCR.PORTRAIT(inscription(gold) gold)
+           * A3:   + NEG.INSCR.PORTRAIT(inscription(silver) silver)
+           * A4:   + NEG.INSCR.PORTRAIT(inscription(lead) gold)
+             A5:   - PORTRAIT(gold)  - PORTRAIT(silver)
+             A6:   - PORTRAIT(silver)  - PORTRAIT(lead)
+             A7:   - PORTRAIT(lead)  - PORTRAIT(gold)
+           * A8:   - TRUTH(inscription(gold))  - TRUTH(inscription(silver))
+           * A9:   - TRUTH(inscription(silver))  - TRUTH(inscription(lead))
+             A10:  - TRUTH(inscription(lead))  - TRUTH(inscription(gold))
+             A11:  + PORTRAIT(gold)  + PORTRAIT(silver)  + PORTRAIT(lead)
+             A12:  All x:Casket y:Inscript - INSCR.PORTRAIT(y x)  - TRUTH(y)  + PORTRAIT(x)
+           * A13:  All x:Casket y:Inscript - INSCR.PORTRAIT(y x)  + TRUTH(y)  - PORTRAIT(x)
+             A14:  All x:Casket y:Inscript - NEG.INSCR.PORTRAIT(y x)  - TRUTH(y)  - PORTRAIT(x)
+           * A15:  All x:Casket y:Inscript - NEG.INSCR.PORTRAIT(y x)  + TRUTH(y)  + PORTRAIT(x)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T16: - PORTRAIT(silver)
+
+
+
+    Literals: ((T16 31) (A15 25 26 27) (A14 22 23 24) (A13 19 20 21) (A12 16 17 18) (A11 1 2 3) (A10 14 15) (A9 12 13) (A8 10 11) (A7 8 9) (A6 6 7) (A5 4 5) (A4 30) (A3 29) (A2 28) (A1 NIL))
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:    A1:   All x:Any + =(x x)
+                     * A2:   + INSCR.PORTRAIT(inscription(gold) gold)
+                     * A3:   + NEG.INSCR.PORTRAIT(inscription(silver) silver)
+                     * A4:   + NEG.INSCR.PORTRAIT(inscription(lead) gold)
+                       A7:   - PORTRAIT(lead)  - PORTRAIT(gold)
+                     * A8:   - TRUTH(inscription(gold))  - TRUTH(inscription(silver))
+                     * A9:   - TRUTH(inscription(silver))  - TRUTH(inscription(lead))
+                       A10:  - TRUTH(inscription(lead))  - TRUTH(inscription(gold))
+                       R1:   + PORTRAIT(gold)  + PORTRAIT(lead)
+                       A12:  All x:Casket y:Inscript - INSCR.PORTRAIT(y x)  - TRUTH(y)  + PORTRAIT(x)
+                     * A13:  All x:Casket y:Inscript - INSCR.PORTRAIT(y x)  + TRUTH(y)  - PORTRAIT(x)
+                       A14:  All x:Casket y:Inscript - NEG.INSCR.PORTRAIT(y x)  - TRUTH(y)  - PORTRAIT(x)
+                     * A15:  All x:Casket y:Inscript - NEG.INSCR.PORTRAIT(y x)  + TRUTH(y)  + PORTRAIT(x)
+                     * T16:  - PORTRAIT(silver)
+                     
+
+   
+   A2,1 & A13,1  --> * R3:   + TRUTH(inscription(gold))  - PORTRAIT(gold)
+   
+   A3,1 & A15,1  --> * R5:   + TRUTH(inscription(silver))  + PORTRAIT(silver)
+   
+   R5,2 & T16,1  --> * R6:   + TRUTH(inscription(silver))
+   
+   A9,1 & R6,1   --> * R7:   - TRUTH(inscription(lead))
+   
+   A8,2 & R6,1   --> * R8:   - TRUTH(inscription(gold))
+   
+   R3,1 & R8,1   --> * R9:   - PORTRAIT(gold)
+   
+   R9,1 & A15,3  --> * R10:  - NEG.INSCR.PORTRAIT(inscription(lead) gold)  + TRUTH(inscription(lead))
+   
+   R10,1 & A4,1  --> * R11:  + TRUTH(inscription(lead))
+   
+   R11,1 & R7,1  --> * R12:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 13 seconds

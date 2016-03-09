@@ -1,0 +1,28 @@
+;;; -*- Package: MKRP; Mode: LISP; Syntax: Common-lisp -*-
+
+(SORT ELEM,MENGE,VERKN:ANY)
+(TYPE APPLY (VERKN ELEM ELEM) :ELEM)
+(TYPE INVERS (VERKN ELEM) :ELEM)
+(ALL U,V:MENGE ALL X:ELEM ME (U V) AND EL (X U) IMPL EL (X V))
+(ALL F:MENGE  ALL PHI:VERKN  ALL X,E:ELEM  
+     G (F PHI E) AND EL (X F) IMPL APPLY (PHI X E) = X)
+(ALL U:MENGE ALL PHI:VERKN ALL E:ELEM EINS (E PHI U) IMPL EL (E U))
+(ALL F:MENGE  ALL PHI:VERKN  ALL X,E:ELEM  
+     G (F PHI E) AND EL (X F) IMPL EL (INVERS (PHI X) F))
+
+(ALL U,F:MENGE  ALL PHI:VERKN  ALL Z,E:ELEM  
+     G (F PHI E) AND ME (U F)
+     IMPL  
+     ALL X,Y:ELEM  
+     EL (X U) AND EL (Y U)
+     IMPL  
+     EL (APPLY (PHI INVERS (PHI Y) X) U)
+     AND  
+     EL (Z U)
+     AND  
+     EINS (E PHI U)
+     IMPL  
+     EL (INVERS (PHI Z) U))
+
+
+; Auch auf siemens kein beweis

@@ -1,0 +1,963 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 30.0 EQUALITY 15.2                                  *
+                     *           DATE: 26-JUL,1989  00:04                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+                                                                                                                    
+      
+   
+   ******************************************************************************************************************
+   ***
+   
+    EDIT:     Axioms and Theorems edited: 26-JUL,1989 00:03 
+   
+   ******************************************************************************************************************
+   ***
+   
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * ES GILT GENAU EINE DER 3 EIGENSCHAFTEN KEINS, EINS ODER BEIDES *
+             ALL X BEIDE (X) OR KEINS (X) OR EINS (X)
+             ALL X NOT (EINS (X) AND BEIDE (X))
+             ALL X NOT (EINS (X) AND KEINS (X))
+             ALL X NOT (BEIDE (X) AND KEINS (X))
+             * DEFINITION VON EINS *
+             ALL X EINS (X) IMPL SALZ (X) OR SENF (X)
+             ALL X EINS (X) IMPL NOT (SALZ (X) AND SENF (X))
+             * DEFINITION VON KEINS *
+             ALL X KEINS (X) EQV NOT SALZ (X) AND NOT SENF (X)
+             * DEFINITION VON BEIDE *
+             ALL X BEIDE (X) EQV SALZ (X) AND SENF (X)
+             * 1 SATZ *
+             SALZ (ANTON) EQV EINS (BRUNO) OR EINS (DORA)
+             SENF (ANTON) EQV KEINS (CLARA) OR BEIDE (ELSE)
+             * 2 SATZ *
+             SALZ (BRUNO) EQV EINS (ANTON) OR KEINS (ELSE)
+             SENF (BRUNO) EQV BEIDE (CLARA) OR BEIDE (DORA)
+             * 3 SATZ *
+             SALZ (CLARA) EQV KEINS (ANTON) OR BEIDE (BRUNO)
+             SENF (CLARA) EQV KEINS (DORA) OR KEINS (ELSE)
+             * 4 SATZ *
+             SALZ (DORA) EQV EINS (ANTON) OR EINS (CLARA)
+             SENF (DORA) EQV KEINS (BRUNO) OR KEINS (ELSE)
+             * 5 SATZ *
+             SALZ (ELSE) EQV BEIDE (ANTON) OR BEIDE (DORA)
+             SENF (ELSE) EQV EINS (BRUNO) OR EINS (CLARA)
+             
+   Theorems: NIL  
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   + SALZ(anton)  - EINS(bruno)
+             A2:   + SALZ(anton)  - EINS(dora)
+             A3:   + SALZ(bruno)  - EINS(anton)
+             A4:   + SALZ(dora)  - EINS(anton)
+             A5:   + SALZ(dora)  - EINS(clara)
+             A6:   + SENF(else)  - EINS(bruno)
+             A7:   + SENF(else)  - EINS(clara)
+             A8:   All x:Any + SALZ(x)  - SALZ(x)  + EINS(x)
+             A9:   All x:Any + SALZ(x)  - SENF(x)  + EINS(x)
+             A10:  All x:Any + SENF(x)  - SALZ(x)  + EINS(x)
+             A11:  All x:Any + SENF(x)  - SENF(x)  + EINS(x)
+             A12:  All x:Any - EINS(x)  - SALZ(x)  - SENF(x)
+             A13:  All x:Any - EINS(x)  + SALZ(x)  + SENF(x)
+             A14:  All x:Any - EINS(x)  + SALZ(x)  + SENF(x)
+             A15:  All x:Any - EINS(x)  - SALZ(x)  - SENF(x)
+             A16:  - SALZ(anton)  + EINS(bruno)  + EINS(dora)
+             A17:  + SENF(anton)  + SALZ(clara)  + SENF(clara)
+             A18:  + SENF(anton)  - SALZ(else)  - SENF(else)
+             A19:  - SENF(anton)  - SALZ(clara)  + SALZ(else)
+             A20:  - SENF(anton)  - SALZ(clara)  + SENF(else)
+             A21:  - SENF(anton)  - SENF(clara)  + SALZ(else)
+             A22:  - SENF(anton)  - SENF(clara)  + SENF(else)
+             A23:  + SALZ(bruno)  + SALZ(else)  + SENF(else)
+             A24:  - SALZ(bruno)  + EINS(anton)  - SALZ(else)
+             A25:  - SALZ(bruno)  + EINS(anton)  - SENF(else)
+             A26:  + SENF(bruno)  - SALZ(clara)  - SENF(clara)
+             A27:  + SENF(bruno)  - SALZ(dora)  - SENF(dora)
+             A28:  - SENF(bruno)  + SALZ(clara)  + SALZ(dora)
+             A29:  - SENF(bruno)  + SALZ(clara)  + SENF(dora)
+             A30:  - SENF(bruno)  + SENF(clara)  + SALZ(dora)
+             A31:  - SENF(bruno)  + SENF(clara)  + SENF(dora)
+             A32:  + SALZ(clara)  + SALZ(anton)  + SENF(anton)
+             A33:  + SALZ(clara)  - SALZ(bruno)  - SENF(bruno)
+             A34:  - SALZ(clara)  - SALZ(anton)  + SALZ(bruno)
+             A35:  - SALZ(clara)  - SALZ(anton)  + SENF(bruno)
+             A36:  - SALZ(clara)  - SENF(anton)  + SALZ(bruno)
+             A37:  - SALZ(clara)  - SENF(anton)  + SENF(bruno)
+             A38:  + SENF(clara)  + SALZ(dora)  + SENF(dora)
+             A39:  + SENF(clara)  + SALZ(else)  + SENF(else)
+             A40:  - SENF(clara)  - SALZ(dora)  - SALZ(else)
+             A41:  - SENF(clara)  - SALZ(dora)  - SENF(else)
+             A42:  - SENF(clara)  - SENF(dora)  - SALZ(else)
+             A43:  - SENF(clara)  - SENF(dora)  - SENF(else)
+             A44:  - SALZ(dora)  + EINS(anton)  + EINS(clara)
+             A45:  + SENF(dora)  + SALZ(bruno)  + SENF(bruno)
+             A46:  + SENF(dora)  + SALZ(else)  + SENF(else)
+             A47:  - SENF(dora)  - SALZ(bruno)  - SALZ(else)
+             A48:  - SENF(dora)  - SALZ(bruno)  - SENF(else)
+             A49:  - SENF(dora)  - SENF(bruno)  - SALZ(else)
+             A50:  - SENF(dora)  - SENF(bruno)  - SENF(else)
+             A51:  + SALZ(else)  - SALZ(anton)  - SENF(anton)
+             A52:  + SALZ(else)  - SALZ(dora)  - SENF(dora)
+             A53:  - SALZ(else)  + SALZ(anton)  + SALZ(dora)
+             A54:  - SALZ(else)  + SALZ(anton)  + SENF(dora)
+             A55:  - SALZ(else)  + SENF(anton)  + SALZ(dora)
+             A56:  - SALZ(else)  + SENF(anton)  + SENF(dora)
+             A57:  - SENF(else)  + EINS(bruno)  + EINS(clara)
+             A58:  All x:Any - SALZ(x)  - SENF(x)  + SALZ(x)  + SENF(x)
+           
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation: (Failure: GRAPH.COLLAPSED)
+   ======================================
+   
+   Initial Clauses:        A1:    + SALZ(anton)  - EINS(bruno)
+                           A2:    + SALZ(anton)  - EINS(dora)
+                           A3:    + SALZ(bruno)  - EINS(anton)
+                           A4:    + SALZ(dora)  - EINS(anton)
+                           A5:    + SALZ(dora)  - EINS(clara)
+                           A6:    + SENF(else)  - EINS(bruno)
+                           A7:    + SENF(else)  - EINS(clara)
+                           A9:    All x:Any + SALZ(x)  - SENF(x)  + EINS(x)
+                           A10:   All x:Any + SENF(x)  - SALZ(x)  + EINS(x)
+                           A12:   All x:Any - EINS(x)  - SALZ(x)  - SENF(x)
+                           A13:   All x:Any - EINS(x)  + SALZ(x)  + SENF(x)
+                           A16:   - SALZ(anton)  + EINS(bruno)  + EINS(dora)
+                           A17:   + SENF(anton)  + SALZ(clara)  + SENF(clara)
+                           A18:   + SENF(anton)  - SALZ(else)  - SENF(else)
+                           A19:   - SENF(anton)  - SALZ(clara)  + SALZ(else)
+                           A20:   - SENF(anton)  - SALZ(clara)  + SENF(else)
+                           A21:   - SENF(anton)  - SENF(clara)  + SALZ(else)
+                           A22:   - SENF(anton)  - SENF(clara)  + SENF(else)
+                           A23:   + SALZ(bruno)  + SALZ(else)  + SENF(else)
+                           A24:   - SALZ(bruno)  + EINS(anton)  - SALZ(else)
+                           A25:   - SALZ(bruno)  + EINS(anton)  - SENF(else)
+                           A26:   + SENF(bruno)  - SALZ(clara)  - SENF(clara)
+                           A27:   + SENF(bruno)  - SALZ(dora)  - SENF(dora)
+                           A28:   - SENF(bruno)  + SALZ(clara)  + SALZ(dora)
+                           A29:   - SENF(bruno)  + SALZ(clara)  + SENF(dora)
+                           A30:   - SENF(bruno)  + SENF(clara)  + SALZ(dora)
+                           A31:   - SENF(bruno)  + SENF(clara)  + SENF(dora)
+                           A32:   + SALZ(clara)  + SALZ(anton)  + SENF(anton)
+                           A33:   + SALZ(clara)  - SALZ(bruno)  - SENF(bruno)
+                           A34:   - SALZ(clara)  - SALZ(anton)  + SALZ(bruno)
+                           A35:   - SALZ(clara)  - SALZ(anton)  + SENF(bruno)
+                           A36:   - SALZ(clara)  - SENF(anton)  + SALZ(bruno)
+                           A37:   - SALZ(clara)  - SENF(anton)  + SENF(bruno)
+                           A38:   + SENF(clara)  + SALZ(dora)  + SENF(dora)
+                           A39:   + SENF(clara)  + SALZ(else)  + SENF(else)
+                           A40:   - SENF(clara)  - SALZ(dora)  - SALZ(else)
+                           A41:   - SENF(clara)  - SALZ(dora)  - SENF(else)
+                           A42:   - SENF(clara)  - SENF(dora)  - SALZ(else)
+                           A43:   - SENF(clara)  - SENF(dora)  - SENF(else)
+                           A44:   - SALZ(dora)  + EINS(anton)  + EINS(clara)
+                           A45:   + SENF(dora)  + SALZ(bruno)  + SENF(bruno)
+                           A46:   + SENF(dora)  + SALZ(else)  + SENF(else)
+                           A47:   - SENF(dora)  - SALZ(bruno)  - SALZ(else)
+                           A48:   - SENF(dora)  - SALZ(bruno)  - SENF(else)
+                           A49:   - SENF(dora)  - SENF(bruno)  - SALZ(else)
+                           A50:   - SENF(dora)  - SENF(bruno)  - SENF(else)
+                           A51:   + SALZ(else)  - SALZ(anton)  - SENF(anton)
+                           A52:   + SALZ(else)  - SALZ(dora)  - SENF(dora)
+                           A53:   - SALZ(else)  + SALZ(anton)  + SALZ(dora)
+                           A54:   - SALZ(else)  + SALZ(anton)  + SENF(dora)
+                           A55:   - SALZ(else)  + SENF(anton)  + SALZ(dora)
+                           A56:   - SALZ(else)  + SENF(anton)  + SENF(dora)
+                           A57:   - SENF(else)  + EINS(bruno)  + EINS(clara)
+                         
+
+   
+   A9,3 & A7,2      -->    R1:    + SALZ(clara)  - SENF(clara)  + SENF(else)
+   
+   A9,3 & A6,2      -->    R2:    + SALZ(bruno)  - SENF(bruno)  + SENF(else)
+   
+   A9,3 & A5,2      -->    R3:    + SALZ(clara)  - SENF(clara)  + SALZ(dora)
+   
+   A9,3 & A4,2      -->    R4:    + SALZ(anton)  - SENF(anton)  + SALZ(dora)
+   
+   A9,3 & A3,2      -->    R5:    + SALZ(anton)  - SENF(anton)  + SALZ(bruno)
+   
+   A9,3 & A2,2      -->    R6:    + SALZ(dora)  - SENF(dora)  + SALZ(anton)
+   
+   A9,3 & A1,2      -->    R7:    + SALZ(bruno)  - SENF(bruno)  + SALZ(anton)
+   
+   A7,1 & A9,2      -->    R8:    - EINS(clara)  + SALZ(else)  + EINS(else)
+   
+   A6,1 & A9,2      -->    R9:    - EINS(bruno)  + SALZ(else)  + EINS(else)
+   
+   A10,3 & A7,2     -->    R10:   + SENF(clara)  - SALZ(clara)  + SENF(else)
+   
+   A10,3 & A6,2     -->    R11:   + SENF(bruno)  - SALZ(bruno)  + SENF(else)
+   
+   A10,3 & A5,2     -->    R12:   + SENF(clara)  - SALZ(clara)  + SALZ(dora)
+   
+   A10,3 & A4,2     -->    R13:   + SENF(anton)  - SALZ(anton)  + SALZ(dora)
+   
+   A10,3 & A3,2     -->    R14:   + SENF(anton)  - SALZ(anton)  + SALZ(bruno)
+   
+   A10,3 & A2,2     -->    R15:   + SENF(dora)  - SALZ(dora)  + SALZ(anton)
+   
+   A10,3 & A1,2     -->    R16:   + SENF(bruno)  - SALZ(bruno)  + SALZ(anton)
+   
+   A5,1 & A10,2     -->    R17:   - EINS(clara)  + SENF(dora)  + EINS(dora)
+   
+   A4,1 & A10,2     -->    R18:   - EINS(anton)  + SENF(dora)  + EINS(dora)
+   
+   A3,1 & A10,2     -->    R19:   - EINS(anton)  + SENF(bruno)  + EINS(bruno)
+   
+   A2,1 & A10,2     -->    R20:   - EINS(dora)  + SENF(anton)  + EINS(anton)
+   
+   A1,1 & A10,2     -->    R21:   - EINS(bruno)  + SENF(anton)  + EINS(anton)
+   
+   A7,1 & A12,3     -->    R22:   - EINS(clara)  - EINS(else)  - SALZ(else)
+   
+   A6,1 & A12,3     -->    R23:   - EINS(bruno)  - EINS(else)  - SALZ(else)
+   
+   A5,1 & A12,2     -->    R24:   - EINS(clara)  - EINS(dora)  - SENF(dora)
+   
+   A4,1 & A12,2     -->    R25:   - EINS(anton)  - EINS(dora)  - SENF(dora)
+   
+   A3,1 & A12,2     -->    R26:   - EINS(anton)  - EINS(bruno)  - SENF(bruno)
+   
+   A2,1 & A12,2     -->    R27:   - EINS(dora)  - EINS(anton)  - SENF(anton)
+   
+   A1,1 & A12,2     -->    R28:   - EINS(bruno)  - EINS(anton)  - SENF(anton)
+   
+   A16,2 & A6,2     -->    R29:   - SALZ(anton)  + EINS(dora)  + SENF(else)
+   
+   A17,3 & A9,2     -->    R30:   + SENF(anton)  + SALZ(clara)  + SALZ(clara)  + EINS(clara)
+   
+   R30 3=2          -->    D31:   + SENF(anton)  + SALZ(clara)  + EINS(clara)
+   
+   A17,2 & A10,2    -->    R32:   + SENF(anton)  + SENF(clara)  + SENF(clara)  + EINS(clara)
+   
+   R32 3=2          -->    D33:   + SENF(anton)  + SENF(clara)  + EINS(clara)
+   
+   A10,1 & A18,3    -->    R34:   - SALZ(else)  + EINS(else)  + SENF(anton)  - SALZ(else)
+   
+   R34 1=4          -->    D35:   - SALZ(else)  + EINS(else)  + SENF(anton)
+   
+   A7,1 & A18,3     -->    R36:   - EINS(clara)  + SENF(anton)  - SALZ(else)
+   
+   A6,1 & A18,3     -->    R37:   - EINS(bruno)  + SENF(anton)  - SALZ(else)
+   
+   A9,1 & A18,2     -->    R38:   - SENF(else)  + EINS(else)  + SENF(anton)  - SENF(else)
+   
+   R38 1=4          -->    D39:   - SENF(else)  + EINS(else)  + SENF(anton)
+   
+   A23,3 & A9,2     -->    R40:   + SALZ(bruno)  + SALZ(else)  + SALZ(else)  + EINS(else)
+   
+   R40 3=2          -->    D41:   + SALZ(bruno)  + SALZ(else)  + EINS(else)
+   
+   A23,2 & A10,2    -->    R42:   + SALZ(bruno)  + SENF(else)  + SENF(else)  + EINS(else)
+   
+   R42 3=2          -->    D43:   + SALZ(bruno)  + SENF(else)  + EINS(else)
+   
+   A24,2 & A4,2     -->    R44:   - SALZ(bruno)  - SALZ(else)  + SALZ(dora)
+   
+   A7,1 & A25,3     -->    R45:   - EINS(clara)  - SALZ(bruno)  + EINS(anton)
+   
+   A6,1 & A25,3     -->    R46:   - EINS(bruno)  - SALZ(bruno)  + EINS(anton)
+   
+   A25,2 & A4,2     -->    R47:   - SALZ(bruno)  - SENF(else)  + SALZ(dora)
+   
+   A10,1 & A26,3    -->    R48:   - SALZ(clara)  + EINS(clara)  + SENF(bruno)  - SALZ(clara)
+   
+   R48 1=4          -->    D49:   - SALZ(clara)  + EINS(clara)  + SENF(bruno)
+   
+   A9,1 & A26,2     -->    R50:   - SENF(clara)  + EINS(clara)  + SENF(bruno)  - SENF(clara)
+   
+   R50 1=4          -->    D51:   - SENF(clara)  + EINS(clara)  + SENF(bruno)
+   
+   A10,1 & A27,3    -->    R52:   - SALZ(dora)  + EINS(dora)  + SENF(bruno)  - SALZ(dora)
+   
+   R52 1=4          -->    D53:   - SALZ(dora)  + EINS(dora)  + SENF(bruno)
+   
+   A9,1 & A27,2     -->    R54:   - SENF(dora)  + EINS(dora)  + SENF(bruno)  - SENF(dora)
+   
+   R54 1=4          -->    D55:   - SENF(dora)  + EINS(dora)  + SENF(bruno)
+   
+   A5,1 & A27,2     -->    R56:   - EINS(clara)  + SENF(bruno)  - SENF(dora)
+   
+   A4,1 & A27,2     -->    R57:   - EINS(anton)  + SENF(bruno)  - SENF(dora)
+   
+   A32,3 & A9,2     -->    R58:   + SALZ(clara)  + SALZ(anton)  + SALZ(anton)  + EINS(anton)
+   
+   R58 3=2          -->    D59:   + SALZ(clara)  + SALZ(anton)  + EINS(anton)
+   
+   A32,2 & A10,2    -->    R60:   + SALZ(clara)  + SENF(anton)  + SENF(anton)  + EINS(anton)
+   
+   R60 3=2          -->    D61:   + SALZ(clara)  + SENF(anton)  + EINS(anton)
+   
+   A10,1 & A33,3    -->    R62:   - SALZ(bruno)  + EINS(bruno)  + SALZ(clara)  - SALZ(bruno)
+   
+   R62 1=4          -->    D63:   - SALZ(bruno)  + EINS(bruno)  + SALZ(clara)
+   
+   A9,1 & A33,2     -->    R64:   - SENF(bruno)  + EINS(bruno)  + SALZ(clara)  - SENF(bruno)
+   
+   R64 1=4          -->    D65:   - SENF(bruno)  + EINS(bruno)  + SALZ(clara)
+   
+   A3,1 & A33,2     -->    R66:   - EINS(anton)  + SALZ(clara)  - SENF(bruno)
+   
+   A2,1 & A34,2     -->    R67:   - EINS(dora)  - SALZ(clara)  + SALZ(bruno)
+   
+   A1,1 & A34,2     -->    R68:   - EINS(bruno)  - SALZ(clara)  + SALZ(bruno)
+   
+   A2,1 & A35,2     -->    R69:   - EINS(dora)  - SALZ(clara)  + SENF(bruno)
+   
+   A1,1 & A35,2     -->    R70:   - EINS(bruno)  - SALZ(clara)  + SENF(bruno)
+   
+   A38,3 & A9,2     -->    R71:   + SENF(clara)  + SALZ(dora)  + SALZ(dora)  + EINS(dora)
+   
+   R71 3=2          -->    D72:   + SENF(clara)  + SALZ(dora)  + EINS(dora)
+   
+   A38,2 & A10,2    -->    R73:   + SENF(clara)  + SENF(dora)  + SENF(dora)  + EINS(dora)
+   
+   R73 3=2          -->    D74:   + SENF(clara)  + SENF(dora)  + EINS(dora)
+   
+   A39,3 & A9,2     -->    R75:   + SENF(clara)  + SALZ(else)  + SALZ(else)  + EINS(else)
+   
+   R75 3=2          -->    D76:   + SENF(clara)  + SALZ(else)  + EINS(else)
+   
+   A39,2 & A10,2    -->    R77:   + SENF(clara)  + SENF(else)  + SENF(else)  + EINS(else)
+   
+   R77 3=2          -->    D78:   + SENF(clara)  + SENF(else)  + EINS(else)
+   
+   A39,1 & A22,2    -->    R79:   + SALZ(else)  + SENF(else)  - SENF(anton)  + SENF(else)
+   
+   R79 4=2          -->    D80:   + SALZ(else)  - SENF(anton)  + SENF(else)
+   
+   A21,3 & A40,3    -->    R81:   - SENF(anton)  - SENF(clara)  - SENF(clara)  - SALZ(dora)
+   
+   R81 2=3          -->    D82:   - SENF(anton)  - SENF(clara)  - SALZ(dora)
+   
+   A5,1 & A40,2     -->    R83:   - EINS(clara)  - SENF(clara)  - SALZ(else)
+   
+   A4,1 & A40,2     -->    R84:   - EINS(anton)  - SENF(clara)  - SALZ(else)
+   
+   A22,3 & A41,3    -->    R85:   - SENF(anton)  - SENF(clara)  - SENF(clara)  - SALZ(dora)
+   
+   R85 2=3          -->    D86:   - SENF(anton)  - SENF(clara)  - SALZ(dora)
+   
+   A7,1 & A41,3     -->    R87:   - EINS(clara)  - SENF(clara)  - SALZ(dora)
+   
+   R87,3 & A5,1     -->    R88:   - EINS(clara)  - SENF(clara)  - EINS(clara)
+   
+   R88 1=3          -->    D89:   - EINS(clara)  - SENF(clara)
+   
+   D51,2 & D89,1    -->    R90:   - SENF(clara)  + SENF(bruno)  - SENF(clara)
+   
+   R90 1=3          -->    D91:   - SENF(clara)  + SENF(bruno)
+   
+   A13,3 & D89,2    -->    R92:   - EINS(clara)  + SALZ(clara)  - EINS(clara)
+   
+   R92 3=1          -->    D93:   + SALZ(clara)  - EINS(clara)
+   
+   D31,3 & D93,2    -->    R94:   + SENF(anton)  + SALZ(clara)  + SALZ(clara)
+   
+   R94 2=3          -->    D95:   + SENF(anton)  + SALZ(clara)
+   
+   A6,1 & A41,3     -->    R96:   - EINS(bruno)  - SENF(clara)  - SALZ(dora)
+   
+   A5,1 & A41,2     -->    R97:   - EINS(clara)  - SENF(clara)  - SENF(else)
+   
+   A4,1 & A41,2     -->    R98:   - EINS(anton)  - SENF(clara)  - SENF(else)
+   
+   A21,3 & A42,3    -->    R99:   - SENF(anton)  - SENF(clara)  - SENF(clara)  - SENF(dora)
+   
+   R99 2=3          -->    D100:  - SENF(anton)  - SENF(clara)  - SENF(dora)
+   
+   A22,3 & A43,3    -->    R101:  - SENF(anton)  - SENF(clara)  - SENF(clara)  - SENF(dora)
+   
+   R101 2=3         -->    D102:  - SENF(anton)  - SENF(clara)  - SENF(dora)
+   
+   A7,1 & A43,3     -->    R103:  - EINS(clara)  - SENF(clara)  - SENF(dora)
+   
+   A6,1 & A43,3     -->    R104:  - EINS(bruno)  - SENF(clara)  - SENF(dora)
+   
+   A44,3 & A7,2     -->    R105:  - SALZ(dora)  + EINS(anton)  + SENF(else)
+   
+   A44,2 & A3,2     -->    R106:  - SALZ(dora)  + EINS(clara)  + SALZ(bruno)
+   
+   A45,3 & A31,1    -->    R107:  + SENF(dora)  + SALZ(bruno)  + SENF(clara)  + SENF(dora)
+   
+   R107 4=1         -->    D108:  + SALZ(bruno)  + SENF(clara)  + SENF(dora)
+   
+   A45,3 & A29,1    -->    R109:  + SENF(dora)  + SALZ(bruno)  + SALZ(clara)  + SENF(dora)
+   
+   R109 4=1         -->    D110:  + SALZ(bruno)  + SALZ(clara)  + SENF(dora)
+   
+   A45,3 & A9,2     -->    R111:  + SENF(dora)  + SALZ(bruno)  + SALZ(bruno)  + EINS(bruno)
+   
+   R111 3=2         -->    D112:  + SENF(dora)  + SALZ(bruno)  + EINS(bruno)
+   
+   A45,2 & A10,2    -->    R113:  + SENF(dora)  + SENF(bruno)  + SENF(bruno)  + EINS(bruno)
+   
+   R113 3=2         -->    D114:  + SENF(dora)  + SENF(bruno)  + EINS(bruno)
+   
+   A45,1 & A27,3    -->    R115:  + SALZ(bruno)  + SENF(bruno)  + SENF(bruno)  - SALZ(dora)
+   
+   R115 3=2         -->    D116:  + SALZ(bruno)  + SENF(bruno)  - SALZ(dora)
+   
+   A46,3 & A9,2     -->    R117:  + SENF(dora)  + SALZ(else)  + SALZ(else)  + EINS(else)
+   
+   R117 3=2         -->    D118:  + SENF(dora)  + SALZ(else)  + EINS(else)
+   
+   A46,2 & A10,2    -->    R119:  + SENF(dora)  + SENF(else)  + SENF(else)  + EINS(else)
+   
+   R119 3=2         -->    D120:  + SENF(dora)  + SENF(else)  + EINS(else)
+   
+   A3,1 & A47,2     -->    R121:  - EINS(anton)  - SENF(dora)  - SALZ(else)
+   
+   A7,1 & A48,3     -->    R122:  - EINS(clara)  - SENF(dora)  - SALZ(bruno)
+   
+   A6,1 & A48,3     -->    R123:  - EINS(bruno)  - SENF(dora)  - SALZ(bruno)
+   
+   A3,1 & A48,2     -->    R124:  - EINS(anton)  - SENF(dora)  - SENF(else)
+   
+   A27,1 & A49,2    -->    R125:  - SALZ(dora)  - SENF(dora)  - SENF(dora)  - SALZ(else)
+   
+   R125 2=3         -->    D126:  - SALZ(dora)  - SENF(dora)  - SALZ(else)
+   
+   D126,3 & A52,1   -->    R127:  - SALZ(dora)  - SENF(dora)  - SALZ(dora)  - SENF(dora)
+   
+   R127 1=3         -->    D128:  - SALZ(dora)  - SENF(dora)  - SENF(dora)
+   
+   D128 2=3         -->    D129:  - SALZ(dora)  - SENF(dora)
+   
+   R15,1 & D129,2   -->    R130:  - SALZ(dora)  + SALZ(anton)  - SALZ(dora)
+   
+   R130 1=3         -->    D131:  - SALZ(dora)  + SALZ(anton)
+   
+   R6,1 & D129,1    -->    R132:  - SENF(dora)  + SALZ(anton)  - SENF(dora)
+   
+   R132 1=3         -->    D133:  - SENF(dora)  + SALZ(anton)
+   
+   A53,3 & D131,1   -->    R134:  - SALZ(else)  + SALZ(anton)  + SALZ(anton)
+   
+   R134 2=3         -->    D135:  - SALZ(else)  + SALZ(anton)
+   
+   R4,3 & D131,1    -->    R136:  + SALZ(anton)  - SENF(anton)  + SALZ(anton)
+   
+   R136 1=3         -->    D137:  + SALZ(anton)  - SENF(anton)
+   
+   A54,3 & D133,1   -->    R138:  - SALZ(else)  + SALZ(anton)  + SALZ(anton)
+   
+   R138 2=3         -->    D139:  - SALZ(else)  + SALZ(anton)
+   
+   A32,3 & D137,2   -->    R140:  + SALZ(clara)  + SALZ(anton)  + SALZ(anton)
+   
+   R140 2=3         -->    D141:  + SALZ(clara)  + SALZ(anton)
+   
+   A51,2 & D137,1   -->    R142:  + SALZ(else)  - SENF(anton)  - SENF(anton)
+   
+   R142 2=3         -->    D143:  + SALZ(else)  - SENF(anton)
+   
+   A4,1 & D131,1    -->    R144:  - EINS(anton)  + SALZ(anton)
+   
+   D59,3 & R144,1   -->    R145:  + SALZ(clara)  + SALZ(anton)  + SALZ(anton)
+   
+   R145 2=3         -->    D146:  + SALZ(clara)  + SALZ(anton)
+   
+   A5,1 & D131,1    -->    R147:  - EINS(clara)  + SALZ(anton)
+   
+   D95,1 & D137,2   -->    R148:  + SALZ(clara)  + SALZ(anton)
+   
+   D95,1 & D143,2   -->    R149:  + SALZ(clara)  + SALZ(else)
+   
+   A19,2 & R149,1   -->    R150:  - SENF(anton)  + SALZ(else)  + SALZ(else)
+   
+   R150 2=3         -->    D151:  - SENF(anton)  + SALZ(else)
+   
+   D151,2 & A12,2   -->    R152:  - SENF(anton)  - EINS(else)  - SENF(else)
+   
+   A13,3 & D151,1   -->    R153:  - EINS(anton)  + SALZ(anton)  + SALZ(else)
+   
+   A10,1 & D151,1   -->    R154:  - SALZ(anton)  + EINS(anton)  + SALZ(else)
+   
+   D151,2 & A24,3   -->    R155:  - SENF(anton)  - SALZ(bruno)  + EINS(anton)
+   
+   D141,2 & A16,1   -->    R156:  + SALZ(clara)  + EINS(bruno)  + EINS(dora)
+   
+   D141,1 & A26,2   -->    R157:  + SALZ(anton)  + SENF(bruno)  - SENF(clara)
+   
+   D141,1 & A12,2   -->    R158:  + SALZ(anton)  - EINS(clara)  - SENF(clara)
+   
+   D141,1 & A10,2   -->    R159:  + SALZ(anton)  + SENF(clara)  + EINS(clara)
+   
+   R159,3 & R147,1  -->    R160:  + SALZ(anton)  + SENF(clara)  + SALZ(anton)
+   
+   R160 1=3         -->    D161:  + SALZ(anton)  + SENF(clara)
+   
+   D161,2 & D91,1   -->    R162:  + SALZ(anton)  + SENF(bruno)
+   
+   R7,2 & R162,2    -->    R163:  + SALZ(bruno)  + SALZ(anton)  + SALZ(anton)
+   
+   R163 2=3         -->    D164:  + SALZ(bruno)  + SALZ(anton)
+   
+   A35,2 & R162,1   -->    R165:  - SALZ(clara)  + SENF(bruno)  + SENF(bruno)
+   
+   R165 2=3         -->    D166:  - SALZ(clara)  + SENF(bruno)
+   
+   R14,2 & D164,2   -->    R167:  + SENF(anton)  + SALZ(bruno)  + SALZ(bruno)
+   
+   R167 2=3         -->    D168:  + SENF(anton)  + SALZ(bruno)
+   
+   A34,2 & D164,2   -->    R169:  - SALZ(clara)  + SALZ(bruno)  + SALZ(bruno)
+   
+   R169 2=3         -->    D170:  - SALZ(clara)  + SALZ(bruno)
+   
+   R16,2 & D164,1   -->    R171:  + SENF(bruno)  + SALZ(anton)  + SALZ(anton)
+   
+   R171 2=3         -->    D172:  + SENF(bruno)  + SALZ(anton)
+   
+   A36,2 & D168,1   -->    R173:  - SALZ(clara)  + SALZ(bruno)  + SALZ(bruno)
+   
+   R173 2=3         -->    D174:  - SALZ(clara)  + SALZ(bruno)
+   
+   D110,2 & D170,1  -->    R175:  + SALZ(bruno)  + SENF(dora)  + SALZ(bruno)
+   
+   R175 1=3         -->    D176:  + SALZ(bruno)  + SENF(dora)
+   
+   D95,2 & D166,1   -->    R177:  + SENF(anton)  + SENF(bruno)
+   
+   A37,2 & R177,1   -->    R178:  - SALZ(clara)  + SENF(bruno)  + SENF(bruno)
+   
+   R178 2=3         -->    D179:  - SALZ(clara)  + SENF(bruno)
+   
+   D176,2 & D133,1  -->    R180:  + SALZ(bruno)  + SALZ(anton)
+   
+   D176,2 & D129,2  -->    R181:  + SALZ(bruno)  - SALZ(dora)
+   
+   D170,2 & A25,1   -->    R182:  - SALZ(clara)  + EINS(anton)  - SENF(else)
+   
+   D170,2 & A24,1   -->    R183:  - SALZ(clara)  + EINS(anton)  - SALZ(else)
+   
+   D170,2 & A12,2   -->    R184:  - SALZ(clara)  - EINS(bruno)  - SENF(bruno)
+   
+   R184,3 & D166,2  -->    R185:  - SALZ(clara)  - EINS(bruno)  - SALZ(clara)
+   
+   R185 1=3         -->    D186:  - SALZ(clara)  - EINS(bruno)
+   
+   D95,2 & D186,1   -->    R187:  + SENF(anton)  - EINS(bruno)
+   
+   R28,3 & R187,1   -->    R188:  - EINS(bruno)  - EINS(anton)  - EINS(bruno)
+   
+   R188 1=3         -->    D189:  - EINS(bruno)  - EINS(anton)
+   
+   R46,3 & D189,2   -->    R190:  - EINS(bruno)  - SALZ(bruno)  - EINS(bruno)
+   
+   R190 1=3         -->    D191:  - EINS(bruno)  - SALZ(bruno)
+   
+   R21,3 & D189,2   -->    R192:  - EINS(bruno)  + SENF(anton)  - EINS(bruno)
+   
+   R192 1=3         -->    D193:  - EINS(bruno)  + SENF(anton)
+   
+   R19,3 & D189,1   -->    R194:  - EINS(anton)  + SENF(bruno)  - EINS(anton)
+   
+   R194 1=3         -->    D195:  - EINS(anton)  + SENF(bruno)
+   
+   D63,2 & D191,1   -->    R196:  - SALZ(bruno)  + SALZ(clara)  - SALZ(bruno)
+   
+   R196 1=3         -->    D197:  - SALZ(bruno)  + SALZ(clara)
+   
+   R66,3 & D195,2   -->    R198:  - EINS(anton)  + SALZ(clara)  - EINS(anton)
+   
+   R198 1=3         -->    D199:  - EINS(anton)  + SALZ(clara)
+   
+   R26,3 & D195,2   -->    R200:  - EINS(anton)  - EINS(bruno)  - EINS(anton)
+   
+   R200 1=3         -->    D201:  - EINS(anton)  - EINS(bruno)
+   
+   D61,3 & D199,1   -->    R202:  + SALZ(clara)  + SENF(anton)  + SALZ(clara)
+   
+   R202 1=3         -->    D203:  + SALZ(clara)  + SENF(anton)
+   
+   D193,2 & D143,2  -->    R204:  - EINS(bruno)  + SALZ(else)
+   
+   R23,3 & R204,2   -->    R205:  - EINS(bruno)  - EINS(else)  - EINS(bruno)
+   
+   R205 1=3         -->    D206:  - EINS(bruno)  - EINS(else)
+   
+   R37,3 & R204,2   -->    R207:  - EINS(bruno)  + SENF(anton)  - EINS(bruno)
+   
+   R207 1=3         -->    D208:  - EINS(bruno)  + SENF(anton)
+   
+   R9,3 & D206,2    -->    R209:  - EINS(bruno)  + SALZ(else)  - EINS(bruno)
+   
+   R209 1=3         -->    D210:  - EINS(bruno)  + SALZ(else)
+   
+   D193,2 & D151,1  -->    R211:  - EINS(bruno)  + SALZ(else)
+   
+   D174,2 & D191,2  -->    R212:  - SALZ(clara)  - EINS(bruno)
+   
+   A13,2 & D191,2   -->    R213:  - EINS(bruno)  + SENF(bruno)  - EINS(bruno)
+   
+   R213 3=1         -->    D214:  + SENF(bruno)  - EINS(bruno)
+   
+   D114,3 & D214,2  -->    R215:  + SENF(dora)  + SENF(bruno)  + SENF(bruno)
+   
+   R215 2=3         -->    D216:  + SENF(dora)  + SENF(bruno)
+   
+   A29,1 & D216,2   -->    R217:  + SALZ(clara)  + SENF(dora)  + SENF(dora)
+   
+   R217 2=3         -->    D218:  + SALZ(clara)  + SENF(dora)
+   
+   A31,1 & D216,2   -->    R219:  + SENF(clara)  + SENF(dora)  + SENF(dora)
+   
+   R219 2=3         -->    D220:  + SENF(clara)  + SENF(dora)
+   
+   D55,1 & D216,1   -->    R221:  + EINS(dora)  + SENF(bruno)  + SENF(bruno)
+   
+   R221 2=3         -->    D222:  + EINS(dora)  + SENF(bruno)
+   
+   R56,3 & D216,1   -->    R223:  - EINS(clara)  + SENF(bruno)  + SENF(bruno)
+   
+   R223 2=3         -->    D224:  - EINS(clara)  + SENF(bruno)
+   
+   D49,2 & D224,1   -->    R225:  - SALZ(clara)  + SENF(bruno)  + SENF(bruno)
+   
+   R225 2=3         -->    D226:  - SALZ(clara)  + SENF(bruno)
+   
+   D218,1 & D170,1  -->    R227:  + SENF(dora)  + SALZ(bruno)
+   
+   D218,1 & D174,1  -->    R228:  + SENF(dora)  + SALZ(bruno)
+   
+   D203,2 & D143,2  -->    R229:  + SALZ(clara)  + SALZ(else)
+   
+   D203,1 & D226,1  -->    R230:  + SENF(anton)  + SENF(bruno)
+   
+   D168,2 & D197,1  -->    R231:  + SENF(anton)  + SALZ(clara)
+   
+   D164,1 & D197,1  -->    R232:  + SALZ(anton)  + SALZ(clara)
+   
+   D220,1 & D89,2   -->    R233:  + SENF(dora)  - EINS(clara)
+   
+   R24,3 & R233,1   -->    R234:  - EINS(clara)  - EINS(dora)  - EINS(clara)
+   
+   R234 1=3         -->    D235:  - EINS(clara)  - EINS(dora)
+   
+   R122,2 & R233,1  -->    R236:  - EINS(clara)  - SALZ(bruno)  - EINS(clara)
+   
+   R236 1=3         -->    D237:  - EINS(clara)  - SALZ(bruno)
+   
+   R17,3 & D235,2   -->    R238:  - EINS(clara)  + SENF(dora)  - EINS(clara)
+   
+   R238 1=3         -->    D239:  - EINS(clara)  + SENF(dora)
+   
+   D176,1 & D191,2  -->    R240:  + SENF(dora)  - EINS(bruno)
+   
+   R104,3 & R240,1  -->    R241:  - EINS(bruno)  - SENF(clara)  - EINS(bruno)
+   
+   R241 1=3         -->    D242:  - EINS(bruno)  - SENF(clara)
+   
+   R123,2 & R240,1  -->    R243:  - EINS(bruno)  - SALZ(bruno)  - EINS(bruno)
+   
+   R243 1=3         -->    D244:  - EINS(bruno)  - SALZ(bruno)
+   
+   D168,2 & D237,2  -->    R245:  + SENF(anton)  - EINS(clara)
+   
+   D33,3 & R245,2   -->    R246:  + SENF(anton)  + SENF(clara)  + SENF(anton)
+   
+   R246 1=3         -->    D247:  + SENF(anton)  + SENF(clara)
+   
+   D247,1 & D137,2  -->    R248:  + SENF(clara)  + SALZ(anton)
+   
+   D247,1 & D143,2  -->    R249:  + SENF(clara)  + SALZ(else)
+   
+   D247,2 & D242,2  -->    R250:  + SENF(anton)  - EINS(bruno)
+   
+   D164,1 & D237,2  -->    R251:  + SALZ(anton)  - EINS(clara)
+   
+   A3,1 & D237,2    -->    R252:  - EINS(anton)  - EINS(clara)
+   
+   R45,3 & R252,1   -->    R253:  - EINS(clara)  - SALZ(bruno)  - EINS(clara)
+   
+   R253 1=3         -->    D254:  - EINS(clara)  - SALZ(bruno)
+   
+   D164,1 & D254,2  -->    R255:  + SALZ(anton)  - EINS(clara)
+   
+   D174,2 & D254,2  -->    R256:  - SALZ(clara)  - EINS(clara)
+   
+   R256,1 & D93,1   -->    R257:  - EINS(clara)  - EINS(clara)
+   
+   R257 1=2         -->    D258:  - EINS(clara)
+   
+   A44,3 & D258,1   -->    R259:  - SALZ(dora)  + EINS(anton)
+   
+   R106,2 & D258,1  -->    R260:  - SALZ(dora)  + SALZ(bruno)
+   
+   A57,3 & D258,1   -->    R261:  - SENF(else)  + EINS(bruno)
+   
+   R261,2 & A1,2    -->    R262:  - SENF(else)  + SALZ(anton)
+   
+   R259,2 & D195,1  -->    R263:  - SALZ(dora)  + SENF(bruno)
+   
+   R261,2 & D193,1  -->    R264:  - SENF(else)  + SENF(anton)
+   
+   R152,1 & R264,2  -->    R265:  - EINS(else)  - SENF(else)  - SENF(else)
+   
+   R265 2=3         -->    D266:  - EINS(else)  - SENF(else)
+   
+   D39,2 & D266,1   -->    R267:  - SENF(else)  + SENF(anton)  - SENF(else)
+   
+   R267 1=3         -->    D268:  - SENF(else)  + SENF(anton)
+   
+   R261,2 & D201,2  -->    R269:  - SENF(else)  - EINS(anton)
+   
+   A25,2 & R269,2   -->    R270:  - SALZ(bruno)  - SENF(else)  - SENF(else)
+   
+   R270 2=3         -->    D271:  - SALZ(bruno)  - SENF(else)
+   
+   R182,2 & R269,2  -->    R272:  - SALZ(clara)  - SENF(else)  - SENF(else)
+   
+   R272 2=3         -->    D273:  - SALZ(clara)  - SENF(else)
+   
+   R11,3 & D271,2   -->    R274:  + SENF(bruno)  - SALZ(bruno)  - SALZ(bruno)
+   
+   R274 2=3         -->    D275:  + SENF(bruno)  - SALZ(bruno)
+   
+   A20,3 & D273,2   -->    R276:  - SENF(anton)  - SALZ(clara)  - SALZ(clara)
+   
+   R276 2=3         -->    D277:  - SENF(anton)  - SALZ(clara)
+   
+   R10,3 & D273,2   -->    R278:  + SENF(clara)  - SALZ(clara)  - SALZ(clara)
+   
+   R278 2=3         -->    D279:  + SENF(clara)  - SALZ(clara)
+   
+   A17,2 & D279,2   -->    R280:  + SENF(anton)  + SENF(clara)  + SENF(clara)
+   
+   R280 2=3         -->    D281:  + SENF(anton)  + SENF(clara)
+   
+   A26,3 & D279,1   -->    R282:  + SENF(bruno)  - SALZ(clara)  - SALZ(clara)
+   
+   R282 2=3         -->    D283:  + SENF(bruno)  - SALZ(clara)
+   
+   D218,1 & D277,2  -->    R284:  + SENF(dora)  - SENF(anton)
+   
+   A56,2 & R284,2   -->    R285:  - SALZ(else)  + SENF(dora)  + SENF(dora)
+   
+   R285 2=3         -->    D286:  - SALZ(else)  + SENF(dora)
+   
+   D100,3 & R284,1  -->    R287:  - SENF(anton)  - SENF(clara)  - SENF(anton)
+   
+   R287 1=3         -->    D288:  - SENF(anton)  - SENF(clara)
+   
+   D102,3 & R284,1  -->    R289:  - SENF(anton)  - SENF(clara)  - SENF(anton)
+   
+   R289 1=3         -->    D290:  - SENF(anton)  - SENF(clara)
+   
+   R121,2 & D286,2  -->    R291:  - EINS(anton)  - SALZ(else)  - SALZ(else)
+   
+   R291 2=3         -->    D292:  - EINS(anton)  - SALZ(else)
+   
+   A42,2 & D286,2   -->    R293:  - SENF(clara)  - SALZ(else)  - SALZ(else)
+   
+   R293 2=3         -->    D294:  - SENF(clara)  - SALZ(else)
+   
+   A47,1 & D286,2   -->    R295:  - SALZ(bruno)  - SALZ(else)  - SALZ(else)
+   
+   R295 2=3         -->    D296:  - SALZ(bruno)  - SALZ(else)
+   
+   A49,1 & D286,2   -->    R297:  - SENF(bruno)  - SALZ(else)  - SALZ(else)
+   
+   R297 2=3         -->    D298:  - SENF(bruno)  - SALZ(else)
+   
+   D118,2 & D286,1  -->    R299:  + SENF(dora)  + EINS(else)  + SENF(dora)
+   
+   R299 1=3         -->    D300:  + SENF(dora)  + EINS(else)
+   
+   A46,2 & D286,1   -->    R301:  + SENF(dora)  + SENF(else)  + SENF(dora)
+   
+   R301 1=3         -->    D302:  + SENF(dora)  + SENF(else)
+   
+   R183,2 & D292,1  -->    R303:  - SALZ(clara)  - SALZ(else)  - SALZ(else)
+   
+   R303 2=3         -->    D304:  - SALZ(clara)  - SALZ(else)
+   
+   A24,2 & D292,1   -->    R305:  - SALZ(bruno)  - SALZ(else)  - SALZ(else)
+   
+   R305 2=3         -->    D306:  - SALZ(bruno)  - SALZ(else)
+   
+   D174,2 & D271,1  -->    R307:  - SALZ(clara)  - SENF(else)
+   
+   D174,2 & D306,1  -->    R308:  - SALZ(clara)  - SALZ(else)
+   
+   D151,2 & D294,2  -->    R309:  - SENF(anton)  - SENF(clara)
+   
+   D281,2 & D294,1  -->    R310:  + SENF(anton)  - SALZ(else)
+   
+   D302,2 & D271,2  -->    R311:  + SENF(dora)  - SALZ(bruno)
+   
+   R311,2 & D176,1  -->    R312:  + SENF(dora)  + SENF(dora)
+   
+   R312 1=2         -->    D313:  + SENF(dora)
+   
+   A43,2 & D313,1   -->    R314:  - SENF(clara)  - SENF(else)
+   
+   A48,1 & D313,1   -->    R315:  - SALZ(bruno)  - SENF(else)
+   
+   A50,1 & D313,1   -->    R316:  - SENF(bruno)  - SENF(else)
+   
+   A52,3 & D313,1   -->    R317:  + SALZ(else)  - SALZ(dora)
+   
+   D133,1 & D313,1  -->    R318:  + SALZ(anton)
+   
+   R25,3 & D313,1   -->    R319:  - EINS(anton)  - EINS(dora)
+   
+   R124,2 & D313,1  -->    R320:  - EINS(anton)  - SENF(else)
+   
+   D129,2 & D313,1  -->    R321:  - SALZ(dora)
+   
+   R319,2 & A9,3    -->    R322:  - EINS(anton)  + SALZ(dora)  - SENF(dora)
+   
+   R322,2 & R321,1  -->    R323:  - EINS(anton)  - SENF(dora)
+   
+   R323,2 & D313,1  -->    R324:  - EINS(anton)
+   
+   R154,1 & R318,1  -->    R325:  + EINS(anton)  + SALZ(else)
+   
+   R13,2 & R318,1   -->    R326:  + SENF(anton)  + SALZ(dora)
+   
+   R29,1 & R318,1   -->    R327:  + EINS(dora)  + SENF(else)
+   
+   A16,1 & R318,1   -->    R328:  + EINS(bruno)  + EINS(dora)
+   
+   R325,1 & R324,1  -->    R329:  + SALZ(else)
+   
+   R326,2 & R321,1  -->    R330:  + SENF(anton)
+   
+   A28,3 & R321,1   -->    R331:  - SENF(bruno)  + SALZ(clara)
+   
+   A30,3 & R321,1   -->    R332:  - SENF(bruno)  + SENF(clara)
+   
+   R3,3 & R321,1    -->    R333:  + SALZ(clara)  - SENF(clara)
+   
+   R12,3 & R321,1   -->    R334:  + SENF(clara)  - SALZ(clara)
+   
+   R44,3 & R321,1   -->    R335:  - SALZ(bruno)  - SALZ(else)
+   
+   R47,3 & R321,1   -->    R336:  - SALZ(bruno)  - SENF(else)
+   
+   A5,1 & R321,1    -->    R337:  - EINS(clara)
+   
+   D72,2 & R321,1   -->    R338:  + SENF(clara)  + EINS(dora)
+   
+   R331,2 & D277,2  -->    R339:  - SENF(bruno)  - SENF(anton)
+   
+   R339,2 & R330,1  -->    R340:  - SENF(bruno)
+   
+   R332,2 & D290,2  -->    R341:  - SENF(bruno)  - SENF(anton)
+   
+   R341,2 & R330,1  -->    R342:  - SENF(bruno)
+   
+   R333,1 & D304,1  -->    R343:  - SENF(clara)  - SALZ(else)
+   
+   R343,2 & R329,1  -->    R344:  - SENF(clara)
+   
+   R334,1 & R344,1  -->    R345:  - SALZ(clara)
+   
+   R335,2 & R249,2  -->    R346:  - SALZ(bruno)  + SENF(clara)
+   
+   R346,2 & R344,1  -->    R347:  - SALZ(bruno)
+   
+   R338,1 & A9,2    -->    R348:  + EINS(dora)  + SALZ(clara)  + EINS(clara)
+   
+   R348,2 & R345,1  -->    R349:  + EINS(dora)  + EINS(clara)
+   
+   R349,2 & R337,1  -->    R350:  + EINS(dora)
+   
+   R2,3 & R316,2    -->    R351:  + SALZ(bruno)  - SENF(bruno)  - SENF(bruno)
+   
+   R351 2=3         -->    D352:  + SALZ(bruno)  - SENF(bruno)
+   
+   D352,1 & R155,2  -->    R353:  - SENF(bruno)  - SENF(anton)  + EINS(anton)
+   
+   R353,2 & R330,1  -->    R354:  - SENF(bruno)  + EINS(anton)
+   
+   R354,2 & R324,1  -->    R355:  - SENF(bruno)
+   
+   R155,3 & R324,1  -->    R356:  - SENF(anton)  - SALZ(bruno)
+   
+   R105,2 & R324,1  -->    R357:  - SALZ(dora)  + SENF(else)
+   
+   R259,2 & R324,1  -->    R358:  - SALZ(dora)
+   
+   R356,1 & R330,1  -->    R359:  - SALZ(bruno)
+   
+   D304,2 & R329,1  -->    R360:  - SALZ(clara)
+   
+   D296,2 & R329,1  -->    R361:  - SALZ(bruno)
+   
+   D298,2 & R329,1  -->    R362:  - SENF(bruno)
+   
+   D139,1 & R329,1  -->    R363:  + SALZ(anton)
+   
+   D80,2 & R330,1   -->    R364:  + SALZ(else)  + SENF(else)
+   
+   R27,3 & R330,1   -->    R365:  - EINS(dora)  - EINS(anton)
+   
+   D277,1 & R330,1  -->    R366:  - SALZ(clara)
+   
+   D143,2 & R330,1  -->    R367:  + SALZ(else)
+   
+   R365,1 & R350,1  -->    R368:  - EINS(anton)
+   
+   D43,1 & R361,1   -->    R369:  + SENF(else)  + EINS(else)
+   
+   D214,1 & R362,1  -->    R370:  - EINS(bruno)
+   
+   D275,1 & R362,1  -->    R371:  - SALZ(bruno)
+   
+   R261,2 & R370,1  -->    R372:  - SENF(else)
+   
+   R369,1 & R372,1  -->    R373:  + EINS(else)
+   
+   A9,1 & R358,1    -->    R374:  - SENF(dora)  + EINS(dora)
+   
+   A13,2 & R358,1   -->    R375:  - EINS(dora)  + SENF(dora)
+   
+   A13,3 & R362,1   -->    R376:  - EINS(bruno)  + SALZ(bruno)
+   
+   R367,1 & A10,2   -->    R377:  + SENF(else)  + EINS(else)
+   
+   A10,1 & R372,1   -->    R378:  - SALZ(else)  + EINS(else)
+   
+   A13,3 & R372,1   -->    R379:  - EINS(else)  + SALZ(else)
+   
+   R367,1 & A12,2   -->    R380:  - EINS(else)  - SENF(else)
+   
+   R363,1 & A12,2   -->    R381:  - EINS(anton)  - SENF(anton)
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   The theorem(s) could not be proved.
+

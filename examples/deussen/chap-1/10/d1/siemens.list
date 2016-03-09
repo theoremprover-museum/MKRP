@@ -1,0 +1,179 @@
+ 
+ 
+ 
+             ****************************************************
+             *                                                  *
+             *   ATP-SYSTEM :  M K R P , UNI KARLSRUHE          *
+             *                                                  *
+             *      VERSION : 3-FEB-84                          *
+             *         DATE : 23-JUL-84  15:44:35               *
+             *                                                  *
+             ****************************************************
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : SORT ELEM,VERKN,MENGE,ABB:ANY
+           TYPE APPLYA (ABB ELEM) :ELEM
+           TYPE APPLYV (VERKN ELEM ELEM) :ELEM
+           ALL U,F:MENGE  ALL PHI:VERKN  ALL E:ELEM  
+               G (F PHI E) AND ME (U F) AND EL (E U) AND UHG (U F PHI)
+               IMPL  
+               EINS (E PHI U)
+           ALL U,F:MENGE  ALL PHI:VERKN  ALL CHI:ABB  ALL C,Z,E:ELEM  
+                 G (F PHI E)
+                 AND  
+                 ME (U F)
+                 AND  
+                 BIJEKTIV (CHI U U)
+                 AND  
+                 EL (Z U)
+                 AND  
+                 EL (C U)
+                 AND  
+                 APPLYA (CHI Z) = APPLYV (PHI Z C)
+               IMPL  
+               (EX X:ELEM APPLYV (PHI X C) = Z AND EL (X U))
+           ALL U,V:MENGE ALL X:ELEM ME (U V) AND EL (X U) IMPL EL (X V)
+           ALL F:MENGE  ALL PHI:VERKN  ALL X,Y,E:ELEM  
+             G (F PHI E) AND EL (X F) AND APPLYV (PHI Y X) = X IMPL Y = E
+ 
+THEOREMS : ALL U,F:MENGE  ALL PHI:VERKN  ALL Z,E:ELEM  
+               G (F PHI E) AND ME (U F) AND ENDLICH (U)
+               IMPL  
+                    UHG (U F PHI)
+                    AND  
+                    EL (Z U)
+                    AND  
+                     ALL C:ELEM  
+                         EL (C U)
+                         IMPL  
+                          EX CHI:ABB  
+                              BIJEKTIV (CHI U U)
+                              AND  
+                               ALL X:ELEM  
+                                   EL (X U)
+                                   IMPL  
+                                   APPLYA (CHI X) = APPLYV (PHI X C)
+                  IMPL  
+                  EINS (E PHI U)
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+  A1   : ALL X,Y:MENGE  Z:VERKN  U:ELEM  
+              -G(X Z U) -ME(Y X) -EL(U Y) -UHG(Y X Z) +EINS(U Z Y) 
+  R.=  : ALL X:ANY  +=(X X)
+  A2   : ALL X,Y:MENGE  Z:VERKN  U,V,W:ELEM  XX:ABB  
+              -G(X Z U) -ME(Y X) -BIJEKTIV(XX Y Y) -EL(V Y) -EL(W Y) 
+              -=(APPLYA(XX V) APPLYV(Z V W)) +=(APPLYV(Z F_1(V Z Y W) W) V) 
+  A3   : ALL X,Y:MENGE  Z:VERKN  U,V,W:ELEM  XX:ABB  
+              -G(X Z U) -ME(Y X) -BIJEKTIV(XX Y Y) -EL(V Y) -EL(W Y) 
+              -=(APPLYA(XX V) APPLYV(Z V W)) +EL(F_1(V Z Y W) Y) 
+  A4   : ALL X,Y:MENGE  Z:ELEM  -ME(X Y) -EL(Z X) +EL(Z Y)
+  A5   : ALL X:MENGE  Y:VERKN  Z,U,V:ELEM  
+              -G(X Y Z) -EL(U X) -=(APPLYV(Y V U) U) +=(V Z) 
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+  T6   : +G(C_1 C_3 C_4)
+  T7   : +ME(C_2 C_1)
+  T8   : +ENDLICH(C_2)
+  T9   : +UHG(C_2 C_1 C_3)
+  T10  : +EL(C_5 C_2)
+  T11  : ALL X:ELEM  -EL(X C_2) +BIJEKTIV(F_2(X) C_2 C_2)
+  T12  : ALL X,Y:ELEM  -EL(X C_2) -EL(Y C_2) 
+                       +=(APPLYA(F_2(X) Y) APPLYV(C_3 Y X)) 
+  T13  : -EINS(C_4 C_3 C_2)
+ 
+ 
+ 
+ 
+--------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION ( FAILURE : COLLAPSED )
+ 
+INITIAL CLAUSES :       R.= : ALL X:ANY  +=(X X)
+                        A1  : ALL X,Y:MENGE  Z:VERKN  U:ELEM  
+                                   -G(X Z U) -ME(Y X) -EL(U Y) -UHG(Y X Z) 
+                                   +EINS(U Z Y) 
+                        A2  : ALL X,Y:MENGE  Z:VERKN  U,V,W:ELEM  XX:ABB  
+                                   -G(X Z U) -ME(Y X) -BIJEKTIV(XX Y Y) 
+                                   -EL(V Y) -EL(W Y) 
+                                   -=(APPLYA(XX V) APPLYV(Z V W)) 
+                                   +=(APPLYV(Z F_1(V Z Y W) W) V) 
+                        A3  : ALL X,Y:MENGE  Z:VERKN  U,V,W:ELEM  XX:ABB  
+                                   -G(X Z U) -ME(Y X) -BIJEKTIV(XX Y Y) 
+                                   -EL(V Y) -EL(W Y) 
+                                   -=(APPLYA(XX V) APPLYV(Z V W)) 
+                                   +EL(F_1(V Z Y W) Y) 
+                        A4  : ALL X,Y:MENGE  Z:ELEM  
+                                   -ME(X Y) -EL(Z X) +EL(Z Y) 
+                        A5  : ALL X:MENGE  Y:VERKN  Z,U,V:ELEM  
+                                   -G(X Y Z) -EL(U X) -=(APPLYV(Y V U) U) 
+                                   +=(V Z) 
+                        T6  : +G(C_1 C_3 C_4)
+                        T7  : +ME(C_2 C_1)
+                        T8  : +ENDLICH(C_2)
+                        T9  : +UHG(C_2 C_1 C_3)
+                        T10 : +EL(C_5 C_2)
+                        T11 : ALL X:ELEM  -EL(X C_2) +BIJEKTIV(F_2(X) C_2 C_2)
+                        T12 : ALL X,Y:ELEM  
+                                   -EL(X C_2) -EL(Y C_2) 
+                                   +=(APPLYA(F_2(X) Y) APPLYV(C_3 Y X)) 
+                        T13 : -EINS(C_4 C_3 C_2)
+ 
+A1,5  +  T13,1   -->    R1  : ALL X:MENGE  
+                                   -G(X C_3 C_4) -ME(C_2 X) -EL(C_4 C_2) 
+                                   -UHG(C_2 X C_3) 
+T6,1  +  R1,1    -->    R2  : -ME(C_2 C_1) -EL(C_4 C_2) -UHG(C_2 C_1 C_3)
+T7,1  +  R2,1    -->    R3  : -EL(C_4 C_2) -UHG(C_2 C_1 C_3)
+T9,1  +  R3,2    -->    R4  : -EL(C_4 C_2)
+T7,1  +  A2,2    -->    R5  : ALL X:VERKN  Y,Z,U:ELEM  V:ABB  
+                                   -G(C_1 X Y) -BIJEKTIV(V C_2 C_2) -EL(Z C_2) 
+                                   -EL(U C_2) -=(APPLYA(V Z) APPLYV(X Z U)) 
+                                   +=(APPLYV(X F_1(Z X C_2 U) U) Z) 
+T6,1  +  R5,1    -->    R6  : ALL X:ABB  Y,Z:ELEM  
+                                   -BIJEKTIV(X C_2 C_2) -EL(Y C_2) -EL(Z C_2) 
+                                   -=(APPLYA(X Y) APPLYV(C_3 Y Z)) 
+                                   +=(APPLYV(C_3 F_1(Y C_3 C_2 Z) Z) Y) 
+T7,1  +  A3,2    -->    R7  : ALL X:VERKN  Y,Z,U:ELEM  V:ABB  
+                                   -G(C_1 X Y) -BIJEKTIV(V C_2 C_2) -EL(Z C_2) 
+                                   -EL(U C_2) -=(APPLYA(V Z) APPLYV(X Z U)) 
+                                   +EL(F_1(Z X C_2 U) C_2) 
+T6,1  +  R7,1    -->    R8  : ALL X:ABB  Y,Z:ELEM  
+                                   -BIJEKTIV(X C_2 C_2) -EL(Y C_2) -EL(Z C_2) 
+                                   -=(APPLYA(X Y) APPLYV(C_3 Y Z)) 
+                                   +EL(F_1(Y C_3 C_2 Z) C_2) 
+T7,1  +  A4,1    -->    R9  : ALL X:ELEM  -EL(X C_2) +EL(X C_1)
+ 
+ 
+ 
+--------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+THE THEOREM(S) COULD NOT BE PROVED.
+ 

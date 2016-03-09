@@ -1,0 +1,82 @@
+
+The new options are inconsistent - Please check your file! 
+
+***** Construct: Construction of the initial graphs. ****************************************************************
+INSERTED: R.=<12>: All X_10:ANY   + =(x_10 x_10)
+          A1<16>: All X_2,X_1,X_0:ANY   + =(+(+(x_0 x_1) x_2) +(x_0 +(x_1 x_2)))
+AXIOM              800 Msec Links:     2   +2    -0 Clauses:    2  +2  -0 Store:    642    9
+INSERTED: R.=<12>: All X_10:ANY   + =(x_10 x_10)
+          A1<16>: All X_2,X_1,X_0:ANY   + =(+(+(x_0 x_1) x_2) +(x_0 +(x_1 x_2)))
+ALL:      R.= A1 
+INSERTED: A2<23>: All X_5:ANY   + =(+(0 x_5) x_5)
+AXIOM              201 Msec Links:     4   +2    -0 Clauses:    3  +1  -0 Store:    641    9
+INSERTED: A2<23>: All X_5:ANY   + =(+(0 x_5) x_5)
+ALL:      R.= A1 A2 
+INSERTED: A3<27>: All X_7:ANY   + =(+(-(x_7) x_7) 0)
+AXIOM              216 Msec Links:     6   +2    -0 Clauses:    4  +1  -0 Store:    641    9
+INSERTED: A3<27>: All X_7:ANY   + =(+(-(x_7) x_7) 0)
+ALL:      R.= A1 A2 A3 
+INSERTED: T4<9>: - =(-(-(c_1)) c_1)
+THEOREM            172 Msec Links:     6   +0    -0 Clauses:    5  +1  -0 Store:    640    9
+INSERTED: T4<9>: - =(-(-(c_1)) c_1)
+ALL:      R.= A1 A2 A3 T4 
+RED.INIT           405 Msec Links:     1   +0    -5 Clauses:    5  +0  -0 Store:    632    9
+ALL:      R.=<12>: All X_10:ANY   + =(x_10 x_10)
+          A1<16>: All X_2,X_1,X_0:ANY   + =(+(+(x_0 x_1) x_2) +(x_0 +(x_1 x_2)))
+          A2<23>: All X_5:ANY   + =(+(0 x_5) x_5)
+          A3<27>: All X_7:ANY   + =(+(-(x_7) x_7) 0)
+          T4<9>: - =(-(-(c_1)) c_1)
+
+***** Refute: Start of refutation. **********************************************************************************
+ALL:      R.=<12>: All X_10:ANY   + =(x_10 x_10)
+          A1<16>: All X_2,X_1,X_0:ANY   + =(+(+(x_0 x_1) x_2) +(x_0 +(x_1 x_2)))
+          A2<23>: All X_5:ANY   + =(+(0 x_5) x_5)
+          A3<27>: All X_7:ANY   + =(+(-(x_7) x_7) 0)
+          T4<9>: - =(-(-(c_1)) c_1)
+MARKED             356 Msec Links:     1   +0    -0 Clauses:    5  +0  -0 Store:    629    9
+INSERTED: P1<48>: All X_18,X_17:ANY   + =(x_17 +(-(x_18) +(x_18 x_17)))
+CHANGED:  P1<48>: All X_18,X_17:ANY   + =(x_17 +(-(x_18) +(x_18 x_17)))
+INSERTED: P1<48>: All X_18,X_17:ANY   + =(x_17 +(-(x_18) +(x_18 x_17)))
+CHANGED:  P1<48>: All X_18,X_17:ANY   + =(x_17 +(-(x_18) +(x_18 x_17)))
+STEP 1             877 Msec Links:     7   +6    -0 Clauses:    6  +1  -0 Store:    628    9
+                   684 Msec Links:     5   +1    -3 Clauses:    6  +0  -0 Store:    626    9
+ALL:      R.= A1 A2 A3 T4 P1 
+INSERTED: P2<76>: All X_53:ANY   + =(x_53 +(-(0) x_53))
+INSERTED: P2<76>: All X_53:ANY   + =(x_53 +(-(0) x_53))
+STEP 2             435 Msec Links:    13   +8    -0 Clauses:    7  +1  -0 Store:    625    8
+                   568 Msec Links:     7   +1    -7 Clauses:    7  +0  -0 Store:    624    8
+ALL:      R.= A1 A2 A3 T4 P1 P2 
+INSERTED: P3<78>: All X_81:ANY   + =(x_81 +(-(-(x_81)) 0))
+INSERTED: P3<78>: All X_81:ANY   + =(x_81 +(-(-(x_81)) 0))
+STEP 3             442 Msec Links:    10   +3    -0 Clauses:    8  +1  -0 Store:    623    8
+                   474 Msec Links:     9   +1    -2 Clauses:    8  +0  -0 Store:    614    8
+ALL:      R.= A1 A2 A3 T4 P1 P2 P3 
+INSERTED: P4<116>: All X_114:ANY   + =(x_114 +(-(-(0)) x_114))
+INSERTED: P4<116>: All X_114:ANY   + =(x_114 +(-(-(0)) x_114))
+STEP 4             535 Msec Links:    19  +10    -0 Clauses:    9  +1  -0 Store:    613    8
+                   736 Msec Links:    13   +1    -7 Clauses:    9  +0  -0 Store:    611    8
+ALL:      R.= A1 A2 A3 T4 P1 P2 P3 P4 
+INSERTED: P5<122>: + =(-(0) 0)
+INSERTED: P5<122>: + =(-(0) 0)
+STEP 5             374 Msec Links:    19   +6    -0 Clauses:   10  +1  -0 Store:    610    8
+CHANGED:  P2<76>: All X_53:ANY   + =(x_53 x_53)
+          P4<116>: All X_114:ANY   + =(x_114 x_114)
+                   791 Msec Links:     7   +0   -12 Clauses:    8  +0  -2 Store:    609    8
+ALL:      R.= A1 A2 A3 T4 P1 P3 P5 
+INSERTED: P6<117>: All X_158:ANY   + =(0 +(-(-(-(x_158))) x_158))
+INSERTED: P6<117>: All X_158:ANY   + =(0 +(-(-(-(x_158))) x_158))
+STEP 6             555 Msec Links:    13   +6    -0 Clauses:    9  +1  -0 Store:    608    8
+                   599 Msec Links:     9   +1    -5 Clauses:    9  +0  -0 Store:    606    8
+ALL:      R.= A1 A2 A3 T4 P1 P3 P5 P6 
+INSERTED: P7<121>: All X_125:ANY   + =(x_125 -(-(x_125)))
+CHANGED:  P7<121>: All X_125:ANY   + =(x_125 -(-(x_125)))
+INSERTED: P7<121>: []
+CHANGED:  P7<121>: []
+STEP 7             698 Msec Links:     9   +0    -0 Clauses:   10  +1  -0 Store:    597    8
+                     9 Msec Links:     9   +0    -0 Clauses:   10  +0  -0 Store:    597    8
+ALL:      R.= A1 A2 A3 T4 P1 P3 P5 P6 P7 
+===== Result: (SUCCESS 121)
+
+***** Refute: Theorem proved. ***************************************************************************************
+
+Protocol: The protocol was created on file F:>mkrp>examples>equality>algebra>group>minusminus>LIST.TEXT.77.

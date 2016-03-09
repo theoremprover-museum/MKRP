@@ -1,0 +1,176 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 45.11 EQUALITY 16.1                                 *
+                     *           DATE: 13-JUL,1990  01:35                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 13-JUL,1990 01:34 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * GROUP *
+             ALL X,Y,Z + (+ (X Y) Z) = + (X + (Y Z))
+             ALL X + (0 X) = X
+             ALL X + (- (X) X) = 0
+             ALL X,Y + (X Y) = + (Y X)
+             
+   Theorems: * THEOREM *
+             ALL X,Y + (- (X) - (Y)) = - (+ (X Y))
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+           * A2:   All x,y,z:Any + =(+(+(z y) x) +(z +(y x)))
+           * A3:   All x:Any + =(+(0 x) x)
+           * A4:   All x:Any + =(+(-(x) x) 0)
+           * A5:   All x,y:Any + =(+(y x) +(x y))
+           
+
+
+
+
+             Initial Operations on Axioms
+             ============================
+
+
+          
+   A4,1 & A5 --> * RW1: All x:Any + =(+(x -(x)) 0)
+   
+
+   
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T6: - =(+(-(c_1) -(c_2)) -(+(c_1 c_2)))
+
+
+
+
+
+
+             Initial Operations on Theorems
+             ==============================
+
+
+          
+   T6,1 & A5  --> * RW2: - =(+(-(c_2) -(c_1)) -(+(c_1 c_2)))
+   
+   RW2,1 & A5 --> * RW3: - =(+(-(c_2) -(c_1)) -(+(c_2 c_1)))
+   
+
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:        A1:    All x:Any + =(x x)
+                         * A2:    All x,y,z:Any + =(+(+(z y) x) +(z +(y x)))
+                         * A3:    All x:Any + =(+(0 x) x)
+                         * RW1:   All x:Any + =(+(x -(x)) 0)
+                         * A5:    All x,y:Any + =(+(y x) +(x y))
+                         * RW3:   - =(+(-(c_2) -(c_1)) -(+(c_2 c_1)))
+                         
+
+   
+   A3,1 & RW1,1     -->    P4:    + =(-(0) 0)
+   
+   A5,1 & A3,1      -->  * P5:    All x:Any + =(+(x 0) x)
+   
+   RW1,1 & A2,1     -->  * P6:    All x,y:Any + =(+(0 y) +(x +(-(x) y)))
+   
+   P6,1 & A3        -->  * RW7:   All x,y:Any + =(y +(x +(-(x) y)))
+   
+   RW1,1 & RW7,1    -->  * P8:    All x:Any + =(-(-(x)) +(x 0))
+   
+   P8,1 & P5        -->  * RW9:   All x:Any + =(-(-(x)) x)
+   
+   A5,1 & RW7,1     -->  * P10:   All x,y:Any + =(y +(+(-(x) y) x))
+   
+   P10,1 & A2       -->  * RW11:  All x,y:Any + =(y +(-(x) +(y x)))
+   
+   RW9,1 & RW7,1    -->  * P12:   All x,y:Any + =(y +(-(x) +(x y)))
+   
+   RW9,1 & RW11,1   -->    P13:   All x,y:Any + =(y +(x +(y -(x))))
+   
+   RW7,1 & RW11,1   -->    P14:   All x,y:Any + =(y +(-(+(-(y) x)) x))
+   
+   P14,1 & A5       -->    RW15:  All x,y:Any + =(y +(x -(+(-(y) x))))
+   
+   P12,1 & RW11,1   -->  * P16:   All x,y:Any + =(-(y) +(-(+(y x)) x))
+   
+   P16,1 & A5       -->  * RW17:  All x,y:Any + =(-(y) +(x -(+(y x))))
+   
+   RW15,1 & RW17    -->    RW18:  All x:Any + =(x -(-(x)))
+   
+   P13,1 & RW11,1   -->    P19:   All x,y:Any + =(y +(-(+(x -(y))) x))
+   
+   P19,1 & A5       -->    RW20:  All x,y:Any + =(y +(x -(+(x -(y)))))
+   
+   RW9,1 & RW20,1   -->    P21:   All x,y:Any + =(-(y) +(x -(+(x y))))
+   
+   RW20,1 & P21     -->    RW22:  All x:Any + =(x -(-(x)))
+   
+   RW11,1 & RW11,1  -->    P23:   All x,y:Any + =(-(y) +(-(+(x y)) x))
+   
+   P23,1 & A5       -->    RW24:  All x,y:Any + =(-(y) +(x -(+(x y))))
+   
+   RW24,1 & P21     -->    RW25:  All x:Any + =(-(x) -(x))
+   
+   A5,1 & A2,1      -->    P26:   All x,y,z:Any + =(+(z +(y x)) +(y +(x z)))
+   
+   RW17,1 & RW7,1   -->    P27:   All x,y:Any + =(-(+(y -(x))) +(x -(y)))
+   
+   RW17,1 & P12,1   -->  * P28:   All x,y:Any + =(-(+(y x)) +(-(x) -(y)))
+   
+   RW3,1 & P28      -->  * RW29:  - =(+(-(c_2) -(c_1)) +(-(c_1) -(c_2)))
+   
+   RW17,1 & P28     -->    RW30:  All x,y:Any + =(-(y) +(x +(-(x) -(y))))
+   
+   P21,1 & P28      -->    RW31:  All x,y:Any + =(-(y) +(x +(-(y) -(x))))
+   
+   P27,1 & P28      -->    RW32:  All x,y:Any + =(+(-(-(y)) -(x)) +(y -(x)))
+   
+   RW29,1 & A5,1    -->  * R33:   []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 260 seconds

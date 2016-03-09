@@ -1,0 +1,95 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 41.1 EQUALITY 16.1                                  *
+                     *           DATE: 27-APR,1990  18:09                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 27-APR,1990 18:09 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * COMPOSITION OF SURJECTIONS
+             ALL Y EX X EQ (F (X) Y)
+             ALL Z EX Y EQ (G (Y) Z)
+             ALL X,Y,Z EQ (X Y) AND EQ (Y Z) IMPL EQ (X Z)
+             ALL X,Y EQ (X Y) IMPL EQ (G (X) G (Y))
+             
+   Theorems: ALL Z EX X EQ (G (F (X)) Z)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + =(x x)
+           * A2:   All x:Any + EQ(f(f_1(x)) x)
+           * A3:   All x:Any + EQ(g(f_2(x)) x)
+           * A4:   All x,y:Any - EQ(y x)  + EQ(g(y) g(x))
+           * A5:   All x,y,z:Any - EQ(z y)  - EQ(y x)  + EQ(z x)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T6: All x:Any - EQ(g(f(x)) c_1)
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:    A1:  All x:Any + =(x x)
+                     * A2:  All x:Any + EQ(f(f_1(x)) x)
+                     * A3:  All x:Any + EQ(g(f_2(x)) x)
+                     * A4:  All x,y:Any - EQ(y x)  + EQ(g(y) g(x))
+                     * A5:  All x,y,z:Any - EQ(z y)  - EQ(y x)  + EQ(z x)
+                     * T6:  All x:Any - EQ(g(f(x)) c_1)
+                     
+
+   
+   A5,3 & T6,1  -->  * R1:  All x,y:Any - EQ(g(f(y)) x)  - EQ(x c_1)
+   
+   A3,1 & R1,2  -->  * R3:  All x:Any - EQ(g(f(x)) g(f_2(c_1)))
+   
+   A2,1 & A4,1  -->  * R4:  + EQ(g(f(f_1(f_2(c_1)))) g(f_2(c_1)))
+   
+   R4,1 & R3,1  -->  * R5:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 9 seconds

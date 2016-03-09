@@ -1,0 +1,289 @@
+ 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 4-APR-85                                                      *
+                    *         DATE : 20-JUN-85  00:56:25                                           *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   18-JUN-85 13:49:09
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   K.COMMENT.2.10.3.2
+                                                                        
+************************************************************************
+                                                                        
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : * ***************************************************************************
+           * DEFINITIONEN DER MENGENLEHRE **********************************************
+           SORT SET:ANY
+           SORT ELEMENT:SET
+           TYPE EL(ELEMENT SET)
+           * DEFINITION 1.3: KARTESISCHES PRODUKT
+           TYPE CARTES(SET SET) :SET
+           TYPE PAIR(ELEMENT ELEMENT) :ELEMENT
+           * ***************************************************************************
+           * DEFINTIONEN VON RELATIONEN AUF EINER FESTEN MENGE S ***********************
+           SORT REL:SET
+           TYPE S:SET
+           SORT EL.OF.S:ELEMENT
+           * DEFINITION 1.4: VEREINIGUNG UND SATZ 4.8.2.1
+           TYPE UNION(REL REL) : REL
+           ALL X,Y:REL ALL A:ELEMENT EL(A UNION(X Y)) EQV EL(A X) OR EL(A Y)
+           * DEFINITION 2.1: RELATION *************************************************
+           * DEFINITION 2.3: IDENTISCHE RELATION
+           TYPE IDENTITY:REL
+           * ALL A:ELEMENT(EL(A IDENTITY)) EQV(EX B:EL.OF.S A = PAIR(B B))
+           * DEFINITION 2.4: KONVERSE RELATION
+           TYPE CONVERSE(REL) :REL
+           * ALL RHO:REL ALL A:ELEMENT EL(A CONVERSE(RHO)) EQV(EX B,C:EL.OF.S A = PAIR(B C) AND EL(PAIR(C B) RHO))
+           * DEFINITION 2.6: SYMMETRISCH
+           TYPE SYMMETRISCH(REL)
+           * LEMMA 2,5
+           ALL RHO:REL SYMMETRISCH(RHO) EQV(ALL A,B:EL.OF.S EL(PAIR(A B) RHO) IMPL EL(PAIR(B A) RHO))
+           * DEFINITION 2.10: REFLEXIV-SYMMETRISCHER ABSCHLUSS
+           TYPE REF.SYM.CLOS(REL) :REL
+           ALL RHO:REL REF.SYM.CLOS(RHO) = UNION(UNION(RHO CONVERSE(RHO)) IDENTITY)
+           * LEMMA 2,10,3,1
+           SYMMETRISCH(IDENTITY) AND(ALL RHO:REL SYMMETRISCH(UNION(RHO CONVERSE(RHO))))
+ 
+THEOREMS : ALL RHO:REL SYMMETRISCH(REF.SYM.CLOS(RHO))
+ 
+ 
+ 
+ 
+CONSTANTS : 
+=========== 
+ 
+| NAME         | SORT              |            | ATTRIBUTES                                                           |
+------------------------------------------------------------------------------------------------------------------------
+| S            | SET               |            |                                                                      |
+| IDENTITY     | REL               |            |                                                                      |
+| C_1          | EL.OF.S           |            |                                                                      |
+| C_2          | EL.OF.S           |            |                                                                      |
+| C_3          | REL               |            |                                                                      |
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+FUNCTIONS : 
+=========== 
+ 
+| NAME         | DOMAIN            | RANGE      | ATTRIBUTES                                                           |
+------------------------------------------------------------------------------------------------------------------------
+| CARTES       | SET SET           | SET        |                                                                      |
+| PAIR         | ELEMENT ELEMENT   | ELEMENT    |                                                                      |
+| UNION        | REL REL           | REL        |                                                                      |
+| CONVERSE     | REL               | REL        |                                                                      |
+| REF.SYM.CLOS | REL               | REL        |                                                                      |
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+PREDICATES : 
+============ 
+ 
+| NAME         | DOMAIN            |            | ATTRIBUTES                                                           |
+------------------------------------------------------------------------------------------------------------------------
+| TRUE         |                   |            | DEFINED                                                              |
+| FALSE        |                   |            | DEFINED                                                              |
+| EL           | ELEMENT SET       |            |                                                                      |
+| SYMMETRISCH  | REL               |            |                                                                      |
+| =            | ANY ANY           |            | DEFINED SYMMETRIC REFLEXIVE SYMMETRIC REFLEXIVE SYMMETRIC REFLEXIVE  |
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+  A1   : ALL X:ANY  + =(X X)
+* A2   : ALL X:REL  + =(REF.SYM.CLOS(X) UNION(UNION(X CONVERSE(X)) IDENTITY))
+* A3   : ALL X,Y:REL  Z:ELEMENT  + EL(Z UNION(Y X))  - EL(Z Y)
+* A4   : ALL X,Y:REL  Z:ELEMENT  + EL(Z UNION(Y X))  - EL(Z X)
+* A5   : ALL X,Y:EL.OF.S  - EL(PAIR(Y X) IDENTITY)  + EL(PAIR(X Y) IDENTITY)
+* A6   : ALL X:REL  Y,Z:EL.OF.S  - EL(PAIR(Z Y) UNION(X CONVERSE(X)))  + EL(PAIR(Y Z) UNION(X CONVERSE(X)))
+* A7   : ALL X,Y:REL  Z:ELEMENT  - EL(Z UNION(Y X))  + EL(Z Y)  + EL(Z X)
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+* T8   : + EL(PAIR(C_1 C_2) REF.SYM.CLOS(C_3))
+* T9   : - EL(PAIR(C_2 C_1) REF.SYM.CLOS(C_3))
+ 
+ 
+ 
+ 
+ 
+ 
+INITIAL OPERATIONS ON THEOREMS
+==============================
+ 
+ 
+T8,1 & A2  -->  * RW1 : + EL(PAIR(C_1 C_2) UNION(UNION(C_3 CONVERSE(C_3)) IDENTITY))
+ 
+T9,1 & A2  -->  * RW2 : - EL(PAIR(C_2 C_1) UNION(UNION(C_3 CONVERSE(C_3)) IDENTITY))
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION
+ 
+INITIAL CLAUSES :      A1  : ALL X:ANY  + =(X X)
+                     * A3  : ALL X,Y:REL  Z:ELEMENT  + EL(Z UNION(Y X))  - EL(Z Y)
+                     * A4  : ALL X,Y:REL  Z:ELEMENT  + EL(Z UNION(Y X))  - EL(Z X)
+                     * A5  : ALL X,Y:EL.OF.S  - EL(PAIR(Y X) IDENTITY)  + EL(PAIR(X Y) IDENTITY)
+                     * A6  : ALL X:REL  Y,Z:EL.OF.S  
+                                  - EL(PAIR(Z Y) UNION(X CONVERSE(X)))  + EL(PAIR(Y Z) UNION(X CONVERSE(X)))
+                     * A7  : ALL X,Y:REL  Z:ELEMENT  - EL(Z UNION(Y X))  + EL(Z Y)  + EL(Z X)
+                     * RW1 : + EL(PAIR(C_1 C_2) UNION(UNION(C_3 CONVERSE(C_3)) IDENTITY))
+                     * RW2 : - EL(PAIR(C_2 C_1) UNION(UNION(C_3 CONVERSE(C_3)) IDENTITY))
+ 
+RW1,1 & A3,2    -->    R3  : ALL X:REL  + EL(PAIR(C_1 C_2) UNION(UNION(UNION(C_3 CONVERSE(C_3)) IDENTITY) X))
+ 
+RW1,1 & A4,2    -->    R4  : ALL X:REL  + EL(PAIR(C_1 C_2) UNION(X UNION(UNION(C_3 CONVERSE(C_3)) IDENTITY)))
+ 
+A3,1 & RW2,1    -->  * R5  : - EL(PAIR(C_2 C_1) UNION(C_3 CONVERSE(C_3)))
+ 
+A6,2 & R5,1     -->  * R6  : - EL(PAIR(C_1 C_2) UNION(C_3 CONVERSE(C_3)))
+ 
+A7,2 & R6,1     -->  * R7  : - EL(PAIR(C_1 C_2) UNION(UNION(C_3 CONVERSE(C_3)) IDENTITY))  + EL(PAIR(C_1 C_2) IDENTITY)
+ 
+R7,1 & RW1,1    -->  * R8  : + EL(PAIR(C_1 C_2) IDENTITY)
+ 
+A4,1 & R5,1     -->    R9  : - EL(PAIR(C_2 C_1) CONVERSE(C_3))
+ 
+A4,1 & RW2,1    -->  * R10 : - EL(PAIR(C_2 C_1) IDENTITY)
+ 
+A7,3 & R6,1     -->    R11 : - EL(PAIR(C_1 C_2) UNION(UNION(C_3 CONVERSE(C_3)) UNION(C_3 CONVERSE(C_3))))
+                               + EL(PAIR(C_1 C_2) UNION(C_3 CONVERSE(C_3)))
+ 
+R11,2 & R6,1    -->    R12 : - EL(PAIR(C_1 C_2) UNION(UNION(C_3 CONVERSE(C_3)) UNION(C_3 CONVERSE(C_3))))
+ 
+A7,3 & RW2,1    -->    R13 : - EL(PAIR(C_2 C_1) UNION(CONVERSE(C_3) UNION(UNION(C_3 CONVERSE(C_3)) IDENTITY)))
+                               + EL(PAIR(C_2 C_1) CONVERSE(C_3))
+ 
+R13,2 & R9,1    -->    R14 : - EL(PAIR(C_2 C_1) UNION(CONVERSE(C_3) UNION(UNION(C_3 CONVERSE(C_3)) IDENTITY)))
+ 
+A7,3 & R5,1     -->    R15 : - EL(PAIR(C_2 C_1) UNION(CONVERSE(C_3) UNION(C_3 CONVERSE(C_3))))
+                               + EL(PAIR(C_2 C_1) CONVERSE(C_3))
+ 
+R15,2 & R9,1    -->    R16 : - EL(PAIR(C_2 C_1) UNION(CONVERSE(C_3) UNION(C_3 CONVERSE(C_3))))
+ 
+A7,3 & R10,1    -->    R17 : - EL(PAIR(C_2 C_1) UNION(CONVERSE(C_3) IDENTITY))  + EL(PAIR(C_2 C_1) CONVERSE(C_3))
+ 
+R17,2 & R9,1    -->    R18 : - EL(PAIR(C_2 C_1) UNION(CONVERSE(C_3) IDENTITY))
+ 
+A7,3 & R9,1     -->    R19 : - EL(PAIR(C_2 C_1) UNION(CONVERSE(C_3) CONVERSE(C_3)))  + EL(PAIR(C_2 C_1) CONVERSE(C_3))
+ 
+R19,2 & R9,1    -->    R20 : - EL(PAIR(C_2 C_1) UNION(CONVERSE(C_3) CONVERSE(C_3)))
+ 
+A7,3 & RW2,1    -->    R21 : - EL(PAIR(C_2 C_1) UNION(IDENTITY UNION(UNION(C_3 CONVERSE(C_3)) IDENTITY)))
+                               + EL(PAIR(C_2 C_1) IDENTITY)
+ 
+R21,2 & R10,1   -->    R22 : - EL(PAIR(C_2 C_1) UNION(IDENTITY UNION(UNION(C_3 CONVERSE(C_3)) IDENTITY)))
+ 
+A7,3 & R5,1     -->    R23 : - EL(PAIR(C_2 C_1) UNION(IDENTITY UNION(C_3 CONVERSE(C_3))))  + EL(PAIR(C_2 C_1) IDENTITY)
+ 
+R23,2 & R10,1   -->    R24 : - EL(PAIR(C_2 C_1) UNION(IDENTITY UNION(C_3 CONVERSE(C_3))))
+ 
+A7,3 & R10,1    -->    R25 : - EL(PAIR(C_2 C_1) UNION(IDENTITY IDENTITY))  + EL(PAIR(C_2 C_1) IDENTITY)
+ 
+R25,2 & R10,1   -->    R26 : - EL(PAIR(C_2 C_1) UNION(IDENTITY IDENTITY))
+ 
+A7,3 & R9,1     -->    R27 : - EL(PAIR(C_2 C_1) UNION(IDENTITY CONVERSE(C_3)))  + EL(PAIR(C_2 C_1) IDENTITY)
+ 
+R27,2 & R10,1   -->    R28 : - EL(PAIR(C_2 C_1) UNION(IDENTITY CONVERSE(C_3)))
+ 
+A7,3 & RW2,1    -->    R29 : - EL(PAIR(C_2 C_1)
+                                  UNION(UNION(C_3 CONVERSE(C_3)) UNION(UNION(C_3 CONVERSE(C_3)) IDENTITY)))
+                               + EL(PAIR(C_2 C_1) UNION(C_3 CONVERSE(C_3)))
+ 
+R29,2 & R5,1    -->    R30 : - EL(PAIR(C_2 C_1)
+                                  UNION(UNION(C_3 CONVERSE(C_3)) UNION(UNION(C_3 CONVERSE(C_3)) IDENTITY)))
+ 
+ 
+A7,3 & R5,1     -->    R31 : - EL(PAIR(C_2 C_1) UNION(UNION(C_3 CONVERSE(C_3)) UNION(C_3 CONVERSE(C_3))))
+                               + EL(PAIR(C_2 C_1) UNION(C_3 CONVERSE(C_3)))
+ 
+R31,2 & R5,1    -->    R32 : - EL(PAIR(C_2 C_1) UNION(UNION(C_3 CONVERSE(C_3)) UNION(C_3 CONVERSE(C_3))))
+ 
+A7,3 & R9,1     -->    R33 : - EL(PAIR(C_2 C_1) UNION(UNION(C_3 CONVERSE(C_3)) CONVERSE(C_3)))
+                               + EL(PAIR(C_2 C_1) UNION(C_3 CONVERSE(C_3)))
+ 
+R33,2 & R5,1    -->    R34 : - EL(PAIR(C_2 C_1) UNION(UNION(C_3 CONVERSE(C_3)) CONVERSE(C_3)))
+ 
+A7,3 & RW2,1    -->    R35 : - EL(PAIR(C_2 C_1)
+                                  UNION(UNION(UNION(C_3 CONVERSE(C_3)) IDENTITY)
+                                        UNION(UNION(C_3 CONVERSE(C_3)) IDENTITY)))
+                               + EL(PAIR(C_2 C_1) UNION(UNION(C_3 CONVERSE(C_3)) IDENTITY))
+ 
+R35,2 & RW2,1   -->    R36 : - EL(PAIR(C_2 C_1)
+                                  UNION(UNION(UNION(C_3 CONVERSE(C_3)) IDENTITY)
+                                        UNION(UNION(C_3 CONVERSE(C_3)) IDENTITY)))
+ 
+ 
+A7,3 & R5,1     -->    R37 : - EL(PAIR(C_2 C_1)
+                                  UNION(UNION(UNION(C_3 CONVERSE(C_3)) IDENTITY) UNION(C_3 CONVERSE(C_3))))
+                               + EL(PAIR(C_2 C_1) UNION(UNION(C_3 CONVERSE(C_3)) IDENTITY))
+ 
+R37,2 & RW2,1   -->    R38 : - EL(PAIR(C_2 C_1)
+                                  UNION(UNION(UNION(C_3 CONVERSE(C_3)) IDENTITY) UNION(C_3 CONVERSE(C_3))))
+ 
+ 
+A7,3 & R10,1    -->    R39 : - EL(PAIR(C_2 C_1) UNION(UNION(UNION(C_3 CONVERSE(C_3)) IDENTITY) IDENTITY))
+                               + EL(PAIR(C_2 C_1) UNION(UNION(C_3 CONVERSE(C_3)) IDENTITY))
+ 
+R39,2 & RW2,1   -->    R40 : - EL(PAIR(C_2 C_1) UNION(UNION(UNION(C_3 CONVERSE(C_3)) IDENTITY) IDENTITY))
+ 
+A7,3 & R9,1     -->    R41 : - EL(PAIR(C_2 C_1) UNION(UNION(UNION(C_3 CONVERSE(C_3)) IDENTITY) CONVERSE(C_3)))
+                               + EL(PAIR(C_2 C_1) UNION(UNION(C_3 CONVERSE(C_3)) IDENTITY))
+ 
+R41,2 & RW2,1   -->    R42 : - EL(PAIR(C_2 C_1) UNION(UNION(UNION(C_3 CONVERSE(C_3)) IDENTITY) CONVERSE(C_3)))
+ 
+R8,1 & A5,1     -->  * R43 : + EL(PAIR(C_2 C_1) IDENTITY)
+ 
+R43,1 & R10,1   -->  * R44 :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+STOP
+ 

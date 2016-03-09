@@ -1,0 +1,44 @@
+This is TeX, C Version 3.0 (format=lplain3 90.7.25)  11 NOV 1991 22:30
+**&latex rahmen
+(../rahmen.tex
+LaTeX Version 2.09 <7 Dec 1989>
+(/usr/local/lib/tex/macros/report.sty
+Document Style `report' <13 Nov 89>.
+(/usr/local/lib/tex/macros/rep10.sty)
+\descriptionmargin=\dimen99
+\c@part=\count78
+\c@chapter=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+ (/usr/local/lib/tex/macros/titlepage.sty))
+No file rahmen.aux.
+! I can't find file `examples/steam3.tex'.
+\@iinput #1->\@@input #1 
+                         
+l.30 \input{examples/steam3.tex}
+                                
+Please type another input file name: p48
+(p48.tex
+\premisewidth=\skip41
+\namelength=\skip42
+\usedsignlength=\skip43
+\implsignlength=\skip44
+\remainlength=\skip45
+) [1
+
+] (rahmen.aux) ) 
+Here is how much of TeX's memory you used:
+ 171 strings out of 4458
+ 1678 string characters out of 63253
+ 31589 words of memory out of 262141
+ 2115 multiletter control sequences out of 9500
+ 18996 words of font info for 72 fonts, out of 72000 for 255
+ 14 hyphenation exceptions out of 607
+ 12i,4n,15p,248b,69s stack positions out of 300i,40n,60p,3000b,4000s
+
+Output written on rahmen.dvi (1 page, 2364 bytes).

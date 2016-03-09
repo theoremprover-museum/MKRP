@@ -1,0 +1,833 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 45.1 EQUALITY 16.1                                  *
+                     *           DATE: 01-JUL,1990  15:21                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation: (Failure: ABORTED.MAXSTEPS)
+   =======================================
+   
+   Initial Clauses:          IC1:    All x:Any + =(x x)
+                             IC2:    All x,y,z:Any + =(max(max(z y) x) max(z max(y x)))
+                             IC3:    All x,y:Any + =(max(y x) max(x y))
+                             IC4:    All x,y,z:Any + =(min(min(z y) x) min(z min(y x)))
+                             IC5:    All x,y:Any + =(min(y x) min(x y))
+                             IC6:    All x:Any + =(max(x 0) x)
+                             IC7:    All x:Any + =(min(x x) x)
+                             IC8:    All x,y:Any + =(min(y max(y x)) y)
+                             IC9:    + =(max(b a) d1)
+                             IC10:   + =(min(b a) d2)
+                             IC11:   + =(min(c1 d1) 0)
+                             IC12:   + =(min(c2 d2) 0)
+                             IC13:   + =(min(c2 b) e)
+                             IC14:   + =(min(c2 a) f)
+                             IC15:   + =(max(e c1) g)
+                             IC16:   + =(max(f c1) h)
+                             IC17:   All x,y,z:Any - =(min(z y) z)  + =(max(z min(y x)) min(y max(z x)))
+                             IC18:   - =(min(h g) c1)
+                           
+
+   
+   IC6,1 & IC3,1      -->    P19:    All x:Any + =(x max(0 x))
+   
+   IC9,1 & IC8,1      -->    P20:    + =(min(b d1) b)
+   
+   P20,1 & IC5        -->    RW21:   + =(min(d1 b) b)
+   
+   IC15,1 & IC8,1     -->    P22:    + =(min(e g) e)
+   
+   P22,1 & IC5        -->    RW23:   + =(min(g e) e)
+   
+   IC16,1 & IC8,1     -->    P24:    + =(min(f h) f)
+   
+   P24,1 & IC5        -->    RW25:   + =(min(h f) f)
+   
+   P19,1 & IC8,1      -->    P26:    All x:Any + =(min(0 x) 0)
+   
+   P26,1 & IC5,1      -->    P27:    All x:Any + =(0 min(x 0))
+   
+   IC3,1 & IC8,1      -->    P28:    All x,y:Any + =(min(y max(x y)) y)
+   
+   IC16,1 & P28,1     -->    P29:    + =(min(c1 h) c1)
+   
+   P29,1 & IC5        -->    RW30:   + =(min(h c1) c1)
+   
+   IC15,1 & P28,1     -->    P31:    + =(min(c1 g) c1)
+   
+   P31,1 & IC5        -->    RW32:   + =(min(g c1) c1)
+   
+   IC9,1 & P28,1      -->    P33:    + =(min(a d1) a)
+   
+   P33,1 & IC5        -->    RW34:   + =(min(d1 a) a)
+   
+   IC11,1 & IC4,1     -->    P35:    All x:Any + =(min(0 x) min(c1 min(d1 x)))
+   
+   P35,1 & P26        -->    RW36:   All x:Any + =(0 min(c1 min(d1 x)))
+   
+   RW21,1 & RW36,1    -->    P37:    + =(0 min(c1 b))
+   
+   RW34,1 & RW36,1    -->    P38:    + =(0 min(c1 a))
+   
+   IC12,1 & IC4,1     -->    P39:    All x:Any + =(min(0 x) min(c2 min(d2 x)))
+   
+   P39,1 & P26        -->    RW40:   All x:Any + =(0 min(c2 min(d2 x)))
+   
+   IC5,1 & RW36,1     -->    P41:    All x:Any + =(0 min(min(d1 x) c1))
+   
+   P41,1 & IC4        -->    RW42:   All x:Any + =(0 min(d1 min(x c1)))
+   
+   IC5,1 & RW36,1     -->    P43:    All x:Any + =(0 min(c1 min(x d1)))
+   
+   IC5,1 & RW40,1     -->    P44:    All x:Any + =(0 min(min(d2 x) c2))
+   
+   P44,1 & IC4        -->    RW45:   All x:Any + =(0 min(d2 min(x c2)))
+   
+   IC5,1 & RW40,1     -->    P46:    All x:Any + =(0 min(c2 min(x d2)))
+   
+   P37,1 & IC4,1      -->    P47:    All x:Any + =(min(0 x) min(c1 min(b x)))
+   
+   P47,1 & P26        -->    RW48:   All x:Any + =(0 min(c1 min(b x)))
+   
+   IC10,1 & RW48,1    -->    P49:    + =(0 min(c1 d2))
+   
+   IC5,1 & RW42,1     -->    P50:    All x:Any + =(0 min(d1 min(c1 x)))
+   
+   IC5,1 & RW45,1     -->    P51:    All x:Any + =(0 min(d2 min(c2 x)))
+   
+   IC14,1 & P51,1     -->    P52:    + =(0 min(d2 f))
+   
+   P52,1 & IC5        -->    RW53:   + =(0 min(f d2))
+   
+   IC13,1 & P51,1     -->    P54:    + =(0 min(d2 e))
+   
+   P54,1 & IC5        -->    RW55:   + =(0 min(e d2))
+   
+   IC7,1 & IC4,1      -->    P56:    All x,y:Any + =(min(y x) min(y min(y x)))
+   
+   IC14,1 & P56,1     -->    P57:    + =(min(c2 a) min(c2 f))
+   
+   P57,1 & IC14       -->    RW58:   + =(f min(c2 f))
+   
+   RW58,1 & IC5       -->    RW59:   + =(f min(f c2))
+   
+   IC13,1 & P56,1     -->    P60:    + =(min(c2 b) min(c2 e))
+   
+   P60,1 & IC13       -->    RW61:   + =(e min(c2 e))
+   
+   RW61,1 & IC5       -->    RW62:   + =(e min(e c2))
+   
+   IC10,1 & P56,1     -->    P63:    + =(min(b a) min(b d2))
+   
+   P63,1 & IC10       -->    RW64:   + =(d2 min(b d2))
+   
+   RW64,1 & IC5       -->    RW65:   + =(d2 min(d2 b))
+   
+   IC9,1 & IC2,1      -->    P66:    All x:Any + =(max(d1 x) max(b max(a x)))
+   
+   P66,1 & IC8,1      -->    P67:    All x:Any + =(min(b max(d1 x)) b)
+   
+   IC3,1 & P67,1      -->    P68:    All x:Any + =(min(b max(x d1)) b)
+   
+   IC10,1 & IC4,1     -->    P69:    All x:Any + =(min(d2 x) min(b min(a x)))
+   
+   IC7,1 & P69,1      -->    P70:    + =(min(d2 a) min(b a))
+   
+   P70,1 & IC10       -->    RW71:   + =(min(d2 a) d2)
+   
+   P28,1 & P69,1      -->    P72:    All x:Any + =(min(d2 max(x a)) min(b a))
+   
+   P72,1 & IC10       -->    RW73:   All x:Any + =(min(d2 max(x a)) d2)
+   
+   IC9,1 & RW73,1     -->    P74:    + =(min(d2 d1) d2)
+   
+   IC8,1 & P69,1      -->    P75:    All x:Any + =(min(d2 max(a x)) min(b a))
+   
+   P75,1 & IC10       -->    RW76:   All x:Any + =(min(d2 max(a x)) d2)
+   
+   IC13,1 & IC4,1     -->    P77:    All x:Any + =(min(e x) min(c2 min(b x)))
+   
+   IC10,1 & P77,1     -->    P78:    + =(min(e a) min(c2 d2))
+   
+   P78,1 & IC12       -->    RW79:   + =(min(e a) 0)
+   
+   IC7,1 & P77,1      -->    P80:    + =(min(e b) min(c2 b))
+   
+   P80,1 & IC13       -->    RW81:   + =(min(e b) e)
+   
+   P69,1 & P77,1      -->    P82:    All x:Any + =(min(e min(a x)) min(c2 min(d2 x)))
+   
+   P82,1 & RW40       -->    RW83:   All x:Any + =(min(e min(a x)) 0)
+   
+   P28,1 & P77,1      -->    P84:    All x:Any + =(min(e max(x b)) min(c2 b))
+   
+   P84,1 & IC13       -->    RW85:   All x:Any + =(min(e max(x b)) e)
+   
+   IC8,1 & P77,1      -->    P86:    All x:Any + =(min(e max(b x)) min(c2 b))
+   
+   P86,1 & IC13       -->    RW87:   All x:Any + =(min(e max(b x)) e)
+   
+   IC9,1 & RW87,1     -->    P88:    + =(min(e d1) e)
+   
+   P88,1 & P43,1      -->    P89:    + =(0 min(c1 e))
+   
+   P89,1 & IC5        -->    RW90:   + =(0 min(e c1))
+   
+   P67,1 & P77,1      -->    P91:    All x:Any + =(min(e max(d1 x)) min(c2 b))
+   
+   P91,1 & IC13       -->    RW92:   All x:Any + =(min(e max(d1 x)) e)
+   
+   IC5,1 & RW83,1     -->    P93:    All x:Any + =(min(min(a x) e) 0)
+   
+   P93,1 & IC4        -->    RW94:   All x:Any + =(min(a min(x e)) 0)
+   
+   IC5,1 & RW83,1     -->    P95:    All x:Any + =(min(e min(x a)) 0)
+   
+   IC14,1 & P95,1     -->    P96:    + =(min(e f) 0)
+   
+   P96,1 & IC5        -->    RW97:   + =(min(f e) 0)
+   
+   IC14,1 & IC4,1     -->    P98:    All x:Any + =(min(f x) min(c2 min(a x)))
+   
+   IC7,1 & P98,1      -->    P99:    + =(min(f a) min(c2 a))
+   
+   P99,1 & IC14       -->    RW100:  + =(min(f a) f)
+   
+   P28,1 & P98,1      -->    P101:   All x:Any + =(min(f max(x a)) min(c2 a))
+   
+   P101,1 & IC14      -->    RW102:  All x:Any + =(min(f max(x a)) f)
+   
+   IC9,1 & RW102,1    -->    P103:   + =(min(f d1) f)
+   
+   P103,1 & P43,1     -->    P104:   + =(0 min(c1 f))
+   
+   P104,1 & IC5       -->    RW105:  + =(0 min(f c1))
+   
+   IC8,1 & P98,1      -->    P106:   All x:Any + =(min(f max(a x)) min(c2 a))
+   
+   P106,1 & IC14      -->    RW107:  All x:Any + =(min(f max(a x)) f)
+   
+   IC15,1 & IC2,1     -->    P108:   All x:Any + =(max(g x) max(e max(c1 x)))
+   
+   P108,1 & IC8,1     -->    P109:   All x:Any + =(min(e max(g x)) e)
+   
+   IC3,1 & P109,1     -->    P110:   All x:Any + =(min(e max(x g)) e)
+   
+   IC16,1 & IC2,1     -->    P111:   All x:Any + =(max(h x) max(f max(c1 x)))
+   
+   P111,1 & IC8,1     -->    P112:   All x:Any + =(min(f max(h x)) f)
+   
+   IC3,1 & P112,1     -->    P113:   All x:Any + =(min(f max(x h)) f)
+   
+   P38,1 & IC4,1      -->    P114:   All x:Any + =(min(0 x) min(c1 min(a x)))
+   
+   P114,1 & P26       -->    RW115:  All x:Any + =(0 min(c1 min(a x)))
+   
+   IC5,1 & RW48,1     -->    P116:   All x:Any + =(0 min(min(b x) c1))
+   
+   P116,1 & IC4       -->    RW117:  All x:Any + =(0 min(b min(x c1)))
+   
+   IC5,1 & RW48,1     -->    P118:   All x:Any + =(0 min(c1 min(x b)))
+   
+   P69,1 & RW48,1     -->    P119:   All x:Any + =(0 min(c1 min(d2 x)))
+   
+   P77,1 & P51,1      -->    P120:   All x:Any + =(0 min(d2 min(e x)))
+   
+   P68,1 & P77,1      -->    P121:   All x:Any + =(min(e max(x d1)) min(c2 b))
+   
+   P121,1 & IC13      -->    RW122:  All x:Any + =(min(e max(x d1)) e)
+   
+   IC5,1 & RW94,1     -->    P123:   All x:Any + =(min(a min(e x)) 0)
+   
+   RW94,1 & P69,1     -->    P124:   All x:Any + =(min(d2 min(x e)) min(b 0))
+   
+   P124,1 & P27       -->    RW125:  All x:Any + =(min(d2 min(x e)) 0)
+   
+   P98,1 & P51,1      -->    P126:   All x:Any + =(0 min(d2 min(f x)))
+   
+   RW94,1 & P98,1     -->    P127:   All x:Any + =(min(f min(x e)) min(c2 0))
+   
+   P127,1 & P27       -->    RW128:  All x:Any + =(min(f min(x e)) 0)
+   
+   RW21,1 & IC4,1     -->    P129:   All x:Any + =(min(b x) min(d1 min(b x)))
+   
+   RW23,1 & IC4,1     -->    P130:   All x:Any + =(min(e x) min(g min(e x)))
+   
+   RW25,1 & IC4,1     -->    P131:   All x:Any + =(min(f x) min(h min(f x)))
+   
+   IC2,1 & P28,1      -->    P132:   All x,y,z:Any + =(min(z max(y max(x z))) z)
+   
+   IC16,1 & P132,1    -->    P133:   All x:Any + =(min(c1 max(x h)) c1)
+   
+   IC15,1 & P132,1    -->    P134:   All x:Any + =(min(c1 max(x g)) c1)
+   
+   IC9,1 & P132,1     -->    P135:   All x:Any + =(min(a max(x d1)) a)
+   
+   IC3,1 & P133,1     -->    P136:   All x:Any + =(min(c1 max(h x)) c1)
+   
+   IC3,1 & P134,1     -->    P137:   All x:Any + =(min(c1 max(g x)) c1)
+   
+   P135,1 & P69,1     -->    P138:   All x:Any + =(min(d2 max(x d1)) min(b a))
+   
+   P138,1 & IC10      -->    RW139:  All x:Any + =(min(d2 max(x d1)) d2)
+   
+   P135,1 & P98,1     -->    P140:   All x:Any + =(min(f max(x d1)) min(c2 a))
+   
+   P140,1 & IC14      -->    RW141:  All x:Any + =(min(f max(x d1)) f)
+   
+   IC3,1 & P135,1     -->    P142:   All x:Any + =(min(a max(d1 x)) a)
+   
+   RW53,1 & IC4,1     -->    P143:   All x:Any + =(min(0 x) min(f min(d2 x)))
+   
+   P143,1 & P26       -->    RW144:  All x:Any + =(0 min(f min(d2 x)))
+   
+   RW55,1 & IC4,1     -->    P145:   All x:Any + =(min(0 x) min(e min(d2 x)))
+   
+   P145,1 & P26       -->    RW146:  All x:Any + =(0 min(e min(d2 x)))
+   
+   P56,1 & IC5,1      -->    P147:   All x,y:Any + =(min(y x) min(min(y x) y))
+   
+   P147,1 & IC4       -->    RW148:  All x,y:Any + =(min(y x) min(y min(x y)))
+   
+   P66,1 & IC3,1      -->    P149:   All x:Any + =(max(d1 x) max(max(a x) b))
+   
+   P149,1 & IC2       -->    RW150:  All x:Any + =(max(d1 x) max(a max(x b)))
+   
+   RW150,1 & RW76,1   -->    P151:   All x:Any + =(min(d2 max(d1 x)) d2)
+   
+   RW150,1 & RW107,1  -->    P152:   All x:Any + =(min(f max(d1 x)) f)
+   
+   IC3,1 & P66,1      -->    P153:   All x:Any + =(max(d1 x) max(b max(x a)))
+   
+   P69,1 & IC5,1      -->    P154:   All x:Any + =(min(d2 x) min(min(a x) b))
+   
+   P154,1 & IC4       -->    RW155:  All x:Any + =(min(d2 x) min(a min(x b)))
+   
+   RW155,1 & P98,1    -->    P156:   All x:Any + =(min(f min(x b)) min(c2 min(d2 x)))
+   
+   P156,1 & RW40      -->    RW157:  All x:Any + =(min(f min(x b)) 0)
+   
+   P56,1 & RW157,1    -->    P158:   + =(min(f b) 0)
+   
+   IC5,1 & RW157,1    -->    P159:   All x:Any + =(min(f min(b x)) 0)
+   
+   P69,1 & P56,1      -->    P160:   All x:Any + =(min(b min(a x)) min(b min(d2 x)))
+   
+   P160,1 & P69       -->    RW161:  All x:Any + =(min(d2 x) min(b min(d2 x)))
+   
+   P56,1 & P69,1      -->    P162:   All x:Any + =(min(d2 min(a x)) min(b min(a x)))
+   
+   P162,1 & P69       -->    RW163:  All x:Any + =(min(d2 min(a x)) min(d2 x))
+   
+   IC5,1 & P69,1      -->    P164:   All x:Any + =(min(d2 x) min(b min(x a)))
+   
+   P77,1 & IC5,1      -->    P165:   All x:Any + =(min(e x) min(min(b x) c2))
+   
+   P165,1 & IC4       -->    RW166:  All x:Any + =(min(e x) min(b min(x c2)))
+   
+   RW166,1 & RW48,1   -->    P167:   All x:Any + =(0 min(c1 min(e x)))
+   
+   P77,1 & P56,1      -->    P168:   All x:Any + =(min(c2 min(b x)) min(c2 min(e x)))
+   
+   P168,1 & P77       -->    RW169:  All x:Any + =(min(e x) min(c2 min(e x)))
+   
+   P56,1 & P77,1      -->    P170:   All x:Any + =(min(e min(b x)) min(c2 min(b x)))
+   
+   P170,1 & P77       -->    RW171:  All x:Any + =(min(e min(b x)) min(e x))
+   
+   IC5,1 & P77,1      -->    P172:   All x:Any + =(min(e x) min(c2 min(x b)))
+   
+   RW90,1 & IC4,1     -->    P173:   All x:Any + =(min(0 x) min(e min(c1 x)))
+   
+   P173,1 & P26       -->    RW174:  All x:Any + =(0 min(e min(c1 x)))
+   
+   RW97,1 & IC4,1     -->    P175:   All x:Any + =(min(0 x) min(f min(e x)))
+   
+   P175,1 & P26       -->    RW176:  All x:Any + =(0 min(f min(e x)))
+   
+   P98,1 & IC5,1      -->    P177:   All x:Any + =(min(f x) min(min(a x) c2))
+   
+   P177,1 & IC4       -->    RW178:  All x:Any + =(min(f x) min(a min(x c2)))
+   
+   RW178,1 & P69,1    -->    P179:   All x:Any + =(min(d2 min(x c2)) min(b min(f x)))
+   
+   P179,1 & RW45      -->    RW180:  All x:Any + =(0 min(b min(f x)))
+   
+   RW178,1 & RW83,1   -->    P181:   All x:Any + =(min(e min(f x)) 0)
+   
+   IC5,1 & RW180,1    -->    P182:   All x:Any + =(0 min(b min(x f)))
+   
+   IC5,1 & P181,1     -->    P183:   All x:Any + =(min(e min(x f)) 0)
+   
+   P98,1 & P56,1      -->    P184:   All x:Any + =(min(c2 min(a x)) min(c2 min(f x)))
+   
+   P184,1 & P98       -->    RW185:  All x:Any + =(min(f x) min(c2 min(f x)))
+   
+   P56,1 & P98,1      -->    P186:   All x:Any + =(min(f min(a x)) min(c2 min(a x)))
+   
+   P186,1 & P98       -->    RW187:  All x:Any + =(min(f min(a x)) min(f x))
+   
+   IC5,1 & P98,1      -->    P188:   All x:Any + =(min(f x) min(c2 min(x a)))
+   
+   RW105,1 & IC4,1    -->    P189:   All x:Any + =(min(0 x) min(f min(c1 x)))
+   
+   P189,1 & P26       -->    RW190:  All x:Any + =(0 min(f min(c1 x)))
+   
+   P108,1 & IC3,1     -->    P191:   All x:Any + =(max(g x) max(max(c1 x) e))
+   
+   P191,1 & IC2       -->    RW192:  All x:Any + =(max(g x) max(c1 max(x e)))
+   
+   IC3,1 & P108,1     -->    P193:   All x:Any + =(max(g x) max(e max(x c1)))
+   
+   IC16,1 & P193,1    -->    P194:   + =(max(g f) max(e h))
+   
+   P194,1 & IC3       -->    RW195:  + =(max(g f) max(h e))
+   
+   RW195,1 & IC8,1    -->    P196:   + =(min(g max(h e)) g)
+   
+   P111,1 & IC3,1     -->    P197:   All x:Any + =(max(h x) max(max(c1 x) f))
+   
+   P197,1 & IC2       -->    RW198:  All x:Any + =(max(h x) max(c1 max(x f)))
+   
+   IC3,1 & P111,1     -->    P199:   All x:Any + =(max(h x) max(f max(x c1)))
+   
+   IC5,1 & RW115,1    -->    P200:   All x:Any + =(0 min(min(a x) c1))
+   
+   P200,1 & IC4       -->    RW201:  All x:Any + =(0 min(a min(x c1)))
+   
+   IC5,1 & RW115,1    -->    P202:   All x:Any + =(0 min(c1 min(x a)))
+   
+   IC5,1 & RW117,1    -->    P203:   All x:Any + =(0 min(b min(c1 x)))
+   
+   RW117,1 & P77,1    -->    P204:   All x:Any + =(min(e min(x c1)) min(c2 0))
+   
+   P204,1 & P27       -->    RW205:  All x:Any + =(min(e min(x c1)) 0)
+   
+   P119,1 & IC5,1     -->    P206:   All x:Any + =(0 min(min(d2 x) c1))
+   
+   P206,1 & IC4       -->    RW207:  All x:Any + =(0 min(d2 min(x c1)))
+   
+   IC5,1 & P119,1     -->    P208:   All x:Any + =(0 min(c1 min(x d2)))
+   
+   P120,1 & IC5,1     -->    P209:   All x:Any + =(0 min(min(e x) d2))
+   
+   P209,1 & IC4       -->    RW210:  All x:Any + =(0 min(e min(x d2)))
+   
+   P126,1 & IC5,1     -->    P211:   All x:Any + =(0 min(min(f x) d2))
+   
+   P211,1 & IC4       -->    RW212:  All x:Any + =(0 min(f min(x d2)))
+   
+   IC5,1 & P126,1     -->    P213:   All x:Any + =(0 min(d2 min(x f)))
+   
+   IC5,1 & P167,1     -->    P214:   All x:Any + =(0 min(c1 min(x e)))
+   
+   RW178,1 & RW115,1  -->    P215:   All x:Any + =(0 min(c1 min(f x)))
+   
+   RW30,1 & IC4,1     -->    P216:   All x:Any + =(min(c1 x) min(h min(c1 x)))
+   
+   RW32,1 & IC4,1     -->    P217:   All x:Any + =(min(c1 x) min(g min(c1 x)))
+   
+   RW34,1 & IC4,1     -->    P218:   All x:Any + =(min(a x) min(d1 min(a x)))
+   
+   IC4,1 & RW42,1     -->    P219:   All x,y:Any + =(0 min(d1 min(y min(x c1))))
+   
+   RW42,1 & IC4,1     -->    P220:   All x,y:Any + =(min(0 y) min(d1 min(min(x c1) y)))
+   
+   P220,1 & P26       -->    RW221:  All x,y:Any + =(0 min(d1 min(min(y c1) x)))
+   
+   RW221,1 & IC4      -->    RW222:  All x,y:Any + =(0 min(d1 min(y min(c1 x))))
+   
+   P218,1 & RW222,1   -->    P223:   All x:Any + =(0 min(a min(c1 x)))
+   
+   P223,1 & P69,1     -->    P224:   All x:Any + =(min(d2 min(c1 x)) min(b 0))
+   
+   P224,1 & P27       -->    RW225:  All x:Any + =(min(d2 min(c1 x)) 0)
+   
+   P43,1 & IC4,1      -->    P226:   All x,y:Any + =(min(0 y) min(c1 min(min(x d1) y)))
+   
+   P226,1 & P26       -->    RW227:  All x,y:Any + =(0 min(c1 min(min(y d1) x)))
+   
+   RW227,1 & IC4      -->    RW228:  All x,y:Any + =(0 min(c1 min(y min(d1 x))))
+   
+   IC4,1 & P43,1      -->    P229:   All x,y:Any + =(0 min(c1 min(y min(x d1))))
+   
+   P103,1 & P229,1    -->    P230:   All x:Any + =(0 min(c1 min(x f)))
+   
+   IC4,1 & RW45,1     -->    P231:   All x,y:Any + =(0 min(d2 min(y min(x c2))))
+   
+   RW45,1 & IC4,1     -->    P232:   All x,y:Any + =(min(0 y) min(d2 min(min(x c2) y)))
+   
+   P232,1 & P26       -->    RW233:  All x,y:Any + =(0 min(d2 min(min(y c2) x)))
+   
+   RW233,1 & IC4      -->    RW234:  All x,y:Any + =(0 min(d2 min(y min(c2 x))))
+   
+   P46,1 & IC4,1      -->    P235:   All x,y:Any + =(min(0 y) min(c2 min(min(x d2) y)))
+   
+   P235,1 & P26       -->    RW236:  All x,y:Any + =(0 min(c2 min(min(y d2) x)))
+   
+   RW236,1 & IC4      -->    RW237:  All x,y:Any + =(0 min(c2 min(y min(d2 x))))
+   
+   IC4,1 & P46,1      -->    P238:   All x,y:Any + =(0 min(c2 min(y min(x d2))))
+   
+   RW59,1 & IC4,1     -->    P239:   All x:Any + =(min(f x) min(f min(c2 x)))
+   
+   P28,1 & P239,1     -->    P240:   All x:Any + =(min(f max(x c2)) min(f c2))
+   
+   P240,1 & RW59      -->    RW241:  All x:Any + =(min(f max(x c2)) f)
+   
+   IC8,1 & P239,1     -->    P242:   All x:Any + =(min(f max(c2 x)) min(f c2))
+   
+   P242,1 & RW59      -->    RW243:  All x:Any + =(min(f max(c2 x)) f)
+   
+   RW62,1 & IC4,1     -->    P244:   All x:Any + =(min(e x) min(e min(c2 x)))
+   
+   P28,1 & P244,1     -->    P245:   All x:Any + =(min(e max(x c2)) min(e c2))
+   
+   P245,1 & RW62      -->    RW246:  All x:Any + =(min(e max(x c2)) e)
+   
+   IC8,1 & P244,1     -->    P247:   All x:Any + =(min(e max(c2 x)) min(e c2))
+   
+   P247,1 & RW62      -->    RW248:  All x:Any + =(min(e max(c2 x)) e)
+   
+   RW65,1 & IC4,1     -->    P249:   All x:Any + =(min(d2 x) min(d2 min(b x)))
+   
+   P28,1 & P249,1     -->    P250:   All x:Any + =(min(d2 max(x b)) min(d2 b))
+   
+   P250,1 & RW65      -->    RW251:  All x:Any + =(min(d2 max(x b)) d2)
+   
+   IC8,1 & P249,1     -->    P252:   All x:Any + =(min(d2 max(b x)) min(d2 b))
+   
+   P252,1 & RW65      -->    RW253:  All x:Any + =(min(d2 max(b x)) d2)
+   
+   IC2,1 & RW73,1     -->    P254:   All x,y:Any + =(min(d2 max(y max(x a))) d2)
+   
+   IC2,1 & RW85,1     -->    P255:   All x,y:Any + =(min(e max(y max(x b))) e)
+   
+   IC2,1 & RW102,1    -->    P256:   All x,y:Any + =(min(f max(y max(x a))) f)
+   
+   P129,1 & IC5,1     -->    P257:   All x:Any + =(min(b x) min(min(b x) d1))
+   
+   P257,1 & IC4       -->    RW258:  All x:Any + =(min(b x) min(b min(x d1)))
+   
+   P69,1 & P129,1     -->    P259:   All x:Any + =(min(b min(a x)) min(d1 min(d2 x)))
+   
+   P259,1 & P69       -->    RW260:  All x:Any + =(min(d2 x) min(d1 min(d2 x)))
+   
+   IC5,1 & P129,1     -->    P261:   All x:Any + =(min(b x) min(d1 min(x b)))
+   
+   P130,1 & IC5,1     -->    P262:   All x:Any + =(min(e x) min(min(e x) g))
+   
+   P262,1 & IC4       -->    RW263:  All x:Any + =(min(e x) min(e min(x g)))
+   
+   IC5,1 & P130,1     -->    P264:   All x:Any + =(min(e x) min(g min(x e)))
+   
+   P131,1 & IC5,1     -->    P265:   All x:Any + =(min(f x) min(min(f x) h))
+   
+   P265,1 & IC4       -->    RW266:  All x:Any + =(min(f x) min(f min(x h)))
+   
+   IC5,1 & P131,1     -->    P267:   All x:Any + =(min(f x) min(h min(x f)))
+   
+   IC3,1 & P132,1     -->    P268:   All x,y,z:Any + =(min(z max(max(y z) x)) z)
+   
+   P268,1 & IC2       -->    RW269:  All x,y,z:Any + =(min(z max(y max(z x))) z)
+   
+   P98,1 & RW148,1    -->    P270:   All x:Any + =(min(min(a x) c2) min(min(a x) min(f x)))
+   
+   P270,1 & IC4       -->    RW271:  All x:Any + =(min(a min(x c2)) min(min(a x) min(f x)))
+   
+   RW271,1 & RW178    -->    RW272:  All x:Any + =(min(f x) min(min(a x) min(f x)))
+   
+   RW272,1 & IC4      -->    RW273:  All x:Any + =(min(f x) min(a min(x min(f x))))
+   
+   RW273,1 & RW148    -->    RW274:  All x:Any + =(min(f x) min(a min(x f)))
+   
+   IC7,1 & IC17,1     -->    R275:   All x,y:Any + =(max(y min(y x)) min(y max(y x)))
+   
+   R275,1 & IC8       -->    RW276:  All x,y:Any + =(max(y min(y x)) y)
+   
+   P28,1 & RW276,1    -->    P277:   All x:Any + =(max(x x) x)
+   
+   RW25,1 & RW276,1   -->    P278:   + =(max(h f) h)
+   
+   RW23,1 & RW276,1   -->    P279:   + =(max(g e) g)
+   
+   RW21,1 & RW276,1   -->    P280:   + =(max(d1 b) d1)
+   
+   IC14,1 & RW276,1   -->    P281:   + =(max(c2 f) c2)
+   
+   P281,1 & IC3       -->    RW282:  + =(max(f c2) c2)
+   
+   IC13,1 & RW276,1   -->    P283:   + =(max(c2 e) c2)
+   
+   P283,1 & IC3       -->    RW284:  + =(max(e c2) c2)
+   
+   IC10,1 & RW276,1   -->    P285:   + =(max(b d2) b)
+   
+   P285,1 & IC3       -->    RW286:  + =(max(d2 b) b)
+   
+   RW34,1 & RW276,1   -->    P287:   + =(max(d1 a) d1)
+   
+   RW32,1 & RW276,1   -->    P288:   + =(max(g c1) g)
+   
+   RW30,1 & RW276,1   -->    P289:   + =(max(h c1) h)
+   
+   RW286,1 & RW150,1  -->    P290:   + =(max(d1 d2) max(a b))
+   
+   P290,1 & IC3       -->    RW291:  + =(max(d2 d1) max(a b))
+   
+   RW291,1 & IC3      -->    RW292:  + =(max(d2 d1) max(b a))
+   
+   RW292,1 & IC9      -->    RW293:  + =(max(d2 d1) d1)
+   
+   P98,1 & RW276,1    -->    P294:   All x:Any + =(max(c2 min(f x)) c2)
+   
+   P77,1 & RW276,1    -->    P295:   All x:Any + =(max(c2 min(e x)) c2)
+   
+   P69,1 & RW276,1    -->    P296:   All x:Any + =(max(b min(d2 x)) b)
+   
+   IC5,1 & RW276,1    -->    P297:   All x,y:Any + =(max(y min(x y)) y)
+   
+   RW100,1 & P297,1   -->    P298:   + =(max(a f) a)
+   
+   P298,1 & IC3       -->    RW299:  + =(max(f a) a)
+   
+   RW81,1 & P297,1    -->    P300:   + =(max(b e) b)
+   
+   P300,1 & IC3       -->    RW301:  + =(max(e b) b)
+   
+   RW71,1 & P297,1    -->    P302:   + =(max(a d2) a)
+   
+   P302,1 & IC3       -->    RW303:  + =(max(d2 a) a)
+   
+   P103,1 & P297,1    -->    P304:   + =(max(d1 f) d1)
+   
+   P304,1 & IC3       -->    RW305:  + =(max(f d1) d1)
+   
+   P88,1 & P297,1     -->    P306:   + =(max(d1 e) d1)
+   
+   P306,1 & IC3       -->    RW307:  + =(max(e d1) d1)
+   
+   RW276,1 & P66,1    -->    P308:   All x:Any + =(max(d1 min(a x)) max(b a))
+   
+   P308,1 & IC9       -->    RW309:  All x:Any + =(max(d1 min(a x)) d1)
+   
+   RW276,1 & P108,1   -->    P310:   All x:Any + =(max(g min(c1 x)) max(e c1))
+   
+   P310,1 & IC15      -->    RW311:  All x:Any + =(max(g min(c1 x)) g)
+   
+   RW276,1 & P111,1   -->    P312:   All x:Any + =(max(h min(c1 x)) max(f c1))
+   
+   P312,1 & IC16      -->    RW313:  All x:Any + =(max(h min(c1 x)) h)
+   
+   RW178,1 & RW276,1  -->    P314:   All x:Any + =(max(a min(f x)) a)
+   
+   RW166,1 & RW276,1  -->    P315:   All x:Any + =(max(b min(e x)) b)
+   
+   RW155,1 & RW276,1  -->    P316:   All x:Any + =(max(a min(d2 x)) a)
+   
+   P131,1 & RW276,1   -->    P317:   All x:Any + =(max(h min(f x)) h)
+   
+   P130,1 & RW276,1   -->    P318:   All x:Any + =(max(g min(e x)) g)
+   
+   P129,1 & RW276,1   -->    P319:   All x:Any + =(max(d1 min(b x)) d1)
+   
+   IC5,1 & P294,1     -->    P320:   All x:Any + =(max(c2 min(x f)) c2)
+   
+   IC5,1 & P295,1     -->    P321:   All x:Any + =(max(c2 min(x e)) c2)
+   
+   IC5,1 & P296,1     -->    P322:   All x:Any + =(max(b min(x d2)) b)
+   
+   P297,1 & P66,1     -->    P323:   All x:Any + =(max(d1 min(x a)) max(b a))
+   
+   P323,1 & IC9       -->    RW324:  All x:Any + =(max(d1 min(x a)) d1)
+   
+   P297,1 & P108,1    -->    P325:   All x:Any + =(max(g min(x c1)) max(e c1))
+   
+   P325,1 & IC15      -->    RW326:  All x:Any + =(max(g min(x c1)) g)
+   
+   P297,1 & P111,1    -->    P327:   All x:Any + =(max(h min(x c1)) max(f c1))
+   
+   P327,1 & IC16      -->    RW328:  All x:Any + =(max(h min(x c1)) h)
+   
+   RW178,1 & RW309,1  -->    P329:   All x:Any + =(max(d1 min(f x)) d1)
+   
+   RW155,1 & RW309,1  -->    P330:   All x:Any + =(max(d1 min(d2 x)) d1)
+   
+   P288,1 & P199,1    -->    P331:   + =(max(h g) max(f g))
+   
+   P331,1 & IC3       -->    RW332:  + =(max(h g) max(g f))
+   
+   RW332,1 & RW195    -->    RW333:  + =(max(h g) max(h e))
+   
+   P196,1 & RW333     -->    RW334:  + =(min(g max(h g)) g)
+   
+   RW195,1 & RW333    -->    RW335:  + =(max(g f) max(h g))
+   
+   IC5,1 & P314,1     -->    P336:   All x:Any + =(max(a min(x f)) a)
+   
+   IC5,1 & P315,1     -->    P337:   All x:Any + =(max(b min(x e)) b)
+   
+   IC5,1 & P316,1     -->    P338:   All x:Any + =(max(a min(x d2)) a)
+   
+   IC5,1 & P317,1     -->    P339:   All x:Any + =(max(h min(x f)) h)
+   
+   IC5,1 & P318,1     -->    P340:   All x:Any + =(max(g min(x e)) g)
+   
+   RW166,1 & P319,1   -->    P341:   All x:Any + =(max(d1 min(e x)) d1)
+   
+   IC5,1 & P319,1     -->    P342:   All x:Any + =(max(d1 min(x b)) d1)
+   
+   IC5,1 & P329,1     -->    P343:   All x:Any + =(max(d1 min(x f)) d1)
+   
+   IC5,1 & P330,1     -->    P344:   All x:Any + =(max(d1 min(x d2)) d1)
+   
+   RW335,1 & RW335,1  -->    P345:   + =(max(h g) max(h g))
+   
+   IC5,1 & P341,1     -->    P346:   All x:Any + =(max(d1 min(x e)) d1)
+   
+   P77,1 & RW148,1    -->    P347:   All x:Any + =(min(min(b x) c2) min(min(b x) min(e x)))
+   
+   P347,1 & IC4       -->    RW348:  All x:Any + =(min(b min(x c2)) min(min(b x) min(e x)))
+   
+   RW348,1 & RW166    -->    RW349:  All x:Any + =(min(e x) min(min(b x) min(e x)))
+   
+   RW349,1 & IC4      -->    RW350:  All x:Any + =(min(e x) min(b min(x min(e x))))
+   
+   RW350,1 & RW148    -->    RW351:  All x:Any + =(min(e x) min(b min(x e)))
+   
+   P69,1 & RW148,1    -->    P352:   All x:Any + =(min(min(a x) b) min(min(a x) min(d2 x)))
+   
+   P352,1 & IC4       -->    RW353:  All x:Any + =(min(a min(x b)) min(min(a x) min(d2 x)))
+   
+   RW353,1 & RW155    -->    RW354:  All x:Any + =(min(d2 x) min(min(a x) min(d2 x)))
+   
+   RW354,1 & IC4      -->    RW355:  All x:Any + =(min(d2 x) min(a min(x min(d2 x))))
+   
+   RW355,1 & RW148    -->    RW356:  All x:Any + =(min(d2 x) min(a min(x d2)))
+   
+   RW148,1 & P69,1    -->    P357:   All x:Any + =(min(d2 min(x a)) min(b min(a x)))
+   
+   P357,1 & P69       -->    RW358:  All x:Any + =(min(d2 min(x a)) min(d2 x))
+   
+   RW148,1 & P77,1    -->    P359:   All x:Any + =(min(e min(x b)) min(c2 min(b x)))
+   
+   P359,1 & P77       -->    RW360:  All x:Any + =(min(e min(x b)) min(e x))
+   
+   RW148,1 & P98,1    -->    P361:   All x:Any + =(min(f min(x a)) min(c2 min(a x)))
+   
+   P361,1 & P98       -->    RW362:  All x:Any + =(min(f min(x a)) min(f x))
+   
+   IC3,1 & RW150,1    -->    P363:   All x:Any + =(max(d1 x) max(a max(b x)))
+   
+   IC5,1 & RW155,1    -->    P364:   All x:Any + =(min(d2 x) min(a min(b x)))
+   
+   RW155,1 & P56,1    -->    P365:   All x:Any + =(min(a min(x b)) min(a min(d2 x)))
+   
+   P365,1 & RW155     -->    RW366:  All x:Any + =(min(d2 x) min(a min(d2 x)))
+   
+   RW155,1 & P69,1    -->    P367:   All x:Any + =(min(d2 min(x b)) min(b min(d2 x)))
+   
+   P367,1 & RW161     -->    RW368:  All x:Any + =(min(d2 min(x b)) min(d2 x))
+   
+   IC5,1 & RW161,1    -->    P369:   All x:Any + =(min(d2 x) min(b min(x d2)))
+   
+   IC5,1 & RW166,1    -->    P370:   All x:Any + =(min(e x) min(b min(c2 x)))
+   
+   RW166,1 & P56,1    -->    P371:   All x:Any + =(min(b min(x c2)) min(b min(e x)))
+   
+   P371,1 & RW166     -->    RW372:  All x:Any + =(min(e x) min(b min(e x)))
+   
+   RW166,1 & P77,1    -->    P373:   All x:Any + =(min(e min(x c2)) min(c2 min(e x)))
+   
+   P373,1 & RW169     -->    RW374:  All x:Any + =(min(e min(x c2)) min(e x))
+   
+   RW166,1 & P129,1   -->    P375:   All x:Any + =(min(b min(x c2)) min(d1 min(e x)))
+   
+   P375,1 & RW166     -->    RW376:  All x:Any + =(min(e x) min(d1 min(e x)))
+   
+   IC5,1 & RW169,1    -->    P377:   All x:Any + =(min(e x) min(c2 min(x e)))
+   
+   IC5,1 & RW178,1    -->    P378:   All x:Any + =(min(f x) min(a min(c2 x)))
+   
+   RW178,1 & P56,1    -->    P379:   All x:Any + =(min(a min(x c2)) min(a min(f x)))
+   
+   P379,1 & RW178     -->    RW380:  All x:Any + =(min(f x) min(a min(f x)))
+   
+   RW178,1 & P98,1    -->    P381:   All x:Any + =(min(f min(x c2)) min(c2 min(f x)))
+   
+   P381,1 & RW185     -->    RW382:  All x:Any + =(min(f min(x c2)) min(f x))
+   
+   IC5,1 & RW185,1    -->    P383:   All x:Any + =(min(f x) min(c2 min(x f)))
+   
+   IC5,1 & RW190,1    -->    P384:   All x:Any + =(0 min(f min(x c1)))
+   
+   IC3,1 & RW192,1    -->    P385:   All x:Any + =(max(g x) max(c1 max(e x)))
+   
+   RW301,1 & P385,1   -->    P386:   + =(max(g b) max(c1 b))
+   
+   RW284,1 & P385,1   -->    P387:   + =(max(g c2) max(c1 c2))
+   
+   P387,1 & IC3       -->    RW388:  + =(max(g c2) max(c2 c1))
+   
+   RW307,1 & P385,1   -->    P389:   + =(max(g d1) max(c1 d1))
+   
+   IC3,1 & RW198,1    -->    P390:   All x:Any + =(max(h x) max(c1 max(f x)))
+   
+   RW299,1 & P390,1   -->    P391:   + =(max(h a) max(c1 a))
+   
+   RW282,1 & P390,1   -->    P392:   + =(max(h c2) max(c1 c2))
+   
+   P392,1 & IC3       -->    RW393:  + =(max(h c2) max(c2 c1))
+   
+   RW393,1 & RW388    -->    RW394:  + =(max(h c2) max(g c2))
+   
+   RW388,1 & RW394    -->    RW395:  + =(max(h c2) max(c2 c1))
+   
+   RW305,1 & P390,1   -->    P396:   + =(max(h d1) max(c1 d1))
+   
+   P396,1 & P389      -->    RW397:  + =(max(h d1) max(g d1))
+   
+   P389,1 & RW397     -->    RW398:  + =(max(h d1) max(c1 d1))
+   
+   RW394,1 & IC8,1    -->    P399:   + =(min(g max(h c2)) g)
+   
+   RW395,1 & RW395,1  -->    P400:   + =(max(h c2) max(h c2))
+   
+   P277,1 & IC2,1     -->    P401:   All x,y:Any + =(max(y x) max(y max(y x)))
+   
+   P278,1 & IC2,1     -->    P402:   All x:Any + =(max(h x) max(h max(f x)))
+   
+   P279,1 & IC2,1     -->    P403:   All x:Any + =(max(g x) max(g max(e x)))
+   
+   P280,1 & IC2,1     -->    P404:   All x:Any + =(max(d1 x) max(d1 max(b x)))
+   
+   RW282,1 & IC2,1    -->    P405:   All x:Any + =(max(c2 x) max(f max(c2 x)))
+   
+   RW284,1 & IC2,1    -->    P406:   All x:Any + =(max(c2 x) max(e max(c2 x)))
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   The theorem(s) could not be proved.
+
+   
+   Refutation of split part (1) FAILED
+
+
+   Time Used for Refutation: 64272 seconds

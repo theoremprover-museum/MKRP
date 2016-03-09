@@ -1,0 +1,276 @@
+ 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 4-APR-85                                                      *
+                    *         DATE : 2-JUL-85  16:56:29                                            *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:    2-JUL-85 16:48:40
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   K.2.2.2.COMMENT
+                                                                        
+************************************************************************
+                                                                        
+ 
+ 
+ADJUSTMENT OF THE OPTIONS : 
+============================
+ 
+ 
+ 
+TWO:RULES                             NIL                   TWO:RULES.MAXLEVEL                    1
+TWO:SUPPRESS.NORULES                  NIL
+ 
+ 
+RED.I:CLAUSE.MULTIPLE.LITERALS        T                     RED.I:CLAUSE.PURITY                   T
+RED.I:CLAUSE.TAUTOLOGY                T                     RED.I:CLAUSE.TAUTOLOGY.RECHECK        PARTIAL
+RED.I:CLAUSE.SUBSUMPTION              T                     RED.I:CLAUSE.SUBSUMPTION.RECHECK      PARTIAL
+RED.I:CLAUSE.REPL.FACTORING           T                     RED.I:CLAUSE.REPL.FACTORING.RECHECK   T
+RED.I:CLAUSE.REPL.RESOLUTION          SIMPLE                RED.I:CLAUSE.REPL.RESOLUTION.RECHECK  T
+RED.I:CLAUSE.REWRITING                T                     RED.I:LINK.INCOMPATIBILITY            PARTIAL
+RED.I:LINK.TAUTOLOGY                  REMOVE-INHIBIT        RED.I:LINK.TAUTOLOGY.RECHECK          NIL
+RED.I:LINK.SUBSUMPTION                REMOVE-INHIBIT        RED.I:LINK.SUBSUMPTION.RECHECK        NIL
+ 
+RED.D:CLAUSE.MULTIPLE.LITERALS        T                     RED.D:CLAUSE.PURITY                   T
+RED.D:CLAUSE.TAUTOLOGY                REMOVE-INHIBIT        RED.D:CLAUSE.TAUTOLOGY.RECHECK        NIL
+RED.D:CLAUSE.SUBSUMPTION.FORWARD      REMOVE-INHIBIT        RED.D:CLAUSE.SUBSUMPTION.BACKWARD     REMOVE
+RED.D:CLAUSE.SUBSUMPTION.RECHECK      NIL                   RED.D:CLAUSE.REPL.FACTORING           T
+RED.D:CLAUSE.REPL.FACTORING.RECHECK   T                     RED.D:CLAUSE.REPL.RESOLUTION          SIMPLE
+RED.D:CLAUSE.REPL.RESOLUTION.RECHECK  T                     RED.D:LINK.INCOMPATIBILITY            NIL
+RED.D:LINK.TAUTOLOGY                  NIL                   RED.D:LINK.TAUTOLOGY.RECHECK          NIL
+RED.D:LINK.SUBSUMPTION                NIL                   RED.D:LINK.SUBSUMPTION.RECHECK        NIL
+ 
+FAC:INITIAL                           NIL                   FAC:EACH.STEP                         NIL
+ 
+STR:RESOLUTION                        SET-OF-SUPPORT        STR:E-RESOLUTION                      NIL
+STR:PARAMODULATION                    UNIT-ANCESTRY         STR:LINK.DEPTH                        NIL
+STR:TERM.DEPTH                        NIL                   STR:R.DEMODULATION                    T
+STR:P.DEMODULATION                    T                     STR:INDUCTION                         NIL
+ 
+TERM:UNITS                            T                     TERM:ITERATIONS                       0
+TERM:SET.OF.SUPPORT                   NIL                   TERM:BREADTH.FIRST                    NIL
+ 
+GEN:SPLITTING                         0                     GEN:MANUAL.CONTROL                    NIL
+GEN:MAXIMUM.STEPS                     50                    GEN:GRAPH.SAVING                      NIL
+GEN:SAVE.FILE                         SAVE.DEFAULT
+ 
+ 
+TR:PREPROCESSING                      NIL                   TR:STEP.MODE                          LR
+TR:DUMP                               NIL                   TR:CLAUSE.MODE                        I
+TR:LINK.MODE                          I                     TR:TRACE.FILE                         NIL
+TR:TERMINAL                           T
+ 
+ 
+PR:INFIX.FORM                         T                     PR:PREFIX.FORM                        NIL
+PR:OPTIONS                            T                     PR:SYMBOLS                            T
+PR:PROTOCOL                           T                     PR:NEW.PNAMES                         T
+PR:DIFFERENT.VARIABLES                NIL                   PR:DIRECT.PROOF                       NIL
+PR:LEFT.MARGIN                        0                     PR:LINELENGTH                         120
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : * ***************************************************************************
+           * DEFINITIONEN DER MENGENLEHRE **********************************************
+           SORT SET:ANY
+           SORT ELEMENT:SET
+           TYPE EL(ELEMENT SET)
+           * DEFINITION 1.3: KARTESISCHES PRODUKT
+           TYPE CARTES(SET SET) :SET
+           TYPE PAIR(ELEMENT ELEMENT) :ELEMENT
+           ALL A,B,C,D:ELEMENT PAIR(A B) = PAIR(C D) IMPL(A = C AND B = D)
+           * ***************************************************************************
+           * DEFINTIONEN VON RELATIONEN AUF EINER FESTEN MENGE S ***********************
+           SORT REL:SET
+           TYPE S:SET
+           SORT EL.OF.S:ELEMENT
+           * DEFINITION 2.1: RELATION *************************************************
+           * DEFINITION 2.2: KOMPOSITION ZWEIER RELATIONEN ****************************
+           TYPE COMP(REL REL) :REL
+           ALL RHO,SIGMA:REL  ALL A:ELEMENT  
+             EL(A COMP(RHO SIGMA)) EQV(EX B,C,D:EL.OF.S A = PAIR(B D) AND EL(PAIR(B C) RHO) AND EL(PAIR(C D) SIGMA))
+ 
+THEOREMS : ALL RHO,SIGMA:REL  ALL A,B:EL.OF.S  
+             EL(PAIR(A B) COMP(RHO SIGMA)) EQV(EX C:EL.OF.S EL(PAIR(A C) RHO) AND EL(PAIR(C B) SIGMA))
+ 
+ 
+ 
+ 
+CONSTANTS : 
+=========== 
+ 
+| NAME   | SORT              |            | ATTRIBUTES                                                           |
+------------------------------------------------------------------------------------------------------------------
+| S      | SET               |            |                                                                      |
+| C_1    | EL.OF.S           |            |                                                                      |
+| C_2    | EL.OF.S           |            |                                                                      |
+| C_3    | EL.OF.S           |            |                                                                      |
+| C_4    | REL               |            |                                                                      |
+| C_5    | REL               |            |                                                                      |
+------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+FUNCTIONS : 
+=========== 
+ 
+| NAME   | DOMAIN            | RANGE      | ATTRIBUTES                                                           |
+------------------------------------------------------------------------------------------------------------------
+| CARTES | SET SET           | SET        |                                                                      |
+| PAIR   | ELEMENT ELEMENT   | ELEMENT    |                                                                      |
+| COMP   | REL REL           | REL        |                                                                      |
+| F_1    | REL ELEMENT REL   | EL.OF.S    |                                                                      |
+| F_2    | REL ELEMENT REL   | EL.OF.S    |                                                                      |
+| F_3    | REL ELEMENT REL   | EL.OF.S    |                                                                      |
+------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+PREDICATES : 
+============ 
+ 
+| NAME   | DOMAIN            |            | ATTRIBUTES                                                           |
+------------------------------------------------------------------------------------------------------------------
+| TRUE   |                   |            | DEFINED                                                              |
+| FALSE  |                   |            | DEFINED                                                              |
+| EL     | ELEMENT SET       |            |                                                                      |
+| =      | ANY ANY           |            | DEFINED SYMMETRIC REFLEXIVE SYMMETRIC REFLEXIVE SYMMETRIC REFLEXIVE  |
+------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+* A1   : ALL X:ANY  + =(X X)
+* A2   : ALL X,Y,Z,U:ELEMENT  - =(PAIR(U Z) PAIR(Y X))  + =(U Y)
+* A3   : ALL X,Y,Z,U:ELEMENT  - =(PAIR(U Z) PAIR(Y X))  + =(Z X)
+* A4   : ALL X,Y:REL  Z:ELEMENT  - EL(Z COMP(Y X))  + =(Z PAIR(F_2(X Z Y) F_3(X Z Y)))
+* A5   : ALL X,Y:REL  Z:ELEMENT  - EL(Z COMP(Y X))  + EL(PAIR(F_2(X Z Y) F_1(X Z Y)) Y)
+* A6   : ALL X,Y:REL  Z:ELEMENT  - EL(Z COMP(Y X))  + EL(PAIR(F_1(X Z Y) F_3(X Z Y)) X)
+* A7   : ALL X,Y,Z:EL.OF.S  U,V:REL  W:ELEMENT  
+              + EL(W COMP(V U))  - =(W PAIR(Z Y))  - EL(PAIR(Z X) V)  - EL(PAIR(X Y) U)
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+* T8   : ALL X:EL.OF.S  - EL(PAIR(C_2 C_3) COMP(C_4 C_5))  - EL(PAIR(C_2 X) C_4)  - EL(PAIR(X C_3) C_5)
+* T9   : + EL(PAIR(C_2 C_3) COMP(C_4 C_5))  + EL(PAIR(C_2 C_1) C_4)
+* T10  : + EL(PAIR(C_2 C_3) COMP(C_4 C_5))  + EL(PAIR(C_1 C_3) C_5)
+ 
+ 
+ 
+ 
+ 
+ 
+INITIAL OPERATIONS ON THEOREMS
+==============================
+ 
+ 
+T8,1 & A7,1   -->  * R1 : ALL X:EL.OF.S  - EL(PAIR(C_2 X) C_4)  - EL(PAIR(X C_3) C_5)  - =(PAIR(C_2 C_3) PAIR(C_2 C_3))
+                                           - EL(PAIR(C_2 X) C_4)  - EL(PAIR(X C_3) C_5)
+ 
+R1 1=4        -->  * D2 : ALL X:EL.OF.S  - EL(PAIR(C_2 X) C_4)  - EL(PAIR(X C_3) C_5)  - =(PAIR(C_2 C_3) PAIR(C_2 C_3))
+                                           - EL(PAIR(X C_3) C_5)
+ 
+D2 2=4        -->  * D3 : ALL X:EL.OF.S  - EL(PAIR(C_2 X) C_4)  - EL(PAIR(X C_3) C_5)  - =(PAIR(C_2 C_3) PAIR(C_2 C_3))
+ 
+D3,3 & A1,1   -->  * R4 : ALL X:EL.OF.S  - EL(PAIR(C_2 X) C_4)  - EL(PAIR(X C_3) C_5)
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION
+ 
+INITIAL CLAUSES :    * A1  : ALL X:ANY  + =(X X)
+                     * A2  : ALL X,Y,Z,U:ELEMENT  - =(PAIR(U Z) PAIR(Y X))  + =(U Y)
+                     * A3  : ALL X,Y,Z,U:ELEMENT  - =(PAIR(U Z) PAIR(Y X))  + =(Z X)
+                     * A4  : ALL X,Y:REL  Z:ELEMENT  - EL(Z COMP(Y X))  + =(Z PAIR(F_2(X Z Y) F_3(X Z Y)))
+                     * A5  : ALL X,Y:REL  Z:ELEMENT  - EL(Z COMP(Y X))  + EL(PAIR(F_2(X Z Y) F_1(X Z Y)) Y)
+                     * A6  : ALL X,Y:REL  Z:ELEMENT  - EL(Z COMP(Y X))  + EL(PAIR(F_1(X Z Y) F_3(X Z Y)) X)
+                     * A7  : ALL X,Y,Z:EL.OF.S  U,V:REL  W:ELEMENT  
+                                  + EL(W COMP(V U))  - =(W PAIR(Z Y))  - EL(PAIR(Z X) V)  - EL(PAIR(X Y) U)
+                     * R4  : ALL X:EL.OF.S  - EL(PAIR(C_2 X) C_4)  - EL(PAIR(X C_3) C_5)
+                     * T9  : + EL(PAIR(C_2 C_3) COMP(C_4 C_5))  + EL(PAIR(C_2 C_1) C_4)
+                     * T10 : + EL(PAIR(C_2 C_3) COMP(C_4 C_5))  + EL(PAIR(C_1 C_3) C_5)
+ 
+T9,2 & R4,1     -->  * R5  : + EL(PAIR(C_2 C_3) COMP(C_4 C_5))  - EL(PAIR(C_1 C_3) C_5)
+ 
+R5,2 & T10,2    -->  * R6  : + EL(PAIR(C_2 C_3) COMP(C_4 C_5))  + EL(PAIR(C_2 C_3) COMP(C_4 C_5))
+ 
+R6 1=2          -->  * D7  : + EL(PAIR(C_2 C_3) COMP(C_4 C_5))
+ 
+D7,1 & A4,1     -->  * R8  : + =(PAIR(C_2 C_3) PAIR(F_2(C_5 PAIR(C_2 C_3) C_4) F_3(C_5 PAIR(C_2 C_3) C_4)))
+ 
+R8,1 & D7,1     -->    P9  : + EL(PAIR(F_2(C_5 PAIR(C_2 C_3) C_4) F_3(C_5 PAIR(C_2 C_3) C_4)) COMP(C_4 C_5))
+ 
+D7,1 & A5,1     -->  * R10 : + EL(PAIR(F_2(C_5 PAIR(C_2 C_3) C_4) F_1(C_5 PAIR(C_2 C_3) C_4)) C_4)
+ 
+D7,1 & A6,1     -->  * R11 : + EL(PAIR(F_1(C_5 PAIR(C_2 C_3) C_4) F_3(C_5 PAIR(C_2 C_3) C_4)) C_5)
+ 
+R8,1 & A2,1     -->  * R12 : + =(C_2 F_2(C_5 PAIR(C_2 C_3) C_4))
+ 
+R12,1 & D7,1    -->    P13 : + EL(PAIR(F_2(C_5 PAIR(C_2 C_3) C_4) C_3) COMP(C_4 C_5))
+ 
+R12,1 & R8,1    -->    P14 : + =(PAIR(C_2 C_3) PAIR(C_2 F_3(C_5 PAIR(C_2 C_3) C_4)))
+ 
+R12,1 & P9,1    -->    P15 : + EL(PAIR(C_2 F_3(C_5 PAIR(C_2 C_3) C_4)) COMP(C_4 C_5))
+ 
+R12,1 & R10,1   -->  * P16 : + EL(PAIR(C_2 F_1(C_5 PAIR(C_2 C_3) C_4)) C_4)
+ 
+R8,1 & A2,1     -->    R17 : + =(F_2(C_5 PAIR(C_2 C_3) C_4) C_2)
+ 
+R8,1 & A3,1     -->  * R18 : + =(C_3 F_3(C_5 PAIR(C_2 C_3) C_4))
+ 
+R18,1 & D7,1    -->    P19 : + EL(PAIR(C_2 F_3(C_5 PAIR(C_2 C_3) C_4)) COMP(C_4 C_5))
+ 
+R18,1 & R8,1    -->    P20 : + =(PAIR(C_2 C_3) PAIR(F_2(C_5 PAIR(C_2 C_3) C_4) C_3))
+ 
+R18,1 & P9,1    -->    P21 : + EL(PAIR(F_2(C_5 PAIR(C_2 C_3) C_4) C_3) COMP(C_4 C_5))
+ 
+R18,1 & R11,1   -->  * P22 : + EL(PAIR(F_1(C_5 PAIR(C_2 C_3) C_4) C_3) C_5)
+ 
+P22,1 & R4,2    -->  * R23 : ALL X:EL.OF.S  - EL(PAIR(C_2 X) C_4)
+ 
+R23,1 & P16,1   -->  * R24 :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+STOP
+ 

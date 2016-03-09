@@ -1,0 +1,10 @@
+\fbox{
+\parbox[t]{\textwidth}{
+\center * GROUP *
+
+ALL X,Y,Z + (+ (X Y) Z) = + (X + (Y Z))
+
+ALL X + (0 X) = X
+
+ALL X + (- (X) X) = 0
+}

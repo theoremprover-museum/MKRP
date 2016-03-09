@@ -1,0 +1,173 @@
+;;; -*- Package: MKRP; Base: 10; Mode: text; Syntax: Common-lisp -*-
+
+
+
+           **************************************************
+           *                                                *
+           *     ATP-SYSTEM: M K R P , UNI KAISERSLAUTERN   *
+           *                                                *
+           *        VERSION: Unix                           *
+           *           DATE: 09-JUL,1992  02:33             *
+           *                                                *
+           **************************************************
+
+
+-----------------------------------------------------------------------------
+
+Edit:     Axioms and Theorems edited: 05-MAR,1992 19:54 
+
+-----------------------------------------------------------------------------
+
+
+
+
+
+
+          Formulae given to the editor
+          ============================
+
+
+Axioms:   * AXIOMS *
+          EX X L (X) AND K (X A)
+          L (A) AND L (B) AND L (C)
+          ALL X L (X) IMPL X = A OR X = B OR X = C
+          ALL Y,X K (X Y) IMPL H (X Y)
+          ALL X,Y K (X Y) IMPL NOT R (X Y)
+          ALL X H (A X) IMPL NOT H (C X)
+          ALL X NOT X = B IMPL H (A X)
+          ALL X NOT R (X A) IMPL H (B X)
+          ALL X H (A X) IMPL H (B X)
+          ALL X (EX Y NOT H (X Y))
+          NOT A = B
+          
+Theorems: * THEOREMS *
+          K (A A)
+          
+
+
+
+          Set of Axiom Clauses Resulting from Normalization
+          =================================================
+
+          A1:   All x:Any + =(x x)
+        * A2:   + L(c_1)
+        * A3:   + K(c_1 a)
+          A4:   + L(a)
+          A5:   + L(b)
+          A6:   + L(c)
+        * A7:   All x:Any - H(x f_1(x))
+        * A8:   - =(a b)
+        * A9:   All x,y:Any - K(y x)  + H(y x)
+        * A10:  All x,y:Any - K(y x)  - R(y x)
+        * A11:  All x:Any - H(a x)  - H(c x)
+        * A12:  All x:Any + =(x b)  + H(a x)
+        * A13:  All x:Any + R(x a)  + H(b x)
+        * A14:  All x:Any - H(a x)  + H(b x)
+        * A15:  All x:Any - L(x)  + =(x a)  + =(x b)  + =(x c)
+        
+
+
+
+
+          Set of Theorem Clauses Resulting from Normalization
+          ===================================================
+
+        * T16: - K(a a)
+
+
+
+
+-----------------------------------------------------------------------------
+
+
+
+Refutation:
+===========
+
+Initial Clauses:     A1:    All x:Any + =(x x)
+                   * A2:    + L(c_1)
+                   * A3:    + K(c_1 a)
+                     A4:    + L(a)
+                     A5:    + L(b)
+                     A6:    + L(c)
+                   * A7:    All x:Any - H(x f_1(x))
+                   * A8:    - =(a b)
+                   * A9:    All x,y:Any - K(y x)  + H(y x)
+                   * A10:   All x,y:Any - K(y x)  - R(y x)
+                   * A11:   All x:Any - H(a x)  - H(c x)
+                   * A12:   All x:Any + =(x b)  + H(a x)
+                   * A13:   All x:Any + R(x a)  + H(b x)
+                   * A14:   All x:Any - H(a x)  + H(b x)
+                   * A15:   All x:Any - L(x)  + =(x a)  + =(x b)  + =(x c)
+                   * T16:   - K(a a)
+                   
+
+
+A12,2 & A7,1   -->   R1:    + =(f_1(a) b)
+
+R1,1 & A7,1    -->   P2:    - H(a b)
+
+A9,2 & P2,1    -->   R3:    - K(a b)
+
+A9,2 & A7,1    -->   R4:    All x:Any - K(x f_1(x))
+
+A2,1 & A15,1   --> * R5:    + =(c_1 a)  + =(c_1 b)  + =(c_1 c)
+
+R5,1 & T16,1   --> * P6:    - K(c_1 a)  + =(c_1 b)  + =(c_1 c)
+
+P6,1 & A3,1    --> * R7:    + =(c_1 b)  + =(c_1 c)
+
+R7,1 & A8,1    -->   P8:    - =(a c_1)  + =(c_1 c)
+
+R7,1 & P2,1    -->   P9:    - H(a c_1)  + =(c_1 c)
+
+R7,1 & R3,1    -->   P10:   - K(a c_1)  + =(c_1 c)
+
+A9,2 & A11,1   -->   R11:   All x:Any - K(a x)  - H(c x)
+
+A12,2 & A11,1  --> * R12:   All x:Any + =(x b)  - H(c x)
+
+A13,1 & A10,2  --> * R13:   All x:Any + H(b x)  - K(x a)
+
+R13,1 & A7,1   --> * R14:   - K(f_1(b) a)
+
+R7,1 & R14,1   -->   P15:   - K(f_1(c_1) a)  + =(c_1 c)
+
+R7,1 & R13,1   -->   P16:   All x:Any + H(c_1 x)  + =(c_1 c)  - K(x a)
+
+A12,2 & A14,1  --> * R17:   All x:Any + =(x b)  + H(b x)
+
+R17,2 & A7,1   --> * R18:   + =(f_1(b) b)
+
+R14,1 & R18    --> * RW19:  - K(b a)
+
+R7,1 & RW19,1  --> * P20:   - K(c_1 a)  + =(c_1 c)
+
+P20,1 & A3,1   --> * R21:   + =(c_1 c)
+
+A6,1 & R21     -->   RW22:  + L(c_1)
+
+A11,2 & R21    -->   RW23:  All x:Any - H(a x)  - H(c_1 x)
+
+A15,4 & R21    -->   RW24:  All x:Any - L(x)  + =(x a)  + =(x b)  + =(x c_1)
+
+R11,2 & R21    -->   RW25:  All x:Any - K(a x)  - H(c_1 x)
+
+R12,2 & R21    --> * RW26:  All x:Any + =(x b)  - H(c_1 x)
+
+RW26,2 & A9,2  --> * R27:   + =(a b)  - K(c_1 a)
+
+R27,1 & A8,1   --> * R28:   - K(c_1 a)
+
+R28,1 & A3,1   --> * R29:   []
+
+
+
+-----------------------------------------------------------------------------
+
+
+
+  q.e.d. 
+
+
+Time Used for Refutation: 33 seconds

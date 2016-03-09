@@ -1,0 +1,127 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 34.8 EQUALITY 16.1                                  *
+                     *           DATE: 13-DEC,1989  19:02                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 13-DEC,1989 19:01 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   SORT ELEM,MENGE,VERKN : ANY
+             TYPE APPLY (VERKN ELEM ELEM) : ELEM
+             TYPE INVERS (VERKN ELEM) : ELEM
+             * ABGESCHLOSSENHEIT VON GR BEZGL PHI *
+             ALL PHI: VERKN ALL GR : MENGE ALL 
+                                       X,Y,E : ELEM G (GR PHI E) AND EL (X GR) AND EL (Y GR)
+                                       IMPL EL (APPLY (PHI X Y) GR)
+             * EXISTENZ DES INVERSEN INNERHALB GR *
+             ALL PHI: VERKN ALL X : ELEM ALL 
+                                      GR : MENGE ALL E : ELEM G (GR PHI E) AND EL (X GR) IMPL EL (INVERS (PHI X) GR)
+             ALL U,F : MENGE ALL PHI : VERKN ALL E : ELEM UG (U F PHI E) IMPL G (U PHI E)
+             
+   Theorems: * THEOREM *
+             ALL PHI: VERKN(ALL
+                            F,U
+                            :
+                            MENGE(ALL
+                                  E
+                                  :
+                                  ELEM
+                                  G (F PHI E)
+                                  AND
+                                  ME (U F)
+                                  IMPL
+                                  UG (U F PHI E)
+                                  IMPL (ALL X,Y : ELEM EL (X U) AND EL (Y U) IMPL EL (APPLY (PHI INVERS (PHI Y) X) U))))
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+           * A1:   All x:Elem y:Verkn z,u:Menge - UG(u z y x)  + G(u y x)
+           * A2:   All x,y:Elem z:Verkn u:Menge - G(u z y)  - EL(x u)  + EL(invers(z x) u)
+           * A3:   All x,y,z:Elem u:Verkn v:Menge - G(v u z)  - EL(y v)  - EL(x v)  + EL(apply(u y x) v)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+             T4: + G(c_4 c_6 c_3)
+             T5: + ME(c_5 c_4)
+           * T6: + UG(c_5 c_4 c_6 c_3)
+           * T7: + EL(c_1 c_5)
+           * T8: + EL(c_2 c_5)
+           * T9: - EL(apply(c_6 invers(c_6 c_2) c_1) c_5)
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:  * A1:  All x:Elem y:Verkn z,u:Menge - UG(u z y x)  + G(u y x)
+                     * A2:  All x,y:Elem z:Verkn u:Menge - G(u z y)  - EL(x u)  + EL(invers(z x) u)
+                     * A3:  All x,y,z:Elem u:Verkn v:Menge 
+                                 - G(v u z)  - EL(y v)  - EL(x v)  + EL(apply(u y x) v)
+                       T4:  + G(c_4 c_6 c_3)
+                       T5:  + ME(c_5 c_4)
+                     * T6:  + UG(c_5 c_4 c_6 c_3)
+                     * T7:  + EL(c_1 c_5)
+                     * T8:  + EL(c_2 c_5)
+                     * T9:  - EL(apply(c_6 invers(c_6 c_2) c_1) c_5)
+                     
+
+   
+   T6,1 & A1,1  -->  * R1:  + G(c_5 c_6 c_3)
+   
+   R1,1 & A2,1  -->  * R2:  - EL(c_2 c_5)  + EL(invers(c_6 c_2) c_5)
+   
+   R2,1 & T8,1  -->  * R3:  + EL(invers(c_6 c_2) c_5)
+   
+   T7,1 & A3,3  -->  * R4:  - G(c_5 c_6 c_3)  - EL(invers(c_6 c_2) c_5)  + EL(apply(c_6 invers(c_6 c_2) c_1) c_5)
+   
+   R4,2 & R3,1  -->  * R5:  - G(c_5 c_6 c_3)  + EL(apply(c_6 invers(c_6 c_2) c_1) c_5)
+   
+   R5,1 & R1,1  -->  * R6:  + EL(apply(c_6 invers(c_6 c_2) c_1) c_5)
+   
+   R6,1 & T9,1  -->  * R7:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 8 seconds

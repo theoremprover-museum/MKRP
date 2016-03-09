@@ -1,0 +1,76 @@
+\newlength{\premisewidth}
+\newlength{\namelength}
+\newlength{\usedsignlength}
+\newlength{\implsignlength}
+\newlength{\remainlength}
+\def\implication#1#2#3#4{% 1: String max length for 2, 2: premise, 3: clause 4. impl sign
+\settowidth{\premisewidth}{#1}
+\setlength{\remainlength}{\textwidth}
+\settowidth{\usedsignlength}{* }
+\settowidth{\implsignlength}{#4}
+\settowidth{\namelength}{mmmm}
+\addtolength{\remainlength}{-0.5cm}
+\addtolength{\remainlength}{-1\premisewidth}
+\addtolength{\remainlength}{-1\namelength}
+\addtolength{\remainlength}{-1\usedsignlength}
+\addtolength{\remainlength}{-1\implsignlength}
+\hbox to \hsize{\parbox[t]{\premisewidth}{#2} \hfil \parbox[t]{\implsignlength}{#4} \hfil #3}}
+
+
+
+
+             {\bf Formulae given to the editor}
+
+   
+\parbox[t]{2cm}{Axioms:}\hfill 
+\setlength{\remainlength}{\textwidth}
+\addtolength{\remainlength}{-2.5cm}
+\parbox[t]{\remainlength}{WOLF (LUPO)
+
+             FOX (FOXI)
+
+             BIRD (TWEETY)
+
+             CATERPILLAR (RAUPI)
+
+             SNAIL (SCHNECKI)
+
+             GRAIN (MUESLI)
+
+             ALL X (WOLF (X) OR FOX (X) OR BIRD (X) OR CATERPILLAR (X) OR SNAIL (X)) IMPL ANIMAL (X)
+
+             ALL X GRAIN (X) IMPL PLANT (X)
+
+             ALL X ANIMAL (X)
+                   IMPL (ALL Y PLANT (Y) IMPL EATS (X Y))
+                        OR (ALL Y ANIMAL (Y) AND SMALLER (Y X) AND (EX Z PLANT (Z) AND EATS (Y Z)) IMPL EATS (X Y))
+
+             ALL X,Y (CATERPILLAR (X) OR SNAIL (X)) AND BIRD (Y) IMPL SMALLER (X Y)
+
+             ALL X,Y BIRD (X) AND FOX (Y) IMPL SMALLER (X Y)
+
+             ALL X,Y FOX (X) AND WOLF (Y) IMPL SMALLER (X Y)
+
+             ALL X,Y (FOX (X) OR GRAIN (X)) AND WOLF (Y) IMPL NOT EATS (Y X)
+
+             ALL X,Y BIRD (X) AND CATERPILLAR (Y) IMPL EATS (X Y)
+
+             ALL X,Y BIRD (X) AND SNAIL (Y) IMPL NOT EATS (X Y)
+
+             ALL X (CATERPILLAR (X) OR SNAIL (X)) IMPL (EX Y PLANT (Y) AND EATS (X Y))
+
+             
+}
+\parbox[t]{2cm}{Theorems:}\hfill 
+\setlength{\remainlength}{\textwidth}
+\addtolength{\remainlength}{-2.5cm}
+\parbox[t]{\remainlength}{EX X,Y (ANIMAL (X) AND ANIMAL (Y) AND (EATS (X Y) AND (EX Z (GRAIN (Z) AND EATS (Y Z)))))
+
+             
+}
+
+
+             {\bf Set of Axiom Clauses Resulting from Normalization}
+
+           \implication{M}{}{\parbox[t]{\usedsignlength}{$  $} \hfil \parbox[t]{\namelength}{$A1$:} \hfil \parbox[t]{\remainlength}{$\forall x\in Any  (x=x)$}}{}
+           \implication{M}{}{\parbox[t]{\usedsignlength}{$* $} \hfil \parbox[t]{\namelength}{$A2$:} \hfil \parbox[t]{\remainlength}{$ WOLF

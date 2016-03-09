@@ -1,0 +1,91 @@
+;;; -*- Package: MKRP; Base: 10. -*- 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 6-SEP-84                                                      *
+                    *         DATE : 12-SEP-84  17:44:54                                           *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+                                                                         
+*************************************************************************
+ EDIT:     AXIOME UND THEOREME EDITIERT AM:  12-SEP-84 17:21:54
+*************************************************************************
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : SORT MENGE,NAT:ANY
+           TYPE CARD (MENGE) :NAT
+           TYPE W (MENGE) :MENGE
+           * DEFINITION VON CARD *
+           ALL X,Y,PHI:MENGE ISOMORPH (PHI X Y) IMPL CARD (X) = CARD (Y)
+           * LEMMA 2.6.LR.1 *
+           ALL X,Y,PHI:MENGE ISOMORPH (PHI W (X) W (Y)) IMPL (EX PSI:MENGE ISOMORPH (PSI X Y))
+ 
+THEOREMS : ALL X,Y,PHI:MENGE ISOMORPH (PHI W (X) W (Y)) IMPL CARD (X) = CARD (Y)
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+  A1   : ALL X:ANY  + =(X X)
+* A2   : ALL X,Y,Z:MENGE  - ISOMORPH(Z Y X)  + =(CARD(Y) CARD(X))
+* A3   : ALL X,Y,Z:MENGE  - ISOMORPH(Z W(Y) W(X))  + ISOMORPH(F_1(X Y) Y X)
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+* T4   : + ISOMORPH(C_1 W(C_2) W(C_3))
+* T5   : - =(CARD(C_2) CARD(C_3))
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION
+ 
+INITIAL CLAUSES :              A1 : ALL X:ANY  + =(X X)
+                             * A2 : ALL X,Y,Z:MENGE  - ISOMORPH(Z Y X)  + =(CARD(Y) CARD(X))
+                             * A3 : ALL X,Y,Z:MENGE  - ISOMORPH(Z W(Y) W(X))  + ISOMORPH(F_1(X Y) Y X)
+                             * T4 : + ISOMORPH(C_1 W(C_2) W(C_3))
+                             * T5 : - =(CARD(C_2) CARD(C_3))
+ 
+T4,1 & A3,1             -->  * R1 : + ISOMORPH(F_1(C_3 C_2) C_2 C_3)
+ 
+R1,1 & A2,1             -->  * R2 : + =(CARD(C_2) CARD(C_3))
+ 
+R2,1 & T5,1 (SYMMETRY)  -->  * R3 :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+ 

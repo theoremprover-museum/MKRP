@@ -1,0 +1,127 @@
+;;; -*- Package: MKRP; Base: 10; Mode: text; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: Unix                                                     *
+                     *           DATE: 09-JUL,1992  14:12                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 02-APR,1992 08:49 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * AXIOMS *
+             EX Z,W (ALL X,Y F (X Y) EQV (X = Z) AND Y = W)
+             
+   Theorems: * THEOREMS *
+             EX Z (ALL X (EX W (ALL Y F (X Y) EQV Y = W)) EQV X = Z)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+           * A1:   All x:Any + =(x x)
+           * A2:   All x,y:Any - F(y x)  + =(y c_1)
+           * A3:   All x,y:Any - F(y x)  + =(x c_2)
+           * A4:   All x,y:Any + F(y x)  - =(y c_1)  - =(x c_2)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T5: All x,y:Any - F(f_1(y) f_2(x y))  - =(f_2(x y) x)  - =(f_1(y) y)
+           * T6: All x,y:Any + F(f_1(y) f_2(x y))  + =(f_2(x y) x)  - =(f_1(y) y)
+           * T7: All x,y:Any + F(f_1(y) x)  - =(x f_3(y))  + =(f_1(y) y)
+             T8: All x,y:Any - F(f_1(y) x)  + =(x f_3(y))  + =(f_1(y) y)
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:   * A1:    All x:Any + =(x x)
+                      * A2:    All x,y:Any - F(y x)  + =(y c_1)
+                      * A3:    All x,y:Any - F(y x)  + =(x c_2)
+                      * A4:    All x,y:Any + F(y x)  - =(y c_1)  - =(x c_2)
+                      * T5:    All x,y:Any - F(f_1(y) f_2(x y))  - =(f_2(x y) x)  - =(f_1(y) y)
+                      * T6:    All x,y:Any + F(f_1(y) f_2(x y))  + =(f_2(x y) x)  - =(f_1(y) y)
+                      * T7:    All x,y:Any + F(f_1(y) x)  - =(x f_3(y))  + =(f_1(y) y)
+                        T8:    All x,y:Any - F(f_1(y) x)  + =(x f_3(y))  + =(f_1(y) y)
+                      
+
+   
+   T7,1 & A2,1    --> * R1:    All x,y:Any - =(y f_3(x))  + =(f_1(x) x)  + =(f_1(x) c_1)
+   
+   R1,1 & A1,1    --> * R2:    All x:Any + =(f_1(x) x)  + =(f_1(x) c_1)
+   
+   R2 (factor)    --> * F3:    + =(f_1(c_1) c_1)
+   
+   T8,1 & R2      -->   RW4:   All x,y:Any - F(c_1 x)  + =(x f_3(y))  + =(f_1(y) y)
+   
+   T7,1 & R2      -->   RW5:   All x,y:Any + F(c_1 x)  - =(x f_3(y))  + =(f_1(y) y)
+   
+   F3,1 & T5,3    --> * P6:    All x:Any - =(c_1 c_1)  - F(f_1(c_1) f_2(x c_1))  - =(f_2(x c_1) x)
+   
+   P6,2 & F3      --> * RW7:   All x:Any - =(c_1 c_1)  - F(c_1 f_2(x c_1))  - =(f_2(x c_1) x)
+   
+   RW7,1 & A1,1   --> * R8:    All x:Any - F(c_1 f_2(x c_1))  - =(f_2(x c_1) x)
+   
+   A3,2 & R8,2    --> * R9:    All x:Any - F(x f_2(c_2 c_1))  - F(c_1 f_2(c_2 c_1))
+   
+   R9 (instance)  --> * I10:   - F(c_1 f_2(c_2 c_1))  - F(c_1 f_2(c_2 c_1))
+   
+   I10 2=1        --> * D11:   - F(c_1 f_2(c_2 c_1))
+   
+   A4,1 & D11,1   --> * R12:   - =(c_1 c_1)  - =(f_2(c_2 c_1) c_2)
+   
+   R12,1 & A1,1   --> * R13:   - =(f_2(c_2 c_1) c_2)
+   
+   T6,2 & R13,1   --> * R14:   + F(f_1(c_1) f_2(c_2 c_1))  - =(f_1(c_1) c_1)
+   
+   R14,2 & F3     --> * RW15:  + F(f_1(c_1) f_2(c_2 c_1))  - =(c_1 c_1)
+   
+   RW15,1 & F3    --> * RW16:  + F(c_1 f_2(c_2 c_1))  - =(c_1 c_1)
+   
+   RW16,2 & A1,1  --> * R17:   + F(c_1 f_2(c_2 c_1))
+   
+   R17,1 & A3,1   --> * R18:   + =(f_2(c_2 c_1) c_2)
+   
+   R18,1 & R13,1  --> * R19:   []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 44 seconds

@@ -1,0 +1,74 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 28.5 EQUALITY 15.2                                  *
+                     *           DATE: 25-JUL,1989  15:52                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+                                                                                                                    
+      
+   
+   ******************************************************************************************************************
+   ***
+   
+    EDIT:     Axioms and Theorems edited: 25-JUL,1989 15:52 
+   
+   ******************************************************************************************************************
+   ***
+   
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   ALL X R (X X X)
+             ALL X,Y,Z R (X Y Z) IMPL (R (Y X Z) AND R (X Z Y))
+             ALL X,Y,Z,U,V (R (X Y Z) AND R (Z U V)) IMPL (EX W R (X U W) AND R (W Y V))
+             
+   Theorems: (NOT (((ALL V,W,VS,WS (NOT R (C E V))
+                                   AND (NOT R (C E V) OR R (W G H) OR ((NOT (R (V W F)))))
+                                   AND R (A C D)
+                                   AND R (D E F)))))
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+             A1:   All x:Any + R(x x x)
+             A2:   All x,y,z:Any - R(z y x)  + R(y z x)
+             A3:   All x,y,z:Any - R(z y x)  + R(z x y)
+             A4:   All x,y,z,u,v:Any - R(v u z)  - R(z y x)  + R(v y f_1(x u y v))
+             A5:   All x,y,z,u,v:Any - R(v u z)  - R(z y x)  + R(f_1(x u y v) u x)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+             T6: + R(a c d)
+             T7: + R(d e f)
+             T8: All x,y:Any - R(c e y)  + R(x g h)  - R(y x f)
+             T9: All x,y,z,u:Any - R(c e u)  - R(u z f)  - R(a g h)  - R(c e y)  - R(y x f)
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 

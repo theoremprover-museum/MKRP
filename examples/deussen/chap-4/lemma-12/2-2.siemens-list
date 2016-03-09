@@ -1,0 +1,366 @@
+ 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 4-APR-85                                                      *
+                    *         DATE : 17-JUN-85  19:44:49                                           *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+                                                                         
+*************************************************************************
+ EDIT:     AXIOMS AND THEOREMS EDITED:   17-JUN-85 19:06:18
+*************************************************************************
+                                                                        
+************************************************************************
+                                                                        
+ CONSTRUCT:   K.COMMENT.2.12.2.2
+                                                                        
+************************************************************************
+                                                                        
+ 
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : * ***************************************************************************
+           * DEFINITIONEN DER MENGENLEHRE **********************************************
+           SORT SET:ANY
+           SORT ELEMENT:SET
+           TYPE EL(ELEMENT SET)
+           * DEFINITION 1.3: KARTESISCHES PRODUKT
+           TYPE CARTES(SET SET) :SET
+           TYPE PAIR(ELEMENT ELEMENT) :ELEMENT
+           * DEFINITION 1.6: NATUERLICHE ZAHLEN
+           SORT NAT:SET
+           TYPE 1:NAT
+           TYPE PLUS(NAT NAT) :NAT
+           * ***************************************************************************
+           * DEFINTIONEN VON RELATIONEN AUF EINER FESTEN MENGE S ***********************
+           SORT REL:SET
+           TYPE S:SET
+           SORT EL.OF.S:ELEMENT
+           * DEFINITION 2.1: RELATION *************************************************
+           * DEFINITION 2.2: KOMPOSITION ZWEIER RELATIONEN ****************************
+           TYPE COMP(REL REL) :REL
+           *  ALL RHO,SIGMA:REL ALL A:ELEMENT EL (A COMP (RHO SIGMA)) EQV                                               
+           *  (EX B,C,D:EL.OF.S A = PAIR (B D) AND EL (PAIR (B C) RHO) AND EL (PAIR (C D) SIGMA))                       
+           * DEFINITION 2.6: SYMMETRISCH
+           TYPE SYMMETRISCH(REL)
+           * LEMMA 2,6
+           ALL RHO:REL SYMMETRISCH(RHO) EQV(ALL A,B:EL.OF.S EL(PAIR(A B) RHO) IMPL EL(PAIR(B A) RHO))
+           * DEFINITION 2.9: POTENZ EINER RELATION
+           TYPE POWER(REL NAT) :REL
+           * ALL RHO:REL POWER(RHO 1) = RHO
+           ALL RHO:REL ALL N:NAT POWER(RHO PLUS(N 1)) = COMP(POWER(RHO N) RHO)
+           * AUS DER ASSOZIATIVITAET VON COMP SATZ 4,3 FOLGT:
+           ALL RHO:REL ALL N:NAT COMP(POWER(RHO N) RHO) = COMP(RHO POWER(RHO N))
+           * LEMMA2.12.2.1
+           ALL RHO,SIGMA:REL         COMP(RHO SIGMA) = COMP(SIGMA RHO) AND SYMMETRISCH(RHO) AND SYMMETRISCH(SIGMA)
+                                IMPL SYMMETRISCH(COMP(RHO SIGMA))
+ 
+THEOREMS : ALL RHO:REL ALL N:NAT SYMMETRISCH(RHO) AND SYMMETRISCH(POWER(RHO N)) IMPL SYMMETRISCH(POWER(RHO PLUS(N 1)))
+ 
+ 
+ 
+ 
+CONSTANTS : 
+=========== 
+ 
+| NAME        | SORT              |            | ATTRIBUTES                                                           |
+-----------------------------------------------------------------------------------------------------------------------
+| 1           | NAT               |            |                                                                      |
+| S           | SET               |            |                                                                      |
+| C_1         | EL.OF.S           |            |                                                                      |
+| C_2         | EL.OF.S           |            |                                                                      |
+| C_3         | NAT               |            |                                                                      |
+| C_4         | REL               |            |                                                                      |
+-----------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+FUNCTIONS : 
+=========== 
+ 
+| NAME        | DOMAIN            | RANGE      | ATTRIBUTES                                                           |
+-----------------------------------------------------------------------------------------------------------------------
+| CARTES      | SET SET           | SET        |                                                                      |
+| PAIR        | ELEMENT ELEMENT   | ELEMENT    |                                                                      |
+| PLUS        | NAT NAT           | NAT        |                                                                      |
+| COMP        | REL REL           | REL        |                                                                      |
+| POWER       | REL NAT           | REL        |                                                                      |
+| F_1         | REL REL           | EL.OF.S    |                                                                      |
+| F_2         | REL REL           | EL.OF.S    |                                                                      |
+| F_3         | REL REL           | EL.OF.S    |                                                                      |
+| F_4         | REL REL           | EL.OF.S    |                                                                      |
+-----------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+PREDICATES : 
+============ 
+ 
+| NAME        | DOMAIN            |            | ATTRIBUTES                                                           |
+-----------------------------------------------------------------------------------------------------------------------
+| TRUE        |                   |            | DEFINED                                                              |
+| FALSE       |                   |            | DEFINED                                                              |
+| EL          | ELEMENT SET       |            |                                                                      |
+| SYMMETRISCH | REL               |            |                                                                      |
+| =           | ANY ANY           |            | DEFINED SYMMETRIC REFLEXIVE SYMMETRIC REFLEXIVE SYMMETRIC REFLEXIVE  |
+-----------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+  A1   : ALL X:ANY  + =(X X)
+* A2   : ALL X:NAT  Y:REL  + =(POWER(Y PLUS(X 1)) COMP(POWER(Y X) Y))
+* A3   : ALL X:NAT  Y:REL  + =(COMP(POWER(Y X) Y) COMP(Y POWER(Y X)))
+* A4   : ALL X,Y:EL.OF.S  Z,U:REL  
+              - =(COMP(U Z) COMP(Z U))  + EL(PAIR(F_1(Z U) F_2(Z U)) U)  + EL(PAIR(F_3(Z U) F_4(Z U)) Z)
+                - EL(PAIR(Y X) COMP(U Z))  + EL(PAIR(X Y) COMP(U Z))
+* A5   : ALL X,Y:EL.OF.S  Z,U:REL  
+              - =(COMP(U Z) COMP(Z U))  + EL(PAIR(F_1(Z U) F_2(Z U)) U)  - EL(PAIR(F_4(Z U) F_3(Z U)) Z)
+                - EL(PAIR(Y X) COMP(U Z))  + EL(PAIR(X Y) COMP(U Z))
+* A6   : ALL X,Y:EL.OF.S  Z,U:REL  
+              - =(COMP(U Z) COMP(Z U))  - EL(PAIR(F_2(Z U) F_1(Z U)) U)  + EL(PAIR(F_3(Z U) F_4(Z U)) Z)
+                - EL(PAIR(Y X) COMP(U Z))  + EL(PAIR(X Y) COMP(U Z))
+* A7   : ALL X,Y:EL.OF.S  Z,U:REL  
+              - =(COMP(U Z) COMP(Z U))  - EL(PAIR(F_2(Z U) F_1(Z U)) U)  - EL(PAIR(F_4(Z U) F_3(Z U)) Z)
+                - EL(PAIR(Y X) COMP(U Z))  + EL(PAIR(X Y) COMP(U Z))
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+* T8   : ALL X,Y:EL.OF.S  - EL(PAIR(Y X) C_4)  + EL(PAIR(X Y) C_4)
+* T9   : ALL X,Y:EL.OF.S  - EL(PAIR(Y X) POWER(C_4 C_3))  + EL(PAIR(X Y) POWER(C_4 C_3))
+* T10  : + EL(PAIR(C_1 C_2) POWER(C_4 PLUS(C_3 1)))
+* T11  : - EL(PAIR(C_2 C_1) POWER(C_4 PLUS(C_3 1)))
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION
+ 
+INITIAL CLAUSES :      A1  : ALL X:ANY  + =(X X)
+                     * A2  : ALL X:NAT  Y:REL  + =(POWER(Y PLUS(X 1)) COMP(POWER(Y X) Y))
+                     * A3  : ALL X:NAT  Y:REL  + =(COMP(POWER(Y X) Y) COMP(Y POWER(Y X)))
+                     * A4  : ALL X,Y:EL.OF.S  Z,U:REL  
+                                  - =(COMP(U Z) COMP(Z U))  + EL(PAIR(F_1(Z U) F_2(Z U)) U)
+                                    + EL(PAIR(F_3(Z U) F_4(Z U)) Z)  - EL(PAIR(Y X) COMP(U Z))
+                                    + EL(PAIR(X Y) COMP(U Z))
+                     * A5  : ALL X,Y:EL.OF.S  Z,U:REL  
+                                  - =(COMP(U Z) COMP(Z U))  + EL(PAIR(F_1(Z U) F_2(Z U)) U)
+                                    - EL(PAIR(F_4(Z U) F_3(Z U)) Z)  - EL(PAIR(Y X) COMP(U Z))
+                                    + EL(PAIR(X Y) COMP(U Z))
+                     * A6  : ALL X,Y:EL.OF.S  Z,U:REL  
+                                  - =(COMP(U Z) COMP(Z U))  - EL(PAIR(F_2(Z U) F_1(Z U)) U)
+                                    + EL(PAIR(F_3(Z U) F_4(Z U)) Z)  - EL(PAIR(Y X) COMP(U Z))
+                                    + EL(PAIR(X Y) COMP(U Z))
+                     * A7  : ALL X,Y:EL.OF.S  Z,U:REL  
+                                  - =(COMP(U Z) COMP(Z U))  - EL(PAIR(F_2(Z U) F_1(Z U)) U)
+                                    - EL(PAIR(F_4(Z U) F_3(Z U)) Z)  - EL(PAIR(Y X) COMP(U Z))
+                                    + EL(PAIR(X Y) COMP(U Z))
+                     * T8  : ALL X,Y:EL.OF.S  - EL(PAIR(Y X) C_4)  + EL(PAIR(X Y) C_4)
+                     * T9  : ALL X,Y:EL.OF.S  - EL(PAIR(Y X) POWER(C_4 C_3))  + EL(PAIR(X Y) POWER(C_4 C_3))
+                     * T10 : + EL(PAIR(C_1 C_2) POWER(C_4 PLUS(C_3 1)))
+                     * T11 : - EL(PAIR(C_2 C_1) POWER(C_4 PLUS(C_3 1)))
+ 
+A3,1 & A2,1     -->    P1  : ALL X:NAT  Y:REL  + =(POWER(Y PLUS(X 1)) COMP(Y POWER(Y X)))
+ 
+A2,1 & A3,1     -->    P2  : ALL X:NAT  Y:REL  + =(COMP(COMP(POWER(Y X) Y) Y) COMP(Y POWER(Y PLUS(X 1))))
+ 
+A2,1 & A3,1     -->    P3  : ALL X:NAT  Y:REL  + =(COMP(POWER(Y PLUS(X 1)) Y) COMP(Y COMP(POWER(Y X) Y)))
+ 
+A2,1 & T10,1    -->  * P4  : + EL(PAIR(C_1 C_2) COMP(POWER(C_4 C_3) C_4))
+ 
+A2,1 & T11,1    -->  * P5  : - EL(PAIR(C_2 C_1) COMP(POWER(C_4 C_3) C_4))
+ 
+P1,1 & A3,1     -->    P6  : ALL X:NAT  Y:REL  + =(COMP(COMP(Y POWER(Y X)) Y) COMP(Y POWER(Y PLUS(X 1))))
+ 
+P1,1 & A3,1     -->    P7  : ALL X:NAT  Y:REL  + =(COMP(POWER(Y PLUS(X 1)) Y) COMP(Y COMP(Y POWER(Y X))))
+ 
+P1,1 & T10,1    -->    P8  : + EL(PAIR(C_1 C_2) COMP(C_4 POWER(C_4 C_3)))
+ 
+P1,1 & T11,1    -->    P9  : - EL(PAIR(C_2 C_1) COMP(C_4 POWER(C_4 C_3)))
+ 
+P1,1 & P2,1     -->    P10 : ALL X:NAT  Y:REL  + =(COMP(COMP(POWER(Y X) Y) Y) COMP(Y COMP(Y POWER(Y X))))
+ 
+P1,1 & P3,1     -->    P11 : ALL X:NAT  Y:REL  + =(COMP(COMP(Y POWER(Y X)) Y) COMP(Y COMP(POWER(Y X) Y)))
+ 
+P3,1 & P2,1     -->    P12 : ALL X:NAT  Y:REL  + =(COMP(COMP(Y COMP(POWER(Y X) Y)) Y)
+                                                   COMP(Y POWER(Y PLUS(PLUS(X 1) 1))))
+ 
+ 
+A3,1 & P4,1     -->    P13 : + EL(PAIR(C_1 C_2) COMP(C_4 POWER(C_4 C_3)))
+ 
+A3,1 & P5,1     -->    P14 : - EL(PAIR(C_2 C_1) COMP(C_4 POWER(C_4 C_3)))
+ 
+P7,1 & P2,1     -->    P15 : ALL X:NAT  Y:REL  + =(COMP(COMP(Y COMP(Y POWER(Y X))) Y)
+                                                   COMP(Y POWER(Y PLUS(PLUS(X 1) 1))))
+ 
+ 
+P7,1 & P3,1     -->    P16 : ALL X:NAT  Y:REL  + =(COMP(POWER(Y PLUS(PLUS(X 1) 1)) Y)
+                                                   COMP(Y COMP(Y COMP(Y POWER(Y X)))))
+ 
+ 
+P3,1 & P10,1    -->    P17 : ALL X:NAT  Y:REL  + =(COMP(COMP(Y COMP(POWER(Y X) Y)) Y)
+                                                   COMP(Y COMP(Y POWER(Y PLUS(X 1)))))
+ 
+ 
+P7,1 & P10,1    -->    P18 : ALL X:NAT  Y:REL  + =(COMP(COMP(Y COMP(Y POWER(Y X))) Y)
+                                                   COMP(Y COMP(Y POWER(Y PLUS(X 1)))))
+ 
+ 
+P7,1 & P11,1    -->    P19 : ALL X:NAT  Y:REL  + =(COMP(COMP(Y POWER(Y PLUS(X 1))) Y)
+                                                   COMP(Y COMP(Y COMP(Y POWER(Y X)))))
+ 
+ 
+A7,5 & P5,1     -->  * R20 : - =(COMP(POWER(C_4 C_3) C_4) COMP(C_4 POWER(C_4 C_3)))
+                               - EL(PAIR(F_2(C_4 POWER(C_4 C_3)) F_1(C_4 POWER(C_4 C_3))) POWER(C_4 C_3))
+                               - EL(PAIR(F_4(C_4 POWER(C_4 C_3)) F_3(C_4 POWER(C_4 C_3))) C_4)
+                               - EL(PAIR(C_1 C_2) COMP(POWER(C_4 C_3) C_4))
+ 
+R20,4 & P4,1    -->  * R21 : - =(COMP(POWER(C_4 C_3) C_4) COMP(C_4 POWER(C_4 C_3)))
+                               - EL(PAIR(F_2(C_4 POWER(C_4 C_3)) F_1(C_4 POWER(C_4 C_3))) POWER(C_4 C_3))
+                               - EL(PAIR(F_4(C_4 POWER(C_4 C_3)) F_3(C_4 POWER(C_4 C_3))) C_4)
+ 
+R21,1 & A3,1    -->  * R22 : - EL(PAIR(F_2(C_4 POWER(C_4 C_3)) F_1(C_4 POWER(C_4 C_3))) POWER(C_4 C_3))
+                               - EL(PAIR(F_4(C_4 POWER(C_4 C_3)) F_3(C_4 POWER(C_4 C_3))) C_4)
+ 
+A6,5 & P5,1     -->  * R23 : - =(COMP(POWER(C_4 C_3) C_4) COMP(C_4 POWER(C_4 C_3)))
+                               - EL(PAIR(F_2(C_4 POWER(C_4 C_3)) F_1(C_4 POWER(C_4 C_3))) POWER(C_4 C_3))
+                               + EL(PAIR(F_3(C_4 POWER(C_4 C_3)) F_4(C_4 POWER(C_4 C_3))) C_4)
+                               - EL(PAIR(C_1 C_2) COMP(POWER(C_4 C_3) C_4))
+ 
+R23,4 & P4,1    -->  * R24 : - =(COMP(POWER(C_4 C_3) C_4) COMP(C_4 POWER(C_4 C_3)))
+                               - EL(PAIR(F_2(C_4 POWER(C_4 C_3)) F_1(C_4 POWER(C_4 C_3))) POWER(C_4 C_3))
+                               + EL(PAIR(F_3(C_4 POWER(C_4 C_3)) F_4(C_4 POWER(C_4 C_3))) C_4)
+ 
+R24,1 & A3,1    -->  * R25 : - EL(PAIR(F_2(C_4 POWER(C_4 C_3)) F_1(C_4 POWER(C_4 C_3))) POWER(C_4 C_3))
+                               + EL(PAIR(F_3(C_4 POWER(C_4 C_3)) F_4(C_4 POWER(C_4 C_3))) C_4)
+ 
+A5,5 & P5,1     -->  * R26 : - =(COMP(POWER(C_4 C_3) C_4) COMP(C_4 POWER(C_4 C_3)))
+                               + EL(PAIR(F_1(C_4 POWER(C_4 C_3)) F_2(C_4 POWER(C_4 C_3))) POWER(C_4 C_3))
+                               - EL(PAIR(F_4(C_4 POWER(C_4 C_3)) F_3(C_4 POWER(C_4 C_3))) C_4)
+                               - EL(PAIR(C_1 C_2) COMP(POWER(C_4 C_3) C_4))
+ 
+R26,4 & P4,1    -->  * R27 : - =(COMP(POWER(C_4 C_3) C_4) COMP(C_4 POWER(C_4 C_3)))
+                               + EL(PAIR(F_1(C_4 POWER(C_4 C_3)) F_2(C_4 POWER(C_4 C_3))) POWER(C_4 C_3))
+                               - EL(PAIR(F_4(C_4 POWER(C_4 C_3)) F_3(C_4 POWER(C_4 C_3))) C_4)
+ 
+R27,1 & A3,1    -->  * R28 : + EL(PAIR(F_1(C_4 POWER(C_4 C_3)) F_2(C_4 POWER(C_4 C_3))) POWER(C_4 C_3))
+                               - EL(PAIR(F_4(C_4 POWER(C_4 C_3)) F_3(C_4 POWER(C_4 C_3))) C_4)
+ 
+A4,5 & P5,1     -->  * R29 : - =(COMP(POWER(C_4 C_3) C_4) COMP(C_4 POWER(C_4 C_3)))
+                               + EL(PAIR(F_1(C_4 POWER(C_4 C_3)) F_2(C_4 POWER(C_4 C_3))) POWER(C_4 C_3))
+                               + EL(PAIR(F_3(C_4 POWER(C_4 C_3)) F_4(C_4 POWER(C_4 C_3))) C_4)
+                               - EL(PAIR(C_1 C_2) COMP(POWER(C_4 C_3) C_4))
+ 
+R29,4 & P4,1    -->  * R30 : - =(COMP(POWER(C_4 C_3) C_4) COMP(C_4 POWER(C_4 C_3)))
+                               + EL(PAIR(F_1(C_4 POWER(C_4 C_3)) F_2(C_4 POWER(C_4 C_3))) POWER(C_4 C_3))
+                               + EL(PAIR(F_3(C_4 POWER(C_4 C_3)) F_4(C_4 POWER(C_4 C_3))) C_4)
+ 
+R30,1 & A3,1    -->  * R31 : + EL(PAIR(F_1(C_4 POWER(C_4 C_3)) F_2(C_4 POWER(C_4 C_3))) POWER(C_4 C_3))
+                               + EL(PAIR(F_3(C_4 POWER(C_4 C_3)) F_4(C_4 POWER(C_4 C_3))) C_4)
+ 
+A7,5 & P9,1     -->    R32 : - =(COMP(C_4 POWER(C_4 C_3)) COMP(POWER(C_4 C_3) C_4))
+                               - EL(PAIR(F_2(POWER(C_4 C_3) C_4) F_1(POWER(C_4 C_3) C_4)) C_4)
+                               - EL(PAIR(F_4(POWER(C_4 C_3) C_4) F_3(POWER(C_4 C_3) C_4)) POWER(C_4 C_3))
+                               - EL(PAIR(C_1 C_2) COMP(C_4 POWER(C_4 C_3)))
+ 
+R32,4 & P8,1    -->    R33 : - =(COMP(C_4 POWER(C_4 C_3)) COMP(POWER(C_4 C_3) C_4))
+                               - EL(PAIR(F_2(POWER(C_4 C_3) C_4) F_1(POWER(C_4 C_3) C_4)) C_4)
+                               - EL(PAIR(F_4(POWER(C_4 C_3) C_4) F_3(POWER(C_4 C_3) C_4)) POWER(C_4 C_3))
+ 
+R33,1 & A3,1    -->    R34 : - EL(PAIR(F_2(POWER(C_4 C_3) C_4) F_1(POWER(C_4 C_3) C_4)) C_4)
+                               - EL(PAIR(F_4(POWER(C_4 C_3) C_4) F_3(POWER(C_4 C_3) C_4)) POWER(C_4 C_3))
+ 
+A6,5 & P9,1     -->    R35 : - =(COMP(C_4 POWER(C_4 C_3)) COMP(POWER(C_4 C_3) C_4))
+                               - EL(PAIR(F_2(POWER(C_4 C_3) C_4) F_1(POWER(C_4 C_3) C_4)) C_4)
+                               + EL(PAIR(F_3(POWER(C_4 C_3) C_4) F_4(POWER(C_4 C_3) C_4)) POWER(C_4 C_3))
+                               - EL(PAIR(C_1 C_2) COMP(C_4 POWER(C_4 C_3)))
+ 
+R35,4 & P8,1    -->    R36 : - =(COMP(C_4 POWER(C_4 C_3)) COMP(POWER(C_4 C_3) C_4))
+                               - EL(PAIR(F_2(POWER(C_4 C_3) C_4) F_1(POWER(C_4 C_3) C_4)) C_4)
+                               + EL(PAIR(F_3(POWER(C_4 C_3) C_4) F_4(POWER(C_4 C_3) C_4)) POWER(C_4 C_3))
+ 
+R36,1 & A3,1    -->    R37 : - EL(PAIR(F_2(POWER(C_4 C_3) C_4) F_1(POWER(C_4 C_3) C_4)) C_4)
+                               + EL(PAIR(F_3(POWER(C_4 C_3) C_4) F_4(POWER(C_4 C_3) C_4)) POWER(C_4 C_3))
+ 
+A5,5 & P9,1     -->    R38 : - =(COMP(C_4 POWER(C_4 C_3)) COMP(POWER(C_4 C_3) C_4))
+                               + EL(PAIR(F_1(POWER(C_4 C_3) C_4) F_2(POWER(C_4 C_3) C_4)) C_4)
+                               - EL(PAIR(F_4(POWER(C_4 C_3) C_4) F_3(POWER(C_4 C_3) C_4)) POWER(C_4 C_3))
+                               - EL(PAIR(C_1 C_2) COMP(C_4 POWER(C_4 C_3)))
+ 
+R38,4 & P8,1    -->    R39 : - =(COMP(C_4 POWER(C_4 C_3)) COMP(POWER(C_4 C_3) C_4))
+                               + EL(PAIR(F_1(POWER(C_4 C_3) C_4) F_2(POWER(C_4 C_3) C_4)) C_4)
+                               - EL(PAIR(F_4(POWER(C_4 C_3) C_4) F_3(POWER(C_4 C_3) C_4)) POWER(C_4 C_3))
+ 
+R39,1 & A3,1    -->    R40 : + EL(PAIR(F_1(POWER(C_4 C_3) C_4) F_2(POWER(C_4 C_3) C_4)) C_4)
+                               - EL(PAIR(F_4(POWER(C_4 C_3) C_4) F_3(POWER(C_4 C_3) C_4)) POWER(C_4 C_3))
+ 
+A4,5 & P9,1     -->    R41 : - =(COMP(C_4 POWER(C_4 C_3)) COMP(POWER(C_4 C_3) C_4))
+                               + EL(PAIR(F_1(POWER(C_4 C_3) C_4) F_2(POWER(C_4 C_3) C_4)) C_4)
+                               + EL(PAIR(F_3(POWER(C_4 C_3) C_4) F_4(POWER(C_4 C_3) C_4)) POWER(C_4 C_3))
+                               - EL(PAIR(C_1 C_2) COMP(C_4 POWER(C_4 C_3)))
+ 
+R41,4 & P8,1    -->    R42 : - =(COMP(C_4 POWER(C_4 C_3)) COMP(POWER(C_4 C_3) C_4))
+                               + EL(PAIR(F_1(POWER(C_4 C_3) C_4) F_2(POWER(C_4 C_3) C_4)) C_4)
+                               + EL(PAIR(F_3(POWER(C_4 C_3) C_4) F_4(POWER(C_4 C_3) C_4)) POWER(C_4 C_3))
+ 
+R42,1 & A3,1    -->    R43 : + EL(PAIR(F_1(POWER(C_4 C_3) C_4) F_2(POWER(C_4 C_3) C_4)) C_4)
+                               + EL(PAIR(F_3(POWER(C_4 C_3) C_4) F_4(POWER(C_4 C_3) C_4)) POWER(C_4 C_3))
+ 
+T8,2 & R22,2    -->  * R44 : - EL(PAIR(F_3(C_4 POWER(C_4 C_3)) F_4(C_4 POWER(C_4 C_3))) C_4)
+                               - EL(PAIR(F_2(C_4 POWER(C_4 C_3)) F_1(C_4 POWER(C_4 C_3))) POWER(C_4 C_3))
+ 
+R44,1 & R25,2   -->  * R45 : - EL(PAIR(F_2(C_4 POWER(C_4 C_3)) F_1(C_4 POWER(C_4 C_3))) POWER(C_4 C_3))
+                               - EL(PAIR(F_2(C_4 POWER(C_4 C_3)) F_1(C_4 POWER(C_4 C_3))) POWER(C_4 C_3))
+ 
+R45 1=2         -->  * D46 : - EL(PAIR(F_2(C_4 POWER(C_4 C_3)) F_1(C_4 POWER(C_4 C_3))) POWER(C_4 C_3))
+ 
+T9,2 & D46,1    -->  * R47 : - EL(PAIR(F_1(C_4 POWER(C_4 C_3)) F_2(C_4 POWER(C_4 C_3))) POWER(C_4 C_3))
+ 
+R28,1 & R47,1   -->  * R48 : - EL(PAIR(F_4(C_4 POWER(C_4 C_3)) F_3(C_4 POWER(C_4 C_3))) C_4)
+ 
+R31,1 & R47,1   -->  * R49 : + EL(PAIR(F_3(C_4 POWER(C_4 C_3)) F_4(C_4 POWER(C_4 C_3))) C_4)
+ 
+R48,1 & T8,2    -->  * R50 : - EL(PAIR(F_3(C_4 POWER(C_4 C_3)) F_4(C_4 POWER(C_4 C_3))) C_4)
+ 
+R50,1 & R49,1   -->  * R51 :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+STOP
+ 

@@ -1,0 +1,237 @@
+;;; -*- Package: MKRP; Base: 10; Mode: TEXT; Syntax: Common-lisp -*-
+
+
+
+                     ****************************************************************************
+                     *                                                                          *
+                     *     ATP-SYSTEM: MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN   *
+                     *                                                                          *
+                     *        VERSION: MKRP 39.26 EQUALITY 16.1                                 *
+                     *           DATE: 16-FEB,1990  01:09                                       *
+                     *                                                                          *
+                     ****************************************************************************
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+   Edit:     Axioms and Theorems edited: 05-FEB,1990 05:34 
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+             Formulae given to the editor
+             ============================
+
+   
+   Axioms:   * AXIOMS *
+             * RING *
+             ALL X,Y,Z PLUS (PLUS (X Y) Z) = PLUS (X PLUS (Y Z))
+             ALL X PLUS (0 X) = X
+             ALL X PLUS (MINUS (X) X) = 0
+             ALL X,Y,Z MULT (MULT (X Y) Z) = MULT (X MULT (Y Z))
+             ALL X,Y,Z MULT (X PLUS (Y Z)) = PLUS (MULT (X Y) MULT (X Z))
+             ALL X,Y,Z MULT (PLUS (Y Z) X) = PLUS (MULT (Y X) MULT (Z X))
+             * MIT EINS *
+             ALL X MULT (1 X) = X
+             ALL X MULT (X 1) = X
+             * NULLTEILERFREI *
+             ALL X,Y MULT (X Y) = 0 IMPL X = 0 OR Y = 0
+             
+   Theorems: * THEOREM *
+             ALL X PLUS (MULT (X X) MINUS (1)) = 0 IMPL X = 1 OR X = MINUS (1)
+             
+   
+
+
+             Set of Axiom Clauses Resulting from Normalization
+             =================================================
+
+           * A1:   All x:Any + =(x x)
+           * A2:   All x,y,z:Any + =(plus(plus(z y) x) plus(z plus(y x)))
+           * A3:   All x:Any + =(plus(0 x) x)
+           * A4:   All x:Any + =(plus(minus(x) x) 0)
+             A5:   All x,y,z:Any + =(mult(mult(z y) x) mult(z mult(y x)))
+           * A6:   All x,y,z:Any + =(mult(z plus(y x)) plus(mult(z y) mult(z x)))
+           * A7:   All x,y,z:Any + =(mult(plus(z y) x) plus(mult(z x) mult(y x)))
+           * A8:   All x:Any + =(mult(1 x) x)
+           * A9:   All x:Any + =(mult(x 1) x)
+           * A10:  All x,y:Any - =(mult(y x) 0)  + =(y 0)  + =(x 0)
+           
+
+
+
+
+             Set of Theorem Clauses Resulting from Normalization
+             ===================================================
+
+           * T11: + =(plus(mult(c_1 c_1) minus(1)) 0)
+           * T12: - =(c_1 1)
+           * T13: - =(c_1 minus(1))
+
+
+
+
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+   Refutation:
+   ===========
+   
+   Initial Clauses:     * A1:    All x:Any + =(x x)
+                        * A2:    All x,y,z:Any + =(plus(plus(z y) x) plus(z plus(y x)))
+                        * A3:    All x:Any + =(plus(0 x) x)
+                        * A4:    All x:Any + =(plus(minus(x) x) 0)
+                          A5:    All x,y,z:Any + =(mult(mult(z y) x) mult(z mult(y x)))
+                        * A6:    All x,y,z:Any + =(mult(z plus(y x)) plus(mult(z y) mult(z x)))
+                        * A7:    All x,y,z:Any + =(mult(plus(z y) x) plus(mult(z x) mult(y x)))
+                        * A8:    All x:Any + =(mult(1 x) x)
+                        * A9:    All x:Any + =(mult(x 1) x)
+                        * A10:   All x,y:Any - =(mult(y x) 0)  + =(y 0)  + =(x 0)
+                        * T11:   + =(plus(mult(c_1 c_1) minus(1)) 0)
+                        * T12:   - =(c_1 1)
+                        * T13:   - =(c_1 minus(1))
+                        
+
+   
+   A4,1 & A2,1     -->  * P1:    All x,y:Any + =(plus(0 y) plus(minus(x) plus(x y)))
+   
+   A3,1 & P1,1     -->  * P2:    All x,y:Any + =(y plus(minus(x) plus(x y)))
+   
+   A4,1 & P2,1     -->  * P4:    All x:Any + =(x plus(minus(minus(x)) 0))
+   
+   T11,1 & A2,1    -->  * P7:    All x:Any + =(plus(0 x) plus(mult(c_1 c_1) plus(minus(1) x)))
+   
+   A3,1 & P7,1     -->  * P8:    All x:Any + =(x plus(mult(c_1 c_1) plus(minus(1) x)))
+   
+   A4,1 & P8,1     -->  * P9:    + =(1 plus(mult(c_1 c_1) 0))
+   
+   P2,1 & P8,1     -->  * P10:   All x:Any + =(plus(1 x) plus(mult(c_1 c_1) x))
+   
+   P10,1 & P9,1    -->  * P13:   + =(1 plus(1 0))
+   
+   P13,1 & A6,1    -->  * P14:   All x:Any + =(mult(x 1) plus(mult(x 1) mult(x 0)))
+   
+   A9,1 & P14,1    -->  * P15:   All x:Any + =(x plus(mult(x 1) mult(x 0)))
+   
+   A9,1 & P15,1    -->  * P16:   All x:Any + =(x plus(x mult(x 0)))
+   
+   P16,1 & P2,1    -->  * P21:   All x:Any + =(mult(x 0) plus(minus(x) x))
+   
+   P21,1 & P16,1   -->  * P22:   All x:Any + =(x plus(x plus(minus(x) x)))
+   
+   A4,1 & P21,1    -->  * P23:   All x:Any + =(mult(x 0) 0)
+   
+   A4,1 & P22,1    -->  * P24:   All x:Any + =(x plus(x 0))
+   
+   P24,1 & P4,1    -->  * P25:   All x:Any + =(x minus(minus(x)))
+   
+   A4,1 & A6,1     -->  * P28:   All x,y:Any + =(mult(y 0) plus(mult(y minus(x)) mult(y x)))
+   
+   P23,1 & P28,1   -->  * P29:   All x,y:Any + =(0 plus(mult(y minus(x)) mult(y x)))
+   
+   P24,1 & P10,1   -->  * P39:   + =(plus(1 0) mult(c_1 c_1))
+   
+   P24,1 & P39,1   -->  * P40:   + =(1 mult(c_1 c_1))
+   
+   P25,1 & A4,1    -->  * P48:   All x:Any + =(plus(x minus(x)) 0)
+   
+   P29,1 & P2,1    -->  * P71:   All x,y:Any + =(mult(y x) plus(minus(mult(y minus(x))) 0))
+   
+   P24,1 & P71,1   -->  * P72:   All x,y:Any + =(mult(y x) minus(mult(y minus(x))))
+   
+   P72,1 & P25,1   -->  * P94:   All x,y:Any + =(mult(y minus(x)) minus(mult(y x)))
+   
+   A7,1 & A10,1    -->  * P106:  All x,y,z:Any - =(plus(mult(z y) mult(x y)) 0)  + =(plus(z x) 0)  + =(y 0)
+   
+   A8,1 & P106,1   -->  * P107:  All x,y:Any - =(plus(y mult(x y)) 0)  + =(plus(1 x) 0)  + =(y 0)
+   
+   A2,1 & P107,1   -->  * P188:  All x,y,z:Any - =(plus(z plus(y mult(x plus(z y)))) 0)  + =(plus(1 x) 0)
+                                               + =(plus(z y) 0)
+   
+   A6,1 & P188,1   -->  * P189:  All x,y,z:Any - =(plus(z plus(y plus(mult(x z) mult(x y)))) 0)  + =(plus(1 x) 0)
+                                               + =(plus(z y) 0)
+   
+   A9,1 & P189,1   -->  * P190:  All x,y:Any - =(plus(1 plus(y plus(x mult(x y)))) 0)  + =(plus(1 x) 0)
+                                             + =(plus(1 y) 0)
+   
+   P2,1 & P190,1   -->  * P192:  All x:Any - =(plus(1 mult(x minus(x))) 0)  + =(plus(1 x) 0)
+                                           + =(plus(1 minus(x)) 0)
+   
+   P94,1 & P192,1  -->  * P193:  All x:Any - =(plus(1 minus(mult(x x))) 0)  + =(plus(1 x) 0)
+                                           + =(plus(1 minus(x)) 0)
+   
+   P40,1 & P193,1  -->  * P194:  - =(plus(1 minus(1)) 0)  + =(plus(1 c_1) 0)  + =(plus(1 minus(c_1)) 0)
+   
+   P48,1 & P194,1  -->  * P195:  - =(0 0)  + =(plus(1 c_1) 0)  + =(plus(1 minus(c_1)) 0)
+   
+   P195,1 & A1,1   -->  * R196:  + =(plus(1 c_1) 0)  + =(plus(1 minus(c_1)) 0)
+   
+   R196,2 & P2,1   -->  * P197:  + =(minus(c_1) plus(minus(1) 0))  + =(plus(1 c_1) 0)
+   
+   P24,1 & P197,1  -->  * P198:  + =(minus(c_1) minus(1))  + =(plus(1 c_1) 0)
+   
+   P198,1 & P25,1  -->  * P199:  + =(1 minus(minus(c_1)))  + =(plus(1 c_1) 0)
+   
+   P25,1 & P199,1  -->  * P200:  + =(1 c_1)  + =(plus(1 c_1) 0)
+   
+   P200,1 & T12,1  -->  * R201:  + =(plus(1 c_1) 0)
+   
+   R201,1 & P2,1   -->  * P202:  + =(c_1 plus(minus(1) 0))
+   
+   P24,1 & P202,1  -->  * P203:  + =(c_1 minus(1))
+   
+   P203,1 & T13,1  -->  * R204:  []
+   
+
+   
+   ------------------------------------------------------------------------------------------------------------------
+
+
+
+     q.e.d. 
+
+
+   Time Used for Refutation: 9187 seconds
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

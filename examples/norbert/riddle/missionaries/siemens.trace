@@ -1,0 +1,955 @@
+ 
+ 
+ 
+                    ********************************************************************************
+                    *                                                                              *
+                    *   ATP-SYSTEM :  MARKGRAF KARL REFUTATION PROCEDURE, UNI KAISERSLAUTERN       *
+                    *                                                                              *
+                    *      VERSION : 3-OCT-84                                                      *
+                    *         DATE : 11-OCT-84  21:05:48                                           *
+                    *                                                                              *
+                    ********************************************************************************
+ 
+ 
+*************************************************************************
+EDIT:
+AXIOME
+UND
+THEOREME
+EDITIERT
+AM:
+11-OCT-84
+18:28:23
+*************************************************************************
+************************************************************************
+CONSTRUCT:
+MISSIONARY
+PROBLEM
+WITH
+TERMINATOR
+SET
+OF
+SUPPORT
+************************************************************************
+ 
+ 
+ADJUSTMENT OF THE OPTIONS : 
+============================
+ 
+ 
+ 
+TWO:RULES                             NIL                   TWO:RULES.MAXLEVEL                    1
+TWO:SUPPRESS.NORULES                  NIL
+ 
+ 
+RED.I:CLAUSE.MULTIPLE.LITERALS        T                     RED.I:CLAUSE.PURITY                   T
+RED.I:CLAUSE.TAUTOLOGY                T                     RED.I:CLAUSE.TAUTOLOGY.RECHECK        PARTIAL
+RED.I:CLAUSE.SUBSUMPTION              T                     RED.I:CLAUSE.SUBSUMPTION.RECHECK      PARTIAL
+RED.I:CLAUSE.REPL.FACTORING           T                     RED.I:CLAUSE.REPL.FACTORING.RECHECK   T
+RED.I:CLAUSE.REPL.RESOLUTION          SIMPLE                RED.I:CLAUSE.REPL.RESOLUTION.RECHECK  T
+RED.I:CLAUSE.REWRITING                T                     RED.I:LINK.INCOMPATIBILITY            T
+RED.I:LINK.TAUTOLOGY                  REMOVE-INHIBIT        RED.I:LINK.TAUTOLOGY.RECHECK          NIL
+RED.I:LINK.SUBSUMPTION                REMOVE-INHIBIT        RED.I:LINK.SUBSUMPTION.RECHECK        NIL
+ 
+RED.D:CLAUSE.MULTIPLE.LITERALS        T                     RED.D:CLAUSE.PURITY                   T
+RED.D:CLAUSE.TAUTOLOGY                REMOVE-INHIBIT        RED.D:CLAUSE.TAUTOLOGY.RECHECK        NIL
+RED.D:CLAUSE.SUBSUMPTION.FORWARD      REMOVE-INHIBIT        RED.D:CLAUSE.SUBSUMPTION.BACKWARD     REMOVE
+RED.D:CLAUSE.SUBSUMPTION.RECHECK      NIL                   RED.D:CLAUSE.REPL.FACTORING           T
+RED.D:CLAUSE.REPL.FACTORING.RECHECK   T                     RED.D:CLAUSE.REPL.RESOLUTION          SIMPLE
+RED.D:CLAUSE.REPL.RESOLUTION.RECHECK  T                     RED.D:LINK.INCOMPATIBILITY            T
+RED.D:LINK.TAUTOLOGY                  REMOVE-INHIBIT        RED.D:LINK.TAUTOLOGY.RECHECK          NIL
+RED.D:LINK.SUBSUMPTION                REMOVE-INHIBIT        RED.D:LINK.SUBSUMPTION.RECHECK        NIL
+ 
+FAC:INITIAL                           NIL                   FAC:EACH.STEP                         NIL
+ 
+STR:RESOLUTION                        SET-OF-SUPPORT        STR:E-RESOLUTION                      NIL
+STR:PARAMODULATION                    UNIT-ANCESTRY         STR:LINK.DEPTH                        NIL
+STR:TERM.DEPTH                        NIL                   STR:R.DEMODULATION                    T
+STR:P.DEMODULATION                    T                     STR:INDUCTION                         NIL
+ 
+TERM:UNITS                            NIL                   TERM:ITERATIONS                       50
+TERM:SET.OF.SUPPORT                   T                     TERM:BREADTH.FIRST                    NIL
+ 
+GEN:SPLITTING                         0                     GEN:MANUAL.CONTROL                    NIL
+GEN:MAXIMUM.STEPS                     NIL                   GEN:GRAPH.SAVING                      NIL
+GEN:SAVE.FILE                         SAVE.DEFAULT
+ 
+ 
+TR:PREPROCESSING                      NIL                   TR:STEP.MODE                          LR
+TR:DUMP                               NIL                   TR:CLAUSE.MODE                        I
+TR:LINK.MODE                          I                     TR:TRACE.FILE                         NIL
+TR:TERMINAL                           NIL
+ 
+ 
+PR:INFIX.FORM                         T                     PR:PREFIX.FORM                        NIL
+PR:OPTIONS                            T                     PR:AXIOM.CLAUSES                      NIL
+PR:SYMBOLS                            NIL                   PR:STATISTICS                         NIL
+PR:PROTOCOL                           T                     PR:LEFT.MARGIN                        0
+PR:LINELENGTH                         120
+ 
+ 
+ 
+ 
+FORMULAE GIVEN TO THE EDITOR
+============================
+ 
+ 
+AXIOMS   : * STARTING SITUATION:
+           *
+            POSSIBLE  
+             MISSIONARIES.LEFT  
+             S (S (S (0)))
+             CANNIBALS.LEFT  
+             S (S (S (0)))
+             BOAT  
+             LEFT
+             CANNIBALS.RIGHT  
+             0
+             MISSIONARIES.RIGHT  
+             0
+           *
+           * TRAVERSING RULES:
+           *
+           ALL V,W,Y,Z  
+                POSSIBLE  
+                MISSIONARIES.LEFT (S (V)) CANNIBALS.LEFT (W) BOAT (LEFT) CANNIBALS.RIGHT (Y) MISSIONARIES.RIGHT (Z)
+               IMPL  
+                REACHABLE  
+                MISSIONARIES.LEFT (V) CANNIBALS.LEFT (W) BOAT (RIGHT) CANNIBALS.RIGHT (Y) MISSIONARIES.RIGHT (S
+(Z))
+           ALL V,W,Y,Z  
+                POSSIBLE  
+                MISSIONARIES.LEFT (V) CANNIBALS.LEFT (S (W)) BOAT (LEFT) CANNIBALS.RIGHT (Y) MISSIONARIES.RIGHT (Z)
+               IMPL  
+                REACHABLE  
+                MISSIONARIES.LEFT (V) CANNIBALS.LEFT (W) BOAT (RIGHT) CANNIBALS.RIGHT (S (Y)) MISSIONARIES.RIGHT (Z)
+           ALL V,W,Y,Z  
+                POSSIBLE  
+                MISSIONARIES.LEFT (S (S (V))) CANNIBALS.LEFT (W) BOAT (LEFT) CANNIBALS.RIGHT (Y) MISSIONARIES.RIGHT (Z)
+               IMPL  
+                REACHABLE  
+                 MISSIONARIES.LEFT  
+                 V
+                 CANNIBALS.LEFT  
+                 W
+                 BOAT  
+                 RIGHT
+                 CANNIBALS.RIGHT  
+                 Y
+                 MISSIONARIES.RIGHT  
+                 S (S (Z))
+           ALL V,W,Y,Z  
+                POSSIBLE  
+                MISSIONARIES.LEFT (V) CANNIBALS.LEFT (S (S (W))) BOAT (LEFT) CANNIBALS.RIGHT (Y) MISSIONARIES.RIGHT (Z)
+               IMPL  
+                REACHABLE  
+                 MISSIONARIES.LEFT  
+                 V
+                 CANNIBALS.LEFT  
+                 W
+                 BOAT  
+                 RIGHT
+                 CANNIBALS.RIGHT  
+                 S (S (Y))
+                 MISSIONARIES.RIGHT  
+                 Z
+           ALL V,W,Y,Z  
+                POSSIBLE  
+                MISSIONARIES.LEFT (S (V)) CANNIBALS.LEFT (S (W)) BOAT (LEFT) CANNIBALS.RIGHT (Y) MISSIONARIES.RIGHT (Z)
+               IMPL  
+                REACHABLE  
+                 MISSIONARIES.LEFT  
+                 V
+                 CANNIBALS.LEFT  
+                 W
+                 BOAT  
+                 RIGHT
+                 CANNIBALS.RIGHT  
+                 S (Y)
+                 MISSIONARIES.RIGHT  
+                 S (Z)
+           ALL V,W,Y,Z  
+                POSSIBLE  
+                MISSIONARIES.LEFT (V) CANNIBALS.LEFT (W) BOAT (RIGHT) CANNIBALS.RIGHT (Y) MISSIONARIES.RIGHT (S
+(Z))           IMPL  
+                REACHABLE  
+                MISSIONARIES.LEFT (S (V)) CANNIBALS.LEFT (W) BOAT (LEFT) CANNIBALS.RIGHT (Y) MISSIONARIES.RIGHT (Z)
+           ALL V,W,Y,Z  
+                POSSIBLE  
+                MISSIONARIES.LEFT (V) CANNIBALS.LEFT (W) BOAT (RIGHT) CANNIBALS.RIGHT (S (Y)) MISSIONARIES.RIGHT (Z)
+               IMPL  
+                REACHABLE  
+                MISSIONARIES.LEFT (V) CANNIBALS.LEFT (S (W)) BOAT (LEFT) CANNIBALS.RIGHT (Y) MISSIONARIES.RIGHT (Z)
+           ALL V,W,Y,Z  
+                POSSIBLE  
+                 MISSIONARIES.LEFT  
+                 V
+                 CANNIBALS.LEFT  
+                 W
+                 BOAT  
+                 RIGHT
+                 CANNIBALS.RIGHT  
+                 Y
+                 MISSIONARIES.RIGHT  
+                 S (S (Z))
+               IMPL  
+                REACHABLE  
+                MISSIONARIES.LEFT (S (S (V))) CANNIBALS.LEFT (W) BOAT (LEFT) CANNIBALS.RIGHT (Y) MISSIONARIES.RIGHT (Z)
+           ALL V,W,Y,Z  
+                POSSIBLE  
+                 MISSIONARIES.LEFT  
+                 V
+                 CANNIBALS.LEFT  
+                 W
+                 BOAT  
+                 RIGHT
+                 CANNIBALS.RIGHT  
+                 S (S (Y))
+                 MISSIONARIES.RIGHT  
+                 Z
+               IMPL  
+                REACHABLE  
+                MISSIONARIES.LEFT (V) CANNIBALS.LEFT (S (S (W))) BOAT (LEFT) CANNIBALS.RIGHT (Y) MISSIONARIES.RIGHT (Z)
+           ALL V,W,Y,Z  
+                POSSIBLE  
+                 MISSIONARIES.LEFT  
+                 V
+                 CANNIBALS.LEFT  
+                 W
+                 BOAT  
+                 RIGHT
+                 CANNIBALS.RIGHT  
+                 S (Y)
+                 MISSIONARIES.RIGHT  
+                 S (Z)
+               IMPL  
+                REACHABLE  
+                MISSIONARIES.LEFT (S (V)) CANNIBALS.LEFT (S (W)) BOAT (LEFT) CANNIBALS.RIGHT (Y) MISSIONARIES.RIGHT (Z)
+           *
+           * ADMISSIBILITY CONDITION:
+           *
+           ALL V,W,X,Y,Z  
+                  REACHABLE  
+                  MISSIONARIES.LEFT (V) CANNIBALS.LEFT (W) BOAT (X) CANNIBALS.RIGHT (Y) MISSIONARIES.RIGHT (Z)
+                 AND  
+                 NOT OUTNUMBER (W V)
+                 AND  
+                 NOT OUTNUMBER (Y Z)
+               IMPL  
+               POSSIBLE (MISSIONARIES.LEFT (V) CANNIBALS.LEFT (W) BOAT (X) CANNIBALS.RIGHT (Y) MISSIONARIES.RIGHT
+(Z))
+           *
+           * AUXILIARY DEFINITIONS:
+           *
+           ALL X NOT OUTNUMBER (X 0)
+           ALL X NOT OUTNUMBER (X X)
+           ALL X NOT OUTNUMBER (X S (X))
+           ALL X NOT OUTNUMBER (X S (S (X)))
+           ALL X NOT OUTNUMBER (X S (S (S (X))))
+ 
+THEOREMS :  POSSIBLE  
+             MISSIONARIES.LEFT  
+             0
+             CANNIBALS.LEFT  
+             0
+             BOAT  
+             RIGHT
+             CANNIBALS.RIGHT  
+             S (S (S (0)))
+             MISSIONARIES.RIGHT  
+             S (S (S (0)))
+ 
+ 
+ 
+SET OF AXIOM CLAUSES RESULTING FROM NORMALIZATION 
+=================================================
+ 
+ 
+* A1   : + POSSIBLE(MISSIONARIES.LEFT(S(S(S(0))))
+                    CANNIBALS.LEFT(S(S(S(0))))
+                    BOAT(LEFT)
+                    CANNIBALS.RIGHT(0)
+                    MISSIONARIES.RIGHT(0))
+* A2   : ALL X:ANY  - OUTNUMBER(X 0)
+* A3   : ALL X:ANY  - OUTNUMBER(X X)
+* A4   : ALL X:ANY  - OUTNUMBER(X S(X))
+* A5   : ALL X:ANY  - OUTNUMBER(X S(S(X)))
+* A6   : ALL X:ANY  - OUTNUMBER(X S(S(S(X))))
+  A7   : ALL X,Y,Z,U:ANY  - POSSIBLE(MISSIONARIES.LEFT(S(U))
+                                     CANNIBALS.LEFT(Z)
+                                     BOAT(LEFT)
+                                     CANNIBALS.RIGHT(Y)
+                                     MISSIONARIES.RIGHT(X))
+                          + REACHABLE(MISSIONARIES.LEFT(U)
+                                      CANNIBALS.LEFT(Z)
+                                      BOAT(RIGHT)
+                                      CANNIBALS.RIGHT(Y)
+                                      MISSIONARIES.RIGHT(S(X)))
+  A8   : ALL X,Y,Z,U:ANY  - POSSIBLE(MISSIONARIES.LEFT(U)
+                                     CANNIBALS.LEFT(S(Z))
+                                     BOAT(LEFT)
+                                     CANNIBALS.RIGHT(Y)
+                                     MISSIONARIES.RIGHT(X))
+                          + REACHABLE(MISSIONARIES.LEFT(U)
+                                      CANNIBALS.LEFT(Z)
+                                      BOAT(RIGHT)
+                                      CANNIBALS.RIGHT(S(Y))
+                                      MISSIONARIES.RIGHT(X))
+* A9   : ALL X,Y,Z,U:ANY  - POSSIBLE(MISSIONARIES.LEFT(S(S(U)))
+                                     CANNIBALS.LEFT(Z)
+                                     BOAT(LEFT)
+                                     CANNIBALS.RIGHT(Y)
+                                     MISSIONARIES.RIGHT(X))
+                          + REACHABLE(MISSIONARIES.LEFT(U)
+                                      CANNIBALS.LEFT(Z)
+                                      BOAT(RIGHT)
+                                      CANNIBALS.RIGHT(Y)
+                                      MISSIONARIES.RIGHT(S(S(X))))
+* A10  : ALL X,Y,Z,U:ANY  - POSSIBLE(MISSIONARIES.LEFT(U)
+                                     CANNIBALS.LEFT(S(S(Z)))
+                                     BOAT(LEFT)
+                                     CANNIBALS.RIGHT(Y)
+                                     MISSIONARIES.RIGHT(X))
+                          + REACHABLE(MISSIONARIES.LEFT(U)
+                                      CANNIBALS.LEFT(Z)
+                                      BOAT(RIGHT)
+                                      CANNIBALS.RIGHT(S(S(Y)))
+                                      MISSIONARIES.RIGHT(X))
+* A11  : ALL X,Y,Z,U:ANY  - POSSIBLE(MISSIONARIES.LEFT(S(U))
+                                     CANNIBALS.LEFT(S(Z))
+                                     BOAT(LEFT)
+                                     CANNIBALS.RIGHT(Y)
+                                     MISSIONARIES.RIGHT(X))
+                          + REACHABLE(MISSIONARIES.LEFT(U)
+                                      CANNIBALS.LEFT(Z)
+                                      BOAT(RIGHT)
+                                      CANNIBALS.RIGHT(S(Y))
+                                      MISSIONARIES.RIGHT(S(X)))
+* A12  : ALL X,Y,Z,U:ANY  - POSSIBLE(MISSIONARIES.LEFT(U)
+                                     CANNIBALS.LEFT(Z)
+                                     BOAT(RIGHT)
+                                     CANNIBALS.RIGHT(Y)
+                                     MISSIONARIES.RIGHT(S(X)))
+                          + REACHABLE(MISSIONARIES.LEFT(S(U))
+                                      CANNIBALS.LEFT(Z)
+                                      BOAT(LEFT)
+                                      CANNIBALS.RIGHT(Y)
+                                      MISSIONARIES.RIGHT(X))
+* A13  : ALL X,Y,Z,U:ANY  - POSSIBLE(MISSIONARIES.LEFT(U)
+                                     CANNIBALS.LEFT(Z)
+                                     BOAT(RIGHT)
+                                     CANNIBALS.RIGHT(S(Y))
+                                     MISSIONARIES.RIGHT(X))
+                          + REACHABLE(MISSIONARIES.LEFT(U)
+                                      CANNIBALS.LEFT(S(Z))
+                                      BOAT(LEFT)
+                                      CANNIBALS.RIGHT(Y)
+                                      MISSIONARIES.RIGHT(X))
+  A14  : ALL X,Y,Z,U:ANY  - POSSIBLE(MISSIONARIES.LEFT(U)
+                                     CANNIBALS.LEFT(Z)
+                                     BOAT(RIGHT)
+                                     CANNIBALS.RIGHT(Y)
+                                     MISSIONARIES.RIGHT(S(S(X))))
+                          + REACHABLE(MISSIONARIES.LEFT(S(S(U)))
+                                      CANNIBALS.LEFT(Z)
+                                      BOAT(LEFT)
+                                      CANNIBALS.RIGHT(Y)
+                                      MISSIONARIES.RIGHT(X))
+  A15  : ALL X,Y,Z,U:ANY  - POSSIBLE(MISSIONARIES.LEFT(U)
+                                     CANNIBALS.LEFT(Z)
+                                     BOAT(RIGHT)
+                                     CANNIBALS.RIGHT(S(S(Y)))
+                                     MISSIONARIES.RIGHT(X))
+                          + REACHABLE(MISSIONARIES.LEFT(U)
+                                      CANNIBALS.LEFT(S(S(Z)))
+                                      BOAT(LEFT)
+                                      CANNIBALS.RIGHT(Y)
+                                      MISSIONARIES.RIGHT(X))
+* A16  : ALL X,Y,Z,U:ANY  - POSSIBLE(MISSIONARIES.LEFT(U)
+                                     CANNIBALS.LEFT(Z)
+                                     BOAT(RIGHT)
+                                     CANNIBALS.RIGHT(S(Y))
+                                     MISSIONARIES.RIGHT(S(X)))
+                          + REACHABLE(MISSIONARIES.LEFT(S(U))
+                                      CANNIBALS.LEFT(S(Z))
+                                      BOAT(LEFT)
+                                      CANNIBALS.RIGHT(Y)
+                                      MISSIONARIES.RIGHT(X))
+* A17  : ALL X,Y,Z,U,V:ANY  - REACHABLE(MISSIONARIES.LEFT(V)
+                                        CANNIBALS.LEFT(U)
+                                        BOAT(Z)
+                                        CANNIBALS.RIGHT(Y)
+                                        MISSIONARIES.RIGHT(X))
+                              + OUTNUMBER(U V)  + OUTNUMBER(Y X)
+                            + POSSIBLE(MISSIONARIES.LEFT(V)
+                                       CANNIBALS.LEFT(U)
+                                       BOAT(Z)
+                                       CANNIBALS.RIGHT(Y)
+                                       MISSIONARIES.RIGHT(X))
+ 
+ 
+ 
+ 
+ 
+SET OF THEOREM CLAUSES RESULTING FROM NORMALIZATION 
+===================================================
+ 
+ 
+* T18  : - POSSIBLE(MISSIONARIES.LEFT(0)
+                    CANNIBALS.LEFT(0)
+                    BOAT(RIGHT)
+                    CANNIBALS.RIGHT(S(S(S(0))))
+                    MISSIONARIES.RIGHT(S(S(S(0)))))
+ 
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+REFUTATION
+ 
+  THE FOLLOWING OPTIONS HAVE BEEN CHANGED :
+ 
+TERM:UNITS   T
+TERM:ITERATIONS   0
+TERM:SET.OF.SUPPORT   NIL
+ 
+ 
+INITIAL CLAUSES :    * A1  : + POSSIBLE(MISSIONARIES.LEFT(S(S(S(0))))
+                                        CANNIBALS.LEFT(S(S(S(0))))
+                                        BOAT(LEFT)
+                                        CANNIBALS.RIGHT(0)
+                                        MISSIONARIES.RIGHT(0))
+                     * A2  : ALL X:ANY  - OUTNUMBER(X 0)
+                     * A3  : ALL X:ANY  - OUTNUMBER(X X)
+                     * A4  : ALL X:ANY  - OUTNUMBER(X S(X))
+                     * A5  : ALL X:ANY  - OUTNUMBER(X S(S(X)))
+                     * A6  : ALL X:ANY  - OUTNUMBER(X S(S(S(X))))
+                       A7  : ALL X,Y,Z,U:ANY  - POSSIBLE(MISSIONARIES.LEFT(S(U))
+                                                         CANNIBALS.LEFT(Z)
+                                                         BOAT(LEFT)
+                                                         CANNIBALS.RIGHT(Y)
+                                                         MISSIONARIES.RIGHT(X))
+                                              + REACHABLE(MISSIONARIES.LEFT(U)
+                                                          CANNIBALS.LEFT(Z)
+                                                          BOAT(RIGHT)
+                                                          CANNIBALS.RIGHT(Y)
+                                                          MISSIONARIES.RIGHT(S(X)))
+                       A8  : ALL X,Y,Z,U:ANY  - POSSIBLE(MISSIONARIES.LEFT(U)
+                                                         CANNIBALS.LEFT(S(Z))
+                                                         BOAT(LEFT)
+                                                         CANNIBALS.RIGHT(Y)
+                                                         MISSIONARIES.RIGHT(X))
+                                              + REACHABLE(MISSIONARIES.LEFT(U)
+                                                          CANNIBALS.LEFT(Z)
+                                                          BOAT(RIGHT)
+                                                          CANNIBALS.RIGHT(S(Y))
+                                                          MISSIONARIES.RIGHT(X))
+                     * A9  : ALL X,Y,Z,U:ANY  - POSSIBLE(MISSIONARIES.LEFT(S(S(U)))
+                                                         CANNIBALS.LEFT(Z)
+                                                         BOAT(LEFT)
+                                                         CANNIBALS.RIGHT(Y)
+                                                         MISSIONARIES.RIGHT(X))
+                                              + REACHABLE(MISSIONARIES.LEFT(U)
+                                                          CANNIBALS.LEFT(Z)
+                                                          BOAT(RIGHT)
+                                                          CANNIBALS.RIGHT(Y)
+                                                          MISSIONARIES.RIGHT(S(S(X))))
+                     * A10 : ALL X,Y,Z,U:ANY  - POSSIBLE(MISSIONARIES.LEFT(U)
+                                                         CANNIBALS.LEFT(S(S(Z)))
+                                                         BOAT(LEFT)
+                                                         CANNIBALS.RIGHT(Y)
+                                                         MISSIONARIES.RIGHT(X))
+                                              + REACHABLE(MISSIONARIES.LEFT(U)
+                                                          CANNIBALS.LEFT(Z)
+                                                          BOAT(RIGHT)
+                                                          CANNIBALS.RIGHT(S(S(Y)))
+                                                          MISSIONARIES.RIGHT(X))
+                     * A11 : ALL X,Y,Z,U:ANY  - POSSIBLE(MISSIONARIES.LEFT(S(U))
+                                                         CANNIBALS.LEFT(S(Z))
+                                                         BOAT(LEFT)
+                                                         CANNIBALS.RIGHT(Y)
+                                                         MISSIONARIES.RIGHT(X))
+                                              + REACHABLE(MISSIONARIES.LEFT(U)
+                                                          CANNIBALS.LEFT(Z)
+                                                          BOAT(RIGHT)
+                                                          CANNIBALS.RIGHT(S(Y))
+                                                          MISSIONARIES.RIGHT(S(X)))
+                     * A12 : ALL X,Y,Z,U:ANY  - POSSIBLE(MISSIONARIES.LEFT(U)
+                                                         CANNIBALS.LEFT(Z)
+                                                         BOAT(RIGHT)
+                                                         CANNIBALS.RIGHT(Y)
+                                                         MISSIONARIES.RIGHT(S(X)))
+                                              + REACHABLE(MISSIONARIES.LEFT(S(U))
+                                                          CANNIBALS.LEFT(Z)
+                                                          BOAT(LEFT)
+                                                          CANNIBALS.RIGHT(Y)
+                                                          MISSIONARIES.RIGHT(X))
+                     * A13 : ALL X,Y,Z,U:ANY  - POSSIBLE(MISSIONARIES.LEFT(U)
+                                                         CANNIBALS.LEFT(Z)
+                                                         BOAT(RIGHT)
+                                                         CANNIBALS.RIGHT(S(Y))
+                                                         MISSIONARIES.RIGHT(X))
+                                              + REACHABLE(MISSIONARIES.LEFT(U)
+                                                          CANNIBALS.LEFT(S(Z))
+                                                          BOAT(LEFT)
+                                                          CANNIBALS.RIGHT(Y)
+                                                          MISSIONARIES.RIGHT(X))
+                       A14 : ALL X,Y,Z,U:ANY  - POSSIBLE(MISSIONARIES.LEFT(U)
+                                                         CANNIBALS.LEFT(Z)
+                                                         BOAT(RIGHT)
+                                                         CANNIBALS.RIGHT(Y)
+                                                         MISSIONARIES.RIGHT(S(S(X))))
+                                              + REACHABLE(MISSIONARIES.LEFT(S(S(U)))
+                                                          CANNIBALS.LEFT(Z)
+                                                          BOAT(LEFT)
+                                                          CANNIBALS.RIGHT(Y)
+                                                          MISSIONARIES.RIGHT(X))
+                       A15 : ALL X,Y,Z,U:ANY  - POSSIBLE(MISSIONARIES.LEFT(U)
+                                                         CANNIBALS.LEFT(Z)
+                                                         BOAT(RIGHT)
+                                                         CANNIBALS.RIGHT(S(S(Y)))
+                                                         MISSIONARIES.RIGHT(X))
+                                              + REACHABLE(MISSIONARIES.LEFT(U)
+                                                          CANNIBALS.LEFT(S(S(Z)))
+                                                          BOAT(LEFT)
+                                                          CANNIBALS.RIGHT(Y)
+                                                          MISSIONARIES.RIGHT(X))
+                     * A16 : ALL X,Y,Z,U:ANY  - POSSIBLE(MISSIONARIES.LEFT(U)
+                                                         CANNIBALS.LEFT(Z)
+                                                         BOAT(RIGHT)
+                                                         CANNIBALS.RIGHT(S(Y))
+                                                         MISSIONARIES.RIGHT(S(X)))
+                                              + REACHABLE(MISSIONARIES.LEFT(S(U))
+                                                          CANNIBALS.LEFT(S(Z))
+                                                          BOAT(LEFT)
+                                                          CANNIBALS.RIGHT(Y)
+                                                          MISSIONARIES.RIGHT(X))
+                     * A17 : ALL X,Y,Z,U,V:ANY  
+                                  - REACHABLE(MISSIONARIES.LEFT(V)
+                                              CANNIBALS.LEFT(U)
+                                              BOAT(Z)
+                                              CANNIBALS.RIGHT(Y)
+                                              MISSIONARIES.RIGHT(X))
+                                    + OUTNUMBER(U V)  + OUTNUMBER(Y X)
+                                  + POSSIBLE(MISSIONARIES.LEFT(V)
+                                             CANNIBALS.LEFT(U)
+                                             BOAT(Z)
+                                             CANNIBALS.RIGHT(Y)
+                                             MISSIONARIES.RIGHT(X))
+                     * T18 : - POSSIBLE(MISSIONARIES.LEFT(0)
+                                        CANNIBALS.LEFT(0)
+                                        BOAT(RIGHT)
+                                        CANNIBALS.RIGHT(S(S(S(0))))
+                                        MISSIONARIES.RIGHT(S(S(S(0)))))
+ 
+ 
+A1,1 & A11,1    -->  * R1  : + REACHABLE(MISSIONARIES.LEFT(S(S(0)))
+                                         CANNIBALS.LEFT(S(S(0)))
+                                         BOAT(RIGHT)
+                                         CANNIBALS.RIGHT(S(0))
+                                         MISSIONARIES.RIGHT(S(0)))
+ 
+ 
+A17,3 & A3,1    -->  * R2  : - REACHABLE(MISSIONARIES.LEFT(S(S(0)))
+                                         CANNIBALS.LEFT(S(S(0)))
+                                         BOAT(RIGHT)
+                                         CANNIBALS.RIGHT(S(0))
+                                         MISSIONARIES.RIGHT(S(0)))
+                               + OUTNUMBER(S(S(0)) S(S(0)))
+                             + POSSIBLE(MISSIONARIES.LEFT(S(S(0)))
+                                        CANNIBALS.LEFT(S(S(0)))
+                                        BOAT(RIGHT)
+                                        CANNIBALS.RIGHT(S(0))
+                                        MISSIONARIES.RIGHT(S(0)))
+ 
+ 
+R2,2 & A3,1     -->  * R3  : - REACHABLE(MISSIONARIES.LEFT(S(S(0)))
+                                         CANNIBALS.LEFT(S(S(0)))
+                                         BOAT(RIGHT)
+                                         CANNIBALS.RIGHT(S(0))
+                                         MISSIONARIES.RIGHT(S(0)))
+                             + POSSIBLE(MISSIONARIES.LEFT(S(S(0)))
+                                        CANNIBALS.LEFT(S(S(0)))
+                                        BOAT(RIGHT)
+                                        CANNIBALS.RIGHT(S(0))
+                                        MISSIONARIES.RIGHT(S(0)))
+ 
+ 
+R3,1 & R1,1     -->  * R4  : + POSSIBLE(MISSIONARIES.LEFT(S(S(0)))
+                                        CANNIBALS.LEFT(S(S(0)))
+                                        BOAT(RIGHT)
+                                        CANNIBALS.RIGHT(S(0))
+                                        MISSIONARIES.RIGHT(S(0)))
+ 
+ 
+R4,1 & A12,1    -->  * R5  : + REACHABLE(MISSIONARIES.LEFT(S(S(S(0))))
+                                         CANNIBALS.LEFT(S(S(0)))
+                                         BOAT(LEFT)
+                                         CANNIBALS.RIGHT(S(0))
+                                         MISSIONARIES.RIGHT(0))
+ 
+ 
+A17,3 & A2,1    -->  * R6  : - REACHABLE(MISSIONARIES.LEFT(S(S(S(0))))
+                                         CANNIBALS.LEFT(S(S(0)))
+                                         BOAT(LEFT)
+                                         CANNIBALS.RIGHT(S(0))
+                                         MISSIONARIES.RIGHT(0))
+                               + OUTNUMBER(S(S(0)) S(S(S(0))))
+                             + POSSIBLE(MISSIONARIES.LEFT(S(S(S(0))))
+                                        CANNIBALS.LEFT(S(S(0)))
+                                        BOAT(LEFT)
+                                        CANNIBALS.RIGHT(S(0))
+                                        MISSIONARIES.RIGHT(0))
+ 
+ 
+R6,1 & R5,1     -->  * R7  : + OUTNUMBER(S(S(0)) S(S(S(0))))
+                             + POSSIBLE(MISSIONARIES.LEFT(S(S(S(0))))
+                                        CANNIBALS.LEFT(S(S(0)))
+                                        BOAT(LEFT)
+                                        CANNIBALS.RIGHT(S(0))
+                                        MISSIONARIES.RIGHT(0))
+ 
+ 
+R7,1 & A4,1     -->  * R8  : + POSSIBLE(MISSIONARIES.LEFT(S(S(S(0))))
+                                        CANNIBALS.LEFT(S(S(0)))
+                                        BOAT(LEFT)
+                                        CANNIBALS.RIGHT(S(0))
+                                        MISSIONARIES.RIGHT(0))
+ 
+ 
+R8,1 & A10,1    -->  * R9  : + REACHABLE(MISSIONARIES.LEFT(S(S(S(0))))
+                                         CANNIBALS.LEFT(0)
+                                         BOAT(RIGHT)
+                                         CANNIBALS.RIGHT(S(S(S(0))))
+                                         MISSIONARIES.RIGHT(0))
+ 
+ 
+A17,3 & A2,1    -->  * R10 : - REACHABLE(MISSIONARIES.LEFT(S(S(S(0))))
+                                         CANNIBALS.LEFT(0)
+                                         BOAT(RIGHT)
+                                         CANNIBALS.RIGHT(S(S(S(0))))
+                                         MISSIONARIES.RIGHT(0))
+                               + OUTNUMBER(0 S(S(S(0))))
+                             + POSSIBLE(MISSIONARIES.LEFT(S(S(S(0))))
+                                        CANNIBALS.LEFT(0)
+                                        BOAT(RIGHT)
+                                        CANNIBALS.RIGHT(S(S(S(0))))
+                                        MISSIONARIES.RIGHT(0))
+ 
+ 
+R10,1 & R9,1    -->  * R11 : + OUTNUMBER(0 S(S(S(0))))
+                             + POSSIBLE(MISSIONARIES.LEFT(S(S(S(0))))
+                                        CANNIBALS.LEFT(0)
+                                        BOAT(RIGHT)
+                                        CANNIBALS.RIGHT(S(S(S(0))))
+                                        MISSIONARIES.RIGHT(0))
+ 
+ 
+R11,1 & A6,1    -->  * R12 : + POSSIBLE(MISSIONARIES.LEFT(S(S(S(0))))
+                                        CANNIBALS.LEFT(0)
+                                        BOAT(RIGHT)
+                                        CANNIBALS.RIGHT(S(S(S(0))))
+                                        MISSIONARIES.RIGHT(0))
+ 
+ 
+R12,1 & A13,1   -->  * R13 : + REACHABLE(MISSIONARIES.LEFT(S(S(S(0))))
+                                         CANNIBALS.LEFT(S(0))
+                                         BOAT(LEFT)
+                                         CANNIBALS.RIGHT(S(S(0)))
+                                         MISSIONARIES.RIGHT(0))
+ 
+ 
+A17,3 & A2,1    -->  * R14 : - REACHABLE(MISSIONARIES.LEFT(S(S(S(0))))
+                                         CANNIBALS.LEFT(S(0))
+                                         BOAT(LEFT)
+                                         CANNIBALS.RIGHT(S(S(0)))
+                                         MISSIONARIES.RIGHT(0))
+                               + OUTNUMBER(S(0) S(S(S(0))))
+                             + POSSIBLE(MISSIONARIES.LEFT(S(S(S(0))))
+                                        CANNIBALS.LEFT(S(0))
+                                        BOAT(LEFT)
+                                        CANNIBALS.RIGHT(S(S(0)))
+                                        MISSIONARIES.RIGHT(0))
+ 
+ 
+R14,1 & R13,1   -->  * R15 : + OUTNUMBER(S(0) S(S(S(0))))
+                             + POSSIBLE(MISSIONARIES.LEFT(S(S(S(0))))
+                                        CANNIBALS.LEFT(S(0))
+                                        BOAT(LEFT)
+                                        CANNIBALS.RIGHT(S(S(0)))
+                                        MISSIONARIES.RIGHT(0))
+ 
+ 
+R15,1 & A5,1    -->  * R16 : + POSSIBLE(MISSIONARIES.LEFT(S(S(S(0))))
+                                        CANNIBALS.LEFT(S(0))
+                                        BOAT(LEFT)
+                                        CANNIBALS.RIGHT(S(S(0)))
+                                        MISSIONARIES.RIGHT(0))
+ 
+ 
+R16,1 & A9,1    -->  * R17 : + REACHABLE(MISSIONARIES.LEFT(S(0))
+                                         CANNIBALS.LEFT(S(0))
+                                         BOAT(RIGHT)
+                                         CANNIBALS.RIGHT(S(S(0)))
+                                         MISSIONARIES.RIGHT(S(S(0))))
+ 
+ 
+A17,3 & A3,1    -->  * R18 : - REACHABLE(MISSIONARIES.LEFT(S(0))
+                                         CANNIBALS.LEFT(S(0))
+                                         BOAT(RIGHT)
+                                         CANNIBALS.RIGHT(S(S(0)))
+                                         MISSIONARIES.RIGHT(S(S(0))))
+                               + OUTNUMBER(S(0) S(0))
+                             + POSSIBLE(MISSIONARIES.LEFT(S(0))
+                                        CANNIBALS.LEFT(S(0))
+                                        BOAT(RIGHT)
+                                        CANNIBALS.RIGHT(S(S(0)))
+                                        MISSIONARIES.RIGHT(S(S(0))))
+ 
+ 
+R18,1 & R17,1   -->  * R19 : + OUTNUMBER(S(0) S(0))
+                             + POSSIBLE(MISSIONARIES.LEFT(S(0))
+                                        CANNIBALS.LEFT(S(0))
+                                        BOAT(RIGHT)
+                                        CANNIBALS.RIGHT(S(S(0)))
+                                        MISSIONARIES.RIGHT(S(S(0))))
+ 
+ 
+R19,1 & A3,1    -->  * R20 : + POSSIBLE(MISSIONARIES.LEFT(S(0))
+                                        CANNIBALS.LEFT(S(0))
+                                        BOAT(RIGHT)
+                                        CANNIBALS.RIGHT(S(S(0)))
+                                        MISSIONARIES.RIGHT(S(S(0))))
+ 
+ 
+R20,1 & A16,1   -->  * R21 : + REACHABLE(MISSIONARIES.LEFT(S(S(0)))
+                                         CANNIBALS.LEFT(S(S(0)))
+                                         BOAT(LEFT)
+                                         CANNIBALS.RIGHT(S(0))
+                                         MISSIONARIES.RIGHT(S(0)))
+ 
+ 
+A17,3 & A3,1    -->  * R22 : - REACHABLE(MISSIONARIES.LEFT(S(S(0)))
+                                         CANNIBALS.LEFT(S(S(0)))
+                                         BOAT(LEFT)
+                                         CANNIBALS.RIGHT(S(0))
+                                         MISSIONARIES.RIGHT(S(0)))
+                               + OUTNUMBER(S(S(0)) S(S(0)))
+                             + POSSIBLE(MISSIONARIES.LEFT(S(S(0)))
+                                        CANNIBALS.LEFT(S(S(0)))
+                                        BOAT(LEFT)
+                                        CANNIBALS.RIGHT(S(0))
+                                        MISSIONARIES.RIGHT(S(0)))
+ 
+ 
+R22,1 & R21,1   -->  * R23 : + OUTNUMBER(S(S(0)) S(S(0)))
+                             + POSSIBLE(MISSIONARIES.LEFT(S(S(0)))
+                                        CANNIBALS.LEFT(S(S(0)))
+                                        BOAT(LEFT)
+                                        CANNIBALS.RIGHT(S(0))
+                                        MISSIONARIES.RIGHT(S(0)))
+ 
+ 
+R23,1 & A3,1    -->  * R24 : + POSSIBLE(MISSIONARIES.LEFT(S(S(0)))
+                                        CANNIBALS.LEFT(S(S(0)))
+                                        BOAT(LEFT)
+                                        CANNIBALS.RIGHT(S(0))
+                                        MISSIONARIES.RIGHT(S(0)))
+ 
+ 
+R24,1 & A9,1    -->  * R25 : + REACHABLE(MISSIONARIES.LEFT(0)
+                                         CANNIBALS.LEFT(S(S(0)))
+                                         BOAT(RIGHT)
+                                         CANNIBALS.RIGHT(S(0))
+                                         MISSIONARIES.RIGHT(S(S(S(0)))))
+ 
+ 
+A17,3 & A5,1    -->  * R26 : - REACHABLE(MISSIONARIES.LEFT(0)
+                                         CANNIBALS.LEFT(S(S(0)))
+                                         BOAT(RIGHT)
+                                         CANNIBALS.RIGHT(S(0))
+                                         MISSIONARIES.RIGHT(S(S(S(0)))))
+                               + OUTNUMBER(S(S(0)) 0)
+                             + POSSIBLE(MISSIONARIES.LEFT(0)
+                                        CANNIBALS.LEFT(S(S(0)))
+                                        BOAT(RIGHT)
+                                        CANNIBALS.RIGHT(S(0))
+                                        MISSIONARIES.RIGHT(S(S(S(0)))))
+ 
+ 
+R26,1 & R25,1   -->  * R27 : + OUTNUMBER(S(S(0)) 0)
+                             + POSSIBLE(MISSIONARIES.LEFT(0)
+                                        CANNIBALS.LEFT(S(S(0)))
+                                        BOAT(RIGHT)
+                                        CANNIBALS.RIGHT(S(0))
+                                        MISSIONARIES.RIGHT(S(S(S(0)))))
+ 
+ 
+R27,1 & A2,1    -->  * R28 : + POSSIBLE(MISSIONARIES.LEFT(0)
+                                        CANNIBALS.LEFT(S(S(0)))
+                                        BOAT(RIGHT)
+                                        CANNIBALS.RIGHT(S(0))
+                                        MISSIONARIES.RIGHT(S(S(S(0)))))
+ 
+ 
+R28,1 & A13,1   -->  * R29 : + REACHABLE(MISSIONARIES.LEFT(0)
+                                         CANNIBALS.LEFT(S(S(S(0))))
+                                         BOAT(LEFT)
+                                         CANNIBALS.RIGHT(0)
+                                         MISSIONARIES.RIGHT(S(S(S(0)))))
+ 
+ 
+A17,3 & A6,1    -->  * R30 : - REACHABLE(MISSIONARIES.LEFT(0)
+                                         CANNIBALS.LEFT(S(S(S(0))))
+                                         BOAT(LEFT)
+                                         CANNIBALS.RIGHT(0)
+                                         MISSIONARIES.RIGHT(S(S(S(0)))))
+                               + OUTNUMBER(S(S(S(0))) 0)
+                             + POSSIBLE(MISSIONARIES.LEFT(0)
+                                        CANNIBALS.LEFT(S(S(S(0))))
+                                        BOAT(LEFT)
+                                        CANNIBALS.RIGHT(0)
+                                        MISSIONARIES.RIGHT(S(S(S(0)))))
+ 
+ 
+R30,1 & R29,1   -->  * R31 : + OUTNUMBER(S(S(S(0))) 0)
+                             + POSSIBLE(MISSIONARIES.LEFT(0)
+                                        CANNIBALS.LEFT(S(S(S(0))))
+                                        BOAT(LEFT)
+                                        CANNIBALS.RIGHT(0)
+                                        MISSIONARIES.RIGHT(S(S(S(0)))))
+ 
+ 
+R31,1 & A2,1    -->  * R32 : + POSSIBLE(MISSIONARIES.LEFT(0)
+                                        CANNIBALS.LEFT(S(S(S(0))))
+                                        BOAT(LEFT)
+                                        CANNIBALS.RIGHT(0)
+                                        MISSIONARIES.RIGHT(S(S(S(0)))))
+ 
+ 
+R32,1 & A10,1   -->  * R33 : + REACHABLE(MISSIONARIES.LEFT(0)
+                                         CANNIBALS.LEFT(S(0))
+                                         BOAT(RIGHT)
+                                         CANNIBALS.RIGHT(S(S(0)))
+                                         MISSIONARIES.RIGHT(S(S(S(0)))))
+ 
+ 
+A17,3 & A4,1    -->  * R34 : - REACHABLE(MISSIONARIES.LEFT(0)
+                                         CANNIBALS.LEFT(S(0))
+                                         BOAT(RIGHT)
+                                         CANNIBALS.RIGHT(S(S(0)))
+                                         MISSIONARIES.RIGHT(S(S(S(0)))))
+                               + OUTNUMBER(S(0) 0)
+                             + POSSIBLE(MISSIONARIES.LEFT(0)
+                                        CANNIBALS.LEFT(S(0))
+                                        BOAT(RIGHT)
+                                        CANNIBALS.RIGHT(S(S(0)))
+                                        MISSIONARIES.RIGHT(S(S(S(0)))))
+ 
+ 
+R34,1 & R33,1   -->  * R35 : + OUTNUMBER(S(0) 0)
+                             + POSSIBLE(MISSIONARIES.LEFT(0)
+                                        CANNIBALS.LEFT(S(0))
+                                        BOAT(RIGHT)
+                                        CANNIBALS.RIGHT(S(S(0)))
+                                        MISSIONARIES.RIGHT(S(S(S(0)))))
+ 
+ 
+R35,1 & A2,1    -->  * R36 : + POSSIBLE(MISSIONARIES.LEFT(0)
+                                        CANNIBALS.LEFT(S(0))
+                                        BOAT(RIGHT)
+                                        CANNIBALS.RIGHT(S(S(0)))
+                                        MISSIONARIES.RIGHT(S(S(S(0)))))
+ 
+ 
+R36,1 & A13,1   -->  * R37 : + REACHABLE(MISSIONARIES.LEFT(0)
+                                         CANNIBALS.LEFT(S(S(0)))
+                                         BOAT(LEFT)
+                                         CANNIBALS.RIGHT(S(0))
+                                         MISSIONARIES.RIGHT(S(S(S(0)))))
+ 
+ 
+A17,3 & A5,1    -->  * R38 : - REACHABLE(MISSIONARIES.LEFT(0)
+                                         CANNIBALS.LEFT(S(S(0)))
+                                         BOAT(LEFT)
+                                         CANNIBALS.RIGHT(S(0))
+                                         MISSIONARIES.RIGHT(S(S(S(0)))))
+                               + OUTNUMBER(S(S(0)) 0)
+                             + POSSIBLE(MISSIONARIES.LEFT(0)
+                                        CANNIBALS.LEFT(S(S(0)))
+                                        BOAT(LEFT)
+                                        CANNIBALS.RIGHT(S(0))
+                                        MISSIONARIES.RIGHT(S(S(S(0)))))
+ 
+ 
+R38,1 & R37,1   -->  * R39 : + OUTNUMBER(S(S(0)) 0)
+                             + POSSIBLE(MISSIONARIES.LEFT(0)
+                                        CANNIBALS.LEFT(S(S(0)))
+                                        BOAT(LEFT)
+                                        CANNIBALS.RIGHT(S(0))
+                                        MISSIONARIES.RIGHT(S(S(S(0)))))
+ 
+ 
+R39,1 & A2,1    -->  * R40 : + POSSIBLE(MISSIONARIES.LEFT(0)
+                                        CANNIBALS.LEFT(S(S(0)))
+                                        BOAT(LEFT)
+                                        CANNIBALS.RIGHT(S(0))
+                                        MISSIONARIES.RIGHT(S(S(S(0)))))
+ 
+ 
+R40,1 & A10,1   -->  * R41 : + REACHABLE(MISSIONARIES.LEFT(0)
+                                         CANNIBALS.LEFT(0)
+                                         BOAT(RIGHT)
+                                         CANNIBALS.RIGHT(S(S(S(0))))
+                                         MISSIONARIES.RIGHT(S(S(S(0)))))
+ 
+ 
+A17,3 & A3,1    -->  * R42 : - REACHABLE(MISSIONARIES.LEFT(0)
+                                         CANNIBALS.LEFT(0)
+                                         BOAT(RIGHT)
+                                         CANNIBALS.RIGHT(S(S(S(0))))
+                                         MISSIONARIES.RIGHT(S(S(S(0)))))
+                               + OUTNUMBER(0 0)
+                             + POSSIBLE(MISSIONARIES.LEFT(0)
+                                        CANNIBALS.LEFT(0)
+                                        BOAT(RIGHT)
+                                        CANNIBALS.RIGHT(S(S(S(0))))
+                                        MISSIONARIES.RIGHT(S(S(S(0)))))
+ 
+ 
+R42,1 & R41,1   -->  * R43 : + OUTNUMBER(0 0)
+                             + POSSIBLE(MISSIONARIES.LEFT(0)
+                                        CANNIBALS.LEFT(0)
+                                        BOAT(RIGHT)
+                                        CANNIBALS.RIGHT(S(S(S(0))))
+                                        MISSIONARIES.RIGHT(S(S(S(0)))))
+ 
+ 
+R43,1 & A3,1    -->  * R44 : + POSSIBLE(MISSIONARIES.LEFT(0)
+                                        CANNIBALS.LEFT(0)
+                                        BOAT(RIGHT)
+                                        CANNIBALS.RIGHT(S(S(S(0))))
+                                        MISSIONARIES.RIGHT(S(S(S(0)))))
+ 
+ 
+R44,1 & T18,1   -->  * R45 :  []
+ 
+ 
+ 
+ 
+------------------------------------------------------------------------------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  Q. E. D. 
+STOP
+ 
